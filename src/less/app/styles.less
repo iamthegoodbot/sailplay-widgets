@@ -1,0 +1,1252 @@
+@import "./../libs/mixins";
+@import "./../core/common";
+
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,300,500,700);
+
+@blue: #0f5fae;
+@dark: #444340;
+
+
+#ppsp {
+    font-family: 'Roboto', Arial, sans-serif;
+    font-size: 13px;
+    line-height: 1.4;
+    color: #454340;
+    -webkit-text-size-adjust: 100%;
+}
+
+#ppsp *{
+    .box-sizing(content-box);
+}
+
+::-webkit-input-placeholder {color:#333;}
+::-moz-placeholder          {color:#333;}/* Firefox 19+ */
+:-moz-placeholder           {color:#333;}/* Firefox 18- */
+:-ms-input-placeholder      {color:#333;}
+
+
+// Base Layout
+#ppsp{
+    position: fixed;
+    z-index: 10000;
+    width: 955px;
+    height: 545px;
+    left: 50%;
+    top: 50%;
+    margin-left: -477px;
+    margin-top: -273px;
+    background-color: #ededed;
+    box-shadow: 0 1px 1px rgba(0,0,0, .4);
+    border-radius: 2px;
+
+    .ppsp-close{
+        display: block;
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        z-index: 10001;
+        width: 30px;
+        height: 30px;
+        opacity: .3;
+        .transition(all .2s ease);
+
+        &:after{
+            content: '';
+            position: absolute;
+            display: block;
+            left: 50%;
+            top: 50%;
+            margin-left: auto;
+            margin-top: -6px;
+            width: 13px;
+            height: 13px;
+            background: url(../img/icon-close.png?embed) no-repeat;
+        }
+
+        &:hover{
+            opacity: 8;
+        }
+
+    }
+
+    //left block
+    .ppsp-left{
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 275px;
+        background-color: #d6d6d6;
+        font-size: 16px;
+        font-weight: 300;
+    }
+
+    .ppsp-profile{
+        padding-top: 40px;
+        text-align: center;
+    }
+
+    .ppsp-ava{
+        display: block;
+        margin: 0 auto 21px;
+        width: 142px;
+        height: 142px;
+        border-radius: 142px;
+        overflow: hidden;
+        background-repeat: no-repeat;
+        -webkit-background-size: cover;
+        background-size: cover;
+        background-position: 50% 50%;
+        border: 6px solid #ccc;
+    }
+
+    .ppsp-ava-title{
+        line-height: 19px;
+        margin-bottom: 49px;
+    }
+
+    .ppsp-points{
+        text-align: center;
+        font-size: 16px;
+        font-weight: 300;
+        margin-bottom: 46px;
+
+        span{
+            display: block;
+            font-size: 98px;
+            font-weight: 300;
+            line-height: 1;
+            color: #0f5fae;
+            margin-bottom: -5px;
+        }
+    }
+
+    .ppsp-profile-btn{
+        min-width: 168px;
+    }
+
+    //unauth block
+    .ppsp-unauth{
+        padding-top: 40px;
+        text-align: center;
+        display: none;
+        
+        .ppsp-ava{
+            background-image: url(../img/img-default.png?embed);
+        }
+
+        .ppsp-ava-title{
+            margin-bottom: 19px;
+        }
+    }
+
+    .ppsp-unauth-form{
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        height: 146px;
+        background-color: #0f5fae;
+        text-align: center;
+        color: #ffffff;
+        padding-bottom: 15px;
+
+        .ppsp-unauth-text{
+            font-size: 13px;
+            line-height: 15px;
+            margin-bottom: 9px;
+            padding-top: 23px
+        }
+
+        .ppsp-unauth-btn{
+            min-width: 130px;
+            margin-top: 8px;
+            padding-top: 7px;
+            padding-bottom: 6px;
+        }
+    }
+
+    // right block
+    .ppsp-right{
+        position: absolute;
+        left: 275px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+    .ppsp-nav{
+        margin: 32px 44px 0 36px;
+        text-align: justify;
+
+        &:after{
+            content: '';
+            display: inline-block;
+            vertical-align: top;
+            width: 100%;
+            overflow: hidden;
+            height: 1px;
+
+        }
+    }
+
+    .ppsp-nav-item{
+        display: inline-block;
+        vertical-align: top;
+        text-align: left;
+        position: relative;
+        padding-left: 53px;
+        height: 34px;
+        font-size: 14px;
+        font-weight: 300;
+        color: #999896;
+        text-decoration: none !important;
+        line-height: 34px;
+        
+        &:before{
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 34px;
+            height: 34px;
+            border-radius: 34px;
+            background-color: #d6d6d6;
+        }
+
+        &:after{
+            content: '';
+            position: absolute;
+        }
+
+        &.type-gift:after{
+            left: 10px;
+            top: 7px;
+            width: 16px;
+            height: 17px;
+            background: url(../img/icon-gift.png?embed) no-repeat;
+        }
+
+        &.type-task:after{
+            left: 7px;
+            top: 6px;
+            width: 21px;
+            height: 21px;
+            background: url(../img/icon-task.png?embed) no-repeat;
+        }
+
+        &.type-lider:after{
+            left: 7px;
+            top: 5px;
+            width: 20px;
+            height: 21px;
+            background: url(../img/icon-lider.png?embed) no-repeat;
+        }
+
+        &.type-feedback:after{
+            left: 9px;
+            top: 9px;
+            width: 16px;
+            height: 16px;
+            background: url(../img/icon-feed.png?embed) no-repeat;
+        }
+
+        &:hover{
+            color: #666;
+
+            &:before{
+                background-color: #ccc;
+            }
+        }
+
+        &.type-active{
+            color: #444340 !important;
+            cursor: default !important;
+            font-weight: 600;
+
+            &:before{
+                background-color: #d6d6d6 !important;
+            }
+
+            &.type-gift:after{
+                background: url(../img/icon-gift-a.png?embed) no-repeat;
+            }
+
+            &.type-task:after{
+                background: url(../img/icon-task-a.png?embed) no-repeat;
+            }
+
+            &.type-lider:after{
+                background: url(../img/icon-lider-a.png?embed) no-repeat;
+            }
+
+            &.type-feedback:after{
+                background: url(../img/icon-feed-a.png?embed) no-repeat;
+            }
+        }
+    }
+
+    .ppsp-content{
+        position: absolute;
+        top: 63px;
+        right: 0;
+        left: 0;
+        bottom: 0;
+    }
+}
+
+// First screen list + detail page
+
+#ppsp{
+    .ppsp-point-bl{
+        display: none;
+    }
+
+    .ppsp-deal-list{
+        position: absolute;
+        padding-top: 20px;
+        top: 9px;
+        right: 25px;
+        bottom: 50px;
+        left: 22px;
+        overflow: auto;
+    }
+
+    .ppsp-deal-item{
+        display: block;
+        height: 384px;
+        width: 187px;
+        border-radius: 4px;
+        box-shadow: 0 1px 1px rgba(0,0,0, .36);
+        background-color: #ffffff;
+        position: relative;
+        font-size: 16px;
+        font-weight: 300;
+        color: #444340 !important;
+        float: left;
+        text-decoration: none !important;
+        margin-left: 7px;
+        text-align: center;
+        margin-bottom: 15px;
+        .transition(all .2s ease);
+    }
+
+    .ppsp-deal-item:hover{
+        .transform( translate(0, -10px));
+    }
+
+    .ppsp-deal-item-img{
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        -webkit-background-size: cover;
+        background-size: cover;
+        position: absolute;
+        height: 186px;
+        top: 0;
+        right: 0;
+        left: 0;
+        overflow: hidden;
+        border-radius: 4px 4px 0 0;
+    }
+
+    .ppsp-deal-item-content{
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        height: 197px;
+        border-radius: 0 0 4px 4px;
+        background-color: #e3e3e3;
+    }
+
+    .ppsp-deal-title{
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 1;
+        padding: 27px 0 10px;
+    }
+
+    .ppsp-deal-price{
+        display: block;
+        font-size: 14px;
+        font-weight: 600;
+        color: @blue;
+        margin-bottom: 11px;
+    }
+
+    .ppsp-deal-text{
+        display: block;
+        font-size: 13px;
+        line-height: 15px;
+        min-height: 63px;
+    }
+
+    .ppsp-deal-btn{
+        min-width: 118px;
+    }
+
+    //детальная карточка
+
+    .ppsp-deal-detail{
+        display: none;
+        position: absolute;
+        left: 31px;
+        top: 23px;
+        right: 32px;
+    }
+
+    .ppsp-deal-card{
+        border-radius: 4px;
+        box-shadow: 0 1px 1px rgba(0,0,0, .36);
+        background-color: #ffffff;
+        height: 400px;
+        position: relative;
+    }
+
+    .ppsp-card-img{
+        float: left;
+        margin-left: 45px;
+        margin-top: 45px;
+        width: 190px;
+        height: 190px;
+        background-repeat: no-repeat;
+        -webkit-background-size: cover;
+        background-size: cover;
+        background-position: 50% 50%;
+    }
+
+    .ppsp-card-content{
+        padding-top: 94px;
+        margin: 0 55px 0 260px;
+    }
+
+    .ppsp-card-head {
+        overflow: hidden;
+        margin-bottom: 5px;
+
+        .ppsp-card-points {
+            float: right;
+            font-size: 18px;
+            font-weight: 600;
+            color: @blue;
+            position: relative;
+            top: -6px;
+        }
+
+        .ppsp-card-title {
+            font-size: 14px;
+            font-weight: 600;
+            .t-ellps();
+        }
+    }
+
+    .ppsp-card-content-inner {
+        font-size: 13px;
+        line-height: 15px;
+        text-align: left;
+
+        span {
+            color: @blue;
+        }
+    }
+
+    .ppsp-card-btn {
+        position: absolute;
+        right: 60px;
+        bottom: 39px;
+        min-width: 124px;
+        padding-top: 6px;
+        padding-bottom: 5px;
+    }
+
+
+    .ppsp-deal-card-btn{
+        margin-top: 14px;
+        font-size: 11px;
+        font-weight: 300;
+        min-width: 122px;
+        padding-top: 6px;
+        text-transform: none;
+        padding-bottom: 6px;
+    }
+}
+
+// Reg block
+#ppsp{
+    .ppsp-registration-bl,
+    .ppsp-forget-bl{
+        display: none;
+    }
+
+    .ppsp-base-content{
+        position: absolute;
+        top: 36px;
+        left: 34px;
+        right: 71px;
+        bottom: 0;
+    }
+
+    .ppsp-base-card{
+        height: 383px;
+        background-color: #ffffff;
+        border-radius: 4px;
+        box-shadow: 0 1px 1px rgba(0,0,0, .36);
+    }
+
+    //registration
+    .ppsp-reg-block{
+        padding-left: 76px;
+        padding-top: 46px;
+        font-size: 18px;
+        font-weight: 300;
+        padding-right: 75px;
+
+        .points{
+            display: block;
+            float: right;
+            font-size: 18px;
+            font-weight: 600;
+            color: @blue;
+        }
+
+        .title{
+            display: block;
+            .t-ellps();
+        }
+    }
+
+    .ppsp-reg-controls{
+        margin-bottom: 20px;
+        margin-right: -30px;
+
+        .ppsp-reg-inline{
+            display: inline-block;
+            vertical-align: top;
+            width: 207px;
+            margin-right: 5px;
+        }
+
+        .psp-contr-input{
+            width: 100%;
+        }
+    }
+
+    .ppsp-reg-radio{
+        height: 20px;
+        font-size: 12px;
+        font-weight: 300;
+        line-height: 20px;
+        display: block;
+        cursor: pointer;
+        margin-bottom: 20px;
+
+        .ppsp-link{
+            font-weight: 600;
+        }
+
+        .ppsp-radio{
+            display: inline-block;
+            vertical-align: top;
+            margin-right: 5px;
+        }
+    }
+
+    .ppsp-reg-buttons{
+        margin-right: -30px;
+    }
+
+    .ppsp-reg-submit,
+    .ppsp-reg-forget{
+        margin-right: 7px;
+        padding-top: 6px;
+        vertical-align: top;
+        font-size: 10px;
+        padding-bottom: 5px;
+    }
+
+    .ppsp-reg-submit{
+        min-width: 145px;
+    }
+
+    .ppsp-reg-forget{
+        min-width: 118px;
+    }
+
+    .ppsp-reg-social{
+        display: inline-block;
+        vertical-align: top;
+
+        .ppsp-social-vk,
+        .ppsp-social-fb,
+        .ppsp-social-ok{
+            margin-right: 4px;
+            vertical-align: top;
+        }
+    }
+
+    .ppsp-reg-title{
+        overflow: hidden;
+        margin-bottom: 58px;
+    }
+
+    //foreget block
+    .ppsp-forget-controls{
+        margin-right: -30px;
+        white-space: nowrap;
+        padding-top: 27px;
+    }
+
+    .ppsp-forget-inline{
+        display: inline-block;
+        vertical-align: top;
+        width: 207px;
+        margin-right: 5px;
+
+        &.type-buttons{
+            padding-top: 22px;
+            width: auto;
+        }
+
+        .psp-contr-input{
+            width: 100%;
+        }
+    }
+
+    .ppsp-forget-submit,
+    .ppsp-forget-cancel{
+        margin-right: 7px;
+        padding-top: 6px;
+        vertical-align: top;
+        font-size: 10px;
+        padding-bottom: 5px;
+        min-width: 74px;
+    }
+
+    .ppsp-forget-back-btn{
+        margin-top: 14px;
+        font-size: 11px;
+        font-weight: 300;
+        min-width: 122px;
+        padding-top: 6px;
+        text-transform: none;
+        padding-bottom: 6px;
+    }
+}
+
+
+// Final block for sharing
+#ppsp{
+    .ppsp-final-content{
+        position: absolute;
+        top: 36px;
+        left: 34px;
+        right: 29px;
+        bottom: 0;
+    }
+
+    .ppsp-final-card{
+        background-color: #ffffff;
+        border-radius: 4px;
+        box-shadow: 0 1px 1px rgba(0,0,0, .36);
+        text-align: center;
+        height: 251px;
+        position: relative;
+
+        &.type-only-text .ppsp-final-card-title{
+            padding-top: 73px;
+        }
+
+        &.type-small-bl{
+            width: 616px;
+            height: 183px;
+            margin: 0 auto 13px;
+
+            .ppsp-final-card-title{
+                padding-top: 35px;
+                padding-bottom: 31px;
+            }
+        }
+    }
+
+    .ppsp-final-card-title{
+        font-size: 17px;
+        font-weight: 300;
+        padding-top: 50px;
+        padding-bottom: 24px;
+
+        span{
+            font-weight: 600;
+            color: @blue;
+        }
+    }
+
+    .ppsp-final-social{
+        .ppsp-social-vk,
+        .ppsp-social-fb,
+        .ppsp-social-ok,
+        .ppsp-social-tw{
+            vertical-align: top;
+            margin: 0 4px;
+        }
+    }
+
+    .ppsp-final-footer{
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        height: 63px;
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 63px;
+        border-radius: 0 0 4px 4px;
+        background-color: @blue;
+        color: #ffffff;
+        text-align: center;
+    }
+
+    .ppsp-final-count{
+        padding-top: 41px;
+        text-align: center;
+    }
+
+    .ppsp-final-count-title{
+        font-size: 17px;
+        font-weight: 300;
+        margin-bottom: 35px;
+    }
+
+    .ppsp-final-count-list{
+        text-align: center;
+    }
+
+    .ppsp-final-count-item{
+        display: inline-block;
+        vertical-align: top;
+        margin: 0 4px;
+        width: 52px;
+        height: 52px;
+        border-radius: 52px;
+        overflow: hidden;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+
+    .ppsp-final-label{
+        height: 93px;
+        font-size: 15px;
+        font-weight: 300;
+        color: #7e7d7a;
+        margin-bottom: 34px;
+        line-height: 93px;
+        text-align: center;
+        background-color: #d6d4d1;
+    }
+}
+
+
+// Lider board
+#ppsp{
+    .ppsp-scroll-outer{
+        position: absolute;
+        top: 37px;
+        right: 28px;
+        bottom: 50px;
+        left: 33px;
+        overflow: auto;
+
+        &.full-height{
+            bottom: 0;
+        }
+    }
+
+    .ppsp-lider-item{
+        position: relative;
+        margin-right: 28px;
+        margin-bottom: 8px;
+        height: 57px;
+        font-size: 13px;
+        font-weight: 300;
+        border-radius: 4px;
+        background-color: #ffffff;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12);
+    }
+
+    .ppsp-lider-number{
+        position: absolute;
+        left: 21px;
+        top: 0;
+        bottom: 0;
+        line-height: 57px;
+        min-width: 20px;
+    }
+
+    .ppsp-lider-ava{
+        position: absolute;
+        left: 54px;
+        top: 7px;
+        overflow: hidden;
+        width: 45px;
+        height: 45px;
+        border-radius: 45px;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        -webkit-background-size: cover;
+        background-size: cover;
+        background-image: url(../img/img-default-s.png?embed);
+    }
+
+    .ppsp-lider-name{
+        margin-left: 122px;
+        margin-right: 145px;
+        line-height: 57px;
+        .t-ellps();
+    }
+
+    .ppsp-lider-points{
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 116px;
+        right: 0;
+        line-height: 57px;
+        font-size: 14px;
+        font-weight: 600;
+        color: @blue;
+    }
+}
+
+// Unauth lider board
+#ppsp {
+    .ppsp-scroll-card{
+        margin-right: 44px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 3px 3px rgba(0, 0, 0, 0.17);
+        text-align: center;
+        height: 380px;
+    }
+
+    .ppsp-empty-text{
+        padding-top: 156px;
+        font-size: 12px;
+        font-weight: 300;
+
+        span{
+            font-size: 18px;
+            font-weight: 300;
+            display: block;
+            margin-bottom: 9px;
+        }
+    }
+}
+
+// list of feedbacks
+#ppsp{
+    .ppsp-feedback-item{
+        border-radius: 4px;
+        background-color: #ffffff;
+        position: relative;
+        box-shadow: 0 1px 1px rgba(0,0,0, .17);
+        margin-bottom: 7px;
+        margin-right: 29px;
+    }
+
+    .ppsp-feedback-ava{
+        position: absolute;
+        left: 20px;
+        top: 15px;
+        width: 45px;
+        height: 45px;
+        border-radius: 45px;
+        overflow: hidden;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        -webkit-background-size: cover;
+        background-size: cover;
+        background-image: url(../img/img-default-s.png?embed);
+    }
+
+    .ppsp-feedback-content{
+        margin-left: 76px;
+        margin-right: 10px;
+    }
+
+    .ppsp-feedback-title{
+        font-size: 14px;
+        font-weight: 600;
+        color: @blue;
+        margin-bottom: 2px;
+        padding-top: 20px;
+    }
+
+    .ppsp-feedback-text{
+        padding-bottom: 20px;
+        font-size: 12px;
+        font-weight: 300;
+        line-height: 14px;
+    }
+}
+
+//Points list
+#ppsp{
+    .ppsp-points-item{
+        height: 50px;
+        margin-right: 24px;
+        border-radius: 4px;
+        background-color: #ffffff;
+        box-shadow: 0 1px 1px rgba(0,0,0, .17);
+        font-size: 12px;
+        font-weight: 300;
+        line-height: 50px;
+        margin-bottom: 5px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .ppsp-points-item-text{
+        float: left;
+        height: 50px;
+        margin-left: 27px;
+        width: 285px;
+        .t-ellps();
+        line-height: 50px;
+    }
+
+    .ppsp-points-item-date{
+        float: left;
+        height: 50px;
+        color: #b0aba2;
+        width: 100px;
+    }
+
+    .ppsp-points-item-value{
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        width: 100px;
+        font-size: 14px;
+        font-weight: 600;
+        color: @blue;
+        line-height: 50px;
+    }
+}
+
+// Список Задания для авторизованного пользователя
+#ppsp{
+    .ppsp-task-feedback-bl,
+    .ppsp-task-profile-bl{
+        display: none;
+    }
+
+    // задания
+    .ppsp-task-item{
+        display: block;
+        float: left;
+        width: 284px;
+        height: 124px;
+        margin: 0 7px 6px 0;
+        border-radius: 5px;
+        background-color: #ffffff;
+        box-shadow: 0 1px 1px rgba(0,0,0, .17);
+        position: relative;
+
+        .ppsp-task-btn{
+            font-size: 10px;
+            width: 100%;
+            padding: 4px 0 3px 0;
+        }
+
+        &.type-vk .ppsp-task-img:after{
+            width: 25px;
+            height: 31px;
+            background: url(../img/icon-task-vk.png?embed) no-repeat;
+            left: 41px;
+            top: 44px;
+        }
+
+        &.type-fb .ppsp-task-img:after{
+            width: 17px;
+            height: 35px;
+            background: url(../img/icon-task-fb.png?embed) no-repeat;
+            left: 44px;
+            top: 42px;
+        }
+
+        &.type-gp .ppsp-task-img:after{
+            width: 41px;
+            height: 27px;
+            background: url(../img/icon-task-gp.png?embed) no-repeat;
+            left: 34px;
+            top: 45px;
+        }
+
+        &.type-invite .ppsp-task-img:after{
+            width: 41px;
+            height: 42px;
+            background: url(../img/icon-task-friend.png?embed) no-repeat;
+            left: 30px;
+            top: 41px;
+        }
+
+        &.type-profile .ppsp-task-img:after{
+            width: 35px;
+            height: 35px;
+            background: url(../img/icon-task-feed.png?embed) no-repeat;
+            left: 36px;
+            top: 42px;
+        }
+
+        &.type-feedback .ppsp-task-img:after{
+            width: 47px;
+            height: 39px;
+            background: url(../img/icon-task-feed1.png?embed) no-repeat;
+            left: 26px;
+            top: 39px;
+        }
+    }
+
+    .ppsp-task-img{
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        bottom: 3px;
+        border-radius: 3px 0 0 3px;
+        background-color: #e3e3e3;
+        width: 99px;
+
+        &:after{
+            content: '';
+            position: absolute;
+        }
+    }
+
+    .ppsp-task-content{
+        margin-left: 122px;
+        margin-right: 18px;
+    }
+
+    .ppsp-task-title{
+        padding-top: 22px;
+        font-size: 13px;
+        font-weight: 300;
+        min-height: 61px;
+
+        span{
+            display: block;
+            margin-top: 1px;
+            color: @blue;
+            font-size: 14px;
+            font-weight: 600;
+        }
+    }
+}
+
+// form task оставить отзыв
+#ppsp{
+    .ppsp-feed-form{
+        display: block;
+        padding: 46px 74px 0 74px;
+        text-align: left;
+
+        .ppsp-feed-btn{
+            margin-top: 19px;
+            padding-top: 6px;
+            padding-bottom: 5px;
+            min-width: 124px;
+        }
+    }
+
+    .ppsp-feed-head{
+        overflow: hidden;
+        margin-bottom: 30px;
+
+        .point{
+            display: block;
+            float: right;
+            font-size: 18px;
+            font-weight: 60;
+            color: @blue;
+        }
+
+        .title{
+            font-size: 18px;
+            font-weight: 300;
+            .t-ellps();
+        }
+    }
+
+    .ppsp-feed-controls{
+        margin-bottom: 7px;
+
+        .psp-contr-textarea{
+            width: 100%;
+            height: 114px;
+        }
+    }
+
+    .ppsp-feed-points{
+        font-size: 12px;
+        font-weight: 300;
+
+        .ppsp-feed-select{
+            width: 80px;
+        }
+
+        .ppsp-contr-select{
+            width: 100%;
+        }
+    }
+
+    .ppsp-task-back-btn{
+        margin-top: 14px;
+        font-size: 11px;
+        font-weight: 300;
+        min-width: 122px;
+        padding-top: 6px;
+        text-transform: none;
+        padding-bottom: 6px;
+    }
+}
+
+// form with profile
+#ppsp{
+    .ppsp-prof-form{
+        display: block;
+        padding: 46px 74px 0 74px;
+        text-align: left;
+
+        .ppsp-prof-btn{
+            margin-top: 24px;
+            padding-top: 6px;
+            padding-bottom: 5px;
+            min-width: 124px;
+        }
+    }
+
+    .ppsp-prof-head{
+        overflow: hidden;
+        margin-bottom: 30px;
+
+        .point{
+            display: block;
+            float: right;
+            font-size: 18px;
+            font-weight: 60;
+            color: @blue;
+        }
+
+        .title{
+            font-size: 18px;
+            font-weight: 300;
+            .t-ellps();
+        }
+    }
+
+    .ppsp-prof-inputs{
+        margin-right: -30px;
+        margin-bottom: 25px;
+    }
+
+    .ppsp-prof-inline{
+        display: inline-block;
+        vertical-align: top;
+        width: 207px;
+        margin-right: 5px;
+
+        .psp-contr-input{
+            width: 100%;
+        }
+    }
+
+    .ppsp-prof-date{
+        margin-bottom: 25px;
+    }
+
+    .ppsp-prof-date-day,
+    .ppsp-prof-date-month,
+    .ppsp-prof-date-year{
+        display: inline-block;
+        vertical-align: top;
+        margin-right: 5px;
+
+        .ppsp-contr-select{
+            width: 100%;
+        }
+    }
+
+    .ppsp-prof-date-day{
+        width: 55px;
+    }
+
+    .ppsp-prof-date-month{
+        width: 132px;
+    }
+
+    .ppsp-prof-date-year{
+        width: 92px;
+    }
+
+    .ppsp-prof-radio-inline{
+        display: inline-block;
+        vertical-align: top;
+        height: 20px;
+        font-size: 12px;
+        font-weight: 300;
+        margin-right: 25px;
+        line-height: 20px;
+        cursor: pointer;
+
+        .ppsp-radio{
+            display: inline-block;
+            vertical-align: top;
+            margin-right: 5px;
+        }
+    }
+
+    .ppsp-task-list-unauth{
+        display: none;
+        position: absolute;
+        height: 161px;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 100000;
+        background: @blue;
+        color: #ffffff;
+        font-size: 18px;
+        font-weight: 300;
+        text-align: center;
+        line-height: 161px;
+    }
+
+    .ppsp-alert-bl{
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: none;
+        height: 90px;
+        background: @blue;
+        font-size: 18px;
+        font-weight: 300;
+        color: #ffffff;
+        line-height: 90px;
+        text-align: center;
+    }
+}
+
+
+.ppsp-deal-list::-webkit-scrollbar-track {
+    background-color: #d6d6d6;
+    width: 8px;
+    border-radius: 3px;
+}
+.ppsp-deal-list::-webkit-scrollbar-thumb {
+    background-color: #fff;
+    width: 4px;
+    border-radius: 4px;
+}
