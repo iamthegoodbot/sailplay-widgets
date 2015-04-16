@@ -11,7 +11,7 @@ export default class Avatar extends React.Component {
   }
 
   render() {
-    let imagePath = this.state.image ? this.state.image : '../img/img-default.png'
+    let imagePath = this.state.image ? this.state.image : 'dist/img/img-default.png'
       , style = {
           backgroundImage: `url(${imagePath})`
         };

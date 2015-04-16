@@ -1,19 +1,20 @@
 import React from 'react';
 
 import NavStore from '../stores/NavStore.js';
+
 import MainMenu from './MainMenu.jsx';
 import Register from './Register.jsx';
 import Gifts from './Gifts.jsx';
 import Tasks from './Tasks.jsx';
 import Leaderboard from './Leaderboard.jsx';
 import Feedback from './Feedback.jsx';
+import History from './History.jsx';
 
 export default class Content extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      isAuth: props.isAuth,
       activeView: NavStore.currentRoute
     };
   }
@@ -43,18 +44,33 @@ export default class Content extends React.Component {
 
   _getCurrentView() {
     let curr = this.state.activeView
-      , auth = this.state.isAuth;
+      , auth = this.props.isAuth
+      , view;
 
-    if (curr === 'gift') {
-      return <Gifts isAuth={auth} />
-    } else if (curr === 'task') {
-      return <Tasks isAuth={auth} />
-    } else if (curr === 'lider') {
-      return <Leaderboard isAuth={auth} />
-    } else if (curr === 'feedback') {
-      return <Feedback isAuth={auth} />
-    } else if (curr === 'register') {
-      return <Register />
+    switch (curr) {
+      case 'gift':
+        view = <Gifts isAuth={auth} />;
+        break;
+      case 'task':
+        view = <Tasks isAuth={auth} />;
+        break;
+      case 'lider':
+        view = <Leaderboard isAuth={auth} />;
+        break;
+      case 'feedback':
+        view = <Feedback isAuth={auth} />;
+        break;
+      case 'history':
+        view = <History />;
+        break;
+      case 'register':
+        view = <Register />;
+        break;
+      default:
+        view = <Register />;
+        break;
     }
+
+    return view;
   }
 }

@@ -939,9 +939,6 @@
   left: 0;
   bottom: 0;
 }
-#ppsp .ppsp-point-bl {
-  display: none;
-}
 #ppsp .ppsp-deal-list {
   position: absolute;
   padding-top: 20px;
@@ -1791,11 +1788,6 @@
 #ppsp.type_show_points-history .ppsp-deal-list {
   display: none;
 }
-#ppsp.type_show_points-history .ppsp-profile-btn {
-  color: #fff !important;
-  border: 1px solid #0f5fae;
-  background: #0f5fae;
-}
 #ppsp.type_show_task_profile .ppsp-task-list-bl {
   display: none;
 }
@@ -1813,4 +1805,10 @@
 }
 #ppsp.type_show_alert_panel .ppsp-alert-bl {
   display: block;
+}
+
+#ppsp .ppsp-profile-btn.m-active-btn {
+  color: #fff !important;
+  border: 1px solid #0f5fae;
+  background: #0f5fae;
 }

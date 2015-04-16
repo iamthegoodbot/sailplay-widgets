@@ -1,23 +1,22 @@
 let sailplay = window.SAILPLAY;
 
-export default class Sailplay {
-  constructor(id, hash) {
-    this.id = id;
-    this.hash = hash;
-  }
+class Sailplay {
+  init(id) {
+    this.partnerId = id;
 
-  init() {
     return this.instance ? this.instance : this.instance = new Promise((resolve, reject) => {
-      sailplay.send('init', { partner_id: this.id });
+      sailplay.send('init', { partner_id: id });
 
       sailplay.on('init.success', resolve);
       sailplay.on('init.error', reject);
     });
   }
 
-  login() {
+  login(hash) {
+    this.authHash = hash;
+
     return this.user ? this.user : this.user = new Promise((resolve, reject) => {
-      sailplay.send('login', this.hash);
+      sailplay.send('login', hash);
 
       sailplay.on('login.success', resolve);
       sailplay.on('login.error', reject);
@@ -100,3 +99,5 @@ export default class Sailplay {
     }));
   }
 }
+
+export default new Sailplay();

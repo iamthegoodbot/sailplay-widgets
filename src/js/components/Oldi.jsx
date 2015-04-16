@@ -1,6 +1,10 @@
 import React from 'react';
 
+import SailplayService from '../services/SailplayService.js';
+import GiftsActions from '../actions/GiftsActions.js';
+import TasksActions from '../actions/TasksActions.js';
 import LoginStore from '../stores/LoginStore.js';
+
 import CloseBtn from './CloseBtn.jsx';
 import Dashboard from './Dashboard.jsx';
 import Content from './Content.jsx';
@@ -14,6 +18,7 @@ export default class Oldi extends React.Component {
 
   componentDidMount() {
     LoginStore.addChangeListener(this._onChange.bind(this));
+    this._initSailplay();
   }
 
   componentWillUnmount() {
@@ -45,5 +50,18 @@ export default class Oldi extends React.Component {
       isLoggedIn: LoginStore.isLoggedIn(),
       user: LoginStore.user
     }
+  }
+
+  _initSailplay() {
+    let onError = (err) => {
+      console.error(err.message);
+    };
+
+    SailplayService.init(this.props.partnerId)
+      .then(() => {
+        SailplayService.giftsList().then(GiftsActions.giftsLoaded, onError);
+        SailplayService.actionsList().then(TasksActions.tasksLoaded, onError);
+      })
+      .catch(onError);
   }
 }

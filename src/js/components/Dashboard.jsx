@@ -6,8 +6,6 @@ import Default from './Default.jsx';
 export default class Dashboard extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = { isAuth: props.isAuth };
   }
 
   render() {
@@ -17,8 +15,4 @@ export default class Dashboard extends React.Component {
       </div>
     );
   }
-
-  //get dashboardContent() {
-  //  return this.state.isAuth ? <Profile /> : <Default />;
-  //}
 }

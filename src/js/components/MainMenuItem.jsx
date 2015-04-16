@@ -10,7 +10,7 @@ export default class MainMenuItem extends React.Component {
   handler(e) {
     e.preventDefault();
 
-    NavActions.navigate(this.props.type)
+    NavActions.navigate(this.props.type);
   }
 
   render() {

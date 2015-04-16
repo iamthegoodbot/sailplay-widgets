@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Auth from '../services/AuthService.js';
 import NavActions from '../actions/NavActions.js';
+
 import Avatar from './Avatar.jsx';
 import Points from './Points.jsx';
 import Button from './Button.jsx';
@@ -11,11 +11,7 @@ export default class Default extends React.Component {
     super(props);
   }
 
-  login() {
-    Auth.login();
-  }
-
-  register() {
+  handler() {
     NavActions.navigate('register');
   }
 
@@ -30,10 +26,18 @@ export default class Default extends React.Component {
             <div>чтобы получать олдики</div>
           </div>
           <div>
-            <Button classMod="ppsp-unauth-btn ppsp-white-btn" title="Вход" onClick={Auth.login.bind(this)} />
+            <Button
+              title="Вход"
+              classMod="ppsp-unauth-btn ppsp-white-btn"
+              onClick={this.handler.bind(this)}
+            />
           </div>
           <div>
-            <Button classMod="ppsp-unauth-btn ppsp-white-btn" title="Регистрация" onClick={this.register.bind(this)} />
+            <Button
+              title="Регистрация"
+              classMod="ppsp-unauth-btn ppsp-white-btn"
+              onClick={this.handler.bind(this)}
+            />
           </div>
         </div>
       </div>

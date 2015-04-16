@@ -3,19 +3,11 @@ import React from 'react';
 import Oldi from './components/Oldi.jsx';
 import Sailplay from './services/SailplayService.js';
 
-let appRoot = document.getElementById('oldi-loyalty-app')
-  , partnerId = appRoot.getAttribute('data-partner-id')
-  , authHash = appRoot.getAttribute('data-auth-hash');
+let appRoot = document.getElementById('oldi-loyalty-app');
 
-let sp = new Sailplay(partnerId, authHash);
-
-sp.init()
-  .then(sp.login.bind(sp))
-  .then(sp.userInfo.bind(sp))
-  .then(console.log.bind(console))
-  .catch(console.error.bind(console));
+const PARTNER_ID = appRoot.getAttribute('data-partner-id');
 
 React.render(
-  <Oldi partnerId={partnerId} authHash={authHash} />,
+  <Oldi partnerId={PARTNER_ID} />,
   appRoot
 );

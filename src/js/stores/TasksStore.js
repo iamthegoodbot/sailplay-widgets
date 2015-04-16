@@ -1,7 +1,7 @@
-import { LOGIN_USER, LOGOUT_USER } from '../constants/Constants.js';
+import { TASKS_LOADED } from '../constants/Constants.js';
 import BaseStore from './BaseStore.js';
 
-class LoginStore extends BaseStore {
+class TasksStore extends BaseStore {
   constructor() {
     super(this._registerToAction.bind(this));
     this._tasks = null;
@@ -9,13 +9,8 @@ class LoginStore extends BaseStore {
 
   _registerToAction(action) {
     switch (action.actionType) {
-      case LOGIN_USER:
+      case TASKS_LOADED:
         this._tasks = action.data;
-        this.emitChange();
-        break;
-
-      case LOGOUT_USER:
-        this._tasks = null;
         this.emitChange();
         break;
 
@@ -24,13 +19,9 @@ class LoginStore extends BaseStore {
     }
   }
 
-  get user() {
+  get tasks() {
     return this._tasks;
-  }
-
-  isLoggedIn() {
-    return !!this._tasks;
   }
 }
 
-export default new LoginStore();
+export default new TasksStore();

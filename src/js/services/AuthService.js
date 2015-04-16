@@ -1,17 +1,20 @@
+import SailplayService from './SailplayService.js';
+
 import LoginActions from '../actions/LoginActions.js';
+import HistoryActions from '../actions/HistoryActions.js';
 
 class AuthService {
   login() {
-    LoginActions.loginUser({
-      last_badge: {},
-      status: 'ok',
-      user: {
-        name: 'alex shestakov',
-        pic: '//d3257v5wstjx8h.cloudfront.net/media/users/user/f85f9a9c3eafe2533e2814e7ac8dca57.100x100.jpg'
-      },
-      user_points: {},
-      user_status: {}
-    });
+    const AUTH_HASH = '24c1902f2eb729a2f64c1968e4bf6be363ea0731';
+
+    let onError = (err) => { console.error(err.message) };
+
+    SailplayService.login(AUTH_HASH)
+      .then(() => {
+        SailplayService.userInfo().then(LoginActions.loginUser, onError);
+        SailplayService.userHistory().then(HistoryActions.historyLoaded, onError);
+      })
+      .catch(onError);
   }
 
   logout() {}

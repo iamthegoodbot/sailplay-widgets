@@ -1,5 +1,8 @@
 import React from 'react';
 
+import Auth from '../services/AuthService.js';
+import NavActions from '../actions/NavActions.js';
+
 import Button from './Button.jsx';
 
 export default class Register extends React.Component {
@@ -7,7 +10,10 @@ export default class Register extends React.Component {
     super(props);
   }
 
-  login() {}
+  login() {
+    Auth.login();
+    NavActions.navigate('gift');
+  }
 
   register() {}
 

@@ -6,13 +6,13 @@ module.exports = {
   entry: ['webpack/hot/dev-server', './src/js/app.js'],
 
   output: {
-    path: __dirname + '/build',
-    publicPath: 'http://localhost:8080/build/',
+    path: __dirname + '/dist',
+    publicPath: 'http://localhost:8080/dist/',
     filename: 'app.js'
   },
 
   devServer: {
-    contentBase: './build',
+    contentBase: './dist',
     hot: true,
     info: false,
     inline: true
