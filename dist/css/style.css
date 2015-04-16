@@ -1402,7 +1402,7 @@
   font-size: 12px;
   font-weight: 300;
 }
-#ppsp .ppsp-empty-text span {
+#ppsp .ppsp-empty-text .ppsp-empty-text__header {
   font-size: 18px;
   font-weight: 300;
   display: block;
@@ -1573,7 +1573,7 @@
   font-weight: 300;
   min-height: 61px;
 }
-#ppsp .ppsp-task-title span {
+#ppsp .ppsp-task-title .ppsp-task-title__points {
   display: block;
   margin-top: 1px;
   color: #0f5fae;

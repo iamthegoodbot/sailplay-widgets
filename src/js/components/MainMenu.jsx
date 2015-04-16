@@ -8,12 +8,14 @@ export default class MainMenu extends React.Component {
   }
 
   render() {
+    let curr = this.props.active;
+
     return (
       <div className="ppsp-nav">
-        <MainMenuItem menuType="gift" menuText="Подарки" isActive={true} /> <
-         MainMenuItem menuType="task" menuText="Задания" /> <
-         MainMenuItem menuType="lider" menuText="Лидерборд" /> <
-         MainMenuItem menuType="feedback" menuText="Отзывы" />
+        <MainMenuItem type="gift" text="Подарки" isActive={curr === 'gift'} /> <
+         MainMenuItem type="task" text="Задания" isActive={curr === 'task'} /> <
+         MainMenuItem type="lider" text="Лидерборд" isActive={curr === 'lider'} /> <
+         MainMenuItem type="feedback" text="Отзывы" isActive={curr === 'feedback'} />
       </div>
     );
   }

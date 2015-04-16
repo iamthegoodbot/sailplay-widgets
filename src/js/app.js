@@ -16,6 +16,6 @@ sp.init()
   .catch(console.error.bind(console));
 
 React.render(
-  <Oldi />,
+  <Oldi partnerId={partnerId} authHash={authHash} />,
   appRoot
 );

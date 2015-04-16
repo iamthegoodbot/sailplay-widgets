@@ -29,8 +29,8 @@ export default class Oldi extends React.Component {
       <div id='ppsp'>
         <CloseBtn closeAction={this.closePopup} />
         <div className="ppsp-con">
-          <Dashboard isAuth={this.state.isLoggedIn} />
-          <Content />
+          <Dashboard isAuth={this.state.isLoggedIn} user={this.state.user} />
+          <Content isAuth={this.state.isLoggedIn} />
         </div>
       </div>
     )
@@ -41,6 +41,9 @@ export default class Oldi extends React.Component {
   }
 
   _getLoginState() {
-    return { isLoggedIn: LoginStore.isLoggedIn() }
+    return {
+      isLoggedIn: LoginStore.isLoggedIn(),
+      user: LoginStore.user
+    }
   }
 }
