@@ -4,25 +4,32 @@ import SailplayService from '../services/SailplayService.js';
 import GiftsActions from '../actions/GiftsActions.js';
 import TasksActions from '../actions/TasksActions.js';
 import LoginStore from '../stores/LoginStore.js';
+import MessageStore from '../stores/MessageStore.js';
 
 import CloseBtn from './CloseBtn.jsx';
 import Dashboard from './Dashboard.jsx';
 import Content from './Content.jsx';
+import Message from './Message.jsx';
 
 export default class Oldi extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = this._getLoginState();
+    this.state = {
+      isLoggedIn: LoginStore.isLoggedIn(),
+      user: LoginStore.user
+    };
   }
 
   componentDidMount() {
-    LoginStore.addChangeListener(this._onChange.bind(this));
+    LoginStore.addChangeListener(this._onLoginChange.bind(this));
+    MessageStore.addChangeListener(this._onMessageChange.bind(this));
     this._initSailplay();
   }
 
   componentWillUnmount() {
-    LoginStore.removeChangeListener(this._onChange.bind(this));
+    LoginStore.removeChangeListener(this._onLoginChange.bind(this));
+    MessageStore.removeChangeListener(this._onMessageChange.bind(this));
   }
 
   closePopup() {
@@ -35,21 +42,25 @@ export default class Oldi extends React.Component {
         <CloseBtn closeAction={this.closePopup} />
         <div className="ppsp-con">
           <Dashboard isAuth={this.state.isLoggedIn} user={this.state.user} />
-          <Content isAuth={this.state.isLoggedIn} />
+          <Content isAuth={this.state.isLoggedIn} user={this.state.user} />
+          <Message show={this.state.messageShow} text={this.state.messageText} />
         </div>
       </div>
     )
   }
 
-  _onChange() {
-    this.setState(this._getLoginState());
-  }
-
-  _getLoginState() {
-    return {
+  _onLoginChange() {
+    this.setState({
       isLoggedIn: LoginStore.isLoggedIn(),
       user: LoginStore.user
-    }
+    });
+  }
+
+  _onMessageChange() {
+    this.setState({
+      messageText: MessageStore.message,
+      messageShow: MessageStore.show
+    })
   }
 
   _initSailplay() {

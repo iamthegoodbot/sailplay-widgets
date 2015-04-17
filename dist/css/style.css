@@ -1021,7 +1021,6 @@
   min-width: 118px;
 }
 #ppsp .ppsp-deal-detail {
-  display: none;
   position: absolute;
   left: 31px;
   top: 23px;
@@ -1735,7 +1734,6 @@
   left: 0;
   right: 0;
   bottom: 0;
-  display: none;
   height: 90px;
   background: #0f5fae;
   font-size: 18px;

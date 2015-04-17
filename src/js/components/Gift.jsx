@@ -1,6 +1,8 @@
 import React from 'react';
 
 import NavActions from '../actions/NavActions.js';
+import GiftAction from '../actions/GiftAction.js';
+
 import Button from './Button.jsx';
 
 export default class Gift extends React.Component {
@@ -8,18 +10,27 @@ export default class Gift extends React.Component {
     super(props);
   }
 
-  getGift() {
+  getGift(available) {
     if (!this.props.isAuth) {
       return NavActions.navigate('register');
     }
 
-    console.log(this.props.isAuth, this.props.id);
+    if (!available) {
+      return false;
+    }
+
+    GiftAction.giftSelected(this.props);
+    NavActions.navigate('giftDetail');
   }
 
   render() {
-    let style = {
-      backgroundImage: `url(${this.props.image})`
-    };
+    let isAvailable = this.props.userPoints >= this.props.points
+      , pointsDelta = this.props.points - this.props.userPoints
+      , btnClass = `ppsp-blue-btn ppsp-deal-btn type-small ${isAvailable ? 'type-active' : 'type-disabled'}`
+      , btnText = isAvailable ? 'Получить': `Ещё ${pointsDelta} баллов`
+      , style = {
+          backgroundImage: `url(${this.props.image})`
+        };
 
     return (
       <div className="ppsp-deal-item">
@@ -29,9 +40,9 @@ export default class Gift extends React.Component {
           <span className="ppsp-deal-price">{`${this.props.points} олдиков`}</span>
           <span className="ppsp-deal-text">{this.props.text}</span>
           <Button
-            title="Получить"
-            classMod="ppsp-blue-btn ppsp-deal-btn type-small type-active"
-            onClick={this.getGift.bind(this)}
+            title={btnText}
+            classMod={btnClass}
+            onClick={this.getGift.bind(this, isAvailable)}
           />
         </div>
       </div>

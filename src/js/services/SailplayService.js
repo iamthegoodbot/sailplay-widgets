@@ -62,6 +62,19 @@ class Sailplay {
     )
   }
 
+  giftPurchase(id) {
+    let _this = this;
+
+    return _this.instance.then(_this.user).then(() =>
+        new Promise((resolve, reject) => {
+          sailplay.send('gifts.purchase', { id });
+
+          sailplay.on('gifts.purchase.success', resolve);
+          sailplay.on('gifts.purchase.auth.error', reject);
+        })
+    )
+  }
+
   badgesList() {
     let _this = this;
 

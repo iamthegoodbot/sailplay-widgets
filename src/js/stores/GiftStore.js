@@ -1,7 +1,7 @@
-import { LOGIN_USER, LOGOUT_USER } from '../constants/Constants.js';
+import { GIFT_SELECT } from '../constants/Constants.js';
 import BaseStore from './BaseStore.js';
 
-class LoginStore extends BaseStore {
+class GiftStore extends BaseStore {
   constructor() {
     super(this._registerToAction.bind(this));
     this._message = null;
@@ -9,13 +9,8 @@ class LoginStore extends BaseStore {
 
   _registerToAction(action) {
     switch (action.actionType) {
-      case LOGIN_USER:
+      case GIFT_SELECT:
         this._message = action.data;
-        this.emitChange();
-        break;
-
-      case LOGOUT_USER:
-        this._message = null;
         this.emitChange();
         break;
 
@@ -24,13 +19,9 @@ class LoginStore extends BaseStore {
     }
   }
 
-  get user() {
+  get gift() {
     return this._message;
-  }
-
-  isLoggedIn() {
-    return !!this._message;
   }
 }
 
-export default new LoginStore();
+export default new GiftStore();

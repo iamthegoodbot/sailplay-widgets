@@ -5,6 +5,7 @@ import NavStore from '../stores/NavStore.js';
 import MainMenu from './MainMenu.jsx';
 import Register from './Register.jsx';
 import Gifts from './Gifts.jsx';
+import GiftDetail from './GiftDetail.jsx';
 import Tasks from './Tasks.jsx';
 import Leaderboard from './Leaderboard.jsx';
 import Feedback from './Feedback.jsx';
@@ -49,7 +50,10 @@ export default class Content extends React.Component {
 
     switch (curr) {
       case 'gift':
-        view = <Gifts isAuth={auth} />;
+        view = <Gifts isAuth={auth} user={this.props.user} />;
+        break;
+      case 'giftDetail':
+        view = <GiftDetail />;
         break;
       case 'task':
         view = <Tasks isAuth={auth} />;

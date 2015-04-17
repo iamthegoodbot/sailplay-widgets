@@ -27,6 +27,7 @@ export default class Gifts extends React.Component {
         title={gift.name}
         text="Купон на скидку 500 руб. при оформлении покупки на сумму от 700 руб."
         points={gift.points}
+        userPoints={this.props.user ? this.props.user.user_points.total : 1e6}
         image={gift.thumbs.url_250x250}
         isAuth={this.props.isAuth}
       />

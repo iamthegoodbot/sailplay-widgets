@@ -1,16 +1,19 @@
-import { TASKS_LOADED } from '../constants/Constants.js';
+import { MESSAGE } from '../constants/Constants.js';
 import BaseStore from './BaseStore.js';
 
-class TasksStore extends BaseStore {
+class MessageStore extends BaseStore {
   constructor() {
     super(this._registerToAction.bind(this));
     this._message = null;
   }
 
   _registerToAction(action) {
+    let data = action.data;
+    
     switch (action.actionType) {
-      case TASKS_LOADED:
-        this._message = action.data;
+      case MESSAGE:
+        this._message = data.message;
+        this._show = data.show;
         this.emitChange();
         break;
 
@@ -19,9 +22,13 @@ class TasksStore extends BaseStore {
     }
   }
 
-  get tasks() {
+  get message() {
     return this._message;
+  }
+
+  get show() {
+    return this._show;
   }
 }
 
-export default new TasksStore();
+export default new MessageStore();

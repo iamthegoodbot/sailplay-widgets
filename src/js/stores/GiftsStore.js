@@ -4,13 +4,13 @@ import BaseStore from './BaseStore.js';
 class GiftsStore extends BaseStore {
   constructor() {
     super(this._registerToAction.bind(this));
-    this._tasks = null;
+    this._message = null;
   }
 
   _registerToAction(action) {
     switch (action.actionType) {
       case GIFTS_LOADED:
-        this._tasks = action.data;
+        this._message = action.data;
         this.emitChange();
         break;
 
@@ -20,7 +20,7 @@ class GiftsStore extends BaseStore {
   }
 
   get gifts() {
-    return this._tasks;
+    return this._message;
   }
 }
 
