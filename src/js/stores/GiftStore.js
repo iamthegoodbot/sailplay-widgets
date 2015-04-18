@@ -1,16 +1,16 @@
-import { GIFT_SELECT } from '../constants/Constants.js';
 import BaseStore from './BaseStore.js';
+import { GIFT_SELECT } from '../constants/Constants.js';
 
 class GiftStore extends BaseStore {
   constructor() {
     super(this._registerToAction.bind(this));
-    this._leaderboard = null;
+    this._tasks = null;
   }
 
   _registerToAction(action) {
     switch (action.actionType) {
       case GIFT_SELECT:
-        this._leaderboard = action.data;
+        this._tasks = action.data;
         this.emitChange();
         break;
 
@@ -20,7 +20,7 @@ class GiftStore extends BaseStore {
   }
 
   get gift() {
-    return this._leaderboard;
+    return this._tasks;
   }
 }
 

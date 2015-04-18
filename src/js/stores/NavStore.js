@@ -1,5 +1,5 @@
-import { MENU_SELECT } from '../constants/Constants.js';
 import BaseStore from './BaseStore.js';
+import { MENU_SELECT } from '../constants/Constants.js';
 
 class NavStore extends BaseStore {
   constructor() {

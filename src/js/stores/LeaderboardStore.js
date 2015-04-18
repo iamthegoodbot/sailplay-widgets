@@ -1,19 +1,16 @@
 import BaseStore from './BaseStore.js';
-import { MESSAGE } from '../constants/Constants.js';
+import { LEADERBOARD_LOADED } from '../constants/Constants.js';
 
-class MessageStore extends BaseStore {
+class LeaderboardStore extends BaseStore {
   constructor() {
     super(this._registerToAction.bind(this));
     this._tasks = null;
   }
 
   _registerToAction(action) {
-    let data = action.data;
-    
     switch (action.actionType) {
-      case MESSAGE:
-        this._tasks = data.message;
-        this._show = data.show;
+      case LEADERBOARD_LOADED:
+        this._tasks = action.data;
         this.emitChange();
         break;
 
@@ -22,13 +19,9 @@ class MessageStore extends BaseStore {
     }
   }
 
-  get message() {
+  get leaderboard() {
     return this._tasks;
-  }
-
-  get show() {
-    return this._show;
   }
 }
 
-export default new MessageStore();
+export default new LeaderboardStore();

@@ -35,7 +35,7 @@ export default class Leaderboard extends React.Component {
   _getView() {
     let members = this.state.leaderboard.members.members
       , list = members.map(member =>
-        <Leader position={member.rank} name={member.full_name} points={member.score} />
+        <Leader key={member.rank} position={member.rank} name={member.full_name} points={member.score} />
       );
 
     return this.props.isAuth ?

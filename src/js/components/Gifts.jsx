@@ -23,6 +23,7 @@ export default class Gifts extends React.Component {
   render() {
     let gifts = this.state.gifts.map(gift =>
       <Gift
+        key={gift.id}
         id={gift.id}
         title={gift.name}
         text="Купон на скидку 500 руб. при оформлении покупки на сумму от 700 руб."
