@@ -6,7 +6,7 @@ export default class Userpic extends React.Component {
   }
 
   render() {
-    let imagePath = this.props.pic ? this.props.pic : 'img/img-default-s.png'
+    let imagePath = this.props.pic ? this.props.pic : 'dist/img/img-default-s.png'
       , style = {
           backgroundImage: `url(${imagePath})`
         };

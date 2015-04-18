@@ -70,8 +70,15 @@ export default class Oldi extends React.Component {
 
     SailplayService.init(this.props.partnerId)
       .then(() => {
-        SailplayService.giftsList().then(GiftsActions.giftsLoaded, onError);
-        SailplayService.actionsList().then(TasksActions.tasksLoaded, onError);
+        Promise.all([
+          SailplayService.giftsList(),
+          SailplayService.actionsList()
+        ]).then(res => {
+            let [ gifts, tasks ] = res;
+
+            GiftsActions.giftsLoaded(gifts);
+            TasksActions.tasksLoaded(tasks);
+          }, onError)
       })
       .catch(onError);
   }

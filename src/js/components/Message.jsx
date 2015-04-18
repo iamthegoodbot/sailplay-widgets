@@ -6,8 +6,6 @@ export default class Message extends React.Component {
   }
 
   render() {
-    console.log(this.props);
-
     return (
       <div className={`ppsp-alert-bl ${this.props.show ? '' : 'hidden'}`}>
         {this.props.text}

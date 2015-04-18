@@ -1,27 +1,42 @@
 import React from 'react';
 
+import LeaderboardStore from '../stores/LeaderboardStore.js';
 import Leader from './Leader.jsx';
 import Empty from './Empty.jsx';
 
 export default class Leaderboard extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      leaderboard: LeaderboardStore.leaderboard
+    }
+  }
+
+  componentDidMount() {
+    LeaderboardStore.addChangeListener(this._onChange.bind(this));
+  }
+
+  componentWillUnmount() {
+    LeaderboardStore.removeChangeListener(this._onChange.bind(this));
   }
 
   render() {
     return (
       <div className="ppsp-scroll-outer">
-        {this._getView()}
+        {this._getView.call(this)}
       </div>
     );
   }
 
-  _getView() {
-    let list = [];
+  _onChange() {
+    this.setState({ leaderboard: LeaderboardStore.leaderboard });
+  }
 
-    for (let i = 1; i <= 10; i++) {
-      list.push(<Leader position={i} name="andrew.q@yandex.ru" points={9000} avatar="img/image-sample.png" />)
-    }
+  _getView() {
+    let members = this.state.leaderboard.members.members
+      , list = members.map(member =>
+        <Leader position={member.rank} name={member.full_name} points={member.score} />
+      );
 
     return this.props.isAuth ?
       list :

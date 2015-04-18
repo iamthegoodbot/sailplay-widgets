@@ -2,6 +2,7 @@ import SailplayService from './SailplayService.js';
 
 import LoginActions from '../actions/LoginActions.js';
 import HistoryActions from '../actions/HistoryActions.js';
+import LeaderboardActions from '../actions/LeaderboardActions.js';
 
 class AuthService {
   login() {
@@ -11,8 +12,17 @@ class AuthService {
 
     SailplayService.login(AUTH_HASH)
       .then(() => {
-        SailplayService.userInfo().then(LoginActions.loginUser, onError);
-        SailplayService.userHistory().then(HistoryActions.historyLoaded, onError);
+        Promise.all([
+          SailplayService.userInfo(),
+          SailplayService.userHistory(),
+          SailplayService.leaderboardLoad()
+        ]).then(res => {
+          let [ userInfo, userHistory, leaderboard ] = res;
+
+          LoginActions.loginUser(userInfo);
+          HistoryActions.historyLoaded(userHistory);
+          LeaderboardActions.leaderboardLoaded(leaderboard);
+        }, onError);
       })
       .catch(onError);
   }

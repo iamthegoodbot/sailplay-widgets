@@ -2,7 +2,7 @@ import React from 'react';
 
 import SailplayService from '../services/SailplayService.js';
 import NavActions from '../actions/NavActions.js';
-import MessageAction from '../actions/MessageAction.js';
+import MessageActions from '../actions/MessageActions.js';
 import GiftStore from '../stores/GiftStore.js';
 import Button from './Button.jsx';
 
@@ -25,7 +25,7 @@ export default class GiftContent extends React.Component {
   getGift(id) {
     SailplayService.giftPurchase(id)
       .then(
-        () => { MessageAction.showMessage('Поздравляем, вы приобрели подарок! Проверьте почту.') },
+        () => { MessageActions.showMessage('Поздравляем, вы приобрели подарок! Проверьте почту.') },
         err => { console.error(err.message) }
       );
   }

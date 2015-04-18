@@ -4,18 +4,18 @@ import BaseStore from './BaseStore.js';
 class LoginStore extends BaseStore {
   constructor() {
     super(this._registerToAction.bind(this));
-    this._message = null;
+    this._leaderboard = null;
   }
 
   _registerToAction(action) {
     switch (action.actionType) {
       case LOGIN_USER:
-        this._message = action.data;
+        this._leaderboard = action.data;
         this.emitChange();
         break;
 
       case LOGOUT_USER:
-        this._message = null;
+        this._leaderboard = null;
         this.emitChange();
         break;
 
@@ -25,11 +25,11 @@ class LoginStore extends BaseStore {
   }
 
   get user() {
-    return this._message;
+    return this._leaderboard;
   }
 
   isLoggedIn() {
-    return !!this._message;
+    return !!this._leaderboard;
   }
 }
 

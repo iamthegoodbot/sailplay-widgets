@@ -60,7 +60,7 @@ let tasksDict = {
       pic: 'profile'
     }
   }
-}
+};
 
 export default class Tasks extends React.Component {
   constructor(props) {
