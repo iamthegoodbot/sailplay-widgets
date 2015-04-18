@@ -33,13 +33,16 @@ export default class Leaderboard extends React.Component {
   }
 
   _getView() {
-    let members = this.state.leaderboard.members.members
-      , list = members.map(member =>
-        <Leader key={member.rank} position={member.rank} name={member.full_name} points={member.score} />
-      );
+    let leaderboard = this.state.leaderboard;
 
-    return this.props.isAuth ?
-      list :
-      <Empty title="У нас пока что нет лидеров :(" text="Зарегистрируйтесь и станьте первым!" />;
+    if (leaderboard) {
+      let members = leaderboard.members.members;
+
+      return members.map(member =>
+          <Leader key={member.rank} position={member.rank} name={member.full_name} points={member.score} />
+      );
+    } else {
+      return <Empty title="У нас пока что нет лидеров :(" text="Зарегистрируйтесь и станьте первым!" />;
+    }
   }
 }
