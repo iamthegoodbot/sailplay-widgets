@@ -69,7 +69,7 @@ export default class Content extends React.Component {
         view = <History />;
         break;
       case 'register':
-        view = <Register />;
+        view = <Register partnerId={this.props.partnerId} />;
         break;
       default:
         view = <Share isAuth={auth} />;

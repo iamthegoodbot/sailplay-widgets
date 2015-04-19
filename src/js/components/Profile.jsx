@@ -29,8 +29,6 @@ export default class Profile extends React.Component {
     let user = this.props.user.user
       , points = this.props.user.user_points.total;
 
-    console.log(points);
-
     return (
       <div className="ppsp-profile">
         <Avatar path={user.pic} title={`Здравствуйте, ${user.name}`} />

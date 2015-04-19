@@ -1,10 +1,6 @@
 import React from 'react';
 
-import SailplayService from '../services/SailplayService.js';
 import ApiService from '../services/ApiService.js';
-
-import GiftsActions from '../actions/GiftsActions.js';
-import TasksActions from '../actions/TasksActions.js';
 
 import LoginStore from '../stores/LoginStore.js';
 import UserStore from '../stores/UserStore.js';
@@ -55,7 +51,7 @@ export default class Oldi extends React.Component {
         <CloseBtn closeAction={this.closePopup.bind(this)} />
         <div className="ppsp-con">
           <Dashboard isAuth={this.state.isLoggedIn} user={this.state.user} />
-          <Content isAuth={this.state.isLoggedIn} user={this.state.user} />
+          <Content isAuth={this.state.isLoggedIn} user={this.state.user} partnerId={this.props.partnerId} />
           <Message show={this.state.messageShow} text={this.state.messageText} />
         </div>
       </div>
