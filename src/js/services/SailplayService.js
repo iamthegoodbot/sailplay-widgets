@@ -23,6 +23,15 @@ class Sailplay {
     });
   }
 
+  logout() {
+    return new Promise((resolve, reject) => {
+      sailplay.send('logout');
+
+      sailplay.on('logout.success', resolve);
+      sailplay.on('logout.error', reject);
+    });
+  }
+
   userInfo() {
     return new Promise((resolve, reject) => {
       sailplay.send('load.user.info');

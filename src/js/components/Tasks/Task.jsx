@@ -1,9 +1,9 @@
 import React from 'react';
 
-import NavActions from '../actions/NavActions.js';
-import TasksActions from '../actions/TasksActions.js';
-import SailplayService from '../services/SailplayService.js';
-import Button from './Button.jsx';
+import NavActions from '../../actions/NavActions.js';
+import TasksActions from '../../actions/TasksActions.js';
+import ApiService from '../../services/ApiService.js';
+import Button from '../Button.jsx';
 
 export default class Task extends React.Component {
   constructor(props) {
@@ -14,10 +14,7 @@ export default class Task extends React.Component {
     if (!this.props.isAuth) {
       NavActions.navigate('register');
     } else {
-      SailplayService.actionPerform(this.props.action)
-        .then(SailplayService.actionsList)
-        .then(TasksActions.tasksLoaded)
-        .catch(err => console.error(err.message));
+      ApiService.actionPerform.call(ApiService, this.props.action);
     }
   }
 

@@ -1,8 +1,8 @@
 import React from 'react';
 
-import LeaderboardStore from '../stores/LeaderboardStore.js';
+import LeaderboardStore from '../../stores/LeaderboardStore.js';
 import Leader from './Leader.jsx';
-import Empty from './Empty.jsx';
+import Empty from '../Empty.jsx';
 
 export default class Leaderboard extends React.Component {
   constructor(props) {

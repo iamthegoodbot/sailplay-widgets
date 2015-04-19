@@ -1,6 +1,6 @@
 import React from 'react';
 
-import NavActions from '../actions/NavActions.js';
+import NavActions from '../../actions/NavActions.js';
 
 export default class MainMenuItem extends React.Component {
   constructor(props) {

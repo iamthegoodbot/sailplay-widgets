@@ -11,7 +11,7 @@ export default class Dashboard extends React.Component {
   render() {
     return (
       <div className="ppsp-left">
-        {this.props.isAuth ? <Profile user={this.props.user} /> : <Default />}
+        {this.props.user ? <Profile user={this.props.user} /> : <Default />}
       </div>
     );
   }

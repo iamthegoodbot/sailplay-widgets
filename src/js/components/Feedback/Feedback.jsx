@@ -1,7 +1,7 @@
 import React from 'react';
 
 import FeedbackItem from './FeedbackItem.jsx';
-import Empty from './Empty.jsx';
+import Empty from '../Empty.jsx';
 
 export default class Feedback extends React.Component {
   constructor(props) {

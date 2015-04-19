@@ -6,8 +6,13 @@
     <link rel="stylesheet" href="dist/css/style.css" />
 </head>
 <body>
+    <div id="sailplay_login_frame" style="display: none; position: fixed; width: 500px; height: 500px; top: 0px; left: 0px; right: 0px; bottom: 0px; z-index: 90000; margin: auto;">
+        <iframe id="sp_auth" name="sp_auth_frame" style="width: 400px; height: 500px;" src="http://saike.dev.sailplay.ru/users/auth-page/?partner_id=1425&dep_id=" frameborder="0"></iframe>
+    </div>
     <div id="oldi-loyalty-app" data-partner-id="1425"></div>
-    <script src="https://d3257v5wstjx8h.cloudfront.net/media/assets/assetfile/9246a8df80071e6336e7f057087d0f97.js"></script>
+    <!--<script src="https://d3257v5wstjx8h.cloudfront.net/media/assets/assetfile/9246a8df80071e6336e7f057087d0f97.js"></script>-->
+    <script src="dist/js/porthole.js"></script>
+    <script src="dist/js/sailplay_hub.js"></script>
     <script src="http://localhost:8080/webpack-dev-server.js"></script>
     <script src="http://localhost:8080/dist/app.js"></script>
 </body>

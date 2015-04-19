@@ -1,10 +1,11 @@
 import React from 'react';
 
-import SailplayService from '../services/SailplayService.js';
+import ApiService from '../services/ApiService.js';
 import NavActions from '../actions/NavActions.js';
-import MessageActions from '../actions/MessageActions.js';
 import GiftStore from '../stores/GiftStore.js';
 import Button from './Button.jsx';
+
+let onError = err => console.error(err.message);
 
 export default class GiftContent extends React.Component {
   constructor(props) {
@@ -20,14 +21,6 @@ export default class GiftContent extends React.Component {
 
   componentWillUnmount() {
     GiftStore.removeChangeListener(this._onChange.bind(this));
-  }
-
-  getGift(id) {
-    SailplayService.giftPurchase(id)
-      .then(
-        () => { MessageActions.showMessage('Поздравляем, вы приобрели подарок! Проверьте почту.') },
-        err => { console.error(err.message) }
-      );
   }
 
   render() {
@@ -51,7 +44,7 @@ export default class GiftContent extends React.Component {
             <Button
               title="Получить"
               classMod="ppsp-blue-btn type-active ppsp-card-btn"
-              onClick={this.getGift.bind(this, gift.id)}
+              onClick={ApiService.giftPurchase.bind(ApiService, gift.id)}
             />
           </div>
         </div>

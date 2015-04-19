@@ -1,6 +1,6 @@
 import React from 'react';
 
-import TasksStore from '../stores/TasksStore.js';
+import TasksStore from '../../stores/TasksStore.js';
 import Task from './Task.jsx';
 
 export default class Tasks extends React.Component {

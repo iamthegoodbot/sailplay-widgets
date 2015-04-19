@@ -4,6 +4,7 @@ import { MENU_SELECT } from '../constants/Constants.js';
 class NavStore extends BaseStore {
   constructor() {
     super(this._registerToAction.bind(this));
+    this._currentRoute = null;
   }
 
   _registerToAction(action) {

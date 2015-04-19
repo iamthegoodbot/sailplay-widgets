@@ -1,6 +1,6 @@
 import React from 'react';
 
-import HistoryStore from '../stores/HistoryStore.js';
+import HistoryStore from '../../stores/HistoryStore.js';
 import HistoryItem from './HistoryItem.jsx';
 
 export default class History extends React.Component {

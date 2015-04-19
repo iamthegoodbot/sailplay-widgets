@@ -10,11 +10,7 @@ import Points from './Points.jsx';
 export default class Profile extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      user: props.user.user,
-      points: props.user.user_points.total,
-      activeView: NavStore.currentRoute
-    };
+    this.state = { activeView: NavStore.currentRoute };
   }
 
   componentDidMount() {
@@ -30,10 +26,15 @@ export default class Profile extends React.Component {
   }
 
   render() {
+    let user = this.props.user.user
+      , points = this.props.user.user_points.total;
+
+    console.log(points);
+
     return (
       <div className="ppsp-profile">
-        <Avatar path={this.state.user.pic} title={`Здравствуйте, ${this.state.user.name}`} />
-        <Points points={this.state.points} />
+        <Avatar path={user.pic} title={`Здравствуйте, ${user.name}`} />
+        <Points points={points} />
         <Button
           title="История начислений"
           classMod={`ppsp-profile-btn ${this.state.activeView === 'history' ? 'm-active-btn' : ''}`}

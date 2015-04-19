@@ -1,6 +1,6 @@
 import React from 'react';
 
-import GiftsStore from '../stores/GiftsStore.js';
+import GiftsStore from '../../stores/GiftsStore.js';
 import Gift from './Gift.jsx';
 
 export default class Gifts extends React.Component {

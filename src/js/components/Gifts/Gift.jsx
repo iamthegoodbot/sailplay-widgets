@@ -1,9 +1,9 @@
 import React from 'react';
 
-import NavActions from '../actions/NavActions.js';
-import GiftActions from '../actions/GiftActions.js';
+import NavActions from '../../actions/NavActions.js';
+import GiftActions from '../../actions/GiftActions.js';
 
-import Button from './Button.jsx';
+import Button from '../Button.jsx';
 
 export default class Gift extends React.Component {
   constructor(props) {

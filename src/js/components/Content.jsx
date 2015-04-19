@@ -2,14 +2,15 @@ import React from 'react';
 
 import NavStore from '../stores/NavStore.js';
 
-import MainMenu from './MainMenu.jsx';
+import MainMenu from './MainMenu/MainMenu.jsx';
 import Register from './Register.jsx';
-import Gifts from './Gifts.jsx';
+import Gifts from './Gifts/Gifts.jsx';
 import GiftDetail from './GiftDetail.jsx';
-import Tasks from './Tasks.jsx';
-import Leaderboard from './Leaderboard.jsx';
-import Feedback from './Feedback.jsx';
-import History from './History.jsx';
+import Tasks from './Tasks/Tasks.jsx';
+import Leaderboard from './Leaderboard/Leaderboard.jsx';
+import Feedback from './Feedback/Feedback.jsx';
+import History from './History/History.jsx';
+import Share from './Share/Share.jsx';
 
 export default class Content extends React.Component {
   constructor(props) {
@@ -71,8 +72,11 @@ export default class Content extends React.Component {
         view = <Register />;
         break;
       default:
-        view = <Register />;
+        view = <Share isAuth={auth} />;
         break;
+      //default:
+      //  view = <Register />;
+      //  break;
     }
 
     return view;

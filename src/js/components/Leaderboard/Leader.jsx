@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Userpic from './Userpic.jsx';
+import Userpic from '../Userpic.jsx';
 
 export default class Leader extends React.Component {
   constructor(props) {

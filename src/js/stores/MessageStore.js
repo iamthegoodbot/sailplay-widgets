@@ -4,7 +4,7 @@ import { MESSAGE } from '../constants/Constants.js';
 class MessageStore extends BaseStore {
   constructor() {
     super(this._registerToAction.bind(this));
-    this._tasks = null;
+    this._message = null;
   }
 
   _registerToAction(action) {
@@ -12,7 +12,7 @@ class MessageStore extends BaseStore {
     
     switch (action.actionType) {
       case MESSAGE:
-        this._tasks = data.message;
+        this._message = data.message;
         this._show = data.show;
         this.emitChange();
         break;
@@ -23,7 +23,7 @@ class MessageStore extends BaseStore {
   }
 
   get message() {
-    return this._tasks;
+    return this._message;
   }
 
   get show() {
