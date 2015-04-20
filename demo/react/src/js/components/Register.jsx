@@ -36,7 +36,6 @@ export default class Register extends React.Component {
           <iframe
             ref="authFrame"
             style={style}
-            //src={`http://saike.dev.sailplay.ru/users/auth-page/?partner_id=${this.props.partnerId}`}
             frameBorder="0"
           ></iframe>
         </div>
