@@ -1,4 +1,4 @@
-# Oldi loyalty app
+# This repository conatains tools and demos for SailPlay Widgets
 
 ## Install
 First, install Webpack globally

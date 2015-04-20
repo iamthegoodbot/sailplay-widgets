@@ -1,4 +1,4 @@
-# This repository conatains tools and demos for SailPlay Widgets
+# SailPlay HUB
 
 ## Install
 First, install Webpack globally
