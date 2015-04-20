@@ -14,7 +14,7 @@ let tasksMap = {
   },
   ok: {
     text: 'Вступите в группу ОК',
-    image: 'https://d3257v5wstjx8h.cloudfront.net/media/assets/assetfile/7f389bab6bebb17d12791c967b4ecb7a.png'
+    image: 'https://d3257v5wstjx8h.cloudfront.net/media/assets/assetfile/8eacae4cd36f2b1a2b10eeca017984cc.png'
   },
   inviteFriend: {
     text: 'Пригласить друга',

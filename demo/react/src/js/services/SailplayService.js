@@ -5,7 +5,7 @@ class Sailplay {
     this.partnerId = id;
 
     return new Promise((resolve, reject) => {
-      sailplay.send('init', { partner_id: id });
+      sailplay.send('init', { partner_id: id, domain: 'http://saike.dev.sailplay.ru' });
 
       sailplay.on('init.success', resolve);
       sailplay.on('init.error', reject);
@@ -20,6 +20,16 @@ class Sailplay {
 
       sailplay.on('login.success', resolve);
       sailplay.on('login.error', reject);
+    });
+  }
+
+  initRemote(frameNode) {
+    return new Promise((resolve, reject) => {
+      sailplay.send('init.remote', frameNode);
+
+      sailplay.on('login.success', resolve);
+      sailplay.on('login.error', reject);
+      sailplay.on('login.cancel', reject);
     });
   }
 

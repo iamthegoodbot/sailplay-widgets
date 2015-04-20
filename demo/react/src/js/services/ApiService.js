@@ -26,6 +26,26 @@ class ApiService {
       })
   }
 
+  loginRemote(frameNode) {
+    SailplayService.initRemote(frameNode)
+      .then(user => {
+        LoginActions.loginUser(user);
+
+        Promise.all([
+          SailplayService.userInfo(),
+          SailplayService.userHistory(),
+          SailplayService.leaderboardLoad()
+        ]).then(res => {
+          let [ userInfo, userHistory, leaderboard ] = res;
+
+          UserActions.userLoaded(userInfo);
+          HistoryActions.historyLoaded(userHistory);
+          LeaderboardActions.leaderboardLoaded(leaderboard);
+        }, onError);
+      })
+      .catch(onError);
+  }
+
   login(hash) {
     SailplayService.login(hash)
       .then(user => {
