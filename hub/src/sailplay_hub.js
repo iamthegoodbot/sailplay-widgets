@@ -618,10 +618,11 @@ var SAILPLAY = (function () {
       initError();
       return;
     }
+
+    var req_data = {};
+
     if(data){
-      var req_data = {
-        page: data.page || ''
-      };
+      req_data.page = data.page || ''
     }
 
     JSONP.get(_config.DOMAIN + _config.urls.reviews.list, req_data, function (res) {
