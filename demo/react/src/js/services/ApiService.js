@@ -7,6 +7,7 @@ import TasksActions from '../actions/TasksActions.js';
 import HistoryActions from '../actions/HistoryActions.js';
 import LeaderboardActions from '../actions/LeaderboardActions.js';
 import MessageActions from '../actions/MessageActions.js';
+import NavActions from '../actions/NavActions.js';
 
 let onError = err => { console.error(err.message) };
 
@@ -14,16 +15,38 @@ class ApiService {
   init(id) {
     SailplayService.init(id)
       .then(() => {
-        Promise.all([
+        return Promise.all([
           SailplayService.giftsList(),
-          SailplayService.actionsList()
+          SailplayService.actionsList(),
+          SailplayService.leaderboardLoad()
         ]).then(res => {
-          let [ gifts, tasks ] = res;
+          let [ gifts, tasks, leaderboard ] = res;
 
           GiftsActions.giftsLoaded(gifts);
           TasksActions.tasksLoaded(tasks);
+          LeaderboardActions.leaderboardLoaded(leaderboard);
         }, onError)
+      }).catch(onError);
+  }
+
+  loginRemote(frameNode) {
+    SailplayService.initRemote(frameNode)
+      .then(user => {
+        LoginActions.loginUser(user);
+
+        return Promise.all([
+          SailplayService.userInfo(),
+          SailplayService.userHistory()
+        ]).then(res => {
+          let [ userInfo, userHistory ] = res;
+
+          UserActions.userLoaded(userInfo);
+          HistoryActions.historyLoaded(userHistory);
+
+          NavActions.back();
+        }, onError);
       })
+      .catch(onError);
   }
 
   login(hash) {
@@ -33,14 +56,14 @@ class ApiService {
 
         Promise.all([
           SailplayService.userInfo(),
-          SailplayService.userHistory(),
-          SailplayService.leaderboardLoad()
+          SailplayService.userHistory()
         ]).then(res => {
-          let [ userInfo, userHistory, leaderboard ] = res;
+          let [ userInfo, userHistory ] = res;
 
           UserActions.userLoaded(userInfo);
           HistoryActions.historyLoaded(userHistory);
-          LeaderboardActions.leaderboardLoaded(leaderboard);
+
+          NavActions.back();
         }, onError);
       })
       .catch(onError);

@@ -1,11 +1,18 @@
 import AppDispatcher from '../dispatchers/AppDispatcher.js';
-import { MENU_SELECT } from '../constants/Constants.js';
+import { NAVIGATE, HISTORY_BACK } from '../constants/Constants.js';
 
 export default {
-  navigate: (data) => {
+  navigate: data => {
     AppDispatcher.dispatch({
-      actionType: MENU_SELECT,
+      actionType: NAVIGATE,
       data
     });
+  },
+
+  back: data => {
+    AppDispatcher.dispatch({
+      actionType: HISTORY_BACK,
+      data
+    })
   }
 }

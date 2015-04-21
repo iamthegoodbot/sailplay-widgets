@@ -26,8 +26,9 @@ export default class History extends React.Component {
       return `${ day < 10 ? '0' + day : day }.${ month < 10 ? '0' + month : month }.${ date.getFullYear() }`
     };
 
-    let historyList = this.state.history.map(entry =>
+    let historyList = this.state.history.map((entry, key) =>
       <HistoryItem
+        key={key}
         text={entry.name}
         date={getHumanDate(entry.action_date)}
         points={entry.points_delta > 0 ? `+${entry.points_delta}` : entry.points_delta}

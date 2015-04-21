@@ -21,7 +21,7 @@ export default class Gifts extends React.Component {
   }
 
   render() {
-    let gifts = this.state.gifts.map(gift =>
+    let gifts = !this.state.gifts ? [] : this.state.gifts.map(gift =>
       <Gift
         key={gift.id}
         id={gift.id}

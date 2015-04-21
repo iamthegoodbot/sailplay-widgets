@@ -14,5 +14,4 @@ Thumbs.db
 .Trashes
 
 # Dev dependencies
-hub/node_modules/
-demo/react/node_modules/
+node_modules/

@@ -10,6 +10,7 @@ import CloseBtn from './CloseBtn.jsx';
 import Dashboard from './Dashboard.jsx';
 import Content from './Content.jsx';
 import Message from './Message.jsx';
+import Mini from './Mini/Mini.jsx';
 
 export default class Oldi extends React.Component {
   constructor(props) {
@@ -18,7 +19,7 @@ export default class Oldi extends React.Component {
     this.state = {
       isLoggedIn: LoginStore.isLoggedIn(),
       user: UserStore.userInfo,
-      display: props.display,
+      show: props.show,
       messageText: MessageStore.message,
       messageShow: MessageStore.show
     };
@@ -38,22 +39,40 @@ export default class Oldi extends React.Component {
   }
 
   closePopup() {
-    this.setState({ display: false });
+    this.setState({ show: false });
+  }
+
+  showPopup() {
+    this.setState({ show: true });
   }
 
   render() {
     let display = {
-      display: this.state.display ? 'block' : 'none'
+      display: this.state.show ? 'block' : 'none'
     };
 
     return (
-      <div id='ppsp' style={display}>
-        <CloseBtn closeAction={this.closePopup.bind(this)} />
-        <div className="ppsp-con">
-          <Dashboard isAuth={this.state.isLoggedIn} user={this.state.user} />
-          <Content isAuth={this.state.isLoggedIn} user={this.state.user} partnerId={this.props.partnerId} />
-          <Message show={this.state.messageShow} text={this.state.messageText} />
+      <div>
+        <div id='ppsp' style={display}>
+          <CloseBtn closeAction={this.closePopup.bind(this)} />
+          <div className="ppsp-con">
+            <Dashboard
+              isAuth={this.state.isLoggedIn}
+              user={this.state.user}
+            />
+            <Content
+              partnerId={this.props.partnerId}
+              isAuth={this.state.isLoggedIn}
+              user={this.state.user}
+              page={this.props.page}
+            />
+            <Message
+              show={this.state.messageShow}
+              text={this.state.messageText}
+            />
+          </div>
         </div>
+        <Mini onClick={this.showPopup.bind(this)} />
       </div>
     )
   }

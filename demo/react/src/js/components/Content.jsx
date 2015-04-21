@@ -15,9 +15,9 @@ import Share from './Share/Share.jsx';
 export default class Content extends React.Component {
   constructor(props) {
     super(props);
-
+    
     this.state = {
-      activeView: NavStore.currentRoute
+      activeView: props.page
     };
   }
 
@@ -71,12 +71,12 @@ export default class Content extends React.Component {
       case 'register':
         view = <Register partnerId={this.props.partnerId} />;
         break;
-      default:
+      case 'thanks':
         view = <Share isAuth={auth} />;
         break;
-      //default:
-      //  view = <Register />;
-      //  break;
+      default:
+        view = <Gifts isAuth={auth} user={this.props.user} />;
+        break;
     }
 
     return view;

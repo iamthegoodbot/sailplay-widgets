@@ -1,5 +1,6 @@
 import React from 'react';
 
+import ApiService from '../services/ApiService.js';
 import Auth from '../services/AuthService.js';
 import NavActions from '../actions/NavActions.js';
 
@@ -17,6 +18,12 @@ export default class Register extends React.Component {
 
   register() {}
 
+  componentDidMount() {
+    let node = React.findDOMNode(this.refs.authFrame);
+
+    ApiService.loginRemote(node);
+  }
+
   render() {
     let style = {
       width: 400,
@@ -27,10 +34,8 @@ export default class Register extends React.Component {
       <div className="ppsp-enter-bl">
         <div className="ppsp-base-content">
           <iframe
-            id="sp_auth"
-            name="sp_auth_frame"
+            ref="authFrame"
             style={style}
-            src={`http://saike.dev.sailplay.ru/users/auth-page/?partner_id=${this.props.partnerId}`}
             frameBorder="0"
           ></iframe>
         </div>

@@ -1,22 +1,14 @@
-# This repository conatains tools and demos for SailPlay Widgets
+# Этот репозитарий содержит примеры и необъодимые инструменты для создания виджетов на платформе SailPlay
 
-## Install
-First, install Webpack globally
-```
-npm install -g webpack 
-```
-Then install local dependencies
-```
-npm install
-```
+## 1. SailPlay HUB
+SailPlay HUB - это инструмент для создания виджетов на платформе SailPlay.
 
-## Demo
-demo.html
+https://github.com/iamthegoodbot/sailplay-widgets/tree/master/hub
 
-## Dev
-```
-npm install -g webpack-dev-server
-webpack-dev-server
-```
+## 2. Demo
 
-Open index.html in browser
+Демонстрационные страницы, написанные для различных библиотек. 
+
+Их можно использовать в качестве стартовых данных и шаблонов
+
+https://github.com/iamthegoodbot/sailplay-widgets/tree/master/demo
