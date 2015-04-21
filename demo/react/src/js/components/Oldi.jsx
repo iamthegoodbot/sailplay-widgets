@@ -17,11 +17,11 @@ export default class Oldi extends React.Component {
     super(props);
 
     this.state = {
-      isLoggedIn: LoginStore.isLoggedIn(),
-      user: UserStore.userInfo,
-      show: props.show,
-      messageText: MessageStore.message,
-      messageShow: MessageStore.show
+        isLoggedIn: LoginStore.isLoggedIn()
+      , user: UserStore.userInfo
+      , show: props.show
+      , messageText: MessageStore.message
+      , messageShow: MessageStore.show
     };
   }
 
@@ -48,8 +48,8 @@ export default class Oldi extends React.Component {
 
   render() {
     let display = {
-      display: this.state.show ? 'block' : 'none'
-    };
+          display: this.state.show ? 'block' : 'none'
+        };
 
     return (
       <div>
@@ -60,25 +60,36 @@ export default class Oldi extends React.Component {
               isAuth={this.state.isLoggedIn}
               user={this.state.user}
             />
-            <Content
-              partnerId={this.props.partnerId}
-              isAuth={this.state.isLoggedIn}
-              user={this.state.user}
-              page={this.props.page}
-            />
+            {
+              this.state.partnerId
+                ? <Content
+                    partnerId={this.state.partnerId}
+                    isAuth={this.state.isLoggedIn}
+                    user={this.state.user}
+                    page={this.props.page}
+                  />
+                : null
+            }
             <Message
               show={this.state.messageShow}
               text={this.state.messageText}
             />
           </div>
         </div>
-        <Mini onClick={this.showPopup.bind(this)} />
+        <Mini
+          isAuth={this.state.isLoggedIn}
+          user={this.state.user}
+          onClick={this.showPopup.bind(this)}
+        />
       </div>
     )
   }
 
   _onLoginChange() {
-    this.setState({ isLoggedIn: LoginStore.isLoggedIn() });
+    this.setState({
+        isLoggedIn: LoginStore.isLoggedIn()
+      , partnerId: LoginStore.config ? LoginStore.config.partner.id : null
+    });
   }
 
   _onUserChange() {
@@ -87,8 +98,8 @@ export default class Oldi extends React.Component {
 
   _onMessageChange() {
     this.setState({
-      messageText: MessageStore.message,
-      messageShow: MessageStore.show
+        messageText: MessageStore.message
+      , messageShow: MessageStore.show
     })
   }
 }

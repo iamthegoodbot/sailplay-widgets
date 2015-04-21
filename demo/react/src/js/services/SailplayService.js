@@ -5,7 +5,7 @@ class Sailplay {
     this.partnerId = id;
 
     return new Promise((resolve, reject) => {
-      sailplay.send('init', { partner_id: id, domain: 'http://saike.dev.sailplay.ru' });
+      sailplay.send('init', { partner_id: id });
 
       sailplay.on('init.success', resolve);
       sailplay.on('init.error', reject);
@@ -102,6 +102,24 @@ class Sailplay {
 
       sailplay.on('actions.perform.complete', resolve);
       sailplay.on('actions.perform.auth.error', reject);
+    });
+  }
+
+  reviewsList() {
+    return new Promise((resolve, reject) => {
+      sailplay.send('reviews.list.load');
+
+      sailplay.on('reviews.list.load.success', resolve);
+      sailplay.on('reviews.list.load.error', reject);
+    });
+  }
+
+  reviewAdd() {
+    return new Promise((resolve, reject) => {
+      sailplay.send('reviews.add');
+
+      sailplay.on('reviews.add.success', resolve);
+      sailplay.on('reviews.add.error', reject);
     });
   }
 }

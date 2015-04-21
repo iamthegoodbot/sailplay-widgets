@@ -1,14 +1,27 @@
 import React from 'react';
 
+import FeedbackStore from '../../stores/FeedbackStore.js';
 import FeedbackItem from './FeedbackItem.jsx';
 import Empty from '../Empty.jsx';
 
 export default class Feedback extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = { feedback: FeedbackStore.feedback };
+  }
+
+  componentDidMount() {
+    FeedbackStore.addChangeListener(this._onChange.bind(this));
+  }
+
+  componentWillUnmount() {
+    FeedbackStore.removeChangeListener(this._onChange.bind(this));
   }
 
   render() {
+    console.log(this.state.feedback);
+
     return (
       <div className="ppsp-scroll-outer">
         {this._getView()}
@@ -28,5 +41,9 @@ export default class Feedback extends React.Component {
     return this.props.isAuth ?
       list :
       <Empty title="У нас пока что нет отзывов :(" text="Вы можете написать первый!" />;
+  }
+
+  _onChange() {
+    this.setState({ feedback: FeedbackStore.feedback });
   }
 }

@@ -1,14 +1,20 @@
 import BaseStore from './BaseStore.js';
-import { LOGIN_USER, LOGOUT_USER } from '../constants/Constants.js';
+import { INIT_API, LOGIN_USER, LOGOUT_USER } from '../constants/Constants.js';
 
 class LoginStore extends BaseStore {
   constructor() {
     super(this._registerToAction.bind(this));
     this._user = null;
+    this._config = null;
   }
 
   _registerToAction(action) {
     switch (action.actionType) {
+      case INIT_API:
+        this._config = action.data;
+        this.emitChange();
+        break;
+
       case LOGIN_USER:
         this._user = action.data;
         this.emitChange();
@@ -26,6 +32,10 @@ class LoginStore extends BaseStore {
 
   get user() {
     return this._user;
+  }
+
+  get config() {
+    return this._config;
   }
 
   isLoggedIn() {

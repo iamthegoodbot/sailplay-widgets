@@ -6,6 +6,7 @@ import GiftsActions from '../actions/GiftsActions.js';
 import TasksActions from '../actions/TasksActions.js';
 import HistoryActions from '../actions/HistoryActions.js';
 import LeaderboardActions from '../actions/LeaderboardActions.js';
+import FeedbackActions from '../actions/FeedbackActions.js';
 import MessageActions from '../actions/MessageActions.js';
 import NavActions from '../actions/NavActions.js';
 
@@ -14,18 +15,13 @@ let onError = err => { console.error(err.message) };
 class ApiService {
   init(id) {
     SailplayService.init(id)
-      .then(() => {
-        return Promise.all([
-          SailplayService.giftsList(),
-          SailplayService.actionsList(),
-          SailplayService.leaderboardLoad()
-        ]).then(res => {
-          let [ gifts, tasks, leaderboard ] = res;
+      .then(config => {
+        LoginActions.initApi(config);
 
-          GiftsActions.giftsLoaded(gifts);
-          TasksActions.tasksLoaded(tasks);
-          LeaderboardActions.leaderboardLoaded(leaderboard);
-        }, onError)
+        this.gifts();
+        this.actionsList();
+        this.leaderboard();
+        this.feedback();
       }).catch(onError);
   }
 
@@ -33,18 +29,9 @@ class ApiService {
     SailplayService.initRemote(frameNode)
       .then(user => {
         LoginActions.loginUser(user);
-
-        return Promise.all([
-          SailplayService.userInfo(),
-          SailplayService.userHistory()
-        ]).then(res => {
-          let [ userInfo, userHistory ] = res;
-
-          UserActions.userLoaded(userInfo);
-          HistoryActions.historyLoaded(userHistory);
-
-          NavActions.back();
-        }, onError);
+        this.userInfo();
+        this.userHistory();
+        NavActions.back();
       })
       .catch(onError);
   }
@@ -53,18 +40,9 @@ class ApiService {
     SailplayService.login(hash)
       .then(user => {
         LoginActions.loginUser(user);
-
-        Promise.all([
-          SailplayService.userInfo(),
-          SailplayService.userHistory()
-        ]).then(res => {
-          let [ userInfo, userHistory ] = res;
-
-          UserActions.userLoaded(userInfo);
-          HistoryActions.historyLoaded(userHistory);
-
-          NavActions.back();
-        }, onError);
+        this.userInfo();
+        this.userHistory();
+        NavActions.back();
       })
       .catch(onError);
   }
@@ -84,12 +62,33 @@ class ApiService {
       .catch(onError);
   }
 
+  gifts() {
+    SailplayService.giftsList().then(GiftsActions.giftsLoaded, onError);
+  }
+
+
   actionsList() {
     SailplayService.actionsList().then(TasksActions.tasksLoaded, onError);
   }
 
   userInfo() {
     SailplayService.userInfo().then(UserActions.userLoaded, onError);
+  }
+
+  userHistory() {
+    SailplayService.userHistory().then(HistoryActions.historyLoaded, onError);
+  }
+
+  leaderboard() {
+    SailplayService.leaderboardLoad().then(LeaderboardActions.leaderboardLoaded, onError);
+  }
+
+  feedback() {
+    SailplayService.reviewsList().then(res => { console.log(res); FeedbackActions.feedbackLoaded(res) }, onError);
+  }
+
+  feedbackLeave() {
+    SailplayService.reviewAdd().then(res => console.log(res), onError);
   }
 
   giftPurchase(id) {
