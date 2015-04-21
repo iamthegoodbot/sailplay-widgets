@@ -53,6 +53,8 @@ var SAILPLAY = (function () {
       var newScript = document.createElement("script");
       var params = [];
 
+      data = data || {};
+
       //auth_hash checking
       if(!_config.auth_hash){
         delete data.auth_hash;
@@ -606,6 +608,46 @@ var SAILPLAY = (function () {
         sp.send('leaderboard.load.success', res.data);
       } else {
         sp.send('leaderboard.load.error', res);
+      }
+    });
+  });
+
+  //REVIEWS SECTION
+  sp.on('reviews.list.load', function (data) {
+    if(_config == {}){
+      initError();
+      return;
+    }
+    if(data){
+      var req_data = {
+        page: data.page || ''
+      };
+    }
+
+    JSONP.get(_config.DOMAIN + _config.urls.reviews.list, req_data, function (res) {
+      if (res.status == 'ok') {
+        sp.send('reviews.list.load.success', { page: res.page, pages: res.pages, reviews: res.reviews });
+      } else {
+        sp.send('reviews.list.load.error', res);
+      }
+    });
+  });
+
+  sp.on('reviews.add', function (data) {
+    if(_config == {}){
+      initError();
+      return;
+    }
+    var req_data = {
+      auth_hash: _config.auth_hash,
+      rating: data.rating || '',
+      review: data.review || ''
+    };
+    JSONP.get(_config.DOMAIN + _config.urls.reviews.add, req_data, function (res) {
+      if (res.status == 'ok') {
+        sp.send('reviews.add.success', res);
+      } else {
+        sp.send('reviews.add.error', res);
       }
     });
   });
