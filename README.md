@@ -10,3 +10,5 @@ https://github.com/iamthegoodbot/sailplay-widgets/tree/master/hub
 Демонстрационные страницы, написанные для различных библиотек. 
 
 Их можно использовать в качестве стартовых данных и шаблонов
+
+https://github.com/iamthegoodbot/sailplay-widgets/tree/master/demo
