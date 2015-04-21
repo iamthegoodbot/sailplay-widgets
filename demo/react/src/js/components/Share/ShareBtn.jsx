@@ -10,7 +10,7 @@ export default class ShareBtn extends React.Component {
 
   handler() {
     if (!this.props.isAuth) {
-      NavActions.navigate('register');
+      NavActions.navigate('auth');
     } else {
       ApiService.actionPerform.call(ApiService, this.props.action);
     }

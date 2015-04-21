@@ -15,35 +15,30 @@ export default class Mini extends React.Component {
     let miniStyle = {
           position: 'fixed'
         , top: '50%'
-        , right: -3
-        , width: 73
-        , margin: '-65px 0 0'
-        , padding: '5px 8px 5px 5px'
-        , border: '3px solid #F55B00'
-        , borderRadius: 5
-        , color: '#FFFFFF'
-        , textAlign: 'center'
-        , font: 'bold 10px/14px Arial, sans-serif'
-        , background: '#F55B00'
+        , right: 0
+        , width: 104
+        , height: 180
+        , margin: '-90px 0 0'
+        , backgroundImage: `url(dist/img/mini${this.props.isAuth ? '_auth' : ''}.png)`
         , overflow: 'hidden'
+        , cursor: 'pointer'
         , zIndex: 99994
-        }
-      , btnStyle = {
-          width: 70
-        , height: 26
-        , padding: 0
-        , margin: '3px auto 0'
-        , border: 0
-        , borderRadius: 2
-        , fontSize: 9
-        , background: '#FFFFFF'
-        , outline: 'none'
-        };
+      }
+      , miniPoints = {
+          position: 'absolute'
+        , top: '50%'
+        , right: 0
+        , width: 97
+        , textAlign: 'center'
+        , color: '#efe813'
+        , font: '33px Arial, sans-serif'
+        , textShadow: '#0c446e 0 -1px'
+      }
+      , points = this.props.user ? this.props.user.user_points.total : '';
 
     return (
-      <div style={miniStyle}>
-        <div className="capslocked-text">УЗНАЙТЕ, СКОЛЬКО У ВАС БОНУСНЫХ БАЛЛОВ </div>
-        <button style={btnStyle} onClick={this.handler.bind(this)}>Участвовать</button>
+      <div className="mini" style={miniStyle} onClick={this.handler.bind(this)}>
+        <div className="mini__points" style={miniPoints}>{points}</div>
       </div>
     );
   }

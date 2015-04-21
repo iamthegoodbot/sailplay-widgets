@@ -3,7 +3,7 @@ import React from 'react';
 import NavStore from '../stores/NavStore.js';
 
 import MainMenu from './MainMenu/MainMenu.jsx';
-import Register from './Register.jsx';
+import Auth from './Auth.jsx';
 import Gifts from './Gifts/Gifts.jsx';
 import GiftDetail from './GiftDetail.jsx';
 import Tasks from './Tasks/Tasks.jsx';
@@ -17,7 +17,8 @@ export default class Content extends React.Component {
     super(props);
     
     this.state = {
-      activeView: props.page
+        activeView: props.page
+      , showAuth: false
     };
   }
 
@@ -35,19 +36,25 @@ export default class Content extends React.Component {
         <MainMenu active={this.state.activeView} />
         <div className="ppsp-content">
           {this._getCurrentView()}
+          <Auth show={this.state.showAuth} partnerId={this.props.partnerId} />
         </div>
       </div>
     );
   }
 
   _onChange() {
-    this.setState({ activeView: NavStore.currentRoute });
+    let curr = NavStore.currentRoute;
+
+    this.setState({
+        activeView: curr
+      , showAuth: curr === 'auth'
+    });
   }
 
   _getCurrentView() {
     let curr = this.state.activeView
       , auth = this.props.isAuth
-      , view;
+      , view = null;
 
     switch (curr) {
       case 'gift':
@@ -68,11 +75,11 @@ export default class Content extends React.Component {
       case 'history':
         view = <History />;
         break;
-      case 'register':
-        view = <Register partnerId={this.props.partnerId} />;
-        break;
       case 'thanks':
         view = <Share isAuth={auth} />;
+        break;
+      case 'auth':
+        view = null;
         break;
       default:
         view = <Gifts isAuth={auth} user={this.props.user} />;

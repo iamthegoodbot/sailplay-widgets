@@ -12,7 +12,7 @@ export default class Gift extends React.Component {
 
   getGift(available) {
     if (!this.props.isAuth) {
-      return NavActions.navigate('register');
+      return NavActions.navigate('auth');
     }
 
     if (!available) {

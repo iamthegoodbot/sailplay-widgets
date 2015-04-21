@@ -6,7 +6,7 @@ import Sailplay from './services/SailplayService.js';
 let appRoot = document.getElementById('oldi-loyalty-app');
 
 const PARTNER_ID = appRoot.getAttribute('data-partner-id');
-const DISPLAY = appRoot.getAttribute('data-display');
+const DISPLAY = appRoot.getAttribute('data-display') !== null;
 const PAGE = appRoot.getAttribute('data-page');
 
 React.render(

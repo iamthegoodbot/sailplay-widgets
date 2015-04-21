@@ -12,7 +12,7 @@ export default class Default extends React.Component {
   }
 
   handler() {
-    NavActions.navigate('register');
+    NavActions.navigate('auth');
   }
 
   render() {

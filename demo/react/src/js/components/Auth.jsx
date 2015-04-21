@@ -11,13 +11,6 @@ export default class Register extends React.Component {
     super(props);
   }
 
-  login() {
-    Auth.login();
-    NavActions.navigate('gift');
-  }
-
-  register() {}
-
   componentDidMount() {
     let node = React.findDOMNode(this.refs.authFrame);
 
@@ -25,17 +18,21 @@ export default class Register extends React.Component {
   }
 
   render() {
-    let style = {
-      width: 400,
-      height: 430
-    };
+    let styleAuth = {
+          display: this.props.show ? 'block' : 'none'
+        , height: '100%'
+        }
+      , styleFrame = {
+          width: 400
+        , height: 430
+        };
 
     return (
-      <div className="ppsp-enter-bl">
+      <div style={styleAuth} className="ppsp-enter-bl">
         <div className="ppsp-base-content">
           <iframe
             ref="authFrame"
-            style={style}
+            style={styleFrame}
             frameBorder="0"
           ></iframe>
         </div>
