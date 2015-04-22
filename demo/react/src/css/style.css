@@ -1485,10 +1485,6 @@
   color: #0f5fae;
   line-height: 50px;
 }
-#ppsp .ppsp-task-feedback-bl,
-#ppsp .ppsp-task-profile-bl {
-  display: none;
-}
 #ppsp .ppsp-task-item {
   display: block;
   float: left;

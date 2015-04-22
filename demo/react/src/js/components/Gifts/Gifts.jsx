@@ -21,7 +21,7 @@ export default class Gifts extends React.Component {
   }
 
   render() {
-    let gifts = !this.state.gifts ? [] : this.state.gifts.map(gift =>
+    let gifts = this.state.gifts ? this.state.gifts.map(gift =>
       <Gift
         key={gift.id}
         id={gift.id}
@@ -32,7 +32,7 @@ export default class Gifts extends React.Component {
         image={gift.thumbs.url_250x250}
         isAuth={this.props.isAuth}
       />
-    );
+    ) : null;
 
     return (
       <div className="ppsp-deal-list">

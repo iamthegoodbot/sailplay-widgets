@@ -12,7 +12,11 @@ export default class Task extends React.Component {
 
   performAction() {
     if (!this.props.isAuth) {
-      NavActions.navigate('auth');
+      return NavActions.navigate('auth');
+    }
+
+    if (this.props.action.action === 'leave_feedback') {
+      NavActions.navigate('leave_feedback');
     } else {
       ApiService.actionPerform.call(ApiService, this.props.action);
     }

@@ -20,7 +20,7 @@ export default class Gift extends React.Component {
     }
 
     GiftActions.giftSelected(this.props);
-    NavActions.navigate('giftDetail');
+    NavActions.navigate('gift_detail');
   }
 
   render() {

@@ -1486,10 +1486,6 @@
   color: #0f5fae;
   line-height: 50px;
 }
-#ppsp .ppsp-task-feedback-bl,
-#ppsp .ppsp-task-profile-bl {
-  display: none;
-}
 #ppsp .ppsp-task-item {
   display: block;
   float: left;
@@ -1736,7 +1732,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  height: 90px;
+  height: 0; /* hide by default */
   background: #0f5fae;
   font-size: 18px;
   font-weight: 300;
@@ -1744,6 +1740,14 @@
   line-height: 90px;
   text-align: center;
   cursor: pointer;
+  -webkit-transition: height 200ms ease-out;
+  -moz-transition: height 200ms ease-out;
+  -ms-transition: height 200ms ease-out;
+  -o-transition: height 200ms ease-out;
+  transition: height 200ms ease-out;
+}
+#ppsp .ppsp-alert-bl.ppsp-alert-bl_show {
+  height: 90px;
 }
 .ppsp-deal-list::-webkit-scrollbar-track {
   background-color: #d6d6d6;

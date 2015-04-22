@@ -9,6 +9,7 @@ import GiftDetail from './GiftDetail.jsx';
 import Tasks from './Tasks/Tasks.jsx';
 import Leaderboard from './Leaderboard/Leaderboard.jsx';
 import Feedback from './Feedback/Feedback.jsx';
+import LeaveFeedback from './LeaveFeedback/LeaveFeedback.jsx';
 import History from './History/History.jsx';
 import Share from './Share/Share.jsx';
 
@@ -60,17 +61,20 @@ export default class Content extends React.Component {
       case 'gift':
         view = <Gifts isAuth={auth} user={this.props.user} />;
         break;
-      case 'giftDetail':
+      case 'gift_detail':
         view = <GiftDetail />;
         break;
       case 'task':
         view = <Tasks isAuth={auth} />;
         break;
       case 'lider':
-        view = <Leaderboard isAuth={auth} />;
+        view = <Leaderboard />;
         break;
       case 'feedback':
-        view = <Feedback isAuth={auth} />;
+        view = <Feedback />;
+        break;
+      case 'leave_feedback':
+        view = <LeaveFeedback />;
         break;
       case 'history':
         view = <History />;
