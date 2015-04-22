@@ -127,12 +127,12 @@ var SAILPLAY = (function () {
     alert('Please init SailPlay HUB first!');
   }
 
-  function remoteInit(elm){
+  function remoteInit(opts){
     if(typeof Porthole === 'undefined'){
       alert('SailPlay: Porthole.js library need to be installed');
       return;
     }
-    if(elm.nodeType == 1 && elm.tagName == 'IFRAME'){
+    if(opts.node && opts.node.nodeType == 1 && opts.node.tagName == 'IFRAME'){
 
       function onMessage(messageEvent) {
 
@@ -155,14 +155,24 @@ var SAILPLAY = (function () {
         }
         if(messageEvent.data.name == 'logout.success'){
           _config.auth_hash = '';
-          cookies.eraseCookie('sp_auth_hash');
           sp.send('logout.success');
         }
       }
 
-      elm.src = _config.DOMAIN + '/users/auth-page/?partner_id=' + _config.partner.id + '&dep_id=' + _config.dep_id;
+      var params = opts.params || {};
+      params.partner_id = _config.partner.id;
+      params.dep_id = _config.dep_id || '';
 
-      _proxy = new Porthole.WindowProxy('', elm.name);
+      var params_string = [];
+
+      var src = _config.DOMAIN + '/users/auth-page/?';
+      for (var param_name in params) {
+        params_string.push(param_name + "=" + encodeURIComponent(params[param_name]));
+      }
+      src += params_string.join("&");
+      opts.node.src = src;
+
+      _proxy = new Porthole.WindowProxy('', opts.node.name);
 
       _proxy.addEventListener(onMessage);
 
@@ -622,7 +632,7 @@ var SAILPLAY = (function () {
     var req_data = {};
 
     if(data){
-      req_data.page = data.page || ''
+      req_data.page = data.page || 1
     }
 
     JSONP.get(_config.DOMAIN + _config.urls.reviews.list, req_data, function (res) {
