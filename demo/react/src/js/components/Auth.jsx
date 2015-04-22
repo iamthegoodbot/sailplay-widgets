@@ -34,6 +34,7 @@ export default class Register extends React.Component {
             ref="authFrame"
             style={styleFrame}
             frameBorder="0"
+            scrolling="no"
           ></iframe>
         </div>
       </div>
