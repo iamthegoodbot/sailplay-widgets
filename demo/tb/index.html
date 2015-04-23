@@ -12,10 +12,19 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
 
+    <script type="text/javascript" src="../../hub/dist/sailplay_hub.min.js"></script>
     <script type="text/javascript" src="js/vendor/jquery.min.js"></script>
+    <script type="text/javascript" src="js/vendor/templates.min.js"></script>
     <!-- plugins -->
     <script type="text/javascript" src="plugins/slider/slider.js"></script>
-    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/tb.sailplay.js"></script>
+    <!--<script type="text/javascript" src="js/main.js"></script>-->
+    <script>
+      SAILPLAY.send('init', { partner_id: 74, domain: 'http://dev.sailplay.ru' });
+      SAILPLAY.on('init.success', function(){
+        SAILPLAY.send('login', 'c7c9332baf418ec4f49f6fa815bf4c41c6528324');
+      });
+    </script>
 
     <link rel="stylesheet" href="styles/app.css"/>
 
@@ -220,199 +229,9 @@
 
 <div id="sptb">
 
+<sailplay-header></sailplay-header>
 
-<div class="sptb-row">
-    <div class="sptb-promo">
-        <div class="sptb-promo-img"></div>
-        <div class="sptb-promo-text">
-            <div class="title">
-                Бонусная программа
-            </div>
-            <div class="text">
-                Регистрируйся, совершай покупки,выполняй задания,<br/>
-                копи баллы и обменивай их на подарки!
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="sptb-row">
-    <div class="sptb-item sptb-item-orange sptb-item-right">
-        <div class="sptb-level ">
-            <div class="sptb-level-item">
-                <i class="sptb-level-icon">
-                    <span class="sptb-level-icon-count">50</span>
-                </i>
-                <div class="sptb-level-name">
-                    Трус
-                </div>
-                <div class="sptb-level-subname">
-                    Тут небольшое описание
-                    этого бейджика
-                </div>
-            </div>
-            <div class="sptb-level-item-arrow"></div>
-            <div class="sptb-level-item">
-                <i class="sptb-level-icon type-not-active">
-                    <span class="sptb-level-icon-count">100</span>
-                </i>
-                <div class="sptb-level-name">
-                    Балбес
-                </div>
-                <div class="sptb-level-subname">
-                    Тут небольшое описание
-                    этого бейджика
-                </div>
-
-            </div>
-            <div class="sptb-level-item-arrow"></div>
-            <div class="sptb-level-item">
-                <i class="sptb-level-icon type-not-active">
-                    <span class="sptb-level-icon-count">150</span>
-                </i>
-                <div class="sptb-level-name">
-                    Бывалый
-                </div>
-                <div class="sptb-level-subname">
-                    Тут небольшое описание
-                    этого бейджика
-                </div>
-            </div>
-        </div>
-        <div class="sptb-list ">
-            <div class="sptb-rating-list">
-                <div class="sptb-rating-item">
-                    <div class="sptb-rating-name t-ellps">
-                        Получила статус: Бывалый
-                    </div>
-                    <div class="sptb-rating-date">
-                        12.02.2015
-                    </div>
-                    <div class="sptb-rating-count">
-                        +153 балаа
-                    </div>
-                </div>
-                <div class="sptb-rating-item">
-                    <div class="sptb-rating-name">
-                        Совершила покупку
-                    </div>
-                    <div class="sptb-rating-date">
-                        12.02.2015
-                    </div>
-                    <div class="sptb-rating-count">
-                        +153 балаа
-                    </div>
-                </div>
-                <div class="sptb-rating-item">
-                    <div class="sptb-rating-name">
-                        Рассказала в ВК
-                    </div>
-                    <div class="sptb-rating-date">
-                        12.02.2015
-                    </div>
-                    <div class="sptb-rating-count">
-                        +153 балаа
-                    </div>
-                </div>
-                <div class="sptb-rating-item">
-                    <div class="sptb-rating-name">
-                        Пригласила друга
-                    </div>
-                    <div class="sptb-rating-date">
-                        12.02.2015
-                    </div>
-                    <div class="sptb-rating-count">
-                        +153 балаа
-                    </div>
-                </div>
-                <div class="sptb-rating-item">
-                    <div class="sptb-rating-name">
-                        Получила статус: Балбес
-                    </div>
-                    <div class="sptb-rating-date">
-                        12.02.2015
-                    </div>
-                    <div class="sptb-rating-count">
-                        +153 балаа
-                    </div>
-                </div>
-                <div class="sptb-rating-item">
-                    <div class="sptb-rating-name t-ellps">
-                        Получила статус: Бывалый
-                    </div>
-                    <div class="sptb-rating-date">
-                        12.02.2015
-                    </div>
-                    <div class="sptb-rating-count">
-                        +153 балаа
-                    </div>
-                </div>
-                <div class="sptb-rating-item">
-                    <div class="sptb-rating-name t-ellps">
-                        Получила статус: Бывалый
-                    </div>
-                    <div class="sptb-rating-date">
-                        12.02.2015
-                    </div>
-                    <div class="sptb-rating-count">
-                        +153 балаа
-                    </div>
-                </div>
-                <div class="sptb-rating-item">
-                    <div class="sptb-rating-name t-ellps">
-                        Получила статус: Бывалый
-                    </div>
-                    <div class="sptb-rating-date">
-                        12.02.2015
-                    </div>
-                    <div class="sptb-rating-count">
-                        +153 балаа
-                    </div>
-                </div>
-            </div>
-
-            <a class="sptb-rating-btn sptb-btn" href="#" data-sp-close-list>
-                Вернуться назад
-            </a>
-
-        </div>
-        <div class="sptb-detail-info ">
-            <div class="sptb-info">
-                <div class="sptb-info-ava" style="background-image: url(sp-img/image-1.png);"></div>
-                <div class="sptb-info-text">
-                    <span class="titles">Здравствуй,</span>
-
-                    <div class="texts">Мария коваленко</div>
-                </div>
-            </div>
-            <div class="sptb-info-footer">
-                <a class="sptb-info-btn sptb-btn" href="#" data-sp-show-list>
-                    История начислений
-                </a>
-                <div class="sptb-info-count">
-                    <span class="count">
-                        350
-                    </span>
-                    <span class="count-text">баллов</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="sptb-item sptb-item-orange sptb-item-small sptb-level-con">
-        <i class="sptb-level-icon sptb-level-img-small"></i>
-        <div class="sptb-level-title">
-            Твой статус: Трус
-        </div>
-        <a class="sptb-level-btn sptb-btn" href="#" data-sp-show-badge>
-            <span class="hidden show-list">
-                Закрыть список
-            </span>
-            <span class=" show-badge">
-                Список бейджей
-            </span>
-        </a>
-    </div>
-</div>
+<sailplay-profile></sailplay-profile>
 
 <div class="sptb-row">
     <div class="sptb-item sptb-item-small sptb-item-blue sptb-item-right">

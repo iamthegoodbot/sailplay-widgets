@@ -624,7 +624,7 @@ var SAILPLAY = (function () {
   });
 
   //REVIEWS SECTION
-  sp.on('reviews.list.load', function (data) {
+  sp.on('load.reviews.list', function (data) {
     if(_config == {}){
       initError();
       return;
@@ -638,9 +638,9 @@ var SAILPLAY = (function () {
 
     JSONP.get(_config.DOMAIN + _config.urls.reviews.list, req_data, function (res) {
       if (res.status == 'ok') {
-        sp.send('reviews.list.load.success', { page: res.page, pages: res.pages, reviews: res.reviews });
+        sp.send('load.reviews.list.success', { page: res.page, pages: res.pages, reviews: res.reviews });
       } else {
-        sp.send('reviews.list.load.error', res);
+        sp.send('load.reviews.list.error', res);
       }
     });
   });
