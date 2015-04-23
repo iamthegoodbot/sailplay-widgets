@@ -84,19 +84,23 @@ class ApiService {
   }
 
   feedback() {
-    SailplayService.reviewsList().then(res => { console.log(res); FeedbackActions.feedbackLoaded(res) }, onError);
+    SailplayService.reviewsList().then(FeedbackActions.feedbackLoaded, onError);
   }
 
-  feedbackLeave() {
-    SailplayService.reviewAdd().then(res => console.log(res), onError);
+  feedbackLeave(review) {
+    SailplayService.reviewAdd(review).then(res => {
+      MessageActions.showMessage('Отзыв отправлен на модерацию');
+      this.feedback();
+      NavActions.back();
+    }, onError);
   }
 
   giftPurchase(id) {
-    SailplayService.giftPurchase(id)
-      .then(() => {
-        MessageActions.showMessage('Поздравляем, вы приобрели подарок! Проверьте почту.');
-        this.userInfo();
-      }, onError);
+    SailplayService.giftPurchase(id).then(() => {
+      MessageActions.showMessage('Поздравляем, вы приобрели подарок! Проверьте почту.');
+      this.userInfo();
+      NavActions.back();
+    }, onError);
   }
 }
 

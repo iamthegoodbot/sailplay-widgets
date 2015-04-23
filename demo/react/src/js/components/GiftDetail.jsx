@@ -29,7 +29,7 @@ export default class GiftContent extends React.Component {
           backgroundImage: `url(${gift.image})`
         };
 
-    let back = () => { NavActions.navigate('gift') };
+    //let back = () => { NavActions.navigate('gift') };
 
     return (
       <div className="ppsp-deal-detail">
@@ -51,7 +51,7 @@ export default class GiftContent extends React.Component {
         <Button
           title="< Назад"
           classMod="ppsp-grey-btn ppsp-deal-card-btn"
-          onClick={back}
+          onClick={NavActions.back}
         />
       </div>
     );

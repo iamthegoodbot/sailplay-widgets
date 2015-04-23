@@ -1,5 +1,6 @@
 import React from 'react';
 
+import ApiService from '../../services/ApiService.js';
 import FeedbackStore from '../../stores/FeedbackStore.js';
 import FeedbackItem from './FeedbackItem.jsx';
 import Empty from '../Empty.jsx';
@@ -13,6 +14,7 @@ export default class Feedback extends React.Component {
 
   componentDidMount() {
     FeedbackStore.addChangeListener(this._onChange.bind(this));
+    ApiService.feedback();
   }
 
   componentWillUnmount() {
@@ -20,8 +22,6 @@ export default class Feedback extends React.Component {
   }
 
   render() {
-    console.log(this.state.feedback);
-
     return (
       <div className="ppsp-scroll-outer">
         {this._getView()}
@@ -30,17 +30,20 @@ export default class Feedback extends React.Component {
   }
 
   _getView() {
-    let list = [
-      <FeedbackItem score={10} avatar="dist/img/image-sample.png" text="Отличный сайт. Возможна доставка в терминалы самовывоза QIWI. Это очень удобно!" />,
-      <FeedbackItem score={10} text="Прекрасный магазин, закупаюсь в нем не первый год. PS хотелось бы более адекватных цен на все товары, а не на некоторые, посмотрите на своих конкурентов и сравните с ними!" />,
-      <FeedbackItem score={10} avatar="dist/img/image-sample.png" text="Отличный сайт. Возможна доставка в терминалы самовывоза QIWI. Это очень удобно!"/>,
-      <FeedbackItem score={10} text="Отличный сайт. Возможна доставка в терминалы самовывоза QIWI. Это очень удобно!"/>,
-      <FeedbackItem score={10} text="Отличный сайт. Возможна доставка в терминалы самовывоза QIWI. Это очень удобно!"/>
-    ];
+    let reviews = this.state.feedback.reviews;
 
-    return this.props.isAuth ?
-      list :
-      <Empty title="У нас пока что нет отзывов :(" text="Вы можете написать первый!" />;
+    if (reviews) {
+      return reviews.map((review, key) =>
+          <FeedbackItem
+            key={key}
+            score={review.rating}
+            avatar={review.user.avatar}
+            text={review.review}
+          />
+      );
+    } else {
+      return <Empty title="У нас пока что нет отзывов :(" text="Вы можете написать первый!" />;
+    }
   }
 
   _onChange() {

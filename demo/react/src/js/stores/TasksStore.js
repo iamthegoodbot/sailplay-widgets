@@ -25,6 +25,8 @@ let tasksMap = {
     image: "https://d3257v5wstjx8h.cloudfront.net/media/assets/assetfile/e456f95ab5976a2adedff99468cb8ac7.png"
   },
   leaveFeedback: {
+    _actionId: 0,
+    action: 'leave_feedback',
     text: "Оставить отзыв",
     points: 15,
     image: "https://d3257v5wstjx8h.cloudfront.net/media/assets/assetfile/04b19c9e5a4a6c527cadbb7a76ba30b1.png"
@@ -63,6 +65,8 @@ class TasksStore extends BaseStore {
         tasks.push(enrichAction(action));
       }
     });
+
+    tasks.push(tasksMap.leaveFeedback);
 
     this._tasks = tasks;
     this._purchaseTasks = purchaseTasks;

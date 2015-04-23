@@ -5,7 +5,7 @@ class Sailplay {
     this.partnerId = id;
 
     return new Promise((resolve, reject) => {
-      sailplay.send('init', { partner_id: id });
+      sailplay.send('init', { partner_id: id, domain: 'http://dev.sailplay.ru' });
 
       sailplay.on('init.success', resolve);
       sailplay.on('init.error', reject);
@@ -114,9 +114,9 @@ class Sailplay {
     });
   }
 
-  reviewAdd() {
+  reviewAdd(review) {
     return new Promise((resolve, reject) => {
-      sailplay.send('reviews.add');
+      sailplay.send('reviews.add', review);
 
       sailplay.on('reviews.add.success', resolve);
       sailplay.on('reviews.add.error', reject);

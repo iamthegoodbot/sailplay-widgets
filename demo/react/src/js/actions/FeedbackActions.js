@@ -1,9 +1,8 @@
 import AppDispatcher from '../dispatchers/AppDispatcher.js';
-import { FEEDBACK_LOADED } from '../constants/Constants.js';
+import { FEEDBACK_LOADED, FEEDBACK_LEAVED } from '../constants/Constants.js';
 
 export default {
-  feedbackLoaded: (data) => {
-    console.log(data);
+  feedbackLoaded: data => {
     AppDispatcher.dispatch({
       actionType: FEEDBACK_LOADED,
       data

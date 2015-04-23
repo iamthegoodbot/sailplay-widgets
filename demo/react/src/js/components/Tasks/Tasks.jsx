@@ -28,7 +28,7 @@ export default class Tasks extends React.Component {
     return (
       <div className="ppsp-task-list-bl">
         <div className="ppsp-scroll-outer">
-          {tasks.map(task => <Task key={task._actionId} action={task} isAuth={this.props.isAuth} />)}
+          {tasks ? tasks.map(task => <Task key={task._actionId} action={task} isAuth={this.props.isAuth} />) : null}
         </div>
       </div>
     );
