@@ -29,7 +29,10 @@ export default class Oldi extends React.Component {
     LoginStore.addChangeListener(this._onLoginChange.bind(this));
     MessageStore.addChangeListener(this._onMessageChange.bind(this));
     UserStore.addChangeListener(this._onUserChange.bind(this));
-    ApiService.init(this.props.partnerId);
+    ApiService.init({
+        partner_id: this.props.partnerId
+      , domain: this.props.domain
+    });
   }
 
   componentWillUnmount() {

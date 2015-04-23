@@ -14,7 +14,13 @@ export default class Register extends React.Component {
   componentDidMount() {
     let node = React.findDOMNode(this.refs.authFrame);
 
-    ApiService.loginRemote(node);
+    ApiService.loginRemote({
+        node
+      , params: {
+          background: 'transparent'
+        , partner_info: 0
+      }
+    });
   }
 
   render() {
