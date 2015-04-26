@@ -1,0 +1,3 @@
+#!/bin/bash
+
+cat ./src/vendor/sailplay_hub.min.js ./dist/app.js > ./dist/main.js

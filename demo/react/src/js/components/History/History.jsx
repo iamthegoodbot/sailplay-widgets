@@ -26,19 +26,20 @@ export default class History extends React.Component {
       return `${ day < 10 ? '0' + day : day }.${ month < 10 ? '0' + month : month }.${ date.getFullYear() }`
     };
 
-    let historyList = this.state.history.map((entry, key) =>
-      <HistoryItem
-        key={key}
-        text={entry.name}
-        date={getHumanDate(entry.action_date)}
-        points={entry.points_delta > 0 ? `+${entry.points_delta}` : entry.points_delta}
-      />
-    );
+    let history = this.state.history
+      , content = history ? history.map((entry, key) =>
+          <HistoryItem
+            key={key}
+            text={entry.name}
+            date={getHumanDate(entry.action_date)}
+            points={entry.points_delta > 0 ? `+${entry.points_delta}` : entry.points_delta}
+          />
+        ) : null;
 
     return (
       <div className="ppsp-point-bl">
         <div className="ppsp-scroll-outer">
-          {historyList}
+          {content}
         </div>
       </div>
     );

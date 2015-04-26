@@ -30,9 +30,11 @@ export default class Feedback extends React.Component {
   }
 
   _getView() {
-    let reviews = this.state.feedback.reviews;
+    let feedback = this.state.feedback;
 
-    if (reviews) {
+    if (feedback) {
+      let reviews = this.state.feedback.reviews;
+
       return reviews.map((review, key) =>
           <FeedbackItem
             key={key}

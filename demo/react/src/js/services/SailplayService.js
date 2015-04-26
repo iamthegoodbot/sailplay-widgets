@@ -1,11 +1,12 @@
 let sailplay = window.SAILPLAY;
 
 class Sailplay {
-  init(id) {
-    this.partnerId = id;
+  init(params) {
+    this.params = params;
 
     return new Promise((resolve, reject) => {
-      sailplay.send('init', { partner_id: id, domain: 'http://dev.sailplay.ru' });
+      sailplay.send('init', params);
+      //sailplay.send('init', { partner_id: , domain: 'http://dev.sailplay.ru' });
 
       sailplay.on('init.success', resolve);
       sailplay.on('init.error', reject);
@@ -23,9 +24,9 @@ class Sailplay {
     });
   }
 
-  initRemote(frameNode) {
+  initRemote(options) {
     return new Promise((resolve, reject) => {
-      sailplay.send('init.remote', frameNode);
+      sailplay.send('init.remote', options);
 
       sailplay.on('login.success', resolve);
       sailplay.on('login.error', reject);
@@ -107,10 +108,10 @@ class Sailplay {
 
   reviewsList() {
     return new Promise((resolve, reject) => {
-      sailplay.send('reviews.list.load');
+      sailplay.send('load.reviews.list');
 
-      sailplay.on('reviews.list.load.success', resolve);
-      sailplay.on('reviews.list.load.error', reject);
+      sailplay.on('load.reviews.list.success', resolve);
+      sailplay.on('load.reviews.list.error', reject);
     });
   }
 

@@ -1,8 +1,6 @@
 var webpack = require('webpack');
 
 module.exports = {
-  debug: 'eval',
-
   entry: ['./src/js/app.js'],
 
   output: {
@@ -19,7 +17,7 @@ module.exports = {
     loaders: [{
       test: /\.jsx?$/,
       exclude: /node_modules/,
-      loaders: ['react-hot', 'babel-loader']
+      loaders: ['babel-loader']
     }]
   },
 

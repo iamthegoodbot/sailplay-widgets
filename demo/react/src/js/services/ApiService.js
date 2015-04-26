@@ -13,8 +13,8 @@ import NavActions from '../actions/NavActions.js';
 let onError = err => { console.error(err.message) };
 
 class ApiService {
-  init(id) {
-    SailplayService.init(id)
+  init(params) {
+    SailplayService.init(params)
       .then(config => {
         LoginActions.initApi(config);
 
@@ -25,12 +25,13 @@ class ApiService {
       }).catch(onError);
   }
 
-  loginRemote(frameNode) {
-    SailplayService.initRemote(frameNode)
+  loginRemote(options) {
+    SailplayService.initRemote(options)
       .then(user => {
         LoginActions.loginUser(user);
         this.userInfo();
         this.userHistory();
+        this.actionsList();
         NavActions.back();
       })
       .catch(onError);

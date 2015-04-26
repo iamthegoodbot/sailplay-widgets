@@ -1,7 +1,7 @@
 var webpack = require('webpack');
 
 module.exports = {
-  debug: 'eval',
+  devtool: 'eval',
 
   entry: ['webpack/hot/dev-server', './src/js/app.js'],
 

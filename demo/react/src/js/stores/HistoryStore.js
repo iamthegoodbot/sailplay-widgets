@@ -28,7 +28,7 @@ let enrichHistoryItem = entry => {
     case 'extra':
       break;
     case 'sharing':
-      switch (historyItem.social_action) {
+      switch (entry.social_action) {
         case 'like':
           name = historyTitleMap.enter_group + entry.social_type;
           break;
