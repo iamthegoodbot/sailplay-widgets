@@ -78,7 +78,7 @@ var SAILPLAY = (function () {
       }
       var cached = JSON.parse(localStorage.getItem('spCacheK' + this.cacheKeys[this.cacheParams[url].cacheKey] + 'U' + url));
 
-      if (new Date().getTime() - (cached.time - 0) < this.cacheParams[url].expireMins * 60000) {
+      if (cached && new Date().getTime() - (cached.time - 0) < this.cacheParams[url].expireMins * 60000) {
         return cached.data
       } else {
         return false;
