@@ -4,14 +4,14 @@
 @intro: 'Intro', Arial, sans-serif;
 @future: 'FuturisC', Arial, sans-serif;
 
-#sptb {
+.sptb-row {
     font-size: 13px;
     line-height: 1.4;
     color: #454340;
     -webkit-text-size-adjust: 100%;
 }
 
-#sptb *{
+.sptb-row *{
     .box-sizing(content-box);
 }
 
@@ -20,7 +20,7 @@
 :-moz-placeholder           {color:#333;}/* Firefox 18- */
 :-ms-input-placeholder      {color:#333;}
 
-#sptb{
+.sptb-row{
 
     .sptb-promo{
         position: relative;
@@ -100,10 +100,8 @@
         }
     }
 
-    .sptb-row{
-        margin-bottom: 10px;
-        overflow: hidden;
-    }
+    margin-bottom: 10px;
+    overflow: hidden;
 
     .sptb-item{
         position: relative;
@@ -142,11 +140,8 @@
         display: inline-block;
         width: 129px;
         height: 128px;
-        background: url(../sp-img/icon-man.png) no-repeat;
-
-        &.type-not-active{
-            background: url(../sp-img/icon-man-inactive.png) no-repeat;
-        }
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
     }
 
     .sptb-level-icon-count{
@@ -545,30 +540,17 @@
         z-index: 4;
         position: relative;
         padding-top: 101px;
-        margin: 0 6%;
-
-        .rsArrowLeft{
-            position: absolute;
-            .triangle(22px, 42px, #f3a5a5, 'left');
-            left: -2%;
-            top: 156px;
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .rsArrowRight{
-            position: absolute;
-            .triangle(22px, 42px, #f3a5a5, 'right');
-            right: -2%;
-            top: 156px;
-            opacity: 1;
-            visibility: visible;
-        }
+        margin: 0 9%;
+        padding-left: 4%;
+        padding-right: 4%;
+      .slick-track {
+        margin-left: 10px;
+      }
     }
 
     .sptb-slider-item{
         text-align: justify;
-        padding: 0 5%;
+//        padding: 0 5%;
 
         &:after{
             content: '';
@@ -705,17 +687,21 @@
             }
             
             .sptb-gift-icon{
-                &.type-dress{
-                    background-image: url(../sp-img/icon-dress-complete.png);
-                }
 
-                &.type-gift{
-                    background-image: url(../sp-img/icon-gift-complete.png);
-                }
+              background-repeat: no-repeat;
+              background-size: 100% 100%;
 
-                &.type-cristall {
-                    background-image: url(../sp-img/icon-almaz-complete.png);
-                }
+//                &.type-dress{
+//                    background-image: url(../sp-img/icon-dress-complete.png);
+//                }
+//
+//                &.type-gift{
+//                    background-image: url(../sp-img/icon-gift-complete.png);
+//                }
+//
+//                &.type-cristall {
+//                    background-image: url(../sp-img/icon-almaz-complete.png);
+//                }
 
 
             }
@@ -741,31 +727,16 @@
         position: relative;
         padding-top: 87px;
         margin: 0 6%;
+        padding-left: 4%;
+        padding-right: 4%;
 
-        .rsArrowLeft{
-            position: absolute;
-            .triangle(22px, 42px, #425691, 'left');
-            left: -2%;
-            top: 156px;
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .rsArrowRight{
-            position: absolute;
-            .triangle(22px, 42px, #425691, 'right');
-            right: -2%;
-            top: 156px;
-            opacity: 1;
-            visibility: visible;
-        }
     }
 
     .sptb-gift-icon{
         position: absolute;
         z-index: 2;
-        top: -4px;
-        right: 1px;
+        top: 0;
+        left: 0;
         width: 164px;
         height: 164px;
         border-radius: 164px;
@@ -828,7 +799,7 @@
         position: absolute;
         left: -8px;
         top: -8px;
-        .transform(rotate(-47deg));
+        .transform(rotate(47deg));
     }
 
     .sptb-item-gift-detail{
@@ -862,5 +833,31 @@
             }
         }
     }
+
+  .slick-prev{
+    position: absolute;
+    .triangle(22px, 42px, #425691, 'left');
+    left: -2%;
+    top: 156px;
+    opacity: 1;
+    visibility: visible;
+    cursor: pointer;
+    &.red {
+      .triangle(22px, 42px, #f3a5a5, 'left');
+    }
+  }
+
+  .slick-next{
+    position: absolute;
+    .triangle(22px, 42px, #425691, 'right');
+    right: -2%;
+    top: 156px;
+    opacity: 1;
+    visibility: visible;
+    cursor: pointer;
+    &.red {
+      .triangle(22px, 42px, #f3a5a5, 'right');
+    }
+  }
 }
 
