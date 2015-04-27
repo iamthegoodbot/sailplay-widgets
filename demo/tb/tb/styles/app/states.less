@@ -1,0 +1,64 @@
+
+.sptb-row{
+    &.sptb-state-show-list{
+        .sptb-detail-info{
+            visibility: hidden;
+        }
+
+        .sptb-list{
+            visibility: visible !important;
+            opacity: 1 !important;
+            z-index: 5;
+        }
+    }
+
+    &.sptb-state-show-badge{
+        .sptb-detail-info{
+            visibility: hidden;
+        }
+
+        .sptb-level{
+            visibility: visible;
+            opacity: 1;
+            z-index: 5;
+        }
+
+        .sptb-level-btn{
+            .show-list{
+                display: inline !important;
+            }
+
+            .show-badge{
+                display: none;
+            }
+        }
+    }
+
+    &.sptb-state-show-gift{
+        .sptb-slider,
+        .sptb-item-task-con{
+            display: none;
+        }
+
+        .sptb-question,
+        .sptb-item-gift-detail{
+            display: block;
+            z-index: 5;
+        }
+
+    }
+
+    &.sptb-state-show-task{
+        .sptb-last-slider,
+        .sptb-last-con{
+            display: none;
+        }
+
+        .sptb-last-question,
+        .sptb-last-detail{
+            display: block;
+            z-index: 5;
+        }
+
+    }
+}
