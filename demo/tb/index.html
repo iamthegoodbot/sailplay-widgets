@@ -19,9 +19,8 @@
     <script type="text/javascript" src="js/tb.sailplay.js"></script>
     <!--<script type="text/javascript" src="js/main.js"></script>-->
     <script>
-      SAILPLAY.send('init', { partner_id: 206, domain: 'http://dev.sailplay.ru' });
       SAILPLAY.on('init.success', function(){
-        SAILPLAY.send('login', '38c6285d1b1bce88a1071f116704263bf2511b18');
+        SAILPLAY.send('thanks.show', { points: 400, share_points: 30 });
       });
     </script>
 
