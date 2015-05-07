@@ -319,6 +319,10 @@
         &:hover{
             opacity: .9;
         }
+
+        &.selected {
+          background-color: darken(#73b85c, 10%);
+        }
     }
 
     //small detail info - top block
@@ -634,7 +638,7 @@
         z-index: 4;
         position: relative;
         padding-top: 101px;
-        margin: 0 6%;
+        margin: 0 30px;
 
         .rsArrowLeft{
             position: absolute;
@@ -859,6 +863,31 @@
         }
     }
 
+    .sptb-history-slider{
+      z-index: 4;
+      position: relative;
+      padding-top: 0;
+      margin: 0 30px;
+
+      .rsArrowLeft{
+        position: absolute;
+        .triangle(22px, 42px, darken(#f6ac46, 15%), 'left');
+        left: -2%;
+        top: 156px;
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .rsArrowRight{
+        position: absolute;
+        .triangle(22px, 42px, darken(#f6ac46, 15%), 'right');
+        right: -2%;
+        top: 156px;
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+
     .sptb-gift-icon{
         position: absolute;
         z-index: 2;
@@ -869,7 +898,7 @@
         overflow: hidden;
         background-repeat: no-repeat;
         background-position: 50% 50%;
-
+        background-size: 85% 85%;
         &.type-cristall{
             background-image: url(../sp-img/icon-almaz.png);
         }
@@ -925,7 +954,7 @@
         position: absolute;
         left: -8px;
         top: -8px;
-        .transform(rotate(-47deg));
+        .transform(rotate(47deg));
     }
 
     .sptb-item-gift-detail{

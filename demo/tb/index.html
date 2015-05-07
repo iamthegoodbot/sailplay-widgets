@@ -20,7 +20,23 @@
     <!--<script type="text/javascript" src="js/main.js"></script>-->
     <script>
       SAILPLAY.on('init.success', function(){
-        SAILPLAY.send('thanks.show', { points: 400, share_points: 30 });
+        SAILPLAY.send('thanks.show', { points: 400, share_points: 30, url: 'http://www.trendsbrands.ru/' });
+      });
+
+      SAILPLAY.on('login.success', function(){
+        SAILPLAY.send('purchases.add', { order_num: 355, price: 3545 });
+      });
+
+      SAILPLAY.on('purchases.add.success', function(data){
+        console.dir(data);
+      });
+
+      SAILPLAY.on('points.spend.request', function(){
+        console.log('Потратить баллы');
+      });
+
+      SAILPLAY.on('purchase.share.request', function(data){
+        console.log('Пошарить покупку в ' + data.type);
       });
     </script>
 
@@ -225,7 +241,7 @@
     
 
 
-<div id="sptb">
+<div>
 
 <sailplay-header></sailplay-header>
 

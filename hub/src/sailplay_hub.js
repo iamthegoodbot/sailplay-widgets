@@ -507,7 +507,7 @@ var SAILPLAY = (function () {
   Actions.share = function (action) {
 
     var frameUrl = _config.DOMAIN + '/js-api/' + _config.partner.id + '/actions/social-widget/?auth_hash=' + _config.auth_hash;
-    frameUrl += '&socialType=' + action.socialType + '&action=' + action.action + '&link=' + action.shortLink + '&pic=' + (_actions_config.partnerCustomPic ? _actions_config.partnerCustomPic : _config.partner.logo);
+    frameUrl += '&socialType=' + action.socialType + '&action=' + action.action + '&link=' + action.shortLink + '&pic=' + (_actions_config.partnerCustomPic || _config.partner.logo || '//sailplay.ru/static/home/v4/img/main/sailplay_logo_main.png' );
 
     frameUrl += '&msg=' + _actions_config.messages[action.action];
     frameUrl += '&_actionId=' + action['_actionId'];
@@ -659,6 +659,25 @@ var SAILPLAY = (function () {
         sp.send('reviews.add.success', res);
       } else {
         sp.send('reviews.add.error', res);
+      }
+    });
+  });
+
+  sp.on('purchases.add', function (data) {
+    if(_config == {}){
+      initError();
+      return;
+    }
+    var req_data = {
+      auth_hash: _config.auth_hash,
+      price: data.price || '',
+      order_num: data.order_num || ''
+    };
+    JSONP.get(_config.DOMAIN + _config.urls.purchase, req_data, function (res) {
+      if (res.status == 'ok') {
+        sp.send('purchases.add.success', res);
+      } else {
+        sp.send('purchases.add.error', res);
       }
     });
   });

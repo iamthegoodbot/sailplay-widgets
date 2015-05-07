@@ -51,10 +51,10 @@
 
       var scope = inst.scope || {};
 
-      //render mustache template
-      Mustache.parse(template);
+      //render handlebars template
+      var render = Handlebars.compile(template);
 
-      inst.root.innerHTML = Mustache.render(template, scope);
+      inst.root.innerHTML = render(scope);
 
       //add events
       var clicks = inst.root.querySelectorAll('[data-sp-click]');
@@ -102,73 +102,58 @@
     template:
       '<div class="sptb">  ' +
         '<div class="sptb-row">' +
-        '<div class="sptb-item sptb-item-orange sptb-item-right">  ' +
-        '<div class="sptb-level-outer"> ' +
-        '<div class="sptb-level ">' +
-        '{{#badges}}' +
-        '<div class="sptb-level-item">  ' +
-        '<i class="sptb-level-icon" style="background-image: {{#get_badge_pic}}{{ thumbs.url_250x250 }},{{thumbs.url_gs}},{{is_received}}{{/get_badge_pic}}"> ' +
-        '<span class="sptb-level-icon-count">{{points}}</span>  ' +
-        '</i>  ' +
-        '<div class="sptb-level-name">  {{name}}  </div>  ' +
-        '<div class="sptb-level-subname">  {{descr}}  </div>' +
-        '</div>' +
-        '<div class="sptb-level-item-arrow"></div> ' +
-        '{{/badges}}' +
+          '<div class="sptb-item sptb-item-orange sptb-item-right">  ' +
+            '<div class="sptb-level-outer"> ' +
+              '<div class="sptb-level sptb-history-slider" style="padding-top: 0;" data-slider>' +
+                '{{#badges}}' +
+                '<div class="sptb-level-item">  ' +
+                  '<i class="sptb-level-icon" style="background-image: {{#get_badge_pic}}{{ thumbs.url_250x250 }},{{thumbs.url_gs}},{{is_received}}{{/get_badge_pic}}"></i>' +
+                  '<div class="sptb-level-name">  {{name}}  </div>  ' +
+                  '<div class="sptb-level-subname">  {{descr}}  </div>' +
+                '</div>' +
+//                '<div class="sptb-level-item-arrow"></div> ' +
+                '{{/badges}}' +
+              '</div>  ' +
+            '</div>  ' +
+            '<div class="sptb-list"> ' +
+              '<div class="sptb-history-list">' +
+
+              '</div>' +
+              '<a class="sptb-rating-btn sptb-btn" href="#" data-sp-click="hide_history"> Вернуться назад </a>  ' +
+            '</div>  ' +
+            '<div class="sptb-detail-info "> ' +
+              '<div class="sptb-info">' +
+                '<div class="sptb-info-ava" style="background-image: {{{user_pic user.pic}}};"></div>' +
+                '<div class="sptb-info-text">  ' +
+                  '<span class="titles">Здравствуй,</span>  ' +
+                  '<div class="texts">{{ user.name }}</div>' +
+                '</div> ' +
+              '</div> ' +
+              '<div class="sptb-info-footer">' +
+                '<a class="sptb-info-btn sptb-btn" href="#" data-sp-click="show_history">История начислений</a>' +
+                '<div class="sptb-info-count">  ' +
+                  '<span class="count">  {{ user_points.confirmed }}  </span>  ' +
+                  '<span class="count-text"> ' +
+                    '<a class="sptb-info-link" href="#" data-sp-click="toggle_points_info">+{{ user_points.unconfirmed }} баллов</a> ' +
+                    '<div class="sptb-info-popup hidden">' +
+                      '<a class="sptb-info-popup-close" href="#" data-sp-click="toggle_points_info"></a>' +
+                      '<div class="sptb-info-popup-text">“+{{ user_points.unconfirmed }} баллов” - количество неподтвержденных баллов, которые будут подтверждены после фактической оплаты заказа</div> ' +
+                    '</div>  ' +
+                  '</span>' +
+                '</div> ' +
+              '</div>  ' +
+            '</div>' +
+          '</div>' +
+          '<div class="sptb-item sptb-item-orange sptb-item-small sptb-level-con"> ' +
+            '<i class="sptb-level-icon sptb-level-img-small" style="background-image: {{{get_status_pic user_status.pic }}};"></i> ' +
+            '<div class="sptb-level-title"> Твой статус: {{{get_status user_status.name }}} </div> ' +
+            '<a class="sptb-level-btn sptb-btn" href="#" data-sp-click="show_badges">' +
+              '<span class="hidden show-list">Закрыть список</span>' +
+              '<span class=" show-badge">Список бейджей</span> ' +
+            '</a>  ' +
+          '</div>  ' +
         '</div>  ' +
-        '</div>  ' +
-        '<div class="sptb-list "> ' +
-        '<div class="sptb-rating-list">' +
-        '{{#history}}' +
-        '<div class="sptb-rating-item">  ' +
-        '<div class="sptb-rating-name t-ellps">  {{#name_filter}}{{ name }}{{/name_filter}}  </div>  ' +
-        '<div class="sptb-rating-date">  {{#date}} {{ action_date }} {{/date}}  </div>  ' +
-        '<div class="sptb-rating-count">  {{ points_delta }} балла  </div>' +
-        '</div> ' +
-        '{{/history}}' +
-        '</div> ' +
-        '<div class="sptb-rating-pager">' +
-        '<a class="sptb-rating-page-item" href="#">1</a>' +
-        '<a class="sptb-rating-page-item" href="#">2</a>' +
-        '<a class="sptb-rating-page-item" href="#">3</a>' +
-        '<a class="sptb-rating-page-item" href="#">4</a>' +
-        '<a class="sptb-rating-page-item" href="#">&raquo;</a> ' +
-        '</div> ' +
-        '<a class="sptb-rating-btn sptb-btn" href="#" data-sp-click="hide_history"> Вернуться назад </a>  ' +
-        '</div>  ' +
-        '<div class="sptb-detail-info "> ' +
-        '<div class="sptb-info">' +
-        '<div class="sptb-info-ava" style="background-image: {{#user_pic }}{{user.pic}}{{/user_pic}};"></div>' +
-        '<div class="sptb-info-text">  ' +
-        '<span class="titles">Здравствуй,</span>  ' +
-        '<div class="texts">{{ user.name }}</div>' +
-        '</div> ' +
-        '</div> ' +
-        '<div class="sptb-info-footer">' +
-        '<a class="sptb-info-btn sptb-btn" href="#" data-sp-click="show_history">История начислений</a>' +
-        '<div class="sptb-info-count">  ' +
-        '<span class="count">  {{ user_points.confirmed }}  </span>  ' +
-        '<span class="count-text"> ' +
-        '<a class="sptb-info-link" href="#" data-sp-click="toggle_points_info">+{{ user_points.unconfirmed }} баллов</a> ' +
-        '<div class="sptb-info-popup hidden">' +
-        '<a class="sptb-info-popup-close" href="#" data-sp-click="toggle_points_info"></a>' +
-        '<div class="sptb-info-popup-text">“+N баллов” - количество неподтвержденныхбаллов, которые будут подтверждены послефактической оплаты заказа</div> ' +
-        '</div>  ' +
-        '</span>' +
-        '</div> ' +
-        '</div>  ' +
-        '</div>' +
-        '</div>' +
-        '<div class="sptb-item sptb-item-orange sptb-item-small sptb-level-con"> ' +
-        '<i class="sptb-level-icon sptb-level-img-small" style="background-image: {{#get_status_pic}}{{ user_status.pic }}{{/get_status_pic}};"></i> ' +
-        '<div class="sptb-level-title"> Твой статус: {{#get_status}}{{ user_status.name }}{{/get_status}}  </div> ' +
-          '<a class="sptb-level-btn sptb-btn" href="#" data-sp-click="show_badges">' +
-            '<span class="hidden show-list">Закрыть список</span>' +
-            '<span class=" show-badge">Список бейджей</span> ' +
-          '</a>  ' +
-        '</div>  ' +
-        '</div>  ' +
-        '</div>',
+      '</div>',
     init: function(widget){
       var self = widget;
 
@@ -177,6 +162,61 @@
       };
 
       self.scope.is_badges_show = false;
+
+      var items_template =
+          '<div class="sptb-rating-list">' +
+            '{{#history}}' +
+            '<div class="sptb-rating-item">  ' +
+              '<div class="sptb-rating-name t-ellps">  {{ name }}  </div>  ' +
+              '<div class="sptb-rating-date">  {{ action_date }}  </div>  ' +
+              '<div class="sptb-rating-count">  {{ points_delta }} балла  </div>' +
+            '</div> ' +
+            '{{/history}}' +
+          '</div> ' +
+          '<div class="sptb-rating-pager">' +
+            '{{#pages}}' +
+            '<a class="sptb-rating-page-item {{{selected @index}}}" href="#" data-page="{{@index}}">{{{page_index @index}}}</a>' +
+            '{{/pages}}' +
+//            '<a class="sptb-rating-page-item" href="#">&raquo;</a> ' +
+          '</div> ';
+
+
+      var pagination = {
+        page: 0,
+        pages: [],
+        history: [],
+        next_page: function(){
+
+        },
+        render: function(){
+
+          var render = Handlebars.compile(items_template);
+
+          root().getElementsByClassName('sptb-history-list')[0].innerHTML = render(pagination);
+          var page_btns = root().getElementsByClassName('sptb-history-list')[0].getElementsByClassName('sptb-rating-page-item');
+          for(var btn in page_btns){
+            var b = page_btns[btn];
+            b.onclick = function(e){
+              e.preventDefault();
+              SP.send('user.history.page', this.getAttribute('data-page'));
+            };
+          }
+        }
+      };
+
+      Handlebars.registerHelper('page_index', function(index){
+        return index+1;
+      });
+
+      Handlebars.registerHelper('selected', function(index){
+        return pagination.page == index ? 'selected' : '';
+      });
+
+      SP.on('user.history.page', function(page){
+        pagination.page = page;
+        pagination.history = pagination.pages[page];
+        pagination.render();
+      });
 
       SP.on('load.user.info.success', function(res){
         self.scope.user = res.user;
@@ -196,18 +236,41 @@
       SP.on('load.user.history.success', function(res){
         self.scope.history = res.map(function(item){
           item.name = get_action_name(item);
+          item.action_date = get_action_date(item);
           return item;
         });
-        self.render();
-        root().classList.add('sptb-state-show-list');
+        pagination.page = 0;
+        if(self.scope.history.length < 7){
+          pagination.pages = [];
+          pagination.history = self.scope.history;
+        }
+        else {
+          pagination.pages = array_chunk(self.scope.history, 6);
+          pagination.history = pagination.pages[pagination.page];
+        }
+        pagination.render();
+        setTimeout(function(){
+          root().classList.add('sptb-state-show-list');
+        }, 0);
       });
 
-      self.scope.date = function(){
-        return function(text, render){
-          var date = render(text).split('T')[0].split('-');
+      function get_action_date(action){
+          var date = action.action_date.split('T')[0].split('-');
           return date[2].trim() + '.' + date[1].trim() + '.' + date[0].trim();
-        };
-      };
+      }
+
+      function array_chunk (arr, len) {
+
+        var chunks = [],
+          i = 0,
+          n = arr.length;
+
+        while (i < n) {
+          chunks.push(arr.slice(i, i += len));
+        }
+
+        return chunks;
+      }
 
       var history_items = {
         "purchase": "Покупка",
@@ -242,52 +305,41 @@
                 return history_items.share_badge + action.social_type;
             }
         }
-        return history_items[action.action];
+        return history_items[action.action] || 'Нет описания';
       }
 
-      self.scope.name_filter = function(){
-        return function(text, render){
-          var name = render(text) || 'Нет описания';
-          return name;
-        };
-      };
+      Handlebars.registerHelper('user_pic', function(options) {
+        return 'url(' + (options.fn(this) || 'sp-img/image-1.png') + ')';
+      });
 
-      self.scope.user_pic = function(){
-        return function(text, render){
-          var src = render(text) || 'sp-img/image-1.png';
-          return 'url(' + src + ')';
-        };
-      };
+      Handlebars.registerHelper('get_badge_pic', function(options) {
+        var url = options.fn(this);
+        var gs = url.split(',')[1];
+        var full = url.split(',')[0];
+        var src;
+        if(url.split(',')[2] == 'true'){
+          src = full;
+        }
+        else {
+          src = gs;
+        }
+        src = src || 'sp-img/icon-man.png';
+        return 'url(' + src + ')';
+      });
 
-      self.scope.get_status = function(){
-        return function(text, render){
-          var status = render(text) || 'Нет статуса';
-          return status;
-        };
-      };
+      Handlebars.registerHelper('get_status', function(status_name){
+        return status_name || 'Нет статуса';
+      });
 
-      self.scope.get_status_pic = function(){
-        return function(text, render){
-          var src = render(text) || 'sp-img/icon-man.png';
-          return 'url(' + src + ')';
-        };
-      };
+      Handlebars.registerHelper('get_status_pic', function(status_pic){
+        var src = status_pic || 'sp-img/icon-man.png';
+        return 'url(' + src + ')';
+      });
 
-      self.scope.get_badge_pic = function(){
-        return function(text, render){
-          var gs = render(text).split(',')[1];
-          var full = render(text).split(',')[0];
-          var src;
-          if(render(text).split(',')[2] == 'true'){
-            src = full;
-          }
-          else {
-            src = gs;
-          }
-          src = src || 'sp-img/icon-man.png';
-          return 'url(' + src + ')';
-        };
-      };
+      Handlebars.registerHelper('user_pic', function(user_pic){
+        var src = user_pic || 'sp-img/icon-man.png';
+        return 'url(' + src + ')';
+      });
 
       self.scope.show_badges = function(){
         if(!self.scope.is_badges_show){
@@ -304,12 +356,23 @@
       SP.on('load.badges.list.success', function(res){
         self.scope.badges = res.multilevel_badges[0];
         self.render();
-        root().classList.add('sptb-state-show-badge');
+        setTimeout(function(){
+          root().classList.add('sptb-state-show-badge');
+        }, 0);
       });
 
       self.scope.toggle_points_info = function(){
         root().getElementsByClassName('sptb-info-popup')[0].classList.toggle('hidden');
       };
+    },
+    on_render: function(self, root){
+      $(root).find('[data-slider]').slick({
+        infinite: false,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        prevArrow: '<div class="rsArrowLeft"></div>',
+        nextArrow: '<div class="rsArrowRight"></div>'
+      });
     }
   };
 
@@ -326,9 +389,9 @@
             '<div class="sptb-item-gift-detail">  ' +
               '<div class="sptb-gift-img"> ' +
                 '<div class="sptb-gift-count">{{selected_gift.points}}</div> ' +
-                  '<i class="sptb-gift-icon type-gift" style="background-image: {{#gift_pic}}{{ selected_gift.thumbs.url_250x250 }}{{/gift_pic}};"></i> ' +
+                  '<i class="sptb-gift-icon type-gift" style="background-image: {{{gift_pic selected_gift.thumbs.url_250x250}}};"></i> ' +
                   '<svg width="180px" height="180px" class="sptb-gift-svg">' +
-                    '<path fill="none" stroke="#93db7a" stroke-width="8px" d="{{#gift_completion}}{{selected_gift.points}}{{/gift_completion}}"/>' +
+                    '<path fill="none" stroke="#93db7a" stroke-width="8px" d="{{{gift_completion selected_gift.points}}}"/>' +
                   '</svg>  ' +
                 '</div>' +
               '</div> ' +
@@ -340,9 +403,9 @@
                   '<div class="sptb-gift {{#completed}}{{points}}{{/completed}}" data-sp-click="show_gift({{id}})"> ' +
                     '<div class="sptb-gift-img">' +
                       '<div class="sptb-gift-count">{{ points }}</div>' +
-                      '<i class="sptb-gift-icon type-gift" style="background-image: {{#gift_pic}}{{ thumbs.url_250x250 }}{{/gift_pic}};"></i>' +
+                      '<i class="sptb-gift-icon type-gift" style="background-image: {{{gift_pic thumbs.url_250x250}}};"></i>' +
                       '<svg width="180px" height="180px" class="sptb-gift-svg">  ' +
-                        '<path fill="none" stroke="#93db7a" stroke-width="8px" d="{{#gift_completion}}{{points}}{{/gift_completion}}"/>' +
+                        '<path fill="none" stroke="#93db7a" stroke-width="8px" d="{{{gift_completion points}}}"/>' +
                       '</svg> ' +
                     '</div> ' +
                     '<div class="sptb-gift-title"> {{ name }} </div>  ' +
@@ -355,17 +418,15 @@
                 '<div class="sptb-question-subtitle"> {{selected_gift.descr}}  </div> ' +
                 '<div class="sptb-question-buttons">' +
                   '<a class="sptb-btn sptb-question-back" href="#" data-sp-click="hide_gift">Назад</a>' +
-                  '{{#user}}' +
-                  '{{#selected_gift.completed}}' +
-                  '<a class="sptb-btn sptb-question-back" href="#" data-sp-click="gift_purchase">Получить</a> ' +
-                  '{{/selected_gift.completed}}' +
-                  '{{^selected_gift.completed}}' +
-                  '<a class="sptb-btn sptb-question-more" href="#" data-sp-click="show_actions">Еще {{#points_delta}}{{selected_gift.points}}{{/points_delta}} баллов</a>  ' +
-                  '{{/selected_gift.completed}}' +
-                  '{{/user}}' +
-                  '{{^user}}' +
+                  '{{#if user}}' +
+                    '{{#if selected_gift.completed}}' +
+                    '<a class="sptb-btn sptb-question-back" href="#" data-sp-click="gift_purchase">Получить</a> ' +
+                    '{{else}}' +
+                    '<a class="sptb-btn sptb-question-more" href="#" data-sp-click="show_actions">Еще {{{points_delta_gift selected_gift.points}}} баллов</a>  ' +
+                    '{{/if}}' +
+                  '{{else}}' +
                   '<a class="sptb-btn sptb-question-more" href="#" data-sp-click="login_request">Войти</a>  ' +
-                  '{{/user}}' +
+                  '{{/if}}' +
                 '</div>  ' +
               '</div>  ' +
             '</div>  ' +
@@ -395,12 +456,9 @@
         self.render();
       });
 
-      scope.gift_pic = function(){
-        return function(text, render){
-          var src = render(text) || 'sp-img/icon-gift-complete.png';
-          return 'url(' + src + ')';
-        };
-      };
+      Handlebars.registerHelper('gift_pic', function(gift_pic){
+        return 'url(' + (gift_pic || 'sp-img/icon-gift-complete.png') + ')';
+      });
 
       function polarToCartesian(centerX, centerY, radius, angleInDegrees) {
         var angleInRadians = (angleInDegrees-90) * Math.PI / 180.0;
@@ -426,15 +484,12 @@
         return d;
       }
 
-      scope.gift_completion = function(){
-        return function(text, render){
-          var points = render(text) || 0;
-          var user_points = scope.user_points.confirmed || 0;
-          var angle = 360*(user_points/points);
-          var completion = describeArc(90, 90, 86, 0, (angle < 359 ? angle : 359));
-          return completion;
-        };
-      };
+      Handlebars.registerHelper('gift_completion', function(points){
+        points = points || 0;
+        var user_points = scope.user_points.confirmed || 0;
+        var angle = 360*(user_points/points);
+        return describeArc(90, 90, 86, 0, (angle < 359 ? angle : 359));
+      });
 
       scope.completed = function(){
         return function(val, render){
@@ -469,12 +524,10 @@
         SP.send('actions.show');
       };
 
-      scope.points_delta = function(){
-        return function(val, render){
-          var gift_points = render(val);
-          return gift_points - scope.user_points.confirmed;;
-        };
-      };
+      Handlebars.registerHelper('points_delta_gift', function(gift_points){
+        console.log(gift_points + ' ' + scope.user_points.confirmed);
+          return gift_points - scope.user_points.confirmed;
+      });
 
       scope.gift_purchase = function(){
         SP.send('gifts.purchase', scope.selected_gift);
@@ -502,25 +555,24 @@
               '{{#actions}}' +
               '<div class="sptb-slider-item"> ' +
                 '<div class="sptb-task-item" data-sp-click="show_action({{_actionId}})">' +
-                  '<div class="sptb-task-img type-vk">  ' +
+                  '<div class="sptb-task-img" style="background-image: url({{pic}});">  ' +
                     '<div class="sptb-task-img-count">  {{points}}  </div>' +
                   '</div>' +
-                  '<div class="sptb-task-name">{{#get_name}}{{_actionId}}{{/get_name}}</div> ' +
+                  '<div class="sptb-task-name">{{name}}</div> ' +
                 '</div>  ' +
               '</div>' +
               '{{/actions}}' +
             '</div>' +
             '<div class="sptb-last-question ">  ' +
-              '<div class="sptb-question-title">  {{#get_name}}{{selected_action._actionId}}{{/get_name}}  </div>  ' +
+              '<div class="sptb-question-title">  {{selected_action.name}}  </div>  ' +
               '<div class="sptb-question-subtitle">  {{selected_action.descr}}  </div>  ' +
               '<div class="sptb-question-buttons"> ' +
                 '<a class="sptb-btn sptb-question-back" href="#" data-sp-click="hide_action">Назад</a> ' +
-                '{{#user}}'+
+                '{{#if user}}'+
                 '<a class="sptb-btn sptb-question-more" href="#" data-sp-click="earn_points">Выполнить</a> ' +
-                '{{/user}}'+
-                '{{^user}}'+
+                '{{else}}'+
                 '<a class="sptb-btn sptb-question-more" href="#" data-sp-click="login_request">Войти</a> ' +
-                '{{/user}}'+
+                '{{/if}}'+
               '</div>' +
             '</div> ' +
           '</div> ' +
@@ -530,56 +582,13 @@
               '<div class="sptb-item-task-subtitle">за выполнение которых <br/>ты получишь баллы</div> ' +
             '</div> ' +
             '<div class="sptb-last-detail "> ' +
-              '<div class="sptb-task-img type-write">' +
+              '<div class="sptb-task-img" style="background-image: url({{selected_action.pic}});">' +
                 '<div class="sptb-task-img-count">{{ selected_action.points }}</div> ' +
               '</div> ' +
             '</div> ' +
           '</div> ' +
         '</div>  ' +
       '</div>',
-    templateo:
-      '<div class="sptb {{#selected_action}}sptb-state-show-task{{/selected_action}}">  ' +
-        '<div class="sptb-row">'+
-        '<div class="sptb-item sptb-item-red sptb-item-right">' +
-        '<div class="sptb-last-slider" data-slider>  ' +
-        '{{#actions}}' +
-        '<div class="sptb-slider-item"> ' +
-        '<div class="sptb-task-item" data-sp-click="show_action({{_actionId}})">' +
-        '<div class="sptb-task-img">  ' +
-        '<div class="sptb-task-img-count">  {{points}}  </div>' +
-        '</div>' +
-        '<div class="sptb-task-name">{{#get_name}}{{_actionId}}{{/get_name}}</div> ' +
-        '</div> ' +
-        '</div>  ' +
-        '{{/actions}}' +
-        '</div>' +
-        '<div class="sptb-last-question hidden"> ' +
-        '<div class="sptb-question-title"> {{#get_name}}{{selected_action._actionId}}{{/get_name}} </div> ' +
-        '<div class="sptb-question-subtitle"> {{selected_action.descr}}  </div> ' +
-        '<div class="sptb-question-buttons">' +
-        '<a class="sptb-btn sptb-question-back" href="#" data-sp-click="hide_action">Назад</a>' +
-        '{{#user}}'+
-        '<a class="sptb-btn sptb-question-more" href="#" data-sp-click="earn_points">Выполнить</a> ' +
-        '{{/user}}'+
-        '{{^user}}'+
-        '<a class="sptb-btn sptb-question-more" href="#" data-sp-click="login_request">Войти</a> ' +
-        '{{/user}}'+
-        '</div>  ' +
-        '</div>  ' +
-        '</div> ' +
-        '<div class="sptb-item sptb-item-red sptb-item-small">' +
-        '<div class="sptb-last-con">  ' +
-        '<div class="sptb-item-task-title">  Задания  </div>  ' +
-        '<div class="sptb-item-task-subtitle">  за выполнение которых <br/>  ты получишь баллы  </div>' +
-        '</div>' +
-        '<div class="sptb-last-detail hidden">  ' +
-        '<div class="sptb-task-img type-write"> ' +
-        '<div class="sptb-task-img-count"> {{ selected_action.points }} </div>  ' +
-        '</div>' +
-        '</div> ' +
-        '</div>  ' +
-        '</div>  ' +
-        '</div>',
     init: function(self){
 
       var scope = self.scope;
@@ -595,7 +604,35 @@
       };
 
       SP.on('load.actions.list.success', function(data){
-        scope.actions = data.actions;
+        function get_name(action){
+          if(action.name) return action.name;
+          if(action.descr) return action.descr;
+          if(system_actions.system[action.type]) return system_actions.system[action.type].name;
+          if(action.socialType && system_actions.social[action.socialType]) return system_actions.social[action.socialType][action.action].name;
+          return 'Нет описания';
+        }
+        function get_pic(action){
+          if(action.pic) return action.pic;
+          if(system_actions.system[action.type]) return system_actions.system[action.type].pic;
+          if(action.socialType && system_actions.social[action.socialType]) return system_actions.social[action.socialType][action.action].pic;
+          return '';
+        }
+        function get_descr(action){
+          if(action.descr) return action.descr;
+          if(system_actions.system[action.type]) return system_actions.system[action.type].descr;
+          if(action.socialType && system_actions.social[action.socialType]) return system_actions.social[action.socialType][action.action].descr;
+          return '';
+        }
+        scope.actions = data.actions.concat(tb_actions)
+          .filter(function(action){
+            return action.action != 'purchase';
+          })
+          .map(function(action){
+          action.name = get_name(action);
+          action.pic = get_pic(action);
+          action.descr = get_descr(action);
+          return action;
+        });
         self.render();
       });
 
@@ -604,7 +641,12 @@
       });
 
       scope.earn_points = function(){
-        SP.send('actions.perform', scope.selected_action);
+        if(scope.selected_action.url){
+          window.open(scope.selected_action.url, '_blank');
+        }
+        else {
+          SP.send('actions.perform', scope.selected_action);
+        }
       };
 
       SP.on('actions.social.connect.complete', function () {
@@ -631,83 +673,90 @@
         SP.send('login.request');
       };
 
-      scope.system_actions = {
-        emailBinding: 'partners/pj/img/icons/actions/email_binding.png',
-        fillProfile: 'partners/pj/img/icons/actions/fill_profile.png',
-        inviteFriend: 'partners/pj/img/icons/actions/invite_friend.png'
-      };
+      var tb_actions = [
+        {
+          _actionId: 'comment',
+          name: 'Оставь комментарий',
+          url: 'http://club.trendsbrands.ru/',
+          pic: 'sp-img/actions/TrendsBrands-17.png',
+          descr: 'Принимай участие в обсуждении интересных тем в T&B Club, нам важно твое мнение',
+          points: 10
+        },
+        {
+          _actionId: 'repost',
+          name: 'СДЕЛAЙ РЕПОСТ СТAТЬИ T&B CLUB',
+          url: 'http://club.trendsbrands.ru/',
+          pic: 'sp-img/actions/TrendsBrands-18.png',
+          descr: 'Понравилась статья в T&B Club? Скорее делай репост и зарабатывай баллы.',
+          points: 10
+        },
+        {
+          _actionId: 'author',
+          name: 'стань автором T&B club',
+          url: 'http://club.trendsbrands.ru/',
+          pic: 'sp-img/actions/TrendsBrands-19.png',
+          descr: 'Напиши пост для T&B Club и если он будет опубликован, получи дополнительные баллы.',
+          points: 10
+        },
+        {
+          _actionId: 'meeting',
+          name: 'СТАНЬ УЧАСТНИЦЕЙ ВСТРЕЧИ T&B CLUB',
+          url: 'http://club.trendsbrands.ru/',
+          pic: 'sp-img/actions/TrendsBrands-20.png',
+          descr: 'Присоединяйся к нашей следующей встрече и ты узнаешь много нового и интересного.',
+          points: 10
+        },
+        {
+          _actionId: 'share_shopping',
+          name: 'Расскажи о своем шоппинге',
+          url: 'http://club.trendsbrands.ru/',
+          pic: 'sp-img/actions/TrendsBrands-21.png',
+          points: 10,
+          descr: 'Сделай шейр своей покупки в любимой соц. сети и получи бонусные баллы'
+        }
+      ];
 
-      var action_names = {
+      var system_actions = {
         "system": {
-          "emailBinding": "Указать E-mail",
-          "fillProfile": "Заполнить профиль",
-          "inviteFriend": "Пригласить друга"
+          "inviteFriend": {
+            name: 'Пригласить подругу',
+            pic: 'sp-img/actions/TrendsBrands-25.png',
+            descr: 'Понравился шопинг в Trends brands? Пригласи подругу и получите баллы на двоих.'
+          }
         },
         "social": {
           "vk": {
             "like": {
-              "name": "Вступить в группу"
+              "name": "follow us",
+              "pic": "sp-img/actions/TrendsBrands-23.png",
+              descr: 'Подписывайся на наши странички в соц. сетях чтобы ничего не пропустить.'
             },
             "partner_page": {
-              "name": "Рассказать о TB в VK"
-            },
-            "purchase": {
-              "name": "Рассказать о покупке в VK"
+              "name": "Расскажи о нас друзьям в VK",
+              "pic": "sp-img/actions/TrendsBrands-26.png",
+              descr: 'Тебе понравился наш магазин? Посоветуй его своим подругам, и получи баллы.'
             }
           },
           "fb": {
             "like": {
-              "name": "Вступить в группу"
+              "name": "follow us",
+              "pic": "sp-img/actions/TrendsBrands-24.png",
+              descr: 'Подписывайся на наши странички в соц. сетях чтобы ничего не пропустить.'
             },
             "partner_page": {
-              "name": "Рассказать о TB в FB"
-            },
-            "purchase": {
-              "name": "Рассказать о покупке в FB"
-            }
-          },
-          "gp": {
-            "like": {
-              "name": "Лайкнуть в GP"
-            },
-            "partner_page": {
-              "name": "Рассказать о TB в GP"
-            },
-            "purchase": {
-              "name": "Рассказать о покупке в GP"
-            }
-          },
-          "ok": {
-            "like": {
-              "name": "Вступить в группу"
-            },
-            "partner_page": {
-              "name": "Рассказать о TB в OK"
-            },
-            "purchase": {
-              "name": "Рассказать о покупке в OK"
+              "name": "Расскажи о нас друзьям в FB",
+              "pic": "sp-img/actions/TrendsBrands-28.png",
+              descr: 'Тебе понравился наш магазин? Посоветуй его своим подругам, и получи баллы.'
             }
           },
           "tw": {
             "partner_page": {
-              "name": "Рассказать о TB в TW"
-            },
-            "purchase": {
-              "name": "Рассказать о покупке в Tw"
+              "name": "Расскажи о нас друзьям в TW",
+              "pic": "sp-img/actions/TrendsBrands-27.png",
+              descr: 'Тебе понравился наш магазин? Посоветуй его своим подругам, и получи баллы.'
             }
           }
         }
-      };
-
-      scope.get_name = function(){
-        return function(val, render){
-          var action_id = render(val);
-          var action = SP.find(scope.actions, { _actionId: action_id })[0] || false;
-          if(!action){
-            return '';
-          }
-          return action_names.system[action.type] || action_names.social[action.socialType][action.action].name ||  action.descr || 'Нет описания';
-        };
       };
 
     },
@@ -725,17 +774,21 @@
   var thanks = {
     name: 'sailplay-thanks',
     template:
+      '{{#if is_show}}' +
+      '<div class="sptb" style="display: block;">  ' +
+      '{{else}}' +
       '<div class="sptb" style="display: none;">  ' +
+      '{{/if}}' +
         '<div class="sptb-popup ">' +
         '<a class="sptb-popup-close" href="#" data-sp-click="hide_popup"></a>' +
         '<div class="sptb-popup-title"> Ты получаешь <span>{{ data.points }}</span> баллов! </div>' +
         '<div class="sptb-popup-subtitle">Расскажи о покупке и получи еще <b>{{ data.share_points }} баллов</b></div>' +
         '<div class="sptb-popup-sharing">  ' +
-        '<a class="sptb-popup-item type-vk" href="#" data-sp-click="share_purchase(vk)"></a>  ' +
-        '<a class="sptb-popup-item type-fb" href="#" data-sp-click="share_purchase(fb)"></a>  ' +
-        '<a class="sptb-popup-item type-tw" href="#" data-sp-click="share_purchase(tw)"></a>' +
+        '{{#actions}}' +
+        '<a class="sptb-popup-item type-{{socialType}}" href="#" data-sp-click="share_purchase({{socialType}})"></a>  ' +
+        '{{/actions}}' +
         '</div>' +
-        '<a class="sptb-popup-btn sptb-btn" href="#" data-sp-click="spend_points">Воспользоваться баллами</a> ' +
+        '<a class="sptb-popup-btn sptb-btn" href="{{data.url}}">Воспользоваться баллами</a> ' +
         '</div>  ' +
         '</div>',
     init: function(self){
@@ -743,6 +796,16 @@
       var scope = self.scope;
 
       scope.data = {};
+      scope.actions = [];
+
+      scope.is_show = false;
+
+      SP.on('load.actions.list.success', function(data){
+        scope.actions = data.actions.filter(function(action){
+          return action.action == 'purchase';
+        });
+        self.render();
+      });
 
 //      self.render();
 
@@ -752,12 +815,13 @@
 
       SP.on('thanks.show', function(data){
         scope.data = data;
+        scope.is_show = true;
         self.render();
-        root().style.display = 'block';
       });
 
       SP.on('thanks.hide', function(){
-        root().style.display = 'none';
+        scope.is_show = false;
+        self.render();
       });
 
       scope.spend_points = function(){
@@ -769,7 +833,8 @@
       };
 
       scope.share_purchase = function(e, params){
-        SP.send('purchase.share.request', { type: params[0] });
+        var share_action = SP.find(scope.actions, {socialType: params[0]})[0];
+        SP.send('actions.perform', share_action);
       };
 
     }
@@ -801,9 +866,14 @@
       SAILPLAY.send('load.user.history');
     });
 
-    SAILPLAY.send('init', { partner_id: 206, domain: 'http://dev.sailplay.ru' });
+//    SAILPLAY.send('init', { partner_id: 206, domain: 'http://dev.sailplay.ru' });
+//    SAILPLAY.on('init.success', function(){
+//      SAILPLAY.send('login', '38c6285d1b1bce88a1071f116704263bf2511b18');
+////      SAILPLAY.send('login', '26ff5387bc3e74bd386687593b65e5f55f0cec28');
+//    });
+    SAILPLAY.send('init', { partner_id: 1404, domain: 'http://sailplay.ru' });
     SAILPLAY.on('init.success', function(){
-      SAILPLAY.send('login', '38c6285d1b1bce88a1071f116704263bf2511b18');
+      SAILPLAY.send('login', '792eb7b5a60f19dfa7d414de84005b8b5a40aaae');
     });
 
   };
