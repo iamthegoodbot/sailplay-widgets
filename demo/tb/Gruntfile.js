@@ -6,16 +6,19 @@ module.exports = function (grunt) {
       dist: {
         src: [
           //lib section
-          'js/vendor/*.js',
+          '../../hub/dist/sailplay_hub.js',
+          'js/vendor/jquery.min.js',
+          'js/vendor/slider.min.js',
+          'js/vendor/templates.min.js',
           'js/*.js'
         ],
-        dest: 'js/tb.sailplay.min.js'
+        dest: 'js/dist/tb.sailplay.js'
       }
     },
     uglify: {
       min: {
-        src: ['js/tb.sailplay.min.js'],
-        dest: 'js/tb.sailplay.min.js'
+        src: ['js/dist/tb.sailplay.js'],
+        dest: 'js/dist/tb.sailplay.min.js'
       }
     }
   });
