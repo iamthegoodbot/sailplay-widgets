@@ -40,3 +40,7 @@
 
     SAILPLAY.send('init', { partner_id: 1404, static_url: 'ССЫЛКА_НА_СТАТИКУ' }); //инициируем виджеты
 
+## Пример
+
+Вы можете посмотреть пример тут: [DEMO](http://saike.ru/sailplay/widgets/demo/tb/ "Demo")
+
