@@ -11,33 +11,44 @@
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
-    <script type="text/javascript" src="../../hub/dist/sailplay_hub.min.js"></script>
-    <script type="text/javascript" src="js/vendor/jquery.min.js"></script>
-    <script type="text/javascript" src="js/vendor/templates.min.js"></script>
+    <!--<script type="text/javascript" src="../../hub/dist/sailplay_hub.min.js"></script>-->
+    <!--<script type="text/javascript" src="js/vendor/jquery.min.js"></script>-->
+    <!--<script type="text/javascript" src="js/vendor/templates.min.js"></script>-->
     <!-- plugins -->
-    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.5.0/slick.min.js"></script>
-    <script type="text/javascript" src="js/tb.sailplay.js"></script>
-    <!--<script type="text/javascript" src="js/main.js"></script>-->
+    <!--<script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.5.0/slick.min.js"></script>-->
+    <!--<script type="text/javascript" src="js/tb.sailplay.js"></script>-->
+    <script type="text/javascript" src="js/tb.sailplay.min.js"></script>
     <script>
-      SAILPLAY.on('init.success', function(){
-        SAILPLAY.send('thanks.show', { points: 400, share_points: 30, url: 'http://www.trendsbrands.ru/' });
-      });
 
-      SAILPLAY.on('login.success', function(){
-        SAILPLAY.send('purchases.add', { order_num: 355, price: 3545 });
-      });
 
-      SAILPLAY.on('purchases.add.success', function(data){
-        console.dir(data);
-      });
 
-      SAILPLAY.on('points.spend.request', function(){
-        console.log('Потратить баллы');
-      });
+//      SAILPLAY.on('login.success', function(){
+//        SAILPLAY.send('purchases.add', { order_num: 355, price: 3545 });
+//      });
+//
+//      SAILPLAY.on('purchases.add.success', function(data){
+//        console.dir(data);
+//      });
+//
+//      SAILPLAY.on('points.spend.request', function(){
+//        console.log('Потратить баллы');
+//      });
+//
+//      SAILPLAY.on('purchase.share.request', function(data){
+//        console.log('Пошарить покупку в ' + data.type);
+//      });
 
-      SAILPLAY.on('purchase.share.request', function(data){
-        console.log('Пошарить покупку в ' + data.type);
-      });
+      window.onload = function(){
+
+        SAILPLAY.send('init', { partner_id: 1404, domain: 'http://sailplay.ru', static_url: 'http://saike.ru/sailplay/widgets/demo/tb/' });
+
+        SAILPLAY.on('init.success', function(){
+          SAILPLAY.send('login', '792eb7b5a60f19dfa7d414de84005b8b5a40aaae');
+          SAILPLAY.send('thanks.show', { points: 400, share_points: 30, url: 'http://www.trendsbrands.ru/' });
+        });
+
+      };
+
     </script>
 
     <link rel="stylesheet" href="styles/app.css"/>

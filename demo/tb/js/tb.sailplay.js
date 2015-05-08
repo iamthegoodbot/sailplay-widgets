@@ -1,5 +1,67 @@
 (function(SP, d){
 
+  SP.static = function(url){
+    var static_url = SP.config() && SP.config().env ? SP.config().env.staticUrl : '/';
+    if(static_url) return static_url + url;
+    return '';
+  };
+
+  Handlebars.registerHelper('static', function(url){
+    var static_url = SP.config() && SP.config().env ? SP.config().env.staticUrl : '/';
+    if(static_url) return static_url + url;
+    return '';
+  });
+
+  //insert font-face rules
+  function load_static(){
+    var rule =
+      "@font-face {  " +
+        "font-family: 'Intro';  " +
+        "src: url('" + SP.static('sp-font/Intro.eot') + "');  " +
+        "src: local('☺'), " +
+        "url('" + SP.static('sp-font/Intro.woff') + "') format('woff'), " +
+        "url('" + SP.static('sp-font/Intro.ttf') + "') format('truetype'), " +
+        "url('" + SP.static('sp-font/Intro.svg') + "') format('svg');  " +
+        "font-weight: normal;  " +
+        "font-style: normal;" +
+        "}" +
+        "@font-face {  " +
+        "font-family: 'intro_regular';  " +
+        "src: url('" + SP.static('sp-font/Intro.eot') + "');  " +
+        "src: local('☺'), " +
+        "url('" + SP.static('sp-font/Intro.woff') + "') format('woff'), " +
+        "url('" + SP.static('sp-font/Intro.ttf') + "') format('truetype'), " +
+        "url('" + SP.static('sp-font/Intro.svg') + "') format('svg');  " +
+        "font-weight: normal;  " +
+        "font-style: normal;" +
+        "}" +
+        "@font-face {  " +
+        "font-family: 'FuturisC';  " +
+        "src: url('" + SP.static('sp-font/FuturisC.eot') + "');  " +
+        "src: local('☺'), " +
+        "url('" + SP.static('sp-font/FuturisC.woff') + "') format('woff'), " +
+        "url('" + SP.static('sp-font/FuturisC.ttf') + "') format('truetype'), " +
+        "url('" + SP.static('sp-font/FuturisC.svg') + "') format('svg');  " +
+        "font-weight: normal;  font-style: normal;" +
+        "}" +
+        "@font-face {  " +
+        "font-family: 'futurisc';  " +
+        "src: url('" + SP.static('sp-font/FuturisC.eot') + "');  " +
+        "src: local('☺'), " +
+        "url('" + SP.static('sp-font/FuturisC.woff') + "') format('woff'), " +
+        "url('" + SP.static('sp-font/FuturisC.ttf') + "') format('truetype'), " +
+        "url('" + SP.static('sp-font/FuturisC.svg') + "') format('svg');  " +
+        "font-weight: normal;  " +
+        "font-style: normal;" +
+        "}";
+
+    var s = document.createElement('style');
+    s.type = "text/css";
+    document.getElementsByTagName('head')[0].appendChild(s);
+    s.innerHTML = rule;
+  }
+
+
   SP.find = function(arr, params){
     var find_array = [];
     for(var i = 0; i < arr.length; i+=1){
@@ -14,6 +76,8 @@
     }
     return find_array;
   };
+
+
 
 
 
@@ -38,7 +102,7 @@
           render(this);
         },
         init: function(){
-          console.dir(this);
+//          console.dir(this);
           options.init && options.init(this);
         }
       };
@@ -82,7 +146,7 @@
       '<div class="sptb">' +
         '<div class="sptb-row">  ' +
         '<div class="sptb-promo">' +
-        '<div class="sptb-promo-img"></div>' +
+        '<div class="sptb-promo-img" style="background-image: url({{{static promo_img}}})"></div>' +
         '<div class="sptb-promo-text"> ' +
         '<div class="title"> Бонусная программа </div> ' +
         '<div class="text"> Регистрируйся, совершай покупки,выполняй задания,<br/>  копи баллы и обменивай их на подарки! </div> ' +
@@ -91,6 +155,11 @@
         '</div>  ' +
         '</div>',
     init: function(widget){
+
+      var scope = widget.scope;
+
+      scope.promo_img = 'sp-img/promo.png';
+
       SP.on('init.success', function(){
         widget.render();
       });
@@ -136,7 +205,7 @@
                   '<span class="count-text"> ' +
                     '<a class="sptb-info-link" href="#" data-sp-click="toggle_points_info">+{{ user_points.unconfirmed }} баллов</a> ' +
                     '<div class="sptb-info-popup hidden">' +
-                      '<a class="sptb-info-popup-close" href="#" data-sp-click="toggle_points_info"></a>' +
+                      '<a class="sptb-info-popup-close" style="background-image: url({{{static close_popup_icon}}});" href="#" data-sp-click="toggle_points_info"></a>' +
                       '<div class="sptb-info-popup-text">“+{{ user_points.unconfirmed }} баллов” - количество неподтвержденных баллов, которые будут подтверждены после фактической оплаты заказа</div> ' +
                     '</div>  ' +
                   '</span>' +
@@ -162,6 +231,8 @@
       };
 
       self.scope.is_badges_show = false;
+
+      self.scope.close_popup_icon = 'sp-img/icon-close-sp.png';
 
       var items_template =
           '<div class="sptb-rating-list">' +
@@ -309,7 +380,7 @@
       }
 
       Handlebars.registerHelper('user_pic', function(options) {
-        return 'url(' + (options.fn(this) || 'sp-img/image-1.png') + ')';
+        return 'url(' + (options.fn(this) || SP.static('sp-img/image-1.png')) + ')';
       });
 
       Handlebars.registerHelper('get_badge_pic', function(options) {
@@ -323,7 +394,7 @@
         else {
           src = gs;
         }
-        src = src || 'sp-img/icon-man.png';
+        src = src || SP.static('sp-img/icon-man.png');
         return 'url(' + src + ')';
       });
 
@@ -332,12 +403,12 @@
       });
 
       Handlebars.registerHelper('get_status_pic', function(status_pic){
-        var src = status_pic || 'sp-img/icon-man.png';
+        var src = status_pic || SP.static('sp-img/icon-man.png');
         return 'url(' + src + ')';
       });
 
       Handlebars.registerHelper('user_pic', function(user_pic){
-        var src = user_pic || 'sp-img/icon-man.png';
+        var src = user_pic || SP.static('sp-img/icon-man.png');
         return 'url(' + src + ')';
       });
 
@@ -457,7 +528,7 @@
       });
 
       Handlebars.registerHelper('gift_pic', function(gift_pic){
-        return 'url(' + (gift_pic || 'sp-img/icon-gift-complete.png') + ')';
+        return 'url(' + (gift_pic || SP.static('sp-img/icon-gift-complete.png')) + ')';
       });
 
       function polarToCartesian(centerX, centerY, radius, angleInDegrees) {
@@ -525,7 +596,7 @@
       };
 
       Handlebars.registerHelper('points_delta_gift', function(gift_points){
-        console.log(gift_points + ' ' + scope.user_points.confirmed);
+//        console.log(gift_points + ' ' + scope.user_points.confirmed);
           return gift_points - scope.user_points.confirmed;
       });
 
@@ -613,8 +684,8 @@
         }
         function get_pic(action){
           if(action.pic) return action.pic;
-          if(system_actions.system[action.type]) return system_actions.system[action.type].pic;
-          if(action.socialType && system_actions.social[action.socialType]) return system_actions.social[action.socialType][action.action].pic;
+          if(system_actions.system[action.type]) return SP.static(system_actions.system[action.type].pic);
+          if(action.socialType && system_actions.social[action.socialType]) return SP.static(system_actions.social[action.socialType][action.action].pic);
           return '';
         }
         function get_descr(action){
@@ -659,7 +730,7 @@
 
       scope.show_action = function(e, params){
         scope.selected_action = SP.find(scope.actions, { _actionId: params[0] })[0];
-        console.dir(scope.selected_action);
+//        console.dir(scope.selected_action);
         self.render();
         root().classList.add('sptb-state-show-task');
       };
@@ -780,12 +851,12 @@
       '<div class="sptb" style="display: none;">  ' +
       '{{/if}}' +
         '<div class="sptb-popup ">' +
-        '<a class="sptb-popup-close" href="#" data-sp-click="hide_popup"></a>' +
+        '<a class="sptb-popup-close" style="background-image: url({{{static close_icon}}})" href="#" data-sp-click="hide_popup"></a>' +
         '<div class="sptb-popup-title"> Ты получаешь <span>{{ data.points }}</span> баллов! </div>' +
         '<div class="sptb-popup-subtitle">Расскажи о покупке и получи еще <b>{{ data.share_points }} баллов</b></div>' +
         '<div class="sptb-popup-sharing">  ' +
         '{{#actions}}' +
-        '<a class="sptb-popup-item type-{{socialType}}" href="#" data-sp-click="share_purchase({{socialType}})"></a>  ' +
+        '<a class="sptb-popup-item" style="background-image: url({{{social_icon socialType}}});" href="#" data-sp-click="share_purchase({{socialType}})"></a>  ' +
         '{{/actions}}' +
         '</div>' +
         '<a class="sptb-popup-btn sptb-btn" href="{{data.url}}">Воспользоваться баллами</a> ' +
@@ -793,7 +864,20 @@
         '</div>',
     init: function(self){
 
+
       var scope = self.scope;
+
+      scope.close_icon = 'sp-img/icon-close-light.png';
+
+      Handlebars.registerHelper('social_icon', function(type){
+        return SP.static(scope.social_icons[type]);
+      });
+
+      scope.social_icons = {
+        vk: 'sp-img/icon-share-vk.png',
+        fb: 'sp-img/icon-share-fb.png',
+        tw:'sp-img/icon-share-tw.png'
+      };
 
       scope.data = {};
       scope.actions = [];
@@ -842,7 +926,7 @@
 
 
 
-  window.onload = function(){
+  $(d).ready(function(){
 
     SP.widget(header);
     SP.widget(profile);
@@ -866,16 +950,10 @@
       SAILPLAY.send('load.user.history');
     });
 
-//    SAILPLAY.send('init', { partner_id: 206, domain: 'http://dev.sailplay.ru' });
-//    SAILPLAY.on('init.success', function(){
-//      SAILPLAY.send('login', '38c6285d1b1bce88a1071f116704263bf2511b18');
-////      SAILPLAY.send('login', '26ff5387bc3e74bd386687593b65e5f55f0cec28');
-//    });
-    SAILPLAY.send('init', { partner_id: 1404, domain: 'http://sailplay.ru' });
     SAILPLAY.on('init.success', function(){
-      SAILPLAY.send('login', '792eb7b5a60f19dfa7d414de84005b8b5a40aaae');
+      load_static();
     });
 
-  };
+  });
   
 }(SAILPLAY, document));

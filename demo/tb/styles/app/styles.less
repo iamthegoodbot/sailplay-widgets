@@ -39,7 +39,8 @@
         left: 19px;
         bottom: 0;
         width: 690px;
-        background: url(../sp-img/promo.png) no-repeat left top;
+        background-repeat: no-repeat;
+        background-position: left top;
 
     }
 
@@ -142,12 +143,8 @@
         display: inline-block;
         width: 129px;
         height: 128px;
-        background: url(../sp-img/icon-man.png) no-repeat;
         background-size: 100% 100%;
 
-        &.type-not-active{
-            background: url(../sp-img/icon-man-inactive.png) no-repeat;
-        }
     }
 
     .sptb-level-icon-count{
@@ -195,7 +192,7 @@
         top: 142px;
         width: 21px;
         height: 25px;
-        background: url(../sp-img/icon-arrow.png) no-repeat;
+//        background: url(../sp-img/icon-arrow.png) no-repeat;
     }
 
     .sptb-level-item{
@@ -464,7 +461,7 @@
             top: 20px;
             width: 12px;
             height: 12px;
-            background: url(../sp-img/icon-close-sp.png) no-repeat;
+            background-repeat: no-repeat;
         }
     }
 
@@ -701,29 +698,6 @@
             position: absolute;
         }
 
-        &.type-vk:before{
-            left: 22px;
-            top: 17px;
-            width: 110px;
-            height: 110px;
-            background: url(../sp-img/icon-vk.png) no-repeat;
-        }
-
-        &.type-man:before{
-            left: 20px;
-            top: 17px;
-            width: 110px;
-            height: 110px;
-            background: url(../sp-img/icon-profile.png) no-repeat;
-        }
-
-        &.type-write:before{
-            left: 25px;
-            top: 20px;
-            width: 110px;
-            height: 110px;
-            background: url(../sp-img/icon-edit.png) no-repeat;
-        }
     }
 
     .sptb-task-img-count{
@@ -804,22 +778,7 @@
             .sptb-gift-svg{
                 display: none;
             }
-            
-            .sptb-gift-icon{
-                &.type-dress{
-                    background-image: url(../sp-img/icon-dress-complete.png);
-                }
 
-                &.type-gift{
-                    background-image: url(../sp-img/icon-gift-complete.png);
-                }
-
-                &.type-cristall {
-                    background-image: url(../sp-img/icon-almaz-complete.png);
-                }
-
-
-            }
         }
     }
 
@@ -899,17 +858,6 @@
         background-repeat: no-repeat;
         background-position: 50% 50%;
         background-size: 85% 85%;
-        &.type-cristall{
-            background-image: url(../sp-img/icon-almaz.png);
-        }
-
-        &.type-gift{
-            background-image: url(../sp-img/icon-gift.png);
-        }
-
-        &.type-dress{
-            background-image: url(../sp-img/icon-dress.png);
-        }
 
 
     }
@@ -1008,7 +956,7 @@
         height: 12px;
         right: 10px;
         top: 10px;
-        background: url(../sp-img/icon-close-light.png) no-repeat;
+        background-repeat: no-repeat;
 
         &:hover{
             opacity: .9;
@@ -1048,18 +996,6 @@
 
         &:hover{
             opacity: .7;
-        }
-
-        &.type-vk{
-            background: url(../sp-img/icon-share-vk.png) no-repeat;
-        }
-
-        &.type-fb{
-            background: url(../sp-img/icon-share-fb.png) no-repeat;
-        }
-
-        &.type-tw{
-            background: url(../sp-img/icon-share-tw.png) no-repeat;
         }
     }
 
