@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import NavStore from '../stores/NavStore.js';
 
@@ -13,12 +13,12 @@ import LeaveFeedback from './LeaveFeedback/LeaveFeedback.jsx';
 import History from './History/History.jsx';
 import Share from './Share/Share.jsx';
 
-export default class Content extends React.Component {
+export default class Content extends Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
-        activeView: props.page
+        activeView: NavStore.currentRoute
       , showAuth: false
     };
   }
@@ -80,14 +80,14 @@ export default class Content extends React.Component {
         view = <History />;
         break;
       case 'thanks':
-        view = <Share isAuth={auth} />;
+        view = <Share isAuth={auth} orderNum={this.props.orderNum} price={this.props.price} />;
         break;
       case 'auth':
         view = null;
         break;
-      default:
-        view = <Gifts isAuth={auth} user={this.props.user} />;
-        break;
+      //default:
+      //  view = <Gifts isAuth={auth} user={this.props.user} />;
+      //  break;
     }
 
     return view;

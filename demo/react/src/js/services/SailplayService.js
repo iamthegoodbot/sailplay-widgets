@@ -123,6 +123,15 @@ class Sailplay {
       sailplay.on('reviews.add.error', reject);
     });
   }
+
+  purchasesAdd(orderNum, price) {
+    return new Promise((resolve, reject) => {
+      sailplay.send('purchases.add', { order_num: orderNum, price });
+
+      sailplay.on('purchases.add.success', resolve);
+      sailplay.on('purchases.add.error', reject);
+    });
+  }
 }
 
 export default new Sailplay();

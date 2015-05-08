@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import NavActions from '../actions/NavActions.js';
 import NavStore from '../stores/NavStore.js';
@@ -7,7 +7,7 @@ import Avatar from './Avatar.jsx';
 import Button from './Button.jsx';
 import Points from './Points.jsx';
 
-export default class Profile extends React.Component {
+export default class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = { activeView: NavStore.currentRoute };
@@ -31,7 +31,7 @@ export default class Profile extends React.Component {
 
     return (
       <div className="ppsp-profile">
-        <Avatar path={user.pic} title={`Здравствуйте, ${user.name}`} />
+        <Avatar path={user.pic} title='Здравствуйте,' username={user.name} />
         <Points points={points} />
         <Button
           title="История начислений"

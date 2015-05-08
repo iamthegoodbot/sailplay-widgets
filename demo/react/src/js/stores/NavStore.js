@@ -11,8 +11,8 @@ class NavStore extends BaseStore {
   _registerToAction(action) {
     switch (action.actionType) {
       case NAVIGATE:
-        this._currentRoute && this._history.push(this._currentRoute);
-        this._currentRoute = action.data;
+        this._history.push(this._currentRoute ? this._currentRoute : action.page);
+        this._currentRoute = action.page;
         this.emitChange();
         break;
       case HISTORY_BACK:

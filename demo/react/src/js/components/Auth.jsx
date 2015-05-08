@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import ApiService from '../services/ApiService.js';
 import Auth from '../services/AuthService.js';
@@ -6,7 +6,7 @@ import NavActions from '../actions/NavActions.js';
 
 import Button from './Button.jsx';
 
-export default class Register extends React.Component {
+export default class Register extends Component {
   constructor(props) {
     super(props);
   }

@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import GiftsStore from '../../stores/GiftsStore.js';
 import Gift from './Gift.jsx';
 
-export default class Gifts extends React.Component {
+export default class Gifts extends Component {
   constructor(props) {
     super(props);
 
@@ -26,7 +26,7 @@ export default class Gifts extends React.Component {
         key={gift.id}
         id={gift.id}
         title={gift.name}
-        text="Купон на скидку 500 руб. при оформлении покупки на сумму от 700 руб."
+        text={gift.descr}
         points={gift.points}
         userPoints={this.props.user ? this.props.user.user_points.total : 1e6}
         image={gift.thumbs.url_250x250}

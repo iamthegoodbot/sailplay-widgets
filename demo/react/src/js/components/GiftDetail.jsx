@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import ApiService from '../services/ApiService.js';
 import NavActions from '../actions/NavActions.js';
@@ -7,7 +7,7 @@ import Button from './Button.jsx';
 
 let onError = err => console.error(err.message);
 
-export default class GiftContent extends React.Component {
+export default class GiftContent extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -28,8 +28,6 @@ export default class GiftContent extends React.Component {
       , imageStyle = {
           backgroundImage: `url(${gift.image})`
         };
-
-    //let back = () => { NavActions.navigate('gift') };
 
     return (
       <div className="ppsp-deal-detail">

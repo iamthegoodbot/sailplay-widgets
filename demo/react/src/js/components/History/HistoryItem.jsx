@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 export default class HistoryItem extends React.Component {
   constructor(props) {

@@ -88,6 +88,10 @@ class ApiService {
     SailplayService.reviewsList().then(FeedbackActions.feedbackLoaded, onError);
   }
 
+  sendPurchase(orderNum, price) {
+    SailplayService.purchasesAdd(orderNum, price).then(data => console.log(data), onError);
+  }
+
   feedbackLeave(review) {
     SailplayService.reviewAdd(review).then(res => {
       MessageActions.showMessage('Отзыв отправлен на модерацию');

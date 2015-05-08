@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import NavActions from '../../actions/NavActions.js';
 import TasksActions from '../../actions/TasksActions.js';
 import ApiService from '../../services/ApiService.js';
 import Button from '../Button.jsx';
 
-export default class Task extends React.Component {
+export default class Task extends Component {
   constructor(props) {
     super(props);
   }

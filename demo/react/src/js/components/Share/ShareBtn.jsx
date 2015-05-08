@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import NavActions from '../../actions/NavActions.js';
 import ApiService from '../../services/ApiService.js';
 
-export default class ShareBtn extends React.Component {
+export default class ShareBtn extends Component {
   constructor(props) {
     super(props);
   }
