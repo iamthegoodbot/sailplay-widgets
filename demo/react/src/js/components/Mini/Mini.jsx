@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+const staticPath = 'http://sailplay.cdnvideo.ru/static/partners/sailplay-widgets/demo/react/dist/';
+
 export default class Mini extends Component {
   constructor(props) {
     super(props);
@@ -19,7 +21,7 @@ export default class Mini extends Component {
         , width: 104
         , height: 180
         , margin: '-90px 0 0'
-        , backgroundImage: `url(dist/img/mini${this.props.isAuth ? '_auth' : ''}.png)`
+        , backgroundImage: `url(${staticPath}/img/mini${this.props.isAuth ? '_auth' : ''}.png)`
         , overflow: 'hidden'
         , cursor: 'pointer'
         , zIndex: 99994
