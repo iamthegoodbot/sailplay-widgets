@@ -3,7 +3,8 @@ import { USER_LOADED, LOGOUT_USER } from '../constants/Constants.js';
 
 class UserStore extends BaseStore {
   constructor() {
-    super(this._registerToAction.bind(this));
+    super();
+    this.subscribe(() => this._registerToAction.bind(this));
     this._userInfo = null;
   }
 

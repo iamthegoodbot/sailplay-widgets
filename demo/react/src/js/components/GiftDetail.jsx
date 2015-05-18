@@ -38,7 +38,7 @@ export default class GiftContent extends Component {
               <div className="ppsp-card-points">{`${gift.points} олдиков`}</div>
               <div className="ppsp-card-title">{gift.title}</div>
             </div>
-            <div className="ppsp-card-content-inner">{gift.text}</div>
+            <div className="ppsp-card-content-inner" dangerouslySetInnerHTML={{__html: gift.text}} />
             <Button
               title="Получить"
               classMod="ppsp-blue-btn type-active ppsp-card-btn"

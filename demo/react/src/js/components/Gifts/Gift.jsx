@@ -38,7 +38,7 @@ export default class Gift extends Component {
         <div className="ppsp-deal-item-content">
           <div className="ppsp-deal-title">{this.props.title}</div>
           <span className="ppsp-deal-price">{`${this.props.points} олдиков`}</span>
-          <span className="ppsp-deal-text">{this.props.text}</span>
+          <span className="ppsp-deal-text" dangerouslySetInnerHTML={{__html: this.props.text}} />
           <Button
             title={btnText}
             classMod={btnClass}

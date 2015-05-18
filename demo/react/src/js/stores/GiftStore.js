@@ -3,7 +3,8 @@ import { GIFT_SELECT } from '../constants/Constants.js';
 
 class GiftStore extends BaseStore {
   constructor() {
-    super(this._registerToAction.bind(this));
+    super();
+    this.subscribe(() => this._registerToAction.bind(this));
     this._gift = null;
   }
 

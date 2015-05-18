@@ -37,7 +37,8 @@ let enrichAction = task => assign({}, task, tasksMap[task.socialType ? task.soci
 
 class TasksStore extends BaseStore {
   constructor() {
-    super(this._registerToAction.bind(this));
+    super();
+    this.subscribe(() => this._registerToAction.bind(this));
     this._tasks = null;
     this._purchaseTasks = null;
   }

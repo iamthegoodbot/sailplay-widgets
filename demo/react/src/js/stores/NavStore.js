@@ -3,7 +3,8 @@ import { NAVIGATE, HISTORY_BACK } from '../constants/Constants.js';
 
 class NavStore extends BaseStore {
   constructor() {
-    super(this._registerToAction.bind(this));
+    super();
+    this.subscribe(() => this._registerToAction.bind(this));
     this._currentRoute = null;
     this._history = [];
   }

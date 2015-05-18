@@ -52,7 +52,8 @@ let enrichHistoryItem = entry => {
 
 class HistoryStore extends BaseStore {
   constructor() {
-    super(this._registerToAction.bind(this));
+    super();
+    this.subscribe(() => this._registerToAction.bind(this));
     this._history = null;
   }
 
