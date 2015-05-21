@@ -67,7 +67,6 @@ class ApiService {
     SailplayService.giftsList().then(GiftsActions.giftsLoaded, onError);
   }
 
-
   actionsList() {
     SailplayService.actionsList().then(TasksActions.tasksLoaded, onError);
   }
