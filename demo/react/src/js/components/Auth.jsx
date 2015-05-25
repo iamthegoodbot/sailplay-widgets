@@ -20,7 +20,7 @@ export default class Register extends Component {
           background: 'transparent'
         , partner_info: 0
       }
-    });
+    }, this.props.loadActions);
   }
 
   render() {

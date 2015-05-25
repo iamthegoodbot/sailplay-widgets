@@ -8,6 +8,7 @@ export default class Share extends Component {
   constructor(props) {
     super(props);
     this.state = { tasks: TasksStore.purchaseTasks };
+    this.purchaseDataSent = false;
   }
 
   componentDidMount() {
@@ -22,10 +23,10 @@ export default class Share extends Component {
     let tasks = this.state.tasks
       , isAuth = this.props.isAuth
       , displayStyle = {
-          display: this.props.isAuth ? 'none' : 'block'
+          display: isAuth ? 'none' : 'block'
         };
 
-    if (isAuth) {
+    if (this.props.isAuth && !this.purchaseDataSent) {
       this._sendOrderData();
     }
 
@@ -56,6 +57,7 @@ export default class Share extends Component {
 
   _sendOrderData() {
     const { orderNum, price } = this.props;
+    this.purchaseDataSent = true;
 
     if (orderNum && price) {
       ApiService.sendPurchase(orderNum, price);

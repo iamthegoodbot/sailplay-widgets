@@ -21,6 +21,8 @@ export default class Oldi extends Component {
         isAuth: LoginStore.isLoggedIn()
       , user: UserStore.userInfo
       , show: props.show
+      , orderNum: props.orderNum
+      , price: props.price
       , messageText: MessageStore.message
       , messageShow: MessageStore.show
     };
@@ -33,7 +35,7 @@ export default class Oldi extends Component {
     ApiService.init({
         partner_id: this.props.partnerId
       , domain: this.props.domain
-    });
+    }, !(this.props.orderNum && this.props.price));
 
     // Set default view
     NavActions.navigate(this.props.page ? this.props.page : 'gift');

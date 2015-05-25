@@ -37,7 +37,11 @@ export default class Content extends Component {
         <MainMenu active={this.state.activeView} />
         <div className="ppsp-content">
           {this._getCurrentView()}
-          <Auth show={this.state.showAuth} partnerId={this.props.partnerId} />
+          <Auth
+            show={this.state.showAuth}
+            partnerId={this.props.partnerId}
+            loadActions={!(this.props.orderNum && this.props.price)}
+          />
         </div>
       </div>
     );
