@@ -13,25 +13,25 @@ import NavActions from '../actions/NavActions.js';
 let onError = err => { console.error(err.message) };
 
 class ApiService {
-  init(params) {
+  init(params, loadActions = true) {
     SailplayService.init(params)
       .then(config => {
         LoginActions.initApi(config);
 
+        loadActions && this.actionsList();
         this.gifts();
-        this.actionsList();
         this.leaderboard();
         this.feedback();
       }).catch(onError);
   }
 
-  loginRemote(options) {
+  loginRemote(options, loadActions = true) {
     SailplayService.initRemote(options)
       .then(user => {
         LoginActions.loginUser(user);
         this.userInfo();
         this.userHistory();
-        this.actionsList();
+        loadActions && this.actionsList();
         NavActions.back();
       })
       .catch(onError);
@@ -67,7 +67,6 @@ class ApiService {
     SailplayService.giftsList().then(GiftsActions.giftsLoaded, onError);
   }
 
-
   actionsList() {
     SailplayService.actionsList().then(TasksActions.tasksLoaded, onError);
   }
@@ -88,8 +87,12 @@ class ApiService {
     SailplayService.reviewsList().then(FeedbackActions.feedbackLoaded, onError);
   }
 
+  sendPurchase(orderNum, price) {
+    SailplayService.purchasesAdd(orderNum, price).then(() => { this.actionsList(); }, onError);
+  }
+
   feedbackLeave(review) {
-    SailplayService.reviewAdd(review).then(res => {
+    SailplayService.reviewAdd(review).then(() => {
       MessageActions.showMessage('Отзыв отправлен на модерацию');
       this.feedback();
       NavActions.back();

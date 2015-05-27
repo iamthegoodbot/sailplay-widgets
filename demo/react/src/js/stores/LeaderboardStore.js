@@ -3,7 +3,8 @@ import { LEADERBOARD_LOADED } from '../constants/Constants.js';
 
 class LeaderboardStore extends BaseStore {
   constructor() {
-    super(this._registerToAction.bind(this));
+    super();
+    this.subscribe(() => this._registerToAction.bind(this));
     this._leaderboard = null;
   }
 

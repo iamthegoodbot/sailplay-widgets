@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-export default class CloseBtn extends React.Component {
+export default class CloseBtn extends Component {
   constructor(props) {
     super(props);
     this.closeAction = props.closeAction

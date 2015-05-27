@@ -2,17 +2,17 @@ import AppDispatcher from '../dispatchers/AppDispatcher.js';
 import { NAVIGATE, HISTORY_BACK } from '../constants/Constants.js';
 
 export default {
-  navigate: data => {
+  navigate: page => {
     AppDispatcher.dispatch({
       actionType: NAVIGATE,
-      data
+      page
     });
   },
 
-  back: data => {
+  back: depth => {
     AppDispatcher.dispatch({
       actionType: HISTORY_BACK,
-      data
+      depth
     })
   }
 }

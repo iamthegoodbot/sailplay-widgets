@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import NavActions from '../actions/NavActions.js';
 
@@ -6,7 +6,7 @@ import Avatar from './Avatar.jsx';
 import Points from './Points.jsx';
 import Button from './Button.jsx';
 
-export default class Default extends React.Component {
+export default class Default extends Component {
   constructor(props) {
     super(props);
   }

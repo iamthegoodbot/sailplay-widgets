@@ -101,7 +101,12 @@ class Sailplay {
     return new Promise((resolve, reject) => {
       sailplay.send('actions.perform', action);
 
+      // Regular action performed, doesn't fire on social connect
       sailplay.on('actions.perform.complete', resolve);
+
+      // Social network account connected
+      sailplay.on('actions.social.connect.complete', resolve);
+
       sailplay.on('actions.perform.auth.error', reject);
     });
   }
@@ -121,6 +126,15 @@ class Sailplay {
 
       sailplay.on('reviews.add.success', resolve);
       sailplay.on('reviews.add.error', reject);
+    });
+  }
+
+  purchasesAdd(orderNum, price) {
+    return new Promise((resolve, reject) => {
+      sailplay.send('purchases.add', { order_num: orderNum, price });
+
+      sailplay.on('purchases.add.success', resolve);
+      sailplay.on('purchases.add.error', reject);
     });
   }
 }

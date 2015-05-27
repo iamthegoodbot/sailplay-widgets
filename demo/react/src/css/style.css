@@ -1073,9 +1073,12 @@
   line-height: 15px;
   text-align: left;
 }
-#ppsp .ppsp-card-content-inner span {
-  color: #0f5fae;
-}
+  #ppsp .ppsp-card-content-inner a {
+    color: #0f5fae;
+  }
+  #ppsp .ppsp-card-content-inner span {
+    color: #0f5fae;
+  }
 #ppsp .ppsp-card-btn {
   position: absolute;
   right: 60px;

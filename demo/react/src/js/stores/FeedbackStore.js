@@ -3,7 +3,8 @@ import { FEEDBACK_LOADED } from '../constants/Constants.js';
 
 class FeedbackStore extends BaseStore {
   constructor() {
-    super(this._registerToAction.bind(this));
+    super();
+    this.subscribe(() => this._registerToAction.bind(this));
     this._feedback = null;
   }
 

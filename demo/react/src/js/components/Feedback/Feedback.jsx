@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import ApiService from '../../services/ApiService.js';
 import FeedbackStore from '../../stores/FeedbackStore.js';
 import FeedbackItem from './FeedbackItem.jsx';
 import Empty from '../Empty.jsx';
 
-export default class Feedback extends React.Component {
+export default class Feedback extends Component {
   constructor(props) {
     super(props);
 
@@ -13,12 +13,12 @@ export default class Feedback extends React.Component {
   }
 
   componentDidMount() {
-    FeedbackStore.addChangeListener(this._onChange.bind(this));
+    FeedbackStore.addChangeListener(this._onChange);
     ApiService.feedback();
   }
 
   componentWillUnmount() {
-    FeedbackStore.removeChangeListener(this._onChange.bind(this));
+    FeedbackStore.removeChangeListener(this._onChange);
   }
 
   render() {

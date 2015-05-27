@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import MessageActions from '../actions/MessageActions.js';
 
-export default class Message extends React.Component {
+export default class Message extends Component {
   constructor(props) {
     super(props);
 

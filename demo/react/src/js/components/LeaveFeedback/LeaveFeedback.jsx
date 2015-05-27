@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import ApiService from '../../services/ApiService.js';
 import NavActions from '../../actions/NavActions.js';
 import TasksStore from '../../stores/TasksStore.js';
 import Button from '../Button.jsx';
 
-export default class LeaveFeedback extends React.Component {
+export default class LeaveFeedback extends Component {
   constructor(props) {
     super(props);
 

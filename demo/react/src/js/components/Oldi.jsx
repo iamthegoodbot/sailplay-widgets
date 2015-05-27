@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import ApiService from '../services/ApiService.js';
+import NavActions from '../actions/NavActions.js';
 
 import LoginStore from '../stores/LoginStore.js';
 import UserStore from '../stores/UserStore.js';
@@ -12,14 +13,16 @@ import Content from './Content.jsx';
 import Message from './Message.jsx';
 import Mini from './Mini/Mini.jsx';
 
-export default class Oldi extends React.Component {
+export default class Oldi extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-        isLoggedIn: LoginStore.isLoggedIn()
+        isAuth: LoginStore.isLoggedIn()
       , user: UserStore.userInfo
       , show: props.show
+      , orderNum: props.orderNum
+      , price: props.price
       , messageText: MessageStore.message
       , messageShow: MessageStore.show
     };
@@ -32,7 +35,10 @@ export default class Oldi extends React.Component {
     ApiService.init({
         partner_id: this.props.partnerId
       , domain: this.props.domain
-    });
+    }, !(this.props.orderNum && this.props.price));
+
+    // Set default view
+    NavActions.navigate(this.props.page ? this.props.page : 'gift');
   }
 
   componentWillUnmount() {
@@ -50,13 +56,13 @@ export default class Oldi extends React.Component {
   }
 
   render() {
-    let display = {
+    let displayStyle = {
           display: this.state.show ? 'block' : 'none'
         };
 
     return (
       <div>
-        <div id='ppsp' style={display}>
+        <div id='ppsp' style={displayStyle}>
           <CloseBtn closeAction={this.closePopup.bind(this)} />
           <div className="ppsp-con">
             <Dashboard
@@ -65,12 +71,7 @@ export default class Oldi extends React.Component {
             />
             {
               this.state.partnerId
-                ? <Content
-                    partnerId={this.state.partnerId}
-                    isAuth={this.state.isLoggedIn}
-                    user={this.state.user}
-                    page={this.props.page}
-                  />
+                ? <Content {...this.state} />
                 : null
             }
             <Message
@@ -80,7 +81,7 @@ export default class Oldi extends React.Component {
           </div>
         </div>
         <Mini
-          isAuth={this.state.isLoggedIn}
+          isAuth={this.state.isAuth}
           user={this.state.user}
           onClick={this.showPopup.bind(this)}
         />
@@ -90,7 +91,7 @@ export default class Oldi extends React.Component {
 
   _onLoginChange() {
     this.setState({
-        isLoggedIn: LoginStore.isLoggedIn()
+        isAuth: LoginStore.isLoggedIn()
       , partnerId: LoginStore.config ? LoginStore.config.partner.id : null
     });
   }

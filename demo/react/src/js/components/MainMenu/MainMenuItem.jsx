@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import NavActions from '../../actions/NavActions.js';
 
-export default class MainMenuItem extends React.Component {
+export default class MainMenuItem extends Component {
   constructor(props) {
     super(props);
   }

@@ -11,7 +11,12 @@ npm install
 ```
 
 ## Demo
-demo.html
+dev.html
+dev-thanks.html
+dev-thanks_order.html
+prod.html
+prod-thanks.html
+prod-thanks_order.html
 
 ## Dev
 ```
@@ -20,3 +25,8 @@ webpack-dev-server
 ```
 
 Open index.html in browser
+
+## Production
+```
+npm start
+```

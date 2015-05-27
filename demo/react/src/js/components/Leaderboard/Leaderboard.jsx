@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import LeaderboardStore from '../../stores/LeaderboardStore.js';
 import Leader from './Leader.jsx';
 import Empty from '../Empty.jsx';
 
-export default class Leaderboard extends React.Component {
+export default class Leaderboard extends Component {
   constructor(props) {
     super(props);
     this.state = {

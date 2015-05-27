@@ -1017,6 +1017,9 @@
   line-height: 15px;
   min-height: 63px;
 }
+  #ppsp .ppsp-deal-text a {
+    color: #0f5fae;
+  }
 #ppsp .ppsp-deal-btn {
   min-width: 118px;
 }
@@ -1073,9 +1076,13 @@
   line-height: 15px;
   text-align: left;
 }
-#ppsp .ppsp-card-content-inner span {
-  color: #0f5fae;
-}
+  #ppsp .ppsp-card-content-inner a:visited,
+  #ppsp .ppsp-card-content-inner a {
+    color: #0f5fae;
+  }
+  #ppsp .ppsp-card-content-inner span {
+    color: #0f5fae;
+  }
 #ppsp .ppsp-card-btn {
   position: absolute;
   right: 60px;

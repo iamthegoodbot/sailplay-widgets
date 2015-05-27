@@ -3,7 +3,8 @@ import { INIT_API, LOGIN_USER, LOGOUT_USER } from '../constants/Constants.js';
 
 class LoginStore extends BaseStore {
   constructor() {
-    super(this._registerToAction.bind(this));
+    super();
+    this.subscribe(() => this._registerToAction.bind(this));
     this._user = null;
     this._config = null;
   }

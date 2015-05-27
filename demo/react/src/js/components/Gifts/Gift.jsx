@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import NavActions from '../../actions/NavActions.js';
 import GiftActions from '../../actions/GiftActions.js';
 
 import Button from '../Button.jsx';
 
-export default class Gift extends React.Component {
+export default class Gift extends Component {
   constructor(props) {
     super(props);
   }
@@ -38,7 +38,7 @@ export default class Gift extends React.Component {
         <div className="ppsp-deal-item-content">
           <div className="ppsp-deal-title">{this.props.title}</div>
           <span className="ppsp-deal-price">{`${this.props.points} олдиков`}</span>
-          <span className="ppsp-deal-text">{this.props.text}</span>
+          <span className="ppsp-deal-text" dangerouslySetInnerHTML={{__html: this.props.text}} />
           <Button
             title={btnText}
             classMod={btnClass}

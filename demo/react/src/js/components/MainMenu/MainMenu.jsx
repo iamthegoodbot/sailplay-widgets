@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import MainMenuItem from './MainMenuItem.jsx'
 
-export default class MainMenu extends React.Component {
+export default class MainMenu extends Component {
   constructor(props) {
     super(props);
   }

@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-export default class Avatar extends React.Component {
+export default class Avatar extends Component {
   constructor(props) {
     super(props);
 
@@ -19,7 +19,7 @@ export default class Avatar extends React.Component {
     return (
       <div>
         <div className="ppsp-ava" style={style}></div>
-        <div className="ppsp-ava-title">{this.state.title}</div>
+        <div className="ppsp-ava-title">{this.state.title}<br />{this.props.username}</div>
       </div>
     );
   }

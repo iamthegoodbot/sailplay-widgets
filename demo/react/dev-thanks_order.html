@@ -5,14 +5,14 @@
     <title>Oldi loyalty</title>
 </head>
 <body>
-    <script>
+<script>
     (function (p) {
         var d=document,l=d.createElement('link'),r=d.createElement('div'),s=d.createElement('script');
         l.rel='stylesheet';l.href='dist/css/style.css';r.id='sp-loyalty-app';r.setAttribute('data-partner-id',p.partnerId);
         r.setAttribute('data-domain',p.domain);r.setAttribute('data-page',p.page);r.setAttribute('data-order-num',p.orderNum);
         r.setAttribute('data-price',p.price);s.async=true;s.charset = "utf-8";s.src='dist/main.js';d.getElementsByTagName('head')[0]
         .appendChild(l);d.getElementsByTagName('body')[0].appendChild(r);d.getElementsByTagName('body')[0].appendChild(s);
-    }({ partnerId: 1425 }));
-    </script>
+    }({ partnerId: 74, domain: 'http://dev.sailplay.ru', page: 'thanks', orderNum: 121901, price: 100 }));
+</script>
 </body>
 </html>
