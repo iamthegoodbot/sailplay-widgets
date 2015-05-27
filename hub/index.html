@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>SAILPLAY HUB</title>
-  <script src="js/sailplay_hub.js"></script>
+  <script src="dist/sailplay_hub.min.js"></script>
   <style>
     body {
       text-align: center;
@@ -14,7 +14,7 @@
       border-collapse: collapse;
     }
     .doc_wrapper {
-      width: 62%;
+      width: 90%;
       margin: 40px auto;
       display: inline-block;
       text-align: left;
@@ -25,6 +25,7 @@
       background-color: #efefef;
       border: 1px solid #adadad;
       border-radius: 3px;
+      overflow: auto;
       font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New;
     }
     ul, ol {
@@ -54,7 +55,14 @@
   </style>
   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/default.min.css">
   <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script>
+  <script>
+    window.onload = function(){
+      var codes = document.querySelectorAll('pre');
+      for(var i = 0; i < codes.length; i+=1){
+        hljs.highlightBlock(codes[i]);
+      }
+    };
+  </script>
 </head>
 <body>
   <div class="doc_wrapper">
@@ -69,7 +77,7 @@
     <p>
       Для работы с SailPlay HUB, необходимо добавить на страницу тег:
     </p>
-    <pre>
+    <pre class="html">
       &lt;script src="ссылка на файл sailplay_hub.js"&gt;&lt;/script&gt;
     </pre>
     <p>
@@ -82,11 +90,11 @@
     <ul>
       <li>
         Инициализация события с необходимыми параметрами с помощью метода: <br/>
-        <pre>SAILPLAY.send( {название-события}, {объект-параметр} );</pre>
+        <pre class="js">SAILPLAY.send( '{название-события}', {объект-параметр} );</pre>
       </li>
       <li>
         Модуль выполняет асинхронные операции, затем инициирует различные события и передает обработанные данные. Установить обработчик на эти события можно с помощью метода: <br/>
-        <pre>SAILPLAY.on( {название-события}, {функция-обработчик-принимающая-возвращаемый-объект} );</pre>
+        <pre class="js">SAILPLAY.on( '{название-события}', {функция-обработчик-принимающая-возвращаемый-объект} );</pre>
       </li>
     </ul>
     <h2>Список событий, на которые реагирует модуль и события, инициируемые ими.</h2>
@@ -463,9 +471,86 @@
         </td>
         <td>Запрос данных лидерборда.</td>
       </tr>
+      <!--reviews list-->
+      <tr>
+        <td>load.reviews.list</td>
+        <td>
+          Объект со свойствами:
+          page: {номер-страницы}
+        </td>
+        <td class="response">
+          <table>
+            <tr>
+              <th>Событие</th>
+              <th>Возвращаемый объект</th>
+            </tr>
+            <tr>
+              <td>load.reviews.list.success</td>
+              <td>объект со списком отзывов и пагинацией</td>
+            </tr>
+            <tr>
+              <td>load.reviews.list.error</td>
+              <td>объект ошибки с сервера</td>
+            </tr>
+          </table>
+        </td>
+        <td>Запрос списка отзывов.</td>
+      </tr>
+      <!--reviews add-->
+      <tr>
+        <td>reviews.add</td>
+        <td>
+          Объект со свойствами:
+          rating: {рейтинг},
+          review: {текст-отзыва} (обязательный)
+        </td>
+        <td class="response">
+          <table>
+            <tr>
+              <th>Событие</th>
+              <th>Возвращаемый объект</th>
+            </tr>
+            <tr>
+              <td>reviews.add.success</td>
+              <td>объект с данными о добавленном отзыве</td>
+            </tr>
+            <tr>
+              <td>reviews.add.error</td>
+              <td>объект ошибки с сервера</td>
+            </tr>
+          </table>
+        </td>
+        <td>Добавление отзыва.</td>
+      </tr>
+      <!--purchases add-->
+      <tr>
+        <td>purchases.add</td>
+        <td>
+          Объект со свойствами:
+          price: {сумма-покупки} (обязательный),
+          order_num: {номер-заказа} (уникальный)
+        </td>
+        <td class="response">
+          <table>
+            <tr>
+              <th>Событие</th>
+              <th>Возвращаемый объект</th>
+            </tr>
+            <tr>
+              <td>purchases.add.success</td>
+              <td>объект с данными о созданной покупке</td>
+            </tr>
+            <tr>
+              <td>purchases.add.error</td>
+              <td>объект ошибки с сервера</td>
+            </tr>
+          </table>
+        </td>
+        <td>Создание покупки.</td>
+      </tr>
     </table>
     <h2>Примеры работы с SailPlay HUB</h2>
-    <pre>
+    <pre class="js">
 SAILPLAY.send('init', { partner_id: 206 }); //инициируем модуль для партнера с айди = 206
 
 SAILPLAY.on('init.success', function(){ //после успешной инициализации
