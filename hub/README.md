@@ -63,8 +63,10 @@ SailPlay HUB - это инструмент, для создания собств
 
 ```
 
-## Ссылка на полную документацию
+## Полная документацию
 
-[http://saike.ru/sailplay/hub](http://saike.ru/sailplay/hub)
+Поный список событий, на которые реагирует модуль и события, инициируемые ими можно узнать на странице:
+
+[http://saike.ru/sailplay/widgets/hub](http://saike.ru/sailplay/widgets/hub)
 
 
