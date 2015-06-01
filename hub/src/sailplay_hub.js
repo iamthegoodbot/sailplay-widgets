@@ -127,59 +127,97 @@ var SAILPLAY = (function () {
     alert('Please init SailPlay HUB first!');
   }
 
-  function remoteInit(opts){
-    if(typeof Porthole === 'undefined'){
-      alert('SailPlay: Porthole.js library need to be installed');
-      return;
-    }
+  function remoteLogin(opts){
+
+    var frame;
+
+    opts = opts || {};
+
     if(opts.node && opts.node.nodeType == 1 && opts.node.tagName == 'IFRAME'){
-
-      function onMessage(messageEvent) {
-
-        if(messageEvent.data.name == 'login.success'){
-          sp.send('login.do', messageEvent.data.auth_hash);
-          return;
-        }
-        if(messageEvent.data.name == 'login.cancel'){
-          sp.send('login.cancel');
-          return;
-        }
-        if(messageEvent.data.name == 'login.check'){
-          if(messageEvent.data.auth_hash == 'None'){
-            sp.send('logout');
-          }
-          else {
-            sp.send('login.do', messageEvent.data.auth_hash)
-          }
-          return;
-        }
-        if(messageEvent.data.name == 'logout.success'){
-          _config.auth_hash = '';
-          sp.send('logout.success');
-        }
-      }
-
-      var params = opts.params || {};
-      params.partner_id = _config.partner.id;
-      params.dep_id = _config.dep_id || '';
-
-      var params_string = [];
-
-      var src = _config.DOMAIN + '/users/auth-page/?';
-      for (var param_name in params) {
-        params_string.push(param_name + "=" + encodeURIComponent(params[param_name]));
-      }
-      src += params_string.join("&");
-      opts.node.src = src;
-
-      _proxy = new Porthole.WindowProxy('', opts.node.name);
-
-      _proxy.addEventListener(onMessage);
-
+      frame = opts.node;
     }
     else {
-      alert('SailPlay: provide <iframe> DOM element as parameter (Remote login)');
+      frame = document.createElement('IFRAME');
+      frame.style.border = 'none';
+      frame.style.position = 'fixed';
+      frame.style.top = '0';
+      frame.style.left = '0';
+      frame.style.bottom = '0';
+      frame.style.right = '0';
+      frame.style.width = '410px';
+      frame.style.height = '510px';
+      frame.created = true;
+      frame.style.background = 'transparent';
+      frame.style.margin = 'auto';
+      frame.style.zIndex = '100000';
+      document.body.appendChild(frame);
     }
+
+    var frame_id = frame.id || 'sailplay_login_frame_' + new Date().getTime();
+
+    frame.name = frame_id;
+    frame.id = frame_id;
+
+    function onMessage(messageEvent) {
+      var data = JSON.parse(messageEvent.data);
+      if(data.name == 'login.success'){
+        sp.send('login.do', messageEvent.data.auth_hash);
+        return;
+      }
+      if(data.name == 'login.cancel'){
+        sp.send('login.cancel');
+        cancelLogin();
+        return;
+      }
+      if(data.name == 'login.check'){
+        if(data.auth_hash == 'None'){
+          sp.send('logout');
+        }
+        else {
+          cancelLogin();
+          sp.send('login.do', data.auth_hash)
+        }
+        return;
+      }
+      if(data.name == 'logout.success'){
+        _config.auth_hash = '';
+        sp.send('logout.success');
+      }
+
+    }
+
+    function cancelLogin(){
+      if(frame.created){
+        try {
+          document.body.removeChild(frame)
+        }
+        catch(e){
+
+        }
+      }
+    }
+
+    var params = {};
+    params.partner_id = _config.partner.id;
+    params.dep_id = _config.dep_id || '';
+    params.background = opts.background || '';
+    params.partner_info = opts.partner_info || 0;
+
+
+    var params_string = [];
+
+    var src = _config.DOMAIN + '/users/auth-page/?';
+    for (var param_name in params) {
+      params_string.push(param_name + "=" + encodeURIComponent(params[param_name]));
+    }
+    src += params_string.join("&");
+
+    frame.setAttribute('src', src);
+
+    window.removeEventListener("message", onMessage, false);
+
+    window.addEventListener("message", onMessage, false);
+
   }
 
   //init function
@@ -207,8 +245,8 @@ var SAILPLAY = (function () {
 
   });
 
-  sp.on('init.remote', function(elm){
-    remoteInit(elm);
+  sp.on('login.remote', function(options){
+    remoteLogin(options);
   });
 
   //////////////////
@@ -274,9 +312,15 @@ var SAILPLAY = (function () {
       initError();
       return;
     }
-    if(_config.auth_hash && _proxy){
-      _proxy.post({name: 'logout'});
-    }
+    var req = document.createElement('iframe');
+    req.width = 0;
+    req.height = 0;
+    req.style.border = 'none';
+    req.src = _config.DOMAIN + '/users/logout';
+    document.body.appendChild(req);
+    req.onload = function(){
+      document.body.removeChild(req);
+    };
     _config.auth_hash = '';
     cookies.eraseCookie('sp_auth_hash');
     sp.send('logout.success');
