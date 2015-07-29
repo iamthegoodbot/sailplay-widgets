@@ -684,6 +684,7 @@
         }
         function get_pic(action){
           if(action.pic) return action.pic;
+          if(action.img) return SP.static(action.img);
           if(system_actions.system[action.type]) return SP.static(system_actions.system[action.type].pic);
           if(action.socialType && system_actions.social[action.socialType]) return SP.static(system_actions.social[action.socialType][action.action].pic);
           return '';
@@ -749,7 +750,7 @@
           _actionId: 'comment',
           name: 'Оставь комментарий',
           url: 'http://club.trendsbrands.ru/',
-          pic: 'sp-img/actions/TrendsBrands-17.png',
+          img: 'sp-img/actions/TrendsBrands-17.png',
           descr: 'Принимай участие в обсуждении интересных тем в T&B Club, нам важно твое мнение',
           points: 10
         },
@@ -757,7 +758,7 @@
           _actionId: 'repost',
           name: 'СДЕЛAЙ РЕПОСТ СТAТЬИ T&B CLUB',
           url: 'http://club.trendsbrands.ru/',
-          pic: 'sp-img/actions/TrendsBrands-18.png',
+          img: 'sp-img/actions/TrendsBrands-18.png',
           descr: 'Понравилась статья в T&B Club? Скорее делай репост и зарабатывай баллы.',
           points: 10
         },
@@ -765,7 +766,7 @@
           _actionId: 'author',
           name: 'стань автором T&B club',
           url: 'http://club.trendsbrands.ru/',
-          pic: 'sp-img/actions/TrendsBrands-19.png',
+          img: 'sp-img/actions/TrendsBrands-19.png',
           descr: 'Напиши пост для T&B Club и если он будет опубликован, получи дополнительные баллы.',
           points: 10
         },
@@ -773,7 +774,7 @@
           _actionId: 'meeting',
           name: 'СТАНЬ УЧАСТНИЦЕЙ ВСТРЕЧИ T&B CLUB',
           url: 'http://club.trendsbrands.ru/',
-          pic: 'sp-img/actions/TrendsBrands-20.png',
+          img: 'sp-img/actions/TrendsBrands-20.png',
           descr: 'Присоединяйся к нашей следующей встрече и ты узнаешь много нового и интересного.',
           points: 10
         },
@@ -781,7 +782,7 @@
           _actionId: 'share_shopping',
           name: 'Расскажи о своем шоппинге',
           url: 'http://club.trendsbrands.ru/',
-          pic: 'sp-img/actions/TrendsBrands-21.png',
+          img: 'sp-img/actions/TrendsBrands-21.png',
           points: 10,
           descr: 'Сделай шейр своей покупки в любимой соц. сети и получи бонусные баллы'
         }

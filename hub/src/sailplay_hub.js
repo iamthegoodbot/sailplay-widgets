@@ -74,12 +74,16 @@ var SAILPLAY = (function () {
 
       window.JSONP_CALLBACK[callback_name] = function (data) {
         clearTimeout(jsonpTimeout);
-        head.removeChild(newScript);
+        try {
+          head.removeChild(newScript);
+        }
+        catch (err) {}
         delete window.JSONP_CALLBACK[callback_name];
         success && success(data);
       };
 
       data["callback"] = 'JSONP_CALLBACK.' + callback_name;
+      if(_config.dep_id) data.dep_id = _config.dep_id;
 
       for (var param_name in data) {
         params.push(param_name + "=" + encodeURIComponent(data[param_name]));
@@ -89,7 +93,10 @@ var SAILPLAY = (function () {
       newScript.type = "text/javascript";
       newScript.src = src;
       newScript.onerror = function (ex) {
-        head.removeChild(newScript);
+        try {
+          head.removeChild(newScript);
+        }
+        catch (err) {}
         delete window.JSONP_CALLBACK[callback_name];
         error && error(ex);
       };
@@ -121,7 +128,7 @@ var SAILPLAY = (function () {
   //private config
   var _config = {};
   var _actions_config = {};
-  var _proxy = false;
+  var _remote_login_init = false;
 
   function initError(){
     alert('Please init SailPlay HUB first!');
@@ -159,9 +166,12 @@ var SAILPLAY = (function () {
     frame.id = frame_id;
 
     function onMessage(messageEvent) {
-      var data = JSON.parse(messageEvent.data);
+      var data= {};
+      if(messageEvent.origin == _config.DOMAIN){
+        data = JSON.parse(messageEvent.data);
+      }
       if(data.name == 'login.success'){
-        sp.send('login.do', messageEvent.data.auth_hash);
+        sp.send('login.do', data.auth_hash);
         return;
       }
       if(data.name == 'login.cancel'){
@@ -214,9 +224,10 @@ var SAILPLAY = (function () {
 
     frame.setAttribute('src', src);
 
-    window.removeEventListener("message", onMessage, false);
-
-    window.addEventListener("message", onMessage, false);
+    if(!_remote_login_init){
+      window.addEventListener("message", onMessage, false);
+      _remote_login_init = true;
+    }
 
   }
 
@@ -229,7 +240,7 @@ var SAILPLAY = (function () {
       alert('SailPlay: provide partner_id');
       return;
     }
-    JSONP.get((params.domain || 'http://sailplay.ru') + '/js-api/' + params.partner_id + '/config/', { lang: params.lang || 'ru' }, function (response) {
+    JSONP.get((params.domain || 'http://sailplay.ru') + '/js-api/' + params.partner_id + '/config/', { lang: params.lang || 'ru', dep_id: params.dep_id }, function (response) {
       if (response && response.status == 'ok') {
         _config = response.config;
         _config.DOMAIN = (params.domain || 'http://sailplay.ru');
@@ -268,10 +279,6 @@ var SAILPLAY = (function () {
       });
     }
   });
-
-  sp.config = function(){
-    return _config;
-  };
 
   //////////////////
   //bind api events
@@ -501,10 +508,14 @@ var SAILPLAY = (function () {
     var params = {
       auth_hash: _config.auth_hash
     };
+
     JSONP.get(_config.DOMAIN + _config.urls.actions.load, params, function (res) {
       //      console.dir(res);
       if (res.status == 'ok') {
         _actions_config = res.data;
+
+        Actions.social_init();
+
         sp.send('load.actions.list.success', res.data);
       } else {
         sp.send('load.actions.list.error', res);
@@ -515,95 +526,80 @@ var SAILPLAY = (function () {
   //PERFORM ACTION
   var Actions = {};
 
-  Actions.openSocialRegNeedPopup = function (action) {
-    var w;
-    if (action.socialType == 'vk')
-      w = Actions.popupWindow(_actions_config.social.vk.authUrl, 'social_reg', 840, 400);
-    else
-      w = Actions.popupWindow(_actions_config.social[action.socialType].authUrl, 'social_reg');
+  Actions.social_init = function(){
+    if(Actions.social_inited) return;
 
-    var checkPopupInterval = setInterval(function () {
-      if (w == null || w.closed) {
-        sp.send('actions.social.connect.complete');
-        clearInterval(checkPopupInterval);
+    setInterval(function(){
+
+      var social_buttons = document.querySelectorAll('[data-sp-action]');
+
+      for(var i = 0; i < social_buttons.length; i+=1) {
+
+        (function(){
+          var btn = social_buttons[i];
+
+          if(btn.inited) return;
+
+          var action_id = Number(btn.getAttribute('data-sp-action'));
+
+          var action = sp.find_by_properties(_actions_config.actions, { _actionId: action_id })[0];
+
+          if(!action || !_actions_config.connectedAccounts) return;
+
+          btn.inited = true;
+
+          var action_frame = document.createElement('IFRAME');
+          action_frame.style.border = 'none';
+          action_frame.style.width = '150px';
+          action_frame.style.height = '30px';
+          action_frame.style.background = 'transparent';
+          action_frame.style.overflow = 'hidden';
+          action_frame.setAttribute('scrolling', 'no');
+          action_frame.className = 'sailplay_action_frame';
+
+          var frameUrl = _config.DOMAIN + '/js-api/' + _config.partner.id + '/actions/social-widget/?auth_hash=' + _config.auth_hash;
+          frameUrl += '&socialType=' + action.socialType + '&action=' + action.action + '&link=' + action.shortLink + '&pic=' + (_actions_config.partnerCustomPic ? _actions_config.partnerCustomPic : _config.partner.logo);
+
+          frameUrl += '&msg=' + _actions_config.messages[action.action];
+          frameUrl += '&_actionId=' + action['_actionId'];
+          frameUrl += '&account_connected=' + _actions_config.connectedAccounts[action.socialType] || false;
+
+          if (action.action == 'purchase') {
+            frameUrl += '&purchasePublicKey=' + _actions_config.purchasePublicKey;
+          }
+
+          action_frame.src = frameUrl;
+          btn.innerHTML = '';
+          btn.appendChild(action_frame);
+
+        }());
+
       }
-    }, 100);
-  };
 
-  Actions.popupWindow = function (url, title, w, h) {
-    var width, height, left, top;
-    if (w !== undefined && h !== undefined) {
-      width = w;
-      height = h;
-      left = (screen.width / 2) - (w / 2);
-      top = (screen.height / 2) - (h / 2);
-    } else {
-      width = screen.width / 2;
-      height = screen.height / 2;
-      left = width - (width / 2);
-      top = height - (height / 2);
+    }, 1000);
+
+    function onActionMessage(messageEvent) {
+      var data= {};
+      if(messageEvent.origin == _config.DOMAIN){
+        data = JSON.parse(messageEvent.data);
+      }
+      if(data.name == 'actions.perform.success'){
+        sp.send('actions.perform.success', data);
+        return;
+      }
+      if(data.name == 'actions.perform.error'){
+        sp.send('actions.perform.error', data);
+      }
+
     }
 
-    return window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, copyhistory=no, width=' + width + ', height=' + height + ', top=' + top + ', left=' + left);
+    window.addEventListener("message", onActionMessage, false);
+
+    Actions.social_inited = true;
 
   };
 
-  Actions.share = function (action) {
-
-    var frameUrl = _config.DOMAIN + '/js-api/' + _config.partner.id + '/actions/social-widget/?auth_hash=' + _config.auth_hash;
-    frameUrl += '&socialType=' + action.socialType + '&action=' + action.action + '&link=' + action.shortLink + '&pic=' + (_actions_config.partnerCustomPic || _config.partner.logo || '//sailplay.ru/static/home/v4/img/main/sailplay_logo_main.png' );
-
-    frameUrl += '&msg=' + _actions_config.messages[action.action];
-    frameUrl += '&_actionId=' + action['_actionId'];
-
-    if (action.action == 'purchase') {
-      frameUrl += '&purchasePublicKey=' + _actions_config.purchasePublicKey;
-    }
-
-    var socialFrame = Actions.popupWindow(frameUrl, 'social_action', 200, 210);
-    var checkPopupInterval = setInterval(function () {
-      if (socialFrame == null || socialFrame.closed) {
-        sp.send('actions.perform.complete', action);
-        clearInterval(checkPopupInterval);
-      }
-    }, 200);
-
-  };
-
-  Actions.perform = function(action){
-    var frameUrl = _config.DOMAIN + '/popup/' + _config.partner.id + '/widgets/custom/' + action.type  + '/?auth_hash=' + _config.auth_hash;
-    frameUrl += '&lang=' + _config.lang;
-    frameUrl += '&from_sdk=0';
-    var actionFrame = Actions.popupWindow(frameUrl, 'SailPlay', 600, 400);
-    var checkPopupInterval = setInterval(function () {
-      if (actionFrame == null || actionFrame.closed) {
-        sp.send('actions.perform.complete', action);
-        clearInterval(checkPopupInterval);
-      }
-    }, 200);
-  };
-
-  sp.on('actions.perform', function (action) {
-    if(_config == {}){
-      initError();
-      return;
-    }
-    if (_config.auth_hash) {
-      sp.send('actions.perform.start', action);
-      if (action.socialType) {
-        if (!_actions_config.connectedAccounts[action.socialType]) {
-          Actions.openSocialRegNeedPopup(action);
-        } else {
-          Actions.share(action);
-        }
-      }
-      else {
-        Actions.perform(action);
-      }
-    } else {
-      sp.send('actions.perform.auth.error', action);
-    }
-  });
+  Actions.social_inited = false;
 
   //PROMO-CODES SECTION
   sp.on('promocodes.apply', function (promocode) {
@@ -725,6 +721,28 @@ var SAILPLAY = (function () {
       }
     });
   });
+
+  //utils
+  sp.config = function(){
+    return _config;
+  };
+
+  sp.find_by_properties = function(arr, props){
+    var filtered_arr = [];
+    for(var i = 0; i < arr.length; i+=1) {
+      var seeked = arr[i];
+      var good = true;
+      for(var p in props){
+        if(props[p] != seeked[p]){
+          good = false;
+        }
+      }
+      if(good) filtered_arr.push(seeked);
+    }
+    return filtered_arr;
+  };
+
+  sp.jsonp = JSONP;
 
   return sp;
 }());
