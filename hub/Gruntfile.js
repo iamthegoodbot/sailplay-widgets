@@ -7,7 +7,6 @@ module.exports = function (grunt) {
       dist: {
         src: [
           //lib section
-//          'src/porthole.js',
           'src/sailplay_hub.js'
         ],
         dest: 'dist/sailplay_hub.js'
