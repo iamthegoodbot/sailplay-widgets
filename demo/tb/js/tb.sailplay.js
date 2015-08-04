@@ -215,7 +215,7 @@
           '</div>' +
           '<div class="sptb-item sptb-item-orange sptb-item-small sptb-level-con"> ' +
             '<i class="sptb-level-icon sptb-level-img-small" style="background-image: {{{get_status_pic user_status.pic }}};"></i> ' +
-            '<div class="sptb-level-title"> Твой статус: {{{get_status user_status.name }}} </div> ' +
+            '<div class="sptb-level-title"> Ваш статус: {{{get_status user_status.name }}} </div> ' +
             '<a class="sptb-level-btn sptb-btn" href="#" data-sp-click="show_badges">' +
               '<span class="hidden show-list">Закрыть список</span>' +
               '<span class=" show-badge">Список бейджей</span> ' +
