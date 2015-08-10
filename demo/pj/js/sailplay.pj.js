@@ -11,7 +11,7 @@
 		return SP.config() || {};
 	});
 
-	sp_app.run(function ($rootScope, translate, $filter, config) {
+	sp_app.run(function ($rootScope, translate, config) {
 
 		translate.setLang(config.lang || translate.lang || 'ru');
 
@@ -487,7 +487,7 @@
 		};
 	});
 
-	sp_app.directive('sailplayActions', function ($filter) {
+	sp_app.directive('sailplayActions', function ($filter, $interval) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -517,7 +517,13 @@
 				SAILPLAY.send('load.actions.list');
 
 				SAILPLAY.on('login.success', function () {
-					SAILPLAY.send('load.actions.list');
+          var interval = $interval(function(){
+            if(scope.actions.length > 0) {
+              SAILPLAY.send('load.actions.list');
+              $interval.cancel(interval);
+            }
+
+          }, 100);
 				});
 
 				SAILPLAY.on('language.set.success', function () {
@@ -542,7 +548,11 @@
 					SAILPLAY.send('actions.perform', action);
 				};
 
-				SAILPLAY.on('actions.perform.success', function () {
+        SAILPLAY.on('actions.social.connect.complete', function () {
+          SAILPLAY.send('load.actions.list');
+        });
+
+				SAILPLAY.on('actions.perform.complete', function () {
 					SAILPLAY.send('load.actions.list');
 				});
 

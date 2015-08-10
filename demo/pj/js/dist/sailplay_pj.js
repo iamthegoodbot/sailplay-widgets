@@ -448,6 +448,7 @@ var SAILPLAY = (function () {
     JSONP.get(_config.DOMAIN + _config.urls.actions.load, params, function (res) {
       //      console.dir(res);
       if (res.status == 'ok') {
+        console.dir(res.data);
         _actions_config = res.data;
         sp.send('load.actions.list.success', res.data);
       } else {
@@ -534,14 +535,15 @@ var SAILPLAY = (function () {
     }
     if (_config.auth_hash) {
       sp.send('actions.perform.start', action);
-      if (action.socialType) {
+      console.dir(_actions_config);
+      if (action.socialType && _actions_config.connectedAccounts) {
         if (!_actions_config.connectedAccounts[action.socialType]) {
           Actions.openSocialRegNeedPopup(action);
         } else {
           Actions.share(action);
         }
       }
-      else {
+      else if(!action.socialType){
         Actions.perform(action);
       }
     } else {
@@ -715,7 +717,7 @@ angular.module('pj.filters', [])
 
   }])
 
-  .filter('humanizeUserHistoryAction', function($rootScope) {
+  .filter('humanizeUserHistoryAction', ["$rootScope", function($rootScope) {
 
     return function(historyItem) {
       switch (historyItem.action) {
@@ -737,7 +739,7 @@ angular.module('pj.filters', [])
       }
       return $rootScope.translate.history.items[historyItem.action];
     }
-  })
+  }])
 
   .filter('divide', function() {
     return function(items, divide_count, index) {
@@ -747,7 +749,7 @@ angular.module('pj.filters', [])
   });
 
 angular.module('pj.services', [])
-  .service('translate', function ($rootScope) {
+  .service('translate', ["$rootScope", function ($rootScope) {
 
     var self = this;
 
@@ -1007,7 +1009,7 @@ angular.module('pj.services', [])
       }
     };
 
-  });
+  }]);
 (function (SP) {
 
 	if (typeof SP == 'undefined') {
@@ -1021,7 +1023,7 @@ angular.module('pj.services', [])
 		return SP.config() || {};
 	});
 
-	sp_app.run(function ($rootScope, translate, $filter, config) {
+	sp_app.run(["$rootScope", "translate", "config", function ($rootScope, translate, config) {
 
 		translate.setLang(config.lang || translate.lang || 'ru');
 
@@ -1035,7 +1037,7 @@ angular.module('pj.services', [])
       SAILPLAY.send('load.user.history');
     });
 
-	});
+	}]);
 
 	sp_app.directive('sailplayUserProfile', function () {
 		var template = "";
@@ -1361,7 +1363,7 @@ angular.module('pj.services', [])
 		};
 	});
 
-	sp_app.directive('sailplayBadges', function ($filter) {
+	sp_app.directive('sailplayBadges', ["$filter", function ($filter) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -1495,9 +1497,9 @@ angular.module('pj.services', [])
 
 			}
 		};
-	});
+	}]);
 
-	sp_app.directive('sailplayActions', function ($filter) {
+	sp_app.directive('sailplayActions', ["$filter", "$interval", function ($filter, $interval) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -1527,7 +1529,13 @@ angular.module('pj.services', [])
 				SAILPLAY.send('load.actions.list');
 
 				SAILPLAY.on('login.success', function () {
-					SAILPLAY.send('load.actions.list');
+          var interval = $interval(function(){
+            if(scope.actions.length > 0) {
+              SAILPLAY.send('load.actions.list');
+              $interval.cancel(interval);
+            }
+
+          }, 100);
 				});
 
 				SAILPLAY.on('language.set.success', function () {
@@ -1552,7 +1560,11 @@ angular.module('pj.services', [])
 					SAILPLAY.send('actions.perform', action);
 				};
 
-				SAILPLAY.on('actions.perform.success', function () {
+        SAILPLAY.on('actions.social.connect.complete', function () {
+          SAILPLAY.send('load.actions.list');
+        });
+
+				SAILPLAY.on('actions.perform.complete', function () {
 					SAILPLAY.send('load.actions.list');
 				});
 
@@ -1564,7 +1576,7 @@ angular.module('pj.services', [])
 
 			}
 		}
-	});
+	}]);
 
 	sp_app.directive('sailplayBadgePopup', function () {
 		return {
@@ -1636,7 +1648,7 @@ angular.module('pj.services', [])
 		};
 	});
 
-	sp_app.directive('sailplayPizzameter', function (translate, $filter) {
+	sp_app.directive('sailplayPizzameter', ["translate", "$filter", function (translate, $filter) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -1708,9 +1720,9 @@ angular.module('pj.services', [])
 
 			}
 		};
-	});
+	}]);
 
-	sp_app.directive('sailplayPurchaseWidget', function (translate) {
+	sp_app.directive('sailplayPurchaseWidget', ["translate", function (translate) {
 		var template = "";
 		template += "<div style=\"padding: 20px;\" ng-click=\"goToPapaBonus()\" ng-if=\"redirect_url\">";
 		template += "              <table width=\"240px\">";
@@ -1796,7 +1808,7 @@ angular.module('pj.services', [])
 				})
 			}
 		};
-	});
+	}]);
 
 	SP.on('pj.bootstrap', function (elm) {
 		angular.bootstrap(elm, ['sailplay.pj']);

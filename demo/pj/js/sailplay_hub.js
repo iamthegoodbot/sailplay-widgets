@@ -448,6 +448,7 @@ var SAILPLAY = (function () {
     JSONP.get(_config.DOMAIN + _config.urls.actions.load, params, function (res) {
       //      console.dir(res);
       if (res.status == 'ok') {
+        console.dir(res.data);
         _actions_config = res.data;
         sp.send('load.actions.list.success', res.data);
       } else {
@@ -534,14 +535,15 @@ var SAILPLAY = (function () {
     }
     if (_config.auth_hash) {
       sp.send('actions.perform.start', action);
-      if (action.socialType) {
+      console.dir(_actions_config);
+      if (action.socialType && _actions_config.connectedAccounts) {
         if (!_actions_config.connectedAccounts[action.socialType]) {
           Actions.openSocialRegNeedPopup(action);
         } else {
           Actions.share(action);
         }
       }
-      else {
+      else if(!action.socialType){
         Actions.perform(action);
       }
     } else {
