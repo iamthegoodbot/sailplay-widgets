@@ -1,0 +1,58 @@
+@import (reference) "vars";
+
+//user history section
+
+.user_history_wrapper {
+  position: relative;
+  background-color: #FFFFFF;
+  padding: 25px;
+  margin: 8px 0;
+  background: @beige;
+
+}
+
+.user_history_inner {
+  background-color: @white;
+  margin: 0 auto;
+  padding: 60px 60px 60px 80px;
+  .border-radius(10px);
+  width: 600px;
+  h3 {
+    font-size: 24px;
+    text-align: left;
+    margin: 0;
+  }
+}
+
+.user_history_list {
+  position: relative;
+  z-index: 0;
+  margin: 20px 0 0 0;
+  padding: 0;
+  border-spacing: 0;
+  width: 100%;
+}
+
+.user_history_list tr td{
+  padding: 15px 0;
+  text-align: left;
+  vertical-align: middle;
+  font-size: 16px;
+}
+
+.user_history_list tr td { border-bottom: 1px dotted @grey_border !important; }
+.user_history_list tr:last-child td { border-bottom: none !important; }
+
+.history_item_date {
+  color: @grey_border;
+}
+
+.history_item_icon {
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+}
+
+.history_item_points {
+  font-size: 20px;
+}

@@ -1,0 +1,109 @@
+@import (reference) "vars";
+
+//gifts list section
+.gifts_wrapper {
+  width: 100%;
+  position: relative;
+  text-align: center;
+  background-color: @beige;
+  .gifts_inner {
+    text-align: left;
+    padding: 40px;
+    margin: 0 auto;
+    h3 {
+      font-size: 24px;
+      margin: 0 0 0 10px;
+    }
+    .sub_title {
+      margin: 8px 0 0 10px;
+      font-size: 16px;
+    }
+  }
+  table {
+    margin: 0 auto;
+  }
+  .gifts_list {
+    list-style: none;
+    margin: 20px 0 0 0;
+    width: 100%;
+    padding: 0;
+    text-align: left;
+    .gift {
+      cursor: pointer;
+      position: relative;
+      display: inline-block;
+      width: 200px;
+      margin: 10px;
+
+      .gift_points {
+        left: 15px;
+        top: 135px;
+        position: absolute;
+        background-color: @deep_red;
+        color: @white;
+        @width: 50px;
+        width: @width;
+        height: @width;
+        .border-radius(@width/2);
+        text-align: center;
+        h3 {
+          font-size: 16px;
+          line-height: 14px;
+          margin-top: 11px !important;
+        }
+        p {
+          font-size: 12px;
+        }
+        h3, p {
+          margin: 0;
+          text-align: center;
+        }
+
+      }
+
+      &:hover {
+        .gift_tools {
+          display: block;
+        }
+      }
+      .gift_tools {
+        display: none;
+        position: absolute;
+        top:0;
+        left: 0;
+        width: 100%;
+        height: 200px;
+        background-color: rgba(0,0,0,0.7);
+        .border-radius(8px);
+        z-index: 1;
+        color: @white;
+        font-size: 16px;
+        text-align: center;
+        p {
+          margin: 15px;
+          text-align: center;
+        }
+        button {
+          margin-top: 20px;
+        }
+      }
+      img {
+        width: 200px;
+        height: 200px;
+        display: block;
+        .border-radius(8px);
+      }
+      p {
+        margin: 4px 0;
+        font-size: 14px;
+      }
+      .gift_name {
+        white-space: normal;
+        font-size: 16px;
+        height: 40px;
+        display: inline-block;
+        width: 100%;
+      }
+    }
+  }
+}

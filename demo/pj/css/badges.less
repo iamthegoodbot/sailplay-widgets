@@ -1,0 +1,294 @@
+@import (reference) "vars";
+//badges section
+.badges_wrapper {
+  padding: 20px;
+  position: relative;
+  margin-top: 10px;
+  font-size: 14px;
+  h3 {
+    font-size: 24px;
+    margin: 8px 0;
+  }
+  .badges_list {
+    margin: 10px 0;
+    display: inline-block;
+    width: 100%;
+    padding: 0;
+    border: none;
+    border-spacing: 0;
+    list-style: none;
+    .badge {
+      cursor: pointer;
+      position: relative;
+      width: 170px;
+      vertical-align: top;
+      display: inline-block;
+      text-align: center;
+      .badge_card {
+        display: inline-block;
+        position: relative;
+        width: 120px;
+        margin: 10px auto;
+        .badge_info_arrow {
+          z-index: 1;
+          position: absolute;
+          width: 40px;
+          height: 30px;
+          left: 50%;
+          margin-left: -20px;
+          bottom: -33px;
+          background-image: url(../img/badge_info_arrow.png);
+          background-size: cover;
+          background-position: top left;
+          background-repeat: no-repeat;
+        }
+      }
+      .badge_pic {
+        width: 120px;
+        height: 120px;
+        display: inline-block;
+      }
+      .badge_arrow {
+        position: absolute;
+        width: 50px;
+        height: 10px;
+        left: 120px;
+        top: 55px;
+      }
+      p {
+        margin: 4px 0;
+        font-size: 14px;
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+      }
+
+    }
+
+    .slider_arrow {
+      width: 20px;
+      display: block;
+      cursor: pointer;
+      margin-top: -15px;
+    }
+
+  }
+
+  .badge_info {
+    position: relative;
+    background-color: @white;
+    .box-shadow(inset 2px 3px 6px 0px rgba(0,0,0,0.3));
+    margin-bottom: 16px;
+    padding: 30px 30px 40px 30px;
+
+    .badge_label {
+      position: relative;
+      display: inline-block;
+      width: 120px;
+      margin: 10px;
+      .badge_pic {
+        display: inline-block;
+        position: relative;
+        width: 120px;
+        height: 120px;
+      }
+
+    }
+    .badge_descr {
+      text-align: left;
+      margin: 10px;
+      font-size: 14px;
+      display: inline-block;
+      p {
+        margin: 4px 0;
+      }
+
+    }
+  }
+
+  .badge_closer {
+    background-color: @dark_grey;
+    text-align: center;
+    cursor: pointer;
+    &:hover {
+      background-color: darken(@dark_grey, 5%);
+    }
+  }
+}
+
+.receive_badge_popup {
+  .box-shadow(3px 3px 6px 0 rgba(0,0,0,0.3));
+  padding: 20px 40px;
+  font-size: 14px;
+  background-color: @main_bg;
+  .border-radius(6px);
+  width: 500px;
+  display: none;
+  position: relative;
+  h3 {
+    font-size: 18px;
+  }
+  .badge_pic {
+    width: 120px;
+    height: 120px;
+    display: block;
+  }
+  td {
+    padding: 10px;
+    vertical-align: top;
+  }
+}
+
+.share_badge_btn {
+  display: inline-block;
+  margin-right: 4px;
+  cursor: pointer;
+}
+
+.help_points, .user_login {
+  text-align: center;
+  z-index: 99999;
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: 370px;
+  background: #ffffff;
+  margin-left: -175px;
+  .border-radius(5px);
+  -webkit-box-shadow: 0px 1px 30px 8px rgba(0,0,0,0.27);
+  -moz-box-shadow: 0px 1px 30px 8px rgba(0,0,0,0.27);
+  box-shadow: 0px 1px 30px 8px rgba(0,0,0,0.27);
+  div {
+    text-align: center;
+  }
+  .close_btn {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    background: #e8e8e8;
+    font-size: 22px;
+    height: 28px;
+    width: 28px;
+    .border-radius(28px);
+    line-height: 28px;
+    text-align: center;
+
+    &:hover {
+      cursor: pointer;
+      opacity: .8;
+    }
+  }
+
+  .caption {
+    padding: 5px 0 15px 0;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: bold;
+  }
+
+  .steps {
+    position: relative;
+    font-size: 12px;
+    line-height: 18px;
+    margin: 0 auto;
+    width: 350px;
+    padding: 0 0 5px 0;
+
+    .step_pic {
+      height: 47px;
+    }
+
+    .card_pic, .arrow {
+      background: url("http://dpa5a603t161r.cloudfront.net/static/external/v3/img/help_points_sprite.png");
+    }
+
+    .points_circle, .unconfirmed_points_circle {
+      margin: 0 auto 0 auto;
+    }
+
+    .points_circle {
+      background: #6c6c6c;
+      color: #ffffff;
+    }
+
+    .unconfirmed_points_circle {
+      border-color: #000000;
+    }
+
+    .card_pic {
+      margin: -5px auto 0 auto;
+      width: 52px;
+      height: 47px;
+    }
+
+    .text_help {
+      padding: 10px 0 0 0;
+    }
+
+    .arrow {
+      position: absolute;
+      height: 27px;
+      width: 15px;
+      background-position: 0px -47px;
+      top: 10px;
+      right: -10px;
+    }
+
+    .step {
+      position: relative;
+      float: left;
+      width: 110px;
+
+      &.step2 {
+        .step_pic {
+          height: 51px;
+        }
+      }
+
+      &.step2, &.step3 {
+        margin-left: 10px;
+      }
+    }
+
+  }
+
+  .unconfirmed_points_circle.diameter50 {
+    height: 46px;
+    width: 46px;
+    font-size: 14px;
+    line-height: 46px;
+    text-align: center;
+    -webkit-border-radius: 46px;
+    -moz-border-radius: 46px;
+    -ms-border-radius: 46px;
+    -o-border-radius: 46px;
+    border-radius: 46px;
+  }
+
+  .unconfirmed_points_circle {
+    position: relative;
+    border: 2px dashed #000;
+    color: #000;
+  }
+
+  .points_circle {
+    position: relative;
+    background: #6c6c6c;
+    color: #fff;
+  }
+
+  .points_circle.diameter50 {
+    height: 50px;
+    width: 50px;
+    font-size: 14px;
+    line-height: 50px;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    -ms-border-radius: 50px;
+    -o-border-radius: 50px;
+    border-radius: 50px;
+  }
+
+}
+
+

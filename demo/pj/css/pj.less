@@ -1,0 +1,122 @@
+@font-face {
+  font-family: rockwell;
+  src: url(@rockwell_font_url);
+}
+
+@import "profile";
+@import "history";
+@import "gifts";
+@import "badges";
+@import "actions";
+@import "pizzameter";
+@import (reference) "vars";
+
+body {
+  position: relative;
+}
+
+.myriad {
+  font-family: 'Myriad Pro', sans-serif;
+}
+
+.rockwell {
+  font-family: rockwell, "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, sans-serif;
+}
+
+.main_wrapper {
+  width: 900px;
+  position: relative;
+}
+
+#logger {
+  color: #ffffff;
+  position: fixed;
+  z-index: 50000;
+  top: 0;
+  left: 0;
+  padding: 15px;
+  background-color: rgba(150,150,150,0.7);
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pj_btn {
+  display: inline-block;
+  padding: 12px 20px;
+  color: @white;
+  border: 2px solid @white;
+  .border-radius(4px);
+  background-position: -10px -10px;
+  background-repeat: no-repeat;
+  background-size: 1000px 250px;
+  cursor: pointer;
+  text-align: center;
+  background-color: @dark_green;
+  &:hover {
+    .box-shadow(0 0 4px 0 rgba(0,0,0,1));
+    background-color: darken(@dark_green, 10%);
+  }
+}
+
+.inner_loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: #FFFFFF;
+  z-index: 10000;
+  img {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -20px;
+    margin-top: -20px;
+  }
+}
+
+.clearfix:before,
+.clearfix:after {
+    content:"";
+    display:table;
+}
+
+.clearfix:after {
+    clear:both;
+}
+
+/* For IE 6/7 (trigger hasLayout) */
+.clearfix {
+    zoom:1;
+}
+
+.green_text {
+  color: @dark_green;
+}
+
+.red_text {
+  color: @deep_red;
+}
+
+.window_closer {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: @dark_grey;
+  font-size: 18px;
+  line-height: 20px;
+  width: 20px;
+  height: 20px;
+  .border-radius(10px);
+  text-align: center;
+  cursor: pointer;
+  &:hover {
+    background-color: lighten(@grey_border, 20%);
+    color: darken(@dark_grey, 20%);
+  }
+}
