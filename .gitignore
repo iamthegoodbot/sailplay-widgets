@@ -16,3 +16,4 @@ Thumbs.db
 # Dev dependencies
 node_modules/
 demo/tb/node_modules/
+demo/pj/node_modules/

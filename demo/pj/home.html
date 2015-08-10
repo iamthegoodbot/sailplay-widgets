@@ -1,0 +1,296 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html class="cufon-active cufon-ready" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <!--[if lt IE 6]><meta http-equiv="refresh" content="0; URL=https://order.papajohns.com/mobile/index.wap?site=wap" /><![endif]-->
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="description" content="Order Papa John’s Pizza online for fast pizza delivery or pickup. Get Papa John’s Special Offers or use Papa John’s promo codes for online pizza orders.">
+  <meta http-equiv="keywords" content="Papa john’s, papa johns, papa johns pizza, papa johns online, pizza, papa johns menu, order papa johns, pizza delivery, order pizza online, pizza specials, papa johns coupons, papa johns promo codes, papa johns specials, pizza coupons, fast order, papa’s picks, papas picks">
+  <title>Papa John’s Pizza Delivery and Specials ‐ Order Pizza Online for Delivery or Pickup.</title>
+
+  <!--sailplay meta-->
+  <!--<link rel="stylesheet" type="text/css" href="css/pj.css">-->
+  <link rel="stylesheet" type="text/css" href="js/old/pj_old.css">
+  <!--<link rel="stylesheet" type="text/css" href="https://d3257v5wstjx8h.cloudfront.net/media/assets/assetfile/97b82873250da2930ce45d8219e3499a.css">-->
+  <!--[if lte IE 7]>
+  <!--<script src="http://cdnjs.cloudflare.com/ajax/libs/json3/3.3.2/json3.min.js"></script>-->
+  <!--<![endif]&ndash;&gt;-->
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.4/angular.min.js"></script>
+  <!--<script src="/sailplay/widgets/hub/src/sailplay_hub.js"></script>-->
+  <!--<script src="js/pj.filters.js"></script>-->
+  <!--<script src="js/pj.services.js"></script>-->
+  <!--<script src="js/sailplay.pj.js"></script>-->
+
+  <script src="js/old/sailplay.js"></script>
+
+  <!--<script src="https://d3257v5wstjx8h.cloudfront.net/media/assets/assetfile/d901bc22eb4c1f350596e8512e1e7869.js"></script>-->
+  <script>
+    window.onload = function(){
+
+      ////////////////
+      //1188 partner
+      //5dfd662c28415fc1c1751101dd896de436999c36 - auth_hash
+      ////////////////
+
+      //38c6285d1b1bce88a1071f116704263bf2511b18
+      //5b701feb743b08bbeb64b9dcf55e02cf3daf63dd
+      //d16244aee4cdb54308c090e061609eb253c70550
+
+
+      ///////////////
+      //b04baebce0e0bdab26115b8db1dd86555b7f3962
+      //510193e31256be863d92e137bcdf138d16e73736
+      //7e4c9724a8aef313ac1d2df86a5f53c2b14a6ab5
+
+      var domain = 'http://skazka.loc';
+
+//    SAILPLAY.send('init', { partner_id: 1425, domain: 'https://sailplay.ru', lang: 'ru', static_url: 'http://saike.ru/sailplay/pj/widgets/' }); //инициируем модуль для партнера с id = 206
+//    SAILPLAY.send('init', { partner_id: 5, domain: 'https://crm.papajohns.ru', lang: 'ru', static_url: 'http://saike.ru/sailplay/pj/widgets/' }); //инициируем модуль для партнера с id = 206
+//    SAILPLAY.send('init', { partner_id: 5, dep_id: 1711, domain: 'http://sailplay.ru', lang: 'ru' }); //инициируем модуль для партнера с id = 5
+//    SAILPLAY.send('init', { partner_id: 74, domain: 'http://dev.sailplay.ru', lang: 'ru', static_url: 'http://saike.ru/sailplay/pj/widgets/' }); //инициируем модуль для партнера с id = 5
+//      SAILPLAY.send('init', { partner_id: 1188, domain: domain, lang: 'ru', static_url: 'http://saike.ru/sailplay/pj/widgets/' }); //инициируем модуль для партнера с id = 5
+      SAILPLAY.send('init', { partner_id: 5, dep_id: 55, domain: 'https://sailplay.ru', lang: 'ru', static_url: 'http://saike.ru/sailplay/pj/widgets/' }); //инициируем модуль для партнера с id = 5
+
+      SAILPLAY.on('init.success', function () {
+//      SAILPLAY.send('leaderboard.load');
+        SAILPLAY.send('pj.bootstrap', document.body);
+//      SAILPLAY.send('language.set', 'ru');
+        SAILPLAY.send('pj.pizzameter', 150);
+//      SAILPLAY.send('login', '5b701feb743b08bbeb64b9dcf55e02cf3daf63dd');
+
+
+        SAILPLAY.send('load.reviews.list');
+      });
+//
+//    SAILPLAY.on('leaderboard.load.success', function(res){
+//      console.dir(res);
+//    });
+
+      SAILPLAY.on('load.reviews.list.success', function(data){
+        console.dir(data);
+      });
+
+      SAILPLAY.on('reviews.add.success', function(res){
+        console.dir(res);
+      });
+
+      SAILPLAY.on('login.success', function (user) {
+        document.getElementById('logger').innerHTML = 'Авторизация прошла успешно. Пользователь: ' + user.name;
+        document.getElementById('sailplay_login_frame').style.display = 'none';
+
+        SAILPLAY.send('purchase.widget.show', {
+          purchase_points: 100,
+          user_points: 110,
+          bonus_per_invite: 55,
+          redirect_url: '/papabonus'
+        });
+
+        SAILPLAY.send('leaderboard.load');
+        SAILPLAY.send('reviews.add', { rating: 40, review: 'blablatrololo' });
+
+        SAILPLAY.on('leaderboard.load.success', function(data){
+          console.dir(data);
+        });
+
+      });
+
+      SAILPLAY.on('load.user.info.success', function(res){
+        if(res.last_badge && res.last_badge.name){
+          SAILPLAY.send('badge.receive.show', res.last_badge);
+        }
+      });
+      //    angular.element(document.documentElement).ready(function() {
+      //      SAILPLAY.init(sp_params);
+      //      SAILPLAY.on('ready', function(){
+      //        SAILPLAY.send('load.gifts.list');
+      //        SAILPLAY.send('load.actions.list');
+      //        SAILPLAY.send('load.badges.list');
+      //      });
+      //      SAILPLAY.on('select.gift', function(gift){
+      //        document.getElementById('logger').innerHTML = 'Выбран подарок: ' + gift.name;
+      //      });
+      //      SAILPLAY.on('auth.request', function(){
+      //        document.getElementById('logger').innerHTML = 'Registration Requset';
+      //      });
+      //      SAILPLAY.on('select.action', function(action){
+      //        document.getElementById('logger').innerHTML = 'Выбрано действие: ' + action.descr;
+      //      });
+      //      SAILPLAY.on('select.badge', function(badge){
+      //        document.getElementById('logger').innerHTML = 'Выбран бейджик: ' + badge.name;
+      //      });
+      //
+      SAILPLAY.on('gift.purchase.force_complete.success', function(){
+        document.getElementById('logger').innerHTML = 'Подарок получен';
+      });
+
+      SAILPLAY.on('select.gift.points.error', function(){
+        document.getElementById('logger').innerHTML = 'Недостаточно баллов для получения подарка';
+      });
+
+      SAILPLAY.on('select.gift.auth.error', function(){
+        document.getElementById('logger').innerHTML = 'Авторизуйтесь, чтобы получить подарок';
+      });
+      //
+      //      SAILPLAY.on('perform.action.auth.error', function(){
+      //        document.getElementById('logger').innerHTML = 'Авторизуйтесь, чтобы выполнить действие';
+      //      });
+      //
+      //      SAILPLAY.on('perform.action.complete', function(){
+      //        document.getElementById('logger').innerHTML = 'Действие выполнено';
+      //        SAILPLAY.send('load.user.info');
+      //        SAILPLAY.send('load.user.history');
+      //      });
+      //
+      //    });
+      SAILPLAY.login = function() {
+
+        var auth_hash = document.getElementById('login_auth_hash').value || '5dfd662c28415fc1c1751101dd896de436999c36';
+        SAILPLAY.send('login', auth_hash);
+//        document.getElementById('sailplay_login_frame').style.display = 'block';
+//        SAILPLAY.send('login.remote',
+//            {
+//              node: document.getElementById('sp_auth'),
+//              background: 'transparent',
+//              partner_info: 1
+//            }
+//        );
+      };
+
+      SAILPLAY.logout = function() {
+        document.getElementById('sailplay_login_frame').style.display = 'none';
+        SAILPLAY.send('logout');
+      };
+
+      SAILPLAY.switchLang = function() {
+        SAILPLAY.send('locale.set', 'en');
+      };
+
+      SAILPLAY.on('login.cancel', function(){
+        document.getElementById('sailplay_login_frame').style.display = 'none';
+      });
+
+//      SAILPLAY.on('logout.success', function(){
+//        document.getElementById('sailplay_login_frame').style.display = 'none';
+//      });
+
+      SAILPLAY.on('actions.perform.error', function(res){
+        document.getElementById('logger').innerHTML = JSON.stringify(res);
+      });
+
+    };
+
+
+  </script>
+
+</head>
+<body>
+
+<div id="sailplay_login_frame" style="display: none; position: fixed; width: 500px; height: 500px; top: 0; left: 0; right: 0; bottom: 0; z-index: 90000; margin: auto;">
+  <iframe id="sp_auth" name="sp_auth_frame" style="width: 400px; height: 500px;" src="" frameborder="0"></iframe>
+</div>
+
+<span id="logger" class="myriad"></span>
+<div id="wrapperTop">
+  <div id="wrapperHeader">
+    <div id="header">
+
+      <div id="nav">
+        <div id="utilityNav">
+          <ul>
+            <li><span>&bull;</span> <a onclick="SAILPLAY.switchLang()">English</a></li>
+          </ul>
+        </div>
+
+        <div id="topNav">
+          <ul class="topNavContainer">
+            <li class="navItem last">
+
+              <div class="rightChannelWrap unAuthenticated">
+                <div id="rightChannel" class="clr  closed">
+                  <div class="content">
+                    <div class="welcome clr">
+                      <div class="accountStatusBar clr">
+                        <h2 class="replace">Welcome</h2>
+                        <a id="topNavBtnRegister" onclick="SAILPLAY.logout();">Log out</a>
+                        <input type="text" id="login_auth_hash"/>
+                        <a id="topNavBtnSignIn" class="" onclick="SAILPLAY.login();">Sign In</a>
+                      </div>
+                    </div>
+
+                    <div class="cartStatus" style="display: none;">
+                      <span></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <input id="userState" value="COLD" type="hidden" />
+    </div>
+  </div>
+
+  <div id="mainContent">
+
+    <div class="contentWrap clr">
+      <div class="wideCol" style="margin: 0 auto;">
+        <div class="wideColWrap">
+          <div class="wideColContent">
+
+            <!--PURCHASE WIDGET-->
+            <sailplay-purchase-widget></sailplay-purchase-widget>
+            <!--|||||||||||||-->
+
+            <!--RECEIVE BADGE-->
+            <sailplay-badge-popup></sailplay-badge-popup>
+            <!--|||||||||||||-->
+
+            <!--USER PIZZAPROFILE-->
+            <sailplay-user-pizza-profile></sailplay-user-pizza-profile>
+            <!-- |||||||||||||||| -->
+
+            <!--PIZZAMETER-->
+            <sailplay-pizzameter></sailplay-pizzameter>
+            <!--||||||||||-->
+
+
+            <!--USER PROFILE-->
+            <sailplay-user-profile></sailplay-user-profile>
+            <!-- |||||||||||||||| -->
+
+
+            <!--USER HISTORY SECTION-->
+            <sailplay-user-history></sailplay-user-history>
+
+            <!--||||||||||||||||||||-->
+
+            <!--GIFTS SECTION-->
+            <sailplay-gifts></sailplay-gifts>
+
+
+            <!--////////////////-->
+
+            <!-- BADGES SECTION -->
+            <sailplay-badges></sailplay-badges>
+
+            <!--\\\\\\\\\\\\\\-->
+
+            <!-- ACTIONS LIST -->
+            <sailplay-actions></sailplay-actions>
+
+          <!--||||||||||||||-->
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contentWrap clr">
+    </div>
+  </div>
+</div>
+
+<!--[if lte IE 8]></div><![endif]-->
+</body>
+</html>
