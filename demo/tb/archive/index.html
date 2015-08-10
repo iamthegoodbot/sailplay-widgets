@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,500,700italic,900&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    <title>Интернет-магазин одежды – большой и удобный каталог модной одежды для женщин на сайте TrendsBrands.ru</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="tb/screen.min.css" type="text/css" rel="stylesheet">
+    <link href="tb/ss.css" type="text/css" rel="stylesheet">
+
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <script type="text/javascript" src="js/dist/tb.sailplay.min.js"></script>
+    <script>
+
+
+
+      SAILPLAY.on('login.success', function(){
+        SAILPLAY.send('purchases.add', { order_num: 355, price: 3545 });
+      });
+
+      SAILPLAY.on('purchases.add.success', function(data){
+        console.dir(data);
+      });
+
+      SAILPLAY.on('points.spend.request', function(){
+        console.log('Потратить баллы');
+      });
+
+      SAILPLAY.on('purchase.share.request', function(data){
+        console.log('Пошарить покупку в ' + data.type);
+      });
+
+      window.onload = function(){
+
+        SAILPLAY.send('init', { partner_id: 1404, domain: 'http://sailplay.ru', static_url: 'http://saike.ru/sailplay/widgets/demo/tb/' });
+
+        SAILPLAY.on('init.success', function(){
+          SAILPLAY.send('login', 'e391f44dee702f071bee5d808be2b68bfee5fd29');
+          SAILPLAY.send('thanks.show', { points: 400, share_points: 30, url: 'http://www.trendsbrands.ru/' });
+        });
+
+      };
+
+    </script>
+
+    <link rel="stylesheet" href="styles/app.css"/>
+
+</head>
+<body>
+<div id="header" class="staticHeader" data-widget-header="" data-auto-init="" data-lock="false" data-autoinited="true">
+
+    <div class="container" data-widget-header-container="" style="">
+
+        <div class="inner">
+            <div class="left">
+                <div class="logo">
+                    <img class="fixed" src="tb/logotbsmall.png" width="57" height="34">
+                    <img class="static" src="tb/logotb.png" width="132" height="87">
+                </div>        <ul class="menu">
+
+
+
+                    <a href="/limited/" class="sp-custom-AB-3">Коллекция апреля</a>
+                    <li class="static">
+                        <a data-hide-at-width="1040" href="/landings/trends-brands-base/" class="sp-custom-AB-3">T&amp;B Base</a>
+                    </li>
+                    <li data-widget-hoverable-dropdown="" data-auto-init="" class="dropdownContainer" data-autoinited="true">
+                        <a data-widget-hoverable-dropdown-handler="" href="/catalog/woman/new/" class="sp-custom-AB-3">Каталог</a>
+                        <div data-widget-hoverable-dropdown-content="" class="dropdown headerSubmenu">
+                            <div class="icons-dropdown-pointer icon"></div>
+                            <ul class="topMenu">
+                                <li><a href="/catalog/woman/new/" class="caps sp-custom-AB-3">НОВИНКИ</a></li>
+                            </ul>
+                            <div class="cols">
+                                <div class="col">
+                                    <h2 class="caps"><a href="/catalog/woman/clothes/" class="sp-custom-AB-3">Одежда</a></h2>
+                                    <ul>
+                                        <li>
+                                            <a href="/catalog/woman/rubashki/" class="sp-custom-AB-3">Блузы и рубашки</a>
+                                        </li>
+                                        <li>
+                                            <a href="/catalog/woman/bryuki/" class="sp-custom-AB-3">Джинсы и Брюки</a>
+                                        </li>
+                                        <li>
+                                            <a href="/catalog/woman/kombinezony/" class="sp-custom-AB-3">Комбинезоны</a>
+                                        </li>
+                                        <li>
+                                            <a href="/catalog/woman/kupalniki-i-plavki/" class="sp-custom-AB-3">Купальники</a>
+                                        </li>
+                                        <li>
+                                            <a href="/catalog/woman/platya/" class="sp-custom-AB-3">Платья</a>
+                                        </li>
+                                        <li>
+                                            <a href="/catalog/woman/svitshoty-i-hudi/" class="sp-custom-AB-3">Свитшоты и худи</a>
+                                        </li>
+                                        <li>
+                                            <a href="/catalog/woman/futbolki-i-longslivy/" class="sp-custom-AB-3">Футболки и майки</a>
+                                        </li>
+                                        <li>
+                                            <a href="/catalog/woman/yubki/" class="sp-custom-AB-3">Юбки</a>
+                                        </li>
+                                    </ul>
+                                    <ul>
+                                        <li>
+                                            <a href="/catalog/woman/outerwear/" class="sp-custom-AB-3">Верхняя одежда</a>
+                                        </li>
+                                        <li>
+                                            <a href="/catalog/woman/jakety/" class="sp-custom-AB-3">Жакеты</a>
+                                        </li>
+                                        <li>
+                                            <a href="/catalog/woman/kostyumy/" class="sp-custom-AB-3">Костюмы</a>
+                                        </li>
+                                        <li>
+                                            <a href="/catalog/woman/legginsy/" class="sp-custom-AB-3">Леггинсы</a>
+                                        </li>
+                                        <li>
+                                            <a href="/catalog/woman/sviter/" class="sp-custom-AB-3">Свитера и кардиганы</a>
+                                        </li>
+                                        <li>
+                                            <a href="/catalog/woman/topy/" class="sp-custom-AB-3">Топы</a>
+                                        </li>
+                                        <li>
+                                            <a href="/catalog/woman/shorty/" class="sp-custom-AB-3">Шорты</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col">
+                                    <h2 class="caps"><a href="/catalog/woman/shoes/" class="sp-custom-AB-3">Обувь</a></h2>
+                                    <ul>
+                                        <li>
+                                            <a href="/catalog/woman/baletki/" class="sp-custom-AB-3">Балетки и мокасины</a>
+                                        </li>
+                                        <li>
+                                            <a href="/catalog/woman/bosonojki/" class="sp-custom-AB-3">Босоножки</a>
+                                        </li>
+                                        <li>
+                                            <a href="/catalog/woman/botilony/" class="sp-custom-AB-3">Ботильоны</a>
+                                        </li>
+                                        <li>
+                                            <a href="/catalog/woman/botinki/" class="sp-custom-AB-3">Ботинки</a>
+                                        </li>
+                                        <li>
+                                            <a href="/catalog/woman/krossovki/" class="sp-custom-AB-3">Кроссовки и Кеды</a>
+                                        </li>
+                                        <li>
+                                            <a href="/catalog/woman/sapogi-rezinovie/" class="sp-custom-AB-3">Сапоги резиновые</a>
+                                        </li>
+                                        <li>
+                                            <a href="/catalog/woman/tufli/" class="sp-custom-AB-3">Туфли</a>
+                                        </li>
+                                        <li>
+                                            <a href="/catalog/woman/uggi/" class="sp-custom-AB-3">Угги и Дутики</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col">
+                                    <h2 class="caps"><a href="/catalog/woman/accessories/" class="sp-custom-AB-3">Аксессуары</a></h2>
+                                    <ul>
+                                        <li>
+                                            <a href="/catalog/woman/aksessuary-dlya-volos/" class="sp-custom-AB-3">Аксессуары для волос</a>
+                                        </li>
+                                        <li>
+                                            <a href="/catalog/woman/aksessuary-dlya-gadjetov/" class="sp-custom-AB-3">Аксессуары для гаджетов</a>
+                                        </li>
+                                        <li>
+                                            <a href="/catalog/woman/shapka/" class="sp-custom-AB-3">Головные уборы</a>
+                                        </li>
+                                        <li>
+                                            <a href="/catalog/woman/drugie-aksessuary/" class="sp-custom-AB-3">Другие аксессуары</a>
+                                        </li>
+                                        <li>
+                                            <a href="/catalog/woman/ochki/" class="sp-custom-AB-3">Очки</a>
+                                        </li>
+                                        <li>
+                                            <a href="/catalog/woman/perchatki/" class="sp-custom-AB-3">Перчатки и варежки</a>
+                                        </li>
+                                        <li>
+                                            <a href="/catalog/woman/remni/" class="sp-custom-AB-3">Ремни</a>
+                                        </li>
+                                        <li>
+                                            <a href="/catalog/woman/sumki/" class="sp-custom-AB-3">Сумки</a>
+                                        </li>
+                                        <li>
+                                            <a href="/catalog/woman/ukrasheniya/" class="sp-custom-AB-3">Украшения</a>
+                                        </li>
+                                        <li>
+                                            <a href="/catalog/woman/remni-i-poyasa/" class="sp-custom-AB-3">Шарфы</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="promo col">
+                                    <div class="inner">
+                                        <h2 class="caps">Бесплатная доставка</h2>
+                                        <a href="/rd/b-102/" class="sp-custom-AB-3">
+                                            <img src="/upload/images/887/menu_banner_lim_apr_03.jpg" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="http://www.trendsbrands.ru/landings/tvoe-idealnoe-plate-/" class="sp-custom-AB-3">Твое идеальное платье</a>
+                    </li>
+                    <li>
+                        <a data-hide-at-width="1040" href="/catalog/sale/" class="sp-custom-AB-3">Sale %</a>
+                    </li>
+                    <li class="static">
+                        <a data-hide-at-width="1040" href="http://club.trendsbrands.ru/" class="sp-custom-AB-3">T&amp;B Club</a>
+                    </li>
+                </ul>
+
+                <div class="contact">
+                    <span class="tel">8 (800) 100-09-51</span>
+                    <span class="note" data-hide-at-width="1120">(Бесплатно по России)</span>
+
+                </div>
+
+
+            </div>
+
+            <div class="right ">
+                <div class="order">
+                    <a href="/cart/" class="issue" data-hide-at-width="1360">Корзина</a>
+                    <a href="/cart/" class="pseudo">
+                        <div class="shoppingCart">
+                            <span class="counter">0</span>
+                        </div>
+                    </a></div>
+
+                <div data-login-badge="" class="login">
+                    <a href="/personal/" data-widget-local-modal-popup-opener="" data-local-modal-popup-opener-id="registrationPopup" data-auto-init="" data-autoinited="true">Войти</a>
+                </div>                                    <div class="search">
+                    <a class="pseudo" href="/search/"><div class="icons-search icon"></div></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div id="body" class="page mainPage">
+    
+
+
+<div>
+
+<sailplay-header></sailplay-header>
+
+<sailplay-profile></sailplay-profile>
+
+<sailplay-gifts></sailplay-gifts>
+
+<sailplay-actions></sailplay-actions>
+
+<sailplay-thanks></sailplay-thanks>
+
+</div>
+
+</div>
+
+<div class="footer">
+
+    <div class="top">
+        <div class="white">
+            <div class="logo">
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+
+        <div class="block b1">
+            <div class="title">T&amp;B</div>
+            <ul class="linksList">
+                <li><a rel="nofollow" href="/about/">О проекте</a></li>
+                <li><a rel="nofollow" href="/limited/about/">T&amp;B Limited</a></li>
+                <li><a rel="nofollow" href="/about/shops/">Наши магазины</a></li>
+                <li><a rel="nofollow" href="http://club.trendsbrands.ru/">T&amp;B Club</a></li>
+            </ul>
+        </div>
+
+        <div class="block b2">
+            <div class="title">ПОМОЩЬ</div>
+            <ul class="linksList">
+                <li><a rel="nofollow" href="/help/contacts/">Контакты</a></li>
+                <li><a rel="nofollow" href="/help/requisite/">Реквизиты</a></li>
+                <li><a rel="nofollow" href="/service/questions/">Вопросы и ответы</a></li>
+            </ul>
+        </div>
+
+        <div class="block b3">
+            <div class="title">СЕРВИС</div>
+            <ul class="linksList">
+                <li><a rel="nofollow" href="/service/privacy/">Конфиденциальность</a></li>
+                <li><a rel="nofollow" href="/service/return/">Условия возврата</a></li>
+                <li><a rel="nofollow" href="/service/size-table/">Таблица размеров</a></li>
+                <li><a rel="nofollow" href="/service/delivery/">Доставка и оплата</a></li>
+            </ul>
+        </div>
+
+        <div class="block b4">
+            <div class="title">СЛЕДИ ЗА НАМИ В СОЦСЕТЯХ</div>
+            <div class="socialList">
+
+                <a href="https://www.facebook.com/trendsbrands" target="_blank" class="socialIcon icon facebook">
+                    <div class="icons-facebook icon"></div>
+                </a>
+
+                <a href="https://vk.com/trendsbrands" target="_blank" class="socialIcon icon vkontakte">
+                    <div class="icons-vkontakte icon"></div>
+                </a>
+
+                <a href="http://instagram.com/trendsbrands" target="_blank" class="socialIcon icon instagram">
+                    <div class="icons-instagram icon"></div>
+                </a>
+
+                <a href="https://www.youtube.com/channel/UC-B8z6EhNDCRUxDxYiosEnA" target="_blank" class="socialIcon icon youtube">
+                    <div class="icons-youtube icon"></div>
+                </a>
+
+                <a href="https://twitter.com/trendsbrands_ru" target="_blank" class="socialIcon icon twitter">
+                    <div class="icons-twitter icon"></div>
+                </a>
+
+                <a href="https://www.pinterest.com/trendsbrands/" target="_blank" class="socialIcon icon pinterest">
+                    <div class="icons-pinterest icon"></div>
+                </a>
+
+            </div>        </div>
+
+        <div class="block b5">
+            <div class="title">СПОСОБЫ ОПЛАТЫ</div>
+
+            <a rel="nofollow" href="/service/delivery/">
+                <img src="/bitrix/templates/new2014/assets/img/graphics/payment-mastercard.gif" width="60" height="37" alt="Mastercard">
+                <img src="/bitrix/templates/new2014/assets/img/graphics/payment-visa.gif" width="64" height="20" alt="Visa">
+                <img src="/bitrix/templates/new2014/assets/img/graphics/cash_icon.png" width="60" height="41" alt="Cash">
+            </a>
+
+        </div>
+    </div>
+
+    <div class="bottom">
+        <hr>
+        © 2015, www.trendsbrands.ru, Все права защищены.    </div>
+
+</div>
+
+
+
+
+
+</body>
+</html>
