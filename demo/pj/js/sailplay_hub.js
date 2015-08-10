@@ -448,7 +448,6 @@ var SAILPLAY = (function () {
     JSONP.get(_config.DOMAIN + _config.urls.actions.load, params, function (res) {
       //      console.dir(res);
       if (res.status == 'ok') {
-        console.dir(res.data);
         _actions_config = res.data;
         sp.send('load.actions.list.success', res.data);
       } else {
