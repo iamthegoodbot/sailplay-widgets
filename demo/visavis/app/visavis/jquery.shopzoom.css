@@ -1,0 +1,38 @@
+#shopZoomCont {position: fixed; width: 100%; top: 0; left: 0; overflow: hidden; background-color: #ffffff; z-index: 3000;}
+#shopZoomCont .zoomCont {position: relative; width: 100%; overflow: hidden;}
+#shopZoomCont .imgCont {position: relative;	margin: auto; left: 0; top: 0;}
+#shopZoomCont .imgCont {border: 1px solid #888888\0/;}
+#shopZoomCont .logo {position: absolute; top: 20px; left: 50px; z-index: 3040;}
+#shopZoomCont .close {position: absolute; font-size: 16px; color: #555555; display: block; top: 20px; right: 20px; height: 22px; width: 88px; text-decoration: none; z-index: 3040; background: url(/bitrix/templates/black.main/images/fancy_close.png) no-repeat right center transparent;}
+
+#shopZoomCont .panelOverlay {position: absolute; width: 100%; left: 0; z-index: 3020;}
+#shopZoomCont .panel {position: absolute; width: 100%; left: 0; overflow: hidden; z-index: 3030;}
+
+#shopZoomCont .panel .scrollCont {position: relative; width: 269px; height: 23px; margin: 0 auto; top: 10px; background: url(/bitrix/templates/.default/images/shopZoomSlider.png) repeat-x scroll 0 0 transparent;}
+#shopZoomCont .panel .scrollCont .scroll {display: inline-block; width: 200px; height: 23px; margin: 0 9px 0 10px;}
+#shopZoomCont .panel .scrollCont .minus,
+#shopZoomCont .panel .scrollCont .plus {display: inline-block; background: url(/bitrix/templates/black.main/images/shopZoomImages_new2.png) no-repeat scroll 0 0 transparent; width: 25px; height: 23px; text-decoration: none;}
+#shopZoomCont .panel .scrollCont .minus {background-position: -98px -12px;}
+#shopZoomCont .panel .scrollCont .plus {background-position: -125px -12px;}
+
+#shopZoomCont .panel .infoCont {position: absolute; overflow: hidden; top: 20px; left: 30px; font-family: arial;}
+#shopZoomCont .panel .infoCont a {display: inline-block; margin-right: 5px;}
+#shopZoomCont .panel .infoCont a.active {border: 2px solid #333333 !important; overflow: hidden;}
+#shopZoomCont .panel .infoCont a img {display: block; width: 50px;}
+#shopZoomCont .panel .infoCont .nameBlock {display: inline-block; float: left; color: #ffffff; font-size: 13px; width: 200px;}
+#shopZoomCont .panel .infoCont .nameBlock .price {/*color: #AC2F6E;*/ font-size: 18px; font-weight: bold; padding-top: 5px;}
+#shopZoomCont .panel .infoCont .photoBlock {display: inline-block; float: left; margin-left: 100px;}
+#shopZoomCont .panel .infoCont .photoBlock a {background-color: #ffffff; border: 2px solid #cdcdcd;}
+
+
+#shopZoomCont .hideButton {position: fixed; cursor: pointer; width: 44px; height: 44px; margin: 0 auto; bottom: 15px; background: url(/bitrix/templates/black.main/images/shopZoomImages_new2.png) no-repeat -2px -2px transparent; z-index: 3040;}
+#shopZoomCont .hideButton.reverse {background-position: -48px -2px;}
+
+#shopZoomCont .ui-slider {background: url(/bitrix/templates/.default/images/shopZoomSlider.png) repeat-x scroll 0 0 transparent !important; border-radius: 0 !important;}
+#shopZoomCont .ui-slider .ui-slider-handle {background: url(/bitrix/templates/black.main/images/shopZoomImages_new2.png) no-repeat scroll -174px -12px transparent !important; margin-left: -9px; width: 17px; top: 0; height: 23px; border: 0 !important;}
+#shopZoomCont .ui-widget-content {border: 0 !important;}
+
+#fancybox-img.clickable {cursor: url("/bitrix/templates/.default/images/shopZoomCursor.cur"), pointer;}
+/*@media all and ( min-width : 0px ) {
+  #fancybox-img.clickable {cursor: zoom-in !important;}
+}*/

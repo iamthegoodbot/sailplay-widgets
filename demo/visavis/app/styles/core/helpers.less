@@ -1,0 +1,113 @@
+@import (reference) '../libs/mixins';
+
+.spvv {
+
+    //display generics
+    .inline_block {
+        display: inline-block !important;
+    }
+
+    .hidden,
+    .hidden.clearfix {
+        display: none;
+    }
+
+    .text-center {
+        text-align: center !important;
+    }
+
+    .text-left {
+        text-align: left !important;
+    }
+
+    .text-right {
+        text-align: right !important;
+    }
+
+    .pull-left {
+        float: left;
+    }
+
+    .pull-right {
+        float: right;
+    }
+
+    .clearfix {
+        display: block;
+        zoom: 1;
+
+        &:after {
+            content: " ";
+            display: block;
+            font-size: 0;
+            height: 0;
+            clear: both;
+            visibility: hidden;
+        }
+    }
+
+    .no-select {
+        -webkit-user-select: none; /* Chrome all / Safari all */
+        -moz-user-select: none; /* Firefox all */
+        -ms-user-select: none; /* IE 10+ */
+        /* No support for these yet, use at own risk */
+        -o-user-select: none;
+        user-select: none;
+    }
+
+    .no-wrap {
+        white-space: nowrap;
+    }
+
+    .italic {
+        font-style: italic;
+    }
+
+    .row {
+        width: 100%;
+    }
+
+    .sp-well {
+        width: 100%;
+        border: 2px dotted rgba(209, 225, 238, 0.7);
+        background-color: #f3f7fa;
+        .box-sizing(border-box);
+    }
+
+    .bold {
+        font-weight: 600 !important;
+    }
+
+    .ovh {
+        overflow: hidden !important;
+    }
+
+    .ova {
+        overflow: auto !important;
+    }
+
+    .p-abs {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+    }
+
+    .p-rel {
+        position: relative !important;
+    }
+
+    .t-ellps {
+        white-space: nowrap;
+        overflow: hidden;
+        -o-text-overflow: ellipsis;
+        text-overflow: ellipsis;
+    }
+
+    .text-hide {
+        text-indent: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+}
