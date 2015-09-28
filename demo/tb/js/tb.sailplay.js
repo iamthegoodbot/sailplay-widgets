@@ -148,12 +148,12 @@
         '<div class="sptb-promo">' +
         '<div class="sptb-promo-img" style="background-image: url({{{static promo_img}}})"></div>' +
         '<div class="sptb-promo-text"> ' +
-        '<div class="title"> Бонусная программа </div> ' +
-        '<div class="text"> Регистрируйся, совершай покупки,выполняй задания,<br/>  копи баллы и обменивай их на подарки! </div> ' +
+              '<div class="title"> Бонусная программа </div> ' +
+              '<div class="text"> Регистрируйся, совершай покупки,выполняй задания,<br/>  копи баллы и обменивай их на подарки! </div> ' +
+            '</div>  ' +
+          '</div>  ' +
         '</div>  ' +
-        '</div>  ' +
-        '</div>  ' +
-        '</div>',
+      '</div>',
     init: function(widget){
 
       var scope = widget.scope;
@@ -173,7 +173,7 @@
         '<div class="sptb-row">' +
           '<div class="sptb-item sptb-item-orange sptb-item-right">  ' +
             '<div class="sptb-level-outer"> ' +
-              '<div class="sptb-level sptb-history-slider" style="padding-top: 0;" data-slider>' +
+              '<div class="sptb-level sptb-history-slider" style="padding-top: 0;">' +
                 '{{#badges}}' +
                 '<div class="sptb-level-item">  ' +
                   '<i class="sptb-level-icon" style="background-image: {{#get_badge_pic}}{{ thumbs.url_250x250 }},{{thumbs.url_gs}},{{is_received}}{{/get_badge_pic}}"></i>' +

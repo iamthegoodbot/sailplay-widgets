@@ -504,15 +504,28 @@
                 '<div class="action_points rockwell" data-ng-if="action.points > 0" data-ng-bind="' + ' + (action.points | short_number)"></div>' +
                 '<p class="myriad action_descr" data-ng-bind="translate.actions.system[action.type] || translate.actions.social[action.socialType][action.action].name || action.descr || translate.actions.no_descr"></p> ' +
                 '<div class="earn_points_btn" data-ng-click="earnPoints(action)" data-sp-action="{{ action._actionId }}">' +
-                  '<button class="pj_btn rockwell">Получить баллы</button>' +
+                  '<button class="pj_btn rockwell" data-ng-bind="translate.actions.earn_points"></button>' +
                 '</div>' +
               '</div>  ' +
             '</li>' +
           '</ul> ' +
+          '<div class="pj_ac_text" data-ng-show="is_sharable()" >' +
+            '<div class="pj_close_btn" data-ng-click="selected_action = false;">×</div>' +
+            '<p class="myriad" data-ng-if="selected_action.action == \'like\'" data-ng-bind="translate.actions.ac_connected_join"></p>' +
+            '<p class="myriad" data-ng-if="selected_action.action == \'partner_page\'" data-ng-bind="translate.actions.ac_connected"></p>' +
+            '<button data-ng-if="selected_action.action == \'like\'" class="pj_btn rockwell"data-ng-bind="translate.actions.join" data-ng-click="earnPoints(selected_action)"></button>' +
+            '<button data-ng-if="selected_action.action == \'partner_page\'" class="pj_btn rockwell"data-ng-bind="translate.actions.share" data-ng-click="earnPoints(selected_action)"></button>' +
+          '</div>' +
         '</div>',
 			link: function (scope) {
 
 				scope.actions = [];
+
+        scope.selected_action = false;
+
+        scope.is_sharable = function(){
+          return scope.selected_action && scope.selected_action.account_connected;
+        };
 
 				SAILPLAY.send('load.actions.list');
 
@@ -537,22 +550,22 @@
 
 				SAILPLAY.on('load.actions.list.error', function () {
 					scope.actions = [];
+          scope.selected_action = false;
 					scope.$apply();
 				});
 
-				scope.hideActionInfo = function () {
-					scope.selectedAction = false;
-				};
-
 				scope.earnPoints = function (action) {
+          scope.selected_action = angular.copy(action);
 					SAILPLAY.send('actions.perform', action);
 				};
 
         SAILPLAY.on('actions.social.connect.complete', function () {
+          if(scope.selected_action) scope.selected_action.account_connected = true;
           SAILPLAY.send('load.actions.list');
         });
 
 				SAILPLAY.on('actions.perform.complete', function () {
+          scope.selected_action = false;
 					SAILPLAY.send('load.actions.list');
 				});
 

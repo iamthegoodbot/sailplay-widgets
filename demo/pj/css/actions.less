@@ -174,6 +174,47 @@
     }
   }
 
+
+  .pj_ac_text {
+    width: 300px;
+    height: 170px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    border-spacing: 0;
+    background-color: @white;
+    z-index: 10000;
+    .box-shadow(0 0 8px 0 rgba(0,0,0,0.4));
+    .border-radius(6px);
+    .box-sizing(border-box);
+    padding: 30px;
+    text-align: center;
+    p {
+      margin: 0;
+      font-size: 16px;
+    }
+    .pj_btn {
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    .pj_close_btn {
+      cursor: pointer;
+      font-size: 20px;
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      top: 10px;
+      right: 10px;
+      color: @grey_border;
+      &:hover {
+        color: darken(@grey_border, 15%);
+      }
+    }
+  }
+
 }
 
 .social_logo {
@@ -184,6 +225,7 @@
   background-repeat: no-repeat;
   margin: 0 auto;
   background-image: url("https://d3257v5wstjx8h.cloudfront.net/media/assets/assetfile/0a951bd40b14fc21427a2418556f3ef8.png");
+  position: relative;
   &.fb {
     &.purchase { background-position: 0px 0px; }
     &.partner_page { background-position: -@width 0px; }

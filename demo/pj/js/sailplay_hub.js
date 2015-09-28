@@ -68,11 +68,11 @@ var SAILPLAY = (function () {
         }
         catch(err) {}
         delete window.JSONP_CALLBACK[callback_name];
-      }, 10000);
+      }, 20000);
 
       window.JSONP_CALLBACK[callback_name] = function (data) {
         clearTimeout(jsonpTimeout);
-        head.removeChild(newScript);
+        newScript && head.removeChild(newScript);
         delete window.JSONP_CALLBACK[callback_name];
         success && success(data);
       };
@@ -87,7 +87,7 @@ var SAILPLAY = (function () {
       newScript.type = "text/javascript";
       newScript.src = src;
       newScript.onerror = function (ex) {
-        head.removeChild(newScript);
+        newScript && head.removeChild(newScript);
         delete window.JSONP_CALLBACK[callback_name];
         error && error(ex);
       };
@@ -534,7 +534,6 @@ var SAILPLAY = (function () {
     }
     if (_config.auth_hash) {
       sp.send('actions.perform.start', action);
-      console.dir(_actions_config);
       if (action.socialType && _actions_config.connectedAccounts) {
         if (!_actions_config.connectedAccounts[action.socialType]) {
           Actions.openSocialRegNeedPopup(action);

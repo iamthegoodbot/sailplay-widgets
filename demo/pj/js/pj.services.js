@@ -72,6 +72,11 @@ angular.module('pj.services', [])
         "title": "Список заданий",
         "descr": "Выполняйте задания и получайте за них дополнительные баллы",
         "no_descr": "Нет описания",
+        "earn_points": 'Получить баллы',
+        "share": 'Поделиться',
+        "join": 'Вступить',
+        "ac_connected": 'Ваш аккаунт успешно привязан. Нажмите "Поделиться", чтобы получить бонусные баллы.',
+        "ac_connected_join": 'Ваш аккаунт успешно привязан. Нажмите "Вступить", чтобы получить бонусные баллы.',
         "system": {
           "emailBinding": "Указать E-mail",
           "fillProfile": "Заполнить профиль",
@@ -197,6 +202,11 @@ angular.module('pj.services', [])
         "title": "List of quests",
         "descr": "Complete quests to get extra points",
         "no_descr": "No description",
+        "earn_points": 'Earn points',
+        "share": 'Share',
+        "join": 'Join',
+        "ac_connected": 'Your account was successfully linked to your profile. Press "Share" to earn bonus points.',
+        "ac_connected_join": 'Your account was successfully linked to your profile. Press "Join" to earn bonus points.',
         "system": {
           "emailBinding": "Enter email",
           "fillProfile": "Fill profile",
