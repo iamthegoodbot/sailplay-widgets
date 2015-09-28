@@ -179,10 +179,10 @@ var SAILPLAY = (function () {
       alert('SailPlay: provide partner_id');
       return;
     }
-    JSONP.get((params.domain || 'http://sailplay.ru') + '/js-api/' + params.partner_id + '/config/', { lang: params.lang || 'ru' }, function (response) {
+    JSONP.get('http://sailplay.ru' + '/js-api/' + params.partner_id + '/config/', { lang: params.lang || 'ru' }, function (response) {
       if (response && response.status == 'ok') {
         _config = response.config;
-        _config.DOMAIN = (params.domain || 'http://sailplay.ru');
+        _config.DOMAIN = 'http://sailplay.ru';
         _config.dep_id = params.dep_id || '';
         _config.env.staticUrl = params.static_url || _config.env.staticUrl;
         sp.send('init.success', _config);

@@ -68,11 +68,11 @@ var SAILPLAY = (function () {
         }
         catch(err) {}
         delete window.JSONP_CALLBACK[callback_name];
-      }, 20000);
+      }, 10000);
 
       window.JSONP_CALLBACK[callback_name] = function (data) {
         clearTimeout(jsonpTimeout);
-        newScript && head.removeChild(newScript);
+        head.removeChild(newScript);
         delete window.JSONP_CALLBACK[callback_name];
         success && success(data);
       };
@@ -87,7 +87,7 @@ var SAILPLAY = (function () {
       newScript.type = "text/javascript";
       newScript.src = src;
       newScript.onerror = function (ex) {
-        newScript && head.removeChild(newScript);
+        head.removeChild(newScript);
         delete window.JSONP_CALLBACK[callback_name];
         error && error(ex);
       };
@@ -179,10 +179,10 @@ var SAILPLAY = (function () {
       alert('SailPlay: provide partner_id');
       return;
     }
-    JSONP.get('http://sailplay.ru' + '/js-api/' + params.partner_id + '/config/', { lang: params.lang || 'ru' }, function (response) {
+    JSONP.get((params.domain || 'http://sailplay.ru') + '/js-api/' + params.partner_id + '/config/', { lang: params.lang || 'ru' }, function (response) {
       if (response && response.status == 'ok') {
         _config = response.config;
-        _config.DOMAIN = 'http://sailplay.ru';
+        _config.DOMAIN = (params.domain || 'http://sailplay.ru');
         _config.dep_id = params.dep_id || '';
         _config.env.staticUrl = params.static_url || _config.env.staticUrl;
         sp.send('init.success', _config);
@@ -534,6 +534,7 @@ var SAILPLAY = (function () {
     }
     if (_config.auth_hash) {
       sp.send('actions.perform.start', action);
+      console.dir(_actions_config);
       if (action.socialType && _actions_config.connectedAccounts) {
         if (!_actions_config.connectedAccounts[action.socialType]) {
           Actions.openSocialRegNeedPopup(action);
