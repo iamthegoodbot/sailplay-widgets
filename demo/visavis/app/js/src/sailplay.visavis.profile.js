@@ -99,29 +99,32 @@
           scope.badges = [];
 
           scope.toggle_history = function(){
+		          var elem = angular.element(elm[0]).find('.spvv-inline');
             if(!scope.show_history){
-              elm[0].classList.add('show_left_block', 'show_left_higher');
+		            elem.addClass('show_left_block show_left_higher');
               scope.show_history = true;
             }
             else {
               scope.show_history = false;
-              elm[0].classList.remove('show_left_block');
+		            elem.removeClass('show_left_block');
               $timeout(function(){
-                elm[0].classList.remove('show_left_higher');
+		              elem.removeClass('show_left_higher');
               }, 700);
             }
           };
 
           scope.toggle_status = function(){
+		          var elem = angular.element(elm[0]).find('.spvv-inline');
+		          console.log(elem)
             if(!scope.show_status){
-              elm[0].classList.add('show_right-block', 'show_right_higher');
+		            elem.addClass('show_right-block show_right_higher');
               scope.show_status = true;
             }
             else {
               scope.show_status = false;
-              elm[0].classList.remove('show_right-block');
+		            elem.removeClass('show_right-block');
               $timeout(function(){
-                elm[0].classList.remove('show_right_higher');
+		              elem.removeClass('show_right_higher');
               }, 700);
             }
           };
