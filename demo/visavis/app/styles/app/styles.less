@@ -38,13 +38,38 @@
 
   .spvv-banner {
     position: relative;
-    height: 371px;
+    height: 300px;
     padding-left: 102px;
     padding-top: 114px;
     margin-bottom: 20px;
-    background: #a9e0d7 url(../sp-img/bg.png) repeat;
     overflow: hidden;
     .box-sizing(border-box);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    &.bg_1 {
+      padding-left: 60px;
+      padding-top: 60px;
+      height: 300px;
+      background-image: url(../sp-img/bg_1.png);
+      background-position: left bottom;
+    }
+    &.bg_2 {
+      height: 370px;
+      background-image: url(../sp-img/bg_2.png);
+      background-position: right bottom;
+    }
+  }
+
+
+  .spvv-banner__list {
+    margin-left: 480px;
+    span {
+      font-family: @thin;
+      font-size: 18px;
+      line-height: 28px;
+      font-weight: 300;
+    }
   }
 
   .spvv-banner__text {
@@ -82,7 +107,7 @@
     right: 20px;
     top: -20px;
     z-index: 10;
-    background: url(../sp-img/bg-img.png) no-repeat;
+
   }
 
   //gifts
@@ -321,14 +346,28 @@
     position: relative;
     width: 100%;
 
-    &:before {
+//    &:before {
+//      content: '';
+//      position: absolute;
+//      left: 33px;
+//      top: 9px;
+//      width: 38px;
+//      height: 41px;
+//      background: url(../sp-img/icon-gift.svg) no-repeat;
+//    }
+
+    .spvv-task__inner__icon {
       content: '';
       position: absolute;
       left: 33px;
-      top: 9px;
-      width: 38px;
-      height: 41px;
-      background: url(../sp-img/icon-gift.svg) no-repeat;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      width: 45px;
+      height: 45px;
+      background-size: contain;
+      background-position: center center;
+      background-repeat: no-repeat;
     }
   }
 
@@ -446,6 +485,7 @@
     background-color: #e2e1da;
     .box-sizing(border-box);
     padding-top: 76px;
+//    padding-top: 50px;
     text-align: center;
   }
 
@@ -462,6 +502,9 @@
   .spvv_badge_title {
     color: #717171;
     font-family: @bold;
+    .black {
+      color: black;
+    }
   }
 
   .spvv_badge_desc {
@@ -612,6 +655,7 @@
     left: 0;
     bottom: 0;
     height: 109px;
+//    height: 85px;
   }
 
   .spvv-bl__btn {
@@ -641,6 +685,15 @@
     }
 
     .spvv-test {
+      display: block;
+    }
+  }
+  .spvv-tasks__slider.show_action {
+    .spvv-tasks__list {
+      display: none;
+    }
+
+    .spvv-action {
       display: block;
     }
   }
@@ -729,6 +782,80 @@
     padding-left: 100px;
     padding-right: 100px;
     text-align: left;
+  }
+
+  //
+  .spvv-action {
+    margin: 0 auto;
+    width: 760px;
+    margin-bottom: 60px;
+    padding-bottom: 47px;
+    background-color: #ffffff;
+    box-shadow: 0 7px 7px rgba(0, 0, 0, .23);
+    .spvv-action__head {
+      display: table;
+      width: 100%;
+      position: relative;
+      height: 83px;
+      padding: 16px 0;
+      background-color: #f6f6f6;
+      margin-bottom: 47px;
+      .box-sizing(border-box);
+
+      .spvv-action__head-back {
+        position: absolute;
+        left: 27px;
+        top: 24px;
+        width: 39px;
+        height: 39px;
+        background: url(../sp-img/icon-back.svg) no-repeat;
+        .transition(all .15s ease);
+
+        &:hover {
+          opacity: .8;
+        }
+      }
+
+      .spvv-action__head-title {
+        display: table-cell;
+        vertical-align: middle;
+        padding-left: 99px;
+        width: 562px;
+        font-size: 18px;
+        font-weight: 100;
+        text-align: left;
+        font-family: @thin;
+        color: #6e6e6e;
+        border-right: 1px solid #bebebe;
+      }
+
+      .spvv-action__head-points {
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+        font-size: 14px;
+        font-weight: 100;
+        font-family: @thin;
+        color: #ef69ab;
+        line-height: 1;
+
+        span {
+          display: block;
+          color: #ef69ab;
+          font-size: 22px;
+          font-weight: bold;
+          font-family: @bold;
+          line-height: 1;
+          margin-top: 5px;
+        }
+      }
+    }
+
+    .spvv-action__list {
+      padding-left: 100px;
+      padding-right: 100px;
+      text-align: left;
+    }
   }
 
   //spvv-quest
@@ -900,6 +1027,23 @@
       }
     }
 
+    .spvv_extra_block {
+      height: 380px;
+      background-size: 135px;
+      background-position: center 40px;
+      background-repeat: no-repeat;
+      text-align: center;
+      padding-top: 240px;
+      box-sizing: border-box;
+      &.bg_1 {
+        background-image: url(../sp-img/icon-box.svg);
+        background-size: 100px;
+      }
+      &.bg_2 {
+        background-image: url(../sp-img/icon-star.svg);
+      }
+    }
+
     .spvv_order_history {
       background-color: #bfc7ff;
       margin-right: 5px;
@@ -911,12 +1055,13 @@
     }
 
     .spvv_order_history, .spvv_favorites {
-      padding-top: 20px;
+      padding-top: 62px;
     }
 
     .spvv_block_title {
       font-family: @thin;
-      font-size: 25px;
+      font-size: 25px;    font-weight: 100;
+      margin: 0;
       text-align: center;
     }
 

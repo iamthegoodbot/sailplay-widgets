@@ -8,15 +8,20 @@
         restrict: 'E',
         replace: true,
         template: '<div class="spvv">\
-                    <div class="spvv-banner">\
-                      <div class="spvv-banner__text">\
-                        Бонусная программа\
-                      </div>\
-                      <div class="spvv-banner__subtext">\
+                    <div class="spvv-banner bg_1">\
+                      <ul class="spvv-banner__list">\
+                        <li><span>ПЕРСОНАЛЬНЫЕ ДАННЫЕ</span></li>\
+                        <li><span>ИСТОРИЯ ЗАКАЗОВ</span></li>\
+                        <li><span>ОТСЛЕЖИВАНИЕ </span></li>\
+                        <li><span>ИЗБРАННОЕ</span></li>\
+                        <li><span>ПОДАРКИ И БОНУСЫ</span></li>\
+                      </ul>\
+                    </div>\
+                    <div class="spvv-banner bg_2">\
+                      <div class="spvv-banner__subtext" style="padding-top: 104px;">\
                         Совершайте покупки, выполняйте задания, <br/>\
                         копите баллы и меняйте их на подарки\
                       </div>\
-                      <div class="spvv-banner__img"></div>\
                     </div>\
                   </div>',
         scope: true,

@@ -53,12 +53,15 @@
                       </div>\
                     </div>\
                     <div class="spvv-bl__right" style="padding: 0 6%;">\
-                      <div class="spvv-bl spvv-bl__status" style="width: 31%; margin: 0 1.1%; height: auto;" data-ng-repeat="badge in badges">\
+                      <div class="spvv-bl spvv-bl__status" style="padding-top:35px; width: 31%; margin: 0 1.1%; height: auto;" data-ng-repeat="badge in badges">\
                         <div class="spvv-bl__label-img">\
                           <img style="width: 80%; margin: 0 auto;" data-ng-src="{{ badge.thumbs.url_250x250 }}" class="spvv-bl__label"/>\
                         </div>\
                         <div>\
-                          <p class="spvv_badge_title">{{ badge.name }}</p>\
+                          <p class="spvv_badge_title">\
+                           <span class="black" data-ng-if="if_current(badge)">Ваш текущий статус</span>\
+                           <span data-ng-if="!if_current(badge)">{{ badge.name }}</span>\
+                           </p>\
                           <p class="spvv_badge_desc">\
                             {{ badge.descr }}\
                           </p>\
@@ -98,48 +101,62 @@
 
           scope.badges = [];
 
+		        var timerHistory = 0;
+		        var timerStatus = 0;
+
+		        scope.if_current = function(badge){
+				        return scope.user.user_status.name == badge.name ? true : false;
+		        };
+
           scope.toggle_history = function(){
 		          var elem = angular.element(elm[0]).find('.spvv-inline');
             if(!scope.show_history){
+		            $timeout.cancel(timerHistory);
 		            elem.addClass('show_left_block show_left_higher');
               scope.show_history = true;
             }
             else {
               scope.show_history = false;
 		            elem.removeClass('show_left_block');
-              $timeout(function(){
+		            timerHistory = $timeout(function(){
 		              elem.removeClass('show_left_higher');
               }, 700);
+		            if(typeof timerHistory == 'function') {
+				            timerHistory();
+		            }
             }
           };
 
           scope.toggle_status = function(){
 		          var elem = angular.element(elm[0]).find('.spvv-inline');
-		          console.log(elem)
-            if(!scope.show_status){
-		            elem.addClass('show_right-block show_right_higher');
+		          if(!scope.show_status){
+				          $timeout.cancel(timerStatus);
+				          elem.addClass('show_right-block show_right_higher');
               scope.show_status = true;
             }
             else {
               scope.show_status = false;
 		            elem.removeClass('show_right-block');
-              $timeout(function(){
+				          timerStatus = $timeout(function(){
 		              elem.removeClass('show_right_higher');
               }, 700);
+				          if(typeof timerStatus == 'function') {
+						          timerStatus();
+				          }
             }
           };
 
           SAILPLAY.on('load.user.info.success', function(user){
             scope.$apply(function(){
-              console.dir(user);
               scope.user = user;
+		            console.log('user: ', scope.user);
             });
           });
 
           SAILPLAY.on('load.user.history.success', function(history){
             scope.$apply(function(){
               scope.history = history;
-              console.dir(history);
+              //console.dir(history);
             });
           });
 
@@ -180,9 +197,11 @@
           };
 
           SAILPLAY.on('load.badges.list.success', function(data){
-            console.dir(data);
             scope.$apply(function(){
               scope.badges = data.one_level_badges;
+		            //console.log(121212121)
+		            //console.dir(scope.badges);
+
             });
           });
 

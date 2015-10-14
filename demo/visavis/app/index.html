@@ -55,11 +55,83 @@
 
       SAILPLAY.on('init.success', function(){
         console.log('init success');
-        SAILPLAY.send('login', 'b2c918e84be8de02d2b64e9bb6470d510ce1892c');
+//        SAILPLAY.send('login', 'b2c918e84be8de02d2b64e9bb6470d510ce1892c');
+        SAILPLAY.send('login', '59fd7cc38d152ccc89b430ca93eb443e7646f31e');
       });
 
-    });
-  </script>
+				});
+				var spData = {
+						"buy_tag" : true,
+						"tasks" :[
+								{
+										"type": 'action',
+										"title": "За регистрацию на сайте" ,
+										"url": "http://visavis-fashion.ru",
+										"tag": "За регистрацию на сайте",
+										"text" :"Зарегистрируйтесь на нашем сайте и получите 100 приветственных бонусов (заполнение всех полей анкеты обязательно)",
+										"scores": 100,
+										"image" : "sp-img/action-3.svg",
+										"order": 4
+								},
+								{
+										"type": 'action',
+										"title": "Отзывы на сайте" ,
+										"url": "http://visavis-fashion.ru",
+										"tag": "Отзывы на сайте",
+										"text" :"Оставляйте отзывы о товарах на нашем сайте и зарабатывайте 10 баллов за каждый отзыв. (Комментарий должен быть осмысленным и содержать более 5 слов. В течение 24 часов можно оставлять не более 5 комментариев)",
+										"scores": 10,
+										"image" : "sp-img/action-2.svg",
+										"order": 3
+								},
+								{
+										"type": 'action',
+										"title": "Отзывы в соц. сетях" ,
+										"url": "http://visavis-fashion.ru",
+										"tag": "Отзывы в соц. сетях",
+										"text" :"Выкладывайте свои фотографии в одеже ТМ VISAVIS на свою страницу в VK c cсылкой на сайт http://visavis-fashion.ru/ и получайте 50 баллов за каждое фото. (Можно выкладывать не более 5 фото в месяц)",
+										"scores": 50,
+										"image" : "sp-img/action-1.svg",
+										"order": 1
+								},
+								{
+										"type": "test",
+										"order": 2,
+										"title": "Пройти опрос",
+										"name": "Опрос 1",
+										"scores": 100,
+										"image" : "sp-img/test-1.svg",
+										"tag": "Закончил опрос 1",
+										"questions": [
+												{
+														"text": "Вопрос 1",
+														"options": [
+																{"text": "Вариант 1", "tag": "Тег 1"},
+																{"text": "Вариант 2", "tag": "Тег 2"},
+																{"text": "Вариант 3", "tag": "Тег 3"}
+														]
+												},
+												{
+														"text": "Вопрос 2",
+														"options": [
+																{"text": "Вариант 1", "tag": "Тег 1"},
+																{"text": "Вариант 2", "tag": "Тег 2"},
+																{"text": "Вариант 3", "tag": "Тег 3"}
+														]
+												},
+												{
+														"text": "Вопрос 3",
+														"options": [
+																{"text": "Вариант 1", "tag": "Тег 1"},
+																{"text": "Вариант 2", "tag": "Тег 2"},
+																{"text": "Вариант 3", "tag": "Тег 3"}
+														]
+												}
+										]
+								}
+						]
+				}
+
+		</script>
 
 </head>
 

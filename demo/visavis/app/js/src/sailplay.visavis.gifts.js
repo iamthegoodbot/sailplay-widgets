@@ -7,7 +7,7 @@
       return {
         restrict: 'E',
         replace: true,
-        template: '<div class="spvv">\
+        template: '<div class="spvv" data-ng-show="show">\
                      <div class="spvv-gifts">\
                       <div class="spvv-simple__title">\
                         подарки\
@@ -39,6 +39,8 @@
                   </div>',
         scope: true,
         link: function(scope){
+
+		        scope.show =  spData.buy_tag && true;
 
           scope.gifts = [];
 
