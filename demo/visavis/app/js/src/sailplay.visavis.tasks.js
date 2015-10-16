@@ -1,7 +1,7 @@
 (function () {
 
 
-		angular.module('visavis.tasks', [])
+		angular.module('visavis.tasks', ['ngSanitize'])
 
 				.directive('sailplayTasks', function () {
 
@@ -17,17 +17,18 @@
 														'<div class="spvv-tasks__list">' +
 																'<div class="spvv-tasks__list-inner">' +
 
-																		'<a class="spvv-task" href="javascript:void(0)" data-ng-repeat="item in data | orderBy: \'order\'" data-ng-click="$parent.current_data = item; item.type == \'test\' ? test(item) : action(item) ;"> ' +
+																		'<div class="spvv-task" data-ng-repeat="item in data | orderBy: \'order\'" data-ng-click="$parent.current_data = item; item.type == \'test\' ? test(item) : action(item) ;"> ' +
 																		'<span class="spvv-task__inner">' +
 																				'<div class="spvv-task__inner__icon" style="background-image: url({{ item.image }})"></div>' +
 																				'<span class="spvv-task__name">' +
 																					 '{{ item.title }}' +
 																				'</span>' +
 																				'<span class="spvv-task__count">' +
-																						'<span>{{ item.scores }}</span> баллов' +
+																						'<span data-ng-if="isInfinity(item.scores)" class="spvv-icon-infinite"></span>' +
+																						'<span data-ng-if="!isInfinity(item.scores)">{{ item.scores }}</span> баллов' +
 																				'</span>' +
 																		'</span>' +
-																		'</a>'+
+																		'</div>'+
 
 																'</div>' +
 														'</div>' +
@@ -64,8 +65,8 @@
 																	'<div class="spvv-action__head-title">{{ current_data.title }}</div>' +
 																	'<div class="spvv-action__head-points"><span>{{ current_data.scores }}</span> баллов</div>' +
 																'</div>' +
-																'<div class="spvv-test__list">' +
-																		'{{  current_data.text }}'  +
+																'<div class="spvv-action__list"  data-ng-bind-html="current_data.text">' +
+																		//'{{  current_data.text }}'  +
 																'</div>' +
 														'</div>' +
 
@@ -90,6 +91,11 @@
 
 						   scope.test = function (item){
 								   scope.show_test = true;
+									};
+
+									scope.isInfinity = function(value){
+										//	console.log('check ' , value,value === 'infinity');
+											return value === 'infinity' ? true : false;
 									};
 
 									scope.select = function(e, item){
@@ -137,7 +143,7 @@
 									};
 
 									SAILPLAY.on('tags.add.success', function(res){
-											console.log('tags added: ', res);
+										//	console.log('tags added: ', res);
 											scope.$apply(function(){
 													if(scope.current_data.type && scope.current_data.type == 'action') {
 															window.location.href = scope.current_data.url;

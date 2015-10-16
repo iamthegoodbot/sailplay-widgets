@@ -389,16 +389,45 @@
   margin-bottom: 40px;
 }
 .spvv .spvv-slider {
-  width: 770px;
-  text-align: justify;
+  width: 765px;
   margin: 60px auto 40px;
-}
-.spvv .spvv-slider:after {
-  content: '';
-  display: inline-block;
-  vertical-align: top;
-  width: 100%;
+  font-size: 0;
   overflow: hidden;
+  height: auto;
+}
+.spvv .spvv-slider__navigation {
+  position: absolute;
+  bottom: 240px;
+  display: block;
+  background: url('../sp-img/gifts_arrow.png') no-repeat center center;
+  background-size: contain;
+  cursor: pointer;
+  width: 30px;
+  height: 50px;
+  transition: 0.3s ease-out;
+}
+.spvv .spvv-slider__navigation:hover {
+  transform: scale(1.1);
+}
+.spvv .spvv-slider__navigation.prev {
+  left: 40px;
+  transform: rotate(180deg);
+}
+.spvv .spvv-slider__navigation.prev:hover {
+  transform: scale(1.1) rotate(180deg);
+}
+.spvv .spvv-slider__navigation.next {
+  right: 40px;
+}
+.spvv .spvv-slider__navigation.disabled {
+  opacity: .5;
+  cursor: default;
+}
+.spvv .spvv-slider__wrapper {
+  white-space: nowrap;
+  height: auto;
+  position: relative;
+  left: 0;
 }
 .spvv .spvv-slider__i {
   display: inline-block;
@@ -566,6 +595,7 @@
 .spvv .spvv-task {
   display: block;
   float: left;
+  cursor: pointer;
   margin: 0 19px 18px 0;
   background-color: #ffffff;
   width: 372px;
@@ -599,13 +629,15 @@
   display: table-cell;
   text-align: left;
   padding-left: 102px;
-  width: 172px;
   border-right: 2px solid #c5c5c5;
   vertical-align: middle;
   font-size: 14px;
   font-weight: 100;
   font-family: 'Conv_pfdindisplaypro', Arial, sans-serif;
   color: #717171;
+  box-sizing: border-box;
+  width: 275px;
+  padding-right: 10px;
 }
 .spvv .spvv-task__count {
   display: table-cell;
@@ -627,7 +659,12 @@
   margin-top: 5px;
 }
 .spvv .spvv-icon-infinite {
-  display: inline-block;
+  display: block;
+  background: url('../sp-img/infinity.png') no-repeat center center;
+  background-size: contain;
+  height: 25px;
+  width: 50px;
+  margin: 0 auto;
 }
 .spvv .spvv-inline {
   text-align: justify;
@@ -712,6 +749,7 @@
 }
 .spvv .spvv_badge_desc {
   font-family: 'Conv_pfdindisplaypro', Arial, sans-serif;
+  padding: 0 5px;
 }
 .spvv .spvv-bl__left {
   position: absolute;
@@ -1048,6 +1086,9 @@
   padding-left: 100px;
   padding-right: 100px;
   text-align: left;
+}
+.spvv .spvv-action .spvv-action__list a {
+  text-decoration: underline;
 }
 .spvv .spvv-quest__hint {
   font-size: 14px;

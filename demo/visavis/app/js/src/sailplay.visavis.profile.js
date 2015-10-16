@@ -53,7 +53,7 @@
                       </div>\
                     </div>\
                     <div class="spvv-bl__right" style="padding: 0 6%;">\
-                      <div class="spvv-bl spvv-bl__status" style="padding-top:35px; width: 31%; margin: 0 1.1%; height: auto;" data-ng-repeat="badge in badges">\
+                      <div class="spvv-bl spvv-bl__status" style="padding-top:35px; width: 31%; margin: 0 1.1%; height: auto;" data-ng-repeat="badge in badges | orderBy: \'id\'">\
                         <div class="spvv-bl__label-img">\
                           <img style="width: 80%; margin: 0 auto;" data-ng-src="{{ badge.thumbs.url_250x250 }}" class="spvv-bl__label"/>\
                         </div>\
@@ -105,7 +105,11 @@
 		        var timerStatus = 0;
 
 		        scope.if_current = function(badge){
-				        return scope.user.user_status.name == badge.name ? true : false;
+				        if(scope.user && scope.user.user_status) {
+				          return scope.user.user_status.name == badge.name ? true : false;
+				        } else {
+						        return false;
+				        }
 		        };
 
           scope.toggle_history = function(){
@@ -149,7 +153,6 @@
           SAILPLAY.on('load.user.info.success', function(user){
             scope.$apply(function(){
               scope.user = user;
-		            console.log('user: ', scope.user);
             });
           });
 

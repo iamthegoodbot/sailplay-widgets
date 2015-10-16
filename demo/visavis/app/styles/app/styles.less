@@ -162,17 +162,47 @@
   }
 
   .spvv-slider {
-    width: 770px;
-    text-align: justify;
+    width: 765px;
     margin: 60px auto 40px;
+    font-size: 0;
+    overflow: hidden;
+    height: auto;
+  }
 
-    &:after {
-      content: '';
-      display: inline-block;
-      vertical-align: top;
-      width: 100%;
-      overflow: hidden;
+  .spvv-slider__navigation {
+    position: absolute;
+    bottom: 240px;
+    display: block;
+    background: url('../sp-img/gifts_arrow.png') no-repeat center center;
+    background-size: contain;
+    cursor: pointer;
+    width: 30px;
+    height: 50px;
+    transition: .3s ease-out;
+    &:hover {
+      transform: scale(1.1);
     }
+    &.prev {
+      left: 40px;
+      transform: rotate(180deg);
+      &:hover {
+        transform: scale(1.1) rotate(180deg);
+      }
+    }
+    &.next {
+      right: 40px;
+    }
+    &.disabled {
+      opacity: .5;
+      cursor: default;
+    }
+  }
+
+  .spvv-slider__wrapper {
+    white-space: nowrap;
+    height: auto;
+    position: relative;
+    left: 0;
   }
 
   .spvv-slider__i {
@@ -331,6 +361,7 @@
   .spvv-task {
     display: block;
     float: left;
+    cursor: pointer;
     margin: 0 19px 18px 0;
     background-color: #ffffff;
     width: 372px;
@@ -375,13 +406,17 @@
     display: table-cell;
     text-align: left;
     padding-left: 102px;
-    width: 172px;
+//    width: 172px;
     border-right: 2px solid #c5c5c5;
     vertical-align: middle;
     font-size: 14px;
     font-weight: 100;
     font-family: @thin;
     color: #717171;
+    box-sizing: border-box;
+    width: 275px;
+    padding-right: 10px;
+
   }
 
   .spvv-task__count {
@@ -406,7 +441,12 @@
   }
 
   .spvv-icon-infinite {
-    display: inline-block;
+    display: block;
+    background: url('../sp-img/infinity.png') no-repeat center center;
+    background-size: contain;
+    height: 25px;
+    width: 50px;
+    margin: 0 auto;
   }
 
   // blocks
@@ -509,6 +549,7 @@
 
   .spvv_badge_desc {
     font-family: @thin;
+    padding: 0 5px;
   }
 
   .spvv-bl__left {
@@ -855,6 +896,9 @@
       padding-left: 100px;
       padding-right: 100px;
       text-align: left;
+      a {
+        text-decoration: underline;
+      }
     }
   }
 
