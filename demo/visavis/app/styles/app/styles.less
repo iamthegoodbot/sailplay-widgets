@@ -164,7 +164,6 @@
   .spvv-slider {
     width: 765px;
     margin: 60px auto 40px;
-    font-size: 0;
     overflow: hidden;
     height: auto;
   }
@@ -179,13 +178,13 @@
     width: 30px;
     height: 50px;
     transition: .3s ease-out;
-    &:hover {
+    &:hover:not(.disabled) {
       transform: scale(1.1);
     }
     &.prev {
       left: 40px;
       transform: rotate(180deg);
-      &:hover {
+      &:hover:not(.disabled) {
         transform: scale(1.1) rotate(180deg);
       }
     }
@@ -202,6 +201,8 @@
     white-space: nowrap;
     height: auto;
     position: relative;
+    font-size: 0;
+    .transition(.2s ease-out);
     left: 0;
   }
 

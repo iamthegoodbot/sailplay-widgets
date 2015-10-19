@@ -143,7 +143,6 @@
 .spvv .spvv-slider {
   width: 765px;
   margin: 60px auto 40px;
-  font-size: 0;
   overflow: hidden;
   height: auto;
 }
@@ -158,14 +157,14 @@
   height: 50px;
   transition: 0.3s ease-out;
 }
-.spvv .spvv-slider__navigation:hover {
+.spvv .spvv-slider__navigation:hover:not(.disabled) {
   transform: scale(1.1);
 }
 .spvv .spvv-slider__navigation.prev {
   left: 40px;
   transform: rotate(180deg);
 }
-.spvv .spvv-slider__navigation.prev:hover {
+.spvv .spvv-slider__navigation.prev:hover:not(.disabled) {
   transform: scale(1.1) rotate(180deg);
 }
 .spvv .spvv-slider__navigation.next {
@@ -179,6 +178,11 @@
   white-space: nowrap;
   height: auto;
   position: relative;
+  font-size: 0;
+  -webkit-transition: 0.2s ease-out;
+  -moz-transition: 0.2s ease-out;
+  -o-transition: 0.2s ease-out;
+  transition: 0.2s ease-out;
   left: 0;
 }
 .spvv .spvv-slider__i {

@@ -25,10 +25,10 @@
                       </div>\
                       <div class="spvv-slider__navigation prev" data-ng-class="{ \'disabled\' : !loop && page == 0 }"\
                       data-ng-click="prev()"></div>\
-                      <div class="spvv-slider__navigation next" data-ng-class="{ \'disabled\' :  !loop && page == gifts.length - 1 }"\
+                      <div class="spvv-slider__navigation next" data-ng-class="{ \'disabled\' :  !loop && page == max }"\
                       data-ng-click="next()"></div>\
                       <div class="spvv-slider">\
-		                     <div class="spvv-slider__wrapper">\
+		                     <div class="spvv-slider__wrapper" data-ng-style="{ left : left }">\
                         <div class="spvv-slider__i" data-ng-repeat="gift in gifts"  on-last-repeat>\
                           <img data-ng-src="{{ gift.thumbs.url_250x250 }}"/>\
                           <div class="spvv-slider__i-content">\
@@ -59,28 +59,41 @@
           scope.gifts = [];
 
 		        // loop slider
-		        scope.loop = true;
+		        scope.loop = false;
 
 		        scope.page = 0;
+
+		        scope.left = 0;
+
+		        scope.max = 0;
+
+		        var item_width = 0;
 
           scope.user = false;
 
 		        scope.items_per_page = 0;
 
 		        scope.next = function(){
+				        if(!scope.loop && scope.page == scope.max) {
+						        return;
+				        }
 				        scope.action(scope.page + 1);
 		        };
 
 		        scope.prev = function(){
+				        if(!scope.loop && scope.page == 0) {
+						        return;
+				        }
 				        scope.action(scope.page - 1);
 		        };
 
 		        scope.action = function(page){
 				        var nextPage;
-				        nextPage = page < 0 ? scope.gifts.length - 1: page;
-				        nextPage = page > scope.gifts.length - 1 ? 0 : page;
+				        nextPage = page < 0 ? scope.max : page;
+				        nextPage = page > scope.max ? 0 : page;
 				        scope.page = nextPage;
-				        console.log(nextPage)
+				        scope.left = -Math.abs(scope.page * item_width);
+				        console.log(scope.left)
 		        };
 
           scope.gift_purchase = function(gift){
@@ -93,15 +106,15 @@
             SAILPLAY.send('load.user.history');
           });
 
-
-
 		        scope.$on('giftsListEnded', function(s, e, a){
-				        var _wrapper = angular.element(el).find('.spvv-slider');
-				        var _items = angular.element(el).find('.spvv-slider__i');
-				        console.log(_items)
-				        //var _width = Math.floor(_wrapper.width()/_items[0].width()) ? Math.floor(_wrapper.width()/_items[0].width()) : 0;
-				        //scope.items_per_page = _width;
-				        //console.log(_width)
+				        scope.$apply(function(){
+						        var _wrapper_width = angular.element(el).find('.spvv-slider').width();
+						        var _margin = parseInt(angular.element(angular.element(el).find('.spvv-slider__i')[0]).css('margin-right')) + parseInt(angular.element(angular.element(el).find('.spvv-slider__i')[0]).css('margin-left'));
+						        var _item_width = angular.element(angular.element(el).find('.spvv-slider__i')[0]).width() + _margin;
+						        item_width = _item_width;
+						        scope.items_per_page = Math.round(_wrapper_width/_item_width);
+						        scope.max = scope.gifts.length - scope.items_per_page;
+				        })
 		        });
 
 
@@ -109,10 +122,6 @@
             scope.$apply(function(){
               scope.gifts = gifts;
               //console.dir(scope.gifts);
-
-
-
-
             });
           });
 

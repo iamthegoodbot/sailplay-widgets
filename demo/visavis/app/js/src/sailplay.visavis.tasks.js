@@ -63,7 +63,10 @@
 																'<div class="spvv-action__head">' +
 																	'<a class="spvv-action__head-back" href="javascript: void(0);" data-ng-click="back()"></a>' +
 																	'<div class="spvv-action__head-title">{{ current_data.title }}</div>' +
-																	'<div class="spvv-action__head-points"><span>{{ current_data.scores }}</span> баллов</div>' +
+																	'<div class="spvv-action__head-points">' +
+																		'<span data-ng-if="isInfinity(current_data.scores)" class="spvv-icon-infinite"></span>' +
+																		'<span data-ng-if="!isInfinity(current_data.scores)">{{ current_data.scores }}</span> баллов' +
+								         '</div>' +
 																'</div>' +
 																'<div class="spvv-action__list"  data-ng-bind-html="current_data.text">' +
 																		//'{{  current_data.text }}'  +
