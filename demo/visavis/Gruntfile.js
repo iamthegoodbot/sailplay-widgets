@@ -7,7 +7,17 @@ module.exports = function (grunt) {
       dist: {
         src: [
           //lib section
-          'app/js/**/*.js',
+          //'app/js/**/*.js',
+		        'app/js/src/sailplay_hub.js',
+          'app/js/src/angular.js',
+          'app/js/src/angular-pagination.js',
+          'app/js/src/angular-sanitize.js',
+          'app/js/src/sailplay.visavis.banner.js',
+          'app/js/src/sailplay.visavis.extra.js',
+          'app/js/src/sailplay.visavis.gifts.js',
+          'app/js/src/sailplay.visavis.js',
+          'app/js/src/sailplay.visavis.profile.js',
+          'app/js/src/sailplay.visavis.tasks.js'
         ],
         dest: 'app/js/dist/sailplay_pj.js'
       }
@@ -15,14 +25,14 @@ module.exports = function (grunt) {
     ngAnnotate: {
       annotate: {
         files: {
-          'js/dist/sailplay_pj.js': ['js/dist/sailplay_pj.js']
+          'app/js/dist/sailplay_pj.js': ['app/js/dist/sailplay_pj.js']
         }
       }
     },
     uglify: {
       min: {
-        src: ['js/dist/sailplay_pj.js'],
-        dest: 'js/dist/sailplay_pj.min.js'
+        src: ['app/js/dist/sailplay_pj.js'],
+        dest: 'app/js/dist/sailplay_pj.min.js'
       }
     }
   });
