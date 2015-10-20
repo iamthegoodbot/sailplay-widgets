@@ -7,9 +7,9 @@ module.exports = function (grunt) {
       dist: {
         src: [
           //lib section
-          'js/*.js',
+          'app/js/**/*.js',
         ],
-        dest: 'js/dist/sailplay_pj.js'
+        dest: 'app/js/dist/sailplay_pj.js'
       }
     },
     ngAnnotate: {
