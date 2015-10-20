@@ -39,10 +39,10 @@
   <link href="styles/app.css" type="text/css" rel="stylesheet">
   <!--<script src="js/main.js"></script>-->
 
-  <!--<script src="js/src/sailplay_hub.js"></script>-->
 
   <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>-->
 
+		<!--<script src="js/src/sailplay_hub.js"></script>-->
   <!--<script src="js/src/angular.js"></script>-->
   <!--<script src="js/src/angular-sanitize.js"></script>-->
   <!--<script src="js/src/angular-pagination.js"></script>-->
@@ -54,7 +54,7 @@
   <!--<script src="js/src/sailplay.visavis.js"></script>-->
 
 
-  <script src="js/dist/sailplay_pj.min.js"></script>
+  <script src="js/dist/sailplay_visavis.min.js"></script>
 
 
   <script>
@@ -63,9 +63,7 @@
       SAILPLAY && SAILPLAY.send('init', { partner_id: 1483, domain: 'http://sailplay.ru' });
 
       SAILPLAY.on('init.success', function(){
-        console.log('init success');
-//        SAILPLAY.send('login', 'b2c918e84be8de02d2b64e9bb6470d510ce1892c');
-        SAILPLAY.send('login', '59fd7cc38d152ccc89b430ca93eb443e7646f31e');
+        SAILPLAY.send('login', '');
       });
 
 				});

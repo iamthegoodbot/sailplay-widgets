@@ -19,20 +19,20 @@ module.exports = function (grunt) {
           'app/js/src/sailplay.visavis.profile.js',
           'app/js/src/sailplay.visavis.tasks.js'
         ],
-        dest: 'app/js/dist/sailplay_pj.js'
+        dest: 'app/js/dist/sailplay_visavis.js'
       }
     },
     ngAnnotate: {
       annotate: {
         files: {
-          'app/js/dist/sailplay_pj.js': ['app/js/dist/sailplay_pj.js']
+          'app/js/dist/sailplay_visavis.js': ['app/js/dist/sailplay_visavis.js']
         }
       }
     },
     uglify: {
       min: {
-        src: ['app/js/dist/sailplay_pj.js'],
-        dest: 'app/js/dist/sailplay_pj.min.js'
+        src: ['app/js/dist/sailplay_visavis.js'],
+        dest: 'app/js/dist/sailplay_visavis.min.js'
       }
     }
   });
