@@ -240,7 +240,7 @@ var SAILPLAY = (function () {
       alert('SailPlay: provide partner_id');
       return;
     }
-    JSONP.get((params.domain || 'http://sailplay.ru') + '/js-api/' + params.partner_id + '/config/', { lang: params.lang || 'ru', dep_id: params.dep_id }, function (response) {
+    JSONP.get((params.domain || 'http://sailplay.ru') + '/js-api/' + params.partner_id + '/config/', { lang: params.lang || 'ru', dep_id: (params.dep_id || '') }, function (response) {
       if (response && response.status == 'ok') {
         _config = response.config;
         _config.DOMAIN = (params.domain || 'http://sailplay.ru');
@@ -514,8 +514,6 @@ var SAILPLAY = (function () {
       if (res.status == 'ok') {
         _actions_config = res.data;
 
-        Actions.social_init();
-
         sp.send('load.actions.list.success', res.data);
       } else {
         sp.send('load.actions.list.error', res);
@@ -524,59 +522,71 @@ var SAILPLAY = (function () {
   });
 
   //PERFORM ACTION
+  //actions v2 section
+  sp.on('actions.parse', function (actions) {
+    if(_config == {}){
+      initError();
+      return;
+    }
+
+    if(actions && Array.isArray(actions)) {
+      Actions.social_init(actions);
+    }
+    else {
+      sp.send('actions.perform.error', { message: 'Actions list needed' });
+    }
+
+  });
+
+
   var Actions = {};
 
-  Actions.social_init = function(){
-    if(Actions.social_inited) return;
+  Actions.social_init = function(actions){
 
-    setInterval(function(){
+    var social_buttons = document.querySelectorAll('[data-sp-action]');
 
-      var social_buttons = document.querySelectorAll('[data-sp-action]');
+    for(var i = 0; i < social_buttons.length; i+=1) {
 
-      for(var i = 0; i < social_buttons.length; i+=1) {
+      (function(){
+        var btn = social_buttons[i];
 
-        (function(){
-          var btn = social_buttons[i];
+        if(btn.inited) return;
 
-          if(btn.inited) return;
+        var action_id = Number(btn.getAttribute('data-sp-action'));
 
-          var action_id = Number(btn.getAttribute('data-sp-action'));
+        var action = sp.find_by_properties((actions ||_actions_config.actions), { _actionId: action_id })[0];
 
-          var action = sp.find_by_properties(_actions_config.actions, { _actionId: action_id })[0];
+        if(!action || !_actions_config.connectedAccounts) return;
 
-          if(!action || !_actions_config.connectedAccounts) return;
+        btn.inited = true;
 
-          btn.inited = true;
+        var action_frame = document.createElement('IFRAME');
+        action_frame.style.border = 'none';
+        action_frame.style.width = '150px';
+        action_frame.style.height = '30px';
+        action_frame.style.background = 'transparent';
+        action_frame.style.overflow = 'hidden';
+        action_frame.setAttribute('scrolling', 'no');
+        action_frame.className = 'sailplay_action_frame';
 
-          var action_frame = document.createElement('IFRAME');
-          action_frame.style.border = 'none';
-          action_frame.style.width = '150px';
-          action_frame.style.height = '30px';
-          action_frame.style.background = 'transparent';
-          action_frame.style.overflow = 'hidden';
-          action_frame.setAttribute('scrolling', 'no');
-          action_frame.className = 'sailplay_action_frame';
+        var frameUrl = _config.DOMAIN + '/js-api/' + _config.partner.id + '/actions/social-widget/v2/?auth_hash=' + _config.auth_hash;
+        frameUrl += '&socialType=' + action.socialType + '&action=' + action.action + '&link=' + action.shortLink + '&pic=' + (_actions_config.partnerCustomPic ? _actions_config.partnerCustomPic : _config.partner.logo);
 
-          var frameUrl = _config.DOMAIN + '/js-api/' + _config.partner.id + '/actions/social-widget/?auth_hash=' + _config.auth_hash;
-          frameUrl += '&socialType=' + action.socialType + '&action=' + action.action + '&link=' + action.shortLink + '&pic=' + (_actions_config.partnerCustomPic ? _actions_config.partnerCustomPic : _config.partner.logo);
+        frameUrl += '&msg=' + _actions_config.messages[action.action];
+        frameUrl += '&_actionId=' + action['_actionId'];
+        frameUrl += '&account_connected=' + _actions_config.connectedAccounts[action.socialType] || false;
 
-          frameUrl += '&msg=' + _actions_config.messages[action.action];
-          frameUrl += '&_actionId=' + action['_actionId'];
-          frameUrl += '&account_connected=' + _actions_config.connectedAccounts[action.socialType] || false;
+        if (action.action == 'purchase') {
+          frameUrl += '&purchasePublicKey=' + _actions_config.purchasePublicKey;
+        }
 
-          if (action.action == 'purchase') {
-            frameUrl += '&purchasePublicKey=' + _actions_config.purchasePublicKey;
-          }
+        action_frame.src = frameUrl;
+        btn.innerHTML = '';
+        btn.appendChild(action_frame);
 
-          action_frame.src = frameUrl;
-          btn.innerHTML = '';
-          btn.appendChild(action_frame);
+      }());
 
-        }());
-
-      }
-
-    }, 1000);
+    }
 
     function onActionMessage(messageEvent) {
       var data= {};
@@ -590,6 +600,9 @@ var SAILPLAY = (function () {
       if(data.name == 'actions.perform.error'){
         sp.send('actions.perform.error', data);
       }
+      if(data.name == 'actions.social.connect.complete'){
+        sp.send('actions.social.connect.complete', data);
+      }
 
     }
 
@@ -599,7 +612,97 @@ var SAILPLAY = (function () {
 
   };
 
-  Actions.social_inited = false;
+  //actions v1 section
+
+  Actions.openSocialRegNeedPopup = function (action) {
+    var w;
+    if (action.socialType == 'vk')
+      w = Actions.popupWindow(_actions_config.social.vk.authUrl, 'social_reg', 840, 400);
+    else
+      w = Actions.popupWindow(_actions_config.social[action.socialType].authUrl, 'social_reg');
+
+    var checkPopupInterval = setInterval(function () {
+      if (w == null || w.closed) {
+        sp.send('actions.social.connect.complete');
+        clearInterval(checkPopupInterval);
+      }
+    }, 100);
+  };
+
+  Actions.popupWindow = function (url, title, w, h) {
+    var width, height, left, top;
+    if (w !== undefined && h !== undefined) {
+      width = w;
+      height = h;
+      left = (screen.width / 2) - (w / 2);
+      top = (screen.height / 2) - (h / 2);
+    } else {
+      width = screen.width / 2;
+      height = screen.height / 2;
+      left = width - (width / 2);
+      top = height - (height / 2);
+    }
+
+    return window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, copyhistory=no, width=' + width + ', height=' + height + ', top=' + top + ', left=' + left);
+
+  };
+
+  Actions.share = function (action) {
+
+    var frameUrl = _config.DOMAIN + '/js-api/' + _config.partner.id + '/actions/social-widget/?auth_hash=' + _config.auth_hash;
+    frameUrl += '&socialType=' + action.socialType + '&action=' + action.action + '&link=' + action.shortLink + '&pic=' + (_actions_config.partnerCustomPic ? _actions_config.partnerCustomPic : _config.partner.logo);
+
+    frameUrl += '&msg=' + _actions_config.messages[action.action];
+    frameUrl += '&_actionId=' + action['_actionId'];
+
+    if (action.action == 'purchase') {
+      frameUrl += '&purchasePublicKey=' + _actions_config.purchasePublicKey;
+    }
+
+    var socialFrame = Actions.popupWindow(frameUrl, 'social_action', 200, 210);
+    var checkPopupInterval = setInterval(function () {
+      if (socialFrame == null || socialFrame.closed) {
+        sp.send('actions.perform.complete', action);
+        clearInterval(checkPopupInterval);
+      }
+    }, 200);
+
+  };
+
+  Actions.perform = function(action){
+    var frameUrl = _config.DOMAIN + '/popup/' + _config.partner.id + '/widgets/custom/' + action.type  + '/?auth_hash=' + _config.auth_hash;
+    frameUrl += '&lang=' + _config.lang;
+    frameUrl += '&from_sdk=0';
+    var actionFrame = Actions.popupWindow(frameUrl, 'SailPlay', 600, 400);
+    var checkPopupInterval = setInterval(function () {
+      if (actionFrame == null || actionFrame.closed) {
+        sp.send('actions.perform.complete', action);
+        clearInterval(checkPopupInterval);
+      }
+    }, 200);
+  };
+
+  sp.on('actions.perform', function (action) {
+    if(_config == {}){
+      initError();
+      return;
+    }
+    if (_config.auth_hash) {
+      sp.send('actions.perform.start', action);
+      if (action.socialType && _actions_config.connectedAccounts) {
+        if (!_actions_config.connectedAccounts[action.socialType]) {
+          Actions.openSocialRegNeedPopup(action);
+        } else {
+          Actions.share(action);
+        }
+      }
+      else if(!action.socialType){
+        Actions.perform(action);
+      }
+    } else {
+      sp.send('actions.perform.auth.error', action);
+    }
+  });
 
   //PROMO-CODES SECTION
   sp.on('promocodes.apply', function (promocode) {
