@@ -592,18 +592,24 @@ var SAILPLAY = (function () {
       var data= {};
       if(messageEvent.origin == _config.DOMAIN){
         data = JSON.parse(messageEvent.data);
+        switch (data.name) {
+          case 'actions.perform.success':
+            sp.send('actions.perform.success', data);
+            break;
+          case 'actions.perform.error':
+            sp.send('actions.perform.error', data);
+            break;
+          case 'actions.social.connect.complete':
+            sp.send('actions.social.connect.complete', data);
+            break;
+          case 'actions.social.connect.success':
+            sp.send('actions.social.connect.success', data);
+            break;
+          case 'actions.social.connect.error':
+            sp.send('actions.social.connect.error', data);
+            break;
+        }
       }
-      if(data.name == 'actions.perform.success'){
-        sp.send('actions.perform.success', data);
-        return;
-      }
-      if(data.name == 'actions.perform.error'){
-        sp.send('actions.perform.error', data);
-      }
-      if(data.name == 'actions.social.connect.complete'){
-        sp.send('actions.social.connect.complete', data);
-      }
-
     }
 
     window.addEventListener("message", onActionMessage, false);
