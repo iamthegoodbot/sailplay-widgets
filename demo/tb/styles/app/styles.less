@@ -1054,6 +1054,78 @@
             font-weight: bold;
         }
     }
+
+  //gifts coupon section
+  .sptb-gift-coupon {
+    position: fixed;
+    width: 480px;
+    height: 400px;
+    background-color: #ffffff;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    display: none;
+    font-size: 16px;
+    .sptb-no-disc-message {
+      display: block;
+    }
+    .sptb-disc-message {
+      display: none;
+    }
+    &.visible {
+      display: block !important;
+    }
+    &.sptb-is-discount {
+      height: 260px;
+      min-height: 260px;
+      .sptb-no-disc-message {
+        display: none !important;
+      }
+      .sptb-disc-message {
+        display: block !important;
+      }
+    }
+    .sptb-gift-coupon-footer {
+      background-color: #fec830;
+      border-top: 2px dashed #ffffff;
+      border-radius: 0 0 5px 5px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      padding: 20px 0;
+      color: #000000;
+      .sptb-bold {
+        font-size: 20px;
+      }
+    }
+    .sptb-popup-close {
+      color: #666666;
+      text-decoration: none;
+      font-size: 25px;
+      width: 25px;
+      height: 25px;
+      top: 8px;
+      right: 12px;
+      &:hover {
+        color: darken(#666666, 20%);
+      }
+    }
+    .sptb-bold {
+      font-family: @intro;
+      font-weight: bold;
+    }
+    .sptb-gift-coupon-text {
+      padding: 0 20px;
+    }
+    .sptb-mark {
+      color: #8a8a8a;
+    }
+  }
+
 }
 
 .sptb-sum{

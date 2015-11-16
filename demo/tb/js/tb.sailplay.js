@@ -502,9 +502,38 @@
               '</div>  ' +
             '</div>  ' +
           '</div>  ' +
+          '<div class="sptb-popup sptb-gift-coupon {{#show_coupon_popup}}visible{{/show_coupon_popup}} {{#is_discount}}sptb-is-discount{{/is_discount}}">' +
+            '<a class="sptb-popup-close" href="#" data-sp-click="hide_coupon_popup">&#215;</a>' +
+            '<div class="sptb-popup-title" style="padding-top: 40px;"> ПОЗДРАВЛЯЕМ! </div>' +
+            '<div class="sptb-no-disc-message">' +
+              '<div class="sptb-gift-coupon-text">' +
+                'Для получения подарка свяжитесь с нами и сообщите номер полученного купона. Спасибо!' +
+              '</div>' +
+              '<div class="sptb-gift-coupon-text" style="margin-top: 20px; font-size: 14px;">' +
+                'Телефон <span class="sptb-mark">(Бесплатно по России)</span>:' +
+                '<div class="sptb-bold" style="font-size: 16px; margin-top: 6px;">8 (800) 555-54-76</div>' +
+              '</div>' +
+              '<div class="sptb-gift-coupon-text" style="margin-top: 20px; font-size: 14px;">' +
+                'Почта:' +
+                '<div class="sptb-bold" style="font-size: 16px; margin-top: 6px;">info@tbff.ru</div>' +
+              '</div>' +
+            '</div>' +
+            '<div class="sptb-disc-message">' +
+              '<div class="sptb-gift-coupon-text">' +
+              'Вы получили купон на скидку!' +
+              '</div>' +
+            '</div>' +
+            '<div class="sptb-gift-coupon-footer">  ' +
+              'Номер вашего купона: </br>' +
+              '<div class="sptb-bold"> {{ coupon.coupon_number }} </div>' +
+            '</div>' +
+//            '<a class="sptb-popup-btn sptb-btn" href="{{data.url}}">Воспользоваться баллами</a> ' +
+          '</div>  ' +
       '</div>',
     init: function(self){
       var scope = self.scope;
+
+      scope.close_icon = 'sp-img/icon-close-light.png';
 
       var root = function(){
         return self.root.getElementsByClassName('sptb')[0];
@@ -603,6 +632,22 @@
       scope.gift_purchase = function(){
         SP.send('gifts.purchase', scope.selected_gift);
       };
+
+      scope.show_coupon_popup = false;
+
+      scope.is_discount = false;
+
+      scope.hide_coupon_popup = function(){
+        scope.show_coupon_popup = false;
+        self.render();
+      };
+
+      SP.on('gifts.purchase.success', function(res){
+        scope.coupon = res;
+        scope.show_coupon_popup = true;
+        scope.is_discount = scope.selected_gift && scope.selected_gift.name.match(/скидка/gi);
+        self.render();
+      });
 
     },
     on_render: function(self, root){
@@ -852,17 +897,17 @@
       '<div class="sptb" style="display: none;">  ' +
       '{{/if}}' +
         '<div class="sptb-popup ">' +
-        '<a class="sptb-popup-close" style="background-image: url({{{static close_icon}}})" href="#" data-sp-click="hide_popup"></a>' +
-        '<div class="sptb-popup-title"> Ты получаешь <span>{{ data.points }}</span> баллов! </div>' +
-        '<div class="sptb-popup-subtitle">Расскажи о покупке и получи еще <b>{{ data.share_points }} баллов</b></div>' +
-        '<div class="sptb-popup-sharing">  ' +
-        '{{#actions}}' +
-        '<a class="sptb-popup-item" style="background-image: url({{{social_icon socialType}}});" href="#" data-sp-click="share_purchase({{socialType}})"></a>  ' +
-        '{{/actions}}' +
-        '</div>' +
-        '<a class="sptb-popup-btn sptb-btn" href="{{data.url}}">Воспользоваться баллами</a> ' +
+          '<a class="sptb-popup-close" style="background-image: url({{{static close_icon}}})" href="#" data-sp-click="hide_popup"></a>' +
+          '<div class="sptb-popup-title"> Ты получаешь <span>{{ data.points }}</span> баллов! </div>' +
+          '<div class="sptb-popup-subtitle">Расскажи о покупке и получи еще <b>{{ data.share_points }} баллов</b></div>' +
+          '<div class="sptb-popup-sharing">  ' +
+            '{{#actions}}' +
+              '<a class="sptb-popup-item" style="background-image: url({{{social_icon socialType}}});" href="#" data-sp-click="share_purchase({{socialType}})"></a>  ' +
+            '{{/actions}}' +
+          '</div>' +
+          '<a class="sptb-popup-btn sptb-btn" href="{{data.url}}">Воспользоваться баллами</a> ' +
         '</div>  ' +
-        '</div>',
+      '</div>',
     init: function(self){
 
 
@@ -946,7 +991,12 @@
       SP.send('load.actions.list');
     });
 
-    SAILPLAY.on('gift.purchase.force_complete.success', function () {
+    SAILPLAY.on('gifts.purchase.force_complete.success', function () {
+      SAILPLAY.send('load.user.info');
+      SAILPLAY.send('load.user.history');
+    });
+
+    SAILPLAY.on('gifts.purchase.success', function () {
       SAILPLAY.send('load.user.info');
       SAILPLAY.send('load.user.history');
     });

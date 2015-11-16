@@ -11,7 +11,14 @@
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
-    <script type="text/javascript" src="js/dist/tb.sailplay.min.js"></script>
+    <!--<script type="text/javascript" src="js/dist/tb.sailplay.min.js"></script>-->
+
+    <script type="text/javascript" src="../../hub/dist/sailplay_hub.js"></script>
+    <script type="text/javascript" src="js/vendor/jquery.min.js"></script>
+    <script type="text/javascript" src="js/vendor/slider.min.js"></script>
+    <script type="text/javascript" src="js/vendor/templates.min.js"></script>
+    <script type="text/javascript" src="js/tb.sailplay.js"></script>
+
     <script>
 
 
@@ -38,7 +45,7 @@
 
         SAILPLAY.on('init.success', function(){
           SAILPLAY.send('login', 'e391f44dee702f071bee5d808be2b68bfee5fd29');
-          SAILPLAY.send('thanks.show', { points: 400, share_points: 30, url: 'http://www.trendsbrands.ru/' });
+//          SAILPLAY.send('thanks.show', { points: 400, share_points: 30, url: 'http://www.trendsbrands.ru/' });
         });
 
       };
