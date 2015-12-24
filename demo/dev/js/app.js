@@ -5,6 +5,7 @@
     var domain = 'http://sailplay.ru';
 //    SAILPLAY.send('init', { partner_id: 74, domain: 'http://saike.dev.sailplay.ru', lang: 'ru'}); //инициируем модуль для партнера с id = 5
     SAILPLAY.send('init', { partner_id: 5, domain: domain, lang: 'ru', static_url: '/sailplay/widgets/demo/dev' });
+//    SAILPLAY.send('init', { partner_id: 1188, domain: domain, lang: 'ru', static_url: '/sailplay/widgets/demo/dev' });
 
     SAILPLAY.on('init.success', function(){
       SAILPLAY.send('login.remote', { background: 'transparent' });
