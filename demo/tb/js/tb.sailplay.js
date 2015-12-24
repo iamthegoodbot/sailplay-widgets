@@ -367,7 +367,8 @@
         "enter_group": "Вступление в группу ",
         "share_purchase": "Рассказ о покупке в ",
         "social_share": "Рассказ в ",
-        "share_badge": "Рассказ о бейджике в "
+        "share_badge": "Рассказ о бейджике в ",
+        "earn_badge": 'Получен бейджик '
       };
 
       function get_action_name(action){
@@ -376,6 +377,8 @@
             return action.name || 'Нет описания';
           case 'extra':
             return action.name || 'Нет описания';
+          case 'badge':
+            return history_items.earn_badge + action.name;
           case 'sharing':
             switch (action.social_action) {
               case 'like':
@@ -385,7 +388,7 @@
               case 'partner_page':
                 return history_items.social_share + action.social_type;
               case 'badge':
-                return history_items.share_badge + action.social_type;
+                return history_items.share_badge + ' ' + action.social_type;
             }
         }
         return history_items[action.action] || 'Нет описания';
