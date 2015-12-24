@@ -5016,12 +5016,12 @@ return /******/ (function(modules) { // webpackBootstrap
         '<div class="sptb-promo">' +
         '<div class="sptb-promo-img" style="background-image: url({{{static promo_img}}})"></div>' +
         '<div class="sptb-promo-text"> ' +
-        '<div class="title"> Бонусная программа </div> ' +
-        '<div class="text"> Регистрируйся, совершай покупки,выполняй задания,<br/>  копи баллы и обменивай их на подарки! </div> ' +
+              '<div class="title"> Бонусная программа </div> ' +
+              '<div class="text"> Регистрируйся, совершай покупки,выполняй задания,<br/>  копи баллы и обменивай их на подарки! </div> ' +
+            '</div>  ' +
+          '</div>  ' +
         '</div>  ' +
-        '</div>  ' +
-        '</div>  ' +
-        '</div>',
+      '</div>',
     init: function(widget){
 
       var scope = widget.scope;
@@ -5039,57 +5039,57 @@ return /******/ (function(modules) { // webpackBootstrap
     template:
       '<div class="sptb">  ' +
         '<div class="sptb-row">' +
-          '<div class="sptb-item sptb-item-orange sptb-item-right">  ' +
-            '<div class="sptb-level-outer"> ' +
-              '<div class="sptb-level sptb-history-slider" style="padding-top: 0;" data-slider>' +
-                '{{#badges}}' +
-                '<div class="sptb-level-item">  ' +
-                  '<i class="sptb-level-icon" style="background-image: {{#get_badge_pic}}{{ thumbs.url_250x250 }},{{thumbs.url_gs}},{{is_received}}{{/get_badge_pic}}"></i>' +
-                  '<div class="sptb-level-name">  {{name}}  </div>  ' +
-                  '<div class="sptb-level-subname">  {{descr}}  </div>' +
-                '</div>' +
+        '<div class="sptb-item sptb-item-orange sptb-item-right">  ' +
+        '<div class="sptb-level-outer"> ' +
+        '<div class="sptb-level sptb-history-slider" style="padding-top: 0;" data-slider>' +
+        '{{#badges}}' +
+        '<div class="sptb-level-item">  ' +
+        '<i class="sptb-level-icon" style="background-image: {{#get_badge_pic}}{{ thumbs.url_250x250 }},{{thumbs.url_gs}},{{is_received}}{{/get_badge_pic}}"></i>' +
+        '<div class="sptb-level-name">  {{name}}  </div>  ' +
+        '<div class="sptb-level-subname">  {{descr}}  </div>' +
+        '</div>' +
 //                '<div class="sptb-level-item-arrow"></div> ' +
-                '{{/badges}}' +
-              '</div>  ' +
-            '</div>  ' +
-            '<div class="sptb-list"> ' +
-              '<div class="sptb-history-list">' +
+      '{{/badges}}' +
+      '</div>  ' +
+      '</div>  ' +
+      '<div class="sptb-list"> ' +
+      '<div class="sptb-history-list">' +
 
-              '</div>' +
-              '<a class="sptb-rating-btn sptb-btn" href="#" data-sp-click="hide_history"> Вернуться назад </a>  ' +
-            '</div>  ' +
-            '<div class="sptb-detail-info "> ' +
-              '<div class="sptb-info">' +
-                '<div class="sptb-info-ava" style="background-image: {{{user_pic user.pic}}};"></div>' +
-                '<div class="sptb-info-text">  ' +
-                  '<span class="titles">Здравствуй,</span>  ' +
-                  '<div class="texts">{{ user.name }}</div>' +
-                '</div> ' +
-              '</div> ' +
-              '<div class="sptb-info-footer">' +
-                '<a class="sptb-info-btn sptb-btn" href="#" data-sp-click="show_history">История начислений</a>' +
-                '<div class="sptb-info-count">  ' +
-                  '<span class="count">  {{ user_points.confirmed }}  </span>  ' +
-                  '<span class="count-text"> ' +
-                    '<a class="sptb-info-link" href="#" data-sp-click="toggle_points_info">+{{ user_points.unconfirmed }} баллов</a> ' +
-                    '<div class="sptb-info-popup hidden">' +
-                      '<a class="sptb-info-popup-close" style="background-image: url({{{static close_popup_icon}}});" href="#" data-sp-click="toggle_points_info"></a>' +
-                      '<div class="sptb-info-popup-text">“+{{ user_points.unconfirmed }} баллов” - количество неподтвержденных баллов, которые будут подтверждены после фактической оплаты заказа</div> ' +
-                    '</div>  ' +
-                  '</span>' +
-                '</div> ' +
-              '</div>  ' +
-            '</div>' +
-          '</div>' +
-          '<div class="sptb-item sptb-item-orange sptb-item-small sptb-level-con"> ' +
-            '<i class="sptb-level-icon sptb-level-img-small" style="background-image: {{{get_status_pic user_status.pic }}};"></i> ' +
-            '<div class="sptb-level-title"> Ваш статус: {{{get_status user_status.name }}} </div> ' +
-            '<a class="sptb-level-btn sptb-btn" href="#" data-sp-click="show_badges">' +
-              '<span class="hidden show-list">Закрыть список</span>' +
-              '<span class=" show-badge">Список бейджей</span> ' +
-            '</a>  ' +
-          '</div>  ' +
-        '</div>  ' +
+      '</div>' +
+      '<a class="sptb-rating-btn sptb-btn" href="#" data-sp-click="hide_history"> Вернуться назад </a>  ' +
+      '</div>  ' +
+      '<div class="sptb-detail-info "> ' +
+      '<div class="sptb-info">' +
+      '<div class="sptb-info-ava" style="background-image: {{{user_pic user.pic}}};"></div>' +
+      '<div class="sptb-info-text">  ' +
+      '<span class="titles">Здравствуй,</span>  ' +
+      '<div class="texts">{{ user.name }}</div>' +
+      '</div> ' +
+      '</div> ' +
+      '<div class="sptb-info-footer">' +
+      '<a class="sptb-info-btn sptb-btn" href="#" data-sp-click="show_history">История начислений</a>' +
+      '<div class="sptb-info-count">  ' +
+      '<span class="count">  {{ user_points.confirmed }}  </span>  ' +
+      '<span class="count-text"> ' +
+      '<a class="sptb-info-link" href="#" data-sp-click="toggle_points_info">+{{ user_points.unconfirmed }} баллов</a> ' +
+      '<div class="sptb-info-popup hidden">' +
+      '<a class="sptb-info-popup-close" style="background-image: url({{{static close_popup_icon}}});" href="#" data-sp-click="toggle_points_info"></a>' +
+      '<div class="sptb-info-popup-text">“+{{ user_points.unconfirmed }} баллов” - количество неподтвержденных баллов, которые будут подтверждены после фактической оплаты заказа</div> ' +
+      '</div>  ' +
+      '</span>' +
+      '</div> ' +
+      '</div>  ' +
+      '</div>' +
+      '</div>' +
+      '<div class="sptb-item sptb-item-orange sptb-item-small sptb-level-con"> ' +
+      '<i class="sptb-level-icon sptb-level-img-small" style="background-image: {{{get_last_badge_pic last_badge.pic }}};"></i> ' +
+      '<div class="sptb-level-title">Твой бейдж: {{{get_badge last_badge.name }}} </div> ' +
+      '<a class="sptb-level-btn sptb-btn" href="#" data-sp-click="show_badges">' +
+      '<span class="hidden show-list">Закрыть список</span>' +
+      '<span class=" show-badge">Список бейджей</span> ' +
+      '</a>  ' +
+      '</div>  ' +
+      '</div>  ' +
       '</div>',
     init: function(widget){
       var self = widget;
@@ -5103,21 +5103,21 @@ return /******/ (function(modules) { // webpackBootstrap
       self.scope.close_popup_icon = 'sp-img/icon-close-sp.png';
 
       var items_template =
-          '<div class="sptb-rating-list">' +
-            '{{#history}}' +
-            '<div class="sptb-rating-item">  ' +
-              '<div class="sptb-rating-name t-ellps">  {{ name }}  </div>  ' +
-              '<div class="sptb-rating-date">  {{ action_date }}  </div>  ' +
-              '<div class="sptb-rating-count">  {{ points_delta }} балла  </div>' +
-            '</div> ' +
-            '{{/history}}' +
+        '<div class="sptb-rating-list">' +
+          '{{#history}}' +
+          '<div class="sptb-rating-item">  ' +
+          '<div class="sptb-rating-name t-ellps">  {{ name }}  </div>  ' +
+          '<div class="sptb-rating-date">  {{ action_date }}  </div>  ' +
+          '<div class="sptb-rating-count">  {{{ get_history_points points_delta }}}  </div>' +
+          '</div> ' +
+          '{{/history}}' +
           '</div> ' +
           '<div class="sptb-rating-pager">' +
-            '{{#pages}}' +
-            '<a class="sptb-rating-page-item {{{selected @index}}}" href="#" data-page="{{@index}}">{{{page_index @index}}}</a>' +
-            '{{/pages}}' +
+          '{{#pages}}' +
+          '<a class="sptb-rating-page-item {{{selected @index}}}" href="#" data-page="{{@index}}">{{{page_index @index}}}</a>' +
+          '{{/pages}}' +
 //            '<a class="sptb-rating-page-item" href="#">&raquo;</a> ' +
-          '</div> ';
+        '</div> ';
 
 
       var pagination = {
@@ -5151,6 +5151,17 @@ return /******/ (function(modules) { // webpackBootstrap
         return pagination.page == index ? 'selected' : '';
       });
 
+      Handlebars.registerHelper('get_history_points', function(delta){
+        if(!delta) return '';
+        var cases = [2, 0, 1, 1, 1, 2];
+        var h_points = '';
+        if(parseInt(delta) > 0) h_points += '+';
+        var input = Math.abs(parseInt(delta));
+        var titles = [ 'балл', 'балла', 'баллов' ];
+        var plur =  titles[(input % 100 > 4 && input % 100 < 20) ? 2 : cases[(input % 10 < 5) ? input % 10 : 5]];
+        return h_points + delta + ' ' + plur;
+      });
+
       SP.on('user.history.page', function(page){
         pagination.page = page;
         pagination.history = pagination.pages[page];
@@ -5159,7 +5170,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
       SP.on('load.user.info.success', function(res){
         self.scope.user = res.user;
-        self.scope.user_status = res.user_status;
+        console.dir(res);
+        self.scope.last_badge = res.last_badge;
         self.scope.user_points = res.user_points;
         self.render();
       });
@@ -5194,8 +5206,8 @@ return /******/ (function(modules) { // webpackBootstrap
       });
 
       function get_action_date(action){
-          var date = action.action_date.split('T')[0].split('-');
-          return date[2].trim() + '.' + date[1].trim() + '.' + date[0].trim();
+        var date = action.action_date.split('T')[0].split('-');
+        return date[2].trim() + '.' + date[1].trim() + '.' + date[0].trim();
       }
 
       function array_chunk (arr, len) {
@@ -5229,9 +5241,9 @@ return /******/ (function(modules) { // webpackBootstrap
       function get_action_name(action){
         switch (action.action) {
           case 'event':
-            return action.name;
+            return action.name || 'Нет описания';
           case 'extra':
-            return action.name;
+            return action.name || 'Нет описания';
           case 'sharing':
             switch (action.social_action) {
               case 'like':
@@ -5266,12 +5278,12 @@ return /******/ (function(modules) { // webpackBootstrap
         return 'url(' + src + ')';
       });
 
-      Handlebars.registerHelper('get_status', function(status_name){
-        return status_name || 'Нет статуса';
+      Handlebars.registerHelper('get_badge', function(badge_name){
+        return badge_name || 'Нет бейджей';
       });
 
-      Handlebars.registerHelper('get_status_pic', function(status_pic){
-        var src = status_pic || SP.static('sp-img/icon-man.png');
+      Handlebars.registerHelper('get_last_badge_pic', function(badge_pic){
+        var src = badge_pic || SP.static('sp-img/icon-man.png');
         return 'url(' + src + ')';
       });
 

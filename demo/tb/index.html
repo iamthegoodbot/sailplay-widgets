@@ -11,13 +11,13 @@
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
-    <!--<script type="text/javascript" src="js/dist/tb.sailplay.min.js"></script>-->
+    <script type="text/javascript" src="js/dist/tb.sailplay.min.js"></script>
 
-    <script type="text/javascript" src="../../hub/dist/sailplay_hub.js"></script>
-    <script type="text/javascript" src="js/vendor/jquery.min.js"></script>
-    <script type="text/javascript" src="js/vendor/slider.min.js"></script>
-    <script type="text/javascript" src="js/vendor/templates.min.js"></script>
-    <script type="text/javascript" src="js/tb.sailplay.js"></script>
+    <!--<script type="text/javascript" src="js/vendor/hub.js"></script>-->
+    <!--<script type="text/javascript" src="js/vendor/jquery.min.js"></script>-->
+    <!--<script type="text/javascript" src="js/vendor/slider.min.js"></script>-->
+    <!--<script type="text/javascript" src="js/vendor/templates.min.js"></script>-->
+    <!--<script type="text/javascript" src="js/tb.sailplay.js"></script>-->
 
     <script>
 
@@ -44,8 +44,8 @@
         SAILPLAY.send('init', { partner_id: 1404, domain: 'http://sailplay.ru', static_url: 'http://saike.ru/sailplay/widgets/demo/tb/' });
 
         SAILPLAY.on('init.success', function(){
-          SAILPLAY.send('login', 'e391f44dee702f071bee5d808be2b68bfee5fd29');
-//          SAILPLAY.send('thanks.show', { points: 400, share_points: 30, url: 'http://www.trendsbrands.ru/' });
+          SAILPLAY.send('login', '25d719ceeef7e8ae90eb043fbaef0948637facff');
+          SAILPLAY.send('thanks.show', { points: 400, share_points: 30, url: 'http://www.trendsbrands.ru/' });
         });
 
       };

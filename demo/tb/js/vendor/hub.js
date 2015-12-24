@@ -53,6 +53,8 @@ var SAILPLAY = (function () {
       var newScript = document.createElement("script");
       var params = [];
 
+      data = data || {};
+
       //auth_hash checking
       if(!_config.auth_hash){
         delete data.auth_hash;
@@ -68,11 +70,11 @@ var SAILPLAY = (function () {
         }
         catch(err) {}
         delete window.JSONP_CALLBACK[callback_name];
-      }, 20000);
+      }, 10000);
 
       window.JSONP_CALLBACK[callback_name] = function (data) {
         clearTimeout(jsonpTimeout);
-        newScript && head.removeChild(newScript);
+        head.removeChild(newScript);
         delete window.JSONP_CALLBACK[callback_name];
         success && success(data);
       };
@@ -87,7 +89,7 @@ var SAILPLAY = (function () {
       newScript.type = "text/javascript";
       newScript.src = src;
       newScript.onerror = function (ex) {
-        newScript && head.removeChild(newScript);
+        head.removeChild(newScript);
         delete window.JSONP_CALLBACK[callback_name];
         error && error(ex);
       };
@@ -125,49 +127,97 @@ var SAILPLAY = (function () {
     alert('Please init SailPlay HUB first!');
   }
 
-  function remoteInit(elm){
-    if(typeof Porthole === 'undefined'){
-      alert('SailPlay: Porthole.js library need to be installed');
-      return;
-    }
-    if(elm.nodeType == 1 && elm.tagName == 'IFRAME'){
+  function remoteLogin(opts){
 
-      function onMessage(messageEvent) {
+    var frame;
 
-        if(messageEvent.data.name == 'login.success'){
-          sp.send('login.do', messageEvent.data.auth_hash);
-          return;
-        }
-        if(messageEvent.data.name == 'login.cancel'){
-          sp.send('login.cancel');
-          return;
-        }
-        if(messageEvent.data.name == 'login.check'){
-          if(messageEvent.data.auth_hash == 'None'){
-            sp.send('logout');
-          }
-          else {
-            sp.send('login.do', messageEvent.data.auth_hash)
-          }
-          return;
-        }
-        if(messageEvent.data.name == 'logout.success'){
-          _config.auth_hash = '';
-          cookies.eraseCookie('sp_auth_hash');
-          sp.send('logout.success');
-        }
-      }
+    opts = opts || {};
 
-      elm.src = _config.DOMAIN + '/users/auth-page/?partner_id=' + _config.partner.id + '&dep_id=' + _config.dep_id;
-
-      _proxy = new Porthole.WindowProxy('', elm.name);
-
-      _proxy.addEventListener(onMessage);
-
+    if(opts.node && opts.node.nodeType == 1 && opts.node.tagName == 'IFRAME'){
+      frame = opts.node;
     }
     else {
-      alert('SailPlay: provide <iframe> DOM element as parameter (Remote login)');
+      frame = document.createElement('IFRAME');
+      frame.style.border = 'none';
+      frame.style.position = 'fixed';
+      frame.style.top = '0';
+      frame.style.left = '0';
+      frame.style.bottom = '0';
+      frame.style.right = '0';
+      frame.style.width = '410px';
+      frame.style.height = '510px';
+      frame.created = true;
+      frame.style.background = 'transparent';
+      frame.style.margin = 'auto';
+      frame.style.zIndex = '100000';
+      document.body.appendChild(frame);
     }
+
+    var frame_id = frame.id || 'sailplay_login_frame_' + new Date().getTime();
+
+    frame.name = frame_id;
+    frame.id = frame_id;
+
+    function onMessage(messageEvent) {
+      var data = JSON.parse(messageEvent.data);
+      if(data.name == 'login.success'){
+        sp.send('login.do', messageEvent.data.auth_hash);
+        return;
+      }
+      if(data.name == 'login.cancel'){
+        sp.send('login.cancel');
+        cancelLogin();
+        return;
+      }
+      if(data.name == 'login.check'){
+        if(data.auth_hash == 'None'){
+          sp.send('logout');
+        }
+        else {
+          cancelLogin();
+          sp.send('login.do', data.auth_hash)
+        }
+        return;
+      }
+      if(data.name == 'logout.success'){
+        _config.auth_hash = '';
+        sp.send('logout.success');
+      }
+
+    }
+
+    function cancelLogin(){
+      if(frame.created){
+        try {
+          document.body.removeChild(frame)
+        }
+        catch(e){
+
+        }
+      }
+    }
+
+    var params = {};
+    params.partner_id = _config.partner.id;
+    params.dep_id = _config.dep_id || '';
+    params.background = opts.background || '';
+    params.partner_info = opts.partner_info || 0;
+
+
+    var params_string = [];
+
+    var src = _config.DOMAIN + '/users/auth-page/?';
+    for (var param_name in params) {
+      params_string.push(param_name + "=" + encodeURIComponent(params[param_name]));
+    }
+    src += params_string.join("&");
+
+    frame.setAttribute('src', src);
+
+    window.removeEventListener("message", onMessage, false);
+
+    window.addEventListener("message", onMessage, false);
+
   }
 
   //init function
@@ -179,10 +229,10 @@ var SAILPLAY = (function () {
       alert('SailPlay: provide partner_id');
       return;
     }
-    JSONP.get(window.location.protocol + '//sailplay.ru' + '/js-api/' + params.partner_id + '/config/', { lang: params.lang || 'ru' }, function (response) {
+    JSONP.get((params.domain || 'http://sailplay.ru') + '/js-api/' + params.partner_id + '/config/', { lang: params.lang || 'ru' }, function (response) {
       if (response && response.status == 'ok') {
         _config = response.config;
-        _config.DOMAIN = window.location.protocol + '//sailplay.ru';
+        _config.DOMAIN = (params.domain || 'http://sailplay.ru');
         _config.dep_id = params.dep_id || '';
         _config.env.staticUrl = params.static_url || _config.env.staticUrl;
         sp.send('init.success', _config);
@@ -195,8 +245,8 @@ var SAILPLAY = (function () {
 
   });
 
-  sp.on('init.remote', function(elm){
-    remoteInit(elm);
+  sp.on('login.remote', function(options){
+    remoteLogin(options);
   });
 
   //////////////////
@@ -262,9 +312,15 @@ var SAILPLAY = (function () {
       initError();
       return;
     }
-    if(_config.auth_hash && _proxy){
-      _proxy.post({name: 'logout'});
-    }
+    var req = document.createElement('iframe');
+    req.width = 0;
+    req.height = 0;
+    req.style.border = 'none';
+    req.src = _config.DOMAIN + '/users/logout';
+    document.body.appendChild(req);
+    req.onload = function(){
+      document.body.removeChild(req);
+    };
     _config.auth_hash = '';
     cookies.eraseCookie('sp_auth_hash');
     sp.send('logout.success');
@@ -495,7 +551,7 @@ var SAILPLAY = (function () {
   Actions.share = function (action) {
 
     var frameUrl = _config.DOMAIN + '/js-api/' + _config.partner.id + '/actions/social-widget/?auth_hash=' + _config.auth_hash;
-    frameUrl += '&socialType=' + action.socialType + '&action=' + action.action + '&link=' + action.shortLink + '&pic=' + (_actions_config.partnerCustomPic ? _actions_config.partnerCustomPic : _config.partner.logo);
+    frameUrl += '&socialType=' + action.socialType + '&action=' + action.action + '&link=' + action.shortLink + '&pic=' + (_actions_config.partnerCustomPic || _config.partner.logo || '//sailplay.ru/static/home/v4/img/main/sailplay_logo_main.png' );
 
     frameUrl += '&msg=' + _actions_config.messages[action.action];
     frameUrl += '&_actionId=' + action['_actionId'];
@@ -534,14 +590,14 @@ var SAILPLAY = (function () {
     }
     if (_config.auth_hash) {
       sp.send('actions.perform.start', action);
-      if (action.socialType && _actions_config.connectedAccounts) {
+      if (action.socialType) {
         if (!_actions_config.connectedAccounts[action.socialType]) {
           Actions.openSocialRegNeedPopup(action);
         } else {
           Actions.share(action);
         }
       }
-      else if(!action.socialType){
+      else {
         Actions.perform(action);
       }
     } else {
@@ -606,6 +662,66 @@ var SAILPLAY = (function () {
         sp.send('leaderboard.load.success', res.data);
       } else {
         sp.send('leaderboard.load.error', res);
+      }
+    });
+  });
+
+  //REVIEWS SECTION
+  sp.on('load.reviews.list', function (data) {
+    if(_config == {}){
+      initError();
+      return;
+    }
+
+    var req_data = {};
+
+    if(data){
+      req_data.page = data.page || 1
+    }
+
+    JSONP.get(_config.DOMAIN + _config.urls.reviews.list, req_data, function (res) {
+      if (res.status == 'ok') {
+        sp.send('load.reviews.list.success', { page: res.page, pages: res.pages, reviews: res.reviews });
+      } else {
+        sp.send('load.reviews.list.error', res);
+      }
+    });
+  });
+
+  sp.on('reviews.add', function (data) {
+    if(_config == {}){
+      initError();
+      return;
+    }
+    var req_data = {
+      auth_hash: _config.auth_hash,
+      rating: data.rating || '',
+      review: data.review || ''
+    };
+    JSONP.get(_config.DOMAIN + _config.urls.reviews.add, req_data, function (res) {
+      if (res.status == 'ok') {
+        sp.send('reviews.add.success', res);
+      } else {
+        sp.send('reviews.add.error', res);
+      }
+    });
+  });
+
+  sp.on('purchases.add', function (data) {
+    if(_config == {}){
+      initError();
+      return;
+    }
+    var req_data = {
+      auth_hash: _config.auth_hash,
+      price: data.price || '',
+      order_num: data.order_num || ''
+    };
+    JSONP.get(_config.DOMAIN + _config.urls.purchase, req_data, function (res) {
+      if (res.status == 'ok') {
+        sp.send('purchases.add.success', res);
+      } else {
+        sp.send('purchases.add.error', res);
       }
     });
   });

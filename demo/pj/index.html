@@ -40,21 +40,25 @@
       //510193e31256be863d92e137bcdf138d16e73736
       //7e4c9724a8aef313ac1d2df86a5f53c2b14a6ab5
 
+
+      ////////LAST PAPA JOHNS
+      ////80d7a1e6a0fb7ec2d154b0eed03d8ae32fbd7741
+
       var domain = 'http://skazka.loc';
 
 //    SAILPLAY.send('init', { partner_id: 1425, domain: 'https://sailplay.ru', lang: 'ru', static_url: 'http://saike.ru/sailplay/pj/widgets/' }); //инициируем модуль для партнера с id = 206
-//    SAILPLAY.send('init', { partner_id: 5, domain: 'https://crm.papajohns.ru', lang: 'ru', static_url: 'http://saike.ru/sailplay/pj/widgets/' }); //инициируем модуль для партнера с id = 206
+    SAILPLAY.send('init', { partner_id: 5, domain: 'https://fasdfadgfdgfsd.ru', lang: 'en' }); //инициируем модуль для партнера с id = 206
 //    SAILPLAY.send('init', { partner_id: 5, dep_id: 1711, domain: 'http://sailplay.ru', lang: 'ru' }); //инициируем модуль для партнера с id = 5
-//    SAILPLAY.send('init', { partner_id: 74, domain: 'http://dev.sailplay.ru', lang: 'ru', static_url: 'http://saike.ru/sailplay/pj/widgets/' }); //инициируем модуль для партнера с id = 5
+//      SAILPLAY.send('init', { partner_id: 151, domain: 'http://dev.sailplay.ru', lang: 'ru' }); //инициируем модуль для партнера с id = 5
 //      SAILPLAY.send('init', { partner_id: 1188, domain: domain, lang: 'ru', static_url: 'http://saike.ru/sailplay/pj/widgets/' }); //инициируем модуль для партнера с id = 5
-      SAILPLAY.send('init', { partner_id: 5, dep_id: 55, domain: 'https://sailplay.ru', lang: 'ru', static_url: 'http://saike.ru/sailplay/pj/widgets/' }); //инициируем модуль для партнера с id = 5
+//      SAILPLAY.send('init', { partner_id: 5, dep_id: 55, domain: 'https://sailplay.ru', lang: 'ru', static_url: 'http://saike.ru/sailplay/pj/widgets/' }); //инициируем модуль для партнера с id = 5
 
       SAILPLAY.on('init.success', function () {
 //      SAILPLAY.send('leaderboard.load');
         SAILPLAY.send('pj.bootstrap', document.body);
 //      SAILPLAY.send('language.set', 'ru');
         SAILPLAY.send('pj.pizzameter', 150);
-//      SAILPLAY.send('login', '5b701feb743b08bbeb64b9dcf55e02cf3daf63dd');
+      SAILPLAY.send('login', 'b04baebce0e0bdab26115b8db1dd86555b7f3962');
 
 
         SAILPLAY.send('load.reviews.list');
@@ -190,7 +194,7 @@
 <span id="logger" class="myriad"></span>
 <div id="wrapperTop">
   <div id="wrapperHeader">
-    <div id="header">
+    <div id="header" style="margin-top: 60px;">
 
       <div id="nav">
         <div id="utilityNav">
