@@ -74,12 +74,16 @@ var SAILPLAY = (function () {
 
       window.JSONP_CALLBACK[callback_name] = function (data) {
         clearTimeout(jsonpTimeout);
-        head.removeChild(newScript);
+        try {
+          head.removeChild(newScript);
+        }
+        catch (err) {}
         delete window.JSONP_CALLBACK[callback_name];
         success && success(data);
       };
 
       data["callback"] = 'JSONP_CALLBACK.' + callback_name;
+      if(_config.dep_id) data.dep_id = _config.dep_id;
 
       for (var param_name in data) {
         params.push(param_name + "=" + encodeURIComponent(data[param_name]));
@@ -89,7 +93,10 @@ var SAILPLAY = (function () {
       newScript.type = "text/javascript";
       newScript.src = src;
       newScript.onerror = function (ex) {
-        head.removeChild(newScript);
+        try {
+          head.removeChild(newScript);
+        }
+        catch (err) {}
         delete window.JSONP_CALLBACK[callback_name];
         error && error(ex);
       };
@@ -121,7 +128,7 @@ var SAILPLAY = (function () {
   //private config
   var _config = {};
   var _actions_config = {};
-  var _proxy = false;
+  var _remote_login_init = false;
 
   function initError(){
     alert('Please init SailPlay HUB first!');
@@ -159,9 +166,12 @@ var SAILPLAY = (function () {
     frame.id = frame_id;
 
     function onMessage(messageEvent) {
-      var data = JSON.parse(messageEvent.data);
+      var data= {};
+      if(messageEvent.origin == _config.DOMAIN){
+        data = JSON.parse(messageEvent.data);
+      }
       if(data.name == 'login.success'){
-        sp.send('login.do', messageEvent.data.auth_hash);
+        sp.send('login.do', data.auth_hash);
         return;
       }
       if(data.name == 'login.cancel'){
@@ -214,9 +224,10 @@ var SAILPLAY = (function () {
 
     frame.setAttribute('src', src);
 
-    window.removeEventListener("message", onMessage, false);
-
-    window.addEventListener("message", onMessage, false);
+    if(!_remote_login_init){
+      window.addEventListener("message", onMessage, false);
+      _remote_login_init = true;
+    }
 
   }
 
@@ -229,12 +240,13 @@ var SAILPLAY = (function () {
       alert('SailPlay: provide partner_id');
       return;
     }
-    JSONP.get((params.domain || 'http://sailplay.ru') + '/js-api/' + params.partner_id + '/config/', { lang: params.lang || 'ru' }, function (response) {
+    JSONP.get((params.domain || 'http://sailplay.ru') + '/js-api/' + params.partner_id + '/config/', { lang: params.lang || 'ru', dep_id: (params.dep_id || '') }, function (response) {
       if (response && response.status == 'ok') {
         _config = response.config;
         _config.DOMAIN = (params.domain || 'http://sailplay.ru');
         _config.dep_id = params.dep_id || '';
         _config.env.staticUrl = params.static_url || _config.env.staticUrl;
+        _config.social_networks = [ 'fb', 'vk', 'tw', 'gp', 'ok' ];
         sp.send('init.success', _config);
         //        console.dir(_config);
       } else {
@@ -268,10 +280,6 @@ var SAILPLAY = (function () {
       });
     }
   });
-
-  sp.config = function(){
-    return _config;
-  };
 
   //////////////////
   //bind api events
@@ -481,8 +489,50 @@ var SAILPLAY = (function () {
       auth_hash: _config.auth_hash
     };
     JSONP.get(_config.DOMAIN + _config.urls.badges.list, params, function (res) {
+
       //      console.dir(res);
       if (res.status == 'ok') {
+
+        function create_badge_actions(badge){
+          if(badge && badge.is_received) {
+
+            badge.actions = {};
+
+            for(var sn in _config.social_networks){
+
+              badge.actions[_config.social_networks[sn]] = {
+
+                socialType: _config.social_networks[sn],
+                action: 'badge',
+                shortLink: window.location.href,
+                pic: badge.thumbs.url_250x250,
+                badgeId: badge.id,
+                descr: badge.descr
+
+              };
+
+            }
+          }
+        }
+
+        for(var ch in res.multilevel_badges){
+
+          var multi_line = res.multilevel_badges[ch];
+
+          for(var b in multi_line){
+
+            create_badge_actions(multi_line[b]);
+
+          }
+
+        }
+
+        for(var olb in res.one_level_badges){
+
+          create_badge_actions(res.one_level_badges[olb]);
+
+        }
+
         sp.send('load.badges.list.success', res);
       } else {
         sp.send('load.badges.list.error', res);
@@ -501,10 +551,12 @@ var SAILPLAY = (function () {
     var params = {
       auth_hash: _config.auth_hash
     };
+
     JSONP.get(_config.DOMAIN + _config.urls.actions.load, params, function (res) {
       //      console.dir(res);
       if (res.status == 'ok') {
         _actions_config = res.data;
+
         sp.send('load.actions.list.success', res.data);
       } else {
         sp.send('load.actions.list.error', res);
@@ -513,7 +565,129 @@ var SAILPLAY = (function () {
   });
 
   //PERFORM ACTION
+  //actions v2 section
+  sp.actions = {};
+
+  sp.actions.parse = function(dom, action){
+
+    if(!sp.is_dom(dom)) {
+      console.error('sp.actions.parse() need DOM element as first parameter');
+      return;
+    }
+
+    if(!action) {
+      console.error('sp.actions.parse() need Action object as second parameter');
+      return;
+    }
+
+    if(!_actions_config.connectedAccounts) {
+
+      console.error('sp.actions.parse() must execute after event load.actions.list.success');
+      return;
+
+    }
+
+    var styles = dom.getAttribute('data-styles');
+
+
+    var action_frame = document.createElement('IFRAME');
+    action_frame.style.border = 'none';
+    action_frame.style.width = '150px';
+    action_frame.style.height = '30px';
+    action_frame.style.background = 'transparent';
+    action_frame.style.overflow = 'hidden';
+    action_frame.setAttribute('scrolling', 'no');
+    action_frame.className = 'sailplay_action_frame';
+
+    var frameUrl = _config.DOMAIN + '/js-api/' + _config.partner.id + '/actions/social-widget/v2/?auth_hash=' + _config.auth_hash;
+    frameUrl += '&socialType=' + action.socialType + '&action=' + action.action + '&link=' + action.shortLink + '&pic=' + (_actions_config.partnerCustomPic ? _actions_config.partnerCustomPic : _config.partner.logo);
+
+    frameUrl += '&msg=' + (_actions_config.messages[action.action] || action.descr || _config.partner.name);
+
+    if(action['_actionId']) frameUrl += '&_actionId=' + action['_actionId'];
+
+    frameUrl += '&account_connected=' + _actions_config.connectedAccounts[action.socialType] || false;
+
+    if(styles) frameUrl += '&styles=' + styles;
+
+    if (action.action == 'purchase') {
+      frameUrl += '&purchasePublicKey=' + _actions_config.purchasePublicKey;
+    }
+
+    if (action.action == 'badge') {
+      frameUrl += '&badgeId=' + action.badgeId;
+    }
+
+    action_frame.src = frameUrl;
+    dom.innerHTML = '';
+    dom.appendChild(action_frame);
+
+  };
+
+  sp.on('actions.parse', function (actions) {
+    if(_config == {}){
+      initError();
+      return;
+    }
+
+    if(actions && Array.isArray(actions)) {
+      Actions.social_init(actions);
+    }
+    else {
+      sp.send('actions.perform.error', { message: 'Actions list needed' });
+    }
+
+  });
+
+
   var Actions = {};
+
+  Actions.social_init = function(actions){
+
+    var social_buttons = document.querySelectorAll('[data-sp-action]');
+
+    for(var i = 0; i < social_buttons.length; i+=1) {
+
+      (function(){
+        var btn = social_buttons[i];
+        var action_id = Number(btn.getAttribute('data-sp-action'));
+        var action = sp.find_by_properties((actions || _actions_config.actions), { _actionId: action_id })[0];
+        sp.actions.parse(btn, action);
+      }());
+
+    }
+
+    function onActionMessage(messageEvent) {
+      var data= {};
+      if(messageEvent.origin == _config.DOMAIN){
+        data = JSON.parse(messageEvent.data);
+        switch (data.name) {
+          case 'actions.perform.success':
+            sp.send('actions.perform.success', data);
+            break;
+          case 'actions.perform.error':
+            sp.send('actions.perform.error', data);
+            break;
+          case 'actions.social.connect.complete':
+            sp.send('actions.social.connect.complete', data);
+            break;
+          case 'actions.social.connect.success':
+            sp.send('actions.social.connect.success', data);
+            break;
+          case 'actions.social.connect.error':
+            sp.send('actions.social.connect.error', data);
+            break;
+        }
+      }
+    }
+
+    window.addEventListener("message", onActionMessage, false);
+
+    Actions.social_inited = true;
+
+  };
+
+  //actions v1 section
 
   Actions.openSocialRegNeedPopup = function (action) {
     var w;
@@ -551,7 +725,7 @@ var SAILPLAY = (function () {
   Actions.share = function (action) {
 
     var frameUrl = _config.DOMAIN + '/js-api/' + _config.partner.id + '/actions/social-widget/?auth_hash=' + _config.auth_hash;
-    frameUrl += '&socialType=' + action.socialType + '&action=' + action.action + '&link=' + action.shortLink + '&pic=' + (_actions_config.partnerCustomPic || _config.partner.logo || '//sailplay.ru/static/home/v4/img/main/sailplay_logo_main.png' );
+    frameUrl += '&socialType=' + action.socialType + '&action=' + action.action + '&link=' + action.shortLink + '&pic=' + (_actions_config.partnerCustomPic ? _actions_config.partnerCustomPic : _config.partner.logo);
 
     frameUrl += '&msg=' + _actions_config.messages[action.action];
     frameUrl += '&_actionId=' + action['_actionId'];
@@ -590,14 +764,14 @@ var SAILPLAY = (function () {
     }
     if (_config.auth_hash) {
       sp.send('actions.perform.start', action);
-      if (action.socialType) {
+      if (action.socialType && _actions_config.connectedAccounts) {
         if (!_actions_config.connectedAccounts[action.socialType]) {
           Actions.openSocialRegNeedPopup(action);
         } else {
           Actions.share(action);
         }
       }
-      else {
+      else if(!action.socialType){
         Actions.perform(action);
       }
     } else {
@@ -726,5 +900,50 @@ var SAILPLAY = (function () {
     });
   });
 
+  //utils
+  sp.config = function(){
+    return _config;
+  };
+
+  sp.find_by_properties = function(arr, props){
+    var filtered_arr = [];
+    for(var i = 0; i < arr.length; i+=1) {
+      var seeked = arr[i];
+      var good = true;
+      for(var p in props){
+        if(props[p] != seeked[p]){
+          good = false;
+        }
+      }
+      if(good) filtered_arr.push(seeked);
+    }
+    return filtered_arr;
+  };
+
+  sp.jsonp = JSONP;
+
+  sp.is_dom = function(obj){
+    //Returns true if it is a DOM node
+
+    function isNode(o){
+      return (
+        typeof Node === "object" ? o instanceof Node :
+        o && typeof o === "object" && typeof o.nodeType === "number" && typeof o.nodeName==="string"
+      );
+    }
+
+    //Returns true if it is a DOM element
+    function isElement(o){
+      return (
+        typeof HTMLElement === "object" ? o instanceof HTMLElement : //DOM2
+        o && typeof o === "object" && o !== null && o.nodeType === 1 && typeof o.nodeName==="string"
+      );
+    }
+
+    return isNode(obj) || isElement(obj);
+
+  };
+
   return sp;
+
 }());

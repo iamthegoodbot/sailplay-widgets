@@ -246,6 +246,7 @@ var SAILPLAY = (function () {
         _config.DOMAIN = (params.domain || 'http://sailplay.ru');
         _config.dep_id = params.dep_id || '';
         _config.env.staticUrl = params.static_url || _config.env.staticUrl;
+        _config.social_networks = [ 'fb', 'vk', 'tw', 'gp', 'ok' ];
         sp.send('init.success', _config);
         //        console.dir(_config);
       } else {
@@ -488,8 +489,50 @@ var SAILPLAY = (function () {
       auth_hash: _config.auth_hash
     };
     JSONP.get(_config.DOMAIN + _config.urls.badges.list, params, function (res) {
+
       //      console.dir(res);
       if (res.status == 'ok') {
+
+        function create_badge_actions(badge){
+          if(badge && badge.is_received) {
+
+            badge.actions = {};
+
+            for(var sn in _config.social_networks){
+
+              badge.actions[_config.social_networks[sn]] = {
+
+                socialType: _config.social_networks[sn],
+                action: 'badge',
+                shortLink: window.location.href,
+                pic: badge.thumbs.url_250x250,
+                badgeId: badge.id,
+                descr: badge.descr
+
+              };
+
+            }
+          }
+        }
+
+        for(var ch in res.multilevel_badges){
+
+          var multi_line = res.multilevel_badges[ch];
+
+          for(var b in multi_line){
+
+            create_badge_actions(multi_line[b]);
+
+          }
+
+        }
+
+        for(var olb in res.one_level_badges){
+
+          create_badge_actions(res.one_level_badges[olb]);
+
+        }
+
         sp.send('load.badges.list.success', res);
       } else {
         sp.send('load.badges.list.error', res);
@@ -523,6 +566,64 @@ var SAILPLAY = (function () {
 
   //PERFORM ACTION
   //actions v2 section
+  sp.actions = {};
+
+  sp.actions.parse = function(dom, action){
+
+    if(!sp.is_dom(dom)) {
+      console.error('sp.actions.parse() need DOM element as first parameter');
+      return;
+    }
+
+    if(!action) {
+      console.error('sp.actions.parse() need Action object as second parameter');
+      return;
+    }
+
+    if(!_actions_config.connectedAccounts) {
+
+      console.error('sp.actions.parse() must execute after event load.actions.list.success');
+      return;
+
+    }
+
+    var styles = dom.getAttribute('data-styles');
+
+
+    var action_frame = document.createElement('IFRAME');
+    action_frame.style.border = 'none';
+    action_frame.style.width = '150px';
+    action_frame.style.height = '30px';
+    action_frame.style.background = 'transparent';
+    action_frame.style.overflow = 'hidden';
+    action_frame.setAttribute('scrolling', 'no');
+    action_frame.className = 'sailplay_action_frame';
+
+    var frameUrl = _config.DOMAIN + '/js-api/' + _config.partner.id + '/actions/social-widget/v2/?auth_hash=' + _config.auth_hash;
+    frameUrl += '&socialType=' + action.socialType + '&action=' + action.action + '&link=' + action.shortLink + '&pic=' + (_actions_config.partnerCustomPic ? _actions_config.partnerCustomPic : _config.partner.logo);
+
+    frameUrl += '&msg=' + (_actions_config.messages[action.action] || action.descr || _config.partner.name);
+
+    if(action['_actionId']) frameUrl += '&_actionId=' + action['_actionId'];
+
+    frameUrl += '&account_connected=' + _actions_config.connectedAccounts[action.socialType] || false;
+
+    if(styles) frameUrl += '&styles=' + styles;
+
+    if (action.action == 'purchase') {
+      frameUrl += '&purchasePublicKey=' + _actions_config.purchasePublicKey;
+    }
+
+    if (action.action == 'badge') {
+      frameUrl += '&badgeId=' + action.badgeId;
+    }
+
+    action_frame.src = frameUrl;
+    dom.innerHTML = '';
+    dom.appendChild(action_frame);
+
+  };
+
   sp.on('actions.parse', function (actions) {
     if(_config == {}){
       initError();
@@ -549,41 +650,9 @@ var SAILPLAY = (function () {
 
       (function(){
         var btn = social_buttons[i];
-
-        if(btn.inited) return;
-
         var action_id = Number(btn.getAttribute('data-sp-action'));
-
-        var action = sp.find_by_properties((actions ||_actions_config.actions), { _actionId: action_id })[0];
-
-        if(!action || !_actions_config.connectedAccounts) return;
-
-        btn.inited = true;
-
-        var action_frame = document.createElement('IFRAME');
-        action_frame.style.border = 'none';
-        action_frame.style.width = '150px';
-        action_frame.style.height = '30px';
-        action_frame.style.background = 'transparent';
-        action_frame.style.overflow = 'hidden';
-        action_frame.setAttribute('scrolling', 'no');
-        action_frame.className = 'sailplay_action_frame';
-
-        var frameUrl = _config.DOMAIN + '/js-api/' + _config.partner.id + '/actions/social-widget/v2/?auth_hash=' + _config.auth_hash;
-        frameUrl += '&socialType=' + action.socialType + '&action=' + action.action + '&link=' + action.shortLink + '&pic=' + (_actions_config.partnerCustomPic ? _actions_config.partnerCustomPic : _config.partner.logo);
-
-        frameUrl += '&msg=' + _actions_config.messages[action.action];
-        frameUrl += '&_actionId=' + action['_actionId'];
-        frameUrl += '&account_connected=' + _actions_config.connectedAccounts[action.socialType] || false;
-
-        if (action.action == 'purchase') {
-          frameUrl += '&purchasePublicKey=' + _actions_config.purchasePublicKey;
-        }
-
-        action_frame.src = frameUrl;
-        btn.innerHTML = '';
-        btn.appendChild(action_frame);
-
+        var action = sp.find_by_properties((actions || _actions_config.actions), { _actionId: action_id })[0];
+        sp.actions.parse(btn, action);
       }());
 
     }
@@ -853,5 +922,28 @@ var SAILPLAY = (function () {
 
   sp.jsonp = JSONP;
 
+  sp.is_dom = function(obj){
+    //Returns true if it is a DOM node
+
+    function isNode(o){
+      return (
+        typeof Node === "object" ? o instanceof Node :
+        o && typeof o === "object" && typeof o.nodeType === "number" && typeof o.nodeName==="string"
+      );
+    }
+
+    //Returns true if it is a DOM element
+    function isElement(o){
+      return (
+        typeof HTMLElement === "object" ? o instanceof HTMLElement : //DOM2
+        o && typeof o === "object" && o !== null && o.nodeType === 1 && typeof o.nodeName==="string"
+      );
+    }
+
+    return isNode(obj) || isElement(obj);
+
+  };
+
   return sp;
+
 }());
