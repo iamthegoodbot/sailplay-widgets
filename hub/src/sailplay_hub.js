@@ -166,9 +166,16 @@ var SAILPLAY = (function () {
     frame.id = frame_id;
 
     function onMessage(messageEvent) {
+
       var data= {};
+
       if(messageEvent.origin == _config.DOMAIN){
-        data = JSON.parse(messageEvent.data);
+        try {
+          data = JSON.parse(messageEvent.data);
+        }
+        catch(e){
+
+        }
       }
       if(data.name == 'login.success'){
         sp.send('login.do', data.auth_hash);
@@ -242,11 +249,50 @@ var SAILPLAY = (function () {
     }
     JSONP.get((params.domain || 'http://sailplay.ru') + '/js-api/' + params.partner_id + '/config/', { lang: params.lang || 'ru', dep_id: (params.dep_id || '') }, function (response) {
       if (response && response.status == 'ok') {
+
         _config = response.config;
         _config.DOMAIN = (params.domain || 'http://sailplay.ru');
         _config.dep_id = params.dep_id || '';
         _config.env.staticUrl = params.static_url || _config.env.staticUrl;
         _config.social_networks = [ 'fb', 'vk', 'tw', 'gp', 'ok' ];
+
+        //postmessage events init
+        //1. bind action events
+        function onActionMessage(messageEvent) {
+          var data= {};
+          if(messageEvent.origin == _config.DOMAIN){
+            try {
+              data = JSON.parse(messageEvent.data);
+            }
+            catch (e){
+
+            }
+
+            switch (data && data.name) {
+              case 'actions.perform.success':
+                sp.send('actions.perform.success', data);
+                break;
+              case 'actions.perform.error':
+                sp.send('actions.perform.error', data);
+                break;
+              case 'actions.social.connect.complete':
+                sp.send('actions.social.connect.complete', data);
+                break;
+              case 'actions.social.connect.success':
+                sp.send('actions.social.connect.success', data);
+                break;
+              case 'actions.social.connect.error':
+                sp.send('actions.social.connect.error', data);
+                break;
+            }
+
+          }
+        }
+
+        window.addEventListener("message", onActionMessage, false);
+
+        //2. bind login events
+
         sp.send('init.success', _config);
         //        console.dir(_config);
       } else {
@@ -556,7 +602,6 @@ var SAILPLAY = (function () {
       //      console.dir(res);
       if (res.status == 'ok') {
         _actions_config = res.data;
-
         sp.send('load.actions.list.success', res.data);
       } else {
         sp.send('load.actions.list.error', res);
@@ -656,34 +701,6 @@ var SAILPLAY = (function () {
       }());
 
     }
-
-    function onActionMessage(messageEvent) {
-      var data= {};
-      if(messageEvent.origin == _config.DOMAIN){
-        data = JSON.parse(messageEvent.data);
-        switch (data.name) {
-          case 'actions.perform.success':
-            sp.send('actions.perform.success', data);
-            break;
-          case 'actions.perform.error':
-            sp.send('actions.perform.error', data);
-            break;
-          case 'actions.social.connect.complete':
-            sp.send('actions.social.connect.complete', data);
-            break;
-          case 'actions.social.connect.success':
-            sp.send('actions.social.connect.success', data);
-            break;
-          case 'actions.social.connect.error':
-            sp.send('actions.social.connect.error', data);
-            break;
-        }
-      }
-    }
-
-    window.addEventListener("message", onActionMessage, false);
-
-    Actions.social_inited = true;
 
   };
 
