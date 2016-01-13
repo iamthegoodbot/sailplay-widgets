@@ -553,7 +553,7 @@ var SAILPLAY = (function () {
                 shortLink: window.location.href,
                 pic: badge.thumbs.url_250x250,
                 badgeId: badge.id,
-                descr: badge.descr
+                msg: badge.share_msg
 
               };
 
@@ -644,26 +644,36 @@ var SAILPLAY = (function () {
     action_frame.setAttribute('scrolling', 'no');
     action_frame.className = 'sailplay_action_frame';
 
-    var frameUrl = _config.DOMAIN + '/js-api/' + _config.partner.id + '/actions/social-widget/v2/?auth_hash=' + _config.auth_hash;
-    frameUrl += '&socialType=' + action.socialType + '&action=' + action.action + '&link=' + action.shortLink + '&pic=' + (_actions_config.partnerCustomPic ? _actions_config.partnerCustomPic : _config.partner.logo);
+    function EncodeQueryData(data)
+    {
+      var ret = [];
+      for (var d in data)
+        ret.push(encodeURIComponent(d) + "=" + encodeURIComponent(data[d]));
+      return ret.join("&");
+    }
 
-    frameUrl += '&msg=' + (_actions_config.messages[action.action] || action.descr || _config.partner.name);
+    var frame_params = {
+      auth_hash: _config.auth_hash,
+      socialType: action.socialType,
+      action: action.action,
+      link: action.shortLink,
+      pic: (action.pic || _actions_config.partnerCustomPic || _config.partner.logo),
+      msg: (action.msg || _actions_config.messages[action.action] || _config.partner.name),
+      account_connected: _actions_config.connectedAccounts[action.socialType] || false
+    };
 
-    if(action['_actionId']) frameUrl += '&_actionId=' + action['_actionId'];
-
-    frameUrl += '&account_connected=' + _actions_config.connectedAccounts[action.socialType] || false;
-
-    if(styles) frameUrl += '&styles=' + styles;
+    if(action['_actionId']) frame_params._actionId = action._actionId;
+    if(styles) frame_params.styles = styles;
 
     if (action.action == 'purchase') {
-      frameUrl += '&purchasePublicKey=' + _actions_config.purchasePublicKey;
+      frame_params.purchasePublicKey = _actions_config.purchasePublicKey;
     }
 
     if (action.action == 'badge') {
-      frameUrl += '&badgeId=' + action.badgeId;
+      frame_params.badgeId= action.badgeId;
     }
 
-    action_frame.src = frameUrl;
+    action_frame.src = _config.DOMAIN + '/js-api/' + _config.partner.id + '/actions/social-widget/v2/?' + EncodeQueryData(frame_params);;
     dom.innerHTML = '';
     dom.appendChild(action_frame);
 
