@@ -820,7 +820,7 @@
           url: 'http://club.trendsbrands.ru/',
           img: 'sp-img/actions/TrendsBrands-18.png',
           descr: 'Понравилась статья в T&B Club? Скорее делай репост и зарабатывай баллы.',
-          points: 10
+          points: 20
         },
         {
           _actionId: 'author',
@@ -828,7 +828,7 @@
           url: 'http://club.trendsbrands.ru/',
           img: 'sp-img/actions/TrendsBrands-19.png',
           descr: 'Напиши пост для T&B Club и если он будет опубликован, получи дополнительные баллы.',
-          points: 10
+          points: 100
         },
         {
           _actionId: 'meeting',
@@ -836,14 +836,14 @@
           url: 'http://club.trendsbrands.ru/',
           img: 'sp-img/actions/TrendsBrands-20.png',
           descr: 'Присоединяйся к нашей следующей встрече и ты узнаешь много нового и интересного.',
-          points: 10
+          points: 300
         },
         {
           _actionId: 'share_shopping',
           name: 'Расскажи о своем шоппинге',
           url: 'http://club.trendsbrands.ru/',
           img: 'sp-img/actions/TrendsBrands-21.png',
-          points: 10,
+          points: 20,
           descr: 'Сделай шейр своей покупки в любимой соц. сети и получи бонусные баллы'
         }
       ];
