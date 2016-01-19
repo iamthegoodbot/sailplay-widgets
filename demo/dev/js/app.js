@@ -6,6 +6,7 @@
     //SAILPLAY.send('init', { partner_id: 5, domain: 'http://sailplay.ru', lang: 'ru', static_url: '/sailplay/widgets/demo/dev' });
     //SAILPLAY.send('init', { partner_id: 1188, domain: 'http://skazka.loc', lang: 'ru', static_url: '/sailplay/widgets/demo/dev' });
 //    SAILPLAY.send('init', { partner_id: 1404, domain: 'http://sailplay.ru', static_url: '/sailplay/widgets/demo/dev' });
+//    SAILPLAY.send('init', { partner_id: 1527, domain: 'http://sailplay.ru', static_url: '/sailplay/widgets/demo/dev' });
 
     SAILPLAY.on('init.success', function(){
       SAILPLAY.send('login', 'a74df059493ae3c8a9f232a675ef5014672f4988');
