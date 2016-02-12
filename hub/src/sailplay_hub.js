@@ -284,6 +284,9 @@ var SAILPLAY = (function () {
               case 'actions.social.connect.error':
                 sp.send('actions.social.connect.error', data);
                 break;
+              case 'friend_invite_cookie':
+                _config.invite_friend_data = data && data.data && data.data.response;
+                break;
             }
 
           }
@@ -291,7 +294,17 @@ var SAILPLAY = (function () {
 
         window.addEventListener("message", onActionMessage, false);
 
-        //2. bind login events
+        //2. recieve cookies info
+        var cookie_frame = document.createElement('IFRAME');
+        cookie_frame.style.width = 0;
+        cookie_frame.style.height = 0;
+        cookie_frame.style.top = '-10000px';
+        cookie_frame.style.left = '-10000px';
+        cookie_frame.src = _config.DOMAIN + '/js-api/' + _config.partner.id + '/actions/social-widget/v2/';
+        document.body.appendChild(cookie_frame);
+        cookie_frame.onload = function(){
+          document.body.removeChild(cookie_frame);
+        };
 
         sp.send('init.success', _config);
         //        console.dir(_config);
