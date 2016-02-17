@@ -6,7 +6,7 @@
 
             var self = this;
 
-            var cssLink = 'https://sailplays3.cdnvideo.ru/media/assets/assetfile/044553480a4264ca4c4dfc949414201f.css';
+            var cssLink = '//sailplays3.cdnvideo.ru/media/assets/assetfile/044553480a4264ca4c4dfc949414201f.css';
 
             self.loadList = function () {
                 self.actions = [];

@@ -10,7 +10,7 @@
                 scope: true,
                 link: function (scope) {
                     scope.history_data = null;
-                    userService.getHistory().then(function(data){
+                    userService.loadHistory().then(function(data){
                         scope.history = data;
                         scope.change_page();
                         scope.$digest();

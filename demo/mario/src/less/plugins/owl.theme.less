@@ -1,0 +1,132 @@
+/*
+* 	Owl Carousel Owl Demo Theme 
+*	v1.15
+*/
+
+.owl-theme .owl-controlls{
+}
+
+/* Styling Next and Prev buttons */
+.owl-pagination {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	text-align: center;
+	// background: #fff;
+	.clearfix();
+}
+.owl-page {
+	// display: inline-block;
+	// margin: 10px;
+	// width: 20px;
+	// height: 20px;
+	// background: transparent url('iefix');//ie fix
+	// // border: 5px solid @color-red;
+	// border: 5px solid #fff;
+	// .rounded(20px);
+	// cursor: pointer;
+	// &.active {
+	// 	background: @color-red-dark;
+	// }
+}
+.owl-wrapper {
+	.clearfix();
+}
+@color-dark-blue: #fff;
+
+.owl-carousel { 
+	.owl-controls,
+	.owl-buttons,
+	.owl-next {
+		z-index: 1;
+	}
+	.owl-prev, .owl-next {
+		position: absolute;
+		top: 50%;
+		margin-top: -11px;
+		width: 25px;
+		height: 21px;
+		cursor: pointer;
+		.sprite(250px, 118px);
+		.this-hover {
+			.sprite(225px, 118px);
+			background-color: @color-text-main;
+		}
+		&:hover {
+			.this-hover {
+				.opacity(1);
+			}
+			// background-color: lighten( @color-dark-blue, 20%);
+		}
+		&:active {
+			// background-color: darken( @color-dark-blue, 5%);
+		}
+		// &.disabled {
+		// 	background-color: #a2a2a2;
+		// 	cursor: default;
+		// }
+	}
+	.owl-prev {
+		// background: @color-dark-blue url("@{burl}teaser-left-arrow.png") no-repeat 50% 50%;
+		// left: 0;
+		display: none;
+	}
+	.owl-next {
+		// background: @color-dark-blue url("@{burl}teaser-right-arrow.png") no-repeat 50% 50%;
+		right: 0;
+	}
+}
+.no-opacity .owl-carousel .owl-next {
+	.this-hover {display: none;}
+	&:hover,
+	&.hover {
+	 .this-hover {display: block;}
+	}
+}
+/* Clickable class fix problem with hover on touch devices */
+/* Use it for non-touch hover action */
+.owl-theme .owl-controlls.clickable .owl-buttons div:hover{
+	opacity: 1;
+	text-decoration: none;
+}
+
+/* Styling Pagination*/
+
+.owl-theme .owl-controlls .owl-page{
+	display: inline-block;
+	zoom: 1;
+	*display: inline;/*IE7 life-saver */
+}
+.owl-theme .owl-controlls .owl-page span{
+	display: block;
+	width: 12px;
+	height: 12px;
+	margin: 5px 7px;
+	opacity: 0.5;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+	background: #869791;
+}
+
+.owl-theme .owl-controlls .owl-page.active span,
+.owl-theme .owl-controlls.clickable .owl-page:hover span{
+	opacity: 1;
+}
+
+/* If PaginationNumbers is true */
+
+.owl-theme .owl-controlls .owl-page span.owl-numbers{
+	height: auto;
+	width: auto;
+	color: #FFF;
+	padding: 2px 10px;
+	font-size: 12px;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+	border-radius: 30px;
+}
+
+
+

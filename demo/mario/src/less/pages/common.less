@@ -1,0 +1,153 @@
+.shaded-cell {
+	.box-shadow(0px 2px 10px rgba(0,0,0,0.4));
+}
+
+.common-btn {
+	display: block;
+	cursor: pointer;
+
+	width: 167px;
+	height: 36px;
+	background-color: #FA658E;
+	text-align: center;
+	font-size: 12px;
+	.arial();
+	line-height: 1;
+	padding-top: 12px;
+	.text-shadow(0px -1px 1px rgba(0,0,0,0.7));
+	color: #fff;
+	.alink(#fff);
+	.rounded(3px);
+
+	margin-left: auto;
+	margin-right: auto;
+	.trans();
+	&:hover {
+		background-color: lighten(#FA658E, 3%);
+	}
+	&:active {
+		background-color: darken(#FA658E, 5%);
+	}
+}
+
+.vHidden {
+	visibility: hidden;
+	opacity: 0;
+}
+
+.close-this-cell {
+	display: block;
+	position: absolute;
+	width: 26px;
+	height: 25px;
+	.sprite(160px, 0);
+	right: 14px;
+	top: 17px;
+	cursor: pointer;
+}
+
+.task-preloader {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	margin: auto;
+}
+
+.common-paginate {
+	text-align: center;
+	font-size: 14px;
+	line-height: 1;
+	margin-top: 30px;
+	.arial();
+	&__item {
+		display: inline-block;
+		margin: 0 6px 0 6px;
+		cursor: pointer;
+		color: #929292;
+		.alink(#929292, @pink);
+		&.active {
+			color: @pink;
+			.alink(@pink);
+			font-weight: bold;
+		}
+	}
+	&__delimeter {
+		display: inline-block;
+		margin: 0 0px;
+	}
+}
+
+
+
+.custom-radio {
+	&__wrap {
+		position: relative;
+		width: 19px;
+		height: 19px;
+		&.active {
+			.custom-radio {
+				background-color: @pink;
+				width: 67px;
+				.custom-radio__text {
+					display: block;
+				}
+			}
+			&:hover {
+				.custom-radio {
+					background-color: darken(@pink, 5%);
+				}
+			}
+		}
+		&:hover,
+		&.hover {
+			.custom-radio {
+				background-color: @pink;
+			}
+		}
+	}
+
+	height: 20px;
+	width: 19px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	background-color: #D3D3D3;
+	.rounded(10px);
+	.trans();
+	overflow: hidden;
+	cursor: pointer;
+
+
+
+	&.active {
+		background-color: @pink;
+		width: 67px;
+		.custom-radio__text {
+			display: block;
+		}
+	}
+
+	
+	&__text {
+		display: none;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		left: 0;
+		top: 0;
+		text-align: center;
+
+		font-size: 12px;
+		font-weight: normal;
+		padding-top: 4px;
+		line-height: 1;
+		.arial();
+	}
+	a.custom-radio__text {
+		color: #fff;
+		.alink(#fff);
+	}
+}

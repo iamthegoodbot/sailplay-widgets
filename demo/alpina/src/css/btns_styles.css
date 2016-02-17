@@ -1,0 +1,101 @@
+
+
+.vk_share_btn {
+    width: 100%;
+    text-align: center;
+    font-size: 15px;
+    transition: all 150ms linear 0s;
+    display: block;
+    background-color: #00ABB8;
+    color: #fff;
+    border: 2px solid #fff;
+    height: 100%;
+    position: absolute;
+    border-radius: 55px;
+    left: 0;
+    top: 0;
+    line-height: 51px;
+    box-sizing: border-box;
+    font-family: gt_walsheim_pro, sans-serif;
+    cursor: pointer;
+}
+
+.vk_share_btn:hover {
+    background-color: #00c3d2;
+}
+
+.fb_share_btn {
+    width: 100%;
+    text-align: center;
+    font-size: 15px;
+    transition: all 150ms linear 0s;
+    display: block;
+    background-color: #00ABB8;
+    color: #fff;
+    border: 2px solid #fff;
+    height: 100%;
+    position: absolute;
+    border-radius: 55px;
+    left: 0;
+    top: 0;
+    line-height: 51px;
+    box-sizing: border-box;
+    font-family: gt_walsheim_pro, sans-serif;
+    cursor: pointer;
+}
+
+.fb_share_btn:hover {
+    background-color: #00c3d2;
+}
+
+.ok_share_btn {
+    width: 100%;
+    text-align: center;
+    font-size: 15px;
+    transition: all 150ms linear 0s;
+    display: block;
+    background-color: #00ABB8;
+    color: #fff;
+    border: 2px solid #fff;
+    height: 100%;
+    position: absolute;
+    border-radius: 55px;
+    left: 0;
+    top: 0;
+    line-height: 51px;
+    box-sizing: border-box;
+    font-family: gt_walsheim_pro, sans-serif;
+    cursor: pointer;
+}
+
+.ok_share_btn:hover {
+    background-color: #00c3d2;
+}
+
+.gp_share_btn {
+    width: 100%;
+    text-align: center;
+    font-size: 15px;
+    transition: all 150ms linear 0s;
+    display: block;
+    background-color: #00ABB8;
+    color: #fff;
+    border: 2px solid #fff;
+    height: 100%;
+    position: absolute;
+    border-radius: 55px;
+    left: 0;
+    top: 0;
+    line-height: 51px;
+    box-sizing: border-box;
+    font-family: gt_walsheim_pro, sans-serif;
+    cursor: pointer;
+}
+
+.gp_share_btn:hover {
+    background-color: #00c3d2;
+}
+
+table span > iframe {
+    margin-top: 10px;
+}

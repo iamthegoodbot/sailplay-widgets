@@ -20,6 +20,8 @@
                 });
             };
 
+
+
             self.getInfo = function () {
                 if (self.info) {
                     return new Promise(function (resolve, reject) {
@@ -82,9 +84,9 @@
                 };
                 switch (action.action) {
                     case 'event':
-                        return action.name;
+                        return action.name || 'Custom action';
                     case 'extra':
-                        return action.name;
+                        return action.name || 'Custom action';
                     case 'sharing':
                         switch (action.social_action) {
                             case 'like':
