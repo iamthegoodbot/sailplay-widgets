@@ -1,17 +1,10 @@
-(function (angular, sp) {
+(function (angular, sp, sp_custom_action, sp_test) {
 
     angular.module('mario.services.actions', [])
 
         .service('actionService', function () {
 
             var self = this;
-
-            var TAGS = {
-                profile: 'Заполнил профиль',
-                view: 'Оставил отзыв',
-                test: 'Прошел опрос',
-                instagram: 'Опубликовать лук в instagram'
-            };
 
             var cssLink = 'http://dev4you.info/test/mario/btns_styles.css';
 
@@ -43,10 +36,6 @@
                 }
             };
 
-            self.getTags = function(){
-                return TAGS;
-            };
-
             self.getActionsByGroup = function (actions, group) {
                 if (!actions || !group) return;
                 return actions.filter(function (item) {
@@ -54,72 +43,21 @@
                 });
             };
 
+
+            self.getCustomAction = function(){
+                return sp_custom_action || [];
+            };
+
             self.getTests = function () {
-                return [
-                    {
-                        q: 'Вопрос 1',
-                        a: [
-                            {
-                                title: 'Ответ 1',
-                                tag: 'Вопрос 1 ответ 1'
-                            },
-                            {
-                                title: 'Ответ 2',
-                                tag: 'Вопрос 1 ответ 2'
-                            },
-                            {
-                                title: 'Ответ 3',
-                                tag: 'Вопрос 1 ответ 3'
-                            },
-                            {
-                                title: 'Ответ 4',
-                                tag: 'Вопрос 1 ответ 4'
-                            }
-                        ]
-                    },
-                    {
-                        q: 'Вопрос 2',
-                        a: [
-                            {
-                                title: 'Ответ 1',
-                                tag: 'Вопрос 2 ответ 1'
-                            },
-                            {
-                                title: 'Ответ 2',
-                                tag: 'Вопрос 2 ответ 2'
-                            },
-                            {
-                                title: 'Ответ 3',
-                                tag: 'Вопрос 2 ответ 3'
-                            },
-                            {
-                                title: 'Ответ 4',
-                                tag: 'Вопрос 2 ответ 4'
-                            }
-                        ]
-                    },
-                    {
-                        q: 'Вопрос 3',
-                        a: [
-                            {
-                                title: 'Ответ 1',
-                                tag: 'Вопрос 3 ответ 1'
-                            },
-                            {
-                                title: 'Ответ 2',
-                                tag: 'Вопрос 3 ответ 2'
-                            },
-                            {
-                                title: 'Ответ 3',
-                                tag: 'Вопрос 3 ответ 3'
-                            },
-                            {
-                                title: 'Ответ 4',
-                                tag: 'Вопрос 3 ответ 4'
-                            }
-                        ]
-                    },
-                ];
+                return sp_test ? sp_test.data || [] : [];
+            };
+
+            self.getTestTag = function(){
+              return sp_test ? sp_test.tag || null : null;
+            };
+
+            self.getTestData = function(){
+                return sp_test || null;
             };
 
             self.getActionsCssLink = function () {
@@ -128,4 +66,4 @@
 
         });
 
-}(window.angular, window.SAILPLAY));
+}(window.angular, window.SAILPLAY, window.SP_CUSTOM_ACTION, window.SP_TEST));

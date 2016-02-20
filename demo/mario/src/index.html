@@ -3,21 +3,132 @@
     <title>Mario Berluchi</title>
     <meta charset="utf-8">
     <script type="text/javascript">
-    var AUTH_HASH = 'ad07ba8991ed93240a9b457363fb877eae040bf0';
-    document.addEventListener('DOMContentLoaded', function () {
-        var s = document.createElement("script");
-        s.type = "text/javascript";
-        s.src = "js/main.min.js";
-        document.getElementsByTagName("head")[0].appendChild(s);
-        var ss = document.createElement("link");
-        ss.type = "text/css";
-        ss.rel = "stylesheet";
-        ss.href = "css/main.css";
-        document.getElementsByTagName("head")[0].appendChild(ss);
-    });
+        /**
+         * ДЕЙСТВИЯ
+         * name - Название;
+         * desc - Описание;
+         * tag - Тэг для проверки;
+         * variable - Название переменной ( не должно повторятся );
+         * imgLink - Ссылка на картинку действия;
+         * imgClass - CSS класс картинки, для выравнивания;
+         */
+        var SP_CUSTOM_ACTION = [
+            {
+                name: 'Оставь отзыв о магазине',
+                desc: 'Оставить отзыв возможно как о магазине в целом <a href="http://marioberluchi.ru/reviewsplus/allreviews">http://marioberluchi.ru/reviewsplus/allreviews</a>.<br>\nТак и о любом понравившемся тебе товаре отдельно',
+                points: '50 баллов',
+                tag: 'Оставил отзыв',
+                variable: 'view',
+                imgLink: 'image/task-icon-05.png',
+                imgClass: 'task-item__ico5'
+            },
+            {
+                name: 'Опубликовать лук с Mario Berluchi в Instagram',
+                desc: '1. Разместите отзыв/фотографию в инстаграм.<br>\n2. Оставьте отзыв и отметьте наш аккаунт на фото @marioberluchi.<br>\n3. Отправьте нам письмо <a href="mailto:shop@marioberluchi.ru">shop@marioberluchi.ru</a> с указанием ссылки на эту фотографию или ваш аккаунт<br>\n4. Получите баллы!',
+                points: '50 баллов',
+                tag: 'Опубликовать лук в instagram',
+                variable: 'instagram',
+                imgLink: 'image/task-icon-06.png',
+                imgClass: 'task-item__ico6'
+            },
+            {
+                name: 'Заполни профиль',
+                desc: 'Перейди на страницу <a href="http://marioberluchi.ru/my/profile/">"мой профиль"</a> и укажи информацию о себе - это позволит нам лучше узнать тебя и делать приятные предложения по случаю :)',
+                points: '50 баллов',
+                tag: 'Заполнил профиль',
+                variable: 'profile',
+                imgLink: 'image/task-icon-03.png',
+                imgClass: 'task-item__ico3'
+            }
+        ];
+        /**
+         * Тест
+         */
+        var SP_TEST = {
+            name: 'Пройти опрос',
+            points: '50 баллов',
+            tag: 'Прошел опрос',
+            data: [
+                {
+                    q: 'Вопрос 1',
+                    a: [
+                        {
+                            title: 'Ответ 1',
+                            tag: 'Вопрос 1 ответ 1'
+                        },
+                        {
+                            title: 'Ответ 2',
+                            tag: 'Вопрос 1 ответ 2'
+                        },
+                        {
+                            title: 'Ответ 3',
+                            tag: 'Вопрос 1 ответ 3'
+                        },
+                        {
+                            title: 'Ответ 4',
+                            tag: 'Вопрос 1 ответ 4'
+                        }
+                    ]
+                },
+                {
+                    q: 'Вопрос 2',
+                    a: [
+                        {
+                            title: 'Ответ 1',
+                            tag: 'Вопрос 2 ответ 1'
+                        },
+                        {
+                            title: 'Ответ 2',
+                            tag: 'Вопрос 2 ответ 2'
+                        },
+                        {
+                            title: 'Ответ 3',
+                            tag: 'Вопрос 2 ответ 3'
+                        },
+                        {
+                            title: 'Ответ 4',
+                            tag: 'Вопрос 2 ответ 4'
+                        }
+                    ]
+                },
+                {
+                    q: 'Вопрос 3',
+                    a: [
+                        {
+                            title: 'Ответ 1',
+                            tag: 'Вопрос 3 ответ 1'
+                        },
+                        {
+                            title: 'Ответ 2',
+                            tag: 'Вопрос 3 ответ 2'
+                        },
+                        {
+                            title: 'Ответ 3',
+                            tag: 'Вопрос 3 ответ 3'
+                        },
+                        {
+                            title: 'Ответ 4',
+                            tag: 'Вопрос 3 ответ 4'
+                        }
+                    ]
+                }
+            ]
+        };
+//        var AUTH_HASH = 'ad07ba8991ed93240a9b457363fb877eae040bf0';
+        document.addEventListener('DOMContentLoaded', function () {
+            var s = document.createElement("script");
+            s.type = "text/javascript";
+            s.src = "js/main.min.js";
+            document.getElementsByTagName("head")[0].appendChild(s);
+            var ss = document.createElement("link");
+            ss.type = "text/css";
+            ss.rel = "stylesheet";
+            ss.href = "css/main.css";
+            document.getElementsByTagName("head")[0].appendChild(ss);
+        });
     </script>
 </head>
 <body>
-    <app></app>
+<app></app>
 </body>
 </html>

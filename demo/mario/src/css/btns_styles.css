@@ -12,11 +12,24 @@
     line-height: 35px;
     left: 0;
     transform: translateY(-50%);
-    background: url('//dev4you.info/test/mario/image/social-1.svg') no-repeat 14px center #FA658E;
+    background: #FA658E;
     background-size: 24px;
     box-sizing: border-box;
-    text-align: left;
-    padding-left: 56px;
+    padding-left: 40px;
+    text-align: center;
+}
+
+.vk_share_btn:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 40px;
+    height: 100%;
+    background: url('//dev4you.info/test/mario/image/social-1.svg') no-repeat center center #B1D0FF;
+    background-size: 25px;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
 }
 
 .vk_share_btn:hover {
@@ -36,12 +49,26 @@
     top: 50%;
     line-height: 35px;
     left: 0;
-    background: url('//dev4you.info/test/mario/image/social-2.svg') no-repeat 22px center #FA658E;
+    background: #FA658E;
     background-size: 10px;
     transform: translateY(-50%);
     box-sizing: border-box;
-    text-align: left;
-    padding-left: 55px;
+    padding-left: 40px;
+    text-align: center;
+}
+
+
+.fb_share_btn:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 40px;
+    height: 100%;
+    background: url('//dev4you.info/test/mario/image/social-2.svg') no-repeat center center #B1D0FF;
+    background-size: 10px;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
 }
 
 .fb_share_btn:hover {
@@ -61,12 +88,26 @@
     top: 50%;
     line-height: 35px;
     left: 0;
-    background: url('//dev4you.info/test/mario/image/social-4.svg') no-repeat 20px center #FA658E;
+    background: #FA658E;
     background-size: 15px;
     transform: translateY(-50%);
-    text-align: left;
     box-sizing: border-box;
-    padding-left: 62px;
+    padding-left: 40px;
+    text-align: center;
+}
+
+
+.ok_share_btn:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 40px;
+    height: 100%;
+    background: url('//dev4you.info/test/mario/image/social-4.svg') no-repeat center center #B1D0FF;
+    background-size: 15px;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
 }
 
 .ok_share_btn:hover {

@@ -10,9 +10,6 @@
                 scope: true,
                 link: function (scope) {
                     scope.gifts = null;
-                    sp.on('gift.purchase.force_complete.success', function (res) {
-                        update();
-                    });
                     scope.gift_purchase = function (gift) {
                         if (scope.user.user_points.confirmed < gift.points) {
                             return;
@@ -33,6 +30,18 @@
                         });
                     }
                     update();
+                    sp.on('actions.perform.success', function (data) {
+                        update();
+                    });
+                    sp.on('tags.add.success', function (data) {
+                        update();
+                    });
+                    sp.on('gift.purchase.force_complete.success', function (res) {
+                        update();
+                    });
+                    sp.on('gift.purchase.success', function (res) {
+                        update();
+                    });
                 }
             }
 

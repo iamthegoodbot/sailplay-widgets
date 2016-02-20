@@ -325,6 +325,7 @@
   position: relative;
   max-width: 340px;
   padding: 42px 40px 35px;
+  transition: .5s ease;
   @media (max-width: (@screen-lg-min - 1px)) {
   }
   @media (max-width: (@screen-md-min - 1px)) {
@@ -344,6 +345,9 @@
   .rounded(15px);
   .clearfix();
 
+  &.rotated {
+    transform: perspective(1000px) rotate3d(0,-5,0,-20deg);
+  }
   &__photo-wrap {
     float: left;
     width: 116px;
@@ -758,6 +762,7 @@
     width: 33.33333%;
     padding-left: 16px;
     padding-right: 16px;
+    padding-bottom: 16px;
     @media (max-width: (@screen-lg-min - 1px)) {
     }
     @media (max-width: (@screen-md-min - 1px)) {
