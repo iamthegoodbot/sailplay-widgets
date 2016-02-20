@@ -1,21 +1,21 @@
-(function(){
+(function () {
 
-  angular.module('visavis.gifts', [])
+    angular.module('visavis.gifts', [])
 
-		  .directive('onLastRepeat', function() {
-				  return function(scope, element, attrs) {
-						  if (scope.$last) setTimeout(function(){
-								  scope.$emit('giftsListEnded', element, attrs);
-						  }, 1);
-				  };
-		  })
+        .directive('onLastRepeat', function () {
+            return function (scope, element, attrs) {
+                if (scope.$last) setTimeout(function () {
+                    scope.$emit('giftsListEnded', element, attrs);
+                }, 1);
+            };
+        })
 
-    .directive('sailplayGifts', function(){
+        .directive('sailplayGifts', function () {
 
-      return {
-        restrict: 'E',
-        replace: true,
-        template: '<div class="spvv" data-ng-show="show">\
+            return {
+                restrict: 'E',
+                replace: true,
+                template: '<div class="spvv" data-ng-show="show">\
                      <div class="spvv-gifts">\
                       <div class="spvv-simple__title">\
                         подарки\
@@ -51,101 +51,99 @@
                       </div>\
                     </div>\
                   </div>',
-        scope: true,
-        link: function(scope, el, attr){
+                scope: true,
+                link: function (scope, el, attr) {
 
-		        scope.show =  spData.buy_tag && true;
+                    scope.show = spData.buy_tag && true;
 
-          scope.gifts = [];
+                    scope.gifts = [];
 
-		        // loop slider
-		        scope.loop = false;
+                    // loop slider
+                    scope.loop = false;
 
-		        scope.page = 0;
+                    scope.page = 0;
 
-		        scope.left = 0;
+                    scope.left = 0;
 
-		        scope.max = 0;
+                    scope.max = 0;
 
-		        var item_width = 0;
+                    var item_width = 0;
 
-          scope.user = false;
+                    scope.user = false;
 
-		        scope.items_per_page = 0;
+                    scope.items_per_page = 0;
 
-		        scope.next = function(){
-				        if(!scope.loop && scope.page == scope.max) {
-						        return;
-				        }
-				        scope.action(scope.page + 1);
-		        };
+                    scope.next = function () {
+                        if (!scope.loop && scope.page == scope.max) {
+                            return;
+                        }
+                        scope.action(scope.page + 1);
+                    };
 
-		        scope.prev = function(){
-				        if(!scope.loop && scope.page == 0) {
-						        return;
-				        }
-				        scope.action(scope.page - 1);
-		        };
+                    scope.prev = function () {
+                        if (!scope.loop && scope.page == 0) {
+                            return;
+                        }
+                        scope.action(scope.page - 1);
+                    };
 
-		        scope.action = function(page){
-				        var nextPage;
-				        nextPage = page < 0 ? scope.max : page;
-				        nextPage = page > scope.max ? 0 : page;
-				        scope.page = nextPage;
-				        scope.left = -Math.abs(scope.page * item_width);
-				        console.log(scope.left)
-		        };
+                    scope.action = function (page) {
+                        var nextPage;
+                        nextPage = page < 0 ? scope.max : page;
+                        nextPage = page > scope.max ? 0 : page;
+                        scope.page = nextPage;
+                        scope.left = -Math.abs(scope.page * item_width);
+                    };
 
-          scope.gift_purchase = function(gift){
-            SAILPLAY.send('gifts.purchase', gift);
-          };
+                    scope.gift_purchase = function (gift) {
+                        SAILPLAY.send('gifts.purchase', gift);
+                    };
 
-          SAILPLAY.on('gift.purchase.force_complete.success', function (res) {
-            //console.dir(res);
-            SAILPLAY.send('load.user.info');
-            SAILPLAY.send('load.user.history');
-          });
+                    SAILPLAY.on('gift.purchase.force_complete.success', function (res) {
+                        //console.dir(res);
+                        SAILPLAY.send('load.user.info');
+                        SAILPLAY.send('load.user.history');
+                    });
 
-		        scope.$on('giftsListEnded', function(s, e, a){
-				        scope.$apply(function(){
-						        var _wrapper_width = angular.element(el).find('.spvv-slider').width();
-						        var _margin = parseInt(angular.element(angular.element(el).find('.spvv-slider__i')[0]).css('margin-right')) + parseInt(angular.element(angular.element(el).find('.spvv-slider__i')[0]).css('margin-left'));
-						        var _item_width = angular.element(angular.element(el).find('.spvv-slider__i')[0]).width() + _margin;
-						        item_width = _item_width;
-						        scope.items_per_page = Math.round(_wrapper_width/_item_width);
-						        scope.max = scope.gifts.length - scope.items_per_page;
-				        })
-		        });
-
-
-          SAILPLAY.on('load.gifts.list.success', function(gifts){
-            scope.$apply(function(){
-              scope.gifts = gifts;
-              //console.dir(scope.gifts);
-            });
-          });
-
-          SAILPLAY.on('load.user.info.success', function(user){
-            scope.$apply(function(){
-              //console.dir(user);
-              scope.user = user;
-
-            });
-          });
+                    scope.$on('giftsListEnded', function (s, e, a) {
+                        scope.$apply(function () {
+                            var _wrapper_width = angular.element(el).find('.spvv-slider').width();
+                            var _margin = parseInt(angular.element(angular.element(el).find('.spvv-slider__i')[0]).css('margin-right')) + parseInt(angular.element(angular.element(el).find('.spvv-slider__i')[0]).css('margin-left'));
+                            var _item_width = angular.element(angular.element(el).find('.spvv-slider__i')[0]).width() + _margin;
+                            item_width = _item_width;
+                            scope.items_per_page = Math.round(_wrapper_width / _item_width);
+                            scope.max = scope.gifts.length - scope.items_per_page;
+                        })
+                    });
 
 
+                    SAILPLAY.on('load.gifts.list.success', function (gifts) {
+                        scope.$apply(function () {
+                            scope.gifts = gifts;
+                            //console.dir(scope.gifts);
+                        });
+                    });
 
+                    SAILPLAY.on('load.user.info.success', function (user) {
+                        scope.$apply(function () {
+                            //console.dir(user);
+                            scope.user = user;
+
+                        });
+                    });
+
+
+                }
+            }
+
+        });
+
+    window.addEventListener('load', function () {
+        document.createElement('sailplay-gifts');
+        var banners = document.querySelectorAll('sailplay-gifts');
+        for (var i = 0; i < banners.length; i += 1) {
+            angular.bootstrap(banners[i], ['visavis.gifts']);
         }
-      }
-
     });
-
-  window.addEventListener('load', function(){
-    document.createElement('sailplay-gifts');
-    var banners = document.querySelectorAll('sailplay-gifts');
-    for(var i = 0; i < banners.length; i+=1){
-      angular.bootstrap(banners[i], [ 'visavis.gifts' ]);
-    }
-  });
 
 }());

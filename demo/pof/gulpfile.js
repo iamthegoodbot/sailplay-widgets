@@ -80,6 +80,6 @@ gulp.task('js:dev', function () {
         .pipe(connect.reload());
 });
 
-gulp.task('prod', ['connect', 'watch', 'css', 'html', 'js:prod']);
+gulp.task('prod', ['connect', 'watch', 'css', 'html', 'img', 'js:prod']);
 
-gulp.task('default', ['connect', 'watch', 'css', 'html', 'js:dev']);
+gulp.task('default', ['connect', 'watch', 'css', 'html', 'img', 'js:dev']);
