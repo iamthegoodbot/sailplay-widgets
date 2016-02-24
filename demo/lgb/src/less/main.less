@@ -1,0 +1,61 @@
+// basic url adress
+@burl: "../image/";
+@burlfonts: "../fonts/";
+@sprite_sailplay: "//sailplays3.cdnvideo.ru/media/assets/assetfile/ce6e865f857a15fe323cb2f766542ecf.png";
+@topUrl: "//sailplays3.cdnvideo.ru/media/assets/assetfile/38f04b901f3a6537ba440a1a55c03da3.jpg";
+@grabbing: "//sailplays3.cdnvideo.ru/media/assets/assetfile/6313e6b57166c8d97a51d46f93f51ccf.png";
+@grab: "//sailplays3.cdnvideo.ru/media/assets/assetfile/e1b0496595a5449dba6000ab46915b06.png";
+@sline: "//sailplays3.cdnvideo.ru/media/assets/assetfile/fa9740406175786aa292ddcd6d3042f6.png";
+@slinea: "//sailplays3.cdnvideo.ru/media/assets/assetfile/659061bbb63680f7deeb4d336e3f1a5c.png";
+
+@import url(//fonts.googleapis.com/css?family=Lato:400,700,900,300&subset=latin,latin-ext);
+@import "modules/fonts-std.less";
+@import "modules/fonts.less";
+@import "fonts/trebuchet.less";
+
+// bootstrap
+@import "bootstrap/bootstrap.less";
+
+// layout
+@import "layout/common-layout.less";
+
+// modules
+@import "modules/variables.less";
+@import "modules/base.less";
+@import "modules/mixins.less";
+@import "modules/common-elements.less";
+@import "modules/forms.less";
+@import "modules/tests.less";
+@import "modules/typo.less";
+
+//pages
+@import "pages/common.less";
+@import "pages/index.less";
+
+.visibilityHidden {
+  visibility: hidden;
+}
+
+.wrapper.s {
+  h1, h2, h3, h4, h5, h6 {
+    text-transform: none !important;
+  }
+}
+
+//plugins
+// @import "plugins/preloader.less";
+// @import "plugins/owl.carousel2.less";
+@import "plugins/owl.carousel.less";
+@import "plugins/jquery.mCustomScrollbar.less";
+
+@media (max-width: (@screen-lg-min - 1px)) {
+}
+
+@media (max-width: (@screen-md-min - 1px)) {
+}
+
+@media (max-width: (@screen-sm-min - 1px)) {
+}
+
+@media (max-width: (@screen-xs-min - 1px)) {
+}

@@ -12,12 +12,31 @@
                     scope.show = false;
                     scope.badges = [];
                     scope.active_data = [];
-                    actionService.loadList().then(function () {
-                        badgeService.loadList().then(function (data) {
-                            scope.$apply(function(){
-                                scope.badges = data.one_level_badges.splice(0, 4);
+                    function getBadgeById(data, id){
+                        if(!data || !id) return {};
+                        return data.filter(function(item){
+                            return item.id == id;
+                        })[0];
+                    }
+                    function update() {
+                        actionService.loadList().then(function () {
+                            badgeService.loadList().then(function (data) {
+                                var arr = data.multilevel_badges[1].splice(0, 4);
+                                scope.badges = [];
+                                scope.badges.push(getBadgeById(arr, 302));
+                                scope.badges.push(getBadgeById(arr, 303));
+                                scope.badges.push(getBadgeById(arr, 304));
+                                scope.badges.push(getBadgeById(arr, 305));
                                 scope.setActiveBadge();
+                                scope.$digest();
                             });
+                        });
+                    }
+
+                    update();
+                    sp.on('actions.perform.success', function (data) {
+                        scope.$apply(function () {
+                            update();
                         });
                     });
                     scope.css_link = actionService.getActionsCssLink();
