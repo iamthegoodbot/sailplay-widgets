@@ -1,13 +1,13 @@
 (function (angular, sp, hash) {
 
-    angular.module('stalos', ['stalos.directives.profile', 'stalos.directives.gifts', 'stalos.directives.actions', 'stalos.tools'])
+    angular.module('stalos', ['stalos.directives.profile', 'stalos.directives.gifts', 'stalos.directives.actions', 'stalos.tools.notify'])
 
         .directive('app', function () {
 
             return {
                 restrict: 'E',
                 replace: true,
-                template: '\n<div class="wrapper">\n    \n    <section class="l-section-wrap top-banner-wrap">\n        <div class="l-centered top-banner">\n            <div class="top-banner__head">Бонусная программа</div>\n            <div class="top-banner__title">Совершайте покупки, выполняйте задания, копите баллы и меняйте их на подарки</div>\n            <div class="top-banner__over"><img src="image/top-banner-over.png" alt=""></div>\n        </div>\n    </section>\n\n    <profile-cmp></profile-cmp>\n    \n    <gifts-cmp></gifts-cmp>\n\n    <actions-cmp></actions-cmp>\n\n <notify></notify>\n  </div>',
+                template: '\n<div class="wrapper">\n    \n    <section class="l-section-wrap top-banner-wrap">\n        <div class="l-centered top-banner">\n            <div class="top-banner__head">Бонусная программа</div>\n            <div class="top-banner__title">Совершайте покупки, выполняйте задания, копите баллы и меняйте их на подарки</div>\n            <div class="top-banner__over"><img src="image/top-banner-over.png" alt=""></div>\n        </div>\n    </section>\n\n    <profile-cmp></profile-cmp>\n    \n    <gifts-cmp></gifts-cmp>\n\n    <actions-cmp></actions-cmp>\n\n    <tools_notify></tools_notify>\n    \n  </div>',
                 scope: true,
                 link: function (scope) {
                 }

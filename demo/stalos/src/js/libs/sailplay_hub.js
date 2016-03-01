@@ -449,6 +449,9 @@ var SAILPLAY = (function () {
             initError();
             return;
         }
+        if(_config.auth_hash) {
+            params.auth_hash = _config.auth_hash;
+        }
         JSONP.get(_config.DOMAIN + "/js-api/" + _config.partner.id + "/users/update/", params, function(res) {
             if (res.status == 'ok') {
                 sp.send('user.update.success', res);

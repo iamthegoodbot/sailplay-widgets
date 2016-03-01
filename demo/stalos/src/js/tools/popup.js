@@ -1,8 +1,8 @@
 (function (angular, sp, jQuery) {
 
-    angular.module('stalos.tools', [])
+    angular.module('stalos.tools.notify', [])
 
-        .directive('notify', function ($rootScope, $timeout) {
+        .directive('toolsNotify', function ($rootScope, $timeout) {
             return {
                 restrict: 'E',
                 replace: true,
@@ -44,8 +44,8 @@
 
         });
 
-    document.createElement('notify');
-    var elems = document.querySelectorAll('notify');
+    document.createElement('tools_notify');
+    var elems = document.querySelectorAll('tools_notify');
     for (var i = 0; i < elems.length; i += 1) {
         angular.bootstrap(elems[i], ['stalos.tools']);
     }

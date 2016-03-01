@@ -22,7 +22,7 @@
                                 if (scope.statuses.length) {
                                     scope.last_status = {};
                                     scope.last_status.pic = '';
-                                    scope.persents_to_next_status = Math.round((scope.user.purchases.sum / 1000) * 100);
+                                    scope.persents_to_next_status = Math.round((scope.user.purchases.sum / badgeService.getSumForStatuses()[0]) * 100);
                                     scope.next_status = scope.statuses[0];
                                     scope.points_to_next_status = scope.getSumForStatuses()[0] - scope.user.purchases.sum;
                                     for (var i = 0, len = scope.statuses.length; i < len; i++) {

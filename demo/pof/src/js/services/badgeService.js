@@ -6,7 +6,7 @@
 
             var self = this;
 
-            var sumForStatuses = [1000, 10000, 50000];
+            var sumForStatuses = [500, 1000, 3000];
             var badgeImage = {
                 302: {
                     origin: '//sailplays3.cdnvideo.ru/media/assets/assetfile/98d314190f2348d83db0ebd6a1e2d170.png',

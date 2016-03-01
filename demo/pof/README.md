@@ -14,13 +14,13 @@
               document.getElementsByClassName('Content')[0].style.display='none';
               var s = document.createElement("script");
               s.type = "text/javascript";
-              s.src = "https://sailplays3.cdnvideo.ru/media/assets/assetfile/86d84d3118a176f8f1389e963761318a.js";
+              s.src = "https://sailplays3.cdnvideo.ru/media/assets/assetfile/6181ae91b2ee26af8405ed60a452add3.js";
 
               document.getElementsByTagName("head")[0].appendChild(s)
               var ss = document.createElement("link");
               ss.type = "text/css";
               ss.rel = "stylesheet";
-              ss.href = "https://sailplays3.cdnvideo.ru/media/assets/assetfile/369151ca687e2d6469a0fec8b97e2a96.css";
+              ss.href = "https://sailplays3.cdnvideo.ru/media/assets/assetfile/eda3473f32aff7a13c78058d1d4323d0.css";
               document.getElementsByTagName("head")[0].appendChild(ss);
 
           }
