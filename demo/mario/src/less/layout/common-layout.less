@@ -1,52 +1,53 @@
 // common layout
-.wrapper {
-	min-height: 100%;
-	height: auto !important;
-	height: 100%;
-	position: relative;
-}
-@footerHeight: 146px;
-.l-prefooter {
-	padding-bottom: @footerHeight;
-}
-.l-footer {
-	margin-top: -@footerHeight;
-	height: @footerHeight;
-}
+.sailplay-bonus {
+  .wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    position: relative;
+  }
+  @footerHeight: 146px;
+  .l-prefooter {
+    padding-bottom: @footerHeight;
+  }
+  .l-footer {
+    margin-top: -@footerHeight;
+    height: @footerHeight;
+  }
 
-
-.section-container {
-	padding-left: @grid-gutter-width/2;
-	padding-right: @grid-gutter-width/2;
-}
-.l-section-wrap {
-	position: relative;
-	// min-width: 960px;
-}
-.l-section-wrap.crop {
-	overflow: hidden;
-}
-.l-centered, .l-section {
-	position: relative;
-	margin-right: auto;
-	margin-left: auto;
+  .section-container {
+    padding-left: @grid-gutter-width/2;
+    padding-right: @grid-gutter-width/2;
+  }
+  .l-section-wrap {
+    position: relative;
+    // min-width: 960px;
+  }
+  .l-section-wrap.crop {
+    overflow: hidden;
+  }
+  .l-centered, .l-section {
+    position: relative;
+    margin-right: auto;
+    margin-left: auto;
     max-width: 990px;
+  }
+  .l-section {
+    overflow: hidden;
+  }
+  // @media screen and (min-width: 1100px) and (max-width: 1199px) {
+  // 	.l-centered, .l-section {
+  //     	width: 1050px;
+  //     }
+  // }
+  // @media screen and (min-width: 1200px) and (max-width: 1349px) {
+  // 	.l-centered, .l-section {
+  //     	width: 1150px;
+  //     }
+  // }
+  // @media screen and (min-width: 1350px) {
+  //     .l-centered, .l-section {
+  //     	width: 1250px;
+  //     }
+  // }
 }
-.l-section {
-	overflow: hidden;
-}
-// @media screen and (min-width: 1100px) and (max-width: 1199px) {
-// 	.l-centered, .l-section {
-//     	width: 1050px;
-//     }
-// }
-// @media screen and (min-width: 1200px) and (max-width: 1349px) {
-// 	.l-centered, .l-section {
-//     	width: 1150px;
-//     }
-// }
-// @media screen and (min-width: 1350px) {
-//     .l-centered, .l-section {
-//     	width: 1250px;
-//     }
-// }

@@ -1,49 +1,62 @@
 .row {
-	.clearfix();
-	position: relative;
+  .clearfix();
+  position: relative;
 }
+
 .clear-wrap {
-	.clearfix();
+  .clearfix();
 }
+
 // transition
 .trans {
-	.trans();
+  .trans();
 }
+
 // !when no-js common styles
 .no-js {
-	.no-js-hidden {
-		display: none !important;
-	}
-	.no-js-visible {
-		display: block !important;
-	}
+  .no-js-hidden {
+    display: none !important;
+  }
+  .no-js-visible {
+    display: block !important;
+  }
 }
+
 // responsive images
 .img-response {
-	display: block;
-	width: 100%;
-	height: auto;
+  display: block;
+  width: 100%;
+  height: auto;
 }
+
 .img-soft-response {
-	display: block;
-	max-width: 100%;
-	height: auto;
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
+
 // hover icons with transition
 .this-hover {
-	display: block;
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	.opacity(0);
-	.trans();
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  .opacity(0);
+  .trans();
 }
+
 .this:hover .this-hover,
 .this.hover .this-hover {
-	.opacity(1);
+  .opacity(1);
 }
-.no-opacity .this-hover {display: none;}
-.no-opacity .this:hover .this-hover {display: block;}
+
+.no-opacity .this-hover {
+  display: none;
+}
+
+.no-opacity .this:hover .this-hover {
+  display: block;
+}
 

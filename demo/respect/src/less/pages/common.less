@@ -1,0 +1,243 @@
+.common-photo {
+  position: relative;
+  width: 84px;
+  margin: 0 auto;
+
+  // background: blue;
+  &__framing {
+    position: absolute;
+
+    &.this-status-1 {
+      @width: 220%;
+      top: -58%;
+      width: @width;
+      left: -(@width - 100%)/2 - 1%;
+    }
+    &.this-status-2 {
+      @width: 220%;
+      top: -58%;
+      width: @width;
+      left: -(@width - 100%)/2 - 1%;
+    }
+    &.this-status-3 {
+      @width: 220%;
+      top: -58%;
+      width: @width;
+      left: -(@width - 100%)/2 - 1%;
+    }
+  }
+  &__person {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    .rounded(50%);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+
+    // background-color: green;
+  }
+}
+
+.js-select input[type=text] {
+  height: 18px !important;
+  line-height: 18px !important;
+}
+
+.common-cell-head {
+  .roboto();
+  font-size: 26px;
+  line-height: 1;
+  font-weight: 700;
+  color: #00457C;
+
+  margin-bottom: 2px;
+}
+
+.common-cell-title {
+  .lato();
+  font-size: 14px;
+  line-height: 18px;
+  color: #868686;
+}
+
+.common-btn {
+  display: block;
+  cursor: pointer;
+
+  width: 157px;
+  max-width: 100%;
+  height: 42px;
+  // background-color: #FA658E;
+  text-align: center;
+  .lato();
+  font-size: 14px;
+  line-height: 1;
+  padding-top: 13px;
+  // .text-shadow(0px -1px 1px rgba(0,0,0,0.7));
+  color: #292929;
+  .alink(#292929);
+  .rounded(3px);
+
+  border: 1px solid #7C7C7C;
+
+  margin-left: auto;
+  margin-right: auto;
+  .trans();
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  &:active {
+    background-color: rgba(255, 255, 255, 0.4);
+  }
+
+  &_white {
+    border-color: rgba(255, 255, 255, 0.4);
+    color: #fff;
+    .alink(#fff);
+  }
+  &_blue {
+    background-color: @blue;
+    border: none;
+    color: #fff;
+    .alink(#fff);
+    padding-top: 14px;
+    &:hover {
+      background-color: lighten(@blue, 10%)
+    }
+    &:active {
+      background-color: lighten(@blue, 14%)
+    }
+  }
+}
+
+.common-paginate {
+  text-align: right;
+  font-size: 12px;
+  line-height: 1;
+  margin-top: 30px;
+  .lato();
+  &__item {
+    display: inline-block;
+    margin: 0 4px 0 3px;
+    cursor: pointer;
+    color: #A09F9F;
+    .alink(#A09F9F, @blue);
+    &.active {
+      color: @blue;
+      .alink(@blue);
+      font-size: 14px;
+      font-weight: 700;
+    }
+  }
+  &__delimeter {
+    display: inline-block;
+    margin: 0 0px;
+  }
+}
+
+.common-input {
+  display: block;
+  width: 100%;
+  height: 42px;
+  padding: 0 17px;
+  border: 1px solid #fff;
+  color: #000;
+
+  background-color: #E7EBEA;
+
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  .transition(border-color 150ms linear 0ms);
+  .rounded(4px);
+  &:active, &:focus {
+    outline: none !important;
+    border-color: #00977B;
+  }
+  &__wr {
+    position: relative;
+    width: 100%;
+    &:after {
+      .picon();
+      left: 1px;
+      right: 1px;
+      top: 1px;
+      height: 2px;
+      background-color: #C3C7C6;
+      .border-top-radius(4px);
+    }
+  }
+  @input-placeholder-color: #949494;
+  &::-webkit-input-placeholder {
+    color: @input-placeholder-color;
+  }
+  &::-moz-placeholder {
+    color: @input-placeholder-color;
+  }
+  &:-moz-placeholder {
+    color: @input-placeholder-color;
+  }
+  &:-ms-input-placeholder {
+    color: @input-placeholder-color;
+  }
+}
+
+.common-textarea {
+  display: block;
+  width: 100%;
+  height: 85px;
+  padding: 13px 17px;
+  border: none;
+  border-top: 2px solid #D6D6D6;
+  color: @color-text-main;
+  background-color: #F0F0F0;
+
+  font-size: 14px;
+  resize: none;
+  .lato();
+  .rounded(4px);
+  &:active, &:focus {
+    outline: none !important;
+    .box-shadow(1px 3px 5px rgba(0, 0, 0, 0.2))
+  }
+  @input-placeholder-color: #949494;
+  &::-webkit-input-placeholder {
+    color: @input-placeholder-color;
+  }
+  &::-moz-placeholder {
+    color: @input-placeholder-color;
+  }
+  &:-moz-placeholder {
+    color: @input-placeholder-color;
+  }
+  &:-ms-input-placeholder {
+    color: @input-placeholder-color;
+  }
+}
+
+.common-radio-wrap {
+  display: block;
+  position: absolute;
+  left: 0px;
+  top: -3px;
+  a {
+    display: block;
+    width: 19px;
+    height: 19px;
+    .rounded(50%);
+    background-color: #D3D3D3;
+    &.checked {
+      background-color: @blue;
+    }
+  }
+  label {
+    display: none;
+  }
+}
+
+.js-satellite {
+  cursor: pointer;
+}

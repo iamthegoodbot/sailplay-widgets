@@ -49,7 +49,6 @@
                     if (actionService.getTestTag()) {
                         actionsTags.unshift(actionService.getTestTag());
                     }
-                    console.log(actionsTags);
                     userService.existTags(actionsTags).then(function (data) {
                         var iter = 0;
                         if (actionService.getTestTag()) {
@@ -59,7 +58,6 @@
                         for (var i = 0, len = scope.customActions.length; i < len; i++) {
                             scope.exist[scope.customActions[i].variable] = data[i + iter].exist;
                         }
-                        console.log(scope.exist);
                     });
                     scope.tags = [];
                     scope.getTestData = actionService.getTestData();
