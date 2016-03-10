@@ -1,0 +1,79 @@
+<html>
+<head>
+    <title>Respect</title>
+    <meta charset="utf-8">
+    <script type="text/javascript">
+//        var AUTH_HASH = 'd90ff0a0ed20199e0b4bc7ff7e9a912ce60c9f9d';
+        var AUTH_HASH = '402fbfd63301d49a5eeb9ca3a128db4b1d8b8be7';
+        var DATA_OBJ = {
+            /**
+             * Марки обуви
+             */
+            favorite_boots: {
+                tag: 'Моя любимая марка обуви',
+                list: [{"text": "Ecco"}, {"text": "Mascotte"}, {"text": "Tervolina"}, {"text": "Carlo Pazolini"}, {"text": "Francesco Donni"}, {"text": "Paolo Conte"}, {"text": "Thomas Munz"}, {"text": "Zenden"}, {"text": "Chester"}, {"text": "Ralf Ringer"}, {"text": "Rieker"}, {"text": "Salamander"}, {"text": "Centro"}, {"text": "Kari"}, {"text": "Caprice"}, {"text": "Tamaris"}, {"text": "Hogl"}, {"text": "Jana"}, {"text": "Marco Tozzi"}, {"text": "Peter Kaizer"}, {"text": "Baden"}, {"text": "Рандеву"}, {"text": "Geox"}, {"text": "Calipso"}, {"text": "Corso Como"}, {"text": "Marc"}, {"text": "Pikolinos"}, {"text": "Эконика"}, {"text": "Nike"}, {"text": "Reebok"}]
+            },
+            /**
+             * Марки одежды
+             */
+            favorite_clothes: {
+                tag: 'Моя любимая марка одежды',
+                list: [{"text": "Befree"}, {"text": "Bershka"}, {"text": "Colin’s"}, {"text": "Columbia"}, {"text": "Mexx"}, {"text": "Motivi"}, {"text": "Zara"}, {"text": "Zarina"}, {"text": "Finn Flare"}, {"text": "GAP"}, {"text": "Gloria Jeans"}, {"text": "SELA"}, {"text": "H&M"}, {"text": "INCITY"}, {"text": "Oggi"}, {"text": "Mango"}, {"text": "Marks&Spenser"}, {"text": "Next"}, {"text": "O’STIN"}, {"text": "Promod"}, {"text": "Pull&Bear"}, {"text": "SAVAGE"}, {"text": "Stradivarius"}, {"text": "TOP SHOP"}, {"text": "Oasis"}, {"text": "Timberland"}, {"text": "UNIQLO"}, {"text": "Westland"}, {"text": "Concept Club"}, {"text": "ТВОЕ"}]
+            },
+            /**
+             * Магазины
+             */
+            shops: {
+                tag: 'Самый удобный магазин Respect',
+                list: [{text: 'Тестовый магазин 1'}, {text: 'Тестовый магазин 2'}, {text: 'Тестовый магазин 3'}]
+            },
+            /**
+             * Социалки
+             */
+            socials: {
+                tag: 'Я использую',
+                list: [{
+                    text: 'vkontakte'
+                }, {
+                    text: 'instagram'
+                }, {
+                    text: 'facebook'
+                }, {
+                    text: 'одноклассники'
+                }, {
+                    text: 'никакие'
+                }, {
+                    text: 'другая'
+                }]
+            },
+            /**
+             * Поисковые сервичы
+             */
+            search: {
+                tag: 'Я использую',
+                list: [{
+                    text: 'yandex'
+                }, {
+                    text: 'google'
+                }, {
+                    text: 'yahoo'
+                }]
+            }
+        };
+        document.addEventListener('DOMContentLoaded', function () {
+            var s = document.createElement("script");
+            s.type = "text/javascript";
+            s.src = "js/main.min.js";
+            document.getElementsByTagName("head")[0].appendChild(s);
+            var ss = document.createElement("link");
+            ss.type = "text/css";
+            ss.rel = "stylesheet";
+            ss.href = "css/main.css";
+            document.getElementsByTagName("head")[0].appendChild(ss);
+        });
+    </script>
+</head>
+<body>
+<app-history></app-history>
+</body>
+</html>
