@@ -6,7 +6,7 @@
 
             var self = this;
 
-            var cssLink = 'http://dev4you.info/test/mario/btns_styles.css';
+            var cssLink = 'http://marioberluchi.ru/wa-apps/shop/plugins/sailplay/bonus/css/btns_styles.css';
 
             self.loadList = function () {
                 self.actions = [];

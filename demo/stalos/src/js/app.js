@@ -7,7 +7,7 @@
             return {
                 restrict: 'E',
                 replace: true,
-                template: '\n<div class="wrapper">\n    \n    <section class="l-section-wrap top-banner-wrap">\n        <div class="l-centered top-banner">\n            <div class="top-banner__head">Бонусная программа</div>\n            <div class="top-banner__title">Совершайте покупки, выполняйте задания, копите баллы и меняйте их на подарки</div>\n            <div class="top-banner__over"><img src="image/top-banner-over.png" alt=""></div>\n        </div>\n    </section>\n\n    <profile-cmp></profile-cmp>\n    \n    <gifts-cmp></gifts-cmp>\n\n    <actions-cmp></actions-cmp>\n\n    <tools_notify></tools_notify>\n    \n  </div>',
+                template: '\n<div class="wrapper">\n    \n    <section class="l-section-wrap top-banner-wrap">\n        <div class="l-centered top-banner">\n            <div class="top-banner__head">Бонусная программа</div>\n            <div class="top-banner__title">Совершайте покупки, выполняйте задания, копите баллы и меняйте их на подарки</div>\n            <div class="top-banner__over"><img src="image/top-banner-over.png" alt=""></div>\n        </div>\n    </section>\n\n    <profile-cmp></profile-cmp>\n    \n    <gifts-cmp></gifts-cmp>\n\n    <actions-cmp></actions-cmp>\n\n    <tools-notify></tools-notify>\n    \n  </div>',
                 scope: true,
                 link: function (scope) {
                 }

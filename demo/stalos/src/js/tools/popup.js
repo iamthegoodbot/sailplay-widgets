@@ -44,10 +44,10 @@
 
         });
 
-    document.createElement('tools_notify');
-    var elems = document.querySelectorAll('tools_notify');
+    document.createElement('tools-notify');
+    var elems = document.querySelectorAll('tools-notify');
     for (var i = 0; i < elems.length; i += 1) {
-        angular.bootstrap(elems[i], ['stalos.tools']);
+        angular.bootstrap(elems[i], ['stalos.tools.notify']);
     }
 
 }(window.angular, window.SAILPLAY, window.$));
