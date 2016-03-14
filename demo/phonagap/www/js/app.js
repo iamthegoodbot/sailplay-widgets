@@ -3,9 +3,22 @@
   function init(options){
 
     localStorage.settings = JSON.stringify(options);
+
+    var social = {
+      vk: {
+        app_id: '4267142'
+      }
+    };
+
     //var domain = 'http://sailplay.ru';
     //SAILPLAY.send('init', { partner_id: 151, domain: 'http://dev.sailplay.ru', lang: 'ru'}); //инициируем модуль для партнера с id = 5
-    SAILPLAY.send('init', { partner_id: options.partner_id, domain: options.domain, lang: 'ru', platform: 'cordova'}); //инициируем модуль для партнера с id = 5
+    SAILPLAY.send('init', {
+      partner_id: options.partner_id,
+      domain: options.domain,
+      lang: 'ru',
+      platform: 'mobile',
+      social: social
+    }); //инициируем модуль для партнера с id = 5
     //SAILPLAY.send('init', { partner_id: 5, domain: 'http://sailplay.ru', lang: 'ru', static_url: '/sailplay/widgets/demo/dev' });
     //SAILPLAY.send('init', { partner_id: 1188, domain: 'http://skazka.loc', lang: 'ru', static_url: '/sailplay/widgets/demo/dev' });
     //SAILPLAY.send('init', { partner_id: 1188, domain: 'http://192.168.5.250:8080', lang: 'ru', static_url: '/sailplay/widgets/demo/dev' });

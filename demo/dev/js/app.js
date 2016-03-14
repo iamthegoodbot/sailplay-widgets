@@ -2,9 +2,9 @@
 
   window.onload = function(){
     //var domain = 'http://sailplay.ru';
-    //SAILPLAY.send('init', { partner_id: 151, domain: 'http://dev.sailplay.ru', lang: 'ru'}); //инициируем модуль для партнера с id = 5
+    SAILPLAY.send('init', { partner_id: 151, domain: 'http://dev.sailplay.ru', lang: 'ru'}); //инициируем модуль для партнера с id = 5
     //SAILPLAY.send('init', { partner_id: 5, domain: 'http://sailplay.ru', lang: 'ru', static_url: '/sailplay/widgets/demo/dev' });
-    SAILPLAY.send('init', { partner_id: 1188, domain: 'http://skazka.loc', lang: 'ru', static_url: '/sailplay/widgets/demo/dev' });
+    //SAILPLAY.send('init', { partner_id: 1188, domain: 'http://skazka.loc', lang: 'ru', static_url: '/sailplay/widgets/demo/dev' });
     //SAILPLAY.send('init', { partner_id: 1188, domain: 'http://192.168.5.250:8080', lang: 'ru', static_url: '/sailplay/widgets/demo/dev' });
 //    SAILPLAY.send('init', { partner_id: 1404, domain: 'http://sailplay.ru', static_url: '/sailplay/widgets/demo/dev' });
 //    SAILPLAY.send('init', { partner_id: 1527, domain: 'http://sailplay.ru', static_url: '/sailplay/widgets/demo/dev' });
@@ -68,7 +68,7 @@
           var act = actions[i];
           var li = document.createElement('li');
 
-          li.innerHTML = '<span>' + act._actionId + ' ' + act.points + '<span data-sp-action="' + act._actionId + '" data-styles="http://saike.ru/sailplay/widgets/demo/dev/css/action_btns.css"></span>' +'</span>';
+          li.innerHTML = '<span>' + act._actionId + ' ' + act.points + '<span data-sp-action="' + act._actionId + '" data-styles="http://saike.ru/sailplay/widgets/demo/dev/css/action_btns.css">' + act.action + '</span>' +'</span>';
           wrapper.appendChild(li);
         }
         SAILPLAY.send('actions.parse', actions);

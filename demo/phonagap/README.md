@@ -6,7 +6,7 @@
 
 Добавьте на страницу следующий код:
 
-    <script type="text/javascript" src="js/sailplay_hub.js"></script>
+    <script type="text/javascript" src="js/sailplay.hub.js"></script>
     <script>
 
       window.onload = function(){

@@ -255,6 +255,7 @@ var SAILPLAY = (function () {
         _config.dep_id = params.dep_id || '';
         _config.env.staticUrl = params.static_url || _config.env.staticUrl;
         _config.social_networks = [ 'fb', 'vk', 'tw', 'gp', 'ok' ];
+        _config.platform = params.platform || 'desktop';
 
         //postmessage events init
         //1. bind action events
@@ -285,7 +286,6 @@ var SAILPLAY = (function () {
                 sp.send('actions.social.connect.error', data);
                 break;
               case 'friend_invite_cookie':
-                _config.invite_friend_data = data && data.data && data.data.response;
                 break;
             }
 
@@ -294,17 +294,18 @@ var SAILPLAY = (function () {
 
         window.addEventListener("message", onActionMessage, false);
 
-        //2. recieve cookies info
-        var cookie_frame = document.createElement('IFRAME');
-        cookie_frame.style.width = 0;
-        cookie_frame.style.height = 0;
-        cookie_frame.style.top = '-10000px';
-        cookie_frame.style.left = '-10000px';
-        cookie_frame.src = _config.DOMAIN + '/js-api/' + _config.partner.id + '/actions/social-widget/v2/';
-        document.body.appendChild(cookie_frame);
-        cookie_frame.onload = function(){
-          document.body.removeChild(cookie_frame);
-        };
+        //2. recieve ref_hash info
+        _config.ref_hash = sp.url_params().ref_hash || '';
+        //var cookie_frame = document.createElement('IFRAME');
+        //cookie_frame.style.width = 0;
+        //cookie_frame.style.height = 0;
+        //cookie_frame.style.top = '-10000px';
+        //cookie_frame.style.left = '-10000px';
+        //cookie_frame.src = _config.DOMAIN + '/js-api/' + _config.partner.id + '/actions/social-widget/v2/';
+        //document.body.appendChild(cookie_frame);
+        //cookie_frame.onload = function(){
+        //  document.body.removeChild(cookie_frame);
+        //};
 
         sp.send('init.success', _config);
         //        console.dir(_config);
@@ -404,7 +405,8 @@ var SAILPLAY = (function () {
       auth_hash: _config.auth_hash,
       user_status: 1,
       badges: 1,
-      last_badge: 1
+      last_badge: 1,
+      ref_hash: _config.ref_hash
     };
     JSONP.get(_config.DOMAIN + _config.urls.users.info, params, function (res) {
       if (res.status == 'ok') {
@@ -644,6 +646,16 @@ var SAILPLAY = (function () {
       return;
 
     }
+    if(_config.platform === 'cordova' || !action.socialType){
+
+      console.dir(action);
+      dom.addEventListener('click', function(){
+        sp.send('actions.perform', action);
+      });
+
+      return;
+
+    }
 
     var styles = dom.getAttribute('data-styles');
 
@@ -702,7 +714,7 @@ var SAILPLAY = (function () {
       Actions.social_init(actions);
     }
     else {
-      sp.send('actions.perform.error', { message: 'Actions list needed' });
+      sp.send('actions.parse.error', { message: 'Actions list needed' });
     }
 
   });
@@ -742,6 +754,15 @@ var SAILPLAY = (function () {
         clearInterval(checkPopupInterval);
       }
     }, 100);
+
+    w.addEventListener('loadstop', function(data){
+      if(data.url.indexOf(_config.DOMAIN) == 0){
+        w.close();
+        sp.send('actions.social.connect.complete');
+        clearInterval(checkPopupInterval);
+      }
+    });
+
   };
 
   Actions.popupWindow = function (url, title, w, h) {
@@ -982,6 +1003,28 @@ var SAILPLAY = (function () {
 
     return isNode(obj) || isElement(obj);
 
+  };
+
+  sp.url_params =  function () {
+    // This function is anonymous, is executed immediately and
+    // the return value is assigned to QueryString!
+    var query_string = {};
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i=0;i<vars.length;i++) {
+      var pair = vars[i].split("=");
+      // If first entry with this name
+      if (typeof query_string[pair[0]] === "undefined") {
+        query_string[pair[0]] = decodeURIComponent(pair[1]);
+        // If second entry with this name
+      } else if (typeof query_string[pair[0]] === "string") {
+        query_string[pair[0]] = [ query_string[pair[0]],decodeURIComponent(pair[1]) ];
+        // If third or later entry with this name
+      } else {
+        query_string[pair[0]].push(decodeURIComponent(pair[1]));
+      }
+    }
+    return query_string;
   };
 
   return sp;
