@@ -394,12 +394,10 @@ var SAILPLAY = (function () {
             w,
             h = 500;
         for(var i = 0, len = elms.length; i < len; i++){
+            elms[i].removeAttribute("style");
             originWidth = elms[i].parentNode. offsetWidth;
             w = +originWidth + 70;
-            elms[i].style.setProperty ("width", w, "important");
-            elms[i].style.setProperty ("height", h, "important");
-            elms[i].style.setProperty ("margin-left", '-35px', "important");
-            elms[i].style.setProperty ("z-index", '10', "important");
+            elms[i].style.cssText = 'width: ' + w + 'px !important;height: ' + h + 'px !important;margin-left: -35px !important;z-index: 10 !important;';
             elms[i].parentNode.style.setProperty ("overflow", "visible", "important");
         }
     });
@@ -408,10 +406,8 @@ var SAILPLAY = (function () {
         var w = 150,
             h = 27;
         for(var i = 0, len = elms.length; i < len; i++){
-            elms[i].style.setProperty ("width", w, "important");
-            elms[i].style.setProperty ("height", h, "important");
-            elms[i].style.setProperty ("margin-left", 'auto', "important");
-            elms[i].style.removeProperty("z-index");
+            elms[i].removeAttribute("style");
+            elms[i].style.cssText = 'width: ' + w + 'px !important;height: ' + h + 'px !important;margin-left: auto !important;';
             elms[i].parentNode.style.setProperty ("overflow", "hidden", "important");
         }
     });

@@ -2,7 +2,7 @@
 
     angular.module('respect.tools.notify', [])
 
-        .directive('toolsNotify', function ($rootScope, $timeout) {
+        .directive('toolsNotify', function ($rootScope) {
             return {
                 restrict: 'E',
                 replace: true,

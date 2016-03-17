@@ -6,7 +6,7 @@
 
             var self = this;
 
-            var DESC = ['First look at new products in stock and discounts. (via newsletter that only goes out to clients with this tag)', 'All Par benets', 'All Birdie benets', 'All Eagle benets'];
+            var DESC = ['First look at new products in stock and discounts', 'All Par benets', 'All Birdie benets', 'All Eagle benets'];
 
             var IMAGES = {
                 313: {
@@ -48,7 +48,7 @@
 
             var WITHOUT_STATUS = "//sailplays3.cdnvideo.ru/media/assets/assetfile/1a34d54e3daedada56938e91a9631146.png";
 
-            var OFFSETS = [100, 500, 1000, 5000];
+            var OFFSETS = [150, 300, 800, 1500];
 
             self.getBadgeImage = function (index) {
                 return BADGES[index] || {origin: '', active: ''};
