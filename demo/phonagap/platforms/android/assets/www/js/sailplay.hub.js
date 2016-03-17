@@ -21,12 +21,13 @@ var SAILPLAY = (function () {
 
   var cookies = {
     createCookie: function(name,value,days) {
+      var expires;
       if (days) {
         var date = new Date();
         date.setTime(date.getTime()+(days*24*60*60*1000));
-        var expires = "; expires="+date.toGMTString();
+        expires = "; expires="+date.toGMTString();
       }
-      else var expires = "";
+      else expires = "";
       document.cookie = name+"="+value+expires+"; path=/";
     },
     readCookie: function(name) {
@@ -127,7 +128,6 @@ var SAILPLAY = (function () {
 
   //private config
   var _config = {};
-  var _actions_config = {};
   var _remote_login_init = false;
 
   function initError(){
@@ -286,7 +286,6 @@ var SAILPLAY = (function () {
                 sp.send('actions.social.connect.error', data);
                 break;
               case 'friend_invite_cookie':
-                _config.invite_friend_data = data && data.data && data.data.response;
                 break;
             }
 
@@ -295,17 +294,18 @@ var SAILPLAY = (function () {
 
         window.addEventListener("message", onActionMessage, false);
 
-        //2. recieve cookies info
-        var cookie_frame = document.createElement('IFRAME');
-        cookie_frame.style.width = 0;
-        cookie_frame.style.height = 0;
-        cookie_frame.style.top = '-10000px';
-        cookie_frame.style.left = '-10000px';
-        cookie_frame.src = _config.DOMAIN + '/js-api/' + _config.partner.id + '/actions/social-widget/v2/';
-        document.body.appendChild(cookie_frame);
-        cookie_frame.onload = function(){
-          document.body.removeChild(cookie_frame);
-        };
+        //2. recieve ref_hash info
+        _config.ref_hash = sp.url_params().ref_hash || '';
+        //var cookie_frame = document.createElement('IFRAME');
+        //cookie_frame.style.width = 0;
+        //cookie_frame.style.height = 0;
+        //cookie_frame.style.top = '-10000px';
+        //cookie_frame.style.left = '-10000px';
+        //cookie_frame.src = _config.DOMAIN + '/js-api/' + _config.partner.id + '/actions/social-widget/v2/';
+        //document.body.appendChild(cookie_frame);
+        //cookie_frame.onload = function(){
+        //  document.body.removeChild(cookie_frame);
+        //};
 
         sp.send('init.success', _config);
         //        console.dir(_config);
@@ -405,7 +405,8 @@ var SAILPLAY = (function () {
       auth_hash: _config.auth_hash,
       user_status: 1,
       badges: 1,
-      last_badge: 1
+      last_badge: 1,
+      ref_hash: _config.ref_hash
     };
     JSONP.get(_config.DOMAIN + _config.urls.users.info, params, function (res) {
       if (res.status == 'ok') {
@@ -600,245 +601,6 @@ var SAILPLAY = (function () {
     });
   });
 
-  //ACTIONS SECTION
-
-  //LOAD ACTIONS LIST
-  sp.on('load.actions.list', function () {
-    if(_config == {}){
-      initError();
-      return;
-    }
-    var params = {
-      auth_hash: _config.auth_hash
-    };
-
-    JSONP.get(_config.DOMAIN + _config.urls.actions.load, params, function (res) {
-      //      console.dir(res);
-      if (res.status == 'ok') {
-        _actions_config = res.data;
-        sp.send('load.actions.list.success', res.data);
-      } else {
-        sp.send('load.actions.list.error', res);
-      }
-    });
-  });
-
-  //PERFORM ACTION
-  //actions v2 section
-  sp.actions = {};
-
-  sp.actions.parse = function(dom, action){
-
-    if(!sp.is_dom(dom)) {
-      console.error('sp.actions.parse() need DOM element as first parameter');
-      return;
-    }
-
-    if(!action) {
-      console.error('sp.actions.parse() need Action object as second parameter');
-      return;
-    }
-
-    if(!_actions_config.connectedAccounts) {
-
-      console.error('sp.actions.parse() must execute after event load.actions.list.success');
-      return;
-
-    }
-
-    if(_config.platform === 'cordova'){
-
-      dom.addEventListener('click', function(){
-        sp.send('actions.perform', action);
-      });
-
-      return;
-
-    }
-
-    var styles = dom.getAttribute('data-styles');
-
-
-    var action_frame = document.createElement('IFRAME');
-    action_frame.style.border = 'none';
-    action_frame.style.width = '150px';
-    action_frame.style.height = '30px';
-    action_frame.style.background = 'transparent';
-    action_frame.style.overflow = 'hidden';
-    action_frame.setAttribute('scrolling', 'no');
-    action_frame.className = 'sailplay_action_frame';
-
-    function EncodeQueryData(data)
-    {
-      var ret = [];
-      for (var d in data)
-        ret.push(encodeURIComponent(d) + "=" + encodeURIComponent(data[d]));
-      return ret.join("&");
-    }
-
-    var frame_params = {
-      auth_hash: _config.auth_hash,
-      socialType: action.socialType,
-      action: action.action,
-      link: action.shortLink,
-      pic: (action.pic || _actions_config.partnerCustomPic || _config.partner.logo),
-      msg: (action.msg || _actions_config.messages[action.action] || _config.partner.name),
-      account_connected: _actions_config.connectedAccounts[action.socialType] || false
-    };
-
-    if(action['_actionId']) frame_params._actionId = action._actionId;
-    if(styles) frame_params.styles = styles;
-
-    if (action.action == 'purchase') {
-      frame_params.purchasePublicKey = _actions_config.purchasePublicKey;
-    }
-
-    if (action.action == 'badge') {
-      frame_params.badgeId= action.badgeId;
-    }
-
-    action_frame.src = _config.DOMAIN + '/js-api/' + _config.partner.id + '/actions/social-widget/v2/?' + EncodeQueryData(frame_params);;
-    dom.innerHTML = '';
-    dom.appendChild(action_frame);
-
-  };
-
-  sp.on('actions.parse', function (actions) {
-    if(_config == {}){
-      initError();
-      return;
-    }
-
-    if(actions && Array.isArray(actions)) {
-      Actions.social_init(actions);
-    }
-    else {
-      sp.send('actions.parse.error', { message: 'Actions list needed' });
-    }
-
-  });
-
-
-  var Actions = {};
-
-  Actions.social_init = function(actions){
-
-    var social_buttons = document.querySelectorAll('[data-sp-action]');
-
-    for(var i = 0; i < social_buttons.length; i+=1) {
-
-      (function(){
-        var btn = social_buttons[i];
-        var action_id = Number(btn.getAttribute('data-sp-action'));
-        var action = sp.find_by_properties((actions || _actions_config.actions), { _actionId: action_id })[0];
-        sp.actions.parse(btn, action);
-      }());
-
-    }
-
-  };
-
-  //actions v1 section
-
-  Actions.openSocialRegNeedPopup = function (action) {
-    var w;
-    if (action.socialType == 'vk')
-      w = Actions.popupWindow(_actions_config.social.vk.authUrl, 'social_reg', 840, 400);
-    else
-      w = Actions.popupWindow(_actions_config.social[action.socialType].authUrl, 'social_reg');
-
-    var checkPopupInterval = setInterval(function () {
-      if (w == null || w.closed) {
-        sp.send('actions.social.connect.complete');
-        clearInterval(checkPopupInterval);
-      }
-    }, 100);
-
-    w.addEventListener('loadstop', function(data){
-      if(data.url.indexOf(_config.DOMAIN) == 0){
-        w.close();
-        sp.send('actions.social.connect.complete');
-        clearInterval(checkPopupInterval);
-      }
-    });
-
-  };
-
-  Actions.popupWindow = function (url, title, w, h) {
-    var width, height, left, top;
-    if (w !== undefined && h !== undefined) {
-      width = w;
-      height = h;
-      left = (screen.width / 2) - (w / 2);
-      top = (screen.height / 2) - (h / 2);
-    } else {
-      width = screen.width / 2;
-      height = screen.height / 2;
-      left = width - (width / 2);
-      top = height - (height / 2);
-    }
-
-    return window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, copyhistory=no, width=' + width + ', height=' + height + ', top=' + top + ', left=' + left);
-
-  };
-
-  Actions.share = function (action) {
-
-    var frameUrl = _config.DOMAIN + '/js-api/' + _config.partner.id + '/actions/social-widget/?auth_hash=' + _config.auth_hash;
-    frameUrl += '&socialType=' + action.socialType + '&action=' + action.action + '&link=' + action.shortLink + '&pic=' + (_actions_config.partnerCustomPic ? _actions_config.partnerCustomPic : _config.partner.logo);
-
-    frameUrl += '&msg=' + _actions_config.messages[action.action];
-    frameUrl += '&_actionId=' + action['_actionId'];
-
-    if (action.action == 'purchase') {
-      frameUrl += '&purchasePublicKey=' + _actions_config.purchasePublicKey;
-    }
-
-    var socialFrame = Actions.popupWindow(frameUrl, 'social_action', 200, 210);
-    var checkPopupInterval = setInterval(function () {
-      if (socialFrame == null || socialFrame.closed) {
-        sp.send('actions.perform.complete', action);
-        clearInterval(checkPopupInterval);
-      }
-    }, 200);
-
-  };
-
-  Actions.perform = function(action){
-    var frameUrl = _config.DOMAIN + '/popup/' + _config.partner.id + '/widgets/custom/' + action.type  + '/?auth_hash=' + _config.auth_hash;
-    frameUrl += '&lang=' + _config.lang;
-    frameUrl += '&from_sdk=0';
-    var actionFrame = Actions.popupWindow(frameUrl, 'SailPlay', 600, 400);
-    var checkPopupInterval = setInterval(function () {
-      if (actionFrame == null || actionFrame.closed) {
-        sp.send('actions.perform.complete', action);
-        clearInterval(checkPopupInterval);
-      }
-    }, 200);
-  };
-
-  sp.on('actions.perform', function (action) {
-    if(_config == {}){
-      initError();
-      return;
-    }
-    if (_config.auth_hash) {
-      sp.send('actions.perform.start', action);
-      if (action.socialType && _actions_config.connectedAccounts) {
-        if (!_actions_config.connectedAccounts[action.socialType]) {
-          Actions.openSocialRegNeedPopup(action);
-        } else {
-          Actions.share(action);
-        }
-      }
-      else if(!action.socialType){
-        Actions.perform(action);
-      }
-    } else {
-      sp.send('actions.perform.auth.error', action);
-    }
-  });
-
   //PROMO-CODES SECTION
   sp.on('promocodes.apply', function (promocode) {
     if(_config == {}){
@@ -1002,6 +764,28 @@ var SAILPLAY = (function () {
 
     return isNode(obj) || isElement(obj);
 
+  };
+
+  sp.url_params =  function () {
+    // This function is anonymous, is executed immediately and
+    // the return value is assigned to QueryString!
+    var query_string = {};
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i=0;i<vars.length;i++) {
+      var pair = vars[i].split("=");
+      // If first entry with this name
+      if (typeof query_string[pair[0]] === "undefined") {
+        query_string[pair[0]] = decodeURIComponent(pair[1]);
+        // If second entry with this name
+      } else if (typeof query_string[pair[0]] === "string") {
+        query_string[pair[0]] = [ query_string[pair[0]],decodeURIComponent(pair[1]) ];
+        // If third or later entry with this name
+      } else {
+        query_string[pair[0]].push(decodeURIComponent(pair[1]));
+      }
+    }
+    return query_string;
   };
 
   return sp;
