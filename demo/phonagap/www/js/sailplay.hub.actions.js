@@ -54,16 +54,13 @@
     };
 
 
-    if(action.action == 'partner_page' || action.action == 'purchase' || action.action == 'badge') {
+    dom.onclick = function() {
 
-      dom.onclick = function(msg, callback, params) {
+      console.dir(action);
 
-        console.dir(action);
+      socialShare(action, data.title, data.link, data.message, data.pic);
 
-        socialShare(action, data.title, data.link, data.message, data.pic);
-
-      };
-    }
+    };
 
   }
 
@@ -99,55 +96,91 @@
     }
 
     if(sp.config().platform === 'mobile' && action.socialType){
-      console.log('parse social mobile', action);
-      mobile_social_parse(dom, action);
-      return;
+
+      if(action.action == 'like'){
+
+        switch (action.socialType) {
+
+          case 'fb':
+
+            mobile_social_parse(dom, action);
+
+            break;
+
+          case 'vk':
+
+            mobile_social_parse(dom, action);
+
+            break;
+
+        }
+
+      }
+
+      else {
+
+        console.log('parse social mobile', action);
+
+        mobile_social_parse(dom, action);
+
+      }
+
     }
 
-    var styles = dom.getAttribute('data-styles');
+    else {
 
+      parse_frame(false);
 
-    var action_frame = document.createElement('IFRAME');
-    action_frame.style.border = 'none';
-    action_frame.style.width = '150px';
-    action_frame.style.height = '30px';
-    action_frame.style.background = 'transparent';
-    action_frame.style.overflow = 'hidden';
-    action_frame.setAttribute('scrolling', 'no');
-    action_frame.className = 'sailplay_action_frame';
-
-    function EncodeQueryData(data)
-    {
-      var ret = [];
-      for (var d in data)
-        ret.push(encodeURIComponent(d) + "=" + encodeURIComponent(data[d]));
-      return ret.join("&");
     }
 
-    var frame_params = {
-      auth_hash: sp.config().auth_hash,
-      socialType: action.socialType,
-      action: action.action,
-      link: action.shortLink,
-      pic: (action.pic || _actions_config.partnerCustomPic || sp.config().partner.logo),
-      msg: (action.msg || _actions_config.messages[action.action] || sp.config().partner.name),
-      account_connected: _actions_config.connectedAccounts[action.socialType] || false
-    };
+    function parse_frame(force){
+      var styles = dom.getAttribute('data-styles');
 
-    if(action['_actionId']) frame_params._actionId = action._actionId;
-    if(styles) frame_params.styles = styles;
 
-    if (action.action == 'purchase') {
-      frame_params.purchasePublicKey = _actions_config.purchasePublicKey;
+      var action_frame = document.createElement('IFRAME');
+      action_frame.style.border = 'none';
+      action_frame.style.width = '150px';
+      action_frame.style.height = '30px';
+      action_frame.style.background = 'transparent';
+      action_frame.style.overflow = 'hidden';
+      action_frame.setAttribute('scrolling', 'no');
+      action_frame.className = 'sailplay_action_frame';
+
+      function EncodeQueryData(data)
+      {
+        var ret = [];
+        for (var d in data)
+          ret.push(encodeURIComponent(d) + "=" + encodeURIComponent(data[d]));
+        return ret.join("&");
+      }
+
+      var frame_params = {
+        auth_hash: sp.config().auth_hash,
+        socialType: action.socialType,
+        action: action.action,
+        link: action.shortLink,
+        pic: (action.pic || _actions_config.partnerCustomPic || sp.config().partner.logo),
+        msg: (action.msg || _actions_config.messages[action.action] || sp.config().partner.name),
+        account_connected: force ? true : (_actions_config.connectedAccounts[action.socialType] || false)
+      };
+
+      if(action['_actionId']) frame_params._actionId = action._actionId;
+      if(styles) frame_params.styles = styles;
+
+      if (action.action == 'purchase') {
+        frame_params.purchasePublicKey = _actions_config.purchasePublicKey;
+      }
+
+      if (action.action == 'badge') {
+        frame_params.badgeId= action.badgeId;
+      }
+
+      action_frame.src = sp.config().DOMAIN + '/js-api/' + sp.config().partner.id + '/actions/social-widget/v2/?' + EncodeQueryData(frame_params);;
+      dom.innerHTML = '';
+      dom.appendChild(action_frame);
     }
 
-    if (action.action == 'badge') {
-      frame_params.badgeId= action.badgeId;
-    }
 
-    action_frame.src = sp.config().DOMAIN + '/js-api/' + sp.config().partner.id + '/actions/social-widget/v2/?' + EncodeQueryData(frame_params);;
-    dom.innerHTML = '';
-    dom.appendChild(action_frame);
 
   };
 
@@ -292,7 +325,7 @@
   }
 
   function shareFB(title,url,desc,image) {
-    console.log(image);
+
     var share_url;
     var t=encodeURIComponent(title);
     var d=encodeURIComponent(desc);
@@ -330,33 +363,89 @@
     var i=encodeURIComponent(image);
     var ok_url = 'http://www.ok.ru/dk?st.cmd=addShare&st.s=1&st._surl='+u;
     ok_url += '&st.comments=' + desc;
-    console.log(desc);
     return ok_url;
   }
-  function socialShare(action,title,url,desc,image) {
+
+  function shareTW(title,url,desc,image) {
+    var d=encodeURIComponent(desc);
+    var u=encodeURIComponent(url);
+    var share_url='https://twitter.com/intent/tweet?';
+    share_url+='text='+ d;
+    share_url+='&url='+u;
+    return share_url;
+  }
+
+  function followVK(){
+    return 'https://vk.com/widget_community.php?act=a_subscribe_box&oid=-' + _actions_config.social.vk.groupId + '&state=1';
+  }
+
+  function likeFB(){
+    return 'https://www.facebook.com/v2.5/plugins/like.php?app_id=' + _actions_config.social.fb.appId + '&container_width=613&href=https%3A%2F%2Ffacebook.com%2F' + _actions_config.social.fb.groupId +'&layout=button&locale=en_US&sdk=joey&share=false&show_faces=true';
+  }
+
+  function socialShare(action,title,url,desc,image, dom) {
     var u = '';
-    switch(action.socialType){
-      case 'vk':
-        u = shareVK(title,url,desc,image);
-        break;
-      case 'fb':
-        u = shareFB(title,url,desc,image);
-        break;
-      case 'ok':
-        u = shareOD(title,url,desc,image);
-        break;
+    if(action.action == 'like'){
+
+      switch(action.socialType){
+        case 'vk':
+          u = followVK();
+          break;
+        case 'fb':
+          u = likeFB();
+          break;
+
+      }
+
     }
+    else {
+      switch(action.socialType){
+        case 'vk':
+          u = shareVK(title,url,desc,image);
+          break;
+        case 'fb':
+          u = shareFB(title,url,desc,image);
+          break;
+        case 'ok':
+          u = shareOD(title,url,desc,image);
+          break;
+        case 'tw':
+          u = shareTW(title,url,desc,image);
+          break;
+      }
+    }
+
     if(url != ''){
 
       var popup;
       var popup_checker;
       function end_share(){
-        SP_APP.log(action.socialType + ' SHARE COMPLETE');
+        //SP_APP.log(action.socialType + ' SHARE COMPLETE');
         clearInterval(popup_checker);
       }
       popup = Actions.popupWindow(u,'_blank',626,436);
+
+      popup.addEventListener('loadstop', function() {
+        popup.executeScript({
+          code: 'window.doCancel = function(){ window.location.href = "' + sp.config().DOMAIN + '"; }'
+        });
+        popup.executeScript({
+          code: '' +
+          'var table = document.getElementsByClassName("uiGrid")[0];' +
+          'table.style.zoom = 5;' +
+          'table.style.width = "100%";' +
+          'table.style.marginTop = "10%";' +
+          'var form = document.getElementById("u_0_0");' +
+          'form && form.addEventListener("submit", function(e){' +
+          'window.location.href = "' + sp.config().DOMAIN + '";' +
+          '});'
+        });
+      });
+
       popup.addEventListener('loadstart', function(event) {
-        if(event.url && (event.url.indexOf(sp.config().DOMAIN) === 0 || event.url.indexOf('ExternalShareWidget_SharePost') >= 0 )){
+        SP_APP.log(event.url);
+        console.log(event.url);
+        if(event.url && (event.url.indexOf(sp.config().DOMAIN) === 0 || event.url.indexOf('st._aid=ExternalShareWidget_SharePost') >= 0 || event.url.indexOf('/tweet/complete') >= 0)){
           popup.close();
           popup = null;
           end_share();
