@@ -7,15 +7,17 @@ module.exports = function (grunt) {
       dist: {
         src: [
           //lib section
-          'src/sailplay_hub.js'
+          'src/sailplay.hub.js',
+          'src/sailplay.hub.actions.js'
+
         ],
-        dest: 'dist/sailplay_hub.js'
+        dest: 'dist/sailplay.hub.js'
       }
     },
     uglify: {
       min: {
-        src: ['dist/sailplay_hub.js'],
-        dest: 'dist/sailplay_hub.min.js'
+        src: ['dist/sailplay.hub.js'],
+        dest: 'dist/sailplay.hub.min.js'
       }
     }
   });
