@@ -4,20 +4,13 @@
 
     localStorage.settings = JSON.stringify(options);
 
-    var social = {
-      vk: {
-        app_id: '4267142'
-      }
-    };
-
     //var domain = 'http://sailplay.ru';
     //SAILPLAY.send('init', { partner_id: 151, domain: 'http://dev.sailplay.ru', lang: 'ru'}); //инициируем модуль для партнера с id = 5
     SAILPLAY.send('init', {
       partner_id: options.partner_id,
       domain: options.domain,
       lang: 'ru',
-      platform: 'mobile',
-      social: social
+      platform: 'mobile'
     }); //инициируем модуль для партнера с id = 5
     //SAILPLAY.send('init', { partner_id: 5, domain: 'http://sailplay.ru', lang: 'ru', static_url: '/sailplay/widgets/demo/dev' });
     //SAILPLAY.send('init', { partner_id: 1188, domain: 'http://skazka.loc', lang: 'ru', static_url: '/sailplay/widgets/demo/dev' });
@@ -27,7 +20,12 @@
 
     SAILPLAY.on('init.success', function(){
       //SAILPLAY.send('login', 'a74df059493ae3c8a9f232a675ef5014672f4988');
-      SAILPLAY.send('login.remote', { background: 'transparent' });
+      if(!options.auth_hash){
+        SAILPLAY.send('login.remote', { background: 'transparent' });
+      }
+      else {
+        SAILPLAY.send('login', options.auth_hash);
+      }
       sp_app.elms.app.style.display = 'block';
       sp_app.elms.settings.style.display = 'none';
       console.log(SAILPLAY.config());
@@ -153,7 +151,7 @@
     sp_app.elms.form.addEventListener('submit', function(e){
       e.preventDefault();
       var form = e.target;
-      sp_app.init({ partner_id: form[0].value || 1, domain: form[1].value });
+      sp_app.init({ partner_id: form[0].value || 1, domain: form[1].value, auth_hash: form[2].value });
       console.dir(e);
       return false;
     });
@@ -161,6 +159,7 @@
     var settings = JSON.parse(localStorage.settings);
     sp_app.elms.form[0].value =  settings && settings.partner_id || '';
     sp_app.elms.form[1].value = settings && settings.domain || '';
+    sp_app.elms.form[2].value = settings && settings.auth_hash || '';
 
   };
 
