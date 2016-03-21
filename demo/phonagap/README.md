@@ -6,12 +6,15 @@
 
 Добавьте на страницу следующий код:
 
+    <!-- Подключаем SailPlay SDK -->
     <script type="text/javascript" src="js/sailplay.hub.js"></script>
+    <!-- Подключаем модуль действий -->
+    <script type="text/javascript" src="js/sailplay.hub.actions.js"></script>
     <script>
 
       window.onload = function(){
 
-        SAILPLAY.send('init', { partner_id: {your_partner_id}, platform: 'cordova' }); //инициируем виджеты для платформы cordova (phonegap)
+        SAILPLAY.send('init', { partner_id: {your_partner_id}, platform: 'mobile' }); //инициируем виджеты для платформ: (cordova, phonegap)
 
         SAILPLAY.on('init.success', function(){
           SAILPLAY.send('login', '792eb7b5a60f19dfa7d414de84005b8b5a40aaae'); //авторизуем пользователя
