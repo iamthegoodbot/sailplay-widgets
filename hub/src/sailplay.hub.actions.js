@@ -40,6 +40,10 @@
     });
   });
 
+  sp.on('set.actions.list', function (actions) {
+    _actions_config = actions;
+  });
+
   //PERFORM ACTION
   //actions v2 section
   function mobile_social_parse(dom, action){
@@ -184,6 +188,10 @@
       action_frame.src = sp.config().DOMAIN + '/js-api/' + sp.config().partner.id + '/actions/social-widget/v2/?' + EncodeQueryData(frame_params);;
       dom.innerHTML = '';
       dom.appendChild(action_frame);
+
+      action_frame.onload = function() {
+        sp.send('actions.parse.success');
+      }      
     }
 
 
