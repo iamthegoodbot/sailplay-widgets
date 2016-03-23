@@ -983,7 +983,7 @@ var SAILPLAY = (function () {
       dom.appendChild(action_frame);
 
       action_frame.onload = function() {
-        sp.send('actions.parse.success');
+        sp.send('actions.parse.success', action);
       }      
     }
 
