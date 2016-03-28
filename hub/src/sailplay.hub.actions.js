@@ -80,7 +80,7 @@
       return;
     }
 
-    if(!_actions_config.connectedAccounts) {
+    if(!_actions_config.connectedAccounts && !action.force) {
 
       console.error('sp.actions.parse() must execute after event load.actions.list.success');
       return;
@@ -129,8 +129,6 @@
 
       else {
 
-        console.log('parse social mobile', action);
-
         mobile_social_parse(dom, action);
 
       }
@@ -139,11 +137,11 @@
 
     else {
 
-      parse_frame(false);
+      parse_frame();
 
     }
 
-    function parse_frame(force){
+    function parse_frame(){
       var styles = dom.getAttribute('data-styles');
 
 
@@ -171,7 +169,8 @@
         link: action.shortLink,
         pic: (action.pic || _actions_config.partnerCustomPic || sp.config().partner.logo),
         msg: (action.msg || _actions_config.messages[action.action] || sp.config().partner.name),
-        account_connected: force ? true : (_actions_config.connectedAccounts[action.socialType] || false)
+        account_connected: action.force ? true : (_actions_config.connectedAccounts[action.socialType] || false) ,
+        force: action.force
       };
 
       if(action['_actionId']) frame_params._actionId = action._actionId;

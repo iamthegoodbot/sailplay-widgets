@@ -622,16 +622,23 @@ var SAILPLAY = (function () {
   });
 
   //TAGS SECTIONS
-  sp.on('tags.add', function (tags) {
+  sp.on('tags.add', function (data) {
     if(_config == {}){
       initError();
       return;
     }
-    if (_config.auth_hash) {
+    if (_config.auth_hash || data.user) {
       var tagsObj = {
-        tags: tags.join(','),
-        auth_hash: _config.auth_hash
+        tags: data.tags && data.tags.join(',') || []
       };
+      if(data.user) {
+        for(var p in data.user){
+          tagsObj[p] = data.user[p];
+        }
+      }
+      else {
+        tagsObj.auth_hash = _config.auth_hash;
+      }
       JSONP.get(_config.DOMAIN + _config.urls.tags.add, tagsObj, function (res) {
         if (res.status == 'ok') {
           sp.send('tags.add.success', res);
@@ -873,7 +880,7 @@ var SAILPLAY = (function () {
       return;
     }
 
-    if(!_actions_config.connectedAccounts) {
+    if(!_actions_config.connectedAccounts && !action.force) {
 
       console.error('sp.actions.parse() must execute after event load.actions.list.success');
       return;
@@ -922,8 +929,6 @@ var SAILPLAY = (function () {
 
       else {
 
-        console.log('parse social mobile', action);
-
         mobile_social_parse(dom, action);
 
       }
@@ -932,11 +937,11 @@ var SAILPLAY = (function () {
 
     else {
 
-      parse_frame(false);
+      parse_frame();
 
     }
 
-    function parse_frame(force){
+    function parse_frame(){
       var styles = dom.getAttribute('data-styles');
 
 
@@ -964,7 +969,8 @@ var SAILPLAY = (function () {
         link: action.shortLink,
         pic: (action.pic || _actions_config.partnerCustomPic || sp.config().partner.logo),
         msg: (action.msg || _actions_config.messages[action.action] || sp.config().partner.name),
-        account_connected: force ? true : (_actions_config.connectedAccounts[action.socialType] || false)
+        account_connected: action.force ? true : (_actions_config.connectedAccounts[action.socialType] || false) ,
+        force: action.force
       };
 
       if(action['_actionId']) frame_params._actionId = action._actionId;
