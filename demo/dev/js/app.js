@@ -2,8 +2,8 @@
 
   window.onload = function(){
     //var domain = 'http://sailplay.ru';
-    SAILPLAY.send('init', { partner_id: 151, domain: 'http://dev.sailplay.ru', lang: 'ru'}); //инициируем модуль для партнера с id = 5
-    //SAILPLAY.send('init', { partner_id: 5, domain: 'http://sailplay.ru', lang: 'ru', static_url: '/sailplay/widgets/demo/dev' });
+    //SAILPLAY.send('init', { partner_id: 151, domain: 'http://dev.sailplay.ru', lang: 'ru'}); //инициируем модуль для партнера с id = 5
+    SAILPLAY.send('init', { partner_id: 1286, domain: 'http://sailplay.ru', lang: 'ru', static_url: '/sailplay/widgets/demo/dev' });
     //SAILPLAY.send('init', { partner_id: 1188, domain: 'http://skazka.loc', lang: 'ru', static_url: '/sailplay/widgets/demo/dev' });
     //SAILPLAY.send('init', { partner_id: 1188, domain: 'http://192.168.5.250:8080', lang: 'ru', static_url: '/sailplay/widgets/demo/dev' });
 //    SAILPLAY.send('init', { partner_id: 1404, domain: 'http://sailplay.ru', static_url: '/sailplay/widgets/demo/dev' });
@@ -20,10 +20,15 @@
       SAILPLAY.send('load.user.info');
     });
 
+    SAILPLAY.on('login.cancel', function(){
+      SAILPLAY.send('load.actions.list');
+    });
+
     SAILPLAY.on('load.actions.list.success', function(data){
       console.dir(data);
       sp_app.draw_actions(data.actions);
       SAILPLAY.send('load.badges.list');
+      sp_app.draw_custom_share();
     });
 
     SAILPLAY.on('load.badges.list.success', function(data){
@@ -42,6 +47,12 @@
     SAILPLAY.on('actions.perform.success', function(action){
       SAILPLAY.send('load.actions.list');
       sp_app.log(JSON.stringify(action));
+      if(action.data.response.force){
+
+        console.log(action.data.response.socialType + ' force share success');
+        SAILPLAY.send('tags.add', { tags: [ 'custom share', action.data.response.socialType ], user: { email: 'm.g.armiro@gmail.com' } });
+
+      }
     });
 
     SAILPLAY.on('actions.social.connect.success', function(action){
@@ -97,6 +108,23 @@
           }
         }
         //SAILPLAY.send('actions.parse', actions);
+      },
+      draw_custom_share: function(){
+
+        var dom = document.getElementById('custom_share');
+
+        var action = {
+
+          socialType: 'vk',
+          action: 'partner_page',
+          msg: 'Your text here',
+          shortLink: 'https://rktdj.com/paice',
+          pic: 'http://www.gravatar.com/avatar/dca262c14b6bd494930db86ef882ce8d?rating=PG&size=50&default=',
+          force: true
+        };
+
+        SAILPLAY.actions.parse(dom, action);
+
       }
     };
 

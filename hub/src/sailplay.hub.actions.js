@@ -40,6 +40,10 @@
     });
   });
 
+  sp.on('set.actions.list', function (actions) {
+    _actions_config = actions;
+  });
+
   //PERFORM ACTION
   //actions v2 section
   function mobile_social_parse(dom, action){
@@ -76,7 +80,7 @@
       return;
     }
 
-    if(!_actions_config.connectedAccounts) {
+    if(!_actions_config.connectedAccounts && !action.force) {
 
       console.error('sp.actions.parse() must execute after event load.actions.list.success');
       return;
@@ -125,8 +129,6 @@
 
       else {
 
-        console.log('parse social mobile', action);
-
         mobile_social_parse(dom, action);
 
       }
@@ -135,11 +137,11 @@
 
     else {
 
-      parse_frame(false);
+      parse_frame();
 
     }
 
-    function parse_frame(force){
+    function parse_frame(){
       var styles = dom.getAttribute('data-styles');
 
 
@@ -167,7 +169,8 @@
         link: action.shortLink,
         pic: (action.pic || _actions_config.partnerCustomPic || sp.config().partner.logo),
         msg: (action.msg || _actions_config.messages[action.action] || sp.config().partner.name),
-        account_connected: force ? true : (_actions_config.connectedAccounts[action.socialType] || false)
+        account_connected: action.force ? true : (_actions_config.connectedAccounts[action.socialType] || false) ,
+        force: action.force
       };
 
       if(action['_actionId']) frame_params._actionId = action._actionId;
@@ -184,6 +187,10 @@
       action_frame.src = sp.config().DOMAIN + '/js-api/' + sp.config().partner.id + '/actions/social-widget/v2/?' + EncodeQueryData(frame_params);;
       dom.innerHTML = '';
       dom.appendChild(action_frame);
+
+      action_frame.onload = function() {
+        sp.send('actions.parse.success', action);
+      }      
     }
 
 
@@ -447,7 +454,6 @@
           auth_hash: sp.config().auth_hash,
           platform: sp.config().platform
         };
-        alert(handle_params.social_type);
 
         sp.jsonp.get(sp.config().DOMAIN + sp.config().urls.actions.handle_social_action, handle_params,
 
