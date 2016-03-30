@@ -32,6 +32,11 @@
                 }
             };
 
+            function getTimeZone() {
+                var offset = new Date().getTimezoneOffset(), o = Math.abs(offset);
+                return (offset < 0 ? "+" : "-") + ("00" + Math.floor(o / 60)).slice(-2) + ":" + ("00" + (o % 60)).slice(-2);
+            }
+
             self.loadHistory = function () {
                 return new Promise(function (resolve, reject) {
                     sp.on('load.user.history.success', function (history) {
@@ -40,7 +45,7 @@
                         resolve(angular.extend([], self.history));
                     });
                     if(!self.sending_history) {
-                        sp.send('load.user.history');
+                        sp.send('load.user.history',{ tz : getTimeZone() });
                     }
                     self.sending_history = true;
 

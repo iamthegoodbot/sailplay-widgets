@@ -456,14 +456,15 @@ var SAILPLAY = (function () {
 
 
     //USER HISTORY
-    sp.on('load.user.history', function () {
+    sp.on('load.user.history', function (p) {
         if(_config == {}){
             initError();
             return;
         }
-        var params = {
-            auth_hash: _config.auth_hash
-        };
+        var params = p ? p : {};
+
+        params.auth_hash = _config.auth_hash;
+
         JSONP.get(_config.DOMAIN + _config.urls.users.history, params, function (res) {
             //      console.dir(res);
             if (res.status == 'ok') {
