@@ -6,7 +6,7 @@
 
             var self = this;
 
-            var DESC = ['First look at new products in stock and discounts', 'All Par benets', 'All Birdie benets', 'All Eagle benets'];
+            var DESC = ['First look at new products in stock and discounts', 'All Par benefits', 'All Birdie benefits', 'All Eagle benefits'];
 
             var IMAGES = {
                 313: {
