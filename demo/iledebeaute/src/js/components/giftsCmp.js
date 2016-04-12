@@ -1,0 +1,32 @@
+(function (angular, sp, jQuery) {
+
+  angular.module('iledebeaute.directives.gifts', [])
+
+    .directive('giftsArchive', [function () {
+      return {
+        restrict: 'E',
+        replace: true,
+        template: '<div>\n    <h2 class="content_head">Архив привилегий</h2>\n\t\t\t<div class="archiv_privil_main">\n\t\t\t\t<div class="archiv_privil_item">\n\t\t\t\t\t<div class="img_block"><img src="../img/arch1.png" alt=""></div>\n\t\t\t\t\t<span class="company">Carolina Herrera</span>\n\t\t\t\t\t<span class="arch_name">CH CENTRAL PARK\nТуалетная вода</span>\n\t\t\t\t\t<span class="arch_bon">750 бонусов</span>\n\t\t\t\t\t<span class="when_use">Использованно 02.03.2016</span>\n\t\t\t\t</div>\n\t\t\t\t<div class="archiv_privil_item">\n\t\t\t\t\t<div class="img_block"><img src="../img/arch1.png" alt=""></div>\n\t\t\t\t\t<span class="company">Mercedes-Benz</span>\n\t\t\t\t\t<span class="arch_name">Билет на 2 персоны на\nнеделю моды в Москве</span>\n\t\t\t\t\t<span class="arch_bon">750 бонусов</span>\n\t\t\t\t\t<span class="when_use">Использованно 02.03.2016</span>\n\t\t\t\t</div>\n\t\t\t\t<div class="archiv_privil_item">\n\t\t\t\t\t<div class="img_block"><img src="../img/arch3.png" alt=""></div>\n\t\t\t\t\t<span class="company">Acqua di Parma</span>\n\t\t\t\t\t<span class="arch_name">Набор ROSA NOBILE</span>\n\t\t\t\t\t<span class="arch_bon">750 бонусов</span>\n\t\t\t\t\t<span class="when_use">Использованно 02.03.2016</span>\n\t\t\t\t</div>\n\t\t\t\t<div class="archiv_privil_item">\n\t\t\t\t\t<div class="img_block"><img src="../img/arch4.png" alt=""></div>\n\t\t\t\t\t<span class="company">Dior</span>\n\t\t\t\t\t<span class="arch_name">Diorblush Sculpt\nСкульптурирующие румяна</span>\n\t\t\t\t\t<span class="arch_bon">750 бонусов</span>\n\t\t\t\t\t<span class="when_use">Использованно 02.03.2016</span>\n\t\t\t\t</div>\n\t\t\t\t<div class="archiv_privil_item">\n\t\t\t\t\t<div class="img_block"><img src="../img/arch5.png" alt=""></div>\n\t\t\t\t\t<span class="company">Dr. Brandt</span>\n\t\t\t\t\t<span class="arch_name">Needless No More Маска\n-филлер эффект 3D</span>\n\t\t\t\t\t<span class="arch_bon">750 бонусов</span>\n\t\t\t\t\t<span class="when_use">Использованно 02.03.2016</span>\n\t\t\t\t</div>\n\t\t\t\t<div class="archiv_privil_item">\n\t\t\t\t\t<div class="img_block"><img src="../img/arch6.png" alt=""></div>\n\t\t\t\t\t<span class="company">Тай рай</span>\n\t\t\t\t\t<span class="arch_name">Спа процедура</span>\n\t\t\t\t\t<span class="arch_bon">750 бонусов</span>\n\t\t\t\t\t<span class="when_use">Использованно 02.03.2016</span>\n\t\t\t\t</div>\n\t\t\t</div>\n</div>',
+        scope: true,
+        link: function (scope) {
+
+        }
+      }
+
+    }])
+
+    .directive('gifts', [function () {
+      return {
+        restrict: 'E',
+        replace: true,
+        template: '<div>\n    <div class="lk_top_info">\n        <div class="lk_top_info_left">\n\t\t\t\t\t<span class="clien_name">\n\t\t\t\t\t\tЗдравствуйте, Владимир\n\t\t\t\t\t</span>\n\t\t\t\t\t<span class="clien_sub">\n\t\t\t\t\t\tСовершайте покупки, копите бонусы и получайте специальные привилегии от ИЛЬ ДЕ БОТЭ и любимых производителей\n\t\t\t\t\t</span>\n        </div>\n        <div class="lk_top_info_right">\n            <div class="bonus_num ">\n                <span class="big">750</span>\n                <span class="text">бонусов ИЛЬ ДЕ БОТЭ</span>\n            </div>\n            <div class="bonus_num pr_num">\n                <span class="big">5</span>\n                <span class="text">доступных привилегий</span>\n            </div>\n        </div>\n        <div class="list_privil">\n            <div class="list_privil_left">\n                <span class="lpl_head">Список привилегий</span>\n                <span class="lpl_sub">Обменивайте ваши бонусы на привилегии</span>\n            </div>\n            <div class="list_privil_menu">\n                <a href="#" class="act">Доступные</a>\n                <a href="#">Другие</a>\n                <a href="#">Эксклюзивные</a>\n            </div>\n        </div>\n    </div>\n    <div class="archiv_privil_main archiv_privil_lk_main">\n        <div class="archiv_privil_item">\n            <div class="img_block"><img src="../img/arch1.png" alt=""></div>\n            <span class="company">Carolina Herrera</span>\n\t\t\t\t\t<span class="arch_name">CH CENTRAL PARK\nТуалетная вода</span>\n            <span class="arch_bon">750 бонусов</span>\n            <a href="#">Получить</a>\n        </div>\n        <div class="archiv_privil_item">\n            <div class="img_block"><img src="../img/arch1.png" alt=""></div>\n            <span class="company">Mercedes-Benz</span>\n\t\t\t\t\t<span class="arch_name">Билет на 2 персоны на\nнеделю моды в Москве</span>\n            <span class="arch_bon">750 бонусов</span>\n            <a href="#">Получить</a>\n        </div>\n        <div class="archiv_privil_item">\n            <div class="img_block"><img src="../img/arch3.png" alt=""></div>\n            <span class="company">Acqua di Parma</span>\n            <span class="arch_name">Набор ROSA NOBILE</span>\n            <span class="arch_bon">750 бонусов</span>\n            <a href="#">Получить</a>\n        </div>\n        <div class="archiv_privil_item">\n            <div class="img_block"><img src="../img/arch4.png" alt=""></div>\n            <span class="company">Dior</span>\n\t\t\t\t\t<span class="arch_name">Diorblush Sculpt\nСкульптурирующие румяна</span>\n            <span class="arch_bon">750 бонусов</span>\n            <a href="#">Получить</a>\n        </div>\n        <div class="archiv_privil_item">\n            <div class="img_block"><img src="../img/arch5.png" alt=""></div>\n            <span class="company">Dr. Brandt</span>\n\t\t\t\t\t<span class="arch_name">Needless No More Маска\n-филлер эффект 3D</span>\n            <span class="arch_bon">750 бонусов</span>\n            <a href="#">Получить</a>\n        </div>\n        <div class="archiv_privil_item">\n            <div class="img_block"><img src="../img/arch6.png" alt=""></div>\n            <span class="company">Тай рай</span>\n            <span class="arch_name">Спа процедура</span>\n            <span class="arch_bon">750 бонусов</span>\n            <a href="#">Получить</a>\n        </div>\n    </div>\n</div>',
+        scope: true,
+        link: function (scope) {
+
+        }
+      }
+
+    }]);
+
+
+}(window.angular, window.SAILPLAY, window.$));
