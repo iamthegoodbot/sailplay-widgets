@@ -60,8 +60,9 @@ gulp.task('img', function () {
 
 gulp.task('js:prod', function () {
   return series(
-    gulp.src('./src/js/libs/!(core)*'),
+    gulp.src('./src/js/libs/important/*'),
     gulp.src('./src/js/libs/core/*.js'),
+    gulp.src('./src/js/libs/!(core)*'),
     gulp.src('./src/js/tools/*'),
     gulp.src('./src/js/services/*'),
     gulp.src('./src/js/components/*'),
@@ -75,8 +76,9 @@ gulp.task('js:prod', function () {
 
 gulp.task('js:dev', function () {
   return series(
-    gulp.src('./src/js/libs/!(core)*'),
+    gulp.src('./src/js/libs/important/*'),
     gulp.src('./src/js/libs/core/*.js'),
+    gulp.src('./src/js/libs/!(core)*'),
     gulp.src('./src/js/tools/*'),
     gulp.src('./src/js/services/*'),
     gulp.src('./src/js/components/*'),
@@ -85,6 +87,7 @@ gulp.task('js:dev', function () {
     .pipe(gulp.dest("./dist/js"))
     .pipe(connect.reload());
 });
+
 
 gulp.task('prod', ['connect', 'watch', 'css', 'html', 'img', 'fonts', 'js:prod']);
 

@@ -1,79 +1,30 @@
 (function (angular, sp, hash) {
 
-  angular.module('iledebeaute', ['iledebeaute.directives.gifts', 'iledebeaute.directives.feedback', 'iledebeaute.directives.faq', 'iledebeaute.directives.authorization', 'iledebeaute.directives.history', 'iledebeaute.directives.menu', 'iledebeaute.directives.text'])
+  angular.module('iledebeaute', ['iledebeaute.directives.actions', 'iledebeaute.services.data', 'iledebeaute.directives.gifts', 'iledebeaute.directives.feedback', 'iledebeaute.directives.faq', 'iledebeaute.directives.authorization', 'iledebeaute.directives.history', 'iledebeaute.directives.menu', 'iledebeaute.directives.text'])
 
-    .directive('app', function () {
+    .directive('app', ['dataService', function (dataService) {
 
       return {
         restrict: 'E',
         replace: true,
-        template: '<div>\n <div class="iner_block">\n        <menu-cmp data-model="menu"></menu-cmp>\n        <div class="content" data-ng-switch="getActiveMenu()">\n            \n            <history-cmp data-ng-switch-when="history"></history-cmp>\n            \n            <text-cmp data-ng-switch-when="cut_bonus_rules" data-model="cut_bonus_rules"></text-cmp>\n            \n            <text-cmp data-ng-switch-when="rules" data-model="rules"></text-cmp>\n            \n            <text-cmp data-ng-switch-when="info" data-model="info"></text-cmp>\n            \n            <text-cmp data-ng-switch-when="about" data-model="about"></text-cmp>\n            \n            <faq-cmp data-ng-switch-when="faq"></faq-cmp>\n            \n            <feedback-cmp data-ng-switch-when="feedback"></feedback-cmp>\n            \n            <gifts-archive data-ng-switch-when="gifts_archive"></gifts-archive>\n            \n            <gifts data-ng-switch-when="gifts"></gifts>\n            \n        </div>\n    </div>\n    <auth-cmp data-model="$parent.auth" data-ng-if="!auth"></auth-cmp>\n</div>',
+        template: '<div>\n    <div class="iner_block" data-ng-if="auth">\n        <menu-cmp data-model="menu"></menu-cmp>\n        <div class="content" data-ng-switch="getActiveMenu()">\n\n            <history-cmp data-ng-switch-when="history"></history-cmp>\n\n            <text-cmp data-ng-switch-when="cut_bonus_rules" data-model="cut_bonus_rules"></text-cmp>\n\n            <text-cmp data-ng-switch-when="rules" data-model="rules"></text-cmp>\n\n            <text-cmp data-ng-switch-when="info" data-model="info"></text-cmp>\n\n            <text-cmp data-ng-switch-when="about" data-model="about"></text-cmp>\n\n            <faq-cmp data-ng-switch-when="faq" data-model="faq"></faq-cmp>\n\n            <feedback-cmp data-ng-switch-when="feedback"></feedback-cmp>\n\n            <gifts-archive-cmp data-ng-switch-when="gifts_archive"></gifts-archive-cmp>\n\n            <gifts-cmp data-ng-switch-when="gifts"></gifts-cmp>\n\n            <actions-cmp data-ng-switch-when="actions"></actions-cmp>\n\n        </div>\n    </div>\n    <auth-cmp data-model="$parent.auth" data-ng-if="!auth"></auth-cmp>\n</div>',
         scope: true,
         link: function (scope) {
 
+          // AUTH FLAG
           scope.auth = true;
 
-          // TODO: перенести данные в сервисы!
-          var menu = [
-            {
-              label: 'О программе',
-              key: 'about',
-              // DEFAULT ACTIVE ELEMENT
-              active: true
-            },
-            {
-              label: 'Условия участия',
-              key: 'rules',
-              items: [
-                {
-                  label: 'Правила начисления бонусов',
-                  key: 'rules'
-                },
-                {
-                  label: 'Правила списания бонусов',
-                  key: 'cut_bonus_rules'
-                },
-                {
-                  label: 'Полезная информация',
-                  key: 'info'
-                }
-              ]
-            },
-            {
-              label: 'История начислений',
-              key: 'history'
-            },
-            {
-              label: 'Сокровищница привилегий',
-              key: 'gifts',
-              items: [
-                {
-                  label: 'Сокровищница привилегий',
-                  key: 'gifts'
-                },
-                {
-                  label: 'Архив привилегий',
-                  key: 'gifts_archive'
-                }
-              ]
-            },
-            {
-              label: 'Вопрос-ответ',
-              key: 'faq',
-              items: [
-                {
-                  label: 'Часто задаваемые вопросы',
-                  key: 'faq'
-                },
-                {
-                  label: 'Форма обратной связи',
-                  key: 'feedback'
-                }
-              ]
-            }
-          ];
+          scope.menu = dataService.menu;
 
-          scope.menu = menu;
+          scope.cut_bonus_rules = dataService.pages.cut_bonus_rules;
+
+          scope.rules = dataService.pages.rules;
+
+          scope.info = dataService.pages.info;
+
+          scope.about = dataService.pages.about;
+
+          scope.faq = dataService.faq;
 
           scope.getActiveMenu = function () {
             if (!scope.menu) return;
@@ -94,32 +45,12 @@
                 }
               }
             }
-          }
-
-          scope.cut_bonus_rules = {
-            title: 'Правила списания бонусов',
-            text: 'Бонусы могут быть списаны на любые привилегии из списка в блоке “Привилегии”. Обратите внимание - количество некоторых, особенно ценных, привилегий очень ограничено, поэтому их необходимо бронировать заранее. Накопив достаточно бонусов на получение привилегии, выберите её в соответствующем разделе и получите электронное письмо с сертификатом на эту привилегию. Для вашего удобства, при необходимости - вы можете связаться с менеджером и договориться об индивидуальном процессе получения привилегии.'
-          };
-
-          scope.rules = {
-            title: 'Правила начисления бонусов',
-            text: 'Совершайте покупки в розничных салонах и интернет-магазине Иль де Ботэ и получайте бонусы в зависимости от состава покупки. \n\nБонусы могут быть списаны на любые привилегии из списка в блоке “Привилегии”. Обратите внимание - количество некоторых,\n\nПолучите 1 бонус за каждую 1000 рублей в чеке, но за некоторые товары бонусы могут начисляться с повышенным коэффициентом.\n\nособенно ценных, привилегий очень ограничено, поэтому их необходимо бронировать заранее. Накопив достаточно бонусов на \n\nПолучайте бонусы по специальным предложениям, например, проходя интервью или приглашая своих друзей к участию в программе.'
-          };
-
-          scope.info = {
-            title: 'Полезная информация',
-            text: 'Полезная информация текст'
-          };
-
-          scope.about = {
-            title: 'О программе',
-            text: 'О программе текст'
           };
 
         }
       }
 
-    });
+    }]);
 
   var _CONFIG = {
     partner_id: 231,
