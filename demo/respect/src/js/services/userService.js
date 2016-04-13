@@ -123,13 +123,13 @@
                 ];
 
                 var date = self.toDateObj(date);
-                var day = date.getDate();
-                var monthIndex = date.getMonth();
-                var year = date.getFullYear();
+                var day = date.getUTCDate();
+                var monthIndex = date.getUTCMonth();
+                var year = date.getUTCFullYear();
                 var hours = date.getUTCHours() < 10 ? '0' + date.getUTCHours() : date.getUTCHours();
-                var minutes = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
+                var minutes = date.getUTCMinutes() < 10 ? '0' + date.getUTCMinutes() : date.getUTCMinutes();
 
-                return day + ' ' + monthNames[monthIndex] + ' ' + hours + ':' + minutes;
+                return day + ' ' + monthNames[monthIndex] + ' ' + year + ' ' + hours + ':' + minutes;
             };
 
         });

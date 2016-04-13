@@ -2,7 +2,7 @@
 
     angular.module('respect.tools.notify', [])
 
-        .directive('toolsNotify', function ($rootScope, $timeout) {
+        .directive('toolsNotify',['$rootScope', function ($rootScope) {
             return {
                 restrict: 'E',
                 replace: true,
@@ -42,7 +42,7 @@
                 }
             }
 
-        });
+        }]);
 
     document.createElement('tools-notify');
     var elems = document.querySelectorAll('tools-notify');

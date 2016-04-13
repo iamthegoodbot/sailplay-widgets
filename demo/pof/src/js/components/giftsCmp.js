@@ -55,9 +55,11 @@
                                 if (jQuery(".js-gifts-slider").data('owlCarousel')) {
                                     jQuery(".js-gifts-slider").data('owlCarousel').destroy();
                                 }
+                                //var count = jQuery(".gift-slider__slide").length ? Math.floor(jQuery(".js-gifts-slider").width() / jQuery(".gift-slider__slide").eq(0).width()) : 4;
+                                var count = 3;
                                 jQuery(".js-gifts-slider").owlCarousel({
                                     pagination: true,
-                                    items: 4,
+                                    items: count,
                                     // itemsCustom: true,
                                     itemsDesktop: [1199, 4],
                                     itemsDesktopSmall: [979, 3],
@@ -72,7 +74,7 @@
                                     addClassActive: true,
                                     // touchDrag: false,
                                     // mouseDrag: false,
-                                    rewindNav: true,
+                                    rewindNav: true
                                 });
                             }, 10)
                         });

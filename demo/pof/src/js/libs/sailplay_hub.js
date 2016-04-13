@@ -268,6 +268,7 @@ var SAILPLAY = (function () {
                         catch (e){
 
                         }
+                        //console.log(data.name);
                         switch (data && data.name) {
                             case 'actions.perform.success':
                                 sp.send('actions.perform.success', data);
@@ -394,12 +395,10 @@ var SAILPLAY = (function () {
             w,
             h = 500;
         for(var i = 0, len = elms.length; i < len; i++){
-            originWidth = elms[i].parentNode. offsetWidth;
+            elms[i].removeAttribute("style");
+            originWidth = elms[i].parentNode.offsetWidth;
             w = +originWidth + 70;
-            elms[i].style.setProperty ("width", w, "important");
-            elms[i].style.setProperty ("height", h, "important");
-            elms[i].style.setProperty ("margin-left", '-35px', "important");
-            elms[i].style.setProperty ("z-index", '10', "important");
+            elms[i].style.cssText = 'width: ' + w + 'px !important;height: ' + h + 'px !important;margin-left: -35px !important;z-index: 10 !important;';
             elms[i].parentNode.style.setProperty ("overflow", "visible", "important");
         }
     });
@@ -408,10 +407,8 @@ var SAILPLAY = (function () {
         var w = 150,
             h = 27;
         for(var i = 0, len = elms.length; i < len; i++){
-            elms[i].style.setProperty ("width", w, "important");
-            elms[i].style.setProperty ("height", h, "important");
-            elms[i].style.setProperty ("margin-left", 'auto', "important");
-            elms[i].style.removeProperty("z-index");
+            elms[i].removeAttribute("style");
+            elms[i].style.cssText = 'width: ' + w + 'px !important;height: ' + h + 'px !important;margin-left: auto !important;';
             elms[i].parentNode.style.setProperty ("overflow", "hidden", "important");
         }
     });
@@ -460,14 +457,15 @@ var SAILPLAY = (function () {
 
 
     //USER HISTORY
-    sp.on('load.user.history', function () {
+    sp.on('load.user.history', function (p) {
         if(_config == {}){
             initError();
             return;
         }
-        var params = {
-            auth_hash: _config.auth_hash
-        };
+        var params = p ? p : {};
+
+        params.auth_hash = _config.auth_hash;
+
         JSONP.get(_config.DOMAIN + _config.urls.users.history, params, function (res) {
             //      console.dir(res);
             if (res.status == 'ok') {

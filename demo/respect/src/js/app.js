@@ -1,13 +1,13 @@
 (function (angular, sp, hash) {
 
-    angular.module('respect', ['respect.directives.bonus', 'respect.directives.gifts', 'respect.directives.profile', 'respect.directives.actions', 'respect.directives.history', 'respect.tools.notify'])
+    angular.module('respect', ['respect.directives.bonus', 'respect.directives.profile', 'respect.directives.actions', 'respect.directives.history', 'respect.tools.notify'])
 
         .directive('app', function () {
 
             return {
                 restrict: 'E',
                 replace: true,
-                template: '<div>\n    \n    <bonus-cmp></bonus-cmp>\n    \n    <profile-cmp></profile-cmp>\n    \n    <gifts-cmp></gifts-cmp>\n    \n    <actions-cmp></actions-cmp>\n\n    <tools-notify></tools-notify>\n    \n</div>',
+                template: '<div>\n    \n    <bonus-cmp></bonus-cmp>\n    \n    <profile-cmp></profile-cmp>\n    \n    <!--<gifts-cmp></gifts-cmp>-->\n    \n    <actions-cmp></actions-cmp>\n\n    <tools-notify></tools-notify>\n    \n</div>',
                 scope: true,
                 link: function (scope) {
                 }

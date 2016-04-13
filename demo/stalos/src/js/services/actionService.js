@@ -11,7 +11,7 @@
         doublePoints: 'Бонус на 8-е марта'
       };
 
-      var cssLink = 'http://dev4you.info/test/stalos/btns_styles.css';
+      var cssLink = 'https://sailplays3.cdnvideo.ru/media/assets/assetfile/5521075f9b58473fc4e52dbbefaa5eac.css';
 
       self.loadList = function () {
         self.actions = [];
