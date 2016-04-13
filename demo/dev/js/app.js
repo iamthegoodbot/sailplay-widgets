@@ -1,17 +1,25 @@
 (function(){
 
   window.onload = function(){
+
+
+    var params = SAILPLAY.url_params() || {};
+
     //var domain = 'http://sailplay.ru';
     //SAILPLAY.send('init', { partner_id: 151, domain: 'http://dev.sailplay.ru', lang: 'ru'}); //инициируем модуль для партнера с id = 5
-    SAILPLAY.send('init', { partner_id: 1286, domain: 'http://sailplay.ru', lang: 'ru', static_url: '/sailplay/widgets/demo/dev' });
+    //SAILPLAY.send('init', { partner_id: 232, domain: 'http://dev.sailplay.ru', lang: 'ru', static_url: '/sailplay/widgets/demo/dev' });
     //SAILPLAY.send('init', { partner_id: 1188, domain: 'http://skazka.loc', lang: 'ru', static_url: '/sailplay/widgets/demo/dev' });
     //SAILPLAY.send('init', { partner_id: 1188, domain: 'http://192.168.5.250:8080', lang: 'ru', static_url: '/sailplay/widgets/demo/dev' });
-//    SAILPLAY.send('init', { partner_id: 1404, domain: 'http://sailplay.ru', static_url: '/sailplay/widgets/demo/dev' });
+    SAILPLAY.send('init', { partner_id: 366, domain: 'http://sailplay.ru', static_url: '/sailplay/widgets/demo/dev' });
 //    SAILPLAY.send('init', { partner_id: 1527, domain: 'http://sailplay.ru', static_url: '/sailplay/widgets/demo/dev' });
 
     SAILPLAY.on('init.success', function(){
-      //SAILPLAY.send('login', 'a74df059493ae3c8a9f232a675ef5014672f4988');
-      SAILPLAY.send('login.remote', { background: 'transparent' });
+      if(params.auth_hash){
+        SAILPLAY.send('login', params.auth_hash);
+      }
+      else {
+        SAILPLAY.send('login.remote', { background: 'transparent' });
+      }
       console.dir(SAILPLAY.config());
     });
 
@@ -50,7 +58,7 @@
       if(action.data.response.force){
 
         console.log(action.data.response.socialType + ' force share success');
-        SAILPLAY.send('tags.add', { tags: [ 'custom share', action.data.response.socialType ], user: { email: 'm.g.armiro@gmail.com' } });
+        SAILPLAY.send('tags.add', { tags: [ 'custom share', action.data.response.socialType ], user: { email: document.getElementById('share_user').value } });
 
       }
     });
