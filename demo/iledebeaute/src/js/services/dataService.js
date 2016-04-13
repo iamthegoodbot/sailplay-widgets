@@ -70,6 +70,7 @@
             },
             {
               label: 'Форма обратной связи',
+              hide: true,
               key: 'feedback'
             }
           ]

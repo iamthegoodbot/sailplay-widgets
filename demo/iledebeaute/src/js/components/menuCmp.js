@@ -12,6 +12,29 @@
         },
         link: function (scope) {
 
+          scope.setActive = function (item, total) {
+            angular.forEach(total, function (val, key) {
+              val.active = false;
+              if (val.items && val.items.length) {
+                angular.forEach(val.items, function (val, key) {
+                  val.active = false;
+                });
+              }
+            });
+            window.location.hash = item.key;
+            item.active = true;
+          };
+
+          if (window.location.hash && scope.model) {
+            var hash = window.location.hash.replace('#','');
+            for (var i = 0, len = scope.model.length; i < len; i++) {
+              var item = scope.model[i];
+              if (item.key == hash) {
+                scope.setActive(item, scope.model);
+              }
+            }
+          }
+
           scope.getSubmenu = function () {
             if (!scope.model) return;
             for (var i = 0, len = scope.model.length; i < len; i++) {
@@ -23,20 +46,8 @@
             }
           };
 
-          scope.setActive = function (item, total) {
-            angular.forEach(total, function (val, key) {
-              val.active = false;
-              if (val.items && val.items.length) {
-                angular.forEach(val.items, function (val, key) {
-                  val.active = false;
-                });
-              }
-            });
-            item.active = true;
-          };
-
-          scope.exit = function(){
-          //  exit function
+          scope.exit = function () {
+            //  exit function
           };
 
         }
