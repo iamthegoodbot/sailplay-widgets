@@ -55,6 +55,7 @@
             },
             {
               label: 'Архив привилегий',
+              hide: true,
               key: 'gifts_archive'
             }
           ]

@@ -6,7 +6,7 @@
       return {
         restrict: 'E',
         replace: true,
-        template: '<div class="header">\n    <a href="#" class="logo"></a>\n    <div class="top_line"></div>\n    <div class="menu">\n        <a href="#" data-ng-repeat="item in model track by $index" data-ng-bind="item.label" data-ng-if="!item.hide"\n           data-ng-click="setActive(item, model);"></a>\n        <div class="user_menu">\n            <a href="#" data-ng-click="profile();$event.preventDefault();">профиль</a>\n            <a href="#" data-ng-click="exit();$event.preventDefault();">выход</a>\n        </div>\n    </div>\n    <div class="sub_menu">\n        <a href="#" data-ng-if="getSubmenu()" data-ng-repeat="item in getSubmenu()" data-ng-bind="item.label"\n           data-ng-click="setActive(item, getSubmenu())"></a>\n    </div>\n</div>',
+        template: '<div class="header">\n    <a href="#" class="logo"></a>\n    <div class="top_line"></div>\n    <div class="menu">\n        <a href="#" data-ng-repeat="item in model track by $index" data-ng-bind="item.label" data-ng-if="!item.hide"\n           data-ng-click="setActive(item, model);$event.preventDefault();"></a>\n        <div class="user_menu">\n            <!--<a href="#" data-ng-click="profile();$event.preventDefault();">профиль</a>-->\n            <a href="#" data-ng-click="exit();$event.preventDefault();">выход</a>\n        </div>\n    </div>\n    <div class="sub_menu">\n        <a href="#" data-ng-if="getSubmenu() && !item.hide" data-ng-repeat="item in getSubmenu()" data-ng-bind="item.label"\n           data-ng-click="setActive(item, getSubmenu());$event.preventDefault();"></a>\n    </div>\n</div>',
         scope: {
           model: '='
         },
@@ -33,8 +33,11 @@
               }
             });
             item.active = true;
+          };
 
-          }
+          scope.exit = function(){
+          //  exit function
+          };
 
         }
       }
