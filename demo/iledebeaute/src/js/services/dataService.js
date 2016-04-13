@@ -111,6 +111,12 @@
         }
       ];
 
+      self.tags = {
+        profile: 'Заполнил профиль'
+      };
+
+      self.actionCss = 'http://dev4you.info/test/respect/btns_styles.css';
+
       return self;
 
     });
