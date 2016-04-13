@@ -37,6 +37,7 @@ body {
 .overlay_wel {
   width: 590px;
   margin-left: -335px;
+  margin-top: -250px !important;
 }
 
 .overlay_congr {
@@ -57,7 +58,7 @@ body {
   float: left;
   width: 100%;
   font-size: 20px;
-  font-weight: bold;
+  font-family: 'Carisma Classic Bold';
 }
 
 .overlay_iner h2.mb {
@@ -67,7 +68,7 @@ body {
 .overlay_iner h3 {
   float: left;
   width: 100%;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   font-size: 14px;
   font-weight: 200;
   color: #333333;
@@ -100,7 +101,7 @@ body {
   padding: 0px 20px;
   height: 40px;
   background-color: #EBEBEB;
-  font-size: 14px;
+  font-size: 11px;
   color: #333333;
   font-weight: 200;
   border: 0px;
@@ -108,9 +109,14 @@ body {
   outline: none;
 }
 
+.input_block input[type="text"]#phone {
+  font-size: 14px;
+}
+
 .input_block input[type="submit"] {
   float: left;
   width: 170px;
+  font-family: 'Carisma Classic Demibold';
   height: 40px;
   border: 0px;
   background-color: #B50069;
@@ -148,9 +154,9 @@ body {
 
 .overlay_iner h3.req_info {
   color: #B50069;
-  font-size: 14px;
+  font-size: 11px;
   font-weight: 200;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   margin-top: 0px;
 }
 
@@ -167,36 +173,82 @@ body {
   background-color: #EBEBEB;
 }
 
+.select_day select {
+  width: 97px;
+}
+
+.select_month select {
+  width: 121px;
+}
+
+.select_year select {
+  width: 97px;
+}
+
 .select_block select {
-  float: left;
-  padding: 0px 20px;
   height: 40px;
+
+  border-radius: 6px;
+  -webkit-appearance: none;
+  background-image: url('../img/select.png');
+  padding: 0px 20px;
   background-color: transparent;
-  font-size: 14px;
+  -webkit-background-size: 8px 6px;
+  background-size: 8px 6px;
+  background-position: 95% center;
+  background-repeat: no-repeat;
+  line-height: 1em;
+  /* for FF */
+  -moz-appearance: none;
+  text-indent: 0.01px;
+  text-overflow: '';
+  /* for IE */
+  -ms-appearance: none;
+  appearance: none !important;
+  font-size: 11px;
   color: #333333;
   font-weight: 200;
   border: 0px;
   outline: none;
+  box-sizing: border-box;
+
 }
 
-.select_block::after {
-  width: 40px;
-  height: 40px;
-  display: block;
-  content: '';
-  background-image: url(../img/select.png);
-  background-position: center center;
-  -webkit-background-size: 8px 6px;
-  background-size: 8px 6px;
+.select_block select::-ms-expand {
+  display: none;
+}
+
+@-moz-document url-prefix() {
+  .select_block select {
+    padding-top: 10px;
+  }
+}
+
+.select_shop {
+  position: relative;
+}
+
+.select_shop select {
+  z-index: 2;
+  position: relative;
+}
+
+.form_subscribe .check label {
+  font-size: 11px;
+}
+
+.select_shop label {
   position: absolute;
-  right: 0px;
-  top: 0px;
-  background-repeat: no-repeat;
-  z-index: -1;
+  left: 20px;
+  top: 8px;
+  line-height: 14px;
+  font-size: 11px;
+  color: #333333;
+  z-index: 1;
 }
 
 .input_date .select_block {
-  margin-right: 11px;
+  margin-right: 10px;
 }
 
 .input_date .select_block:nth-child(3) {
@@ -275,8 +327,25 @@ body {
   margin-top: 20px;
 }
 
+.input_block_entr a {
+  float: right;
+  text-align: center;
+  width: 170px;
+  font-family: 'Carisma Classic Demibold';
+  height: 40px;
+  border: 0px;
+  background-color: #B50069;
+  color: #FFFFFF;
+  font-size: 12px;
+  cursor: pointer;
+  margin-top: 20px;
+  box-sizing: border-box;
+  padding-top: 7px;
+  text-decoration: none;
+}
+
 .form_subscribe .check:first-child {
-  margin-right: 30px;
+  margin-right: 28px;
 }
 
 .input_block:last-child {
@@ -305,6 +374,38 @@ body {
   background-color: #EFECE8;
   background-position: 30px center;
   background-repeat: no-repeat;
+}
+
+.wel_link span {
+  float: left;
+  width: 100%;
+  text-align: center;
+  color: #000000;
+  font-weight: bold;
+  font-size: 15px;
+  margin-top: 20px;
+  margin-bottom: -10px;
+}
+
+.mt_n {
+  margin-top: 0px !important;
+}
+
+.sorry_return {
+  float: left;
+  text-align: center;
+  width: 170px;
+  font-family: 'Carisma Classic Demibold';
+  height: 40px;
+  border: 0px;
+  background-color: #B50069;
+  color: #FFFFFF;
+  font-size: 12px;
+  cursor: pointer;
+  margin-top: 20px;
+  box-sizing: border-box;
+  text-decoration: none;
+  line-height: 40px;
 }
 
 .wl_icon1 {
@@ -338,7 +439,7 @@ body {
 
 .congr_right {
   float: right;
-  width: 520px;
+  width: 530px;
   margin-right: 10px;
 }
 
@@ -346,7 +447,7 @@ body {
   float: left;
   width: 100%;
   font-size: 20px;
-  font-weight: bold;
+  font-family: 'Carisma Classic Bold';
   color: #000;
   margin-top: 20px;
   margin-bottom: 24px;
@@ -372,6 +473,7 @@ body {
   margin-top: 28px;
   text-align: center;
   text-decoration: none;
+  font-family: 'Carisma Classic Demibold';
 }
 
 .iner_block {
@@ -417,6 +519,7 @@ body {
   float: left;
   line-height: 32px;
   font-size: 13px;
+  font-family: 'Carisma Classic Regular';
   text-transform: uppercase;
   color: #fff;
   margin: 0px 8px;
@@ -443,6 +546,7 @@ body {
 
 .user_menu a {
   float: left;
+  font-family: 'Carisma Classic Regular';
   line-height: 32px;
   font-size: 13px;
   text-transform: uppercase;
@@ -453,10 +557,11 @@ body {
 
 .sub_menu {
   float: left;
+  height: 30px;
+  font-family: 'Carisma Classic Regular';
   width: 100%;
   background-color: #EFEFEF;
   box-sizing: border-box;
-  min-height: 30px;
   padding-left: 12px;
 }
 
@@ -483,6 +588,10 @@ body {
   color: #000;
   font-size: 20px;
   margin-bottom: 12px;
+  font-family: 'Carisma Classic Bold';
+  &.history {
+    margin-left: 40px;
+  }
 }
 
 .content .text {
@@ -491,20 +600,22 @@ body {
   line-height: 17px;
   color: #000;
   font-size: 14px;
+  font-family: 'Carisma Classic Regular';
 }
 
 .back_link {
   float: left;
-  //padding-left: 37px;
+  padding-left: 37px;
   margin-left: 40px;
   line-height: 20px;
   color: #000000;
   font-size: 20px;
-  //background-repeat: no-repeat;
-  //background-position: left center;
-  //background-image: url(../img/return.png);
-  //background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-image: url(../img/return.png);
+  background-size: auto 100%;
   text-decoration: none;
+  font-family: 'Carisma Classic Bold';
 }
 
 .back_link.no_ml {
@@ -560,7 +671,7 @@ body {
   left: 0px;
   width: 100%;
   border-top: 1px dotted #A1A1A1;
-  top: 22px;
+  top: 16px;
   content: '';
   display: block;
 }
@@ -571,6 +682,7 @@ body {
   font-weight: bold;
   text-align: right;
   line-height: 21px;
+  font-family: 'Carisma Classic Bold';
 }
 
 .hist_table td:nth-child(3) span {
@@ -651,7 +763,7 @@ body {
 .sq_item_left {
   float: left;
   width: 150px;
-  margin-left: 25px;
+  margin-left: 13px;
   position: relative;
   height: 100px;
 }
@@ -669,6 +781,7 @@ body {
   -ms-transition: all 300ms ease;
   -o-transition: all 300ms ease;
   transition: all 300ms ease;
+  font-family: 'Carisma Classic Light';
 }
 
 .sq_item_left .sum_bonus {
@@ -683,6 +796,7 @@ body {
   -ms-transition: all 300ms ease;
   -o-transition: all 300ms ease;
   transition: all 300ms ease;
+  font-family: 'Carisma Classic Bold';
 }
 
 .sq_item_right {
@@ -731,23 +845,40 @@ body {
 
 .sq_item_left a {
   opacity: 0;
-  -webkit-transition: all 300ms ease;
   display: block;
+  -webkit-transition: all 300ms ease;
   -moz-transition: all 300ms ease;
   -ms-transition: all 300ms ease;
   -o-transition: all 300ms ease;
   transition: all 300ms ease;
-  width: 140px;
   line-height: 40px;
-  background-color: #B50069;
   font-size: 12px;
+  width: 150px;
   color: #fff;
   text-align: center;
   text-decoration: none;
   position: absolute;
+  overflow: visible;
   left: 0px;
   top: 50%;
   margin-top: -20px;
+  font-family: 'Carisma Classic Demibold';
+  height: 40px;
+  box-sizing: border-box;
+  &.bg {
+    background-color: #B50069;
+  }
+}
+
+.sq_item_left a iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  overflow: visible;
+  height: 40px !important;
 }
 
 .sq_item:hover .sq_item_left a {
@@ -776,8 +907,9 @@ body {
   width: 100%;
   font-size: 20px;
   color: #000000;
-  line-height: 90px;
-  font-weight: bold;
+  line-height: 1;
+  padding-bottom: 40px;
+  font-family: 'Carisma Classic Bold';
 }
 
 .opros_head b {
@@ -839,12 +971,17 @@ body {
   float: left;
   width: 170px;
   line-height: 40px;
+  font-family: 'Carisma Classic Demibold';
   background-color: #B50069;
   color: #fff;
   text-align: center;
   text-decoration: none;
   font-size: 12px;
-  margin-top: 20px;
+  margin-top: 40px;
+  &.disabled {
+    opacity: .5;
+    cursor: default;
+  }
 }
 
 .archiv_privil_main {
@@ -879,6 +1016,7 @@ body {
   width: 100%;
   font-size: 14px;
   color: #929292;
+  font-family: 'Carisma Classic Light';
 }
 
 .arch_name {
@@ -887,6 +1025,7 @@ body {
   float: left;
   width: 100%;
   height: 48px;
+  font-family: 'Carisma Classic Light';
 }
 
 .arch_bon {
@@ -896,6 +1035,7 @@ body {
   color: #000000;
   font-size: 14px;
   line-height: 30px;
+  font-family: 'Carisma Classic Bold';
 }
 
 .when_use {
@@ -904,6 +1044,7 @@ body {
   text-align: center;
   color: #B50069;
   font-size: 12px;
+  font-family: 'Carisma Classic Bold';
 }
 
 .lk_top_info {
@@ -922,6 +1063,7 @@ body {
   color: #000000;
   font-size: 20px;
   margin-bottom: 15px;
+  font-family: 'Carisma Classic Bold';
 }
 
 .clien_sub {
@@ -937,6 +1079,32 @@ body {
   margin-top: 15px;
 }
 
+.rel {
+  float: left;
+  width: 100%;
+  position: relative;
+}
+
+.lk_top_info_right_history {
+  width: 340px;
+  position: absolute;
+  right: 0px;
+  top: -30px;
+}
+
+.text_hist {
+  width: 100%;
+  box-sizing: border-box;
+  padding-left: 40px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  font-family: 'Roboto', sans-serif !important;
+}
+
+.text_rob {
+  font-family: 'Roboto', sans-serif !important;
+}
+
 .bonus_num {
   float: left;
   width: 60%;
@@ -947,6 +1115,7 @@ body {
   font-size: 42px;
   color: #B50069;
   float: left;
+  font-family: 'Carisma Classic Bold';
 }
 
 .pr_num {
@@ -975,6 +1144,7 @@ body {
   width: 100%;
   color: #000000;
   font-size: 20px;
+  font-family: 'Carisma Classic Bold';
 }
 
 .lpl_sub {
@@ -982,11 +1152,13 @@ body {
   width: 100%;
   color: #000000;
   font-size: 14px;
+  font-family: 'Carisma Classic Regular';
 }
 
 .list_privil_menu {
   float: right;
-  width: 528px;
+  //width: 528px;
+  width: 352px;
 }
 
 .list_privil_menu a {
@@ -1000,11 +1172,18 @@ body {
   color: #424242;
   background-color: #DDDBD6;
   font-size: 14px;
+  font-family: 'Carisma Classic Demibold';
 }
 
 .list_privil_menu a:hover, .list_privil_menu a.act {
   background-color: #B50069;
   color: #fff;
+}
+
+.list_privil_menu a.two_l {
+  line-height: 16px !important;
+  padding-top: 4px;
+  box-sizing: border-box;
 }
 
 .archiv_privil_lk_main .archiv_privil_item {
@@ -1022,6 +1201,7 @@ body {
   position: absolute;
   left: 5%;
   bottom: 25px;
+  font-family: 'Carisma Classic Demibold';
 }
 
 .archiv_privil_lk_main .archiv_privil_item:hover a {
@@ -1064,6 +1244,7 @@ body {
   font-size: 12px;
   color: #fff;
   margin-top: 20px;
+  font-family: 'Carisma Classic Demibold';
 }
 
 .op_right {
@@ -1078,12 +1259,14 @@ body {
   color: #333333;
   margin-bottom: 20px;
   margin-top: 15px;
+  font-family: 'Carisma Classic Bold';
 }
 
 .op_head b {
   float: right;
   color: #B50069;
   font-size: 18px;
+  font-family: 'Carisma Classic Bold';
 }
 
 .op_info {
@@ -1205,6 +1388,7 @@ body {
   color: #333333;
   font-size: 22px;
   margin-bottom: 30px;
+  font-family: 'Carisma Classic Light';
 }
 
 .calend_event_date {
@@ -1213,6 +1397,7 @@ body {
   color: #B50069;
   font-size: 13px;
   margin-bottom: 10px;
+  font-family: 'Carisma Classic Medium';
 }
 
 .calend_event_desc {
@@ -1229,7 +1414,8 @@ body {
   float: left;
   width: 100%;
   color: #fff;
-  font-style: 12px;
+  font-size: 12px;
+  font-family: 'Carisma Classic Demibold';
   line-height: 40px;
   text-decoration: none;
   text-align: center;
@@ -1244,7 +1430,7 @@ body {
 .calend_day {
   float: left;
   margin-right: 2px;
-  margin-bottom: 2px;;
+  margin-bottom: 2px;
   width: 95px;
   height: 60px;
   background-color: #E6E5E4;
@@ -1252,6 +1438,7 @@ body {
   line-height: 60px;
   font-size: 19px;
   color: #333333;
+  font-family: 'Carisma Classic Bold';
 }
 
 .calend_day a {
@@ -1262,6 +1449,7 @@ body {
   color: #fff;
   text-decoration: none;
   background-color: #B50069;
+  font-family: 'Carisma Classic Bold';
 }
 
 .calend_day_ather a {
@@ -1302,3 +1490,4 @@ body {
   background-image: url(../img/calend_prev.png);
   right: 21px;
 }
+

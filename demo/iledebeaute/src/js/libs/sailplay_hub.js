@@ -910,16 +910,23 @@ var SAILPLAY = (function () {
         }
     });
 
-    sp.on('tags.add', function (tags) {
+    sp.on('tags.add', function (data) {
         if(_config == {}){
             initError();
             return;
         }
-        if (_config.auth_hash) {
+        if (_config.auth_hash || data.user) {
             var tagsObj = {
-                tags: tags.join(','),
-                auth_hash: _config.auth_hash
+                tags: data.tags && data.tags.join(',') || []
             };
+            if(data.user) {
+                for(var p in data.user){
+                    tagsObj[p] = data.user[p];
+                }
+            }
+            else {
+                tagsObj.auth_hash = _config.auth_hash;
+            }
             JSONP.get(_config.DOMAIN + _config.urls.tags.add, tagsObj, function (res) {
                 if (res.status == 'ok') {
                     sp.send('tags.add.success', res);
@@ -928,7 +935,7 @@ var SAILPLAY = (function () {
                 }
             });
         } else {
-            sp.send('tags.add.auth.error', tags);
+            SAILPLAY.trigger('tags.add.auth.error', tags);
         }
     });
 

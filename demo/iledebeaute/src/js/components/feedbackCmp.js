@@ -15,10 +15,4 @@
 
     }]);
 
-  document.createElement('feedback-cmp');
-  var elems = document.querySelectorAll('feedback-cmp');
-  for (var i = 0; i < elems.length; i += 1) {
-    angular.bootstrap(elems[i], ['iledebeaute.directives.feedback']);
-  }
-
 }(window.angular, window.SAILPLAY, window.$));

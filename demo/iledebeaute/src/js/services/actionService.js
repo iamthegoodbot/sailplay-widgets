@@ -1,6 +1,6 @@
 (function (angular, sp) {
 
-  angular.module('respect.services.actions', ['iledebeaute.services.data'])
+  angular.module('iledebeaute.services.actions', ['iledebeaute.services.data'])
 
     .service('actionService', ['dataService', function (dataService) {
 
@@ -38,8 +38,10 @@
         };
         var socObj = {
           fb: 'Facebook',
-          ok: 'Одноклассники',
-          vk: 'Вконтакте'
+          ok: 'Одноклассниках',
+          vk: 'Вконтакте',
+          tw: 'Twitter',
+          gp: 'Google +',
         };
         var result = (obj[action.action] ? obj[action.action] : '') + (socObj[action.socialType] ? socObj[action.socialType] : '');
         return result || 'Нет описания';
@@ -47,22 +49,17 @@
 
       self.getIcon = function (action) {
         if (!action) return '';
+        var classNames = {
+          fb: 'sir_fb',
+          vk: 'sir_vk',
+          ok: 'sir_ok',
+          tw: 'sir_tw',
+          gp: 'sir_gp'
+        };
         var obj = {
-          partner_page: {
-            fb: 'icon-04',
-            vk: 'icon-02',
-            ok: 'icon-06'
-          },
-          like: {
-            fb: 'icon-04',
-            vk: 'icon-02',
-            ok: 'icon-06'
-          },
-          purchase: {
-            fb: 'icon-04',
-            vk: 'icon-02',
-            ok: 'icon-06'
-          }
+          partner_page: classNames,
+          like: classNames,
+          purchase: classNames
         };
         if (action.socialType && obj[action.action] && obj[action.action][action.socialType]) {
           return obj[action.action][action.socialType];

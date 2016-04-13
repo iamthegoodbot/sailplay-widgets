@@ -1,25 +1,82 @@
 (function (angular, sp, jQuery) {
 
-  angular.module('iledebeaute.directives.actions', [])
+  angular.module('iledebeaute.directives.actions', ['iledebeaute.services.data', 'iledebeaute.directives.test', 'iledebeaute.services.users', 'iledebeaute.services.actions'])
 
-    .directive('actionsCmp', [function () {
+    .directive('actionsCmp', ['userService', 'actionService', 'dataService', function (userService, actionService, dataService) {
       return {
         restrict: 'E',
         replace: true,
-        template: '<div>\n    \t<h2 class="content_head">Получи больше бонусов</h2>\n\t\t\t<span class="text">Выполняйте задания и получайте за них бонусы, которые вы можете потратить на привилегии. </span>\n\t\t\t<div class="select_qust">\n\t\t\t\t<div class="sq_item">\n\t\t\t\t\t<div class="sq_item_left">\n\t\t\t\t\t\t<span class="name">Вступить в группу\n\tв ВКонтакте</span>\n\t\t\t\t\t\t<span class="sum_bonus">70 бонусов</span>\n\t\t\t\t\t\t<a href="#">Получить</a>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class="sq_item_right sir_vk">\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class="sq_item">\n\t\t\t\t\t<div class="sq_item_left">\n\t\t\t\t\t\t<span class="name">Вступить в группу\n\tв twiter</span>\n\t\t\t\t\t\t<span class="sum_bonus">70 бонусов</span>\n\t\t\t\t\t\t<a href="#">Получить</a>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class="sq_item_right sir_tw">\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class="sq_item">\n\t\t\t\t\t<div class="sq_item_left">\n\t\t\t\t\t\t<span class="name">Вступить в группу\nв Одноклассниках</span>\n\t\t\t\t\t\t<span class="sum_bonus">70 бонусов</span>\n\t\t\t\t\t\t<a href="#">Получить</a>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class="sq_item_right sir_ok">\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class="sq_item">\n\t\t\t\t\t<div class="sq_item_left">\n\t\t\t\t\t\t<span class="name">Подписаться\nв Facebook</span>\n\t\t\t\t\t\t<span class="sum_bonus">70 бонусов</span>\n\t\t\t\t\t\t<a href="#">Получить</a>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class="sq_item_right sir_fb">\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class="sq_item">\n\t\t\t\t\t<div class="sq_item_left">\n\t\t\t\t\t\t<span class="name">Пригласить друга</span>\n\t\t\t\t\t\t<span class="sum_bonus">70 бонусов</span>\n\t\t\t\t\t\t<a href="#">Получить</a>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class="sq_item_right sir_fr">\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class="sq_item">\n\t\t\t\t\t<div class="sq_item_left">\n\t\t\t\t\t\t<span class="name">Пройти опрос</span>\n\t\t\t\t\t\t<span class="sum_bonus">70 бонусов</span>\n\t\t\t\t\t\t<a href="#">Получить</a>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class="sq_item_right sir_qust">\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class="opros_main">\n\t\t\t\t<span class="opros_head">\n\t\t\t\t\tПрохождение опроса<b>+50 баллов</b>\n\t\t\t\t</span>\n\t\t\t\t<div class="opros_item">\n\t\t\t\t\t<span class="qust_from">2 вопрос из 5</span>\n\t\t\t\t\t<span class="qust_text">\n\t\t\t\t\t\tКакой цвет вы предпочитаете в весенних луках?\n\t\t\t\t\t</span>\n\t\t\t\t\t<div class="answer">\n\t\t\t\t\t\t<div class="check">\n\t\t\t\t\t\t\t<input type="radio" id="ans1" name="answ" value="1"/>\n\t\t\t\t\t\t\t<label for="ans1">Алебастрово-пурпурный</label>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class="check">\n\t\t\t\t\t\t\t<input type="radio" id="ans2" name="answ" value="2"/>\n\t\t\t\t\t\t\t<label for="ans2">Сложный берилловый</label>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class="check">\n\t\t\t\t\t\t\t<input type="radio" id="ans3" name="answ" value="3"/>\n\t\t\t\t\t\t\t<label for="ans3">Камелопардовый фельдграу</label>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class="check">\n\t\t\t\t\t\t\t<input type="radio" id="ans4" name="answ" value="4"/>\n\t\t\t\t\t\t\t<label for="ans4">Свой вариант</label>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<textarea name="user_ansver" placeholder="Напишите свой вариант"></textarea>\n\t\t\t\t\t</div>\n\t\t\t\t\t<a href="#" class="next_qust">Далее</a>\n\t\t\t\t</div>\n\t\t\t</div>\n</div>',
+        template: '<div>\n    <div data-ng-show="!currentTest">\n        <h2 class="content_head">Получи больше бонусов</h2>\n        <span class="text">Выполняйте задания и получайте за них бонусы, которые вы можете потратить на привилегии. </span>\n        <span class="text" data-ng-show="hidden" style="margin-top: 20px;">Подождите, пожалуйста, задания загружаются.</span>\n        <div class="select_qust" data-ng-show="!hidden">\n\n            <div class="sq_item" data-ng-repeat="action in actions">\n                <div class="sq_item_left">\n                    <span class="name" data-ng-bind="transformTitle(action)"></span>\n                    <span class="sum_bonus">{{ action.points }} бонусов</span>\n                    <a href="#" >\n                        <span data-ng-if="action.socialType && user"\n                              href="#" class="tasks-cell__iframe-wrap" data-sp-action="{{ action._actionId }}"\n                              data-styles="{{ css_link }}">Получить</span>\n                    </a>\n                </div>\n                <div class="sq_item_right {{ getIcon(action) }}"></div>\n            </div>\n\n\n            <div class="sq_item" data-ng-repeat="item in testsData" data-ng-if="!item.exist">\n                <div class="sq_item_left">\n                    <span class="name" data-ng-bind="item.name"></span>\n                    <span class="sum_bonus">{{ item.points }} бонусов</span>\n                    <a href="#" class="bg" data-ng-click="openTest(item);$event.preventDefault();">Получить</a>\n                </div>\n                <div class="sq_item_right sir_qust"></div>\n            </div>\n\n        </div>\n    </div>\n    \n    <test-cmp data-model="currentTest" data-on-finish="onFinish"></test-cmp>\n    \n</div>',
         scope: {
           model: '='
         },
         link: function (scope) {
+
+          scope.user = null;
+          scope.hidden = true;
+          scope.css_link = dataService.actionCss;
+
+          scope.currentTest = null;
+          scope.testsData = dataService.tests;
+
+          scope.onFinish = function(){
+            update();
+          };
+
+          scope.openTest = function (item) {
+            scope.currentTest = item;
+          };
+
+          function update() {
+            scope.hidden = true;
+            scope.currentTest = null;
+            userService.loadInfo().then(function (data) {
+              scope.user = data;
+              scope.$digest();
+            });
+            var tags = dataService.tests.map(function (el) {
+              return el.tag;
+            });
+            userService.existTags(tags).then(function (res) {
+              var el = {};
+              angular.forEach(res, function (tag) {
+                el = angular.findByProperty(dataService.tests, 'tag', tag.name);
+                el.exist = tag.exist;
+              });
+              scope.$digest();
+            });
+            actionService.loadList().then(function (actions) {
+              scope.actions = angular.extend([], actions);
+              if (scope.actions.length) {
+                setTimeout(function () {
+                  sp.send('actions.parse', angular.extend([], actions));
+                  scope.hidden = false;
+                  scope.$digest();
+
+                }, 100);
+              } else {
+                scope.hidden = false;
+                scope.$digest();
+              }
+              scope.$digest();
+            });
+          }
+
+          update();
+
+          sp.on('actions.perform.success', function (data) {
+            update();
+            scope.$digest();
+          });
+          sp.on('tags.add.success', function () {
+            update();
+          });
+          scope.transformTitle = actionService.getTitle;
+          scope.getIcon = actionService.getIcon;
+
         }
       }
 
     }]);
-
-  document.createElement('actions-cmp');
-  var elems = document.querySelectorAll('actions-сmp');
-  for (var i = 0; i < elems.length; i += 1) {
-    angular.bootstrap(elems[i], ['iledebeaute.directives.actions']);
-  }
 
 }(window.angular, window.SAILPLAY, window.$));

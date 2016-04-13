@@ -13,7 +13,7 @@
         link: function (scope) {
 
           scope.setActive = function (key) {
-            if(angular.isObject(key)){
+            if (angular.isObject(key)) {
               key = key.key;
             }
             for (var i = 0, len = scope.model.length; i < len; i++) {
@@ -77,11 +77,5 @@
       }
 
     }]);
-
-  document.createElement('menu-cmp');
-  var elems = document.querySelectorAll('menu-сmp');
-  for (var i = 0; i < elems.length; i += 1) {
-    angular.bootstrap(elems[i], ['iledebeaute.directives.menu']);
-  }
 
 }(window.angular, window.SAILPLAY, window.$));

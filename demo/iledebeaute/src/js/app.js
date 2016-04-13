@@ -7,14 +7,16 @@
       return {
         restrict: 'E',
         replace: true,
-        template: '<div>\n    <div class="iner_block" data-ng-if="auth">\n        \n        <menu-cmp data-model="menu"></menu-cmp>\n        \n        <div class="content" data-ng-switch="getActiveMenu()">\n\n            <history-cmp data-ng-switch-when="history"></history-cmp>\n\n            <text-cmp data-ng-switch-when="cut_bonus_rules" data-model="cut_bonus_rules"></text-cmp>\n\n            <text-cmp data-ng-switch-when="rules" data-model="rules"></text-cmp>\n\n            <text-cmp data-ng-switch-when="info" data-model="info"></text-cmp>\n\n            <text-cmp data-ng-switch-when="about" data-model="about"></text-cmp>\n\n            <faq-cmp data-ng-switch-when="faq" data-model="faq"></faq-cmp>\n\n            <feedback-cmp data-ng-switch-when="feedback"></feedback-cmp>\n\n            <gifts-archive-cmp data-ng-switch-when="gifts_archive"></gifts-archive-cmp>\n\n            <gifts-cmp data-ng-switch-when="gifts"></gifts-cmp>\n\n            <actions-cmp data-ng-switch-when="actions"></actions-cmp>\n\n        </div>\n        \n    </div>\n    \n    <auth-cmp data-model="$parent.auth" data-ng-if="!auth"></auth-cmp>\n</div>',
+        template: '<div>\n    <div class="iner_block" data-ng-if="auth">\n\n        <menu-cmp data-model="menu"></menu-cmp>\n\n        <div class="content" data-ng-switch="getActiveMenu()">\n\n            <history-cmp data-ng-switch-when="history"></history-cmp>\n\n            <faq-cmp data-ng-switch-when="faq" data-model="faq"></faq-cmp>\n\n            <feedback-cmp data-ng-switch-when="feedback"></feedback-cmp>\n\n            <gifts-archive-cmp data-ng-switch-when="gifts_archive"></gifts-archive-cmp>\n\n            <gifts-cmp data-ng-switch-when="gifts"></gifts-cmp>\n\n            <actions-cmp data-ng-switch-when="actions"></actions-cmp>\n\n            <!--For text pages-->\n            <text-cmp data-ng-if="getActiveMenu() == key && !val.hide" data-ng-repeat="(key, val) in pages"\n                      data-model="val"></text-cmp>\n\n        </div>\n\n    </div>\n\n    <auth-cmp data-model="$parent.auth" data-ng-if="!auth"></auth-cmp>\n</div>',
         scope: true,
         link: function (scope) {
 
-          // AUTH FLAG
+          // AUTH FLAG, if 'false' - show auth form
           scope.auth = true;
 
           scope.menu = dataService.menu;
+
+          scope.pages = dataService.pages;
 
           scope.cut_bonus_rules = dataService.pages.cut_bonus_rules;
 
@@ -26,6 +28,10 @@
 
           scope.faq = dataService.faq;
 
+          /**
+           * Get active Menu Key
+           * @returns {*}
+           */
           scope.getActiveMenu = function () {
             if (!scope.menu) return;
             loop: for (var i = 0, len = scope.menu.length; i < len; i++) {
