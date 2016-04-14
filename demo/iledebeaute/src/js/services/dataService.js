@@ -117,7 +117,7 @@
                 }, {
                   text: 'раньше посещала, не понравилось, больше не хожу',
                   tag: 'test',
-                  yourAnswer: true
+                  yourAnswer: 'varName'
                 }
               ]
             },

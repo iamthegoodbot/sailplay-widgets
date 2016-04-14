@@ -910,6 +910,25 @@ var SAILPLAY = (function () {
         }
     });
 
+    //ADD CUSTOM VARIABLES
+    sp.on('user.vars.add', function (params) {
+        if(_config == {}){
+            initError();
+            return;
+        }
+        var obj = params;
+        if(_config.auth_hash){
+            obj.auth_hash = _config.auth_hash;
+        }
+        JSONP.get(_config.DOMAIN + '/js-api/' + _config.partner.id + '/users/custom-variables/add/', obj, function (res) {
+            if (res.status == 'ok') {
+                sp.send('user.vars.add.success', res);
+            } else {
+                sp.send('user.vars.add.error', res);
+            }
+        });
+    });
+
     sp.on('tags.add', function (data) {
         if(_config == {}){
             initError();

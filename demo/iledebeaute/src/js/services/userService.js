@@ -32,8 +32,8 @@
       };
 
       self.addTags = function (tags) {
-        if (!tags) return;
         return new Promise(function (resolve) {
+          if (!tags) resolve();
           var limit = Math.ceil(tags.length / 10);
           var state = 0;
 
