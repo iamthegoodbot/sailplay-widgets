@@ -428,18 +428,30 @@ var SAILPLAY = (function () {
   });
 
   //USER INFO
-  sp.on('load.user.info', function () {
+  sp.on('load.user.info', function (p) {
     if(_config == {}){
       initError();
       return;
     }
     var params = {
-      auth_hash: _config.auth_hash,
       user_status: 1,
       badges: 1,
-      last_badge: 1,
-      ref_hash: _config.ref_hash
+      last_badge: 1
     };
+    if(p && p.purchases) {
+      params.purchases = p.purchases;
+    }
+    if(p && p.all) {
+      params.all = p.all;
+    }
+    if(p.user) {
+      for(var param in p.user){
+        params[param] = p.user[param];
+      }
+    }
+    else {
+      params.auth_hash = _config.auth_hash;
+    }
     JSONP.get(_config.DOMAIN + _config.urls.users.info, params, function (res) {
       if (res.status == 'ok') {
         sp.send('load.user.info.success', res);
