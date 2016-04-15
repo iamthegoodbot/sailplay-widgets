@@ -68,7 +68,6 @@ gulp.task('js:prod', function () {
         gulp.src('./src/js/components/*'),
         gulp.src('./src/js/app.js'))
         .pipe(concat('main.min.js'))
-        .pipe(jsmin())
         .pipe(uglify())
         .pipe(gulp.dest("./dist/js"))
         .pipe(connect.reload());

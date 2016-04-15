@@ -287,6 +287,12 @@ var SAILPLAY = (function () {
                 break;
               case 'friend_invite_cookie':
                 break;
+              case 'actions.social.gp.like.mouseenter':
+                sp.send('actions.social.gp.like.mouseenter');
+                break;
+              case 'actions.social.gp.like.mouseleave':
+                sp.send('actions.social.gp.like.mouseleave');
+                break;
             }
 
           }
@@ -361,6 +367,32 @@ var SAILPLAY = (function () {
         sp.send('login.error', res);
       }
     });
+  });
+
+  // SOCIAL GOOGLE PLUS CHANGE HEIGHT
+  sp.on('actions.social.gp.like.mouseenter', function(){
+    var elms = document.querySelectorAll('iframe[iframe-action-gp-like]');
+    var originWidth,
+      w,
+      h = 500;
+    for(var i = 0, len = elms.length; i < len; i++){
+      elms[i].removeAttribute("style");
+      originWidth = elms[i].parentNode. offsetWidth;
+      w = +originWidth + 70;
+      elms[i].style.cssText = 'width: ' + w + 'px !important;height: ' + h + 'px !important;margin-left: -35px !important;z-index: 10 !important;';
+      elms[i].parentNode.style.setProperty ("overflow", "visible", "important");
+    }
+  });
+
+  sp.on('actions.social.gp.like.mouseleave', function(){
+    var elms = document.querySelectorAll('iframe[iframe-action-gp-like]');
+    var w = 150,
+      h = 27;
+    for(var i = 0, len = elms.length; i < len; i++){
+      elms[i].removeAttribute("style");
+      elms[i].style.cssText = 'width: ' + w + 'px !important;height: ' + h + 'px !important;margin-left: auto !important;';
+      elms[i].parentNode.style.setProperty ("overflow", "hidden", "important");
+    }
   });
 
 
@@ -647,8 +679,50 @@ var SAILPLAY = (function () {
         }
       });
     } else {
-      SAILPLAY.trigger('tags.add.auth.error', tags);
+      SAILPLAY.send('tags.add.auth.error', tags);
     }
+  });
+
+  // tag exist
+  sp.on("tags.exist", function(tags) {
+    if(_config == {}){
+      initError();
+      return;
+    }
+    if (_config.auth_hash && tags) {
+      var obj = {
+        tags : JSON.stringify(tags),
+        auth_hash: _config.auth_hash
+      };
+      JSONP.get(_config.DOMAIN + _config.urls.tags.exist, obj, function(res) {
+        if (res.status == 'ok') {
+          sp.send('tags.exist.success', res);
+        } else {
+          sp.send('tags.exist.error', res);
+        }
+      });
+    } else {
+      sp.send('tags.exist.auth.error', tags);
+    }
+  });
+
+  //ADD CUSTOM VARIABLES
+  sp.on('vars.add', function (params) {
+    if(_config == {}){
+      initError();
+      return;
+    }
+    var obj = params;
+    if(_config.auth_hash){
+      obj.auth_hash = _config.auth_hash;
+    }
+    JSONP.get(_config.DOMAIN + '/js-api/' + _config.partner.id + '/users/custom-variables/add/', obj, function (res) {
+      if (res.status == 'ok') {
+        sp.send('vars.add.success', res);
+      } else {
+        sp.send('vars.add.error', res);
+      }
+    });
   });
 
   //LEADERBOARD SECTION

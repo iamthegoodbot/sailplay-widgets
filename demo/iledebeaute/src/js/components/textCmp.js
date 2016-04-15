@@ -17,10 +17,4 @@
 
     }]);
 
-  document.createElement('text-cmp');
-  var elems = document.querySelectorAll('text-сmp');
-  for (var i = 0; i < elems.length; i += 1) {
-    angular.bootstrap(elems[i], ['iledebeaute.directives.text']);
-  }
-
 }(window.angular, window.SAILPLAY, window.$));

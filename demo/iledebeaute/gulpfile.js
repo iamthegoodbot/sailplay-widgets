@@ -4,7 +4,6 @@
 var gulp = require('gulp'),
   less = require('gulp-less'),
   filter = require('gulp-filter'),
-  jsmin = require('gulp-jsmin'),
   connect = require('gulp-connect'),
   uglify = require('gulp-uglifyjs'),
   del = require('del'),
@@ -68,7 +67,6 @@ gulp.task('js:prod', function () {
     gulp.src('./src/js/components/*'),
     gulp.src('./src/js/app.js'))
     .pipe(concat('main.min.js'))
-    .pipe(jsmin())
     .pipe(uglify())
     .pipe(gulp.dest("./dist/js"))
     .pipe(connect.reload());

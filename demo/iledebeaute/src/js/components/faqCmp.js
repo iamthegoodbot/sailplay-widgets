@@ -16,10 +16,4 @@
 
     }]);
 
-  document.createElement('faq-cmp');
-  var elems = document.querySelectorAll('faq-сmp');
-  for (var i = 0; i < elems.length; i += 1) {
-    angular.bootstrap(elems[i], ['iledebeaute.directives.faq']);
-  }
-
 }(window.angular, window.SAILPLAY, window.$));

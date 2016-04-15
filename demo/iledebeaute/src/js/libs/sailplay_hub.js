@@ -910,16 +910,42 @@ var SAILPLAY = (function () {
         }
     });
 
-    sp.on('tags.add', function (tags) {
+    //ADD CUSTOM VARIABLES
+    sp.on('user.vars.add', function (params) {
         if(_config == {}){
             initError();
             return;
         }
-        if (_config.auth_hash) {
+        var obj = params;
+        if(_config.auth_hash){
+            obj.auth_hash = _config.auth_hash;
+        }
+        JSONP.get(_config.DOMAIN + '/js-api/' + _config.partner.id + '/users/custom-variables/add/', obj, function (res) {
+            if (res.status == 'ok') {
+                sp.send('user.vars.add.success', res);
+            } else {
+                sp.send('user.vars.add.error', res);
+            }
+        });
+    });
+
+    sp.on('tags.add', function (data) {
+        if(_config == {}){
+            initError();
+            return;
+        }
+        if (_config.auth_hash || data.user) {
             var tagsObj = {
-                tags: tags.join(','),
-                auth_hash: _config.auth_hash
+                tags: data.tags && data.tags.join(',') || []
             };
+            if(data.user) {
+                for(var p in data.user){
+                    tagsObj[p] = data.user[p];
+                }
+            }
+            else {
+                tagsObj.auth_hash = _config.auth_hash;
+            }
             JSONP.get(_config.DOMAIN + _config.urls.tags.add, tagsObj, function (res) {
                 if (res.status == 'ok') {
                     sp.send('tags.add.success', res);
@@ -928,7 +954,7 @@ var SAILPLAY = (function () {
                 }
             });
         } else {
-            sp.send('tags.add.auth.error', tags);
+            SAILPLAY.trigger('tags.add.auth.error', tags);
         }
     });
 

@@ -12,7 +12,7 @@
         },
         link: function (scope) {
 
-          scope.state = 1;
+          scope.state = 4;
 
           scope.setState = function (state, e) {
             e && event.preventDefault();
@@ -28,11 +28,5 @@
       }
 
     }]);
-
-  document.createElement('auth-cmp');
-  var elems = document.querySelectorAll('auth-сmp');
-  for (var i = 0; i < elems.length; i += 1) {
-    angular.bootstrap(elems[i], ['iledebeaute.directives.authorization']);
-  }
 
 }(window.angular, window.SAILPLAY, window.$));
