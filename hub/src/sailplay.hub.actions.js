@@ -212,6 +212,31 @@
 
   });
 
+  // SOCIAL GOOGLE PLUS CHANGE HEIGHT
+  sp.on('actions.social.gp.like.mouseenter', function(){
+    var elms = document.querySelectorAll('iframe[iframe-action-gp-like]');
+    var originWidth,
+      w,
+      h = 500;
+    for(var i = 0, len = elms.length; i < len; i++){
+      elms[i].removeAttribute("style");
+      originWidth = elms[i].parentNode. offsetWidth;
+      w = +originWidth + 70;
+      elms[i].style.cssText = 'width: ' + w + 'px !important;height: ' + h + 'px !important;margin-left: -35px !important;z-index: 10 !important;';
+      elms[i].parentNode.style.setProperty ("overflow", "visible", "important");
+    }
+  });
+
+  sp.on('actions.social.gp.like.mouseleave', function(){
+    var elms = document.querySelectorAll('iframe[iframe-action-gp-like]');
+    var w = 150,
+      h = 27;
+    for(var i = 0, len = elms.length; i < len; i++){
+      elms[i].removeAttribute("style");
+      elms[i].style.cssText = 'width: ' + w + 'px !important;height: ' + h + 'px !important;margin-left: auto !important;';
+      elms[i].parentNode.style.setProperty ("overflow", "hidden", "important");
+    }
+  });
 
   var Actions = {};
 

@@ -369,33 +369,6 @@ var SAILPLAY = (function () {
     });
   });
 
-  // SOCIAL GOOGLE PLUS CHANGE HEIGHT
-  sp.on('actions.social.gp.like.mouseenter', function(){
-    var elms = document.querySelectorAll('iframe[iframe-action-gp-like]');
-    var originWidth,
-      w,
-      h = 500;
-    for(var i = 0, len = elms.length; i < len; i++){
-      elms[i].removeAttribute("style");
-      originWidth = elms[i].parentNode. offsetWidth;
-      w = +originWidth + 70;
-      elms[i].style.cssText = 'width: ' + w + 'px !important;height: ' + h + 'px !important;margin-left: -35px !important;z-index: 10 !important;';
-      elms[i].parentNode.style.setProperty ("overflow", "visible", "important");
-    }
-  });
-
-  sp.on('actions.social.gp.like.mouseleave', function(){
-    var elms = document.querySelectorAll('iframe[iframe-action-gp-like]');
-    var w = 150,
-      h = 27;
-    for(var i = 0, len = elms.length; i < len; i++){
-      elms[i].removeAttribute("style");
-      elms[i].style.cssText = 'width: ' + w + 'px !important;height: ' + h + 'px !important;margin-left: auto !important;';
-      elms[i].parentNode.style.setProperty ("overflow", "hidden", "important");
-    }
-  });
-
-
   sp.on('login', function (auth_hash) {
 
     if(_config == {}){
@@ -696,16 +669,23 @@ var SAILPLAY = (function () {
   });
 
   // tag exist
-  sp.on("tags.exist", function(tags) {
+  sp.on("tags.exist", function(data) {
     if(_config == {}){
       initError();
       return;
     }
-    if (_config.auth_hash && tags) {
+    if (_config.auth_hash || data.user) {
       var obj = {
-        tags : JSON.stringify(tags),
-        auth_hash: _config.auth_hash
+        tags : JSON.stringify(tags)
       };
+      if(data.user) {
+        for(var p in data.user){
+          obj[p] = data.user[p];
+        }
+      }
+      else {
+        obj.auth_hash = _config.auth_hash;
+      }
       JSONP.get(_config.DOMAIN + _config.urls.tags.exist, obj, function(res) {
         if (res.status == 'ok') {
           sp.send('tags.exist.success', res);
@@ -716,6 +696,7 @@ var SAILPLAY = (function () {
     } else {
       sp.send('tags.exist.auth.error', tags);
     }
+
   });
 
   //ADD CUSTOM VARIABLES
@@ -1098,6 +1079,31 @@ var SAILPLAY = (function () {
 
   });
 
+  // SOCIAL GOOGLE PLUS CHANGE HEIGHT
+  sp.on('actions.social.gp.like.mouseenter', function(){
+    var elms = document.querySelectorAll('iframe[iframe-action-gp-like]');
+    var originWidth,
+      w,
+      h = 500;
+    for(var i = 0, len = elms.length; i < len; i++){
+      elms[i].removeAttribute("style");
+      originWidth = elms[i].parentNode. offsetWidth;
+      w = +originWidth + 70;
+      elms[i].style.cssText = 'width: ' + w + 'px !important;height: ' + h + 'px !important;margin-left: -35px !important;z-index: 10 !important;';
+      elms[i].parentNode.style.setProperty ("overflow", "visible", "important");
+    }
+  });
+
+  sp.on('actions.social.gp.like.mouseleave', function(){
+    var elms = document.querySelectorAll('iframe[iframe-action-gp-like]');
+    var w = 150,
+      h = 27;
+    for(var i = 0, len = elms.length; i < len; i++){
+      elms[i].removeAttribute("style");
+      elms[i].style.cssText = 'width: ' + w + 'px !important;height: ' + h + 'px !important;margin-left: auto !important;';
+      elms[i].parentNode.style.setProperty ("overflow", "hidden", "important");
+    }
+  });
 
   var Actions = {};
 
