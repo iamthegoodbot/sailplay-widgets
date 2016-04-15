@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "angular2": "^2.0.0-beta.1",
+    "angular2": "^2.0.0-beta.1"
   }
 }
