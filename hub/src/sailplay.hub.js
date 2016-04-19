@@ -669,14 +669,14 @@ var SAILPLAY = (function () {
   });
 
   // tag exist
-  sp.on("tags.exist", function(data) {
+  sp.on("tags.exist", function(data) {пш
     if(_config == {}){
       initError();
       return;
     }
     if (_config.auth_hash || data.user) {
       var obj = {
-        tags : JSON.stringify(tags)
+        tags : JSON.stringify(data.tags)
       };
       if(data.user) {
         for(var p in data.user){
