@@ -393,10 +393,11 @@ var SAILPLAY = (function () {
     document.body.appendChild(req);
     req.onload = function(){
       document.body.removeChild(req);
+      _config.auth_hash = '';
+      cookies.eraseCookie('sp_auth_hash');
+      sp.send('logout.success');
     };
-    _config.auth_hash = '';
-    cookies.eraseCookie('sp_auth_hash');
-    sp.send('logout.success');
+
 
   });
 
