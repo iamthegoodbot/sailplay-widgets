@@ -1,6 +1,6 @@
 {
   "name": "sailplay-hub",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Event-based tool for SailPlay Widgets development",
   "contributors": [
     { "name" : "Mikhail Lagutin" },

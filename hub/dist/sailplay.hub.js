@@ -638,6 +638,21 @@ var SAILPLAY = (function () {
     }
   });
 
+  // user update
+  sp.on("user.update", function(params) {
+    if(_config == {}){
+      initError();
+      return;
+    }
+    JSONP.get(_config.DOMAIN + "/js-api/" + _config.partner.id + "/users/update/", params, function(res) {
+      if (res.status == 'ok') {
+        sp.send('user.update.success', res);
+      } else {
+        sp.send('user.update.error', res);
+      }
+    })
+  });
+
   //TAGS SECTIONS
   sp.on('tags.add', function (data) {
     if(_config == {}){
@@ -669,7 +684,7 @@ var SAILPLAY = (function () {
   });
 
   // tag exist
-  sp.on("tags.exist", function(data) {
+  sp.on("tags.exist", function(data) {пш
     if(_config == {}){
       initError();
       return;
