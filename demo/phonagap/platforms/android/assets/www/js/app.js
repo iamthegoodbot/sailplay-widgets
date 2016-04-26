@@ -161,9 +161,20 @@
     sp_app.elms.form[1].value = settings && settings.domain || '';
     sp_app.elms.form[2].value = settings && settings.auth_hash || '';
 
+    var h1 = document.createElement('h1');
+    h1.innerText = 'HELLO!';
+
+    document.body.appendChild(h1);
+
   };
 
   sp_app.init = init;
+
+  sp_app.restart = function(){
+
+    location.reload(true);
+
+  };
 
   sp_app.popup = function(){
     var win = window.open('http://google.com', '_blank', 'toolbar=no, location=no, directories=no, status=no, menubar=no, copyhistory=no, width=' + 500 + ', height=' + 400 + ', top=' + 100 + ', left=' + 100);

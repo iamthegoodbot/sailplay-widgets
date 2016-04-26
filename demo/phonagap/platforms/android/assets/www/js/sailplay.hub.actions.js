@@ -447,7 +447,6 @@
           auth_hash: sp.config().auth_hash,
           platform: sp.config().platform
         };
-        alert(handle_params.social_type);
 
         sp.jsonp.get(sp.config().DOMAIN + sp.config().urls.actions.handle_social_action, handle_params,
 

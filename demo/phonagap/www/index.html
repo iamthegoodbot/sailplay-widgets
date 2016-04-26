@@ -21,13 +21,15 @@
       <input id="domain" type="text" name="domain"> <br>
       <label for="auth_hash">Auth hash</label> <br>
       <input id="auth_hash" type="text" name="auth_hash" size="30"> <br>
-      <button type="submit">START</button>
+      <button type="submit" style="margin-top: 20px;">START</button>
+      <br>
+      <button type="button" onclick="SP_APP.restart();" style="margin-top: 20px;">RESTART</button>
     </form>
 
   </div>
   <div id="app" style="display: none;">
     <button type="button" onclick="SP_APP.logout();">Logout</button>
-    <button type="button" onclick="location.reload();">RESTART</button>
+    <button type="button" onclick="SP_APP.restart();">RESTART</button>
     <ul id="actions_wrapper"></ul>
     <ul id="badges_wrapper"></ul>
     <button type="button" onclick="SP_APP.popup();">POPUP</button>
