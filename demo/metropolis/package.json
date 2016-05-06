@@ -1,0 +1,11 @@
+{
+  "name": "sailplay.metropolis.leads",
+  "version": "0.0.1",
+  "description": "",
+  "author": "Saike",
+  "license": "ISC",
+  "dependencies": {
+    "sailplay-hub": "latest",
+    "sailplay-hub-leads": "latest"
+  }
+}

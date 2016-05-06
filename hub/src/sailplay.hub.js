@@ -118,10 +118,10 @@ var SAILPLAY = (function () {
     _handlers[event].push(handler);
   };
 
-  sp.send = function (event, data) {
+  sp.send = function (event, data, callback) {
     if (_handlers[event]) {
       for (var i = 0; i < _handlers[event].length; i++) {
-        _handlers[event][i](data);
+        _handlers[event][i](data, callback);
       }
     }
   };
@@ -438,6 +438,27 @@ var SAILPLAY = (function () {
     });
   });
 
+  sp.on('users.update', function(params, callback){
+
+    if(_config == {}){
+      initError();
+      return;
+    }
+
+    JSONP.get(_config.DOMAIN + '/js-api/' + _config.partner.id + '/users/update/', params, function(res){
+
+      callback && callback(res);
+
+      if(res.status === 'ok'){
+        sp.send('users.update.success', res);
+      }
+      else {
+        sp.send('users.update.error', res);
+      }
+    });
+
+  });
+
   //USER HISTORY
   sp.on('load.user.history', function () {
     if(_config == {}){
@@ -662,7 +683,7 @@ var SAILPLAY = (function () {
   });
 
   //TAGS SECTIONS
-  sp.on('tags.add', function (data) {
+  sp.on('tags.add', function (data, callback) {
     if(_config == {}){
       initError();
       return;
@@ -680,6 +701,7 @@ var SAILPLAY = (function () {
         tagsObj.auth_hash = _config.auth_hash;
       }
       JSONP.get(_config.DOMAIN + _config.urls.tags.add, tagsObj, function (res) {
+        callback && callback(res);
         if (res.status == 'ok') {
           sp.send('tags.add.success', res);
         } else {
