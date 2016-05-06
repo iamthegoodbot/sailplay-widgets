@@ -219,6 +219,8 @@ var SAILPLAY = (function () {
     params.dep_id = _config.dep_id || '';
     params.background = opts.background || '';
     params.partner_info = opts.partner_info || 0;
+    params.disabled_options = opts.disabled_options || [];
+    params.texts = JSON.stringify(opts.texts || '');
 
 
     var params_string = [];
@@ -395,7 +397,8 @@ var SAILPLAY = (function () {
       document.body.removeChild(req);
       _config.auth_hash = '';
       cookies.eraseCookie('sp_auth_hash');
-      sp.send('logout.success');
+      sp.send('' +
+        '');
     };
 
 
@@ -494,11 +497,14 @@ var SAILPLAY = (function () {
   });
 
   //GET GIFT
-  function forceCompleteGiftPurchase(giftPurchase) {
+  function forceCompleteGiftPurchase(giftPurchase, opts) {
     var params = {
       gift_public_key: giftPurchase.gift_public_key,
       auth_hash: _config.auth_hash
     };
+    if(opts && opts.no_user_sms) {
+      params.no_user_sms = opts.no_user_sms;
+    }
     JSONP.get(_config.DOMAIN + _config.urls.gifts.purchase.force_confirm, params, function (res) {
       if (res.status == 'ok') {
         sp.send('gift.purchase.force_complete.success', res);
@@ -510,11 +516,12 @@ var SAILPLAY = (function () {
   }
 
   //CREATE GIFT PURCHASE V1
-  sp.on('gifts.purchase', function (gift) {
+  sp.on('gifts.purchase', function (p) {
     if(_config == {}){
       initError();
       return;
     }
+    var gift = p.gift || {};
     if (!_config.auth_hash) {
       sp.send('gifts.purchase.auth.error', gift);
     } else {
@@ -529,7 +536,7 @@ var SAILPLAY = (function () {
           if (res.is_completed) {
             var requestedPurchase = res;
             if (!requestedPurchase.request_to_partner_url) {
-              forceCompleteGiftPurchase(requestedPurchase);
+              forceCompleteGiftPurchase(requestedPurchase, p.options);
             } else {
               var reqGiftPurchase = {
                 gift_public_key: requestedPurchase['gift_public_key'],
@@ -546,7 +553,7 @@ var SAILPLAY = (function () {
                 sp.send('gifts.purchase.partner_request.success', res);
               }, function (res) {
                 sp.send('gifts.purchase.partner_request.error', res);
-                forceCompleteGiftPurchase(requestedPurchase);
+                forceCompleteGiftPurchase(requestedPurchase, p.options);
               });
             }
           }
