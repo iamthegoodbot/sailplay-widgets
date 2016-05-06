@@ -34,14 +34,16 @@ SAILPLAY.HUB.LEADS требует для работы сам хаб, поэто�
 Пример html кода формы для парсинга    
     
 ```html
+
     <form data-sp-lead="test_1" data-sp-tags="test4,test5" >
     
-    <label>phone<input type="text" name="phone"/></label>
-    <label>email<input type="email" name="email"/></label>
+        <label>phone<input type="text" name="phone"/></label>
+        <label>email<input type="email" name="email"/></label>
+    
+        <input type="submit" value="Подписаться">
 
-    <input type="submit" value="Подписаться">
-
-  </form>
+    </form>
+    
 ```
 
 Где:
