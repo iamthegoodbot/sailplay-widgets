@@ -5,6 +5,7 @@
   "author": "Saike",
   "license": "ISC",
   "dependencies": {
+    "angular": "^1.5.0",
     "sailplay-hub": "latest",
     "sailplay-hub-leads": "latest"
   }
