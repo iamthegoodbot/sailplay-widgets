@@ -1,22 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
   <meta charset="UTF-8">
-  <title>Metropolis LEADS</title>
+  <title>Tribune</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="favicon.png" type="image/png">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,300&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="src/css/main.css">
+
+  <script src="src/js/vendor/jquery-1.10.1.min.js"></script>
+  <script src="src/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
   <script src="node_modules/sailplay-hub/src/sailplay.hub.js"></script>
   <script src="node_modules/sailplay-hub-leads/sailplay.hub.leads.js"></script>
   <script>
 
     window.addEventListener('DOMContentLoaded', function(){
 
-      SAILPLAY.send('leads.parse');
-
-      SAILPLAY.send('init', { partner_id: 366, domain: '//sailplay.ru' });
+      SAILPLAY.send('init', { partner_id: 286, domain: '//sailplay.ru' });
 
 
       SAILPLAY.on('init.success', function(){
 
-        SAILPLAY.leads('test3', document.getElementById('form'), { tags: [ 'test666', 'test111', 'test999' ] });
+        SAILPLAY.leads('tribune', document.getElementById('tribune_lead'), { tags: [ 'test666', 'test111', 'test999' ] });
 
         console.dir(SAILPLAY.leads());
 
@@ -36,27 +49,123 @@
 </head>
 <body>
 
-  <form id="form">
+<div class="sp_wrapper">
 
-    <label>
-      email
-      <input type="email" name="email"/>
-    </label>
+  <section class="sp_header-wrap">
+    <div class="sp_l-centered sp_header">
+      <div class="sp_header__inner">
+        <div class="sp_header__head">Tribune Sender</div>
+        <div class="sp_header__capt">Get in touch with your customers!</div>
+      </div>
+      <!--<a href="#" class="sp_header__sign">sign out</a>-->
+      <!--<div class="sp_profile-b">-->
+        <!--<div class="sp_profile-b__img" style="background-image: url('image/profile.png');"></div>-->
+        <!--<div class="sp_profile-b__name">User name</div>-->
+      <!--</div>-->
+    </div>
+  </section>
 
-    <input type="submit" value="Подписаться">
+  <form class="sp_l-centered sp_form" id="tribune_lead">
+    <div class="sp_form__text">Please fill in customer information:</div>
+    <div class="sp_form__inner">
+
+      <div class="sp_form__inp-set">
+        <div class="sp_form__inp-title">First Name</div>
+        <input type="text" class="sp_common-input" data-sp-custom-var="FN">
+      </div>
+      <div class="sp_form__inp-set">
+        <div class="sp_form__inp-title">Last name</div>
+        <input type="text" class="sp_common-input" data-sp-custom-var="LN">
+      </div>
+      <div class="sp_form__inp-set">
+        <div class="sp_form__inp-title">Email</div>
+        <input type="text" class="sp_common-input">
+      </div>
+      <div class="sp_form__inp-set">
+        <div class="sp_form__inp-title">Alt email (optional)</div>
+        <input type="text" class="sp_common-input">
+      </div>
+      <div class="sp_form__inp-set">
+        <div class="sp_form__inp-title">Phone</div>
+        <input type="text" class="sp_common-input">
+      </div>
+      <div class="sp_form__inp-set">
+        <div class="sp_form__inp-title">Market</div>
+        <select class="js-create-select sp_common-selectize" data-sp-tag>
+          <option value="01">market 01</option>
+          <option value="02">market 02</option>
+          <option value="03">market 03</option>
+          <option value="04">market 04</option>
+          <option value="05">market 05</option>
+          <option value="06">market 06</option>
+        </select>
+      </div>
+      <div class="sp_form__inp-set">
+        <div class="sp_form__inp-title">Account number</div>
+        <input type="text" class="sp_common-input" data-sp-lead-field="origin_user_id">
+      </div>
+
+      <div class="sp_block-param js-create-checkbox">
+        <div class="sp_common-check js-checkbox"></div>
+        <span class="sp_param-label">Send SMS</span>
+        <input type="checkbox" hidden>
+      </div>
+      <div class="sp_block-param js-create-checkbox">
+        <div class="sp_common-check js-checkbox"></div>
+        <span class="sp_param-label">Send Email</span>
+        <input type="checkbox" hidden>
+      </div>
+
+      <a href="#" class="sp_form__clear">Clear form</a>
+
+      <div class="sp_form__submit-wr">
+        <input type="submit" class="sp_form__submit" value="Send message">
+        <div class="sp_form__status">
+          Your message was sent successfully
+        </div>
+
+      </div>
+    </div>
+    <!-- /sp form innner -->
 
   </form>
+  <!-- /sp form -->
 
-  <form data-sp-lead="test_1" data-sp-tags="test4,test5" >
 
-    <label>phone<input type="text" name="phone"/></label>
-    <label>email<input type="email" name="email"/></label>
 
-    <input type="submit" value="Подписаться">
+  <div class="sp_l-prefooter"></div>
+</div>
+<!-- /sp_wrapper -->
 
-  </form>
+<div class="sp_l-footer sp_footer">
+  <div class="sp_l-section">
+    <div class="sp_footer__dev">Powered by SailPlay</div>
+  </div>
+</div>
 
-  <button type="button" onclick="SAILPLAY.send('leads.submit', 'test3', function(res){ alert(res); })">SUBMIT</button>
+<script src="src/js/plugins/jquery.simpleSwitcher.js"></script>
+<script src="src/js/plugins/selectize.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    $('.js-create-select').selectize({
+      onChange: function() {
+      }
+    });
+    $('.js-create-checkbox').simpleSwitcher({
+      activeClass: 'this-active',
+      removeActive: true,
+      onSwitchOn: function($elem) {
+        $elem.find('.js-checkbox').addClass('this-active');
+        $elem.find('input[type="checkbox"]').prop('checked', true);
+      },
+      onSwitchOff: function($elem) {
+        $elem.find('.js-checkbox').removeClass('this-active');
+        $elem.find('input[type="checkbox"]').prop('checked', false);
+      }
+    });
+  });
+</script>
 
 </body>
 </html>
