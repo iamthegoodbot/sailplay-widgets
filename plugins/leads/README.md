@@ -4,68 +4,116 @@
 
 SAILPLAY.HUB.LEADS расширяет стандартный функционал SAALPLAY.HUB, позволяя быстро и удобно работать с лид-формами SailPlay
 
-## Принцип работы
+## Установка
+
+Если вы используете npm:
+
+    npm install sailplay-hub-leads --save
+    
 SAILPLAY.HUB.LEADS требует для работы сам хаб, поэтому необходимо добавить на страницу теги:
 
-    <script src="ссылка на файл sailplay.hub.js"></script>
-    <script src="ссылка на файл sailplay.hub.leads.js"></script>
+    <script src="путь до файла sailplay.hub.js"></script>
+    <script src="путь до файла sailplay.hub.leads.js"></script>
 
-Модуль работает на системе событий. 
-Модуль взаимодействует с сервером SailPlay с помощью JSONP запросов, поэтому может располагаться на любом домене. 
-Основной принцип работы с модулем:
+## Принцип работы
 
-*   Инициализация события с необходимыми параметрами с помощью метода:
+В первую очередь, необходимо запустить хаб для вашей компании: 
 
     ```javascript
-        SAILPLAY.send( {название-события}, {объект-параметр} );
+        SAILPLAY.send('init', { partner_id: 206 }); //инициируем модуль для партнера с айди = 206
     ```
 
-*   Модуль выполняет асинхронные операции, затем инициирует различные события и передает обработанные данные. Установить обработчик на эти события можно с помощью метода:
+Плагин добавляет в хаб следущие события:
+
+##leads.parse
 
     ```javascript
-        SAILPLAY.on( {название-события}, {функция-обработчик-принимающая-возвращаемый-объект} );
+       SAILPLAY.send('leads.parse'); //Находит все формы в документе, которые помечены атрибутом "data-sp-lead" и добавляет к ним функционал лид-формы
     ```
 
-## Примеры работы с SailPlay HUB
+Пример html кода формы для парсинга    
+    
+    ```html
+        <form data-sp-lead="test_1" data-sp-tags="test4,test5" >
+        
+        <label>phone<input type="text" name="phone"/></label>
+        <label>email<input type="email" name="email"/></label>
+    
+        <input type="submit" value="Подписаться">
+    
+      </form>
+    ```
 
-```javascript
+Где:
 
-    SAILPLAY.send('init', { partner_id: 206 }); //инициируем модуль для партнера с айди = 206
+* атрибут data-sp-lead - уникальный идентификатор формы, используется для работы с формой после создания.
+  
+* атрибут data-sp-tags - необязательный параметр. В нем можно указать теги через запятую, которые необходимо добавить к полбзователю.
+  
+## leads.submit
 
-    SAILPLAY.on('init.success', function(){ //после успешной инициализации
-      SAILPLAY.send('login', '38c6285d1b1bce88a1071f116704263bf2511b18'); //авторизуем пользователя
-    });
+    ```javascript
+       SAILPLAY.send('leads.submit', 'lead_name', callback); //Отправляет форму с указанным именем на сервер.
+    ```
 
-    SAILPLAY.on('login.success', function(){ //после успешной авторизации
-      SAILPLAY.send('load.user.info'); //загружаем данные пользователя
-      SAILPLAY.send('load.user.history'); //загружаем историю действий пользователя
-      SAILPLAY.send('load.gifts.list'); //загружаем список подарков
-      SAILPLAY.send('load.badges.list'); //загружаем список бейджиков
-      SAILPLAY.send('load.actions.list'); //загружаем список действий
-    });
+Принимает два параметра:
 
-    SAILPLAY.on('load.gifts.list.success', function(gifts){ //после загрузки списка подарков
-      SAILPLAY.send('gifts.purchase', gifts[0]); //пользователь получает первый подарок из списка
-    });
+* имя формы - имя формы, указанное при создании.
 
-    SAILPLAY.on('load.actions.list.success', function(data){ //после загрузки списка действий
-      SAILPLAY.send('actions.perform', data.actions[1]); //пользователь выполняет второе действие из списка
-    });
+* функция обратного вызова, запускаемая после отправки формы. 
+  
+После отправки формы нициирует следущие события:
 
-    SAILPLAY.on('actions.perform.complete', function(){ //после выполнения действия
-      SAILPLAY.send('load.actions.list'); //обновляем список действий
-    });
+### leads.submit.success - форма отправлена успешно
+### leads.submit.error - при отправке формы произошла ошибка
 
-    SAILPLAY.on('actions.social.connect.complete', function(){  //после привязки социального аккаунта пользователем
-      SAILPLAY.send('load.actions.list'); //обновляем список действий
-    });
+Обы события возвращают объект, содержащий отправленную лид-форму и ответы сервера.
 
-```
+## Так же плагин расширяет глобальный объект SAILPLAY свойством leads.
 
-## Полная документация
+С помощью него можно проводить все те же самые процедуры, без событийной системы.
 
-Поный список событий, на которые реагирует модуль и события, инициируемые ими можно узнать на странице:
+Метод SAILPLAY.leads работает в зависимости от переданных параметров.
 
-[http://saike.ru/sailplay/widgets/hub](http://saike.ru/sailplay/widgets/hub)
+1. если не передать параметры, то он вернет объект со списком всех текущих лидформ
+
+2. если передать только имя в качестве первого параметра - вернет лидформу с указанным именем
+
+3. если передать имя в качестве первого параметра и DOM элемент формы в качестве второго - создаст новую лидформу, так же можно передать дополнительные опции в качестве третьего параметра
+
+
+## Пример испозьзования SAILPLAY.leads
+
+    ```javascript
+    
+        window.addEventListener('DOMContentLoaded', function(){
+        
+          SAILPLAY.send('leads.parse');
+    
+          SAILPLAY.send('init', { partner_id: 366, domain: '//sailplay.ru' });
+    
+    
+          SAILPLAY.on('init.success', function(){
+    
+            SAILPLAY.leads('test3', document.getElementById('form'), { tags: [ 'test666', 'test111', 'test999' ] });
+    
+            console.dir(SAILPLAY.leads());
+    
+          });
+    
+          SAILPLAY.on('leads.submit.success', function(res){
+            console.dir(res);
+          });
+    
+          SAILPLAY.on('leads.submit.error', function(res){
+            console.dir(res);
+          });
+    
+        });
+    ```
+    
+## Пример можно посмотреть тут:
+
+[http://saike.ru/sailplay/widgets/demo/metropolis/](http://saike.ru/sailplay/widgets/demo/metropolis/)
 
 

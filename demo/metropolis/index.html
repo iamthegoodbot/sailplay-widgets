@@ -3,12 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <title>Metropolis LEADS</title>
-  <script src="dist/sailplay.metropolis.leads.min.js"></script>
+  <script src="../../hub/src/sailplay.hub.js"></script>
+  <script src="../../plugins/leads/sailplay.hub.leads.js"></script>
   <script>
 
     window.addEventListener('DOMContentLoaded', function(){
 
+      SAILPLAY.send('leads.parse');
+
       SAILPLAY.send('init', { partner_id: 366, domain: '//sailplay.ru' });
+
 
       SAILPLAY.on('init.success', function(){
 
@@ -16,6 +20,14 @@
 
         console.dir(SAILPLAY.leads());
 
+      });
+
+      SAILPLAY.on('leads.submit.success', function(res){
+        console.dir(res);
+      });
+
+      SAILPLAY.on('leads.submit.error', function(res){
+        console.dir(res);
       });
 
     });
@@ -43,6 +55,8 @@
     <input type="submit" value="Подписаться">
 
   </form>
+
+  <button type="button" onclick="SAILPLAY.send('leads.submit', 'test3', function(res){ alert(res); })">SUBMIT</button>
 
 </body>
 </html>

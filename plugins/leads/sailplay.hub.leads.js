@@ -13,11 +13,16 @@
 
     return function(name, form, params){
 
-      if(!name) {
+      if(!name && !form && !params) {
         return leads;
       }
 
-      if(!form || !sp.is_dom(form) || form.tagName.toUpperCase() !== 'FORM') {
+      if(name && !form && !params){
+        return leads[name];
+      }
+
+
+      if(name && form && (!sp.is_dom(form) || form.tagName.toUpperCase() !== 'FORM')) {
         console.error('Provide DOM form element as second parameter');
         return leads;
       }
@@ -42,34 +47,38 @@
 
     self.submit = function(callback){
 
+      if(!sp.config() || JSON.stringify(sp.config()) === '{}') {
+        console.error('Need "init.success" event triggered.');
+        return;
+      }
+
       var params = sp.serialize(self.form);
 
       sp.send('users.update', params, function(user_res){
 
-        console.dir(user_res);
-
         if(user_res.status === 'ok' && self.tags.length > 0){
 
           sp.send('tags.add', { user: params, tags: self.tags }, function(res){
-            console.dir(res);
             if(res.status === 'ok') {
               sp.send('leads.submit.success', { lead: self, response: user_res, tags: res });
             }
             else {
               sp.send('leads.submit.error', { lead: self, response: user_res, tags: res });
             }
+            callback && callback({ lead: self, response: user_res, tags: res });
           });
 
         }
 
         else if (user_res.status === 'ok' && self.tags.length == 0){
           sp.send('leads.submit.success', { lead: self, response: user_res });
-          callback && callback(user_res);
         }
 
         else {
           sp.send('leads.submit.error', { lead: self, response: user_res });
         }
+
+        callback && callback({ lead: self, response: user_res });
 
       });
 
@@ -84,7 +93,7 @@
 
   sp.leads = new Leads();
 
-  sp.on('init.success', function(data){
+  sp.on('leads.parse', function(){
 
     var forms = document.querySelectorAll('[data-sp-lead]');
 
@@ -95,6 +104,18 @@
       sp.leads(form.getAttribute('data-sp-lead'), form);
 
     }
+
+  });
+
+  sp.on('leads.submit', function(name, callback){
+    var lead = sp.leads(name);
+
+    if(!lead) {
+      console.error('Lead with name ' + name + ' not found.');
+      return;
+    }
+
+    lead.submit(callback);
 
   });
 
