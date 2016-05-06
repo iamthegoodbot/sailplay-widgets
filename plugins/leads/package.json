@@ -1,0 +1,9 @@
+{
+  "name": "sailplay-hub-leads",
+  "version": "0.0.1",
+  "description": "Event-based tool for SailPlay Widgets development",
+  "contributors": [
+    { "name" : "Mikhail Lagutin" },
+    { "name" : "Mikhail Gordukov" }
+  ]
+}
