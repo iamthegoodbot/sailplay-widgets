@@ -5,12 +5,7 @@
   "author": "Saike",
   "license": "ISC",
   "dependencies": {
-    "sailplay-hub": "latest"
-  },
-  "devDependencies": {
-    "gulp": "latest",
-    "gulp-concat": "latest",
-    "gulp-uglify": "latest",
-    "gulp-less": "latest"
+    "sailplay-hub": "latest",
+    "sailplay-hub-leads": "latest"
   }
 }

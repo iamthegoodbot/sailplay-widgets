@@ -118,4 +118,6 @@ SAILPLAY.HUB.LEADS требует для работы сам хаб, поэто�
 
 [http://saike.ru/sailplay/widgets/demo/metropolis/](http://saike.ru/sailplay/widgets/demo/metropolis/)
 
+Исходный код страницы находится в данном репозитарии в директории: /demo/metropolis
+
 
