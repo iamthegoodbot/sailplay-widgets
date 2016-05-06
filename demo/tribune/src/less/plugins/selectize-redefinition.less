@@ -1,0 +1,99 @@
+@cummon-selectize-height: 45px;
+@cummon-selectize-back-color: #E8E8E8;
+@cummon-selectize-back-color-active: darken(#EBEBEB, 2%);
+@cummon-selectize-border-color: #E8E8E8;
+@common-selectize-arrow-color: #677377;
+@common-selectize-arrow-width: 6px;
+@common-selectize-arrow-height: 7px;
+
+@option-hover: #ECEEED;
+@option-selected: lighten(#ECEEED, 21%);
+@option-active: #ECEEED;
+.selectize-control.sp_common-selectize {
+	height: @cummon-selectize-height;
+	border: none;
+	background: none;
+	font-size: 18px;
+	.selectize-input {
+		display: block;
+		position: relative;
+		height: @cummon-selectize-height;
+		padding: 12px 24px 0px 20px;
+		border: none;
+		background: #ECEEED;
+
+		border-radius: 15px;
+		box-shadow: none;
+
+		font-size: 18px;
+		color: @color-text-main;
+
+		&:after {
+			content: "" !important;
+			display: block;
+			border: none;
+			width: 18px;
+			height: 8px;
+			background: url("@{burl}arrow-down.png") no-repeat center;
+		}
+		&.has-items {
+			&:before {
+				display: none;
+			}
+		}
+		&.dropdown-active {
+			background: #DFE8EC;
+			&:after {
+				background-image: url("@{burl}arrow-up.png");
+			}
+		}
+		input {
+			vertical-align: top;
+			font-size: 18px;
+			line-height: 18px;
+			background-color: #fff;
+			@input-placeholder-color: #767676;
+			&::-webkit-input-placeholder {color: @input-placeholder-color;}
+			&::-moz-placeholder {color: @input-placeholder-color;}
+			&:-moz-placeholder {color: @input-placeholder-color;}
+			&:-ms-input-placeholder {color: @input-placeholder-color;}
+		}
+		.item {
+			vertical-align: top;
+			white-space: nowrap;
+		}
+	}
+	.selectize-dropdown {
+		.box-shadow(0px 2px 10px rgba(0,0,0,0.3));
+		border-top: none;
+		border-radius: 15px;
+
+		font-size: 16px;
+		font-weight: normal;
+		color: @color-text-main;
+		.selectize-dropdown-content {
+			max-height: 180px;
+		}
+		.option {
+			border-top: 1px solid @cummon-selectize-border-color;
+			padding: 10px 9px 10px 20px;
+			&.selected {
+				background: none;
+				color: @color1;
+			}
+			&.active {
+				background: none;
+				color: @color1;
+			}
+			&:hover {
+				background: none;
+				color: @color1;
+			}
+			&:first-child {
+				border: none;
+			}
+			&:last-child {
+			}
+		}
+	}
+}
