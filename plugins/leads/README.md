@@ -19,30 +19,30 @@ SAILPLAY.HUB.LEADS требует для работы сам хаб, поэто�
 
 В первую очередь, необходимо запустить хаб для вашей компании: 
 
-    ```javascript
-        SAILPLAY.send('init', { partner_id: 206 }); //инициируем модуль для партнера с айди = 206
-    ```
+```javascript
+    SAILPLAY.send('init', { partner_id: 206 }); //инициируем модуль для партнера с айди = 206
+```
 
 Плагин добавляет в хаб следущие события:
 
 ##leads.parse
 
-    ```javascript
-       SAILPLAY.send('leads.parse'); //Находит все формы в документе, которые помечены атрибутом "data-sp-lead" и добавляет к ним функционал лид-формы
-    ```
+```javascript
+   SAILPLAY.send('leads.parse'); //Находит все формы в документе, которые помечены атрибутом "data-sp-lead" и добавляет к ним функционал лид-формы
+```
 
 Пример html кода формы для парсинга    
     
-    ```html
-        <form data-sp-lead="test_1" data-sp-tags="test4,test5" >
-        
-        <label>phone<input type="text" name="phone"/></label>
-        <label>email<input type="email" name="email"/></label>
+```html
+    <form data-sp-lead="test_1" data-sp-tags="test4,test5" >
     
-        <input type="submit" value="Подписаться">
-    
-      </form>
-    ```
+    <label>phone<input type="text" name="phone"/></label>
+    <label>email<input type="email" name="email"/></label>
+
+    <input type="submit" value="Подписаться">
+
+  </form>
+```
 
 Где:
 
@@ -52,9 +52,9 @@ SAILPLAY.HUB.LEADS требует для работы сам хаб, поэто�
   
 ## leads.submit
 
-    ```javascript
-       SAILPLAY.send('leads.submit', 'lead_name', callback); //Отправляет форму с указанным именем на сервер.
-    ```
+```javascript
+   SAILPLAY.send('leads.submit', 'lead_name', callback); //Отправляет форму с указанным именем на сервер.
+```
 
 Принимает два параметра:
 
@@ -84,33 +84,33 @@ SAILPLAY.HUB.LEADS требует для работы сам хаб, поэто�
 
 ## Пример испозьзования SAILPLAY.leads
 
-    ```javascript
+```javascript
+
+    window.addEventListener('DOMContentLoaded', function(){
     
-        window.addEventListener('DOMContentLoaded', function(){
-        
-          SAILPLAY.send('leads.parse');
-    
-          SAILPLAY.send('init', { partner_id: 366, domain: '//sailplay.ru' });
-    
-    
-          SAILPLAY.on('init.success', function(){
-    
-            SAILPLAY.leads('test3', document.getElementById('form'), { tags: [ 'test666', 'test111', 'test999' ] });
-    
-            console.dir(SAILPLAY.leads());
-    
-          });
-    
-          SAILPLAY.on('leads.submit.success', function(res){
-            console.dir(res);
-          });
-    
-          SAILPLAY.on('leads.submit.error', function(res){
-            console.dir(res);
-          });
-    
-        });
-    ```
+      SAILPLAY.send('leads.parse');
+
+      SAILPLAY.send('init', { partner_id: 366, domain: '//sailplay.ru' });
+
+
+      SAILPLAY.on('init.success', function(){
+
+        SAILPLAY.leads('test3', document.getElementById('form'), { tags: [ 'test666', 'test111', 'test999' ] });
+
+        console.dir(SAILPLAY.leads());
+
+      });
+
+      SAILPLAY.on('leads.submit.success', function(res){
+        console.dir(res);
+      });
+
+      SAILPLAY.on('leads.submit.error', function(res){
+        console.dir(res);
+      });
+
+    });
+```
     
 ## Пример можно посмотреть тут:
 
