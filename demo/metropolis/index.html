@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Metropolis LEADS</title>
+  <script src="dist/sailplay.metropolis.leads.min.js"></script>
+  <script>
+
+    window.addEventListener('DOMContentLoaded', function(){
+
+      SAILPLAY.send('init', { partner_id: 366, domain: '//sailplay.ru' });
+
+      SAILPLAY.on('init.success', function(){
+
+        SAILPLAY.leads('test3', document.getElementById('form'), { tags: [ 'test666', 'test111', 'test999' ] });
+
+        console.dir(SAILPLAY.leads());
+
+      });
+
+    });
+
+  </script>
+</head>
+<body>
+
+  <form id="form">
+
+    <label>
+      email
+      <input type="email" name="email"/>
+    </label>
+
+    <input type="submit" value="Подписаться">
+
+  </form>
+
+  <form data-sp-lead="test_1" data-sp-tags="test4,test5" >
+
+    <label>phone<input type="text" name="phone"/></label>
+    <label>email<input type="email" name="email"/></label>
+
+    <input type="submit" value="Подписаться">
+
+  </form>
+
+</body>
+</html>
