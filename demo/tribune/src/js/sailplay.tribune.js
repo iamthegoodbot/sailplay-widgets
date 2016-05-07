@@ -32,8 +32,7 @@
           var new_form = {
             user: {
               phone: '',
-              email: '',
-              origin_user_id: ''
+              email: ''
             },
             custom_vars: {
 
@@ -71,7 +70,9 @@
 
           scope.submit = function(){
 
-            sp.send('users.update')
+            var data_tags = scope.form.tags.filter(function(tag){return tag.checked;}).map(function(tag){ return tag.name; });
+
+            update_user_full(scope.form.user, scope.form.custom_vars, data_tags)
 
           };
 
@@ -119,22 +120,112 @@
 
           function update_user_full(user, custom_vars, tags){
 
-            var first = update_user({ email: user.email })
+            tags.push(custom_vars.Market);
+
+            var user_1 = {
+
+              user: {
+
+                email: user.email
+
+              },
+              custom_vars: custom_vars
+
+            };
+
+            var user_2 = {
+
+              user: {
+
+                email: custom_vars.AltEmail
+
+              },
+              custom_vars: {
+
+                FN: custom_vars.FN,
+                LN: custom_vars.LN,
+                AltEmail: user.email,
+                Phone: custom_vars.Phone,
+                Market: custom_vars.Market,
+                AN: custom_vars.AN
+
+              }
+
+            };
+
+            var user_3 = {
+
+              user: {
+
+                phone: custom_vars.Phone
+
+              },
+              custom_vars: {
+
+                FN: custom_vars.FN,
+                LN: custom_vars.LN,
+                email: user.email,
+                AltEmail: custom_vars.AltEmail,
+                Market: custom_vars.Market,
+                AN: custom_vars.AN
+
+              }
+
+            };
+
+            var first = update_user(user_1.user, user_1.custom_vars, tags);
+            var second = update_user(user_2.user, user_2.custom_vars, tags);
+            var third = update_user(user_3.user, user_3.custom_vars, tags);
+
+            $q.all([ first, second, third ]).then(function(data){
+
+              console.log('ZAEBIS');
+
+            }, function(data){
+
+              console.log('NE ZAEBIS');
+
+
+            });
 
           }
 
-          scope.markets = {
-            latimes: 10291361,
-            chicagotribune: 10291386,
-            sunsentinel: 10291387,
-            orlandosentinel: 10291388,
-            dailypress: 10291389,
-            courant: 10291390,
-            baltimoresun: 10291391,
-            mcall: 10291392,
-            capgaznews: 10291393,
-            carrollcountytimes: 10291394
-          };
+          scope.markets = [
+            'latimes',
+            'chicagotribune',
+            'sunsentinel',
+            'orlandosentinel',
+            'dailypress',
+            'courant',
+            'baltimoresun',
+            'mcall',
+            'capgaznews',
+            'carrollcountytimes'
+          ];
+
+        }
+
+      };
+
+    })
+
+    .directive('select', function($timeout){
+
+      return {
+
+        restrict: 'A',
+        link: function(scope, elm){
+
+          $timeout(function(){
+            $(elm).selectize({
+              onChange: function() {
+
+
+
+              }
+            });
+          }, 0);
+
 
         }
 

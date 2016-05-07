@@ -83,41 +83,34 @@
       </div>
       <div class="sp_form__inp-set">
         <div class="sp_form__inp-title">Email</div>
-        <input type="text" class="sp_common-input">
+        <input type="text" class="sp_common-input" data-ng-model="form.user.email">
       </div>
       <div class="sp_form__inp-set">
         <div class="sp_form__inp-title">Alt email (optional)</div>
-        <input type="text" class="sp_common-input">
+        <input type="text" class="sp_common-input" data-ng-model="form.custom_vars.AltEmail">
       </div>
       <div class="sp_form__inp-set">
         <div class="sp_form__inp-title">Phone</div>
-        <input type="text" class="sp_common-input">
+        <input type="text" class="sp_common-input" data-ng-model="form.custom_vars.Phone">
       </div>
       <div class="sp_form__inp-set">
         <div class="sp_form__inp-title">Market</div>
-        <select class="js-create-select sp_common-selectize" data-sp-tag>
-          <option value="01">market 01</option>
-          <option value="02">market 02</option>
-          <option value="03">market 03</option>
-          <option value="04">market 04</option>
-          <option value="05">market 05</option>
-          <option value="06">market 06</option>
-        </select>
+        <select data-select class="js-create-select sp_common-selectize" data-ng-model="form.custom_vars.Market" data-ng-option="market in markets"></select>
       </div>
       <div class="sp_form__inp-set">
         <div class="sp_form__inp-title">Account number</div>
-        <input type="text" class="sp_common-input" data-sp-lead-field="origin_user_id">
+        <input type="text" class="sp_common-input" data-ng-model="form.custom_vars.AN">
       </div>
 
       <div class="sp_block-param js-create-checkbox">
         <div class="sp_common-check js-checkbox"></div>
         <span class="sp_param-label">Send SMS</span>
-        <input type="checkbox" data-sp-tag="SMS">
+        <input type="checkbox" data-ng-model="form.tags[0].checked" hidden>
       </div>
       <div class="sp_block-param js-create-checkbox">
         <div class="sp_common-check js-checkbox"></div>
         <span class="sp_param-label">Send Email</span>
-        <input type="checkbox" data-sp-tag="Email">
+        <input type="checkbox" data-ng-model="form.tags[1].checked" hidden>
       </div>
 
       <a href="#" class="sp_form__clear">Clear form</a>
@@ -151,10 +144,7 @@
 
 <script>
   $(document).ready(function() {
-    $('.js-create-select').selectize({
-      onChange: function() {
-      }
-    });
+
     $('.js-create-checkbox').simpleSwitcher({
       activeClass: 'this-active',
       removeActive: true,
