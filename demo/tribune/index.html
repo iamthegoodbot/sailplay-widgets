@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="UTF-8">
+  <title>Tribune</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="favicon.png" type="image/png">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,300&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="src/css/main.css">
+
+  <script src="src/js/vendor/jquery-1.10.1.min.js"></script>
+  <script src="src/js/plugins/jquery.simpleSwitcher.js"></script>
+  <script src="src/js/plugins/selectize.min.js"></script>
+  <script src="src/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+  <script src="../../hub/src/sailplay.hub.js"></script>
+  <script src="node_modules/angular/angular.min.js"></script>
+
+  <script src="src/js/sailplay.tribune.js"></script>
+  <script>
+
+    window.addEventListener('DOMContentLoaded', function(){
+
+
+//
+//
+//      SAILPLAY.on('init.success', function(){
+//
+//        SAILPLAY.leads('tribune', document.getElementById('tribune_lead'), { tags: [ 'test666', 'test111', 'test999' ] });
+//
+//        console.dir(SAILPLAY.leads());
+//
+//      });
+//
+//      SAILPLAY.on('leads.submit.success', function(res){
+//        console.dir(res);
+//      });
+//
+//      SAILPLAY.on('leads.submit.error', function(res){
+//        console.dir(res);
+//      });
+
+    });
+
+  </script>
+</head>
+<body>
+
+<div class="sp_wrapper" id="tribune">
+
+  <section class="sp_header-wrap">
+    <div class="sp_l-centered sp_header">
+      <div class="sp_header__inner">
+        <div class="sp_header__head">Tribune Sender</div>
+        <div class="sp_header__capt">Get in touch with your customers!</div>
+      </div>
+      <!--<a href="#" class="sp_header__sign">sign out</a>-->
+      <!--<div class="sp_profile-b">-->
+        <!--<div class="sp_profile-b__img" style="background-image: url('image/profile.png');"></div>-->
+        <!--<div class="sp_profile-b__name">User name</div>-->
+      <!--</div>-->
+    </div>
+  </section>
+
+  <form data-lead class="sp_l-centered sp_form" id="tribune_lead" data-ng-submit="submit()">
+    <div class="sp_form__text">Please fill in customer information:</div>
+    <div class="sp_form__inner">
+
+      <div class="sp_form__inp-set">
+        <div class="sp_form__inp-title">First Name</div>
+        <input type="text" class="sp_common-input" data-ng-model="form.custom_vars.FN">
+      </div>
+      <div class="sp_form__inp-set">
+        <div class="sp_form__inp-title">Last name</div>
+        <input type="text" class="sp_common-input" data-ng-model="form.custom_vars.FN">
+      </div>
+      <div class="sp_form__inp-set">
+        <div class="sp_form__inp-title">Email</div>
+        <input type="text" class="sp_common-input" data-ng-model="form.user.email">
+      </div>
+      <div class="sp_form__inp-set">
+        <div class="sp_form__inp-title">Alt email (optional)</div>
+        <input type="text" class="sp_common-input" data-ng-model="form.custom_vars.AltEmail">
+      </div>
+      <div class="sp_form__inp-set">
+        <div class="sp_form__inp-title">Phone</div>
+        <input type="text" class="sp_common-input" data-ng-model="form.custom_vars.Phone">
+      </div>
+      <div class="sp_form__inp-set">
+        <div class="sp_form__inp-title">Market</div>
+        <select data-select class="js-create-select sp_common-selectize" data-ng-model="form.custom_vars.Market" data-ng-option="market in markets"></select>
+      </div>
+      <div class="sp_form__inp-set">
+        <div class="sp_form__inp-title">Account number</div>
+        <input type="text" class="sp_common-input" data-ng-model="form.custom_vars.AN">
+      </div>
+
+      <div class="sp_block-param js-create-checkbox">
+        <div class="sp_common-check js-checkbox"></div>
+        <span class="sp_param-label">Send SMS</span>
+        <input type="checkbox" data-ng-model="form.tags[0].checked" hidden>
+      </div>
+      <div class="sp_block-param js-create-checkbox">
+        <div class="sp_common-check js-checkbox"></div>
+        <span class="sp_param-label">Send Email</span>
+        <input type="checkbox" data-ng-model="form.tags[1].checked" hidden>
+      </div>
+
+      <a href="#" class="sp_form__clear">Clear form</a>
+
+      <div class="sp_form__submit-wr">
+        <input type="submit" class="sp_form__submit" value="Send message">
+        <div class="sp_form__status">
+          Your message was sent successfully
+        </div>
+
+      </div>
+    </div>
+    <!-- /sp form innner -->
+
+  </form>
+  <!-- /sp form -->
+
+
+
+  <div class="sp_l-prefooter"></div>
+</div>
+<!-- /sp_wrapper -->
+
+<div class="sp_l-footer sp_footer">
+  <div class="sp_l-section">
+    <div class="sp_footer__dev">Powered by SailPlay</div>
+  </div>
+</div>
+
+
+
+<script>
+  $(document).ready(function() {
+
+    $('.js-create-checkbox').simpleSwitcher({
+      activeClass: 'this-active',
+      removeActive: true,
+      onSwitchOn: function($elem) {
+        $elem.find('.js-checkbox').addClass('this-active');
+        $elem.find('input[type="checkbox"]').prop('checked', true);
+      },
+      onSwitchOff: function($elem) {
+        $elem.find('.js-checkbox').removeClass('this-active');
+        $elem.find('input[type="checkbox"]').prop('checked', false);
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

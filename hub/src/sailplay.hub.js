@@ -746,7 +746,7 @@ var SAILPLAY = (function () {
   });
 
   //ADD CUSTOM VARIABLES
-  sp.on('vars.add', function (params) {
+  sp.on('vars.add', function (params, callback) {
     if(_config == {}){
       initError();
       return;
@@ -761,6 +761,7 @@ var SAILPLAY = (function () {
       } else {
         sp.send('vars.add.error', res);
       }
+      callback && callback(res);
     });
   });
 

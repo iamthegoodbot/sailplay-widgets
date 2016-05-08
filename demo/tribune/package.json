@@ -1,0 +1,11 @@
+{
+  "name": "sailplay.tribune.leads",
+  "version": "0.0.1",
+  "description": "",
+  "author": "Saike",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.5.0",
+    "sailplay-hub": "latest"
+  }
+}
