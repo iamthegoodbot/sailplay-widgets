@@ -45,28 +45,6 @@
   });
 
   //PERFORM ACTION
-  //actions v2 section
-  function mobile_social_parse(dom, action){
-
-    console.log(sp.config().partner.logo);
-
-    var data = {
-      message: (action.msg || _actions_config.messages[action.action] || sp.config().partner.name),
-      title: (sp.config().partner.name || 'SailPlay'),
-      link: action.shortLink,
-      pic: repair_pic_url(action.pic || _actions_config.partnerCustomPic || sp.config().partner.logo)
-    };
-
-
-    dom.onclick = function() {
-
-      console.dir(action);
-
-      socialShare(action, data.title, data.link, data.message, data.pic);
-
-    };
-
-  }
 
   sp.actions.parse = function(dom, action){
 
@@ -91,7 +69,6 @@
 
       //console.dir(action);
       dom.addEventListener('click', function(){
-        console.dir(action);
         sp.send('actions.perform', action);
       });
 
@@ -101,37 +78,9 @@
 
     if(sp.config().platform === 'mobile' && action.socialType){
 
-      if(action.action == 'like'){
-
-        switch (action.socialType) {
-
-          case 'fb':
-
-            mobile_social_parse(dom, action);
-
-            break;
-
-          case 'vk':
-
-            mobile_social_parse(dom, action);
-
-            break;
-
-          case 'ok':
-
-            mobile_social_parse(dom, action);
-
-            break;
-
-        }
-
-      }
-
-      else {
-
-        mobile_social_parse(dom, action);
-
-      }
+      dom.addEventListener('click', function(){
+        sp.send('actions.perform', action);
+      });
 
     }
 
@@ -316,34 +265,44 @@
   };
 
   Actions.perform = function(action){
-    var frameUrl = sp.config().DOMAIN + '/popup/' + sp.config().partner.id + '/widgets/custom/' + action.type  + '/?auth_hash=' + sp.config().auth_hash;
-    frameUrl += '&lang=' + sp.config().lang;
-    frameUrl += '&from_sdk=0';
-    var actionFrame = Actions.popupWindow(frameUrl, 'SailPlay', 600, 400);
-    var checkPopupInterval = setInterval(function () {
-      if (actionFrame == null || actionFrame.closed) {
-        sp.send('actions.perform.complete', action);
-        clearInterval(checkPopupInterval);
+
+    if(sp.config().platform === 'mobile') {
+
+      end_share(action);
+      return;
+
+    }
+
+    sp.send('actions.perform.start', action);
+
+    if (action.socialType && _actions_config.connectedAccounts) {
+      if (!_actions_config.connectedAccounts[action.socialType]) {
+        Actions.openSocialRegNeedPopup(action);
+      } else {
+        Actions.share(action);
       }
-    }, 200);
+    }
+    else if(!action.socialType){
+      var frameUrl = sp.config().DOMAIN + '/popup/' + sp.config().partner.id + '/widgets/custom/' + action.type  + '/?auth_hash=' + sp.config().auth_hash;
+      frameUrl += '&lang=' + sp.config().lang;
+      frameUrl += '&from_sdk=0';
+      var actionFrame = Actions.popupWindow(frameUrl, 'SailPlay', 600, 400);
+      var checkPopupInterval = setInterval(function () {
+        if (actionFrame == null || actionFrame.closed) {
+          sp.send('actions.perform.complete', action);
+          clearInterval(checkPopupInterval);
+        }
+      }, 200);
+    }
+
   };
 
-  sp.on('actions.perform', function (action) {
+  sp.on('actions.perform', function (action, callback) {
     if(sp.config() == {}){
       return;
     }
     if (sp.config().auth_hash) {
-      sp.send('actions.perform.start', action);
-      if (action.socialType && _actions_config.connectedAccounts) {
-        if (!_actions_config.connectedAccounts[action.socialType]) {
-          Actions.openSocialRegNeedPopup(action);
-        } else {
-          Actions.share(action);
-        }
-      }
-      else if(!action.socialType){
-        Actions.perform(action);
-      }
+      Actions.perform(action, callback);
     } else {
       sp.send('actions.perform.auth.error', action);
     }
@@ -362,195 +321,28 @@
     }
   }
 
-  function shareFB(title,url,desc,image) {
+  function end_share(action){
 
-    var share_url;
-    var t=encodeURIComponent(title);
-    var d=encodeURIComponent(desc);
-    var u=encodeURIComponent(url);
-    var i=encodeURIComponent(image);
-    var app_id = _actions_config.social.fb.appId;
-    share_url='https://www.facebook.com/dialog/feed';
-    share_url+='&app_id=' + app_id;
-    share_url+='&redirect_uri=' + sp.config().DOMAIN + '/js-api/' + sp.config().partner.id + '/actions/social-widget/v2/';
-    share_url+='&link=' + u;
-    share_url+='&description=' + d;
-    share_url+='&caption=' + t;
-    share_url+='&picture=' + i;
-    share_url+='&display=popup';
+    var handle_params = {
+      partner_id: sp.config().partner.id,
+      social_type: action.socialType,
+      action: action.action,
+      purchase_public_key: _actions_config.purchasePublicKey || '',
+      badge_id: action.badgeId || '',
+      auth_hash: sp.config().auth_hash,
+      platform: sp.config().platform
+    };
 
-    return share_url;
+    sp.jsonp.get(sp.config().DOMAIN + sp.config().urls.actions.handle_social_action, handle_params,
+
+      function(res){
+        sp.send('actions.perform.success', { response: res, action: action });
+      },
+      function(res){
+        sp.send('actions.perform.error', { error: res, action: action });
+      })
+
   }
-
-  function shareVK(title,url,desc,image) {
-    var t=encodeURIComponent(title);
-    var d=encodeURIComponent(desc);
-    var u=encodeURIComponent(url);
-    var i=encodeURIComponent(image);
-    var share_url='http://vk.com/share.php';
-    share_url+='?title='+t+'&description='+d+'&url='+u;
-    share_url+='&image='+i;
-    share_url+='&noparse=1';
-    return share_url;
-  }
-
-  function shareOD(title,url,desc,image) {
-    var t=encodeURIComponent(title);
-    var d=encodeURIComponent(desc);
-    var u=encodeURIComponent(url);
-    var i=encodeURIComponent(image);
-    var ok_url = 'http://www.ok.ru/dk?st.cmd=addShare&st.s=1&st._surl='+u;
-    ok_url += '&st.comments=' + desc;
-    return ok_url;
-  }
-
-  function shareTW(title,url,desc,image) {
-    var d=encodeURIComponent(desc);
-    var u=encodeURIComponent(url);
-    var share_url='https://twitter.com/intent/tweet?';
-    share_url+='text='+ d;
-    share_url+='&url='+u;
-    return share_url;
-  }
-
-  function followVK(){
-    return 'https://vk.com/widget_community.php?act=a_subscribe_box&oid=-' + _actions_config.social.vk.groupId + '&state=1';
-  }
-
-  function likeFB(){
-    return 'https://www.facebook.com/v2.5/plugins/like.php?app_id=' + _actions_config.social.fb.appId + '&container_width=613&href=https%3A%2F%2Ffacebook.com%2F' + _actions_config.social.fb.groupId +'&layout=button&locale=en_US&sdk=joey&share=false&show_faces=true';
-  }
-
-  function likeOK(){
-    return 'https://connect.ok.ru/dk?cmd=WidgetGroupConfirm&st.cmd=WidgetGroupConfirm&st._aid=ExternalGroupWidget_joinConfirm&st.groupId=' + _actions_config.social.ok.groupId;
-    //return sp.config().DOMAIN + _actions_config.social.ok.likePopupUrl + '?ok_group_id=' + _actions_config.social.ok.groupId;
-  }
-
-  function socialShare(action,title,url,desc,image, dom) {
-
-    var s_type = action.socialType;
-    var u = '';
-    if(action.action == 'like'){
-
-      switch(action.socialType){
-        case 'vk':
-          u = followVK();
-          break;
-        case 'fb':
-          u = likeFB();
-          break;
-        case 'ok':
-          u = likeOK();
-          break;
-
-      }
-
-    }
-    else {
-      switch(action.socialType){
-        case 'vk':
-          u = shareVK(title,url,desc,image);
-          break;
-        case 'fb':
-          u = shareFB(title,url,desc,image);
-          break;
-        case 'ok':
-          u = shareOD(title,url,desc,image);
-          break;
-        case 'tw':
-          u = shareTW(title,url,desc,image);
-          break;
-      }
-    }
-
-    if(url != ''){
-
-      var popup;
-      var popup_checker;
-      function end_share(){
-        clearInterval(popup_checker);
-
-        var handle_params = {
-          partner_id: sp.config().partner.id,
-          social_type: s_type,
-          action: action.action,
-          purchase_public_key: _actions_config.purchasePublicKey || '',
-          badge_id: action.badgeId || '',
-          auth_hash: sp.config().auth_hash,
-          platform: sp.config().platform
-        };
-
-        sp.jsonp.get(sp.config().DOMAIN + sp.config().urls.actions.handle_social_action, handle_params,
-
-        function(res){
-          sp.send('actions.perform.success', { response: res, action: action });
-        },
-        function(res){
-          sp.send('actions.perform.error', { error: res, action: action });
-        })
-
-      }
-      popup = Actions.popupWindow(u,'_blank',626,436);
-
-      popup.addEventListener('loadstop', function() {
-        popup.executeScript({
-          code: 'window.doCancel = function(){ window.location.href = "' + sp.config().DOMAIN + '"; }'
-        });
-        popup.executeScript({
-          code: '' +
-          'var table = document.getElementsByClassName("uiGrid")[0];' +
-          'table.style.zoom = 5;' +
-          'table.style.width = "100%";' +
-          'table.style.marginTop = "10%";' +
-          'var form = document.getElementById("u_0_0");' +
-          'form && form.addEventListener("submit", function(e){' +
-          'window.location.href = "' + sp.config().DOMAIN + '";' +
-          '});'
-        });
-
-        if(action.socialType = 'ok' && action.action == 'like'){
-
-          popup.executeScript({
-            code: '' +
-            'if(window.localStorage.getItem("joined")) {' +
-              'window.localStorage.removeItem("joined");' +
-              'window.location.href = "' + sp.config().DOMAIN + '";' +
-            '}' +
-            'document.addEventListener("click", function(e){' +
-              'var t = e.target;' +
-              'while(t.parentNode){' +
-                'if(t.innerHTML.indexOf("Join") >= 0) { ' +
-                  'window.localStorage.setItem("joined", "1")' +
-                '}' +
-                't = t.parentNode;' +
-              '}' +
-            '});'
-          });
-
-        }
-      });
-
-      popup.addEventListener('loadstart', function(event) {
-        if(event.url && (event.url.indexOf(sp.config().DOMAIN) === 0 || event.url.indexOf('st._aid=ExternalShareWidget_SharePost') >= 0 || event.url.indexOf('/tweet/complete') >= 0 || event.url.indexOf('/plugins/close_popup.php') >= 0)){
-          popup.close();
-          popup = null;
-          end_share();
-        }
-      });
-      popup.addEventListener('exit', function(event) {
-          popup.close();
-          popup = null;
-          end_share();
-      });
-      popup_checker = setInterval(function(){
-        if(popup.closed || popup == null){
-          end_share();
-        }
-      }, 100);
-    }
-    return false;
-  }
-
 
 
 }());
