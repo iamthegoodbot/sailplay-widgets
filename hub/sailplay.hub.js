@@ -423,7 +423,7 @@ var SAILPLAY = (function () {
     if(p && p.all) {
       params.all = p.all;
     }
-    if(p.user) {
+    if(p && p.user) {
       for(var param in p.user){
         params[param] = p.user[param];
       }
