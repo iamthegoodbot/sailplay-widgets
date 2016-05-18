@@ -9,8 +9,8 @@
     SAILPLAY.send('init', {
       partner_id: options.partner_id,
       domain: options.domain,
-      lang: 'ru',
-      platform: 'mobile'
+      lang: 'ru'
+      //platform: 'mobile'
     }); //инициируем модуль для партнера с id = 5
     //SAILPLAY.send('init', { partner_id: 5, domain: 'http://sailplay.ru', lang: 'ru', static_url: '/sailplay/widgets/demo/dev' });
     //SAILPLAY.send('init', { partner_id: 1188, domain: 'http://skazka.loc', lang: 'ru', static_url: '/sailplay/widgets/demo/dev' });
@@ -160,11 +160,6 @@
     sp_app.elms.form[0].value =  settings && settings.partner_id || '';
     sp_app.elms.form[1].value = settings && settings.domain || '';
     sp_app.elms.form[2].value = settings && settings.auth_hash || '';
-
-    var h1 = document.createElement('h1');
-    h1.innerText = 'HELLO, ALLAH!';
-
-    document.body.appendChild(h1);
 
   };
 

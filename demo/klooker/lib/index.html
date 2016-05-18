@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=0.8, user-scalable=no"/>
+	<link rel="stylesheet/less" type="text/css" href="css/style.less">
+	<script type="text/javascript" src="js/less.min.js"></script>
+	<link href="font/stylesheet.css" rel="stylesheet">
+	<script type="text/javascript" src="js/jquery-1.12.3.js"></script>
+</head>
+<body>
+<div class="bns_overlay">
+	<div class="bns_overlay_iner">
+		<table class="bns_hist_table">
+			<h3>History</h3>
+			<tbody>
+				<tr>
+					<td>
+						<span>30 June</span>
+					</td>
+					<td>
+						<span><b>Purchase</b></span>
+						<span><b>Man jacket</b></span>
+						<span><b>Bagpack Eastpack</b></span>
+						<span><b>Man white shirt</b></span>
+					</td>
+					<td>
+						<span>10 KE </span>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span>15 June</span>
+					</td>
+					<td>
+						<span><b>Purchase</b></span>
+						<span><b>T-shirt</b></span>
+						<span><b>T-shirt</b></span>
+						<span><b>Bottoms</b></span>
+					</td>
+					<td>
+						<span>5 KE</span>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span>13 June</span>
+					</td>
+					<td>
+						<span><b>Gift received</b></span>
+						<span><b>Gift card 1</b></span>
+					</td>
+					<td>
+						<span class="bns_minus">-30 KE</span>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="bns_hist_pager">
+			<a href="#"><</a>
+			<a href="#">1</a>/
+			<a href="#">4</a>
+			<a href="#">></a>
+		</div>
+	</div>
+</div>
+<script>
+	$( document ).ready(function() {
+		$('.bns_hist').click(function(){
+			$('.bns_overlay').fadeIn();
+			return false;
+		})
+		$('.bns_overlay').click(function(){
+			$('.bns_overlay').fadeOut();
+		})
+		$('.bns_overlay_iner').click(function(event){
+			event.stopPropagation()
+		})
+	})
+</script>
+<div class="bns_wrapper">
+	<div class="tmp_top"></div>
+	<div class="bns_content">
+		<div class="bns_content_top">
+			<div class="bns_left_img">
+				<div class="bns_li_info">
+					<h3 class="bns_li_ic1">Order in-store</h3>
+					<span>Get bonus points for your purchases</span>
+					<h3 class="bns_li_ic2">Earn extra points</h3>
+					<span>Join our Facebook group, tell your friends about us and get bonus points</span>
+					<h3 class="bns_li_ic3">Get awesome gifts</h3>
+					<span>You can redeem your points for our products</span>
+				</div>
+			</div>
+			<div class="bns_ct_right">
+				<img src="img/ava.png" alt="" class="bns_ava"/>
+				<span class="bns_username">Hello Jenifer!</span>
+				<span class="bns_userstat">Your status: Silver</span>
+				<span class="bns_tonewstat">40 Klooker euros to the Gold status</span>
+			</div>
+			<div class="bns_status_info">
+				<div class="bns_si_right">
+					<div class="bns_bronze">
+						<span>Bronze <strong>30</strong></span>
+						<div class="bns_si_icon"></div>
+					</div>
+					<div class="bns_silver">
+						<span>Silver  <strong>50</strong></span>
+						<div class="bns_si_icon"></div>
+					</div>
+					<div class="bns_gold">
+						<span>Gold <strong>100</strong></span>
+						<div class="bns_si_icon"></div>
+					</div>
+					<div class="bns_si_now_eu">
+						<span class="bns_num"><span id="num" data-finishNum="60">0</span><strong>+50<span>Unconfirmed points that will be
+confirmed after the payment</span></strong></span>
+						<span class="bns_sine_text">Klooker euros</span>
+					</div>
+					<a href="#" class="bns_hist"><img src="img/icon_hist.png" alt=""> History</a>
+					<div class="bns_circle_main" data-procent="70">
+						<div class="bns_circle_bg1"></div>
+						<div class="bns_circle_bg2"></div>
+						<div class="bns_circle_line"></div>
+					</div>
+					<script>
+						$( document ).ready(function() {
+							if($('.bns_circle_main').length>0){
+								var procent = parseInt($('.bns_circle_main').attr('data-procent'));
+								var degRotate =  -180+parseInt(procent*1.8);
+								$('.bns_circle_line').css('-moz-transform', 'rotate('+degRotate+'deg)');
+								$('.bns_circle_line').css('-webkit-transform', 'rotate('+degRotate+'deg)');
+								$('.bns_circle_line').css('-o-transform', 'rotate('+degRotate+'deg)');
+								$('.bns_circle_line').css('-ms-transform', 'rotate('+degRotate+'deg)');
+								$('.bns_circle_line').css('transform', 'rotate('+degRotate+'deg)');
+							}
+							if($('#num').length>0){
+								var numFrom = 0;
+								var numTo = parseInt($('#num').attr('data-finishNum'));
+								function tick(){
+									if(numFrom < numTo) {
+									  numFrom ++
+										$('#num').html(numFrom);
+										setTimeout(tick, 40);
+									}
+								}
+								setTimeout(tick, 40);
+							}
+						});
+					</script>
+				</div>
+				<div class="bns_si_left">
+					<div class="bns_si_item">
+						<img src="img/bromz.png" alt=""/>
+						<span>Bronze status allows you to receive 1 Klooker euro’s for every purchase made </span>
+					</div>
+					<div class="bns_si_item bns_act">
+						<img src="img/silver.png" alt=""/>
+						<span>Silver status allows you to receive1.25 Klooker euro’s for every purchase made</span>
+					</div>
+					<div class="bns_si_item">
+						<img src="img/gold.png" alt=""/>
+						<span>Gold status allows you to receive 1.5 Klooker euro’s for every purchase made</span>
+					</div>
+				</div>
+			</div>
+			<div class="bns_item_main">
+				<h3>Gifts:</h3>
+				<div class="bns_item">
+					<img src="img/item1.png" alt=""/>
+					<div class="bns_item_bottom">
+						<span class="bns_item_name">
+							Matte Hip Flask
+						</span>
+						<span class="bns_item_eu">
+							<strong>20</strong> Klooker euros
+						</span>
+						<a href="#">Get</a>
+					</div>
+				</div>
+				<div class="bns_item">
+					<img src="img/item2.png" alt=""/>
+					<div class="bns_item_bottom">
+						<span class="bns_item_name">
+							Urbanears Plattan ADV Wireless Headphones
+						</span>
+						<span class="bns_item_eu">
+							<strong>50</strong> Klooker euros
+						</span>
+						<a href="#">Get</a>
+					</div>
+				</div>
+				<div class="bns_item">
+					<img src="img/item3.png" alt=""/>
+					<div class="bns_item_bottom">
+						<span class="bns_item_name">
+							Gift card 1
+						</span>
+						<span class="bns_item_eu">
+							<strong>100</strong> Klooker euros
+						</span>
+						<a href="#">Get</a>
+					</div>
+				</div>
+				<div class="bns_item">
+					<img src="img/item3.png" alt=""/>
+					<div class="bns_item_bottom">
+						<span class="bns_item_name">
+							Gift card 2
+						</span>
+						<span class="bns_item_eu">
+							<strong>100</strong> Klooker euros
+						</span>
+						<a href="#">Get</a>
+					</div>
+				</div>
+			</div>
+			<div class="bns_earn_more_main">
+				<h3>Earn more points by carrying out following tasks:</h3>
+				<div class="bns_em_item bns_ic1">
+					<span>Invite a Friend</span>
+					<strong>20 Klooker euros</strong>
+					<a href="#">Get Klooker euros </a>
+				</div>
+				<div class="bns_em_item bns_ic2">
+					<span>Invite a Friend</span>
+					<strong>20 Klooker euros</strong>
+					<a href="#">Get Klooker euros </a>
+				</div>
+				<div class="bns_em_item bns_ic3">
+					<span>Tell about your purchase on Facebook</span>
+					<strong>10 Klooker euros </strong>
+					<a href="#">Get Klooker euros </a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tmp_bot"></div>
+</div><!-- .wrapper -->
+</body>
+</html>
