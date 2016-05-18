@@ -1,0 +1,859 @@
+body {
+  background-color: #E7EBED;
+  margin: 0;
+}
+
+.bns_wrapper {
+  width: 1190px;
+  margin: auto;
+}
+
+.tmp_top {
+  width: 100%;
+  height: 128px;
+  background-image: url(../img/top.png);
+  float: left;
+}
+
+.bns_content {
+  width: 100%;
+  float: left;
+  margin-top: 30px;
+
+}
+
+.bns_content_top {
+  width: 100%;
+  float: left;
+}
+
+.bns_left_img {
+  float: left;
+  width: 48%;
+  height: 395px;
+  background-image: url(../img/left_img.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-background-size: cover;
+  background-size: cover;
+  position: relative;
+  .bns_li_info {
+    position: absolute;
+    right: 0px;
+    bottom: 10px;
+    width: 400px;
+    h3 {
+      margin-top: 0;
+      margin-bottom: 0;
+      float: left;
+      width: 100%;
+      box-sizing: border-box;
+      padding-left: 34px;
+      line-height: 20px;
+      padding-top: 8px;
+      background-position: left center;
+      background-repeat: no-repeat;
+      color: #fff;
+      font-weight: normal;
+      font-family: 'Proxima Nova Bold';
+      font-size: 13px;
+    }
+    span {
+      margin-top: 0;
+      float: left;
+      width: 100%;
+      box-sizing: border-box;
+      padding-left: 34px;
+      background-position: left center;
+      background-repeat: no-repeat;
+      color: #fff;
+      font-weight: normal;
+      font-size: 13px;
+      background-image: none;
+      font-family: 'Proxima Nova Rg';
+      line-height: 20px;
+      padding-top: 0px;
+      margin-bottom: 8px;
+    }
+    .bns_li_ic1 {
+      background-image: url(../img/oreder_in.png);
+    }
+    .bns_li_ic2 {
+      background-image: url(../img/ern_extra.png);
+    }
+    .bns_li_ic3 {
+      background-image: url(../img/get_awes.png);
+    }
+  }
+}
+
+.bns_ct_right {
+  float: right;
+  width: 48%;
+  background-color: #53808B;
+  height: 395px;
+  text-align: center;
+  img {
+    border-radius: 50%;
+    border: 5px solid #E5E9EB;
+    margin-top: 40px;
+  }
+  span {
+    float: left;
+    width: 100%;
+    color: #fff;
+    font-family: 'Proxima Nova Rg';
+    font-size: 33px;
+  }
+  .bns_username {
+    margin-top: 22px;
+    margin-bottom: 10px;
+  }
+  .bns_userstat {
+    margin-bottom: 6px;
+  }
+  .bns_tonewstat {
+    font-size: 25px;
+  }
+}
+
+.bns_status_info {
+  float: left;
+  width: 100%;
+  margin-top: 40px;
+  .bns_si_left {
+    float: left;
+    width: 48%;
+    .bns_si_item {
+      float: left;
+      width: 100%;
+      height: 125px;
+      background-color: #fff;
+      margin-bottom: 25px;
+      img {
+        margin-top: 23px;
+        margin-left: 20px;
+        float: left;
+        margin-right: 20px;
+        width: 82px;
+      }
+      span {
+        font-size: 15px;
+        color: #000;
+        line-height: 16px;
+        font-family: 'Proxima Nova Rg';
+        margin-top: 46px;
+        float: left;
+        width: 70%;
+      }
+    }
+    .bns_si_item.bns_act {
+      -webkit-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.3);
+      box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.3);
+    }
+  }
+  .bns_si_right {
+    float: right;
+    width: 48%;
+    position: relative;
+    background-color: #fff;
+    height: 425px;
+    .bns_0 {
+      position: absolute;
+      left: 50%;
+      margin-left: -193px;
+      top: 260px;
+      z-index: 1;
+      span {
+        position: absolute;
+        right: 78px;
+        top: 0px;
+        font-family: 'Proxima Nova Lt';
+        font-size: 20px;
+        text-align: center;
+        strong {
+          font-family: 'Proxima Nova Bold';
+        }
+      }
+      .bns_si_icon {
+        background-image: url(../img/bronz_sm.png);
+      }
+    }
+    .bns_1 {
+      position: absolute;
+      left: 50%;
+      margin-left: -34px;
+      top: 101px;
+      z-index: 1;
+      span {
+        position: absolute;
+        left: 0px;
+        top: -50px;
+        font-family: 'Proxima Nova Lt';
+        font-size: 20px;
+        text-align: center;
+        strong {
+          font-family: 'Proxima Nova Bold';
+        }
+      }
+      .bns_si_icon {
+        background-image: url(../img/silver_sm.png);
+      }
+    }
+    .bns_2 {
+      position: absolute;
+      right: 50%;
+      margin-right: -193px;
+      top: 260px;
+      z-index: 1;
+      span {
+        position: absolute;
+        left: 78px;
+        top: 0px;
+        font-family: 'Proxima Nova Lt';
+        font-size: 20px;
+        text-align: center;
+        strong {
+          font-family: 'Proxima Nova Bold';
+        }
+      }
+      .bns_si_icon {
+        background-image: url(../img/gold_sm.png);
+      }
+    }
+    .bns_si_icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-position: center center;
+      background-repeat: no-repeat;
+      border: 4px solid #E19247;
+      background-color: #fff;
+    }
+    .bns_si_now_eu {
+      position: absolute;
+      left: 50%;
+      top: 206px;
+      z-index: 1;
+      width: 250px;
+      margin-left: -125px;
+      text-align: center;
+      .bns_num {
+        position: relative;
+        color: #E19247;
+        font-size: 115px;
+        font-family: 'Proxima Nova Bold';
+        strong {
+          position: absolute;
+          right: -6px;
+          top: -6px;
+          width: 36px;
+          line-height: 36px;
+          border-radius: 100%;
+          background-color: #E7EBED;
+          font-size: 14px;
+          color: #858585;
+          -webkit-box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.4);
+          box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.4);
+          &:hover span {
+            opacity: 1;
+          }
+          span {
+            position: absolute;
+            width: 210px;
+            padding: 20px 20px;
+            background-color: #fff;
+            bottom: 51px;
+            left: 50%;
+            margin-left: -125px;
+            line-height: 20px;
+            font-family: 'Proxima Nova Rg';
+            -webkit-box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.3);
+            box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.3);
+            -webkit-transition: all 300ms ease;
+            -moz-transition: all 300ms ease;
+            -ms-transition: all 300ms ease;
+            -o-transition: all 300ms ease;
+            transition: all 300ms ease;
+            opacity: 0;
+            &::after {
+              width: 16px;
+              height: 16px;
+              background-image: url(../img/arr_tip.png);
+              position: absolute;
+              content: '';
+              display: block;
+              bottom: -16px;
+              left: 50%;
+              margin-left: -8px;
+            }
+          }
+        }
+      }
+      .bns_sine_text {
+        font-size: 21px;
+        font-family: 'Proxima Nova Lt';
+        margin-top: -11px;
+        float: left;
+        width: 100%;
+      }
+    }
+    .bns_hist {
+      width: 240px;
+      line-height: 43px;
+      background-color: #D78847;
+      text-align: center;
+      color: #fff;
+      text-decoration: none;
+      display: block;
+      font-size: 12px;
+      font-family: 'Proxima Nova Lt';
+      left: 50%;
+      margin-left: -120px;
+      bottom: 30px;
+      position: absolute;
+      img {
+        margin-right: 10px;
+        position: relative;
+        top: 8px;
+      }
+    }
+    .bns_circle_main {
+      width: 332px;
+      height: 170px;
+      overflow: hidden;
+      position: absolute;
+      top: 124px;
+      left: 50%;
+      margin-left: -166px;
+      .bns_circle_bg1 {
+        width: 332px;
+        height: 332px;
+        border-radius: 100% 100% 0 0;
+        background-color: #F5F5F5;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+      }
+      .bns_circle_bg2 {
+        width: 300px;
+        height: 300px;
+        border-radius: 100% 100% 0 0;
+        background-color: #fff;
+        position: absolute;
+        left: 16px;
+        top: 16px;
+      }
+      .bns_circle_line {
+        width: 308px;
+        height: 308px;
+        border-radius: 100% 100% 0 0;
+        border: 8px solid #E19247;
+        position: absolute;
+        left: 4px;
+        top: 4px;
+        overflow: hidden;
+        -moz-transform: rotate(-180deg);
+        -webkit-transform: rotate(-180deg);
+        -o-transform: rotate(-180deg);
+        -ms-transform: rotate(-180deg);
+        transform: rotate(-180deg);
+        clip: rect(0, 456px, 153px, 0);
+        -webkit-transition: all 2000ms ease;
+        -moz-transition: all 2000ms ease;
+        -ms-transition: all 2000ms ease;
+        -o-transition: all 2000ms ease;
+        transition: all 2000ms ease;
+      }
+    }
+  }
+}
+
+.bns_item_main {
+  float: left;
+  width: 100%;
+  h3 {
+    line-height: 64px;
+    font-size: 21px;
+    font-family: 'Proxima Nova Bold';
+  }
+  .bns_item {
+    float: left;
+    margin-right: 4%;
+    width: 22%;
+    background-color: #fff;
+    height: 220px;
+    text-align: center;
+    position: relative;
+
+    img {
+      max-height: 220px;
+    }
+    a {
+      float: left;
+      width: 107px;
+      line-height: 38px;
+      border: 1px solid #E19247;
+      color: #E19247;
+      font-size: 13px;
+      font-family: 'Proxima Nova Bold';
+      text-decoration: none;
+      text-align: center;
+      margin-top: 20px;
+      display: none;
+    }
+    &:hover a {
+      display: block;
+    }
+    .bns_item_bottom {
+      position: absolute;
+      left: 0px;
+      bottom: 0px;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 10px 30px;
+      text-align: left;
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+    .bns_item_name {
+      float: left;
+      width: 100%;
+      font-size: 13px;
+      font-family: 'Proxima Nova Rg';
+      margin-bottom: 5px;
+    }
+    .bns_item_eu {
+      float: left;
+      width: 100%;
+      font-family: 'Proxima Nova Bold';
+      font-size: 13px;
+      strong {
+        font-size: 15px;
+        font-family: 'Proxima Nova Semi';
+      }
+    }
+  }
+  .bns_item:last-child {
+    margin-right: 0;
+  }
+}
+
+.bns_earn_more_main {
+  float: left;
+  width: 100%;
+  margin-bottom: 35px;
+  h3 {
+    line-height: 64px;
+    font-size: 21px;
+    font-family: 'Proxima Nova Bold';
+  }
+  .bns_em_item {
+    float: left;
+    width: 31%;
+    margin-right: 3.5%;
+    background-color: #fff;
+    box-sizing: border-box;
+    padding-left: 100px;
+    background-position: 15% center;
+    height: 100px;
+    background-repeat: no-repeat;
+    position: relative;
+    span {
+      float: left;
+      width: 100%;
+      font-size: 13px;
+      font-family: 'Proxima Nova Rg';
+      margin-top: 34px;
+    }
+    strong {
+      float: left;
+      width: 100%;
+      font-size: 13px;
+      font-family: 'Proxima Nova Bold';
+      margin-top: 6px;
+    }
+    a {
+      position: absolute;
+      left: 100px;
+      top: 50%;
+      width: 187px;
+      line-height: 36px;
+      background-color: #E19247;
+      font-size: 12px;
+      font-family: 'Proxima Nova Rg';
+      text-align: center;
+      margin-top: -18px;
+      text-decoration: none;
+      color: #fff;
+      display: none;
+    }
+    &:hover a {
+      display: block;
+    }
+    &:hover span, &:hover strong {
+      display: none;
+    }
+  }
+  .bns_em_item:last-child {
+    margin-right: 0;
+  }
+  .bns_ic1 {
+    background-image: url(../img/icon_sh.png);
+  }
+  .bns_ic2 {
+    background-image: url(../img/icon_add.png);
+  }
+  .bns_ic3 {
+    background-image: url(../img/icon_fb.png);
+  }
+}
+
+.tmp_bot {
+  float: left;
+  width: 100%;
+  height: 80px;
+  background-image: url(../img/bottom.png);
+}
+
+.bns_overlay {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: none;
+  .bns_overlay_iner {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 464px;
+    margin-left: -277px;
+    margin-top: -175px;
+    background-color: #fff;
+    border-top: 34px solid #53808B;
+    padding: 20px 40px;
+    h3 {
+      font-size: 21px;
+      float: left;
+      width: 100%;
+      margin: 0;
+      font-family: 'Proxima Nova Bold';
+    }
+    .bns_hist_table {
+      float: left;
+      width: 100%;
+      margin-top: 12px;
+      td {
+        vertical-align: text-top;
+        padding: 5px 11px;
+        span.bns_minus {
+          color: #53808B;
+        }
+      }
+      td:nth-child(1) {
+        color: #000;
+        font-size: 13px;
+        line-height: 19px;
+        padding-right: 0px;
+        padding-left: 0px;
+        font-family: 'Proxima Nova Rg';
+        white-space: nowrap;
+      }
+      td:nth-child(2) {
+        color: #000;
+        font-size: 12px;
+        font-weight: 200;
+        line-height: 19px;
+        position: relative;
+        padding-left: 0px;
+        width: 420px;
+        &::after {
+          position: absolute;
+          left: 0px;
+          width: 100%;
+          border-top: 1px dotted #A1A1A1;
+          top: 14px;
+          content: '';
+          display: block;
+        }
+        span {
+          display: block;
+          position: relative;
+          z-index: 1;
+          font-size: 13px;
+          color: #808080;
+          font-family: 'Proxima Nova Rg';
+          b {
+            background-color: #fff;
+            padding-right: 15px;
+            padding-left: 11px;
+            font-weight: 200;
+          }
+        }
+        span:first-child {
+          font-family: 'Proxima Nova Bold';
+          color: #000;
+        }
+      }
+      td:nth-child(3) {
+        color: #000;
+        font-size: 14px;
+        font-weight: bold;
+        text-align: right;
+        line-height: 19px;
+        span {
+          display: block;
+          white-space: nowrap;
+          font-size: 13px;
+          font-family: 'Proxima Nova Bold';
+        }
+      }
+    }
+    .bns_hist_pager {
+      float: right;
+      font-size: 13px;
+      font-family: 'Proxima Nova Rg';
+      a {
+        text-decoration: none;
+        color: #000;
+        margin-right: 4px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1190px) {
+  .bns_wrapper {
+    width: 98%;
+    margin-left: 1%;
+  }
+
+  .bns_bronze span {
+    right: 0px !important;
+    top: 78px !important;
+  }
+
+  .bns_gold span {
+    left: 0px !important;
+    top: 78px !important;
+  }
+
+  .bns_hist {
+    width: 220px !important;
+    margin-left: -110px !important;
+  }
+}
+
+@media screen and (max-width: 975px) {
+  .bns_item img {
+    max-width: 90% !important;
+  }
+
+  .bns_em_item a {
+    width: 137px !important;
+  }
+
+}
+
+@media screen and (max-width: 880px) {
+  .bns_left_img {
+    display: none !important;
+  }
+
+  .bns_wrapper {
+    width: 100% !important;
+    margin-left: 0% !important;
+    min-width: 420px !important;
+  }
+
+  .bns_ct_right {
+    width: 100% !important;
+  }
+
+  .bns_content {
+    margin-top: 0 !important;
+    background-color: #fff !important;
+  }
+
+  .bns_si_left {
+    float: right !important;
+    width: 100% !important;
+  }
+
+  .bns_si_right {
+    float: left !important;
+    width: 100% !important;
+  }
+
+  .bns_status_info {
+    margin-top: 0 !important;
+  }
+
+  .bns_si_item {
+    margin-bottom: 0 !important;
+
+  }
+
+  .bns_si_item.bns_act {
+    -webkit-box-shadow: 0 0 0 0 #FFFFFF !important;
+    box-shadow: 0 0 0 0 #FFFFFF !important;
+    background-color: #F1F6F4 !important;
+  }
+
+  .bns_item_main {
+    margin-bottom: 20px !important;
+  }
+
+  .bns_item_main, .bns_earn_more_main {
+    width: 90% !important;
+    margin-left: 5% !important;
+    border-top: 1px solid #909090 !important;
+  }
+
+  .bns_item {
+    width: 48% !important;
+    margin-right: 2% !important;
+  }
+
+  .bns_item:nth-child(3) {
+    margin-right: 0 !important;
+  }
+
+  .bns_em_item {
+    width: 100% !important;
+    margin-right: 0 !important;
+    background-position: 7% 50px !important;
+    border-bottom: 1px solid #909090 !important;
+    height: auto !important;
+    padding-left: 0px !important;
+
+  }
+
+  .bns_em_item:last-child {
+    border-bottom: 0 !important;
+  }
+
+  .bns_em_item a {
+    position: relative !important;
+    display: block !important;
+    float: left !important;
+    left: 0px !important;
+    top: 0px !important;
+    margin-top: 15px !important;
+    margin-bottom: 25px !important;
+    width: 100% !important;
+    font-size: 24px !important;
+    line-height: 50px !important;
+  }
+
+  .bns_em_item:hover span, .bns_em_item:hover strong {
+    display: block !important;
+  }
+
+  .bns_em_item span, .bns_em_item strong {
+    font-size: 25px !important;
+    padding-left: 17% !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .bns_earn_more_main h3, .bns_item_main h3 {
+    line-height: 31px !important;
+    font-size: 31px !important;
+    margin-bottom: 0 !important;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .bns_item {
+    width: 100% !important;
+    margin-right: 0 !important;
+    border-bottom: 1px solid #909090 !important;
+    padding-top: 15px !important;
+    height: auto !important;
+  }
+
+  .bns_item:last-child {
+    border-bottom: 0px solid #909090 !important;
+  }
+
+  .bns_item img {
+    width: 40% !important;
+    float: left !important;
+  }
+
+  .bns_item_bottom {
+    position: relative !important;
+    float: right !important;
+    width: 50% !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    padding-bottom: 25px !important;
+  }
+
+  .bns_item_name {
+    font-size: 25px !important;
+  }
+
+  .bns_item_eu {
+    font-size: 25px !important;
+  }
+
+  .bns_item_eu strong {
+    font-size: 25px !important;
+  }
+
+  .bns_item a {
+    display: block !important;
+    font-size: 24px !important;
+    line-height: 50px !important;
+  }
+
+  .bns_item a:hover {
+    border: 1px solid #909090 !important;
+    color: #909090 !important;
+  }
+
+  .bns_bronze span, .bns_silver span, .bns_gold span {
+    font-size: 25px !important;
+  }
+
+  .bns_sine_text {
+    font-size: 24px !important;
+  }
+
+  .bns_hist {
+    font-size: 25px !important;
+    line-height: 50px !important;
+  }
+
+  .bns_hist img {
+    top: 3px !important;
+  }
+
+  .bns_si_item span {
+    width: 60% !important;
+    font-size: 19px !important;
+    margin-top: 30px !important;
+    line-height: 24px !important;
+  }
+
+  .bns_overlay_iner {
+    width: 90% !important;
+    margin-left: 0 !important;
+    left: 0 !important;
+    padding-left: 5% !important;
+    padding-right: 5% !important;
+  }
+
+  .bns_overlay_iner h3 {
+    font-size: 31px !important;
+  }
+
+  .bns_hist_table td:nth-child(1), .bns_hist_table td:nth-child(2) span, .bns_hist_table td:nth-child(3) span {
+    font-size: 19px !important;
+    line-height: 24px !important;
+  }
+}

@@ -1,0 +1,18 @@
+.fb_share_btn {
+	position: relative;
+	width: 100%;
+	line-height: 36px;
+	background-color: #E19247;
+	font-size: 16px;
+	font-family: 'Lato', sans-serif;
+	text-align: center;
+	text-decoration: none;
+	color: #fff;
+	display: block;
+	height: 36px;
+	cursor: pointer;
+}
+
+div, span {
+	width: 100% !important;
+}
