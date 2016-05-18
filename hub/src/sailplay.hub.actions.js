@@ -184,7 +184,7 @@
         frame_params.badgeId= action.badgeId;
       }
 
-      action_frame.src = sp.config().DOMAIN + '/js-api/' + sp.config().partner.id + '/actions/social-widget/v2/?' + EncodeQueryData(frame_params);;
+      action_frame.src = sp.config().DOMAIN + '/js-api/' + sp.config().partner.id + '/actions/social-widget/v2/?' + EncodeQueryData(frame_params);
       dom.innerHTML = '';
       dom.appendChild(action_frame);
 

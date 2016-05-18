@@ -20,8 +20,8 @@
   <script src="src/js/plugins/jquery.simpleSwitcher.js"></script>
   <script src="src/js/plugins/selectize.min.js"></script>
   <script src="src/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-  <script src="../../hub/src/sailplay.hub.js"></script>
-  <script src="node_modules/angular/angular.min.js"></script>
+  <script src="src/js/libs/sailplay.hub.min.js "></script>
+  <script src="src/js/libs/angular.min.js"></script>
 
   <script src="src/js/sailplay.tribune.js"></script>
   <script>
@@ -74,15 +74,15 @@
     <div class="sp_form__inner">
 
       <div class="sp_form__inp-set">
-        <div class="sp_form__inp-title">First Name</div>
-        <input type="text" class="sp_common-input" data-ng-model="form.custom_vars.FN">
+        <div class="sp_form__inp-title">First Name *</div>
+        <input type="text" class="sp_common-input" data-ng-model="form.custom_vars.first_name">
       </div>
       <div class="sp_form__inp-set">
-        <div class="sp_form__inp-title">Last name</div>
-        <input type="text" class="sp_common-input" data-ng-model="form.custom_vars.FN">
+        <div class="sp_form__inp-title">Last name *</div>
+        <input type="text" class="sp_common-input" data-ng-model="form.custom_vars.last_name">
       </div>
       <div class="sp_form__inp-set">
-        <div class="sp_form__inp-title">Email</div>
+        <div class="sp_form__inp-title">Email *</div>
         <input type="text" class="sp_common-input" data-ng-model="form.user.email">
       </div>
       <div class="sp_form__inp-set">
@@ -90,34 +90,34 @@
         <input type="text" class="sp_common-input" data-ng-model="form.custom_vars.AltEmail">
       </div>
       <div class="sp_form__inp-set">
-        <div class="sp_form__inp-title">Phone</div>
+        <div class="sp_form__inp-title">Phone *</div>
         <input type="text" class="sp_common-input" data-ng-model="form.custom_vars.Phone">
       </div>
       <div class="sp_form__inp-set">
-        <div class="sp_form__inp-title">Market</div>
-        <select data-select class="js-create-select sp_common-selectize" data-ng-model="form.custom_vars.Market" data-ng-option="market in markets"></select>
+        <div class="sp_form__inp-title">Market *</div>
+        <select data-select class="js-create-select sp_common-selectize market" data-ng-model="form.custom_vars.Market" data-ng-options="m as m for m in markets"></select>
       </div>
       <div class="sp_form__inp-set">
-        <div class="sp_form__inp-title">Account number</div>
-        <input type="text" class="sp_common-input" data-ng-model="form.custom_vars.AN">
+        <div class="sp_form__inp-title">Account number *</div>
+        <input type="text" class="sp_common-input" data-ng-model="form.custom_vars.account_number">
       </div>
 
-      <div class="sp_block-param js-create-checkbox">
+      <div class="sp_block-param js-create-checkbox sms">
         <div class="sp_common-check js-checkbox"></div>
         <span class="sp_param-label">Send SMS</span>
         <input type="checkbox" data-ng-model="form.tags[0].checked" hidden>
       </div>
-      <div class="sp_block-param js-create-checkbox">
+      <div class="sp_block-param js-create-checkbox email">
         <div class="sp_common-check js-checkbox"></div>
         <span class="sp_param-label">Send Email</span>
         <input type="checkbox" data-ng-model="form.tags[1].checked" hidden>
       </div>
 
-      <a href="#" class="sp_form__clear">Clear form</a>
+      <a href="#" class="sp_form__clear" data-ng-click="reset();$event.preventDefault();">Clear form</a>
 
       <div class="sp_form__submit-wr">
         <input type="submit" class="sp_form__submit" value="Send message">
-        <div class="sp_form__status">
+        <div class="sp_form__status" data-ng-if="submited">
           Your message was sent successfully
         </div>
 
@@ -144,7 +144,6 @@
 
 <script>
   $(document).ready(function() {
-
     $('.js-create-checkbox').simpleSwitcher({
       activeClass: 'this-active',
       removeActive: true,

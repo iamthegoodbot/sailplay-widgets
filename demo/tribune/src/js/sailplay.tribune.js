@@ -1,33 +1,33 @@
-(function(){
+(function () {
 
-  window.addEventListener('DOMContentLoaded', function(){
+  window.addEventListener('DOMContentLoaded', function () {
 
-    angular.bootstrap(document.getElementById('tribune'), [ 'tribune' ]);
+    angular.bootstrap(document.getElementById('tribune'), ['tribune']);
 
   });
 
 
   angular.module('tribune', [])
 
-    .service('sp', function($window){
+    .service('sp', function ($window) {
 
       return $window.SAILPLAY;
 
     })
 
-    .run(function(sp){
+    .run(function (sp) {
 
-      sp.send('init', { partner_id: 286, domain: '//sailplay.ru' });
+      sp.send('init', {partner_id: 1556, domain: '//sailplay.ru', lang: 'en'});
 
     })
 
-    .directive('lead', function(sp, $q){
+    .directive('lead', function (sp, $q, $timeout) {
 
       return {
 
         restrict: 'A',
         scope: true,
-        link: function(scope, elm, attrs){
+        link: function (scope, elm, attrs) {
 
           var new_form = {
             user: {
@@ -36,12 +36,12 @@
             },
             custom_vars: {
 
-              FN: '',
-              LN: '',
+              first_name: '',
+              last_name: '',
               AltEmail: '',
               Phone: '',
               Market: '',
-              AN: ''
+              account_number: ''
 
             },
             tags: [
@@ -60,7 +60,9 @@
             ]
           };
 
-          scope.reset = function(){
+          scope.submited = false;
+
+          scope.reset = function () {
 
             scope.form = angular.copy(new_form);
 
@@ -68,57 +70,86 @@
 
           scope.reset();
 
-          scope.submit = function(){
+          scope.isFilled = function () {
+            console.log(scope.form
+              , scope.form.user.email
+              , scope.form.custom_vars.first_name
+              , scope.form.custom_vars.last_name
+              , scope.form.custom_vars.Phone
+              , scope.form.custom_vars.Market
+              , scope.form.custom_vars.account_number);
+            if (
+              scope.form
+              && scope.form.user.email
+              && scope.form.custom_vars.first_name
+              && scope.form.custom_vars.last_name
+              && scope.form.custom_vars.Phone
+              && scope.form.custom_vars.Market
+              && scope.form.custom_vars.account_number
+            ) {
+              return true;
+            } else {
+              return false;
+            }
+          };
 
-            var data_tags = scope.form.tags.filter(function(tag){return tag.checked;}).map(function(tag){ return tag.name; });
+          scope.submit = function () {
 
-            update_user_full(scope.form.user, scope.form.custom_vars, data_tags)
+            if (scope.isFilled()) {
+
+              var data_tags = [];
+
+              if ($('.js-create-checkbox.this-active.sms').length) {
+                data_tags.push('Send SMS');
+              }
+
+              if ($('.js-create-checkbox.this-active.email').length) {
+                data_tags.push('Send Email');
+              }
+
+              update_user_full(scope.form.user, scope.form.custom_vars, data_tags)
+
+            }
 
           };
 
-          function update_user(user, custom_vars, tags){
+          function update_user(data, tags) {
 
-            return $q(function(resolve, reject){
+            return $q(function (resolve, reject) {
+              if (!data.custom_vars.AltEmail) {
+                delete data.custom_vars.AltEmail;
+              }
+              sp.send('vars.add', data, function (vars_res) {
 
-              sp.send('users.update', user, function(user_res){
-                if(user_res.status == 'ok'){
+                if (vars_res.status == 'ok') {
 
-                  sp.send('vars.add', custom_vars, function(vars_res){
+                  sp.send('tags.add', {user: data.user, tags: tags}, function (tags_res) {
 
-                    if(vars_res.status == 'ok'){
+                    if (tags_res.status == 'ok') {
 
-                      sp.send('tags.add', tags, function(tags_res){
-
-                        if(tags_res.status == 'ok') {
-
-                          resolve({ user_res: user_res, vars_res: vars_res, tags_res: tags_res });
-
-                        }
-
-                        else {
-                          reject({ user_res: user_res, vars_res: vars_res, tags_res: tags_res });
-                        }
-
-                      });
+                      resolve({vars_res: vars_res, tags_res: tags_res});
 
                     }
+
                     else {
-                      reject({ user_res: user_res, vars_res: vars_res });
+                      reject({vars_res: vars_res, tags_res: tags_res});
                     }
 
                   });
 
                 }
                 else {
-                  reject({ user_res: user_res });
+                  reject({vars_res: vars_res});
                 }
+
               });
+
 
             });
 
           }
 
-          function update_user_full(user, custom_vars, tags){
+          function update_user_full(user, custom_vars, tags) {
 
             tags.push(custom_vars.Market);
 
@@ -133,26 +164,26 @@
 
             };
 
-            var user_2 = {
+            if (custom_vars.AltEmail) {
+              var user_2 = {
 
-              user: {
+                user: {
 
-                email: custom_vars.AltEmail
+                  email: custom_vars.AltEmail
 
-              },
-              custom_vars: {
+                },
+                custom_vars: {
+                  first_name: custom_vars.first_name,
+                  last_name: custom_vars.last_name,
+                  AltEmail: user.email,
+                  Phone: custom_vars.Phone,
+                  Market: custom_vars.Market,
+                  account_number: custom_vars.account_number
 
-                FN: custom_vars.FN,
-                LN: custom_vars.LN,
-                AltEmail: user.email,
-                Phone: custom_vars.Phone,
-                Market: custom_vars.Market,
-                AN: custom_vars.AN
+                }
 
-              }
-
-            };
-
+              };
+            }
             var user_3 = {
 
               user: {
@@ -161,29 +192,41 @@
 
               },
               custom_vars: {
-
-                FN: custom_vars.FN,
-                LN: custom_vars.LN,
+                first_name: custom_vars.first_name,
+                last_name: custom_vars.last_name,
                 email: user.email,
                 AltEmail: custom_vars.AltEmail,
                 Market: custom_vars.Market,
-                AN: custom_vars.AN
+                account_number: custom_vars.account_number
 
               }
 
             };
 
-            var first = update_user(user_1.user, user_1.custom_vars, tags);
-            var second = update_user(user_2.user, user_2.custom_vars, tags);
-            var third = update_user(user_3.user, user_3.custom_vars, tags);
+            var first = update_user(user_1, tags);
+            if (custom_vars.AltEmail) {
+              var second = update_user(user_2, tags);
+            } else {
+              var second = function () {
+                return $q(function (resolve) {
+                  resolve();
+                })
+              }
+            }
+            var third = update_user(user_3, tags);
 
-            $q.all([ first, second, third ]).then(function(data){
+            $q.all([first, second, third]).then(function (data) {
 
-              console.log('ZAEBIS');
+              scope.reset();
+              scope.submited = true;
+              $('.sp_common-selectize.market')[0].selectize.setValue('');
 
-            }, function(data){
+              $timeout(function () {
+                scope.submited = false;
+              }, 3000);
 
-              console.log('NE ZAEBIS');
+
+            }, function (data) {
 
 
             });
@@ -209,17 +252,16 @@
 
     })
 
-    .directive('select', function($timeout){
+    .directive('select', function ($timeout) {
 
       return {
 
         restrict: 'A',
-        link: function(scope, elm){
+        link: function (scope, elm) {
 
-          $timeout(function(){
+          $timeout(function () {
             $(elm).selectize({
-              onChange: function() {
-
+              onChange: function () {
 
 
               }
