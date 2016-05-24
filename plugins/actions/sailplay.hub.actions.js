@@ -92,7 +92,7 @@
 
     function parse_frame(){
       var styles = dom.getAttribute('data-styles');
-
+      var text = dom.getAttribute('data-text');
 
       var action_frame = document.createElement('IFRAME');
       action_frame.style.border = 'none';
@@ -124,6 +124,7 @@
 
       if(action['_actionId']) frame_params._actionId = action._actionId;
       if(styles) frame_params.styles = styles;
+      if(text) frame_params.text = text;
 
       if (action.action == 'purchase') {
         frame_params.purchasePublicKey = _actions_config.purchasePublicKey;
