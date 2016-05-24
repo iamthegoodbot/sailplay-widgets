@@ -447,7 +447,13 @@ var SAILPLAY = (function () {
       return;
     }
 
-    JSONP.get(_config.DOMAIN + '/js-api/' + _config.partner.id + '/users/update/', params, function(res){
+    var data = params;
+
+    if(_config.auth_hash) {
+      data.auth_hash = _config.auth_hash;
+    }
+
+    JSONP.get(_config.DOMAIN + '/js-api/' + _config.partner.id + '/users/update/', data, function(res){
 
       callback && callback(res);
 
