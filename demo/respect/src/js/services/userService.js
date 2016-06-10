@@ -62,7 +62,7 @@
                     sp.on('tags.exist.success', function (res) {
                         resolve(angular.extend({},  res.tags));
                     });
-                    sp.send('tags.exist', tags);
+                    sp.send('tags.exist', {tags : tags});
                 });
             };
 
