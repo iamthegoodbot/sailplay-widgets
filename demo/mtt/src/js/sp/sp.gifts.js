@@ -1,0 +1,114 @@
+(function () {
+
+  angular.module('sp.gifts', [])
+
+    .directive('sailplayGifts', function (sp, sp_api, $timeout, $rootScope, $filter) {
+
+      return {
+
+        restrict: 'A',
+        replace: false,
+        scope: true,
+        link: function (scope) {
+
+          scope.gifts = sp_api.data('load.gifts.list');
+          scope.categories = sp_api.data('load.gifts.categories');
+          scope.user = sp_api.data('load.user.info');
+          scope.gifts_by_category = {};
+
+          scope.hasGift = function (item) {
+            return item.length
+          };
+
+          scope.notEmpty = function (item) {
+            return item.count
+          };
+
+          var loaded = 0;
+
+          sp.on('load.gifts.categories.success', function () {
+            loaded++;
+            sort_gift_by_category();
+          });
+
+          sp.on('load.gifts.list.success', function () {
+            loaded++;
+            sort_gift_by_category();
+          });
+
+          function sort_gift_by_category() {
+
+            if (loaded != 2)return;
+
+            if ($('.bon_slide_cat_item_wrap.cycle-slide').length) {
+              $('.bon_slide_cat_item_wrap.cycle-slide').remove();
+            }
+
+            scope.gifts_by_category = {};
+
+            loaded = 0;
+
+            scope.categories().forEach(function (category) {
+
+              scope.gifts_by_category[category.id] = scope.gifts().filter(function (gift) {
+
+                return category.id == gift.category;
+
+              });
+
+              category.count = scope.gifts_by_category[category.id].length;
+
+            });
+
+            $rootScope.$apply();
+
+          }
+
+          sp.on('gift.purchase.error', function (res) {
+
+            $rootScope.$broadcast('notifier:notify', {
+
+              header: 'Ошибка!',
+              body: res.message || 'К сожалению, вы не получили подарок'
+
+            });
+
+            $rootScope.$apply();
+
+          });
+
+
+          scope.gift_purchase = function (gift) {
+
+            if (scope.user().user_points.confirmed < gift.points) return;
+            sp.send('gifts.purchase', {gift: gift});
+
+          };
+
+          sp.on('gift.purchase.force_complete.success', function (res) {
+
+            scope.$apply(function () {
+
+              $rootScope.$broadcast('notifier:notify', {
+
+                header: 'Спасибо! Вы выбрали подарок!',
+                body: 'С Вашего бонусного счета было списано ' + res.points_delta + ' ' + $filter('sailplay_pluralize')(res.points_delta, 'балл,балла,баллов') + '. Подробная информация по получению подарка направлена Вам на электронную почту.'
+
+              });
+
+              sp_api.call('load.user.categories');
+              sp_api.call('load.gifts.list');
+              sp_api.call('load.user.info');
+              sp_api.call('load.user.history');
+
+            });
+
+          });
+
+        }
+
+      };
+
+    });
+
+}());
