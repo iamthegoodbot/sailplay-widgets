@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<link rel="stylesheet/less" type="text/css" href="css/style.less">
+	<link href="font/stylesheet.css" rel="stylesheet">
+	<script type="text/javascript" src="js/jquery-1.12.3.js"></script>
+	<script type="text/javascript" src="js/less.min.js"></script>
+</head>
+<body>
+<div class="bns_overlay bns_overlay_email">
+	<div class="bns_overlay_iner">
+		<a href="#" class="bns_close"></a>
+		<div class="bns_overlay_left">
+		</div>
+		<div class="bns_overlay_right">
+			<span class="bns_over_text">
+				Оставьте свой email и получите муфту для коляски в подарок при оформлении заказа
+			</span>
+			<span class="bns_over_error">
+				E-mail адрес не введен
+			</span>
+			<div class="bns_over_input">
+				<div class="bns_ava"></div>
+				<input type="text" placeholder="Адрес эл. почты">
+			</div>
+			<input type="submit" value="Отправить">
+		</div>
+	</div>
+</div>
+<a href="#" class="open_popup">Открыть попап</a>
+<script>
+	$( document ).ready(function() {
+		$('.open_popup').click(function(){
+			$('.bns_overlay_email').fadeIn();
+			return false;
+		})
+		$('.bns_overlay, .bns_close').click(function(){
+			$('.bns_overlay').fadeOut();
+			return false;
+		})
+		$('.bns_overlay_iner').click(function(event){
+			event.stopPropagation()
+		})
+		$('.bns_overlay_right input[type="submit"]').click(function(){
+			if($('.bns_overlay_right input[type="text"]').val()==''){
+				$('.bns_over_error').addClass('act');
+				return false;
+			} else {
+				$('.bns_over_error').removeClass('act');
+			}
+
+		})
+	})
+</script>
+
+</body>
+</html>

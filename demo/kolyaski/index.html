@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title></title>
+  <meta name="keywords" content=""/>
+  <meta name="description" content=""/>
+
+  <script>
+
+    window.sailplay_config = {
+
+      partner_id: 1566,
+      domain: 'https://sailplay.ru',
+      lang: 'ru'
+
+    };
+
+    (function(d, s, id){
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "dist/js/sailplay.kolyaski.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'sailplay-kolyaski'));
+
+  </script>
+
+</head>
+<body>
+
+<button type="button" class="open_popup" onclick="SAILPLAY.send('lead.show');">Открыть попап</button>
+
+</body>
+</html>

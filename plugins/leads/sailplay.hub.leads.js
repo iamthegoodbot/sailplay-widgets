@@ -54,7 +54,7 @@
 
       var params = sp.serialize(self.form);
 
-      sp.send('users.update', params, function(user_res){
+      sp.send('user.update', params, function(user_res){
 
         if(user_res.status === 'ok' && self.tags.length > 0){
 
@@ -72,13 +72,14 @@
 
         else if (user_res.status === 'ok' && self.tags.length == 0){
           sp.send('leads.submit.success', { lead: self, response: user_res });
+          callback && callback({ lead: self, response: user_res });
         }
 
         else {
           sp.send('leads.submit.error', { lead: self, response: user_res });
+          callback && callback({ lead: self, response: user_res });
         }
 
-        callback && callback({ lead: self, response: user_res });
 
       });
 

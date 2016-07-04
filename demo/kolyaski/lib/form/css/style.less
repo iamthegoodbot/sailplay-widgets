@@ -1,0 +1,137 @@
+.bns_overlay {
+	position: fixed;
+	left: 0px;
+	top:0px;
+	width: 100%;
+	height: 100%;
+	z-index: 10000;
+	background-color: rgba(0,0,0,0.3);
+	display: block;
+	.bns_overlay_iner {
+		position: absolute;
+		left:50%;
+		top:50%;
+		width: 714px;
+		height: 314px;
+		margin-left:-357px;
+		margin-top: -157px;
+		font-family: 'Franklin Gothic Book';
+		-webkit-box-shadow: 0 0 10px 0 #000000;
+		box-shadow: 0 0 10px 0 #000000;
+		border-radius: 20px;
+		.bns_overlay_left {
+			float: left;
+			width: 310px;
+			height:100%;
+			position: absolute;
+			top:0px;
+			left: 0px;
+			background-image: url(../img/over_left_bg.png);
+			border-radius: 20px 0 0 20px;
+		}
+		.bns_overlay_right {
+			float: right;
+			width: 404px;
+			height: 100%;
+			background-color: #FFFFFF;
+			background-image: url(../img/over_right_bg.png);
+			background-repeat:no-repeat;
+			background-position: 1px 2px;
+			border-radius: 0 20px 20px 0;
+			.bns_over_text {
+				float: left;
+				width: 80%;
+				margin-left: 10%;
+				line-height: 26px;
+				font-size: 16px;
+				color: #484754;
+				margin-top:52px;
+				padding-bottom:20px;
+				border-bottom: 1px solid #484754;
+				text-align: center;
+			}
+			.bns_over_error {
+				float: left;
+				width: 90%;
+				margin-left: 5%;
+				line-height: 40px;
+				border: 1px solid #ECCCD1;
+				background-color: #F3DEDE;
+				color: #B04344;
+				font-size: 17px;
+				text-align: center;
+				margin-top: 20px;
+				font-weight: 500;
+				opacity: 0;
+				-webkit-transition: all 300ms ease;
+				-moz-transition: all 300ms ease;
+				-ms-transition: all 300ms ease;
+				-o-transition: all 300ms ease;
+				transition: all 300ms ease;
+				&.act {
+					opacity: 1;
+				}
+			}
+			.bns_over_input {
+				float: left;
+				width: 80%;
+				margin-left: 10%;
+				position: relative;
+				border: 1px solid #A3A2A8;
+				border-radius: 5px;
+				overflow: hidden;
+				margin-top:16px;
+				.bns_ava {
+					background-image: url(../img/profile_icon.png);
+					background-position: center center;
+					background-repeat: no-repeat;
+					border-right: 1px solid #A3A2A8;
+					position: absolute;
+					left: 0px;
+					top:0px;
+					width: 39px;
+					height: 100%;
+				}
+				input {
+					float: left;
+					width: 100%;
+					height: 32px;
+					padding-left: 50px;
+					color: #A3A2A8;
+					font-size: 15px;
+					box-sizing: border-box;
+					border: 0px;
+					background-color: transparent;
+					outline: none;
+				}
+			}
+			input[type="submit"] {
+				float: left;
+				width: 60%;
+				margin-left: 20%;
+				height: 34px;
+				background-color: #337AB7;
+				color: #fff;
+				font-size: 17px;
+				font-weight: 500;
+				border: 0px;
+				margin-top: 20px;
+				border-radius: 5px;
+			}
+		}
+		.bns_close {
+			position: absolute;
+			right: -15px;
+			top: -15px;
+			background-image: url(../img/over_close.png);
+			display: block;
+			width: 36px;
+			height: 35px;
+		}
+	}
+}
+
+
+
+
+////
