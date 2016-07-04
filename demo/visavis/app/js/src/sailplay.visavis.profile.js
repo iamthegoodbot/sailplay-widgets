@@ -2,6 +2,15 @@
 
   angular.module('visavis.profile', [ 'visavis' ])
 
+    .filter('pointsDelta', function(){
+        return function (items) {
+            if (!items) return false;
+            return items.filter(function (el) {
+                return el.points_delta;
+            });
+        }
+    })
+
     .directive('sailplayProfile', function($timeout){
 
       return {
@@ -11,7 +20,7 @@
                     <div class="spvv-inline" data-ng-show="user">\
                       <div class="spvv-bl__left">\
                         <div class="spvv-history">\
-                          <div class="spvv-history__i" data-dir-paginate="item in history | itemsPerPage: 10">\
+                          <div class="spvv-history__i" data-dir-paginate="item in history | pointsDelta | itemsPerPage: 10 ">\
                             <div class="spvv-history__i-date">\
                               {{ item.action_date | date:\'dd.MM.yyyy\' }}\
                             </div>\

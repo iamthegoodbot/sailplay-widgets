@@ -1,0 +1,443 @@
+// 960 985
+.jones-test-outer {
+//	padding-top: 136px;
+	@media (max-width: (@screen-md-min - 1px)) {
+		padding: 40px 30px;
+	}
+}
+.jones-top-line {
+	background-color: #F5F5F5;
+	height: 46px;
+	.border-top-radius(5px);
+}
+.jones-test-head {
+	.clearfix();
+	position: relative;
+	max-width: 985px;
+	min-height: 185px;
+	border-top: 3px solid #00CFAC;
+	border-bottom: 2px solid #006649;
+
+	background: #00825D;
+
+	padding-bottom: 20px;
+	padding-top: 44px;
+	padding-left: 103px;
+	padding-right: 103px;
+
+	#gradient.radial(#009D82, #008561);
+	@media (max-width: (@screen-md-min - 1px)) {
+		margin-left: -14px;
+		margin-right: -14px;
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+	
+	.border-top-radius(7px);
+	&__logo {
+		display: block;
+		float: left;
+		@media (max-width: (@screen-md-min - 1px)) {
+			float: none;
+			text-align: center;
+			margin-bottom: 20px;
+		}
+	}
+	&__content {
+		float: left;
+		margin-left: 43px;
+		margin-top: 24px;
+		@media (max-width: (@screen-md-min - 1px)) {
+			text-align: center;
+			float: none;
+			margin-left: 0;
+		}
+	}
+	&__text {
+  		font-family: 'Rockwell_MT';
+		font-size: 39px;
+		line-height: 1;
+		font-weight: 700;
+		color: #fff;
+		letter-spacing: 1px;
+		margin-bottom: 9px;
+		@media (max-width: (@screen-md-min - 1px)) {
+			font-size: 35px;
+		}
+		@media (max-width: (@screen-sm-min - 1px)) {
+			font-size: 30px;
+		}
+		@media (max-width: (@screen-xs-min - 1px)) {
+		}
+	}
+	&__caption {
+		font-size: 15px;
+		font-weight: 300;
+		line-height: 1;
+		color: #fff;
+	}
+	&__note {
+		display: inline-block;
+		position: relative;
+		&:after {
+			.picon();
+			left: 1px;
+			right: -4px;
+			top: 110%;
+			height: 1px;
+			background: url("@{burl}dashed.png") repeat-x 0 0;
+		}
+		font-size: 17px;
+		font-weight: 700;
+	}
+	&__shadow-left {
+		position: absolute;
+		left: 0;
+		top: 0;
+		height: 100%;
+		width: 15px;
+		#gradient.horizontal(rgba(0,0,0,0.2); rgba(0,0,0,0); 0%; 100%);
+		&:after {
+			.picon();
+			width: 14px;
+			height: 13px;
+			top: 100%;
+			left: 0;
+			margin-top: 2px;
+			.sprite(0, 0);
+		}
+	}
+	&__shadow-right {
+		position: absolute;
+		right: 0;
+		top: 0;
+		height: 100%;
+		width: 15px;
+		#gradient.horizontal(rgba(0,0,0,0); rgba(0,0,0,0.2); 0%; 100%);
+		&:after {
+			.picon();
+			width: 14px;
+			height: 13px;
+			top: 100%;
+			right: 0;
+			margin-top: 2px;
+			.sprite(16px, 0);
+		}
+	}
+}
+
+
+.jones-test-body {
+	background-color:  #fff;
+	border-top: 3px solid #B8B8B8;
+	min-height: 500px;
+
+	padding-top: 54px;
+	padding-bottom: 50px;
+	@media (max-width: (@screen-md-min - 1px)) {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+	@media (max-width: (@screen-sm-min - 1px)) {
+	}
+	@media (max-width: (@screen-xs-min - 1px)) {
+	}
+}
+
+.jones-test-item {
+	position: relative;
+	max-width: 780px;
+	min-height: 142px;
+	padding: 49px 78px 52px;
+	background-color: #fff;
+	margin: 0 auto 12px;
+	.box-shadow(0px 0px 10px rgba(0,0,0,0.4));
+	.rounded(4px);
+	.clearfix();
+	@media (max-width: (@screen-md-min - 1px)) {
+		padding: 49px 60px 52px;
+	}
+	@media (max-width: (@screen-sm-min - 1px)) {
+		padding: 74px 20px 52px;
+	}
+	@media (max-width: (@screen-xs-min - 1px)) {
+	}
+	&__num {
+		position: absolute;
+		top: 36px;
+		left: -13px;
+		width: 56px;
+		height: 56px;
+
+		.border-top-radius(4px);
+		.border-right-radius(4px);
+
+		padding-top: 13px;
+
+    	font-family: 'Rockwell_MT';
+    	font-weight: 700;
+		color: #fff;
+		text-align: center;
+		font-size: 28px;
+		line-height: 1;
+		background-color: #008B69;
+		&.this-red {
+			background-color: #E2121B;
+			.jones-test-item__num-shad:after {
+				.bpos(32px, 0px);
+			}
+		}
+		@media (max-width: (@screen-md-min - 1px)) {
+		}
+		@media (max-width: (@screen-sm-min - 1px)) {
+			top: 10px;
+		}
+		@media (max-width: (@screen-xs-min - 1px)) {
+		}
+	}
+	&__num-shad {
+		position: absolute;
+		left: 0;
+		top: 0;
+		height: 100%;
+		width: 13px;
+		border-top-left-radius: 4px;
+		#gradient.horizontal(rgba(0,0,0,0.2); rgba(0,0,0,0); 0%; 100%);
+
+		&:after {
+			.picon();
+			width: 13px;
+			height: 12px;
+			top: 100%;
+			left: 0;
+			.sprite(47px, 0px);
+		}
+		&:before {
+			.picon();
+			width: 35px;
+			height: 4px;
+			top: 100%;
+			left: 100%;
+			background-color: #DEE2E1;
+			border-bottom-right-radius: 8px;
+		}
+	}
+	&__col-left {
+		float: left;
+		width: 50%;
+		@media (max-width: (@screen-md-min - 1px)) {
+			width: 100%;
+			margin-bottom: 18px;
+		}
+		@media (max-width: (@screen-sm-min - 1px)) {
+		}
+		@media (max-width: (@screen-xs-min - 1px)) {
+		}
+
+	}
+	&__col-right {
+		float: left;
+		width: 50%;
+		@media (max-width: (@screen-md-min - 1px)) {
+			width: 100%;
+			margin-bottom: 18px;
+		}
+		@media (max-width: (@screen-sm-min - 1px)) {
+		}
+		@media (max-width: (@screen-xs-min - 1px)) {
+		}
+	}
+
+	&__text {
+		margin-bottom: 8px;
+
+		font-size: 16px;
+		font-weight: 500;
+		color: #000;
+	}
+	&__tips {
+		margin-bottom: 10px;
+
+		font-size: 14px;
+		font-weight: 300;
+		color: #949494;
+	}
+
+	&__block-param {
+		margin-bottom: 18px;
+		font-size: 14px;
+		font-weight: 300;
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+	&__fields-wr {
+		margin-top: 44px;
+	}
+	&__checks-wr {
+		margin-top: 28px;
+	}
+}
+
+// 31 95
+.jones-test-set {
+	.clearfix();
+	margin-bottom: 30px;
+	&:last-child {
+		margin-bottom: 0;
+	}
+
+	@width: 31%;
+	&__left {
+		float: left;
+		width: @width;
+		padding-right: 15px;
+		@media (max-width: (@screen-md-min - 1px)) {
+			width: 100%;
+		}
+		@media (max-width: (@screen-sm-min - 1px)) {
+		}
+		@media (max-width: (@screen-xs-min - 1px)) {
+		}
+	}
+	&__right {
+		float: left;
+		width: 100% - @width;
+		@media (max-width: (@screen-md-min - 1px)) {
+			width: 100%;
+		}
+		@media (max-width: (@screen-sm-min - 1px)) {
+		}
+		@media (max-width: (@screen-xs-min - 1px)) {
+		}
+	}
+	&__label {
+		&.this-padded {
+			padding-top: 14px;
+		}
+		&.this-sex-label {
+			padding-top: 3px;
+		}
+		font-size: 16px;
+		font-weight: 500;
+		line-height: 1;
+		@media (max-width: (@screen-md-min - 1px)) {
+			margin-bottom: 10px;
+		}
+		@media (max-width: (@screen-sm-min - 1px)) {
+		}
+		@media (max-width: (@screen-xs-min - 1px)) {
+		}
+	}
+
+	&__inp-left {
+		float: left;
+		width: 50%;
+		padding-right: 3px;
+		@media (max-width: (@screen-md-min - 1px)) {
+		}
+		@media (max-width: (@screen-sm-min - 1px)) {
+			width: 100%;
+			margin-bottom: 10px;
+            padding-right: 0;
+		}
+		@media (max-width: (@screen-xs-min - 1px)) {
+		}
+	}
+	&__inp-right {
+		float: left;
+		width: 50%;
+		padding-left: 3px;
+		@media (max-width: (@screen-md-min - 1px)) {
+		}
+		@media (max-width: (@screen-sm-min - 1px)) {
+			width: 100%;
+			margin-bottom: 10px;
+            padding-left: 0;
+		}
+		@media (max-width: (@screen-xs-min - 1px)) {
+		}
+	}
+}
+
+
+.jones-test-date {
+	.clearfix();
+
+	&__day {
+		float: left;
+		width: 25.58%;
+		padding-right: 3px;
+		@media (max-width: (@screen-md-min - 1px)) {
+		}
+		@media (max-width: (@screen-sm-min - 1px)) {
+			width: 100%;
+			padding: 0;
+			margin-bottom: 10px;
+		}
+		@media (max-width: (@screen-xs-min - 1px)) {
+		}
+	}
+	&__month {
+		float: left;
+		width: 48.83%;
+		padding-left: 3px;
+		padding-right: 3px;
+		@media (max-width: (@screen-md-min - 1px)) {
+		}
+		@media (max-width: (@screen-sm-min - 1px)) {
+			width: 100%;
+			padding: 0;
+			margin-bottom: 10px;
+		}
+		@media (max-width: (@screen-xs-min - 1px)) {
+		}
+	}
+	&__year {
+		float: left;
+		width: 25.59%;
+		padding-left: 3px;
+		@media (max-width: (@screen-md-min - 1px)) {
+		}
+		@media (max-width: (@screen-sm-min - 1px)) {
+			width: 100%;
+			padding: 0;
+			margin-bottom: 10px;
+		}
+		@media (max-width: (@screen-xs-min - 1px)) {
+		}
+	}
+}
+
+.jones-test-btn {
+	display: block;
+	margin: 50px auto 0;
+
+	max-width: 550px;
+	height: 65px;
+	border-bottom: 5px solid #00735E;
+	background-color: #008B69;
+	.rounded(5px);
+	cursor: pointer;
+	text-align: center;
+    font-family: 'Rockwell_MT';
+	font-size: 20px;
+	font-weight: 700;
+	letter-spacing: 1px;
+
+	padding-top: 19px;
+	color: #fff;
+	.alink(#fff);
+	.trans();
+	.text-shadow(0px 2px 5px rgba(0,0,0,0.5));
+	&:hover {
+		background-color: lighten(#008B69, 2%)
+	}
+	&:active {
+	}
+	&.this-disabled {
+		background-color: #DEE2E1;
+		border-bottom-color: #C3C7C6;
+		cursor: default;
+	}
+}

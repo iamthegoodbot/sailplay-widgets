@@ -11,7 +11,7 @@
         view: 'Оставил отзыв'
       };
 
-      var cssLink = 'http://dev4you.info/test/respect/btns_styles.css';
+      var cssLink = 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/ddf86ff4133efc2e52e7b4a0deab2b73.css';
 
       self.loadList = function () {
         self.actions = [];
@@ -35,7 +35,8 @@
         if (!action) return 'Нет описания';
         var obj = {
           like: 'Вступить в группу ',
-          partner_page: 'Рассказать о нас друзьям в '
+          partner_page: 'Рассказать о нас друзьям в ',
+          purchase: 'Рассказать о покупке в '
         };
         var socObj = {
           fb: 'Facebook',

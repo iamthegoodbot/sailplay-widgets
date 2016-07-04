@@ -47,10 +47,4 @@
 
         }]);
 
-    document.createElement('gifts-cmp');
-    var elems = document.querySelectorAll('gifts-cmp');
-    for (var i = 0; i < elems.length; i += 1) {
-        angular.bootstrap(elems[i], ['respect.directives.gifts']);
-    }
-
 }(window.angular, window.SAILPLAY, window.$));
