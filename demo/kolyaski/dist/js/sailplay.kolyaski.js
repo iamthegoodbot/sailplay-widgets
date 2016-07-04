@@ -946,6 +946,8 @@ var SAILPLAY = (function () {
 
   sp.jsonp = JSONP;
 
+  sp.cookies = cookies;
+
   sp.is_dom = function (obj) {
     //Returns true if it is a DOM node
 
@@ -1393,7 +1395,7 @@ var SAILPLAY = (function () {
     });
 
     sp.on('user.update.success', function(){
-
+      sp.cookies.createCookie('sailplay_lead_submitted', true);
       sp.send('lead.hide');
       error.style.opacity = 0;
 
@@ -1406,6 +1408,13 @@ var SAILPLAY = (function () {
 
     });
 
+    if(!sp.cookies.readCookie('sailplay_lead_submitted')){
+      setTimeout(function(){
+
+        sp.send('lead.show');
+
+      }, window.sailplay_config.timeout || 20000);
+    }
 
   });
 

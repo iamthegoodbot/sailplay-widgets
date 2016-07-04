@@ -946,6 +946,8 @@ var SAILPLAY = (function () {
 
   sp.jsonp = JSONP;
 
+  sp.cookies = cookies;
+
   sp.is_dom = function (obj) {
     //Returns true if it is a DOM node
 
