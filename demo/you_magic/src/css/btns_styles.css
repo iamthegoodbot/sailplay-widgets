@@ -1,0 +1,16 @@
+.vk_share_btn, .fb_share_btn, .ok_share_btn {
+    height: 49px;
+    font-family: Arial;
+    box-sizing: border-box;
+    width: 170px;
+    line-height: 47px;
+    text-decoration: none;
+    color: #FFFFFF;
+    font-size: 15px;
+    border-radius: 47px;
+    background-color: #95B841;
+    text-align: center;
+    transition: all 300ms ease;
+    display: inline-block;
+    cursor: pointer;
+}
