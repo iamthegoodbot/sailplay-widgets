@@ -79,6 +79,8 @@
           scope.test_data = tests_service.getData;
           scope.current_test = null;
 
+          scope.full_profile = false;
+
           scope.refer_flag = refer_flag;
 
           scope.refers = refer_tags;
@@ -108,16 +110,6 @@
           };
 
           scope.vars = angular.copy(ipCookie('sailplay_vars'));
-
-          if (ipCookie('sailplay_profile_full')) {
-
-            $('.bns_edit_prog_hide').slideDown();
-
-          } else {
-
-            $('.bns_edit_prog_hide').slideUp();
-
-          }
 
           scope.check_in_list = function (action) {
             return action && actions_data && actions_data.social && action.socialType && action.action && actions_data.social[action.socialType] && actions_data.social[action.socialType][action.action] ? true : false;
@@ -181,7 +173,7 @@
                 && (scope.user().user.middle_name == form.middleName)
                 && (scope.user().user.phone == form.addPhone.replace(/\D/g, ''))
                 && (scope.user().user.email == form.addEmail)
-                && !ipCookie('sailplay_profile_full')
+                && !scope.full_profile
               ) {
                 return false;
               } else {
@@ -255,6 +247,21 @@
 
             scope.ref_tags = [];
 
+            if (scope.getExist(scope.exist(), user_service.getTags().fill_profile)) {
+              scope.full_profile = true;
+            }
+
+            if (scope.full_profile) {
+
+              $('.bns_edit_prog_hide').slideDown();
+
+            } else {
+
+              $('.bns_edit_prog_hide').slideUp();
+
+            }
+
+
             if (!res || !res.tags) return;
 
             var _tag = null;
@@ -320,20 +327,17 @@
 
               }
 
-              !scope.getExist(scope.exist(), user_service.getTags().add_info) && _add_tags.push(user_service.getTags().add_info);
+              if (!scope.getExist(scope.exist(), user_service.getTags().add_info) && scope.form.birthDate && scope.form.birthDate[0] && scope.form.birthDate[1] && scope.form.birthDate[2] && Object.keys(scope.vars).length) {
+
+                _add_tags.push(user_service.getTags().add_info);
+
+              }
 
             }
 
             if (_add_tags && _add_tags.length) {
 
               sp_api.call('tags.add', {tags: _add_tags}, function () {
-
-                if (!ipCookie('sailplay_profile_full')) {
-
-                  ipCookie('sailplay_profile_full', true);
-                  $('.bns_edit_prog_hide').slideDown();
-
-                }
 
                 send_vars();
 
@@ -353,8 +357,17 @@
 
             if (!scope.vars || !Object.keys(scope.vars).length || angular.equals(scope.vars, ipCookie('sailplay_vars'))) {
 
-              $('.bns_overlay_edit_prof').hide();
-              $('html').removeClass('overflow_hidden');
+              if (!scope.full_profile) {
+
+                scope.full_profile = true;
+
+                $('.bns_edit_prog_hide').slideDown();
+
+              } else {
+
+                closeProfile();
+
+              }
 
               return;
 
@@ -511,6 +524,47 @@
               scope.next()
 
             }
+
+          };
+
+          scope.prev = function () {
+
+            if (scope.step - 1 >= 1) {
+
+              scope.remove_answers(scope.step);
+
+              scope.step--;
+
+              scope.remove_answers(scope.step);
+
+            }
+
+          };
+
+          scope.remove_answers = function (step) {
+
+            if (!scope.current_test.data[step - 1]) return;
+
+            scope.current_test.data[step - 1].answers.forEach(function (item) {
+
+              item.model = false;
+
+              if (item.writable) {
+
+                delete scope.send_data.vars[item.tag]
+
+              }
+
+              var _index = scope.send_data.tags.indexOf(item.tag);
+
+              if(_index != -1) {
+
+                scope.send_data.tags.splice(_index, 1);
+
+              }
+
+
+            });
 
           };
 

@@ -105,7 +105,6 @@
 
         ipCookie('sailplay_vars', null);
         ipCookie('sailplay_form', null);
-        ipCookie('sailplay_profile_full', null);
 
       });
 

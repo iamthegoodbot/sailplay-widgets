@@ -18,6 +18,17 @@
 .overflow_hidden {
   overflow: hidden;
 }
+.bns_logout {
+  color: #808080;
+  font-size: 14px;
+  line-height: 20px;
+  font-family: 'Roboto', sans-serif;
+  position: absolute;
+  left: 0;
+  top: 110px;
+  width: 100px;
+  text-align: center;
+}
 .notify_link {
   width: 170px;
   line-height: 47px;
@@ -54,8 +65,8 @@ html {
   top: 50%;
   width: 790px;
   -webkit-font-smoothing: subpixel-antialiased;
-  -webkit-transform: translateX(-50%) translateY(-50%) translateZ(0) scale(1, 1);
-  transform: translateX(-50%) translateY(-50%) translateZ(0) scale(1, 1);
+  -webkit-transform: translateX(-50%) translateY(-50%) scale(1, 1);
+  transform: translateX(-50%) translateY(-50%) scale(1, 1);
   background-color: #fff;
   padding: 20px 40px;
   border-radius: 10px;
@@ -247,6 +258,21 @@ html {
 .bns_overlay .b_about_main .b_about_item .bai_text h4 {
   font-size: 18px;
   color: #913494;
+}
+input[type="button"] {
+  float: left;
+  width: 174px;
+  height: 46px;
+  background-color: #95B841;
+  color: #fff;
+  font-size: 15px;
+  border: 0px;
+  border-radius: 46px;
+  margin-top: 25px;
+}
+input[type="button"]:disabled {
+  opacity: .7;
+  cursor: default;
 }
 .bns_overlay_edit_prof {
   overflow: auto;
@@ -686,6 +712,7 @@ html {
 .bns_prof_info .bns_prof_left {
   float: left;
   width: 340px;
+  position: relative;
 }
 .bns_prof_info .bns_prof_left img {
   float: left;

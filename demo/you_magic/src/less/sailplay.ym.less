@@ -25,6 +25,18 @@
   overflow: hidden;
 }
 
+.bns_logout {
+  color: #808080;
+  font-size: 14px;
+  line-height: 20px;
+  font-family: 'Roboto', sans-serif;
+  position: absolute;
+  left: 0;
+  top: 110px;
+  width: 100px;
+  text-align: center;
+}
+
 .notify_link {
   width: 170px;
   line-height: 47px;
@@ -64,8 +76,8 @@ body, html {
     top: 50%;
     width: 790px;
     -webkit-font-smoothing: subpixel-antialiased;
-    -webkit-transform: translateX(-50%) translateY(-50%) translateZ(0) scale(1.0, 1.0);
-    transform: translateX(-50%) translateY(-50%) translateZ(0) scale(1.0, 1.0);
+    -webkit-transform: translateX(-50%) translateY(-50%) scale(1.0, 1.0);
+    transform: translateX(-50%) translateY(-50%)  scale(1.0, 1.0);
     background-color: #fff;
     padding: 20px 40px;
     border-radius: 10px;
@@ -264,6 +276,22 @@ body, html {
         }
       }
     }
+  }
+}
+
+input[type="button"]{
+  float: left;
+  width: 174px;
+  height: 46px;
+  background-color: #95B841;
+  color: #fff;
+  font-size: 15px;
+  border: 0px;
+  border-radius: 46px;
+  margin-top: 25px;
+  &:disabled {
+    opacity: .7;
+    cursor: default;
   }
 }
 
@@ -721,6 +749,7 @@ body, html {
   .bns_prof_left {
     float: left;
     width: 340px;
+    position: relative;
     img {
       float: left;
     }
