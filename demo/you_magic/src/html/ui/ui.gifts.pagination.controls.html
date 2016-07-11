@@ -1,0 +1,9 @@
+<div class="bns_gift_paging" data-ng-if="1 < pages.length || !autoHide">
+
+    <a href="#" data-ng-repeat="pageNumber in pages track by tracker(pageNumber, $index)"
+       data-ng-class="{ act : pagination.current == pageNumber, disabled : pageNumber == '...' }"
+       data-ng-click="$event.preventDefault();setCurrent(pageNumber)">
+        {{ pageNumber }}
+    </a>
+
+</div>
