@@ -202,6 +202,12 @@ html {
   display: inline-block;
   text-decoration: none;
 }
+.bns_overlay .b_about a:first-child {
+  margin-left: 0;
+}
+.bns_overlay .b_about a:last-child {
+  margin-right: 0;
+}
 .bns_overlay .b_about a.cycle-pager-active {
   background-color: #893E90;
 }
@@ -270,6 +276,10 @@ input[type="button"] {
   border-radius: 46px;
   margin-top: 25px;
 }
+input[type="button"]:hover {
+  cursor: pointer;
+  background: #a4cc46;
+}
 input[type="button"]:disabled {
   opacity: .7;
   cursor: default;
@@ -330,6 +340,10 @@ input[type="button"]:disabled {
   border: 0px;
   border-radius: 46px;
   margin-top: 32px;
+}
+.bns_overlay_edit_prof .bns_input_block input[type="submit"]:hover {
+  cursor: pointer;
+  background: #a4cc46;
 }
 .bns_overlay_edit_prof .bns_input_block input[type="submit"]:disabled {
   opacity: .7;
@@ -395,6 +409,8 @@ input[type="button"]:disabled {
 .bns_overlay_edit_prof .bns_input_block .bns_select_check span {
   float: left;
   line-height: 46px;
+  height: 46px;
+  white-space: nowrap;
   font-size: 14px;
   font-weight: 300;
   width: 100%;
@@ -480,6 +496,9 @@ input[type="button"]:disabled {
   margin-top: 20px;
   margin-bottom: 33px;
 }
+.bns_overlay_thx .bns_overlay_iner .bns_qust_text a {
+  color: #95B841;
+}
 .bns_overlay_thx .bns_overlay_iner .bns_thx {
   display: inline-block;
   width: 175px;
@@ -525,7 +544,7 @@ input[type="button"]:disabled {
   display: none;
 }
 .bns_overlay_opros .bns_check label {
-  lable: left;
+  float: left;
   width: 100%;
   box-sizing: border-box;
   line-height: 34px;
@@ -535,6 +554,7 @@ input[type="button"]:disabled {
   font-weight: 300;
   position: relative;
   display: block;
+  cursor: pointer;
 }
 .bns_overlay_opros .bns_check label:before {
   width: 16px;
@@ -547,6 +567,9 @@ input[type="button"]:disabled {
   margin-top: -8px;
   background-color: #A3A3A3;
   border-radius: 3px;
+}
+.bns_overlay_opros .bns_check label.type_radio:before {
+  border-radius: 50%;
 }
 .bns_overlay_opros .bns_check input:checked + label:before {
   background-color: #913494;
@@ -565,6 +588,14 @@ input[type="button"]:disabled {
   border: 0px;
   border-radius: 46px;
   margin-top: 25px;
+}
+.bns_overlay_opros .bns_input_block input[type="submit"]:hover {
+  cursor: pointer;
+  background: #a4cc46;
+}
+.bns_overlay_opros .bns_input_block input[type="submit"]:disabled {
+  opacity: .7;
+  cursor: default;
 }
 @-moz-document url-prefix() {
   .select_block select {

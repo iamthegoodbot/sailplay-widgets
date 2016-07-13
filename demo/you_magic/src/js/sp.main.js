@@ -26,10 +26,26 @@
             $('html').addClass('overflow_hidden');
             return false;
           }).on('click', '.bns_overlay_iner', function (event) {
-            event.stopPropagation()
+            event.stopPropagation();
           }).on('click', '.bns_logout', function () {
             sp_api.call('logout');
             return false;
+          }).on('click', '.scrollToGifts', function () {
+
+            $(element).find('.bns_overlay').fadeOut();
+
+            $('html').removeClass('overflow_hidden');
+
+            setTimeout(function(){
+
+              $('html, body').animate({
+                scrollTop: $(".bns_select_gift").offset().top
+              }, 2000);
+
+            }, 500);
+
+            return false;
+
           });
 
           $(element).find('.cycle-slideshow').cycle();

@@ -216,6 +216,15 @@ body, html {
       margin: 1px;
       display: inline-block;
       text-decoration: none;
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+
       &.cycle-pager-active {
         background-color: #893E90;
         span {
@@ -289,6 +298,10 @@ input[type="button"]{
   border: 0px;
   border-radius: 46px;
   margin-top: 25px;
+  &:hover {
+    cursor: pointer;
+    background: #a4cc46;
+  }
   &:disabled {
     opacity: .7;
     cursor: default;
@@ -352,6 +365,10 @@ input[type="button"]{
       border: 0px;
       border-radius: 46px;
       margin-top: 32px;
+      &:hover {
+        cursor: pointer;
+        background: #a4cc46;
+      }
       &:disabled {
         opacity: .7;
         cursor: default;
@@ -416,6 +433,8 @@ input[type="button"]{
       span {
         float: left;
         line-height: 46px;
+        height: 46px;
+        white-space: nowrap;
         font-size: 14px;
         font-weight: 300;
         width: 100%;
@@ -506,6 +525,9 @@ input[type="button"]{
       color: #242424;
       margin-top: 20px;
       margin-bottom: 33px;
+      a {
+        color: #95B841;
+      }
     }
     .bns_thx {
       display: inline-block;
@@ -555,7 +577,7 @@ input[type="button"]{
       display: none;
     }
     label {
-      lable: left;
+      float: left;
       width: 100%;
       box-sizing: border-box;
       line-height: 34px;
@@ -565,6 +587,7 @@ input[type="button"]{
       font-weight: 300;
       position: relative;
       display: block;
+      cursor: pointer;
       &:before {
         width: 16px;
         height: 16px;
@@ -576,6 +599,11 @@ input[type="button"]{
         margin-top: -8px;
         background-color: #A3A3A3;
         border-radius: 3px;
+      }
+      &.type_radio {
+        &:before {
+          border-radius: 50%;
+        }
       }
     }
     input:checked + label:before {
@@ -595,6 +623,14 @@ input[type="button"]{
       border: 0px;
       border-radius: 46px;
       margin-top: 25px;
+      &:hover {
+        cursor: pointer;
+        background: #a4cc46;
+      }
+      &:disabled {
+        opacity: .7;
+        cursor: default;
+      }
     }
   }
 }

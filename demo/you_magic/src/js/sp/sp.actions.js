@@ -78,6 +78,7 @@
           scope.exist = sp_api.data('tags.exist');
           scope.test_data = tests_service.getData;
           scope.current_test = null;
+          scope.current_step = 1;
 
           scope.full_profile = false;
 
@@ -107,6 +108,13 @@
               items.push(item);
             }
 
+          };
+
+          scope.selectedTags = function (tags, full) {
+            var _len = 70;
+            var _str = tags && tags.length && tags.join(', ') || 'Выберите вариант ответа';
+            _str = !full ? _str.slice(0, _len) : _str;
+            return (!full && _str.length >= _len ? _str + '...' : _str) || _str;
           };
 
           scope.vars = angular.copy(ipCookie('sailplay_vars'));
@@ -139,7 +147,7 @@
               lastName: scope.user && scope.user() && scope.user().user.last_name,
               middleName: scope.user && scope.user() && scope.user().user.middle_name,
               addEmail: scope.user && scope.user() && scope.user().user.email,
-              addPhone: scope.user && scope.user() && scope.user().user.phone && scope.user().user.phone
+              addPhone: scope.user && scope.user() && scope.user().user.phone
             };
             scope.form.birthDate = [null, null, null];
             if (scope.user && scope.user() && scope.user().user.birth_date) {
@@ -293,10 +301,10 @@
                 mes = 'Имя и Фамилия должны иметь длину до 50 символов.';
                 break;
               case -200007:
-                mes = 'Такой телефон уже используется.';
+                mes = 'Пользователь с таким номером телефона уже зарегистрирован. Пожалуйста, введите другой  номер.';
                 break;
               case -200010:
-                mes = 'Такой email уже используется.';
+                mes = 'Пользователь с таким email уже зарегистрирован. Пожалуйста, введите другой  email.';
                 break;
               default:
                 mes = res.message;
@@ -468,238 +476,5 @@
       };
 
     })
-
-    .directive('sailplayTest', function (sp, sp_api, $rootScope) {
-
-      return {
-
-        restrict: 'A',
-        replace: false,
-        scope: false,
-        link: function (scope, element) {
-
-          var TAGS_ADD_LIMIT = 10;
-
-          scope.step = 1;
-
-          scope.writable = false;
-
-          scope.writable_model = null;
-
-          scope.current_model = null;
-
-          var _empty = {
-            tags: [],
-            vars: {}
-          };
-
-          scope.send_data = angular.copy(_empty);
-
-          scope.set_answer = function () {
-
-            if (scope.current_model) {
-
-              if (scope.current_model.writable && scope.writable_model) {
-
-                scope.send_data.vars[scope.current_model.tag.slice(0, 100)] = scope.writable_model;
-
-                scope.send_data.tags.push(scope.current_model.tag.slice(0, 100));
-
-              } else {
-
-                if (angular.isArray(scope.current_model)) {
-
-                  scope.send_data.tags = scope.send_data.tags.concat(scope.current_model.map(function (item) {
-                    return item.tag.slice(0, 100);
-                  }))
-
-                } else {
-
-                  scope.send_data.tags.push(scope.current_model.tag.slice(0, 100));
-
-                }
-
-              }
-
-              scope.next()
-
-            }
-
-          };
-
-          scope.prev = function () {
-
-            if (scope.step - 1 >= 1) {
-
-              scope.remove_answers(scope.step);
-
-              scope.step--;
-
-              scope.remove_answers(scope.step);
-
-            }
-
-          };
-
-          scope.remove_answers = function (step) {
-
-            if (!scope.current_test.data[step - 1]) return;
-
-            scope.current_test.data[step - 1].answers.forEach(function (item) {
-
-              item.model = false;
-
-              if (item.writable) {
-
-                delete scope.send_data.vars[item.tag]
-
-              }
-
-              var _index = scope.send_data.tags.indexOf(item.tag);
-
-              if(_index != -1) {
-
-                scope.send_data.tags.splice(_index, 1);
-
-              }
-
-
-            });
-
-          };
-
-          scope.next = function () {
-
-            scope.writable = false;
-
-            scope.writable_model = false;
-
-            scope.current_model = null;
-
-            var next = scope.step + 1;
-
-            scope.current_test.model_for_radio = null;
-
-            if (next <= scope.current_test.data.length) {
-
-              scope.step = next;
-
-            } else {
-
-              scope.send_data.tags.push(scope.current_test.tag.slice(0, 100));
-
-              tags_add(scope.send_data.tags.slice(0, TAGS_ADD_LIMIT));
-
-              function tags_add(tags) {
-
-                sp_api.call('tags.add', {tags: tags}, function () {
-
-                  scope.send_data.tags = scope.send_data.tags.slice(TAGS_ADD_LIMIT);
-
-                  if (scope.send_data.tags.length != 0) {
-
-                    tags_add(scope.send_data.tags.slice(0, TAGS_ADD_LIMIT));
-
-                    return;
-
-                  }
-
-                  if (Object.keys(scope.send_data.vars).length) {
-
-                    sp_api.call('vars.add', {custom_vars: scope.send_data.vars}, function () {
-
-                      scope.clear();
-
-                    });
-
-                  } else {
-
-                    scope.clear();
-
-                  }
-
-                })
-
-              }
-
-
-            }
-
-          };
-
-          scope.clear = function () {
-
-            scope.send_data = angular.copy(_empty);
-
-            $rootScope.$broadcast('notifier:notify', {
-
-              header: 'Спасибо!',
-              body: 'Нам очень важна информация о наших клиентах. Гарантируем, мы будем использовать её разумно и не передавать третьим лицам.'
-
-            });
-
-            $(element).fadeOut(400, function () {
-
-              scope.step = 1;
-
-              scope.writable = true;
-
-              scope.writable_model = null;
-
-              scope.current_model = null;
-
-              scope.current_test = null;
-
-              scope.$digest();
-
-            });
-
-          };
-
-          scope.on_change = function (item, value, type) {
-
-
-            if (type == 'radio') {
-
-              scope.current_model = item;
-
-            } else if (type == 'checkbox') {
-
-              scope.current_model = angular.isArray(scope.current_model) ? scope.current_model : [];
-
-              if (!value) {
-
-                scope.current_model = scope.current_model.filter(function (it) {
-                  return it.label !== item.label;
-                });
-
-              } else {
-
-                scope.current_model.push(item);
-
-              }
-
-            }
-
-            if (item) {
-              if (item.writable) {
-                scope.writable = true;
-              } else {
-                scope.writable = false;
-              }
-              scope.writable_model = null;
-            }
-
-          };
-
-          scope.isSelectable = function () {
-            return scope.current_model ? angular.isArray(scope.current_model) ? scope.current_model.length : scope.current_model.writable && scope.writable_model ? true : !scope.current_model.writable ? true : false : false;
-          }
-
-        }
-
-      };
-
-    });
 
 }());
