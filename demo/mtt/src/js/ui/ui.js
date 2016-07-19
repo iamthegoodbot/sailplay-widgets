@@ -25,28 +25,6 @@
       };
 
     })
-
-    .directive('sliderInit', function ($compile, $timeout) {
-      return {
-        restrict: 'A',
-        replace: false,
-        scope: false,
-        link: function (scope, element, attrs) {
-
-
-          if (scope.$last) { // all are rendered
-
-            $timeout(function () {
-              attrs.last && attrs.sliderInit && $(attrs.sliderInit).cycle();
-            }, 10);
-
-          }
-
-        }
-
-      };
-    })
-
     .directive('notifier', function ($timeout) {
 
       return {
@@ -68,7 +46,6 @@
 
             scope.data = data;
             $('.bns_overlay_notify').fadeIn();
-            scope.$apply();
 
           });
 
@@ -76,8 +53,11 @@
           scope.reset_notifier = function () {
 
             $('.bns_overlay_notify').fadeOut();
+
             $timeout(function () {
+
               scope.data = angular.copy(new_data);
+
             }, 200);
 
           };

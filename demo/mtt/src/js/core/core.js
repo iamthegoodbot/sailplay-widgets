@@ -4,7 +4,7 @@
       'ipCookie'
     ])
 
-    .run(function (sp, ipCookie, sp_api, $rootScope, user_service, tests_service, $timeout) {
+    .run(function (sp, ipCookie, sp_api, $rootScope, user_service, tests_service, $timeout, giftAccessTag) {
 
       $rootScope.config = window._mtt_config || {};
 
@@ -12,6 +12,9 @@
 
       // for fill profile action
       _tags.push(user_service.getTags().fill_profile);
+
+      // for access to gifts
+      _tags.push(giftAccessTag);
 
       sp.send('init', {
 
@@ -62,10 +65,10 @@
 
         //load data for widgets
         sp_api.call('load.user.info', {all: 1});
+        sp_api.call('load.gifts.list', {verbose: 1});
         sp_api.call('load.actions.list');
         sp_api.call('load.user.history');
         sp_api.call('load.gifts.categories');
-        sp_api.call('load.gifts.list', {verbose: 1});
 
         tests_service.loadData(function () {
 
@@ -81,8 +84,20 @@
 
       });
 
-      sp.on('actions.perform.success', function () {
+      sp.on('actions.perform.success', function (res) {
+
         sp_api.call('load.actions.list');
+
+        $rootScope.$broadcast('notifier:notify', {
+
+          header: 'Благодарим Вас',
+          body: res && res.data && res.data.response && res.data.response.points ? 'На ваш счет начислено ' + res.data.response.points + ' бонусных баллов.' : 'На ваш счет начислены бонусные баллы.'
+
+        });
+
+
+        $rootScope.$apply();
+
       });
 
       sp.on('actions.perform.error', function () {
@@ -90,18 +105,27 @@
       });
 
       sp.on('actions.perform.complete', function () {
+
+        sp_api.call('load.user.info', {all: 1});
+
         sp_api.call('load.actions.list');
+
+        sp_api.call('load.user.history');
+
       });
 
       sp.on('tags.add.success', function () {
 
         $timeout(function () {
+
           sp_api.call('tags.exist', {tags: _tags});
+          sp_api.call('load.user.history');
+
         }, 3000);
 
       });
 
-      function authError(){
+      function authError() {
 
         $rootScope.$broadcast('notifier:notify', {
 

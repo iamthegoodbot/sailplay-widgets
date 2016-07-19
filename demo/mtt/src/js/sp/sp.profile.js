@@ -43,7 +43,7 @@
           };
 
           scope.progressGiftWidth = function (index, total) {
-            return (100 / total) * (index + 1) - 5
+            return (100 / total) * (index + 1)
           };
 
           scope.setProgress = function (points) {

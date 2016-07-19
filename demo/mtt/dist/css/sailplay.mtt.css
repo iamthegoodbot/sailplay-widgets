@@ -28,6 +28,22 @@ html {
   height: 35px;
   cursor: pointer;
 }
+.alink {
+  position: relative;
+  cursor: pointer;
+  width: 160px;
+  line-height: 35px;
+  text-decoration: none;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: #A11636;
+  border-bottom: 1px solid #000;
+  text-shadow: 0 0 1px #000000;
+  transition: all 300ms ease;
+  display: inline-block;
+  text-align: center;
+}
 .bns_overlay {
   position: fixed;
   left: 0px;
@@ -217,6 +233,43 @@ html {
   color: #292929;
   font-size: 14px;
   line-height: 20px;
+}
+.bns_overlay_gift_not_points {
+  text-align: center;
+}
+.bns_overlay_gift_not_points p {
+  padding: 20px;
+}
+.bns_overlay_gift {
+  text-align: center;
+}
+.bns_overlay_gift .gift_more {
+  color: #242424;
+  font-size: 14px;
+}
+.bns_overlay_gift .gift_more_img {
+  display: inline-block;
+  max-height: 220px;
+}
+.bns_overlay_gift .gift_more_name {
+  display: inline-block;
+  width: 100%;
+  font-size: 16px;
+  margin-top: 10px;
+}
+.bns_overlay_gift .gift_more_descr {
+  display: inline-block;
+  width: 100%;
+  font-size: 14px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.bns_overlay_gift .gift_more_points {
+  display: inline-block;
+  width: 100%;
+  opacity: 0.5;
+  font-size: 14px;
+  margin-top: 10px;
 }
 .bn_wrap {
   width: 100%;
@@ -490,6 +543,7 @@ html {
   width: 36px;
   height: 36px;
   margin-top: -19px;
+  margin-left: -19px;
   background-color: #B26ABA;
   border-radius: 6px;
   background-image: url(../img/icon_top3.png);
@@ -711,11 +765,11 @@ html {
   margin: auto;
 }
 .bn_wrap .bon_choice_main .bon_choice_cat a:hover,
-.bn_wrap .bon_choice_main .bon_choice_cat a.cycle-pager-active {
+.bn_wrap .bon_choice_main .bon_choice_cat a.active {
   background-color: #893E90;
 }
 .bn_wrap .bon_choice_main .bon_choice_cat a:hover span,
-.bn_wrap .bon_choice_main .bon_choice_cat a.cycle-pager-active span {
+.bn_wrap .bon_choice_main .bon_choice_cat a.active span {
   color: #fff;
 }
 .bn_wrap .bon_choice_main .bon_slide_cat_item_wrap {
@@ -773,6 +827,13 @@ html {
 .bn_wrap .bon_choice_main .bon_item_main .bon_slide_cat_item {
   float: left;
   width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.bn_wrap .bon_choice_main .bon_item_main .bon_slide_cat_item .bon_item_line {
+  position: relative;
+  left: 0;
+  transition: .3s ease;
 }
 .bn_wrap .bon_choice_main .bon_item_main .bon_slide_cat_item .bon_item {
   width: 245px;
@@ -782,6 +843,8 @@ html {
   margin-right: 15px;
   background-color: #fff;
   text-align: center;
+  display: inline-block;
+  white-space: normal;
 }
 .bn_wrap .bon_choice_main .bon_item_main .bon_slide_cat_item .bon_item:hover {
   border: 1px solid #893E90;
@@ -1173,6 +1236,7 @@ html {
   width: 25%;
   padding: 20px 35px;
   box-sizing: border-box;
+  white-space: nowrap;
 }
 .bn_wrap .bns_about_page .b_about a.cycle-pager-active {
   background-color: #893E90;
@@ -1188,6 +1252,8 @@ html {
   color: #292929;
   float: left;
   margin-top: 10px;
+  max-width: 160px;
+  white-space: normal;
 }
 .bn_wrap .bns_about_page .b_about_main {
   float: left;
@@ -1236,6 +1302,31 @@ html {
   }
   .bn_wrap .bon_choice_main .bon_choice_cat a span {
     width: 45%;
+  }
+}
+@media screen and (max-width: 1170px) {
+  .bn_wrap .bns_about_page .b_about a span {
+    max-width: 140px;
+  }
+}
+@media screen and (max-width: 1100px) {
+  .progress_line_main .progress_text {
+    border: none !important;
+  }
+  .progress_line_main .progress_text:before {
+    content: '';
+    width: 1px;
+    background: white;
+    right: 0;
+    top: 0;
+    position: absolute;
+    height: 17px;
+    display: block;
+  }
+  .progress_line_main .progress_text span {
+    position: relative;
+    left: 50%;
+    border-radius: 5px !important;
   }
 }
 @media screen and (max-width: 930px) {
