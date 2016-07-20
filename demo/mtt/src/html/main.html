@@ -393,23 +393,13 @@
                     </div>
 
                     <div class="edit_profile_input">
-                        <label>Имя</label>
-                        <input type="text" placeholder="Введите имя" data-ng-model="form.firstName">
-                    </div>
-
-                    <div class="edit_profile_input">
-                        <label>Отчество</label>
-                        <input type="text" placeholder="Введите отчество" data-ng-model="form.middleName">
-                    </div>
-
-                    <div class="edit_profile_input">
-                        <label>Город</label>
-                        <input type="text" placeholder="Укажите город" data-ng-model="vars['Город']">
-                    </div>
-
-                    <div class="edit_profile_input">
                         <label>Улица</label>
                         <input type="text" placeholder="Укажите улицу" data-ng-model="vars['Улица']">
+                    </div>
+
+                    <div class="edit_profile_input">
+                        <label>Имя</label>
+                        <input type="text" placeholder="Введите имя" data-ng-model="form.firstName">
                     </div>
 
                     <div class="edit_profile_input">
@@ -418,10 +408,20 @@
                     </div>
 
                     <div class="edit_profile_input">
+                        <label>Отчество</label>
+                        <input type="text" placeholder="Введите отчество" data-ng-model="form.middleName">
+                    </div>
+
+                    <div class="edit_profile_input">
                         <label>Телефон</label>
                         <input type="text" data-phone-mask maxlength="17"
                                data-ng-model-options="{ updateOn: 'default change blur' }"
                                data-ng-model="form.addPhone">
+                    </div>
+
+                    <div class="edit_profile_input">
+                        <label>Город</label>
+                        <input type="text" placeholder="Укажите город" data-ng-model="vars['Город']">
                     </div>
 
                     <div class="edit_profile_input">

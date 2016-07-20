@@ -263,7 +263,7 @@ html {
 .sp_common-btn {
   display: block;
   position: relative;
-  background-color: #2daccc;
+  background-color: #2DACCC;
   height: 45px;
   font-family: 'Open Sans', sans-serif;
   font-size: 18px;
@@ -288,7 +288,7 @@ html {
   border: 1px solid #727373;
 }
 .sp_common-check.this-active {
-  border-color: #2daccc;
+  border-color: #2DACCC;
   background: url("../image/checkbox-arrow.png") no-repeat center;
 }
 /* forms */
@@ -502,16 +502,16 @@ html {
   margin-left: 71px;
 }
 .sp_header__sign:link {
-  color: #ffffff;
+  color: #fff;
 }
 .sp_header__sign:visited {
-  color: #ffffff;
+  color: #fff;
 }
 .sp_header__sign:hover {
-  color: #ffffff;
+  color: #fff;
 }
 .sp_header__sign:active {
-  color: #ffffff;
+  color: #fff;
 }
 .sp_header__sign:hover {
   background-color: rgba(255, 255, 255, 0.5);
@@ -652,7 +652,8 @@ html {
   }
 }
 .sp_form__submit-wr {
-  margin-top: 45px;
+  margin-top: 15px;
+  margin-bottom: 45px;
 }
 .sp_form__submit-wr:before,
 .sp_form__submit-wr:after {
@@ -741,7 +742,7 @@ html {
   user-select: none;
 }
 .sp_block-param.this-active .sp_param-label {
-  color: #2daccc;
+  color: #2DACCC;
 }
 .sp_param-label {
   margin-left: 3px;
@@ -918,7 +919,7 @@ html {
 }
 .sp_form-enter__input:focus,
 .sp_form-enter__input:active {
-  border-color: #2daccc;
+  border-color: #2DACCC;
   background-color: #fff;
 }
 .sp_form-enter__input:first-child {
@@ -930,16 +931,16 @@ html {
   margin-bottom: 15px;
 }
 .sp_form-enter__txt a:link {
-  color: #908f8e;
+  color: #908F8E;
 }
 .sp_form-enter__txt a:visited {
-  color: #908f8e;
+  color: #908F8E;
 }
 .sp_form-enter__txt a:hover {
-  color: #2daccc;
+  color: #2DACCC;
 }
 .sp_form-enter__txt a:active {
-  color: #908f8e;
+  color: #908F8E;
 }
 .sp_form-enter__btn {
   font-size: 18px;
@@ -1013,7 +1014,7 @@ html {
 }
 .selectize-input,
 .selectize-control.single .selectize-input.input-active {
-  background: #ffffff;
+  background: #fff;
   cursor: text;
   display: inline-block;
 }
@@ -1038,7 +1039,7 @@ html {
   padding: 5px 8px 2px;
 }
 .selectize-input.full {
-  background-color: #ffffff;
+  background-color: #fff;
 }
 .selectize-input.disabled,
 .selectize-input.disabled * {
@@ -1065,12 +1066,12 @@ html {
   margin: 0 3px 3px 0;
   padding: 2px 6px;
   background: #1da7ee;
-  color: #ffffff;
+  color: #fff;
   border: 1px solid #0073bb;
 }
 .selectize-control.multi .selectize-input > div.active {
   background: #92c836;
-  color: #ffffff;
+  color: #fff;
   border: 1px solid #00578d;
 }
 .selectize-control.multi .selectize-input.disabled > div,
@@ -1119,7 +1120,7 @@ html {
   position: absolute;
   z-index: 10;
   border: 1px solid #d0d0d0;
-  background: #ffffff;
+  background: #fff;
   margin: -1px 0 0 0;
   border-top: 0 none;
   -webkit-box-sizing: border-box;
@@ -1150,7 +1151,7 @@ html {
 }
 .selectize-dropdown .optgroup-header {
   color: #303030;
-  background: #ffffff;
+  background: #fff;
   cursor: default;
 }
 .selectize-dropdown .active {
@@ -1346,20 +1347,20 @@ html {
   max-height: 180px;
 }
 .selectize-control.sp_common-selectize .selectize-dropdown .option {
-  border-top: 1px solid #e8e8e8;
+  border-top: 1px solid #E8E8E8;
   padding: 10px 9px 10px 20px;
 }
 .selectize-control.sp_common-selectize .selectize-dropdown .option.selected {
   background: none;
-  color: #2daccc;
+  color: #2DACCC;
 }
 .selectize-control.sp_common-selectize .selectize-dropdown .option.active {
   background: none;
-  color: #2daccc;
+  color: #2DACCC;
 }
 .selectize-control.sp_common-selectize .selectize-dropdown .option:hover {
   background: none;
-  color: #2daccc;
+  color: #2DACCC;
 }
 .selectize-control.sp_common-selectize .selectize-dropdown .option:first-child {
   border: none;
