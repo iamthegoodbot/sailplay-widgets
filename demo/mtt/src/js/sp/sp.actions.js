@@ -120,7 +120,7 @@
               lastName: scope.user && scope.user() && scope.user().user.last_name,
               middleName: scope.user && scope.user() && scope.user().user.middle_name,
               addEmail: scope.user && scope.user() && scope.user().user.email,
-              addPhone: scope.user && scope.user() && scope.user().user.phone && scope.user().user.phone
+              addPhone: scope.user && scope.user() && scope.user().user.phone
             };
           });
 
@@ -189,7 +189,7 @@
                 delete form.addEmail;
               }
 
-              if (scope.user().user.phone == form.addPhone) {
+              if (scope.user().user.phone == form.addPhone.replace(/\D/g, '')) {
                 delete form.addPhone;
               }
 

@@ -250,14 +250,33 @@ body, html {
 }
 
 .bns_overlay_gift {
-  text-align: center;
+  text-align: left;
+  .bns_overlay_iner {
+    font-size: 0;
+    &:before {
+      vertical-align: middle;
+      display: inline-block;
+      height: 100%;
+      width: 0;
+      content: '';
+    }
+  }
   .gift_more {
     color: #242424;
     font-size: 14px;
 
+    &_block {
+      display: inline-block;
+      vertical-align: middle;
+      width: 70%;
+      white-space: normal;
+    }
+
     &_img {
       display: inline-block;
-      max-height: 220px;
+      width: 30%;
+      vertical-align: middle;
+
     }
 
     &_name {
@@ -284,7 +303,13 @@ body, html {
       margin-top: 10px;
     }
 
+  }
+}
 
+.bns_overlay_gift_complete {
+  text-align: center;
+  p {
+    margin: 20px 0;
   }
 }
 
@@ -1364,7 +1389,7 @@ body, html {
       .bon_choice_cat {
         a {
           span {
-            width: 45%
+            width: 60%
           }
         }
       }

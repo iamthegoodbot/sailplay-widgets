@@ -159,8 +159,7 @@
             </div>
             <div class="bon_profile_stat">
                 <div class="bps_left">
-                    <span data-ng-if="user().user_points.confirmed"
-                          data-ng-bind="(user().user_points.confirmed | number)  + ' ' + (user().user_points.confirmed | sailplay_pluralize:'балл,балла,баллов')"></span>
+                    <span data-ng-bind="(user().user_points.confirmed | number)  + ' ' + (user().user_points.confirmed | sailplay_pluralize:'балл,балла,баллов')"></span>
                     <a href="#">История начислений</a>
                 </div>
                 <div class="bps_right">
@@ -174,7 +173,8 @@
                         </div>
                         <div class="gift_item" data-ng-repeat="limit in limits track by $index"
                              data-ng-class="{act : limit <= user().user_points.confirmed }"
-                             data-ng-style="{ left: progressGiftWidth($index, limits.length) + '%' }"></div>
+                             data-ng-style="{ left: progressGiftWidth($index, limits.length) + '%' }">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -242,8 +242,10 @@
                     </div>
 
                 </div>
-                <a href="#" class="arr_left arr_left" data-ng-click="set_position('left');$event.preventDefault();" data-ng-show="show_left"></a>
-                <a href="#" class="arr_right arr_right" data-ng-click="set_position('right');$event.preventDefault();" data-ng-show="show_right"></a>
+                <a href="#" class="arr_left arr_left" data-ng-click="set_position('left');$event.preventDefault();"
+                   data-ng-show="show_left"></a>
+                <a href="#" class="arr_right arr_right" data-ng-click="set_position('right');$event.preventDefault();"
+                   data-ng-show="show_right"></a>
 
             </div>
 
@@ -253,16 +255,28 @@
             <div class="bns_overlay_iner">
                 <a href="#" class="close_overlay"
                    data-ng-click="close_gift();$event.preventDefault();$event.stopPropagation();"></a>
+
                 <img class="gift_more_img" data-ng-src="{{ gift_more.thumbs.url_250x250 | sailplay_pic }}"
                      alt="{{ gift_more.name }}">
-                <span class="gift_more_name" data-ng-bind="gift_more.name"></span>
-                <span class="gift_more_points"
-                      data-ng-bind="(gift_more.points | number) + ' ' + (gift_more.points | sailplay_pluralize:'балл,балла,баллов')"></span>
-                <p class="gift_more_descr" data-ng-bind="gift_more.descr"></p>
-                <span class="alink" data-ng-click="close_gift();">Закрыть</span>
-                <span class="alink"
-                      data-ng-click="gift_purchase(gift_more);"
-                      data-ng-bind="user().user_points.confirmed >= gift_more.points ? 'Получить' : 'Недостаточно баллов'">Получить</span>
+
+                <div class="gift_more_block">
+
+                    <span class="gift_more_name" data-ng-bind="gift_more.name"></span>
+
+                    <span class="gift_more_points"
+                          data-ng-bind="(gift_more.points | number) + ' ' + (gift_more.points | sailplay_pluralize:'балл,балла,баллов')"></span>
+
+                    <p class="gift_more_descr" data-ng-bind="gift_more.descr"></p>
+
+                    <span class="alink" data-ng-click="close_gift();">Закрыть</span>
+
+                    <span class="alink"
+                          style="margin-left: 5px;"
+                          data-ng-click="complete_gift_open();"
+                          data-ng-bind="user().user_points.confirmed >= gift_more.points ? 'Получить' : 'Недостаточно баллов'">Получить</span>
+
+                </div>
+
             </div>
         </div>
 
@@ -272,7 +286,21 @@
                     У вас недостаточное количество баллов на этот подарок. Вам необходимо выполнить следующие действия.
                 </p>
                 <span class="alink" data-scroll-to=".more_bonus">Заработать баллы</span>
-                <span class="alink" data-scroll-to=".bon_choice_main">Выбрать услугу</span>
+                <a class="alink" target="_blank" href="http://www.mtt.ru/">Выбрать услугу</a>
+            </div>
+        </div>
+
+        <div class="bns_overlay bns_overlay_gift_complete" data-ng-cloak>
+            <div class="bns_overlay_iner">
+                <p>
+                    Пожалуйста, подтвердите получение подарка. С вашего счета будет списано {{ (gift_more.points |
+                    number) + ' ' + (gift_more.points | sailplay_pluralize:'балл,балла,баллов') }}.
+                    Приняли решение? Подтвердите, пожалуйста, свой выбор и списание баллов.
+                </p>
+                <span class="alink" data-ng-click="complete_gift_close();">Закрыть</span>
+                 <span class="alink"
+                       data-ng-click="gift_purchase(gift_more);"
+                       data-ng-bind="user().user_points.confirmed >= gift_more.points ? 'Получить' : 'Недостаточно баллов'">Получить</span>
             </div>
         </div>
 
@@ -354,41 +382,53 @@
 
             <div class="mb_popup mb_popup_prof">
                 <div class="mb_popup_top">
-                    <span>Заполнить профиль<strong>150 баллов</strong></span>
+                    <span data-ng-if="!getExist(exist(),'Заполнил профиль')">Заполнить профиль<strong>150
+                        баллов</strong></span>
                 </div>
                 <div class="mb_popup_main mb_popup_main_mt">
-                    <div class="edit_profile_input">
-                        <label>Имя</label>
-                        <input type="text" placeholder="Введите имя" data-ng-model="form.firstName">
-                    </div>
-                    <div class="edit_profile_input">
-                        <label>Телефон</label>
-                        <input type="text" placeholder="+7 (___) ___ - __ - __" data-ng-model="form.addPhone">
-                    </div>
+
                     <div class="edit_profile_input">
                         <label>Фамилия</label>
                         <input type="text" placeholder="Введите фамилию" data-ng-model="form.lastName">
                     </div>
+
                     <div class="edit_profile_input">
-                        <label>E-mail</label>
-                        <input type="text" placeholder="Введите E-mail" data-ng-model="form.addEmail">
+                        <label>Имя</label>
+                        <input type="text" placeholder="Введите имя" data-ng-model="form.firstName">
                     </div>
+
                     <div class="edit_profile_input">
                         <label>Отчество</label>
                         <input type="text" placeholder="Введите отчество" data-ng-model="form.middleName">
                     </div>
+
                     <div class="edit_profile_input">
                         <label>Город</label>
                         <input type="text" placeholder="Укажите город" data-ng-model="vars['Город']">
                     </div>
+
                     <div class="edit_profile_input">
                         <label>Улица</label>
                         <input type="text" placeholder="Укажите улицу" data-ng-model="vars['Улица']">
                     </div>
+
                     <div class="edit_profile_input">
                         <label>Дом</label>
                         <input type="text" placeholder="Укажите дом" data-ng-model="vars['Дом']">
                     </div>
+
+                    <div class="edit_profile_input">
+                        <label>Телефон</label>
+                        <input type="text" data-phone-mask maxlength="17"
+                               data-ng-model-options="{ updateOn: 'default change blur' }"
+                               data-ng-model="form.addPhone">
+                    </div>
+
+                    <div class="edit_profile_input">
+                        <label>E-mail</label>
+                        <input type="text" placeholder="Введите E-mail" data-ng-model="form.addEmail">
+                    </div>
+
                     <div class="answ_text">
                         <input type="submit" value="Сохранить" data-ng-disabled="!isValid()"
                                data-ng-click="save_profile();">

@@ -88,6 +88,10 @@
 
         sp_api.call('load.actions.list');
 
+        sp_api.call('load.user.info', {all: 1});
+
+        sp_api.call('load.user.history');
+
         $rootScope.$broadcast('notifier:notify', {
 
           header: 'Благодарим Вас',
@@ -95,23 +99,12 @@
 
         });
 
-
         $rootScope.$apply();
 
       });
 
       sp.on('actions.perform.error', function () {
         sp_api.call('load.actions.list');
-      });
-
-      sp.on('actions.perform.complete', function () {
-
-        sp_api.call('load.user.info', {all: 1});
-
-        sp_api.call('load.actions.list');
-
-        sp_api.call('load.user.history');
-
       });
 
       sp.on('tags.add.success', function () {

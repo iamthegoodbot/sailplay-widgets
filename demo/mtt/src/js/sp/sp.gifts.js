@@ -126,6 +126,27 @@
 
           };
 
+          scope.complete_gift_open = function(){
+
+            if (scope.user().user_points.confirmed < scope.gift_more.points) {
+
+              scope.close_gift();
+
+              scope.complete_gift_close();
+
+              $(element).find('.bns_overlay_gift_not_points').fadeIn();
+
+              return;
+
+            }
+
+            $('.bns_overlay_gift_complete').fadeIn();
+          };
+
+          scope.complete_gift_close = function(){
+            $('.bns_overlay_gift_complete').fadeOut();
+          };
+
           $(window).resize(function () {
 
             scope.set_position();
@@ -218,17 +239,9 @@
 
           scope.gift_purchase = function (gift) {
 
-            if (scope.user().user_points.confirmed < gift.points) {
-
-              $(element).find('.bns_overlay_gift').fadeOut();
-
-              $(element).find('.bns_overlay_gift_not_points').fadeIn();
-
-              return;
-
-            }
-
             scope.close_gift();
+
+            scope.complete_gift_close();
 
             sp.send('gifts.purchase', {gift: gift});
 
