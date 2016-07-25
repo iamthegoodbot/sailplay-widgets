@@ -600,6 +600,27 @@ body, html {
               &.act {
                 background-color: #fff;
               }
+              &_hint {
+                opacity: 0;
+                visibility: hidden;
+                display: inline-block;
+                position: absolute;
+                left: 0;
+                text-align: center;
+                width: 100%;
+                top: 0;
+                font-weight: bold;
+                transition: .3s ease;
+                color: white;
+              }
+
+              &:hover {
+                .gift_item_hint {
+                  visibility: visible;
+                  opacity: 1;
+                  top: -20px;
+                }
+              }
             }
             .gift1 {
               left: 25%;
@@ -777,6 +798,7 @@ body, html {
       a {
         position: relative;
         float: left;
+        overflow: hidden;
         width: 25%;
         height: 100px;
         -webkit-transition: all 300ms ease;
@@ -808,9 +830,9 @@ body, html {
         }
         img {
           position: absolute;
-          right: 35px;
-          top: 0;
+          right: 0;
           bottom: 0;
+          max-height: 90%;
           margin: auto;
         }
         &:hover, &.active {
@@ -1352,7 +1374,7 @@ body, html {
         .bon_profile_stat {
           .bps_right {
             width: 100%;
-            margin-top: 20px;
+            margin-top: 30px;
             margin-right: 0px;
           }
         }

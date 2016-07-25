@@ -171,10 +171,15 @@
                                 <span data-ng-bind="getOffsetToGift(user().user_points.confirmed) + ' ' + ((getOffsetToGift(user().user_points.confirmed) | sailplay_pluralize:'балл,балла,баллов')) + ' до подарка'"></span>
                             </div>
                         </div>
+
                         <div class="gift_item" data-ng-repeat="limit in limits track by $index"
                              data-ng-class="{act : limit <= user().user_points.confirmed }"
                              data-ng-style="{ left: progressGiftWidth($index, limits.length) + '%' }">
+
+                            <span class="gift_item_hint" data-ng-bind="limit"></span>
+
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -203,24 +208,24 @@
 
             <a href="#" data-ng-show="gifts().length" data-ng-click="set_category();$event.preventDefault();"
                data-ng-class="{active : !active_category}">
-                <span>Все</span>
+                <span>Все подарки</span>
                 <span data-ng-bind="gifts().length + ' ' + (gifts().length | sailplay_pluralize:'подарок,подарка,подарков') + ' в разделе'"></span>
-                <img data-ng-src="dist/img/icon_all.png" alt="Все">
+                <img data-ng-src="dist/img/category/all.png" alt="Все подарки">
             </a>
 
 
-            <a href="#" data-ng-repeat="category in categories() | filter:notEmpty"
+            <a href="#" data-ng-repeat="category in categories()"
                data-ng-class="{active : category.id == $parent.active_category}"
                data-ng-click="set_category(category.id);$event.preventDefault();">
                 <span data-ng-bind="category.name"></span>
                 <span data-ng-bind="category.count + ' ' + (category.count | sailplay_pluralize:'подарок,подарка,подарков') + ' в разделе'"></span>
-                <img data-ng-src="dist/img/icon_ch{{ ($index + 1)}}.png" alt="{{ category.name }}">
+                <img data-ng-src="{{ get_icon(category.id) }}" alt="{{ category.name }}">
 
             </a>
 
         </div>
 
-        <div class="bon_item_main">
+        <div class="bon_item_main" data-ng-show="show_gifts && show_gifts.length">
 
             <div class="bon_slide_cat_item_wrap">
                 <div class="bon_slide_cat_item">
@@ -242,6 +247,7 @@
                     </div>
 
                 </div>
+
                 <a href="#" class="arr_left arr_left" data-ng-click="set_position('left');$event.preventDefault();"
                    data-ng-show="show_left"></a>
                 <a href="#" class="arr_right arr_right" data-ng-click="set_position('right');$event.preventDefault();"

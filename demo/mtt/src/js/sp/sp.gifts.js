@@ -4,7 +4,15 @@
 
     .constant('giftAccessTag', 'Доступны подарки')
 
-    .directive('sailplayGifts', function (sp, sp_api, $timeout, $rootScope, $filter, giftAccessTag) {
+    .constant('giftsIcons', {
+      724 : 'dist/img/category/it.png',
+      734 : 'dist/img/category/all.png',
+      735 : 'dist/img/category/other.png',
+      736 : 'dist/img/category/food.png',
+      737 : 'dist/img/category/letters.png'
+    })
+
+    .directive('sailplayGifts', function (sp, sp_api, $timeout, $rootScope, $filter, giftAccessTag, giftsIcons) {
 
       return {
 
@@ -40,6 +48,12 @@
             loaded++;
             sort_gift_by_category();
           });
+
+          scope.get_icon = function(id){
+
+            return giftsIcons[id] || {};
+
+          };
 
           scope.set_category = function (id) {
 
