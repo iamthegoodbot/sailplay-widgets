@@ -1,0 +1,21 @@
+<div class="pagenavigation" data-ng-if="1 < pages.length || !autoHide">
+
+    <span class="pages">
+
+        <a href="#" class="prev inactive" title="Назад" data-ng-if="directionLinks"
+           data-ng-class="{ disabled : pagination.current == 1 }"
+           data-ng-click="setCurrent(pagination.current - 1);$event.preventDefault();">&#xF2FA;</a>
+
+        <a href="#" data-ng-repeat="pageNumber in pages track by tracker(pageNumber, $index)"
+           data-ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }"
+           data-ng-click="setCurrent(pageNumber);$event.preventDefault();">
+            {{ pageNumber }}
+        </a>
+
+        <a href="#" class="next" title="Вперед" data-ng-if="directionLinks"
+           data-ng-class="{ disabled : pagination.current == pagination.last }"
+           data-ng-click="setCurrent(pagination.current + 1);$event.preventDefault();">&#xF2FB;</a>
+
+    </span>
+
+</div>
