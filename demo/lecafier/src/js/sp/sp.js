@@ -2,6 +2,7 @@
 
   angular.module('sp', [
 
+      'sp.share',
       'sp.actions',
       'sp.gifts',
       'sp.profile',

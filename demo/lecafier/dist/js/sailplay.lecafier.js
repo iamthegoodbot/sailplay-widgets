@@ -2317,7 +2317,7 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/html/main.html',
-    '<div class="container-fluid"><h1>Бонусная программа</h1><div class="row rblock bonus_pers" data-sailplay-profile="" data-ng-cloak=""><div class="rankimg" title="Дегустатор подмастерье"><div class="l3"></div></div><div class="ranktitle">Здравствуйте,<div class="name" data-ng-bind="user().user.name || \'уважаемый покупатель\'"></div><p>Ваш ранг: <strong>Дегустатор подмастерье</strong></p></div><div class="scale"><div style="width: 55%"></div><div><span></span> <span></span> <span></span> <span></span> <span></span></div></div><table class="scale"><thead><tr><td><div>Любитель<br>кофе</div></td><td><div>Заядлый<br>кофеман</div></td><td><div class="active">Дегустатор<br>подмастерье</div></td><td><div class="disabled">Мастер<br>Дегустатор</div></td><td><div class="disabled">Кофейная<br>элита</div></td></tr></thead><tbody><tr><td>Начисление Кофейных капель за заказы</td><td>На 5% больше Кофейных капель за заказы, чем в предыдущем ранге</td><td>На 5% больше Кофейных капель за заказы, чем в предыдущем ранге</td><td>На 5% больше Кофейных капель за заказы, чем в предыдущем ранге</td><td>Максимальный процент начисления Кофейных капель за заказы</td></tr></tbody></table></div><h2 class="bonus">История транзакций</h2><div class="row rblock bonus_history" data-sailplay-history="" data-ng-cloak=""><div class="col-sm-4"><div class="current"><div class="big">{{ user().user_points.confirmed | number }}<div class="small" data-ng-if="user().user_points.unconfirmed">+ {{ user().user_points.unconfirmed | number }}<div class="info"><div class="title">Неподтвержденные капли:</div><table class="points"><tr data-ng-repeat="item in history() | filter:is_completed:false | limitTo:3"><td data-ng-bind="item.action_date | date:\'d.MM.yyyy\'"></td><td data-ng-class="{present: item.action == \'gift_purchase\'}"><span data-ng-if="item.action == \'gift_purchase\'">&#xF128;</span> <b data-ng-bind="item | history_item"></b></td><td data-ng-class="{t1: item.active == \'purchase\', t2: item.action != \'gift_purchase\' && item.action != \'purchase\', t3 : item.action == \'gift_purchase\'}" data-ng-if="item.points_delta"><b data-ng-bind="((item.points_delta|number) || 0)"></b> {{ item.points_delta | sailplay_pluralize:\'кофейная капеля,кофейные капли,кофейных капель\' }}</td></tr></table></div></div></div><div class="note"><span>Кофейных капель</span></div><div class="hidebtn"><a href="#" class="greenbtn">Свернуть<span>&#xF2FC;</span></a></div></div></div><div class="col-sm-8 last"><div class="title">Ваши последние действия:</div><table class="points"><tr data-dir-paginate="item in history() | filter:is_completed:true | itemsPerPage:5" data-pagination-id="history_pages"><td data-ng-bind="item.action_date | date:\'d.MM.yyyy\'"></td><td data-ng-class="{present: item.action == \'gift_purchase\'}"><span data-ng-if="item.action == \'gift_purchase\'">&#xF128;</span> <b data-ng-bind="item | history_item"></b></td><td data-ng-class="{t1: item.active == \'purchase\', t2: item.action != \'gift_purchase\' && item.action != \'purchase\', t3 : item.action == \'gift_purchase\'}" data-ng-if="item.points_delta"><b data-ng-bind="((item.points_delta|number) || 0)"></b> {{ item.points_delta | sailplay_pluralize:\'кофейная капеля,кофейные капли,кофейных капель\' }}</td></tr></table></div><div class="col-sm-12"><dir-pagination-controls data-max-size="5" data-pagination-id="history_pages" data-template-url="/html/ui/ui.pagination.controls.html" data-auto-hide="true"></dir-pagination-controls></div></div><h2 class="bonus">Подарки</h2><div class="row rblock bonus_gifts" data-sailplay-gifts="" data-ng-cloak=""><div id="gift-slider"><div class="gift-item" data-ng-repeat="gift in gifts()" data-gifts-slider=""><div class="soc">Рассказать друзьям &nbsp; <a href="#" title="Вконтакте">&#xF361;</a> <a href="#" title="Facebook">&#xF343;</a> <a href="#" title="Twitter">&#xF360;</a></div><a href="#" class="pic" style="background-image: url(\'{{ gift.thumbs.url_250x250 | sailplay_pic }}\')" title="{{ gift.name }}"></a><div class="title" data-ng-bind="gift.name"></div><div class="bottom" data-ng-if="user().user_points.confirmed >= gift.points"><div><b data-ng-bind="gift.points|number"></b> {{ gift.points | sailplay_pluralize:\'кофейная капеля,кофейные капли,кофейных капель\'}}</div></div><div class="bottom" data-ng-if="user().user_points.confirmed < gift.points"><div><b data-ng-bind="gift.points|number"></b> {{ (gift.points - user().user_points.confirmed) | sailplay_pluralize:\'кофейная капеля,кофейные капли,кофейных капель\' }}<div data-ng-bind="\'(Вам не хватает \' + ((gift.points - user().user_points.confirmed) | sailplay_pluralize:\'кофейная капеля,кофейные капли,кофейных капель\') + \')\'"></div></div></div><div class="more"><div class="desc" data-ng-bind-html="gift.descr | to_trusted"></div><div class="giftbtn"><a href="#" data-ng-class="{greenbtn: user().user_points.confirmed >= gift.points, disabled: user().user_points.confirmed < gift.points }" data-ng-click="$event.preventDefault();make_purchase(gift);">Получить подарок</a></div></div></div></div></div><h2 class="bonus">Заработать больше капель</h2><div class="row rblock bonus_tasks" data-sailplay-actions="" data-ng-cloak=""><div class="item col-sm-4" data-ng-repeat="action in actions().actions | filter:check_in_list"><div class="inner"><div class="pic" data-ng-bind-html="action_data(action).pic | to_trusted"></div><div data-ng-bind-html="action_data(action).name | to_trusted"></div><span><b data-ng-bind="action.points | number"></b> {{ action.points | sailplay_pluralize:\'кофейная капеля,кофейные капли,кофейных капель\'}}</span> <a href="#" data-ng-class="{ greenbtn : !action.socialType }" data-sailplay-action="" data-action="action">Выполнить</a></div></div></div></div>');
+    '<div class="container-fluid"><h1>Бонусная программа</h1><div class="row rblock bonus_pers" data-sailplay-profile="" data-ng-cloak=""><div class="rankimg" title="Дегустатор подмастерье"><div class="l3"></div></div><div class="ranktitle">Здравствуйте,<div class="name" data-ng-bind="user().user.name || \'уважаемый покупатель\'"></div><p>Ваш ранг: <strong>Дегустатор подмастерье</strong></p></div><div class="scale"><div style="width: 55%"></div><div><span></span> <span></span> <span></span> <span></span> <span></span></div></div><table class="scale"><thead><tr><td><div>Любитель<br>кофе</div></td><td><div>Заядлый<br>кофеман</div></td><td><div class="active">Дегустатор<br>подмастерье</div></td><td><div class="disabled">Мастер<br>Дегустатор</div></td><td><div class="disabled">Кофейная<br>элита</div></td></tr></thead><tbody><tr><td>Начисление Кофейных капель за заказы</td><td>На 5% больше Кофейных капель за заказы, чем в предыдущем ранге</td><td>На 5% больше Кофейных капель за заказы, чем в предыдущем ранге</td><td>На 5% больше Кофейных капель за заказы, чем в предыдущем ранге</td><td>Максимальный процент начисления Кофейных капель за заказы</td></tr></tbody></table></div><h2 class="bonus">История транзакций</h2><div class="row rblock bonus_history" data-sailplay-history="" data-ng-cloak=""><div class="col-sm-4"><div class="current"><div class="big">{{ user().user_points.confirmed | number }}<div class="small" data-ng-if="user().user_points.unconfirmed">+ {{ user().user_points.unconfirmed | number }}<div class="info"><div class="title">Неподтвержденные капли:</div><table class="points"><tr data-ng-repeat="item in history() | filter:is_completed:false | limitTo:3"><td data-ng-bind="item.action_date | date:\'d.MM.yyyy\'"></td><td data-ng-class="{present: item.action == \'gift_purchase\'}"><span data-ng-if="item.action == \'gift_purchase\'">&#xF128;</span> <b data-ng-bind="item | history_item"></b></td><td data-ng-class="{t1: item.active == \'purchase\', t2: item.action != \'gift_purchase\' && item.action != \'purchase\', t3 : item.action == \'gift_purchase\'}" data-ng-if="item.points_delta"><b data-ng-bind="((item.points_delta|number) || 0)"></b> {{ item.points_delta | sailplay_pluralize:\'кофейная капеля,кофейные капли,кофейных капель\' }}</td></tr></table></div></div></div><div class="note"><span>Кофейных капель</span></div><div class="hidebtn"><a href="#" class="greenbtn">Свернуть<span>&#xF2FC;</span></a></div></div></div><div class="col-sm-8 last"><div class="title">Ваши последние действия:</div><table class="points"><tr data-dir-paginate="item in history() | filter:is_completed:true | itemsPerPage:5" data-pagination-id="history_pages"><td data-ng-bind="item.action_date | date:\'d.MM.yyyy\'"></td><td data-ng-class="{present: item.action == \'gift_purchase\'}"><span data-ng-if="item.action == \'gift_purchase\'">&#xF128;</span> <b data-ng-bind="item | history_item"></b></td><td data-ng-class="{t1: item.active == \'purchase\', t2: item.action != \'gift_purchase\' && item.action != \'purchase\', t3 : item.action == \'gift_purchase\'}" data-ng-if="item.points_delta"><b data-ng-bind="((item.points_delta|number) || 0)"></b> {{ item.points_delta | sailplay_pluralize:\'кофейная капеля,кофейные капли,кофейных капель\' }}</td></tr></table></div><div class="col-sm-12"><dir-pagination-controls data-max-size="5" data-pagination-id="history_pages" data-template-url="/html/ui/ui.pagination.controls.html" data-auto-hide="true"></dir-pagination-controls></div></div><h2 class="bonus">Подарки</h2><div class="row rblock bonus_gifts" data-sailplay-gifts="" data-ng-cloak=""><div id="gift-slider"><div class="gift-item" data-ng-repeat="gift in gifts()" data-gifts-slider=""><div class="soc">Рассказать друзьям &nbsp; <a href="#" title="Вконтакте" data-ng-click="$event.preventDefault();share_gift(gift, \'vk\');">&#xF361;</a> <a href="#" title="Facebook" data-ng-click="$event.preventDefault();share_gift(gift, \'fb\');">&#xF343;</a> <a href="#" title="Twitter" data-ng-click="$event.preventDefault();share_gift(gift, \'tw\');">&#xF360;</a></div><a href="#" class="pic" style="background-image: url(\'{{ gift.thumbs.url_250x250 | sailplay_pic }}\')" title="{{ gift.name }}"></a><div class="title" data-ng-bind="gift.name"></div><div class="bottom" data-ng-if="user().user_points.confirmed >= gift.points"><div><b data-ng-bind="gift.points|number"></b> {{ gift.points | sailplay_pluralize:\'кофейная капеля,кофейные капли,кофейных капель\'}}</div></div><div class="bottom" data-ng-if="user().user_points.confirmed < gift.points"><div><b data-ng-bind="gift.points|number"></b> {{ (gift.points - user().user_points.confirmed) | sailplay_pluralize:\'кофейная капеля,кофейные капли,кофейных капель\' }}<div data-ng-bind="\'(Вам не хватает \' + ((gift.points - user().user_points.confirmed) | sailplay_pluralize:\'кофейная капеля,кофейные капли,кофейных капель\') + \')\'"></div></div></div><div class="more"><div class="desc" data-ng-bind-html="gift.descr | to_trusted"></div><div class="giftbtn"><a href="#" data-ng-class="{greenbtn: user().user_points.confirmed >= gift.points, disabled: user().user_points.confirmed < gift.points }" data-ng-click="$event.preventDefault();make_purchase(gift);">Получить подарок</a></div></div></div></div></div><h2 class="bonus">Заработать больше капель</h2><div class="row rblock bonus_tasks" data-sailplay-actions="" data-ng-cloak=""><div class="item col-sm-4" data-ng-repeat="action in actions().actions | filter:check_in_list"><div class="inner"><div class="pic" data-ng-bind-html="action_data(action).pic | to_trusted"></div><div data-ng-bind-html="action_data(action).name | to_trusted"></div><span><b data-ng-bind="action.points | number"></b> {{ action.points | sailplay_pluralize:\'кофейная капеля,кофейные капли,кофейных капель\'}}</span> <a href="#" data-ng-class="{ greenbtn : !action.socialType }" data-sailplay-action="" data-action="action">Выполнить</a></div></div></div></div>');
 }]);
 })();
 
@@ -2349,7 +2349,7 @@ module.run(['$templateCache', function($templateCache) {
 
   angular.module('lecafier', ['core', 'ui', 'sp', 'templates'])
 
-    .directive('sailplayLecafier', ["$rootScope", "$locale", function ($rootScope, $locale) {
+    .directive('sailplayLecafier', function ($rootScope, $locale) {
 
       return {
         restrict: 'E',
@@ -2365,7 +2365,7 @@ module.run(['$templateCache', function($templateCache) {
         }
       }
 
-    }]);
+    });
 
   window.addEventListener('DOMContentLoaded', function () {
 
@@ -2383,7 +2383,7 @@ module.run(['$templateCache', function($templateCache) {
       'ipCookie'
     ])
 
-    .run(["sp", "ipCookie", "sp_api", "$rootScope", "$timeout", function (sp, ipCookie, sp_api, $rootScope, $timeout) {
+    .run(function (sp, ipCookie, sp_api, $rootScope, $timeout) {
 
       $rootScope.config = window._lecafier_config || {};
 
@@ -2495,7 +2495,7 @@ module.run(['$templateCache', function($templateCache) {
       }
 
 
-    }]);
+    });
 
 }());
 
@@ -2591,7 +2591,7 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
       }
     })
 
-    .directive('sailplayAction', ["sp", "$rootScope", function (sp, $rootScope) {
+    .directive('sailplayAction', function (sp, $rootScope) {
 
       return {
 
@@ -2610,9 +2610,9 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
 
       };
 
-    }])
+    })
 
-    .directive('sailplayActions', ["sp_api", "sp", "actions_data", function (sp_api, sp, actions_data) {
+    .directive('sailplayActions', function (sp_api, sp, actions_data) {
 
       return {
 
@@ -2661,7 +2661,7 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
 
       };
 
-    }]);
+    });
 
 }());
 
@@ -2669,7 +2669,7 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
 
   angular.module('sp.gifts', [])
 
-    .directive('sailplayGifts', ["sp", "sp_api", "$timeout", "$rootScope", "$filter", function (sp, sp_api, $timeout, $rootScope, $filter) {
+    .directive('sailplayGifts', function (sp, sp_api, $timeout, $rootScope, $filter, sailplayShare) {
 
       return {
 
@@ -2681,11 +2681,30 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
           scope.gifts = sp_api.data('load.gifts.list');
           scope.user = sp_api.data('load.user.info');
 
-          scope.make_purchase = function(gift){
+          scope.make_purchase = function (gift) {
 
-            if(scope.user().user_points.confirmed < gift.points) return;
+            if (scope.user().user_points.confirmed < gift.points) return;
             $("#gift-slider").data('owlCarousel').destroy();
             sp.send('gifts.purchase', {gift: gift});
+
+          };
+
+          scope.share_gift = function (data, social) {
+
+            var currentData = {
+              img: $filter('sailplay_pic')(data.thumbs.url_250x250),
+              link: document.location.href,
+              title: 'Подарок',
+              desc: 'Описание подарка',
+              soc: social
+            };
+
+            sailplayShare.shareCustom(currentData.soc, {
+              shareImage: currentData.img,
+              sharedLink: currentData.link,
+              shareTitle: currentData.title,
+              shareDescription: currentData.desc
+            });
 
           };
 
@@ -2730,7 +2749,7 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
 
       };
 
-    }]);
+    });
 
 }());
 
@@ -2739,7 +2758,7 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
   angular.module('sp.history', [])
 
 
-    .directive('sailplayHistory', ["sp_api", function (sp_api) {
+    .directive('sailplayHistory', function (sp_api) {
 
       return {
 
@@ -2761,7 +2780,7 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
 
       };
 
-    }])
+    })
 
     .constant('history_texts', {
       "purchase": "Покупка",
@@ -2780,7 +2799,7 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
       "custom_action": "Экстра"
     })
 
-    .filter('history_item', ["history_texts", function (history_texts) {
+    .filter('history_item', function (history_texts) {
 
       return function (historyItem) {
         switch (historyItem.action) {
@@ -2804,7 +2823,7 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
         }
         return history_texts[historyItem.action];
       }
-    }]);
+    });
 
 }());
 
@@ -2812,6 +2831,7 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
 
   angular.module('sp', [
 
+      'sp.share',
       'sp.actions',
       'sp.gifts',
       'sp.profile',
@@ -2819,13 +2839,13 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
 
     ])
 
-    .service('sp', ["$window", function ($window) {
+    .service('sp', function ($window) {
 
       return $window.SAILPLAY || {};
 
-    }])
+    })
 
-    .service('sp_api', ["$q", "sp", "$rootScope", function ($q, sp, $rootScope) {
+    .service('sp_api', function ($q, sp, $rootScope) {
 
       var self = this;
 
@@ -2892,7 +2912,7 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
 
       };
 
-    }])
+    })
 
     .filter('to_trusted', ['$sce', function ($sce) {
       return function (text) {
@@ -2909,7 +2929,7 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
       }
     })
 
-    .filter('sailplay_pic', ["sp", function (sp) {
+    .filter('sailplay_pic', function (sp) {
 
       function repair_pic_url(url) {
         if (/^((http|https|ftp):\/\/)/.test(url)) {
@@ -2931,7 +2951,7 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
 
       };
 
-    }]);
+    });
 
 }());
 
@@ -2939,7 +2959,7 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
 
   angular.module('sp.profile', [])
 
-    .directive('sailplayProfile', ["sp_api", "sp", function (sp_api, sp) {
+    .directive('sailplayProfile', function (sp_api, sp) {
 
       return {
 
@@ -3025,7 +3045,104 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
 
       };
 
-    }]);
+    });
+
+}());
+
+(function () {
+
+  angular.module('sp.share', [])
+
+
+    .service('sailplayShare', function () {
+
+      var shareData = {};
+
+      function _init(shareParams) {
+        shareData.baseUrl = shareParams.baseUrl;
+        shareData.sharedLink = encodeURIComponent(shareData.baseUrl);
+        shareData.shareImage = encodeURIComponent(shareData.baseUrl + shareParams.shareImage);
+        shareData.shareTitle = encodeURIComponent(shareParams.shareTitle);
+        shareData.shareDescription = encodeURIComponent(shareParams.shareDescription);
+        shareData.fbAppId = encodeURIComponent(shareParams.fbAppId);
+      }
+
+      function _share(network) {
+        shareData.network = network;
+        _makeLinks(shareData);
+      }
+
+      function _shareCustom(network, shareParams) {
+
+        if (shareData.baseUrl && shareParams.sharedLink && shareParams.sharedLink.indexOf('http') !== 0) {
+          shareParams.sharedLink = shareData.baseUrl + shareParams.sharedLink;
+        }
+        if (shareData.baseUrl && shareParams.shareImage && shareParams.shareImage.indexOf('http') !== 0) {
+          shareParams.shareImage = shareData.baseUrl + shareParams.shareImage;
+        }
+
+        var customShareData = {};
+        customShareData.network = network;
+        customShareData.fbAppId = shareData.fbAppId;
+        customShareData.sharedLink = encodeURIComponent(shareParams.sharedLink);
+        customShareData.shareImage = encodeURIComponent(shareParams.shareImage);
+        customShareData.shareTitle = encodeURIComponent(shareParams.shareTitle);
+        customShareData.shareDescription = encodeURIComponent(shareParams.shareDescription);
+
+        _makeLinks(customShareData);
+
+      }
+
+      function _makeLinks(sd) {
+
+        switch (sd.network) {
+          case "vk":
+            sharePopup("http://vkontakte.ru/share.php?url=" + sd.sharedLink + '&image=' + sd.shareImage + '&title=' + sd.shareTitle + '&description=' + sd.shareDescription);
+            break;
+          case "fb":
+            sharePopup('https://www.facebook.com/dialog/feed?app_id=' + sd.fbAppId + '&display=popup&name=' + sd.shareTitle + '&description=' + sd.shareDescription + '&picture=' + sd.shareImage + '&link=' + sd.sharedLink + '&redirect_uri=' + sd.sharedLink, 550, 300);
+            break;
+          case "tw":
+            sharePopup("https://twitter.com/intent/tweet?original_referer=" + sd.sharedLink + "&tw_p=tweetbutton&url=" + sd.sharedLink + "&text=" /*+ sd.shareTitle +' '*/ + sd.shareDescription);
+            break;
+          case "ok":
+            sharePopup("http://www.odnoklassniki.ru/dk?st.cmd=addShare&st.s=1&st._surl=" + sd.sharedLink + "&st.comments=" + sd.shareTitle + ". " + sd.shareDescription, 480);
+            break;
+        }
+
+        function sharePopup(url, width, height) {
+
+          if (!width) width = 400;
+          if (!height) height = 400;
+
+          var share_window = window.open(url, '_blank', 'height=' + height + ',width=' + width + ',menubar=no,toolbar=no,location=no');
+          var uri_regex = new RegExp('manifest.mts.ru');
+
+          var watch_timer = setInterval(function () {
+            try {
+              if (share_window.closed) {
+                clearInterval(watch_timer);
+                return;
+              }
+              if (uri_regex.test(share_window.location)) {
+                clearInterval(watch_timer);
+                share_window.close();
+              }
+            } catch (e) {
+            }
+          }, 200);
+
+        }
+      }
+
+      return {
+        share: _share,
+        shareCustom: _shareCustom,
+        init: _init
+      };
+
+    })
+
 
 }());
 
@@ -3035,7 +3152,7 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
       'angularUtils.directives.dirPagination'
     ])
 
-    .directive('giftsSlider', ["$compile", "$timeout", function ($compile, $timeout) {
+    .directive('giftsSlider', function ($compile, $timeout) {
       return {
         restrict: 'A',
         replace: false,
@@ -3066,9 +3183,9 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
         }
 
       };
-    }])
+    })
 
-    .directive('notifier', ["$timeout", function ($timeout) {
+    .directive('notifier', function ($timeout) {
 
       return {
 
@@ -3109,6 +3226,6 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
 
       }
 
-    }]);
+    });
 
 }());

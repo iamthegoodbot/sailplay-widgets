@@ -135,9 +135,9 @@
             <div class="gift-item" data-ng-repeat="gift in gifts()" data-gifts-slider>
                 <div class="soc">
                     Рассказать друзьям &nbsp;
-                    <a href="#" title="Вконтакте">&#xF361;</a>
-                    <a href="#" title="Facebook">&#xF343;</a>
-                    <a href="#" title="Twitter">&#xF360;</a>
+                    <a href="#" title="Вконтакте" data-ng-click="$event.preventDefault();share_gift(gift, 'vk');">&#xF361;</a>
+                    <a href="#" title="Facebook" data-ng-click="$event.preventDefault();share_gift(gift, 'fb');">&#xF343;</a>
+                    <a href="#" title="Twitter" data-ng-click="$event.preventDefault();share_gift(gift, 'tw');">&#xF360;</a>
                 </div>
                 <a href="#" class="pic"
                    style="background-image: url('{{ gift.thumbs.url_250x250 | sailplay_pic }}')"

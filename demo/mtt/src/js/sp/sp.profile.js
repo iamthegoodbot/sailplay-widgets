@@ -78,7 +78,7 @@
 
           scope.getOffsetToGift = function (points) {
 
-            if (!scope.limits.length || !points) return 0;
+            if (!scope.limits.length || (!points && points != 0)) return 0;
 
             var next = scope.limits.filter(function (item) {
                 return points < item;

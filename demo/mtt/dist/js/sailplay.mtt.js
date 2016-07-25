@@ -2347,7 +2347,7 @@ module.run(['$templateCache', function($templateCache) {
 
   angular.module('mtt', ['core', 'ui', 'sp', 'templates'])
 
-    .directive('sailplayMtt', function ($rootScope, $locale, sp_api) {
+    .directive('sailplayMtt', ["$rootScope", "$locale", "sp_api", function ($rootScope, $locale, sp_api) {
 
       return {
         restrict: 'E',
@@ -2424,7 +2424,7 @@ module.run(['$templateCache', function($templateCache) {
         }
       }
 
-    });
+    }]);
 
   window.addEventListener('DOMContentLoaded', function () {
 
@@ -2433,142 +2433,6 @@ module.run(['$templateCache', function($templateCache) {
     app_container && angular.bootstrap(app_container, ['mtt']);
 
   });
-
-}());
-
-(function () {
-
-  angular.module('core', [
-      'ipCookie'
-    ])
-
-    .run(function (sp, ipCookie, sp_api, $rootScope, user_service, tests_service, $timeout, giftAccessTag) {
-
-      $rootScope.config = window._mtt_config || {};
-
-      var _tags = [];
-
-      // for fill profile action
-      _tags.push(user_service.getTags().fill_profile);
-
-      // for access to gifts
-      _tags.push(giftAccessTag);
-
-      sp.send('init', {
-
-        partner_id: $rootScope.config.partner_id || 1520,
-        domain: $rootScope.config.domain || 'http://sailplay.ru',
-        lang: 'ru'
-
-      });
-
-      $rootScope.loaded = false;
-
-      $rootScope.auth = false;
-
-      sp.on('init.success', function () {
-
-        if (window.auth_hash) {
-
-          sp.send('login', window.auth_hash);
-
-        } else {
-
-          authError();
-          $rootScope.loaded = true;
-
-        }
-
-        $rootScope.$apply();
-
-      });
-
-      sp.on('login.error', function () {
-
-        console.log('login error');
-
-        authError();
-
-        $rootScope.loaded = true;
-
-        $rootScope.$apply();
-
-      });
-
-      sp.on('login.success', function () {
-
-        $rootScope.loaded = true;
-
-        $rootScope.auth = true;
-
-        //load data for widgets
-        sp_api.call('load.user.info', {all: 1});
-        sp_api.call('load.gifts.list', {verbose: 1});
-        sp_api.call('load.actions.list');
-        sp_api.call('load.user.history');
-        sp_api.call('load.gifts.categories');
-
-        tests_service.loadData(function () {
-
-          _tags = _tags.concat(tests_service.getData().map(function (item) {
-            return item.tag
-          }));
-
-          sp_api.call('tags.exist', {tags: _tags});
-
-        });
-
-        $rootScope.$apply();
-
-      });
-
-      sp.on('actions.perform.success', function (res) {
-
-        sp_api.call('load.actions.list');
-
-        sp_api.call('load.user.info', {all: 1});
-
-        sp_api.call('load.user.history');
-
-        $rootScope.$broadcast('notifier:notify', {
-
-          header: 'Благодарим Вас',
-          body: res && res.data && res.data.response && res.data.response.points ? 'На ваш счет начислено ' + res.data.response.points + ' бонусных баллов.' : 'На ваш счет начислены бонусные баллы.'
-
-        });
-
-        $rootScope.$apply();
-
-      });
-
-      sp.on('actions.perform.error', function () {
-        sp_api.call('load.actions.list');
-      });
-
-      sp.on('tags.add.success', function () {
-
-        $timeout(function () {
-
-          sp_api.call('tags.exist', {tags: _tags});
-          sp_api.call('load.user.history');
-
-        }, 3000);
-
-      });
-
-      function authError() {
-
-        $rootScope.$broadcast('notifier:notify', {
-
-          header: 'Ошибка',
-          body: 'Неверный auth_hash'
-
-        });
-
-      }
-
-
-    });
 
 }());
 
@@ -4478,9 +4342,145 @@ optional:!0},"#":{pattern:/\d/,recursive:!0},A:{pattern:/[a-zA-Z0-9]/},S:{patter
 
 (function () {
 
+  angular.module('core', [
+      'ipCookie'
+    ])
+
+    .run(["sp", "ipCookie", "sp_api", "$rootScope", "user_service", "tests_service", "$timeout", "giftAccessTag", function (sp, ipCookie, sp_api, $rootScope, user_service, tests_service, $timeout, giftAccessTag) {
+
+      $rootScope.config = window._mtt_config || {};
+
+      var _tags = [];
+
+      // for fill profile action
+      _tags.push(user_service.getTags().fill_profile);
+
+      // for access to gifts
+      _tags.push(giftAccessTag);
+
+      sp.send('init', {
+
+        partner_id: $rootScope.config.partner_id || 1520,
+        domain: $rootScope.config.domain || 'http://sailplay.ru',
+        lang: 'ru'
+
+      });
+
+      $rootScope.loaded = false;
+
+      $rootScope.auth = false;
+
+      sp.on('init.success', function () {
+
+        if (window.auth_hash) {
+
+          sp.send('login', window.auth_hash);
+
+        } else {
+
+          authError();
+          $rootScope.loaded = true;
+
+        }
+
+        $rootScope.$apply();
+
+      });
+
+      sp.on('login.error', function () {
+
+        console.log('login error');
+
+        authError();
+
+        $rootScope.loaded = true;
+
+        $rootScope.$apply();
+
+      });
+
+      sp.on('login.success', function () {
+
+        $rootScope.loaded = true;
+
+        $rootScope.auth = true;
+
+        //load data for widgets
+        sp_api.call('load.user.info', {all: 1});
+        sp_api.call('load.gifts.list', {verbose: 1});
+        sp_api.call('load.actions.list');
+        sp_api.call('load.user.history');
+        sp_api.call('load.gifts.categories');
+
+        tests_service.loadData(function () {
+
+          _tags = _tags.concat(tests_service.getData().map(function (item) {
+            return item.tag
+          }));
+
+          sp_api.call('tags.exist', {tags: _tags});
+
+        });
+
+        $rootScope.$apply();
+
+      });
+
+      sp.on('actions.perform.success', function (res) {
+
+        sp_api.call('load.actions.list');
+
+        sp_api.call('load.user.info', {all: 1});
+
+        sp_api.call('load.user.history');
+
+        $rootScope.$broadcast('notifier:notify', {
+
+          header: 'Благодарим Вас',
+          body: res && res.data && res.data.response && res.data.response.points ? 'На ваш счет начислено ' + res.data.response.points + ' бонусных баллов.' : 'На ваш счет начислены бонусные баллы.'
+
+        });
+
+        $rootScope.$apply();
+
+      });
+
+      sp.on('actions.perform.error', function () {
+        sp_api.call('load.actions.list');
+      });
+
+      sp.on('tags.add.success', function () {
+
+        $timeout(function () {
+
+          sp_api.call('tags.exist', {tags: _tags});
+          sp_api.call('load.user.history');
+
+        }, 3000);
+
+      });
+
+      function authError() {
+
+        $rootScope.$broadcast('notifier:notify', {
+
+          header: 'Ошибка',
+          body: 'Неверный auth_hash'
+
+        });
+
+      }
+
+
+    }]);
+
+}());
+
+(function () {
+
   angular.module('sp.actions', [])
 
-    .service('tests_service', function ($http) {
+    .service('tests_service', ["$http", function ($http) {
 
       var that = this;
 
@@ -4505,7 +4505,7 @@ optional:!0},"#":{pattern:/\d/,recursive:!0},A:{pattern:/[a-zA-Z0-9]/},S:{patter
 
       return that;
 
-    })
+    }])
 
 
     .constant('actions_data', {
@@ -4554,7 +4554,7 @@ optional:!0},"#":{pattern:/\d/,recursive:!0},A:{pattern:/[a-zA-Z0-9]/},S:{patter
       }
     })
 
-    .directive('sailplayActions', function (sp_api, sp, actions_data, $timeout, user_service, $rootScope, tests_service, ipCookie) {
+    .directive('sailplayActions', ["sp_api", "sp", "actions_data", "$timeout", "user_service", "$rootScope", "tests_service", "ipCookie", function (sp_api, sp, actions_data, $timeout, user_service, $rootScope, tests_service, ipCookie) {
 
       return {
 
@@ -4793,9 +4793,9 @@ optional:!0},"#":{pattern:/\d/,recursive:!0},A:{pattern:/[a-zA-Z0-9]/},S:{patter
 
       };
 
-    })
+    }])
 
-    .directive('sailplayAction', function (sp, $rootScope) {
+    .directive('sailplayAction', ["sp", "$rootScope", function (sp, $rootScope) {
 
       return {
 
@@ -4814,9 +4814,9 @@ optional:!0},"#":{pattern:/\d/,recursive:!0},A:{pattern:/[a-zA-Z0-9]/},S:{patter
 
       };
 
-    })
+    }])
 
-    .directive('sailplayTest', function (sp, sp_api, $rootScope) {
+    .directive('sailplayTest', ["sp", "sp_api", "$rootScope", function (sp, sp_api, $rootScope) {
 
       return {
 
@@ -5004,7 +5004,7 @@ optional:!0},"#":{pattern:/\d/,recursive:!0},A:{pattern:/[a-zA-Z0-9]/},S:{patter
 
       };
 
-    });
+    }]);
 
 }());
 
@@ -5022,7 +5022,7 @@ optional:!0},"#":{pattern:/\d/,recursive:!0},A:{pattern:/[a-zA-Z0-9]/},S:{patter
       737 : 'dist/img/category/letters.png'
     })
 
-    .directive('sailplayGifts', function (sp, sp_api, $timeout, $rootScope, $filter, giftAccessTag, giftsIcons) {
+    .directive('sailplayGifts', ["sp", "sp_api", "$timeout", "$rootScope", "$filter", "giftAccessTag", "giftsIcons", function (sp, sp_api, $timeout, $rootScope, $filter, giftAccessTag, giftsIcons) {
 
       return {
 
@@ -5299,7 +5299,7 @@ optional:!0},"#":{pattern:/\d/,recursive:!0},A:{pattern:/[a-zA-Z0-9]/},S:{patter
 
       };
 
-    });
+    }]);
 
 }());
 
@@ -5308,7 +5308,7 @@ optional:!0},"#":{pattern:/\d/,recursive:!0},A:{pattern:/[a-zA-Z0-9]/},S:{patter
   angular.module('sp.history', [])
 
 
-    .directive('sailplayHistory', function (sp_api) {
+    .directive('sailplayHistory', ["sp_api", function (sp_api) {
 
       return {
 
@@ -5330,7 +5330,7 @@ optional:!0},"#":{pattern:/\d/,recursive:!0},A:{pattern:/[a-zA-Z0-9]/},S:{patter
 
       };
 
-    })
+    }])
 
     .constant('history_texts', {
       "purchase": "Покупка",
@@ -5349,7 +5349,7 @@ optional:!0},"#":{pattern:/\d/,recursive:!0},A:{pattern:/[a-zA-Z0-9]/},S:{patter
       "custom_action": "Экстра"
     })
 
-    .filter('history_item', function (history_texts) {
+    .filter('history_item', ["history_texts", function (history_texts) {
 
       return function (historyItem) {
         switch (historyItem.action) {
@@ -5373,7 +5373,7 @@ optional:!0},"#":{pattern:/\d/,recursive:!0},A:{pattern:/[a-zA-Z0-9]/},S:{patter
         }
         return history_texts[historyItem.action];
       }
-    });
+    }]);
 
 }());
 
@@ -5388,13 +5388,13 @@ optional:!0},"#":{pattern:/\d/,recursive:!0},A:{pattern:/[a-zA-Z0-9]/},S:{patter
 
     ])
 
-    .service('sp', function ($window) {
+    .service('sp', ["$window", function ($window) {
 
       return $window.SAILPLAY || {};
 
-    })
+    }])
 
-    .service('user_service', function ($window) {
+    .service('user_service', ["$window", function ($window) {
 
       var self = this;
 
@@ -5413,9 +5413,9 @@ optional:!0},"#":{pattern:/\d/,recursive:!0},A:{pattern:/[a-zA-Z0-9]/},S:{patter
 
       return self;
 
-    })
+    }])
 
-    .service('sp_api', function ($q, sp, $rootScope) {
+    .service('sp_api', ["$q", "sp", "$rootScope", function ($q, sp, $rootScope) {
 
       var self = this;
 
@@ -5482,7 +5482,7 @@ optional:!0},"#":{pattern:/\d/,recursive:!0},A:{pattern:/[a-zA-Z0-9]/},S:{patter
 
       };
 
-    })
+    }])
 
     .filter('toArray', function () {
       return function (obj, addKey) {
@@ -5517,7 +5517,7 @@ optional:!0},"#":{pattern:/\d/,recursive:!0},A:{pattern:/[a-zA-Z0-9]/},S:{patter
       }
     })
 
-    .filter('sailplay_pic', function (sp) {
+    .filter('sailplay_pic', ["sp", function (sp) {
 
       function repair_pic_url(url) {
         if (/^((http|https|ftp):\/\/)/.test(url)) {
@@ -5539,7 +5539,7 @@ optional:!0},"#":{pattern:/\d/,recursive:!0},A:{pattern:/[a-zA-Z0-9]/},S:{patter
 
       };
 
-    });
+    }]);
 
 }());
 
@@ -5547,7 +5547,7 @@ optional:!0},"#":{pattern:/\d/,recursive:!0},A:{pattern:/[a-zA-Z0-9]/},S:{patter
 
   angular.module('sp.news', [])
 
-    .service('news_service', function ($http, $rootScope) {
+    .service('news_service', ["$http", "$rootScope", function ($http, $rootScope) {
 
       var that = this;
 
@@ -5572,9 +5572,9 @@ optional:!0},"#":{pattern:/\d/,recursive:!0},A:{pattern:/[a-zA-Z0-9]/},S:{patter
 
       return that;
 
-    })
+    }])
 
-    .directive('sailplayNews', function (sp_api, sp, $timeout, $rootScope, news_service) {
+    .directive('sailplayNews', ["sp_api", "sp", "$timeout", "$rootScope", "news_service", function (sp_api, sp, $timeout, $rootScope, news_service) {
 
       return {
 
@@ -5590,7 +5590,7 @@ optional:!0},"#":{pattern:/\d/,recursive:!0},A:{pattern:/[a-zA-Z0-9]/},S:{patter
         }
       };
 
-    });
+    }]);
 
 }());
 
@@ -5598,7 +5598,7 @@ optional:!0},"#":{pattern:/\d/,recursive:!0},A:{pattern:/[a-zA-Z0-9]/},S:{patter
 
   angular.module('sp.profile', [])
 
-    .directive('sailplayProfile', function (sp_api, sp) {
+    .directive('sailplayProfile', ["sp_api", "sp", function (sp_api, sp) {
 
       return {
 
@@ -5674,7 +5674,7 @@ optional:!0},"#":{pattern:/\d/,recursive:!0},A:{pattern:/[a-zA-Z0-9]/},S:{patter
 
           scope.getOffsetToGift = function (points) {
 
-            if (!scope.limits.length || !points) return 0;
+            if (!scope.limits.length || (!points && points != 0)) return 0;
 
             var next = scope.limits.filter(function (item) {
                 return points < item;
@@ -5694,7 +5694,7 @@ optional:!0},"#":{pattern:/\d/,recursive:!0},A:{pattern:/[a-zA-Z0-9]/},S:{patter
 
       };
 
-    });
+    }]);
 
 }());
 
@@ -5750,7 +5750,7 @@ optional:!0},"#":{pattern:/\d/,recursive:!0},A:{pattern:/[a-zA-Z0-9]/},S:{patter
 
     })
 
-    .directive('datePicker', function (dateService) {
+    .directive('datePicker', ["dateService", function (dateService) {
       return {
         restrict: 'E',
         replace: true,
@@ -5776,7 +5776,7 @@ optional:!0},"#":{pattern:/\d/,recursive:!0},A:{pattern:/[a-zA-Z0-9]/},S:{patter
         }
       }
 
-    });
+    }]);
 
 
 }());
@@ -5808,7 +5808,7 @@ optional:!0},"#":{pattern:/\d/,recursive:!0},A:{pattern:/[a-zA-Z0-9]/},S:{patter
 
     })
 
-    .directive('phoneMask', function ($timeout) {
+    .directive('phoneMask', ["$timeout", function ($timeout) {
 
       return {
         restrict: 'A',
@@ -5832,9 +5832,9 @@ optional:!0},"#":{pattern:/\d/,recursive:!0},A:{pattern:/[a-zA-Z0-9]/},S:{patter
         }
       };
 
-    })
+    }])
 
-    .directive('notifier', function ($timeout) {
+    .directive('notifier', ["$timeout", function ($timeout) {
 
       return {
 
@@ -5875,6 +5875,6 @@ optional:!0},"#":{pattern:/\d/,recursive:!0},A:{pattern:/[a-zA-Z0-9]/},S:{patter
 
       }
 
-    });
+    }]);
 
 }());

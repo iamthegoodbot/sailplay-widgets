@@ -2,7 +2,7 @@
 
   angular.module('sp.gifts', [])
 
-    .directive('sailplayGifts', function (sp, sp_api, $timeout, $rootScope, $filter) {
+    .directive('sailplayGifts', function (sp, sp_api, $timeout, $rootScope, $filter, sailplayShare) {
 
       return {
 
@@ -14,11 +14,30 @@
           scope.gifts = sp_api.data('load.gifts.list');
           scope.user = sp_api.data('load.user.info');
 
-          scope.make_purchase = function(gift){
+          scope.make_purchase = function (gift) {
 
-            if(scope.user().user_points.confirmed < gift.points) return;
+            if (scope.user().user_points.confirmed < gift.points) return;
             $("#gift-slider").data('owlCarousel').destroy();
             sp.send('gifts.purchase', {gift: gift});
+
+          };
+
+          scope.share_gift = function (data, social) {
+
+            var currentData = {
+              img: $filter('sailplay_pic')(data.thumbs.url_250x250),
+              link: document.location.href,
+              title: 'Подарок',
+              desc: 'Описание подарка',
+              soc: social
+            };
+
+            sailplayShare.shareCustom(currentData.soc, {
+              shareImage: currentData.img,
+              sharedLink: currentData.link,
+              shareTitle: currentData.title,
+              shareDescription: currentData.desc
+            });
 
           };
 
