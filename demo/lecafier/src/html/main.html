@@ -1,53 +1,44 @@
-<div class="container-fluid">
+<div class="container-fluid" data-ng-show="global.auth">
 
     <h1>Бонусная программа</h1>
     <div class="row rblock bonus_pers" data-sailplay-profile data-ng-cloak>
-        <div class="rankimg" title="Дегустатор подмастерье">
-            <div class="l3"></div>
+        <div class="rankimg" title="{{ statusList[currentStatus].name }}">
+            <div class="{{ get_status_pic(currentStatus) }}"></div>
         </div>
         <div class="ranktitle">
             Здравствуйте,
             <div class="name" data-ng-bind="user().user.name || 'уважаемый покупатель'"></div>
-            <p>Ваш ранг: <strong>Дегустатор подмастерье</strong></p>
-            <!--<p>До ранга <strong>Мастер Дегустатор</strong> осталось сделать 9 покупок и пригласить одного друга</p>-->
+
+            <p>Ваш ранг: <strong data-ng-bind="statusList[currentStatus].name"></strong></p>
+
+            <p data-ng-if="statusList[currentStatus + 1]">
+                До ранга <strong data-ng-bind="statusList[currentStatus + 1].name"></strong>
+                осталось сделать {{ (statusList[currentStatus + 1].purchases - user().purchases.count) }}
+                {{ (statusList[currentStatus + 1].purchases - user().purchases.count) |
+                sailplay_pluralize:'покупка,покупки,покупок' }}
+            </p>
+
         </div>
         <div class="scale">
-            <div style="width: 55%"></div>
+            <div data-ng-style="{width: get_progress()}"></div>
             <div>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
+                <span data-ng-repeat="status in statusList" data-ng-class="{active: $index == currentStatus }"></span>
             </div>
         </div>
         <table class="scale">
             <thead>
             <tr>
-                <td>
-                    <div>Любитель<br>кофе</div>
+
+                <td data-ng-repeat="status in statusList">
+                    <div data-ng-bind="status.name"
+                         data-ng-class="{active: $index == currentStatus, disabled : $index > currentStatus }"></div>
                 </td>
-                <td>
-                    <div>Заядлый<br>кофеман</div>
-                </td>
-                <td>
-                    <div class="active">Дегустатор<br>подмастерье</div>
-                </td>
-                <td>
-                    <div class="disabled">Мастер<br>Дегустатор</div>
-                </td>
-                <td>
-                    <div class="disabled">Кофейная<br>элита</div>
-                </td>
+
             </tr>
             </thead>
             <tbody>
             <tr>
-                <td>Начисление Кофейных капель за заказы</td>
-                <td>На 5% больше Кофейных капель за заказы, чем в предыдущем ранге</td>
-                <td>На 5% больше Кофейных капель за заказы, чем в предыдущем ранге</td>
-                <td>На 5% больше Кофейных капель за заказы, чем в предыдущем ранге</td>
-                <td>Максимальный процент начисления Кофейных капель за заказы</td>
+                <td data-ng-repeat="status in statusList" data-ng-bind="status.description"></td>
             </tr>
             </tbody>
         </table>
@@ -66,7 +57,7 @@
                             <div class="title">Неподтвержденные капли:</div>
                             <table class="points">
 
-                                <tr data-ng-repeat="item in history() | filter:is_completed:false  | limitTo:3">
+                                <tr data-ng-repeat="item in history() | filter:{is_completed:false}  | limitTo:3">
 
                                     <td data-ng-bind="item.action_date | date:'d.MM.yyyy'"></td>
 
@@ -78,8 +69,8 @@
                                     <td data-ng-class="{t1: item.active == 'purchase', t2: item.action != 'gift_purchase' && item.action != 'purchase', t3 : item.action == 'gift_purchase'}"
                                         data-ng-if="item.points_delta">
                                         <b data-ng-bind="((item.points_delta|number) || 0)"></b>
-                                        {{ item.points_delta | sailplay_pluralize:'кофейная капеля,кофейные
-                                        капли,кофейных капель' }}
+                                        {{ item.points_delta |
+                                        sailplay_pluralize:'кофейная капеля,кофейные капли,кофейных капель' }}
                                     </td>
 
 
@@ -91,7 +82,7 @@
                     </div>
                 </div>
                 <div class="note"><span>Кофейных капель</span></div>
-                <div class="hidebtn"><a href="#" class="greenbtn">Свернуть<span>&#xF2FC;</span></a></div>
+                <!--<div class="hidebtn"><a href="#" class="greenbtn">Свернуть<span>&#xF2FC;</span></a></div>-->
             </div>
         </div>
         <div class="col-sm-8 last">
@@ -133,12 +124,6 @@
         <div id="gift-slider">
 
             <div class="gift-item" data-ng-repeat="gift in gifts()" data-gifts-slider>
-                <div class="soc">
-                    Рассказать друзьям &nbsp;
-                    <a href="#" title="Вконтакте" data-ng-click="$event.preventDefault();share_gift(gift, 'vk');">&#xF361;</a>
-                    <a href="#" title="Facebook" data-ng-click="$event.preventDefault();share_gift(gift, 'fb');">&#xF343;</a>
-                    <a href="#" title="Twitter" data-ng-click="$event.preventDefault();share_gift(gift, 'tw');">&#xF360;</a>
-                </div>
                 <a href="#" class="pic"
                    style="background-image: url('{{ gift.thumbs.url_250x250 | sailplay_pic }}')"
                    title="{{ gift.name }}"></a>
@@ -154,7 +139,8 @@
                 <div class="bottom" data-ng-if="user().user_points.confirmed < gift.points">
                     <div>
                         <b data-ng-bind="gift.points|number"></b>
-                        {{ (gift.points - user().user_points.confirmed) | sailplay_pluralize:'кофейная капеля,кофейные капли,кофейных капель' }}
+                        {{ (gift.points - user().user_points.confirmed) |
+                        sailplay_pluralize:'кофейная капеля,кофейные капли,кофейных капель' }}
                         <div data-ng-bind="'(Вам не хватает ' + ((gift.points - user().user_points.confirmed) | sailplay_pluralize:'кофейная капеля,кофейные капли,кофейных капель') + ')'"></div>
                     </div>
                 </div>

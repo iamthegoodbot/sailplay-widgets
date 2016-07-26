@@ -2,7 +2,35 @@
 
   angular.module('sp.profile', [])
 
-    .directive('sailplayProfile', function (sp_api, sp) {
+    .constant('statusList', [
+      {
+        name: 'Любитель кофе',
+        description: 'Сделал первую покупку в магазине или явно зарегистрировался на сайте',
+        purchases: 0
+      },
+      {
+        name: 'Заядлый кофеман',
+        description: 'Сделал более 5 покупок в магазине',
+        purchases: 5
+      },
+      {
+        name: 'Дегустатор подмастерье',
+        description: 'Сделал более 10 покупок в магазине',
+        purchases: 10
+      },
+      {
+        name: 'Мастер дегустатор',
+        description: 'Сделал более 15 покупок',
+        purchases: 15
+      },
+      {
+        name: 'Кофейная элита',
+        description: 'Сделал более 20 покупок',
+        purchases: 20
+      }
+    ])
+
+    .directive('sailplayProfile', function (sp_api, sp, statusList, $rootScope) {
 
       return {
 
@@ -13,72 +41,43 @@
 
           scope.user = sp_api.data('load.user.info');
           scope.gifts = sp_api.data('load.gifts.list');
-          scope.limits = [];
+          scope.statusList = statusList;
+
+          scope.get_progress = function () {
+            if (!scope.user || !scope.user()) return;
+            var _res = (100 / 20) * scope.user().purchases.count;
+            _res = _res > 100 ? 100 : _res;
+            return _res + '%';
+          };
+
+          scope.get_status_pic = function(status){
+            return scope.currentStatus || scope.currentStatus == 0 ? 'status l' + scope.currentStatus : ''
+          };
 
           function update() {
 
-            var _gifts = angular.copy(scope.gifts());
+            if (!scope.user || !scope.user()) return;
 
-            scope.limits = _gifts.filter(function(item){
-              return item.category;
-            }).map(function (item) {
-              return item.points;
-            }).reduce(function (a, b) {
-              if (a.indexOf(b) < 0)a.push(b);
-              return a;
-            }, []).sort(function (a, b) {
-              return a - b;
-            });
+            var _num = scope.currentStatus || 0;
 
-          }
+            statusList.forEach(function (_item, _index) {
 
-          scope.progressGiftWidth = function (index, total) {
-            return (100 / total) * (index + 1)
-          };
+              if (scope.user().purchases.count >= _item.purchases) {
 
-          scope.setProgress = function (points) {
-
-            var len = scope.limits.length;
-
-            if (!len || !points) return 0;
-
-            var _progress = 0;
-
-            var step = 100 / len;
-
-            for (var i = 0; i < len; i++) {
-
-              if (points > scope.limits[i]) {
-
-                _progress += step;
-
-              } else {
-
-                _progress += ( scope.limits[i - 1] ? ( (points - scope.limits[i - 1]) * 100 ) / ( scope.limits[i] - scope.limits[i - 1] ) : points * 100 / scope.limits[i] ) / len;
-
-                break;
+                _num = _index;
 
               }
 
-            }
+            });
 
-            return _progress > 100 ? 100 : _progress < 0 ? 0 : _progress;
+            scope.currentStatus = _num;
 
-          };
+            scope.$digest();
 
-          scope.getOffsetToGift = function (points) {
+          }
 
-            if (!scope.limits.length || !points) return 0;
 
-            var next = scope.limits.filter(function (item) {
-                return points < item;
-              })[0] || 0;
-
-            return next ? next - points : next;
-
-          };
-
-          sp.on('load.gifts.list.success', function () {
+          sp.on('load.user.info.success', function () {
 
             update();
 

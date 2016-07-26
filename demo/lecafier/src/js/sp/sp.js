@@ -2,7 +2,6 @@
 
   angular.module('sp', [
 
-      'sp.share',
       'sp.actions',
       'sp.gifts',
       'sp.profile',
@@ -27,8 +26,6 @@
         'load.user.info',
         'load.gifts.list',
         'load.user.history',
-        'load.badges.list',
-        'tags.exist',
         'load.actions.list'
 
       ];

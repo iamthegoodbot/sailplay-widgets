@@ -4422,10 +4422,12 @@ li {
 .bonus_pers .rankimg div {
   width: 160px;
   height: 160px;
-  background: url(../images/bonus_sprite.png) 0px 0px no-repeat;
   position: relative;
   top: 15px;
   left: 56px;
+}
+.bonus_pers .rankimg div.status {
+  background: url(../images/bonus_sprite.png) 0px 0px no-repeat;
 }
 .bonus_pers .rankimg div.l1 {
   background-position: 0px 0px;
@@ -4504,6 +4506,9 @@ li {
   background: url(../images/bonus_sprite.png) 0px -163px no-repeat;
   position: absolute;
   left: 0px;
+}
+.bonus_pers div.scale span.active:before {
+  background-color: #3bbb1f;
 }
 .bonus_pers div.scale span:first-of-type:after {
   margin-left: 24px;
@@ -4792,7 +4797,7 @@ h2.bonus {
 }
 #gift-slider .gift-item .pic {
   height: 132px;
-  margin: 0px 15px 15px 15px;
+  margin: 40px 15px 15px 15px;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: contain;
