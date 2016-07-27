@@ -20,12 +20,14 @@
 
     });
 
-  window.addEventListener('DOMContentLoaded', function () {
+
+  setTimeout(function () {
 
     var app_container = document.getElementsByTagName('sailplay-lecafier')[0];
 
     app_container && angular.bootstrap(app_container, ['lecafier']);
 
-  });
+  }, 0);
+
 
 }());

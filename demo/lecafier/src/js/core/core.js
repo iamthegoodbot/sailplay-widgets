@@ -22,9 +22,11 @@
 
       sp.on('init.success', function () {
 
-        if (window.auth_hash) {
+        var auth_hash = $rootScope.config.auth_hash || window.auth_hash;
 
-          sp.send('login', window.auth_hash);
+        if (auth_hash) {
+
+          sp.send('login', auth_hash);
 
         } else {
 
