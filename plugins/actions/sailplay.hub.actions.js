@@ -143,7 +143,10 @@
 
       action_frame.onload = function() {
         sp.send('actions.parse.success', action);
-      }      
+      };
+
+      //gp speciefied config
+
     }
 
 
@@ -167,7 +170,7 @@
 
   // SOCIAL GOOGLE PLUS CHANGE HEIGHT
   sp.on('actions.social.gp.like.mouseenter', function(){
-    var elms = document.querySelectorAll('iframe[iframe-action-gp-like]');
+    var elms = document.querySelectorAll('iframe[iframe-action-gp-like], iframe.gp.like');
     var originWidth,
       w,
       h = 500;
@@ -181,7 +184,7 @@
   });
 
   sp.on('actions.social.gp.like.mouseleave', function(){
-    var elms = document.querySelectorAll('iframe[iframe-action-gp-like]');
+    var elms = document.querySelectorAll('iframe[iframe-action-gp-like], iframe.gp.like');
     var w = 150,
       h = 27;
     for(var i = 0, len = elms.length; i < len; i++){
