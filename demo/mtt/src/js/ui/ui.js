@@ -26,25 +26,30 @@
 
     })
 
-    .directive('sliderInit', function ($compile, $timeout) {
+    .directive('phoneMask', function ($timeout) {
+
       return {
         restrict: 'A',
-        replace: false,
-        scope: false,
-        link: function (scope, element, attrs) {
+        require: 'ngModel',
+        link: function (scope, elm, attrs, ngModel) {
 
+          ngModel.$validators.phone = function (modelValue, viewValue) {
+            var value = (modelValue || viewValue || '').replace(/\D/g, '');
+            if (!value) return true;
+            maskedInput.init();
+            return /^[0-9]{11}$/.test(value);
+          };
 
-          if (scope.$last) { // all are rendered
+          var maskedInput;
 
-            $timeout(function () {
-              attrs.last && attrs.sliderInit && $(attrs.sliderInit).cycle();
-            }, 10);
-
-          }
+          $timeout(function () {
+            $(elm).mask('+7(000) 000-00-00', {placeholder: "+7(___)___-__-__"});
+            maskedInput = $(elm).data('mask');
+          }, 10);
 
         }
-
       };
+
     })
 
     .directive('notifier', function ($timeout) {
@@ -68,7 +73,6 @@
 
             scope.data = data;
             $('.bns_overlay_notify').fadeIn();
-            scope.$apply();
 
           });
 
@@ -76,8 +80,11 @@
           scope.reset_notifier = function () {
 
             $('.bns_overlay_notify').fadeOut();
+
             $timeout(function () {
+
               scope.data = angular.copy(new_data);
+
             }, 200);
 
           };

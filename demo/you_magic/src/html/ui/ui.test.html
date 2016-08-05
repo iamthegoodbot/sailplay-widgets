@@ -1,0 +1,50 @@
+<div class="bns_overlay bns_overlay_opros">
+    <div class="bns_overlay_iner">
+        <a href="#" class="close_overlay"></a>
+        <span class="numb_qust">Вопрос {{ step }} / {{ materials.data.length }}</span>
+        <span class="bns_qust" data-ng-bind="materials.data[step - 1].label"></span>
+
+        <div class="bns_check" data-ng-repeat="item in materials.data[step - 1].answers"
+             data-ng-switch="materials.data[step - 1].type">
+
+            <input data-ng-switch-when="checkbox" type="checkbox"
+                   name="{{ 'qust[' + (step - 1)  + '][]' }}"
+                   id="qust_{{ (step - 1)+ '_' + $index }}" data-ng-value="item"
+                   data-ng-model="item.model"
+                   data-ng-checked="get_checked(item)"
+                   data-ng-change="on_change(item, item.model, 'checkbox')">
+
+            <input data-ng-switch-default type="radio" name="qust"
+                   id="qust_{{ (step - 1)+ '_' + $index }}" data-ng-value="item"
+                   data-ng-checked="get_checked(item)"
+                   data-ng-click="on_change(item, null, 'radio')">
+
+            <label for="qust_{{ (step - 1) + '_' + $index }}"
+                   class="type_{{ materials.data[step - 1].type || 'radio' }}"
+                   data-ng-bind="item.label"></label>
+
+
+        </div>
+
+        <div class="bns_input_block">
+
+            <input type="text" placeholder="Напишите свой вариант тут" data-ng-if="show_area()"
+                   data-ng-model="$parent.area"/>
+
+            <div>
+
+                <input type="button" value="Назад"
+                       data-ng-disabled="step == 1"
+                       data-ng-click="$event.preventDefault();prev();" style="margin-right: 20px;">
+
+                <input type="submit" value="Далее"
+                       data-ng-disabled="!is_selectable()"
+                       data-ng-click="next();">
+
+            </div>
+
+
+        </div>
+
+    </div>
+</div>

@@ -110,7 +110,6 @@
 
           sp.on('gift.purchase.force_complete.success', function (res) {
 
-
             scope.$apply(function () {
 
               sp_api.call('load.user.categories');

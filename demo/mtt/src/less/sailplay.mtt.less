@@ -33,6 +33,23 @@ body, html {
 
 }
 
+.alink {
+  position: relative;
+  cursor: pointer;
+  width: 160px;
+  line-height: 35px;
+  text-decoration: none;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: #A11636;
+  border-bottom: 1px solid #000;
+  text-shadow: 0 0 1px #000000;
+  transition: all 300ms ease;
+  display: inline-block;
+  text-align: center;
+}
+
 .bns_overlay {
   position: fixed;
   left: 0px;
@@ -223,6 +240,81 @@ body, html {
       }
     }
   }
+}
+
+.bns_overlay_gift_not_points {
+  text-align: center;
+  p {
+    padding: 20px;
+  }
+}
+
+.bns_overlay_gift {
+  text-align: left;
+  .bns_overlay_iner {
+    font-size: 0;
+    &:before {
+      vertical-align: middle;
+      display: inline-block;
+      height: 100%;
+      width: 0;
+      content: '';
+    }
+  }
+  .gift_more {
+    color: #242424;
+    font-size: 14px;
+
+    &_block {
+      display: inline-block;
+      vertical-align: middle;
+      width: 70%;
+      white-space: normal;
+    }
+
+    &_img {
+      display: inline-block;
+      width: 30%;
+      vertical-align: middle;
+
+    }
+
+    &_name {
+      display: inline-block;
+      width: 100%;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    &_descr {
+      display: inline-block;
+      width: 100%;
+      font-size: 14px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+
+    }
+
+    &_points {
+      display: inline-block;
+      width: 100%;
+      opacity: 0.5;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+
+  }
+}
+
+.bns_overlay_gift_complete {
+  text-align: center;
+  p {
+    margin: 20px 0;
+  }
+}
+
+.cycle-carousel-wrap {
+  //display: none !important;
 }
 
 .bn_wrap {
@@ -443,7 +535,7 @@ body, html {
         }
         .bps_right {
           float: right;
-          width: 75%;
+          width: 70%;
           margin-top: 12px;
           margin-right: 20px;
           .progress_line_main {
@@ -496,6 +588,7 @@ body, html {
               width: 36px;
               height: 36px;
               margin-top: -19px;
+              margin-left: -19px;
               background-color: #B26ABA;
               border-radius: 6px;
               background-image: url(../img/icon_top3.png);
@@ -506,6 +599,27 @@ body, html {
               border-top: 3px solid #6A1B73;
               &.act {
                 background-color: #fff;
+              }
+              &_hint {
+                opacity: 0;
+                visibility: hidden;
+                display: inline-block;
+                position: absolute;
+                left: 0;
+                text-align: center;
+                width: 100%;
+                top: 0;
+                font-weight: bold;
+                transition: .3s ease;
+                color: white;
+              }
+
+              &:hover {
+                .gift_item_hint {
+                  visibility: visible;
+                  opacity: 1;
+                  top: -20px;
+                }
               }
             }
             .gift1 {
@@ -684,6 +798,7 @@ body, html {
       a {
         position: relative;
         float: left;
+        overflow: hidden;
         width: 25%;
         height: 100px;
         -webkit-transition: all 300ms ease;
@@ -715,12 +830,12 @@ body, html {
         }
         img {
           position: absolute;
-          right: 35px;
-          top: 0;
+          right: 0;
           bottom: 0;
+          max-height: 90%;
           margin: auto;
         }
-        &:hover, &.cycle-pager-active {
+        &:hover, &.active {
           background-color: #893E90;
           span {
             color: #fff;
@@ -782,6 +897,13 @@ body, html {
       .bon_slide_cat_item {
         float: left;
         width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        .bon_item_line {
+          position: relative;
+          left: 0;
+          transition: .3s ease;
+        }
         .bon_item {
           width: 245px;
           height: 360px;
@@ -790,6 +912,8 @@ body, html {
           margin-right: 15px;
           background-color: #fff;
           text-align: center;
+          display: inline-block;
+          white-space: normal;
           &:hover {
             border: 1px solid #893E90;
           }
@@ -1196,6 +1320,7 @@ body, html {
         width: 25%;
         padding: 20px 35px;
         box-sizing: border-box;
+        white-space: nowrap;
         &.cycle-pager-active {
           background-color: #893E90;
           span {
@@ -1210,6 +1335,8 @@ body, html {
           color: #292929;
           float: left;
           margin-top: 10px;
+          max-width: 160px;
+          white-space: normal;
         }
       }
     }
@@ -1247,7 +1374,7 @@ body, html {
         .bon_profile_stat {
           .bps_right {
             width: 100%;
-            margin-top: 20px;
+            margin-top: 30px;
             margin-right: 0px;
           }
         }
@@ -1284,12 +1411,52 @@ body, html {
       .bon_choice_cat {
         a {
           span {
-            width: 45%
+            width: 60%
           }
         }
       }
     }
   }
+}
+
+@media screen and (max-width: 1170px) {
+
+  .bn_wrap .bns_about_page .b_about a span {
+    max-width: 140px;
+  }
+
+}
+
+@media screen and (max-width: 1100px) {
+
+  .progress_line_main {
+
+    .progress_text {
+      border: none !important;
+
+      &:before {
+        content: '';
+        width: 1px;
+        background: white;
+        right: 0;
+        top: 0;
+        position: absolute;
+        height: 17px;
+        display: block;
+      }
+
+      span {
+
+        position: relative;
+        left: 50%;
+        border-radius: 5px !important;
+
+      }
+
+    }
+
+  }
+
 }
 
 @media screen and (max-width: 930px) {

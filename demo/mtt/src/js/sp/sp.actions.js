@@ -76,7 +76,7 @@
       }
     })
 
-    .directive('sailplayActions', function (sp_api, sp, actions_data, $timeout, user_service, $rootScope, tests_service) {
+    .directive('sailplayActions', function (sp_api, sp, actions_data, $timeout, user_service, $rootScope, tests_service, ipCookie) {
 
       return {
 
@@ -90,7 +90,14 @@
           scope.exist = sp_api.data('tags.exist');
           scope.test_data = tests_service.getData;
           scope.current_test = null;
-          scope.vars = {};
+
+          if (!ipCookie('sailplay_vars')) {
+
+            ipCookie('sailplay_vars', {});
+
+          }
+
+          scope.vars = angular.copy(ipCookie('sailplay_vars'));
 
 
           scope.getExist = function (data, name) {
@@ -113,7 +120,7 @@
               lastName: scope.user && scope.user() && scope.user().user.last_name,
               middleName: scope.user && scope.user() && scope.user().user.middle_name,
               addEmail: scope.user && scope.user() && scope.user().user.email,
-              addPhone: scope.user && scope.user() && scope.user().user.phone && scope.user().user.phone
+              addPhone: scope.user && scope.user() && scope.user().user.phone
             };
           });
 
@@ -135,13 +142,26 @@
               if (
                 (scope.user().user.first_name == form.firstName)
                 && (scope.user().user.last_name == form.lastName)
-                && (scope.user().user.last_name == form.middleName)
-                && (scope.user().user.phone == form.addPhone)
+                && (scope.user().user.middle_name == form.middleName)
+                && (scope.user().user.phone == form.addPhone.replace(/\D/g, ''))
                 && (scope.user().user.email == form.addEmail)
               ) {
-                return false;
+
+                if(!angular.equals(scope.vars, ipCookie('sailplay_vars'))) {
+
+                  return true;
+
+                } else {
+
+                  return false;
+
+                }
+
+
               } else {
+
                 return true;
+
               }
             }
             return false;
@@ -169,15 +189,19 @@
                 delete form.addEmail;
               }
 
-              if (scope.user().user.phone == form.addPhone) {
+              if (scope.user().user.phone == form.addPhone.replace(/\D/g, '')) {
                 delete form.addPhone;
               }
 
               if (!Object.keys(form).length) {
-                return;
-              }
 
-              sp_api.call('users.update', form);
+                sendVars();
+
+              } else {
+
+                sp_api.call('users.update', form);
+
+              }
 
             }
 
@@ -214,29 +238,41 @@
 
             sp_api.call('tags.add', {tags: [user_service.getTags().fill_profile]}, function () {
 
-              if (scope.vars['Адрес']) {
-
-                sp_api.call('vars.add', {custom_vars: scope.vars}, function () {
-
-                  closeProfile();
-
-                });
-
-              } else {
-
-                closeProfile();
-
-              }
+              sendVars();
 
             });
 
           });
 
+          function sendVars() {
+
+            if (scope.vars && Object.keys(scope.vars).length) {
+
+              sp_api.call('vars.add', {custom_vars: scope.vars}, function () {
+
+                ipCookie('sailplay_vars', angular.copy(scope.vars));
+
+                closeProfile();
+
+              });
+
+            } else {
+
+              closeProfile();
+
+            }
+
+          }
+
           function closeProfile() {
 
-            $rootScope.$broadcast('notifier:notify', {
+            scope.$apply(function(){
 
-              header: 'Информация обновлена'
+              $rootScope.$broadcast('notifier:notify', {
+
+                header: 'Информация обновлена'
+
+              });
 
             });
 
@@ -380,13 +416,13 @@
 
               tags_add(scope.send_data.tags.slice(0, TAGS_ADD_LIMIT));
 
-              function tags_add (tags){
+              function tags_add(tags) {
 
                 sp_api.call('tags.add', {tags: tags}, function () {
 
                   scope.send_data.tags = scope.send_data.tags.slice(TAGS_ADD_LIMIT);
 
-                  if(scope.send_data.tags.length != 0) {
+                  if (scope.send_data.tags.length != 0) {
 
                     tags_add(scope.send_data.tags.slice(0, TAGS_ADD_LIMIT));
 
@@ -411,7 +447,6 @@
                 })
 
               }
-
 
 
             }

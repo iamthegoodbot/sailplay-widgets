@@ -33,6 +33,7 @@
                 подарков</h3>
             <div class="bns_prof_left">
                 <img data-ng-src="{{ (user().user.pic | sailplay_pic) || 'dist/img/ava.png'}}" alt="You">
+                <a href="#" class="bns_logout" data-ng-click="$event.preventDefault();logout();">Выйти</a>
                 <div class="bns_prof_menu">
                     <a href="#" class="bns_hist_js">История начислений</a>
                     <a href="#" class="bns_por_js">Порядок начисления баллов</a>
@@ -106,49 +107,12 @@
             </div>
         </div>
 
-        <div class="bns_overlay bns_overlay_opros" data-ng-cloak data-sailplay-test>
-            <div class="bns_overlay_iner">
-                <a href="#" class="close_overlay"></a>
-                <span class="numb_qust">Вопрос {{ step }} / {{ current_test.data.length }}</span>
-                <span class="bns_qust" data-ng-bind="current_test.data[step - 1].label"></span>
-
-                <div class="bns_check" data-ng-repeat="item in current_test.data[step - 1].answers"
-                     data-ng-switch="current_test.data[step - 1].type">
-
-                    <input data-ng-switch-when="checkbox" type="checkbox"
-                           name="{{ 'qust[' + (step - 1)  + '][]' }}"
-                           id="qust_{{ (step - 1)+ '_' + $index }}" data-ng-value="item"
-                           data-ng-model="item.model"
-                           data-ng-change="on_change(item, item.model, 'checkbox')">
-
-                    <input data-ng-switch-default type="radio" name="qust"
-                           id="qust_{{ (step - 1)+ '_' + $index }}" data-ng-value="$index"
-                           data-ng-model="current_test.model_for_radio"
-                           data-ng-change="on_change(item, null, 'radio')">
-
-                    <label for="qust_{{ (step - 1) + '_' + $index }}"
-                           class="type_{{ current_test.data[step - 1].type || 'radio' }}"
-                           data-ng-bind="item.label"></label>
-
-                </div>
-
-                <div class="bns_input_block">
-
-                    <input type="text" placeholder="Напишите свой вариант тут" data-ng-if="writable"
-                           data-ng-model="$parent.writable_model"/>
-
-                    <input type="submit" value="Далее" data-ng-disabled="!isSelectable()"
-                           data-ng-click="set_answer();">
-
-                </div>
-
-            </div>
-        </div>
+        <ui-test data-step="current_step" data-materials="current_test"></ui-test>
 
         <div class="bns_overlay bns_overlay_edit_prof">
             <div class="bns_overlay_iner">
                 <a href="#" class="close_overlay"></a>
-                <span class="bns_qust">
+                <span class="bns_qust" data-ng-if="!getExist(exist(),'Заполнил профиль')">
                     Заполните личные данные и получите 50 бонусных баллов
                 </span>
                 <div class="bns_input_block">
@@ -165,19 +129,20 @@
                 </div>
                 <div class="bns_input_block">
                     <label><strong>*</strong> Телефон</label>
-                    <input type="text" data-ng-model="form.addPhone" data-phone-mask  maxlength="17" data-ng-model-options="{ updateOn: 'default change blur' }">
+                    <input type="text" data-ng-model="form.addPhone" data-phone-mask maxlength="17"
+                           data-ng-model-options="{ updateOn: 'default change blur' }">
                 </div>
                 <div class="bns_input_block">
                     <label><strong>*</strong> E-mail</label>
                     <input type="text" placeholder="Напишите свой E-mail" data-ng-model="form.addEmail">
                 </div>
 
-                <span class="require_hint">
+                <span class="require_hint" style="margin-bottom: 10px;display: inline-flex;">
                     Поля, помеченные знаком "*" являются обязательными для заполнения
                 </span>
 
                 <div class="bns_edit_prog_hide">
-                    <span class="bns_qust">
+                    <span class="bns_qust" data-ng-if="!getExist(exist(),'Заполнил Доп инфо')">
                         Заполните личные данные и получите 50 бонусных баллов
                     </span>
                     <div class="bns_input_block">
@@ -191,10 +156,11 @@
                         <date-picker data-model="form.birthDate"></date-picker>
                     </div>
 
-                    <div class="bns_input_block"  data-ng-show="!getExist(exist(), refer_flag)">
+                    <div class="bns_input_block" data-ng-show="!getExist(exist(), refer_flag)">
                         <label>Откуда Вы узнали о нас?</label>
                         <div class="bns_select_check">
-                            <span>Выберите вариант ответа</span>
+
+                            <span data-ng-bind="selectedTags(ref_tags)" title="{{ selectedTags(ref_tags, true) }}"></span>
 
                             <div class="bns_select_check_popup">
 
@@ -247,7 +213,7 @@
                     <div class="bscg_img">
                         <img data-ng-src="dist/img/all_gifts.png" alt="All" width="40"
                              class="bscg_img_origin">
-                        <img data-ng-src="dist/img/all_gifts_active.png" alt="All"  width="40"
+                        <img data-ng-src="dist/img/all_gifts_active.png" alt="All" width="40"
                              class="bscg_img_hover">
                     </div>
                     <span class="bscg_name">Все подарки</span>
@@ -334,21 +300,6 @@
             </div>
         </div>
     </div>
-
-
-    <!--<div class="bns_overlay bns_overlay_thx">-->
-    <!--<div class="bns_overlay_iner">-->
-    <!--<a href="#" class="close_overlay"></a>-->
-    <!--<span class="bns_qust">-->
-    <!--Благодарим Вас-->
-    <!--</span>-->
-    <!--<span class="bns_qust_text">-->
-    <!--На ваш счет начислено 150 бонусных баллов.<br>-->
-    <!--Узнайте, на что вы можете их потратить-->
-    <!--</span>-->
-    <!--<a href="#" class="bns_thx">Список подарков</a>-->
-    <!--</div>-->
-    <!--</div>-->
 
     <div class="bns_overlay bns_overlay_about">
         <div class="bns_overlay_iner bns_overlay_iner_tr_bg">

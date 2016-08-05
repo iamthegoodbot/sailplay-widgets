@@ -2,6 +2,7 @@
 
   angular.module('ui', [
       'ui.datepicker',
+      'ui.test',
       'angularUtils.directives.dirPagination'
     ])
 
@@ -26,21 +27,25 @@
 
     })
 
-    .directive('phoneMask', function($timeout){
+    .directive('phoneMask', function ($timeout) {
 
       return {
         restrict: 'A',
         require: 'ngModel',
-        link: function(scope, elm, attrs, ngModel){
+        link: function (scope, elm, attrs, ngModel) {
 
-          ngModel.$validators.phone = function(modelValue, viewValue) {
-            var value = (modelValue || viewValue || '').replace(/\D/g,'');
-            if(!value) return true;
+          ngModel.$validators.phone = function (modelValue, viewValue) {
+            var value = (modelValue || viewValue || '').replace(/\D/g, '');
+            if (!value) return true;
+            maskedInput.init();
             return /^[0-9]{11}$/.test(value);
           };
 
-          $timeout(function(){
+          var maskedInput;
+
+          $timeout(function () {
             $(elm).mask('+7(000) 000-00-00', {placeholder: "+7(___)___-__-__"});
+            maskedInput = $(elm).data('mask');
           }, 10);
 
         }

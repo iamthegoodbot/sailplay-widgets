@@ -123,6 +123,12 @@
       };
     })
 
+    .filter('to_trusted', ['$sce', function($sce){
+      return function(text) {
+        return $sce.trustAsHtml(text);
+      };
+    }])
+
     .filter('sailplay_pluralize', function () {
       var cases = [2, 0, 1, 1, 1, 2];
       return function (input, titles) {

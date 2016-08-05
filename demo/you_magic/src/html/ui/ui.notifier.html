@@ -1,8 +1,8 @@
 <div class="bns_overlay bns_overlay_thx" data-ng-cloak>
     <div class="bns_overlay_iner">
         <a href="#" class="close_overlay" data-ng-click="reset_notifier();$event.preventDefault();"></a>
-        <span class="bns_qust" data-ng-bind="data.header"></span>
-			<span class="bns_qust_text" data-ng-bind="data.body"></span>
+        <span class="bns_qust" data-ng-bind-html="data.header | to_trusted"></span>
+        <span class="bns_qust_text" data-ng-bind-html="data.body | to_trusted"></span>
         <a href="#" class="bns_thx" data-ng-click="reset_notifier();$event.preventDefault();">OK</a>
     </div>
 </div>

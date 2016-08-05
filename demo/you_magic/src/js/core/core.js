@@ -92,10 +92,11 @@
         $rootScope.$broadcast('notifier:notify', {
 
           header: 'Благодарим Вас',
-          body: res && res.data && res.data.response ? 'На ваш счет начислено ' + res.data.response + ' бонусных баллов.<br>Узнайте, на что вы можете их потратить.' : 'На ваш счет начислены бонусные баллы.<br>Узнайте, на что вы можете их потратить.'
+          body: res && res.data && res.data.response && res.data.response.points ? 'На ваш счет начислено ' + res.data.response.points + ' бонусных баллов. Узнайте, на что вы можете их <a href="#" class="scrollToGifts">потратить</a>.' : 'На ваш счет начислены бонусные баллы. Узнайте, на что вы можете их <a href="#" class="scrollToGift">потратить</a>.'
 
         });
 
+        sp_api.call('load.user.history');
 
         $rootScope.$apply();
 
@@ -105,7 +106,6 @@
 
         ipCookie('sailplay_vars', null);
         ipCookie('sailplay_form', null);
-        ipCookie('sailplay_profile_full', null);
 
       });
 
@@ -114,14 +114,26 @@
       });
 
       sp.on('actions.perform.complete', function () {
+
+        sp_api.call('load.user.info', {all: 1});
+
         sp_api.call('load.actions.list');
+
+        sp_api.call('load.user.history');
+
       });
 
       sp.on('tags.add.success', function () {
 
+        sp_api.call('load.user.info', {all: 1});
+
         $timeout(function () {
+
           sp_api.call('tags.exist', {tags: _tags});
+          sp_api.call('load.user.history');
+
         }, 3000);
+
 
       });
 

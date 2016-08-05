@@ -48,6 +48,24 @@
             $('.bon_news').toggleClass('act');
 
             return false;
+          }).on('click', '[data-scroll-to]', function () {
+
+            $(element).find('.bns_overlay').fadeOut();
+
+            var _el = $($(this).data('scroll-to'));
+
+            var _offset = _el.length ? $(_el).offset().top : 0;
+
+            setTimeout(function(){
+
+              $('html, body').animate({
+                scrollTop: _offset
+              }, 1000);
+
+            }, 500);
+
+            return false;
+
           });
 
 

@@ -71,13 +71,6 @@
           scope.reset();
 
           scope.isFilled = function () {
-            console.log(scope.form
-              , scope.form.user.email
-              , scope.form.custom_vars.first_name
-              , scope.form.custom_vars.last_name
-              , scope.form.custom_vars.Phone
-              , scope.form.custom_vars.Market
-              , scope.form.custom_vars.account_number);
             if (
               scope.form
               && scope.form.user.email

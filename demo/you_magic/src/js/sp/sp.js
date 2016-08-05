@@ -133,6 +133,12 @@
       }
     })
 
+    .filter('to_trusted', ['$sce', function($sce){
+      return function(text) {
+        return $sce.trustAsHtml(text);
+      };
+    }])
+
     .filter('sailplay_pic', function (sp) {
 
       function repair_pic_url(url) {

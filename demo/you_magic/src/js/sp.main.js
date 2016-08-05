@@ -2,7 +2,7 @@
 
   angular.module('ym', ['core', 'ui', 'sp', 'templates'])
 
-    .directive('sailplayYm', function ($rootScope, $locale, sp_api) {
+    .directive('sailplayYm', function ($rootScope, $locale, sp_api, sp) {
 
       return {
         restrict: 'E',
@@ -16,6 +16,7 @@
             return false;
           }).on('click', '.bns_overlay, .close_overlay', function () {
             $(element).find('.bns_overlay').fadeOut();
+            $('html').removeClass('overflow_hidden');
             return false;
           }).on('click', '.bns_por_js', function () {
             $(element).find('.bns_overlay_about').fadeIn();
@@ -25,10 +26,33 @@
             $('html').addClass('overflow_hidden');
             return false;
           }).on('click', '.bns_overlay_iner', function (event) {
-            event.stopPropagation()
+            event.stopPropagation();
+          }).on('click', '.bns_logout', function () {
+            sp_api.call('logout');
+            return false;
+          }).on('click', '.scrollToGifts', function () {
+
+            $(element).find('.bns_overlay').fadeOut();
+
+            $('html').removeClass('overflow_hidden');
+
+            setTimeout(function(){
+
+              $('html, body').animate({
+                scrollTop: $(".bns_select_gift").offset().top
+              }, 2000);
+
+            }, 500);
+
+            return false;
+
           });
 
           $(element).find('.cycle-slideshow').cycle();
+
+          sp.on('logout.success', function(){
+            window.location.reload();
+          });
 
           scope.user = sp_api.data('load.user.info');
 
