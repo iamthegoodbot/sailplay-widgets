@@ -101,7 +101,7 @@
       action_frame.style.background = 'transparent';
       action_frame.style.overflow = 'hidden';
       action_frame.setAttribute('scrolling', 'no');
-      action_frame.className = 'sailplay_action_frame';
+      action_frame.className = [ 'sailplay_action_frame', (action.socialType || ''),  (action.action || '')].join(' ');
 
       function EncodeQueryData(data)
       {

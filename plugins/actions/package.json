@@ -1,6 +1,6 @@
 {
   "name": "sailplay-hub-actions",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "SailPlay Widgets Actions plugin",
   "contributors": [
     { "name" : "Mikhail Lagutin" },
