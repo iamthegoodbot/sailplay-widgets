@@ -101,7 +101,10 @@
       action_frame.style.background = 'transparent';
       action_frame.style.overflow = 'hidden';
       action_frame.setAttribute('scrolling', 'no');
-      action_frame.className = [ 'sailplay_action_frame', (action.socialType || ''),  (action.action || '')].join(' ');
+
+      var account_connected = action.force ? true : (_actions_config.connectedAccounts[action.socialType] || false);
+
+      action_frame.className = [ 'sailplay_action_frame', (action.socialType || ''),  (action.action || ''), (account_connected ? 'account_connected' : '')].join(' ');
 
       function EncodeQueryData(data)
       {
@@ -118,7 +121,7 @@
         link: action.shortLink,
         pic: (action.pic || _actions_config.partnerCustomPic || sp.config().partner.logo),
         msg: (action.msg || _actions_config.messages[action.action] || sp.config().partner.name),
-        account_connected: action.force ? true : (_actions_config.connectedAccounts[action.socialType] || false) ,
+        account_connected: account_connected,
         force: action.force
       };
 
