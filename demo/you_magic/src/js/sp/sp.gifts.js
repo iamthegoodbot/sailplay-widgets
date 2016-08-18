@@ -19,6 +19,17 @@
           scope.order_desc = true;
           scope.received = [];
 
+          scope.getIconById = function(id, active){
+            var imgs = {
+              729: 'food',
+              731: 'phone',
+              739: 'book',
+              738: 'other'
+            };
+            if(!id || !imgs[id]) return '';
+            return active ? imgs[id] + '_active' : imgs[id];
+          };
+
           scope.hasGift = function (item) {
             return item.length
           };

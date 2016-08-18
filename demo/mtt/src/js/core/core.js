@@ -1,7 +1,8 @@
 (function () {
 
   angular.module('core', [
-      'ipCookie'
+      'ipCookie',
+      'ngTouch'
     ])
 
     .run(function (sp, ipCookie, sp_api, $rootScope, user_service, tests_service, $timeout, giftAccessTag) {

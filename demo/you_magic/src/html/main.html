@@ -47,7 +47,8 @@
 
                     <div class="bns_line_path"
                          data-ng-style="{ width: setProgress(user().user_points.confirmed) + '%' }">
-                        <div class="bns_line_info">
+                        <div class="bns_line_info"
+                             data-ng-class="{invert : setProgress(user().user_points.confirmed) < 50}">
                             <span data-ng-bind="getOffsetToGift(user().user_points.confirmed) ? (getOffsetToGift(user().user_points.confirmed) + ' ' + ((getOffsetToGift(user().user_points.confirmed) | sailplay_pluralize:'балл,балла,баллов')) + ' до подарка') : 'Выбирайте любой подарок'"></span>
                         </div>
                     </div>
@@ -160,7 +161,8 @@
                         <label>Откуда Вы узнали о нас?</label>
                         <div class="bns_select_check">
 
-                            <span data-ng-bind="selectedTags(ref_tags)" title="{{ selectedTags(ref_tags, true) }}"></span>
+                            <span data-ng-bind="selectedTags(ref_tags)"
+                                  title="{{ selectedTags(ref_tags, true) }}"></span>
 
                             <div class="bns_select_check_popup">
 
@@ -211,10 +213,10 @@
                    data-ng-click="$event.preventDefault();active_category = 'all';"
                    data-ng-class="{act : active_category  == 'all'}">
                     <div class="bscg_img">
-                        <img data-ng-src="dist/img/all_gifts.png" alt="All" width="40"
-                             class="bscg_img_origin">
-                        <img data-ng-src="dist/img/all_gifts_active.png" alt="All" width="40"
-                             class="bscg_img_hover">
+                        <div style="background-image: url(dist/img/all_gifts.png)" title="Все подарки"
+                             class="bscg_img_bscg_img_originhover"></div>
+                        <div style="background-image: url(dist/img/all_gifts_active.png)" title="Все подарки"
+                             class="bscg_img_hover"></div>
                     </div>
                     <span class="bscg_name">Все подарки</span>
                 <span class="bscg_num"
@@ -226,10 +228,10 @@
                    data-ng-click="$event.preventDefault();$parent.active_category = category.id;"
                    data-ng-class="{act : category.id == $parent.active_category}">
                     <div class="bscg_img">
-                        <img data-ng-src="dist/img/sl_g{{ ($index + 1)}}.png" alt="{{ category.name }}"
-                             class="bscg_img_origin">
-                        <img data-ng-src="dist/img/sl_g{{ ($index + 1)}}_act.png" alt="{{ category.name }}"
-                             class="bscg_img_hover">
+                        <div style="background-image: url(dist/img/{{ getIconById(category.id) }}.png)" title="{{ category.name }}"
+                             class="bscg_img_bscg_img_originhover"></div>
+                        <div style="background-image: url(dist/img/{{ getIconById(category.id, true) }}.png)" title="{{ category.name }}"
+                             class="bscg_img_hover"></div>
                     </div>
                     <span class="bscg_name" data-ng-bind="category.name"></span>
                 <span class="bscg_num"

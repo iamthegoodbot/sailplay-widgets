@@ -549,6 +549,11 @@ html {
   border-right: 1px solid #fff;
   top: 14px;
 }
+.bn_wrap .bon_profile_wrap .bon_profile_info .bon_profile_stat .bps_right .progress_line_main .progress_line .progress_text.invert span {
+  position: relative;
+  right: -100px;
+  border-radius: 0px 5px 5px 0px;
+}
 .bn_wrap .bon_profile_wrap .bon_profile_info .bon_profile_stat .bps_right .progress_line_main .progress_line .progress_text span {
   float: right;
   line-height: 30px;
@@ -848,8 +853,7 @@ html {
   background-position: center center;
   background-repeat: no-repeat;
   display: block;
-  top: 50%;
-  margin-top: -55px;
+  top: 130px;
 }
 .bn_wrap .bon_choice_main .bon_item_main .arr_right {
   position: absolute;
@@ -863,8 +867,7 @@ html {
   background-position: center center;
   background-repeat: no-repeat;
   display: block;
-  top: 50%;
-  margin-top: -55px;
+  top: 130px;
 }
 .bn_wrap .bon_choice_main .bon_item_main .bon_slide_cat_item {
   float: left;
@@ -1279,6 +1282,7 @@ html {
   padding: 20px 35px;
   box-sizing: border-box;
   white-space: nowrap;
+  min-height: 116px;
 }
 .bn_wrap .bns_about_page .b_about a.cycle-pager-active {
   background-color: #893E90;
@@ -1349,6 +1353,7 @@ html {
 @media screen and (max-width: 1170px) {
   .bn_wrap .bns_about_page .b_about a span {
     max-width: 140px;
+    min-height: 105px;
   }
 }
 @media screen and (max-width: 1100px) {
@@ -1367,7 +1372,6 @@ html {
   }
   .progress_line_main .progress_text span {
     position: relative;
-    left: 50%;
     border-radius: 5px !important;
   }
 }
@@ -1459,6 +1463,12 @@ html {
   }
 }
 @media screen and (max-width: 650px) {
+  .bn_wrap .more_bonus .more_bonus_main .mb_popup .mb_popup_main .edit_profile_input label {
+    width: 100%;
+  }
+  .bn_wrap .more_bonus .more_bonus_main .mb_popup .mb_popup_main .edit_profile_input input[type="text"] {
+    width: 100%;
+  }
   .bn_wrap .bns_about_page .b_about a {
     width: 50%;
   }
@@ -1502,7 +1512,7 @@ html {
   .bn_wrap .more_bonus .more_bonus_main .mb_item {
     width: 48%;
     position: relative;
-    height: 220px;
+    height: 233px;
     margin-right: 0px;
   }
   .bn_wrap .more_bonus .more_bonus_main .mb_item:nth-child(2n) {
@@ -1559,11 +1569,22 @@ html {
   .bns_overlay .b_about a span {
     width: 80%;
   }
+  .bn_wrap .bns_about_page .b_about a span {
+    min-height: 0px;
+  }
 }
 @media screen and (max-width: 430px) {
+  .bn_wrap .bon_choice_main .bon_item_main .bon_slide_cat_item .bon_item {
+    width: 195px;
+    margin-left: 14px;
+  }
+  .bn_wrap .bon_choice_main .bon_item_main .bon_slide_cat_item .bon_item img {
+    width: 100%;
+    height: auto;
+  }
   .bn_wrap .top_main .top_text_main .top_text_purp_bg .top_text_item span {
     line-height: 19px;
-    margin-top: 10 pxk;
+    margin-top: 10px;
   }
   .bns_overlay .b_about a {
     width: 100%;

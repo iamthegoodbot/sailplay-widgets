@@ -1667,6 +1667,21 @@ c){var e=a|0,f=c;void 0===f&&(f=Math.min(b(a),3));Math.pow(10,f);return 1==e&&0=
 //# sourceMappingURL=angular.min.js.map
 
 angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).factory("ipCookie",["$document",function(e){"use strict";function i(e){try{return decodeURIComponent(e)}catch(i){}}return function(){function t(t,n,r){var o,s,p,u,a,c,d,x,f;r=r||{};var g=r.decode||i,l=r.encode||encodeURIComponent;if(void 0!==n)return n="object"==typeof n?JSON.stringify(n):n+"","number"==typeof r.expires&&(f=r.expires,r.expires=new Date,-1===f?r.expires=new Date("Thu, 01 Jan 1970 00:00:00 GMT"):void 0!==r.expirationUnit?"hours"===r.expirationUnit?r.expires.setHours(r.expires.getHours()+f):"minutes"===r.expirationUnit?r.expires.setMinutes(r.expires.getMinutes()+f):"seconds"===r.expirationUnit?r.expires.setSeconds(r.expires.getSeconds()+f):"milliseconds"===r.expirationUnit?r.expires.setMilliseconds(r.expires.getMilliseconds()+f):r.expires.setDate(r.expires.getDate()+f):r.expires.setDate(r.expires.getDate()+f)),e[0].cookie=[l(t),"=",l(n),r.expires?"; expires="+r.expires.toUTCString():"",r.path?"; path="+r.path:"",r.domain?"; domain="+r.domain:"",r.secure?"; secure":""].join("");for(s=[],x=e[0].cookie,x&&(s=x.split("; ")),o={},d=!1,p=0;s.length>p;++p)if(s[p]){if(u=s[p],a=u.indexOf("="),c=u.substring(0,a),n=g(u.substring(a+1)),angular.isUndefined(n))continue;if(void 0===t||t===c){try{o[c]=JSON.parse(n)}catch(m){o[c]=n}if(t===c)return o[c];d=!0}}return d&&void 0===t?o:void 0}return t.remove=function(e,i){var n=void 0!==t(e);return n&&(i||(i={}),i.expires=-1,t(e,"",i)),n},t}()}]);
+/*
+ AngularJS v1.5.8
+ (c) 2010-2016 Google, Inc. http://angularjs.org
+ License: MIT
+*/
+(function(x,n){'use strict';function s(f,k){var e=!1,a=!1;this.ngClickOverrideEnabled=function(b){return n.isDefined(b)?(b&&!a&&(a=!0,t.$$moduleName="ngTouch",k.directive("ngClick",t),f.decorator("ngClickDirective",["$delegate",function(a){if(e)a.shift();else for(var b=a.length-1;0<=b;){if("ngTouch"===a[b].$$moduleName){a.splice(b,1);break}b--}return a}])),e=b,this):e};this.$get=function(){return{ngClickOverrideEnabled:function(){return e}}}}function v(f,k,e){p.directive(f,["$parse","$swipe",function(a,
+b){return function(l,u,g){function h(c){if(!d)return!1;var a=Math.abs(c.y-d.y);c=(c.x-d.x)*k;return r&&75>a&&0<c&&30<c&&.3>a/c}var m=a(g[f]),d,r,c=["touch"];n.isDefined(g.ngSwipeDisableMouse)||c.push("mouse");b.bind(u,{start:function(c,a){d=c;r=!0},cancel:function(c){r=!1},end:function(c,d){h(c)&&l.$apply(function(){u.triggerHandler(e);m(l,{$event:d})})}},c)}}])}var p=n.module("ngTouch",[]);p.provider("$touch",s);s.$inject=["$provide","$compileProvider"];p.factory("$swipe",[function(){function f(a){a=
+a.originalEvent||a;var b=a.touches&&a.touches.length?a.touches:[a];a=a.changedTouches&&a.changedTouches[0]||b[0];return{x:a.clientX,y:a.clientY}}function k(a,b){var l=[];n.forEach(a,function(a){(a=e[a][b])&&l.push(a)});return l.join(" ")}var e={mouse:{start:"mousedown",move:"mousemove",end:"mouseup"},touch:{start:"touchstart",move:"touchmove",end:"touchend",cancel:"touchcancel"},pointer:{start:"pointerdown",move:"pointermove",end:"pointerup",cancel:"pointercancel"}};return{bind:function(a,b,l){var e,
+g,h,m,d=!1;l=l||["mouse","touch","pointer"];a.on(k(l,"start"),function(c){h=f(c);d=!0;g=e=0;m=h;b.start&&b.start(h,c)});var r=k(l,"cancel");if(r)a.on(r,function(c){d=!1;b.cancel&&b.cancel(c)});a.on(k(l,"move"),function(c){if(d&&h){var a=f(c);e+=Math.abs(a.x-m.x);g+=Math.abs(a.y-m.y);m=a;10>e&&10>g||(g>e?(d=!1,b.cancel&&b.cancel(c)):(c.preventDefault(),b.move&&b.move(a,c)))}});a.on(k(l,"end"),function(c){d&&(d=!1,b.end&&b.end(f(c),c))})}}}]);var t=["$parse","$timeout","$rootElement",function(f,k,e){function a(a,
+d,b){for(var c=0;c<a.length;c+=2){var g=a[c+1],e=b;if(25>Math.abs(a[c]-d)&&25>Math.abs(g-e))return a.splice(c,c+2),!0}return!1}function b(b){if(!(2500<Date.now()-u)){var d=b.touches&&b.touches.length?b.touches:[b],e=d[0].clientX,d=d[0].clientY;if(!(1>e&&1>d||h&&h[0]===e&&h[1]===d)){h&&(h=null);var c=b.target;"label"===n.lowercase(c.nodeName||c[0]&&c[0].nodeName)&&(h=[e,d]);a(g,e,d)||(b.stopPropagation(),b.preventDefault(),b.target&&b.target.blur&&b.target.blur())}}}function l(a){a=a.touches&&a.touches.length?
+a.touches:[a];var b=a[0].clientX,e=a[0].clientY;g.push(b,e);k(function(){for(var a=0;a<g.length;a+=2)if(g[a]==b&&g[a+1]==e){g.splice(a,a+2);break}},2500,!1)}var u,g,h;return function(h,d,k){var c=f(k.ngClick),w=!1,q,p,s,t;d.on("touchstart",function(a){w=!0;q=a.target?a.target:a.srcElement;3==q.nodeType&&(q=q.parentNode);d.addClass("ng-click-active");p=Date.now();a=a.originalEvent||a;a=(a.touches&&a.touches.length?a.touches:[a])[0];s=a.clientX;t=a.clientY});d.on("touchcancel",function(a){w=!1;d.removeClass("ng-click-active")});
+d.on("touchend",function(c){var h=Date.now()-p,f=c.originalEvent||c,m=(f.changedTouches&&f.changedTouches.length?f.changedTouches:f.touches&&f.touches.length?f.touches:[f])[0],f=m.clientX,m=m.clientY,v=Math.sqrt(Math.pow(f-s,2)+Math.pow(m-t,2));w&&750>h&&12>v&&(g||(e[0].addEventListener("click",b,!0),e[0].addEventListener("touchstart",l,!0),g=[]),u=Date.now(),a(g,f,m),q&&q.blur(),n.isDefined(k.disabled)&&!1!==k.disabled||d.triggerHandler("click",[c]));w=!1;d.removeClass("ng-click-active")});d.onclick=
+function(a){};d.on("click",function(a,b){h.$apply(function(){c(h,{$event:b||a})})});d.on("mousedown",function(a){d.addClass("ng-click-active")});d.on("mousemove mouseup",function(a){d.removeClass("ng-click-active")})}}];v("ngSwipeLeft",-1,"swipeleft");v("ngSwipeRight",1,"swiperight")})(window,window.angular);
+//# sourceMappingURL=angular-touch.min.js.map
+
 /**
  * dirPagination - AngularJS module for paginating (almost) anything.
  *
@@ -2315,7 +2330,7 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/html/main.html',
-    '<div class="bn_wrap" data-ng-show="global.auth"><div class="top_main"><div class="top_text_main"><div class="top_text_white_bg"><h2>Бонусная программа МТТ</h2><span>Участвуйте в бонусной программе, подключая наши услуги, выполняя простые задания<br>и накапаливая за это баллы, которые можно обменять на подарки от нас и наших партнеров.</span> <a href="#">Подробнее</a></div><div class="top_text_purp_bg"><div class="top_text_item"><div class="tt_icon"><img src="dist/img/icon_top1.png" alt=""></div><span>Подключайте услуги</span></div><div class="top_text_item"><div class="tt_icon"><img src="dist/img/icon_top2.png" alt=""></div><span>Копите баллы</span></div><div class="top_text_item"><div class="tt_icon"><img src="dist/img/icon_top3.png" alt=""></div><span>Выбирайте подарки</span></div></div></div></div><div class="bns_overlay_iner bns_overlay_iner_tr_bg bns_about_page"><div class="b_about"><a href="#" class="b_about1"><img src="dist/img/icon_how1.png" alt=""> <span>Что такое бонусная программа МТТ</span></a> <a href="#" class="b_about2"><img src="dist/img/icon_how2.png" alt=""> <span>На что можно потратить бонусные баллы?</span></a> <a href="#" class="b_about3"><img src="dist/img/icon_how3.png" alt=""> <span>Как получить<br>бонусные баллы?</span></a> <a href="#" class="b_about4"><img src="dist/img/icon_how4.png" alt=""> <span>Бонусные баллы активным пользователям</span></a></div><div class="b_about_main cycle-slideshow" data-cycle-fx="fade" data-cycle-timeout="0" data-cycle-slides="> .b_about_item" data-cycle-pager=".b_about" data-cycle-pager-template=""><a href="#" class="bns_about_close">Закрыть</a><div class="b_about_item"><h3>Что такое бонусная программа МТТ</h3><span><i>Наша благодарность клиентам – Ваша реальная выгода!</i><br><br>Бонусная программа МТТ – это проявление внимания и заботы компании МТТ о каждом своём клиенте, а также материальное выражение благодарности за то, что Вы однажды выбрали наш сервис.<br><br>Каждый абонент сервиса МТТ Бизнес становится участником программы лояльности уже с момента регистрации на нашем сайте. После этого Ваши действия в личном кабинете вознаграждаются определённым количеством бонусных баллов, которые поступают на Ваш счёт.<br><br>1 бонусный балл = 1 рубль.<br><br>Накапливая и тратя бонусные баллы, Вы не просто экономите на стоимости предоставляемых сервисом МТТ Бизнес услуг, но и получаете ощутимую выгоду.<br><br>Чем дольше вы пользуетесь сервисом МТТ Бизнес, тем выгоднее для Вас становится участие в программе лояльности. Начав знакомство с сервисом с самого недорогого базового набора услуг, очень скоро Вы сможете позволить себе услуги премиум класса только за счёт использования бонусных баллов.<br><br>Программа лояльности МТТ Бизнес продолжает развиваться и будет дополняться новыми способами получения и использования бонусных баллов. Оставайтесь с нами и получайте постоянно растущую выгоду от сотрудничества с МТТ Бизнес!<br><br></span></div><div class="b_about_item"><h3>На что можно потратить бонусные баллы?</h3><span><ol><li>На оплату услуг МТТ Бизнес. Это простейший и самый очевидный способ сократить расходы и получить выгоду. Вместо пополнения баланса деньгами, Вы тратите бонусные баллы, полученные за участие в программе лояльности.</li><li>На подарки компаний-партнёров МТТ Бизнес.</li></ol></span></div><div class="b_about_item"><h3>Как получить бонусные баллы?</h3><span>Чтобы начать получать баллы, не нужно предпринимать каких-либо специальных действий. Вы получаете вознаграждение, просто пользуясь сервисом МТТ Бизнес.<br><br><ul><li>Регистрация на сайте МТТ Бизнес – 100 баллов</li><li>Первое подключение любой услуги или пакета услуг сервиса – 100 баллов</li><li>Подключение новой услуги в дополнение к Вашему обычному пакету – баллов ББ</li><li>Подключение каждого нового номера – 100 баллов</li><li>Переговоры свыше 100 минут в месяц – 100 баллов</li><li>Своевременное пополнение баланса – 100 баллов</li><li>Единовременное пополнение баланса за 6 месяцев – 100 баллов</li></ul></span></div><div class="b_about_item"><h3>Бонусные баллы активным пользователям</h3><span>Активный способ получения баллов делает Вас нашим ценным партнёром и вознаграждается щедрее. Оценив все выгоды и возможности сервиса МТТ Бизнес, Вы рекомендуете нас своим друзьям и знакомым. Так Вы помогаете нам увеличить клиентскую базу сервиса с помощью самого эффективного сегодня рекламного канала – «сарафанного радио».<br><br><ul><li>Заполнение всех полей персональных данных в личном кабинете – 100 баллов</li><li>Подписка на сообщества МТТ Бизнес в социальных сетях – 100 баллов</li><li>Участие в опросе МТТ Бизнес в личном кабинете – 100 баллов</li><li>Регистрация нового абонента по Вашему уникальному промо-коду – 100 баллов Вам и Вашему другу</li></ul></span></div></div></div><div class="bon_profile_wrap" data-ng-cloak="" data-sailplay-profile=""><div class="bon_profile_info"><div class="bon_profile_top"><div class="bon_profile_top_left"><h3>Ваш профиль</h3><h4>Здесь отображается количество накопленных баллов и прогресс получения подарков</h4></div><div class="bon_profile_right"><img data-ng-src="{{ (user().user.pic | sailplay_pic) || \'dist/img/prof_def.png\'}}" alt="You"> <span data-ng-bind="user().user.name || \'Имя не указано\'"></span> <a href="#" data-ng-click="open_profile();$event.preventDefault();">Редактировать профиль</a></div></div><div class="bon_profile_stat"><div class="bps_left"><span data-ng-bind="(user().user_points.confirmed | number) + \' \' + (user().user_points.confirmed | sailplay_pluralize:\'балл,балла,баллов\')"></span> <a href="#">История начислений</a></div><div class="bps_right"><div class="progress_line_main"><div class="progress_line_bg"></div><div class="progress_line" data-procent="0" data-ng-style="{ width: setProgress(user().user_points.confirmed) + \'%\' }"><div class="progress_text" data-ng-show="getOffsetToGift(user().user_points.confirmed)"><span data-ng-bind="getOffsetToGift(user().user_points.confirmed) + \' \' + ((getOffsetToGift(user().user_points.confirmed) | sailplay_pluralize:\'балл,балла,баллов\')) + \' до подарка\'"></span></div></div><div class="gift_item" data-ng-repeat="limit in limits track by $index" data-ng-class="{act : limit <= user().user_points.confirmed }" data-ng-style="{ left: progressGiftWidth($index, limits.length) + \'%\' }"><span class="gift_item_hint" data-ng-bind="limit"></span></div></div></div></div></div><div class="bon_news" data-ng-cloak="" data-sailplay-news=""><h3>Новости</h3><a href="#" class="bon_open_news">Все новости</a><div class="bon_news_main"><div class="bon_news_item" data-ng-repeat="item in news() | limitTo:6"><span class="data" data-ng-bind="item.date"></span> <a data-ng-href="{{ item.link }}" data-ng-bind="item.title" target="_blank"></a> <span class="text" data-ng-bind="item.text"></span> <a data-ng-href="{{ item.link }}" class="news_more" target="_blank">Подробнее</a></div><a href="#" class="close_news"><span>Свернуть список новостей</span></a></div></div></div><div class="bon_choice_main" data-ng-cloak="" data-sailplay-gifts=""><h3 class="bon_header">Выберите вознаграждение</h3><h4 class="bon_sub_header">Вы моежете потратить накопленные баллы на подарки из разных категорий</h4><div class="bon_choice_cat"><a href="#" data-ng-show="gifts().length" data-ng-click="set_category();$event.preventDefault();" data-ng-class="{active : !active_category}"><span>Все подарки</span> <span data-ng-bind="gifts().length + \' \' + (gifts().length | sailplay_pluralize:\'подарок,подарка,подарков\') + \' в разделе\'"></span> <img data-ng-src="dist/img/category/all.png" alt="Все подарки"></a> <a href="#" data-ng-repeat="category in categories()" data-ng-class="{active : category.id == $parent.active_category}" data-ng-click="set_category(category.id);$event.preventDefault();"><span data-ng-bind="category.name"></span> <span data-ng-bind="category.count + \' \' + (category.count | sailplay_pluralize:\'подарок,подарка,подарков\') + \' в разделе\'"></span> <img data-ng-src="{{ get_icon(category.id) }}" alt="{{ category.name }}"></a></div><div class="bon_item_main" data-ng-show="show_gifts && show_gifts.length"><div class="bon_slide_cat_item_wrap"><div class="bon_slide_cat_item"><div class="bon_item_line" data-ng-style="{left : left}"><div class="bon_item" data-ng-repeat="gift in show_gifts"><div class="bon_item_iner"><img data-ng-src="{{ gift.thumbs.url_250x250 | sailplay_pic }}" alt="{{ gift.name }}"> <span class="bon_item_name" data-ng-bind="gift.name"></span> <span class="bon_tem_info" data-ng-bind="(gift.points | number) + \' \' + (gift.points | sailplay_pluralize:\'балл,балла,баллов\')"></span> <a href="#" data-ng-click="open_gift(gift);$event.preventDefault();">Получить</a></div></div></div></div><a href="#" class="arr_left arr_left" data-ng-click="set_position(\'left\');$event.preventDefault();" data-ng-show="show_left"></a> <a href="#" class="arr_right arr_right" data-ng-click="set_position(\'right\');$event.preventDefault();" data-ng-show="show_right"></a></div></div><div class="bns_overlay bns_overlay_gift" data-ng-cloak=""><div class="bns_overlay_iner"><a href="#" class="close_overlay" data-ng-click="close_gift();$event.preventDefault();$event.stopPropagation();"></a> <img class="gift_more_img" data-ng-src="{{ gift_more.thumbs.url_250x250 | sailplay_pic }}" alt="{{ gift_more.name }}"><div class="gift_more_block"><span class="gift_more_name" data-ng-bind="gift_more.name"></span> <span class="gift_more_points" data-ng-bind="(gift_more.points | number) + \' \' + (gift_more.points | sailplay_pluralize:\'балл,балла,баллов\')"></span><p class="gift_more_descr" data-ng-bind="gift_more.descr"></p><span class="alink" data-ng-click="close_gift();">Закрыть</span> <span class="alink" style="margin-left: 5px;" data-ng-click="complete_gift_open();" data-ng-bind="user().user_points.confirmed >= gift_more.points ? \'Получить\' : \'Недостаточно баллов\'">Получить</span></div></div></div><div class="bns_overlay bns_overlay_gift_not_points" data-ng-cloak=""><div class="bns_overlay_iner"><p>У вас недостаточное количество баллов на этот подарок. Вам необходимо выполнить следующие действия.</p><span class="alink" data-scroll-to=".more_bonus">Заработать баллы</span> <a class="alink" target="_blank" href="http://www.mtt.ru/">Выбрать услугу</a></div></div><div class="bns_overlay bns_overlay_gift_complete" data-ng-cloak=""><div class="bns_overlay_iner"><p>Пожалуйста, подтвердите получение подарка. С вашего счета будет списано {{ (gift_more.points | number) + \' \' + (gift_more.points | sailplay_pluralize:\'балл,балла,баллов\') }}. Приняли решение? Подтвердите, пожалуйста, свой выбор и списание баллов.</p><span class="alink" data-ng-click="complete_gift_close();">Закрыть</span> <span class="alink" data-ng-click="gift_purchase(gift_more);" data-ng-bind="user().user_points.confirmed >= gift_more.points ? \'Получить\' : \'Недостаточно баллов\'">Получить</span></div></div></div><div class="more_bonus" data-ng-cloak="" data-sailplay-actions=""><h3 class="bon_header">Заработайте баллы</h3><h4 class="bon_sub_header">Выполняя простые задания вы моежете получить дополнительные баллы</h4><div class="more_bonus_main"><div class="mb_item" data-ng-repeat="action in actions().actions"><div class="mb_item_left"><span data-ng-bind="action_data(action).name"></span> <span data-ng-bind="(action.points | number) + \' \' + (action.points | sailplay_pluralize:\'балл,балла,баллов\')"></span> <a data-sailplay-action="" data-action="action" class="without_bg" data-text="Получить">Получить</a></div><div class="mb_item_right"><img data-ng-src="{{ action_data(action).pic }}" alt=""></div></div><div class="mb_item mb_item_prof" data-ng-if="!getExist(exist(),\'Заполнил профиль\')"><div class="mb_item_left"><span>Заполнить профиль</span> <span>150 баллов</span> <a href="#">Получить</a></div><div class="mb_item_right"><img src="dist/img/icon_prof.png" alt=""></div></div><div class="mb_item mb_item_prof_opr" data-ng-repeat="test in test_data() track by $index" data-ng-if="test.rules ? !getExist(exist(), test.tag) && getExist(exist(), test.rules) : !getExist(exist(), test.tag)"><div class="mb_item_left"><span data-ng-bind="test.name"></span> <span data-ng-bind="(test.points | number) + \' \' + (test.points | sailplay_pluralize:\'балл,балла,баллов\')"></span> <a href="#" data-ng-click="openTest(test);$event.preventDefault();">Получить</a></div><div class="mb_item_right"><img src="dist/img/icon_opr.png" alt=""></div></div><div class="mb_popup mb_popup_op" data-ng-cloak="" data-sailplay-test=""><div class="mb_popup_top"><span>Пройти опрос<strong>{{ (current_test.points | number) + \' \' + (current_test.points | sailplay_pluralize:\'балл,балла,баллов\') }}</strong></span></div><div class="mb_popup_main" data-ng-show="current_test"><span class="numb_qust">Вопрос {{ step }} / {{ current_test.data.length }}</span> <span class="qust" data-ng-bind="current_test.data[step - 1].label"></span><div class="answ_item" data-ng-repeat="item in current_test.data[step - 1].answers" data-ng-switch="current_test.data[step - 1].type"><input data-ng-switch-when="checkbox" type="checkbox" name="{{ \'qust[\' + (step - 1) + \'][]\' }}" id="qust_{{ (step - 1)+ \'_\' + $index }}" data-ng-value="item" data-ng-model="item.model" data-ng-change="on_change(item, item.model, \'checkbox\')"> <input data-ng-switch-default="" type="radio" name="qust" id="qust_{{ (step - 1)+ \'_\' + $index }}" data-ng-value="$index" data-ng-model="current_test.model_for_radio" data-ng-change="on_change(item, null, \'radio\')"> <label for="qust_{{ (step - 1) + \'_\' + $index }}" class="type_{{ current_test.data[step - 1].type || \'radio\' }}" data-ng-bind="item.label"></label></div><div class="answ_text"><input type="text" placeholder="Напишите свой вариант тут" data-ng-if="writable" data-ng-model="$parent.writable_model"> <input type="submit" value="Далее" data-ng-disabled="!isSelectable()" data-ng-click="set_answer();"></div></div></div><div class="mb_popup mb_popup_prof"><div class="mb_popup_top"><span data-ng-if="!getExist(exist(),\'Заполнил профиль\')">Заполнить профиль<strong>150 баллов</strong></span></div><div class="mb_popup_main mb_popup_main_mt"><div class="edit_profile_input"><label>Фамилия</label> <input type="text" placeholder="Введите фамилию" data-ng-model="form.lastName"></div><div class="edit_profile_input"><label>Улица</label> <input type="text" placeholder="Укажите улицу" data-ng-model="vars[\'Улица\']"></div><div class="edit_profile_input"><label>Имя</label> <input type="text" placeholder="Введите имя" data-ng-model="form.firstName"></div><div class="edit_profile_input"><label>Дом</label> <input type="text" placeholder="Укажите дом" data-ng-model="vars[\'Дом\']"></div><div class="edit_profile_input"><label>Отчество</label> <input type="text" placeholder="Введите отчество" data-ng-model="form.middleName"></div><div class="edit_profile_input"><label>Телефон</label> <input type="text" data-phone-mask="" maxlength="17" data-ng-model-options="{ updateOn: \'default change blur\' }" data-ng-model="form.addPhone"></div><div class="edit_profile_input"><label>Город</label> <input type="text" placeholder="Укажите город" data-ng-model="vars[\'Город\']"></div><div class="edit_profile_input"><label>E-mail</label> <input type="text" placeholder="Введите E-mail" data-ng-model="form.addEmail"></div><div class="answ_text"><input type="submit" value="Сохранить" data-ng-disabled="!isValid()" data-ng-click="save_profile();"></div></div></div></div></div></div><div class="bns_overlay bns_overlay_about"><div class="bns_overlay_iner bns_overlay_iner_tr_bg"><div class="b_about"><a href="#" class="b_about1"><img src="dist/img/icon_how1.png" alt=""> <span>Как получить карту</span></a> <a href="#" class="b_about2"><img src="dist/img/icon_how2.png" alt=""> <span>Какие бывают бонусы</span></a> <a href="#" class="b_about3"><img src="dist/img/icon_how3.png" alt=""> <span>Как бонусы начисляются</span></a> <a href="#" class="b_about4"><img src="dist/img/icon_how4.png" alt=""> <span>На что тратить бонусы</span></a></div><a href="#" class="close_overlay"></a><div class="b_about_main cycle-slideshow" data-cycle-fx="fade" data-cycle-timeout="0" data-cycle-slides="> .b_about_item" data-cycle-pager=".b_about" data-cycle-pager-template=""><div class="b_about_item"><h3>Как получить карту</h3><span>При совершении покупки с погашением части суммы бонусами, происходит списание бонусов по следующим условиям:<br>• Списание бонусов допускается только на товар без скидки за исключением специальных предложений и акций<br>• Списание бонусов производится с конечной суммы после вычета всех скидок по акциям;<br>• Всеми видами бонусов можно оплатить не более 20% от стоимости покупки после вычета всех скидок по акциям;<br>• Бонусы могут быть аннулированы за товар, на который оформлен возврат<br>• Списание бонусов может быть в счет получения подарка на кассе магазина Respect</span></div><div class="b_about_item"><h3>Какие бывают бонусы</h3><span>При совершении покупки с погашением части суммы бонусами, происходит списание бонусов по следующим условиям:<br>• Списание бонусов допускается только на товар без скидки за исключением специальных предложений и акций<br>• Списание бонусов производится с конечной суммы после вычета всех скидок по акциям;<br>• Всеми видами бонусов можно оплатить не более 20% от стоимости покупки после вычета всех скидок по акциям;<br>• Бонусы могут быть аннулированы за товар, на который оформлен возврат<br>• Списание бонусов может быть в счет получения подарка на кассе магазина Respect</span></div><div class="b_about_item"><h3>Как бонусы начисляются</h3><span>При совершении покупки с погашением части суммы бонусами, происходит списание бонусов по следующим условиям:<br>• Списание бонусов допускается только на товар без скидки за исключением специальных предложений и акций<br>• Списание бонусов производится с конечной суммы после вычета всех скидок по акциям;<br>• Всеми видами бонусов можно оплатить не более 20% от стоимости покупки после вычета всех скидок по акциям;<br>• Бонусы могут быть аннулированы за товар, на который оформлен возврат<br>• Списание бонусов может быть в счет получения подарка на кассе магазина Respect</span></div><div class="b_about_item"><h3>На что тратить бонусы</h3><span>При совершении покупки с погашением части суммы бонусами, происходит списание бонусов по следующим условиям:<br>• Списание бонусов допускается только на товар без скидки за исключением специальных предложений и акций<br>• Списание бонусов производится с конечной суммы после вычета всех скидок по акциям;<br>• Всеми видами бонусов можно оплатить не более 20% от стоимости покупки после вычета всех скидок по акциям;<br>• Бонусы могут быть аннулированы за товар, на который оформлен возврат<br>• Списание бонусов может быть в счет получения подарка на кассе магазина Respect</span></div></div></div></div><div class="bns_overlay bns_overlay_hist" data-sailplay-history="" data-ng-cloak=""><div class="bns_overlay_iner"><table class="bns_hist_table"><a href="#" class="close_overlay"></a><h3>Вся история<b>У вас {{ user().user_points.confirmed + \' \' + (user().user_points.confirmed | sailplay_pluralize:\'балл,балла,баллов\') }}</b></h3><h4>Здесь показана история покупок, выполненных заданий, начисления баллов и полученных подарков</h4><tbody><tr data-dir-paginate="item in history() | itemsPerPage:10" data-pagination-id="history_pages"><td><span data-ng-bind="item.action_date | date:\'d MM yyyy\'"></span></td><td><span><b data-ng-bind="item | history_item"></b></span></td><td><span data-ng-if="item.points_delta" data-ng-bind="((item.points_delta|number) || 0) + \' \' + (item.points_delta | sailplay_pluralize:\'балл,балла,баллов\')"></span></td></tr></tbody></table><dir-pagination-controls data-max-size="7" data-pagination-id="history_pages" data-template-url="/html/ui/ui.pagination.controls.html" data-auto-hide="true"></dir-pagination-controls></div></div><notifier></notifier>');
+    '<div class="bn_wrap" data-ng-show="global.auth"><div class="top_main"><div class="top_text_main"><div class="top_text_white_bg"><h2>Бонусная программа МТТ</h2><span>Участвуйте в бонусной программе, подключая наши услуги, выполняя простые задания<br>и накапаливая за это баллы, которые можно обменять на подарки от нас и наших партнеров.</span> <a href="#">Подробнее</a></div><div class="top_text_purp_bg"><div class="top_text_item"><div class="tt_icon"><img src="dist/img/icon_top1.png" alt=""></div><span>Подключайте услуги</span></div><div class="top_text_item"><div class="tt_icon"><img src="dist/img/icon_top2.png" alt=""></div><span>Копите баллы</span></div><div class="top_text_item"><div class="tt_icon"><img src="dist/img/icon_top3.png" alt=""></div><span>Выбирайте подарки</span></div></div></div></div><div class="bns_overlay_iner bns_overlay_iner_tr_bg bns_about_page"><div class="b_about"><a href="#" class="b_about1"><img src="dist/img/icon_how1.png" alt=""> <span>Что такое бонусная программа МТТ</span></a> <a href="#" class="b_about2"><img src="dist/img/icon_how2.png" alt=""> <span>На что можно потратить бонусные баллы?</span></a> <a href="#" class="b_about3"><img src="dist/img/icon_how3.png" alt=""> <span>Как получить<br>бонусные баллы?</span></a> <a href="#" class="b_about4"><img src="dist/img/icon_how4.png" alt=""> <span>Бонусные баллы активным пользователям</span></a></div><div class="b_about_main cycle-slideshow" data-cycle-fx="fade" data-cycle-timeout="0" data-cycle-slides="> .b_about_item" data-cycle-pager=".b_about" data-cycle-pager-template=""><a href="#" class="bns_about_close">Закрыть</a><div class="b_about_item"><h3>Что такое бонусная программа МТТ</h3><span><i>Наша благодарность клиентам – Ваша реальная выгода!</i><br><br>Бонусная программа МТТ – это проявление внимания и заботы компании МТТ о каждом своём клиенте, а также материальное выражение благодарности за то, что Вы однажды выбрали наш сервис.<br><br>Каждый абонент сервиса МТТ Бизнес становится участником программы лояльности уже с момента регистрации на нашем сайте. После этого Ваши действия в личном кабинете вознаграждаются определённым количеством бонусных баллов, которые поступают на Ваш счёт.<br><br>1 бонусный балл = 1 рубль.<br><br>Накапливая и тратя бонусные баллы, Вы не просто экономите на стоимости предоставляемых сервисом МТТ Бизнес услуг, но и получаете ощутимую выгоду.<br><br>Чем дольше вы пользуетесь сервисом МТТ Бизнес, тем выгоднее для Вас становится участие в программе лояльности. Начав знакомство с сервисом с самого недорогого базового набора услуг, очень скоро Вы сможете позволить себе услуги премиум класса только за счёт использования бонусных баллов.<br><br>Программа лояльности МТТ Бизнес продолжает развиваться и будет дополняться новыми способами получения и использования бонусных баллов. Оставайтесь с нами и получайте постоянно растущую выгоду от сотрудничества с МТТ Бизнес!<br><br></span></div><div class="b_about_item"><h3>На что можно потратить бонусные баллы?</h3><span><ol><li>На оплату услуг МТТ Бизнес. Это простейший и самый очевидный способ сократить расходы и получить выгоду. Вместо пополнения баланса деньгами, Вы тратите бонусные баллы, полученные за участие в программе лояльности.</li><li>На подарки компаний-партнёров МТТ Бизнес.</li></ol></span></div><div class="b_about_item"><h3>Как получить бонусные баллы?</h3><span>Чтобы начать получать баллы, не нужно предпринимать каких-либо специальных действий. Вы получаете вознаграждение, просто пользуясь сервисом МТТ Бизнес.<br><br><ul><li>Регистрация на сайте МТТ Бизнес – 100 баллов</li><li>Первое подключение любой услуги или пакета услуг сервиса – 100 баллов</li><li>Подключение новой услуги в дополнение к Вашему обычному пакету – баллов ББ</li><li>Подключение каждого нового номера – 100 баллов</li><li>Переговоры свыше 100 минут в месяц – 100 баллов</li><li>Своевременное пополнение баланса – 100 баллов</li><li>Единовременное пополнение баланса за 6 месяцев – 100 баллов</li></ul></span></div><div class="b_about_item"><h3>Бонусные баллы активным пользователям</h3><span>Активный способ получения баллов делает Вас нашим ценным партнёром и вознаграждается щедрее. Оценив все выгоды и возможности сервиса МТТ Бизнес, Вы рекомендуете нас своим друзьям и знакомым. Так Вы помогаете нам увеличить клиентскую базу сервиса с помощью самого эффективного сегодня рекламного канала – «сарафанного радио».<br><br><ul><li>Заполнение всех полей персональных данных в личном кабинете – 100 баллов</li><li>Подписка на сообщества МТТ Бизнес в социальных сетях – 100 баллов</li><li>Участие в опросе МТТ Бизнес в личном кабинете – 100 баллов</li><li>Регистрация нового абонента по Вашему уникальному промо-коду – 100 баллов Вам и Вашему другу</li></ul></span></div></div></div><div class="bon_profile_wrap" data-ng-cloak="" data-sailplay-profile=""><div class="bon_profile_info"><div class="bon_profile_top"><div class="bon_profile_top_left"><h3>Ваш профиль</h3><h4>Здесь отображается количество накопленных баллов и прогресс получения подарков</h4></div><div class="bon_profile_right"><img data-ng-src="{{ (user().user.pic | sailplay_pic) || \'dist/img/prof_def.png\'}}" alt="You"> <span data-ng-bind="user().user.name || \'Имя не указано\'"></span> <a href="#" data-ng-click="open_profile();$event.preventDefault();">Редактировать профиль</a></div></div><div class="bon_profile_stat"><div class="bps_left"><span data-ng-bind="(user().user_points.confirmed | number) + \' \' + (user().user_points.confirmed | sailplay_pluralize:\'балл,балла,баллов\')"></span> <a href="#">История начислений</a></div><div class="bps_right"><div class="progress_line_main"><div class="progress_line_bg"></div><div class="progress_line" data-procent="0" data-ng-style="{ width: setProgress(user().user_points.confirmed) + \'%\' }"><div class="progress_text" data-ng-show="getOffsetToGift(user().user_points.confirmed)" data-ng-class="{invert : setProgress(user().user_points.confirmed) < 50}"><span data-ng-bind="getOffsetToGift(user().user_points.confirmed) + \' \' + ((getOffsetToGift(user().user_points.confirmed) | sailplay_pluralize:\'балл,балла,баллов\')) + \' до подарка\'"></span></div></div><div class="gift_item" data-ng-repeat="limit in limits track by $index" data-ng-class="{act : limit <= user().user_points.confirmed }" data-ng-style="{ left: progressGiftWidth($index, limits.length) + \'%\' }"><span class="gift_item_hint" data-ng-bind="limit"></span></div></div></div></div></div><div class="bon_news" data-ng-cloak="" data-sailplay-news=""><h3>Новости</h3><a href="#" class="bon_open_news">Все новости</a><div class="bon_news_main"><div class="bon_news_item" data-ng-repeat="item in news() | limitTo:6"><span class="data" data-ng-bind="item.date"></span> <a data-ng-href="{{ item.link }}" data-ng-bind="item.title" target="_blank"></a> <span class="text" data-ng-bind="item.text"></span> <a data-ng-href="{{ item.link }}" class="news_more" target="_blank">Подробнее</a></div><a href="#" class="close_news"><span>Свернуть список новостей</span></a></div></div></div><div class="bon_choice_main" data-ng-cloak="" data-sailplay-gifts=""><h3 class="bon_header">Выберите вознаграждение</h3><h4 class="bon_sub_header">Вы моежете потратить накопленные баллы на подарки из разных категорий</h4><div class="bon_choice_cat"><a href="#" data-ng-show="gifts().length" data-ng-click="set_category();$event.preventDefault();" data-ng-class="{active : !active_category}"><span>Все подарки</span> <span data-ng-bind="gifts().length + \' \' + (gifts().length | sailplay_pluralize:\'подарок,подарка,подарков\') + \' в разделе\'"></span> <img data-ng-src="dist/img/category/all.png" alt="Все подарки"></a> <a href="#" data-ng-repeat="category in categories()" data-ng-class="{active : category.id == $parent.active_category}" data-ng-click="set_category(category.id);$event.preventDefault();"><span data-ng-bind="category.name"></span> <span data-ng-bind="category.count + \' \' + (category.count | sailplay_pluralize:\'подарок,подарка,подарков\') + \' в разделе\'"></span> <img data-ng-src="{{ get_icon(category.id) }}" alt="{{ category.name }}"></a></div><div class="bon_item_main" data-ng-show="show_gifts && show_gifts.length"><div class="bon_slide_cat_item_wrap"><div class="bon_slide_cat_item"><div class="bon_item_line" data-ng-style="{left : left}"><div class="bon_item" data-ng-repeat="gift in show_gifts"><div class="bon_item_iner"><img data-ng-src="{{ gift.thumbs.url_250x250 | sailplay_pic }}" alt="{{ gift.name }}"> <span class="bon_item_name" data-ng-bind="gift.name"></span> <span class="bon_tem_info" data-ng-bind="(gift.points | number) + \' \' + (gift.points | sailplay_pluralize:\'балл,балла,баллов\')"></span> <a href="#" data-ng-click="open_gift(gift);$event.preventDefault();">Получить</a></div></div></div></div><a href="#" class="arr_left arr_left" data-ng-click="set_position(\'left\');$event.preventDefault();" data-ng-show="show_left"></a> <a href="#" class="arr_right arr_right" data-ng-click="set_position(\'right\');$event.preventDefault();" data-ng-show="show_right"></a></div></div><div class="bns_overlay bns_overlay_gift" data-ng-cloak=""><div class="bns_overlay_iner"><a href="#" class="close_overlay" data-ng-click="close_gift();$event.preventDefault();$event.stopPropagation();"></a> <img class="gift_more_img" data-ng-src="{{ gift_more.thumbs.url_250x250 | sailplay_pic }}" alt="{{ gift_more.name }}"><div class="gift_more_block"><span class="gift_more_name" data-ng-bind="gift_more.name"></span> <span class="gift_more_points" data-ng-bind="(gift_more.points | number) + \' \' + (gift_more.points | sailplay_pluralize:\'балл,балла,баллов\')"></span><p class="gift_more_descr" data-ng-bind="gift_more.descr"></p><span class="alink" data-ng-click="close_gift();">Закрыть</span> <span class="alink" style="margin-left: 5px;" data-ng-click="complete_gift_open();" data-ng-bind="user().user_points.confirmed >= gift_more.points ? \'Получить\' : \'Недостаточно баллов\'">Получить</span></div></div></div><div class="bns_overlay bns_overlay_gift_not_points" data-ng-cloak=""><div class="bns_overlay_iner"><p>У вас недостаточное количество баллов на этот подарок. Вам необходимо выполнить следующие действия.</p><span class="alink" data-scroll-to=".more_bonus">Заработать баллы</span> <a class="alink" target="_blank" href="http://www.mtt.ru/">Выбрать услугу</a></div></div><div class="bns_overlay bns_overlay_gift_complete" data-ng-cloak=""><div class="bns_overlay_iner"><p>Пожалуйста, подтвердите получение подарка. С вашего счета будет списано {{ (gift_more.points | number) + \' \' + (gift_more.points | sailplay_pluralize:\'балл,балла,баллов\') }}. Приняли решение? Подтвердите, пожалуйста, свой выбор и списание баллов.</p><span class="alink" data-ng-click="complete_gift_close();">Закрыть</span> <span class="alink" data-ng-click="gift_purchase(gift_more);" data-ng-bind="user().user_points.confirmed >= gift_more.points ? \'Получить\' : \'Недостаточно баллов\'">Получить</span></div></div></div><div class="more_bonus" data-ng-cloak="" data-sailplay-actions=""><h3 class="bon_header">Заработайте баллы</h3><h4 class="bon_sub_header">Выполняя простые задания вы моежете получить дополнительные баллы</h4><div class="more_bonus_main"><div class="mb_item" data-ng-repeat="action in actions().actions"><div class="mb_item_left"><span data-ng-bind="action_data(action).name"></span> <span data-ng-bind="(action.points | number) + \' \' + (action.points | sailplay_pluralize:\'балл,балла,баллов\')"></span> <a data-sailplay-action="" data-action="action" class="without_bg" data-text="Получить">Получить</a></div><div class="mb_item_right"><img data-ng-src="{{ action_data(action).pic }}" alt=""></div></div><div class="mb_item mb_item_prof" data-ng-if="!getExist(exist(),\'Заполнил профиль\')"><div class="mb_item_left"><span>Заполнить профиль</span> <span>150 баллов</span> <a href="#">Получить</a></div><div class="mb_item_right"><img src="dist/img/icon_prof.png" alt=""></div></div><div class="mb_item mb_item_prof_opr" data-ng-repeat="test in test_data() track by $index" data-ng-if="test.rules ? !getExist(exist(), test.tag) && getExist(exist(), test.rules) : !getExist(exist(), test.tag)"><div class="mb_item_left"><span data-ng-bind="test.name"></span> <span data-ng-bind="(test.points | number) + \' \' + (test.points | sailplay_pluralize:\'балл,балла,баллов\')"></span> <a href="#" data-ng-click="openTest(test);$event.preventDefault();">Получить</a></div><div class="mb_item_right"><img src="dist/img/icon_opr.png" alt=""></div></div><div class="mb_popup mb_popup_op" data-ng-cloak="" data-sailplay-test=""><div class="mb_popup_top"><span>Пройти опрос<strong>{{ (current_test.points | number) + \' \' + (current_test.points | sailplay_pluralize:\'балл,балла,баллов\') }}</strong></span></div><div class="mb_popup_main" data-ng-show="current_test"><span class="numb_qust">Вопрос {{ step }} / {{ current_test.data.length }}</span> <span class="qust" data-ng-bind="current_test.data[step - 1].label"></span><div class="answ_item" data-ng-repeat="item in current_test.data[step - 1].answers" data-ng-switch="current_test.data[step - 1].type"><input data-ng-switch-when="checkbox" type="checkbox" name="{{ \'qust[\' + (step - 1) + \'][]\' }}" id="qust_{{ (step - 1)+ \'_\' + $index }}" data-ng-value="item" data-ng-model="item.model" data-ng-change="on_change(item, item.model, \'checkbox\')"> <input data-ng-switch-default="" type="radio" name="qust" id="qust_{{ (step - 1)+ \'_\' + $index }}" data-ng-value="$index" data-ng-model="current_test.model_for_radio" data-ng-change="on_change(item, null, \'radio\')"> <label for="qust_{{ (step - 1) + \'_\' + $index }}" class="type_{{ current_test.data[step - 1].type || \'radio\' }}" data-ng-bind="item.label"></label></div><div class="answ_text"><input type="text" placeholder="Напишите свой вариант тут" data-ng-if="writable" data-ng-model="$parent.writable_model"> <input type="submit" value="Далее" data-ng-disabled="!isSelectable()" data-ng-click="set_answer();"></div></div></div><div class="mb_popup mb_popup_prof"><div class="mb_popup_top"><span data-ng-if="!getExist(exist(),\'Заполнил профиль\')">Заполнить профиль<strong>150 баллов</strong></span></div><div class="mb_popup_main mb_popup_main_mt"><div class="edit_profile_input"><label>Фамилия</label> <input type="text" placeholder="Введите фамилию" data-ng-model="form.lastName"></div><div class="edit_profile_input"><label>Улица</label> <input type="text" placeholder="Укажите улицу" data-ng-model="vars[\'Улица\']"></div><div class="edit_profile_input"><label>Имя</label> <input type="text" placeholder="Введите имя" data-ng-model="form.firstName"></div><div class="edit_profile_input"><label>Дом</label> <input type="text" placeholder="Укажите дом" data-ng-model="vars[\'Дом\']"></div><div class="edit_profile_input"><label>Отчество</label> <input type="text" placeholder="Введите отчество" data-ng-model="form.middleName"></div><div class="edit_profile_input"><label>Телефон</label> <input type="text" data-phone-mask="" maxlength="17" data-ng-model-options="{ updateOn: \'default change blur\' }" data-ng-model="form.addPhone"></div><div class="edit_profile_input"><label>Город</label> <input type="text" placeholder="Укажите город" data-ng-model="vars[\'Город\']"></div><div class="edit_profile_input"><label>E-mail</label> <input type="text" placeholder="Введите E-mail" data-ng-model="form.addEmail"></div><div class="answ_text"><input type="submit" value="Сохранить" data-ng-disabled="!isValid()" data-ng-click="save_profile();"></div></div></div></div></div></div><div class="bns_overlay bns_overlay_hist" data-sailplay-history="" data-ng-cloak=""><div class="bns_overlay_iner"><table class="bns_hist_table"><a href="#" class="close_overlay"></a><h3>Вся история<b>У вас {{ user().user_points.confirmed + \' \' + (user().user_points.confirmed | sailplay_pluralize:\'балл,балла,баллов\') }}</b></h3><h4>Здесь показана история покупок, выполненных заданий, начисления баллов и полученных подарков</h4><tbody><tr data-dir-paginate="item in history() | itemsPerPage:10" data-pagination-id="history_pages"><td><span data-ng-bind="item.action_date | date:\'d MM yyyy\'"></span></td><td><span><b data-ng-bind="item | history_item"></b></span></td><td><span data-ng-if="item.points_delta" data-ng-bind="((item.points_delta|number) || 0) + \' \' + (item.points_delta | sailplay_pluralize:\'балл,балла,баллов\')"></span></td></tr></tbody></table><dir-pagination-controls data-max-size="7" data-pagination-id="history_pages" data-template-url="/html/ui/ui.pagination.controls.html" data-auto-hide="true"></dir-pagination-controls></div></div><notifier></notifier>');
 }]);
 })();
 
@@ -2433,6 +2448,143 @@ module.run(['$templateCache', function($templateCache) {
     app_container && angular.bootstrap(app_container, ['mtt']);
 
   });
+
+}());
+
+(function () {
+
+  angular.module('core', [
+      'ipCookie',
+      'ngTouch'
+    ])
+
+    .run(["sp", "ipCookie", "sp_api", "$rootScope", "user_service", "tests_service", "$timeout", "giftAccessTag", function (sp, ipCookie, sp_api, $rootScope, user_service, tests_service, $timeout, giftAccessTag) {
+
+      $rootScope.config = window._mtt_config || {};
+
+      var _tags = [];
+
+      // for fill profile action
+      _tags.push(user_service.getTags().fill_profile);
+
+      // for access to gifts
+      _tags.push(giftAccessTag);
+
+      sp.send('init', {
+
+        partner_id: $rootScope.config.partner_id || 1520,
+        domain: $rootScope.config.domain || 'http://sailplay.ru',
+        lang: 'ru'
+
+      });
+
+      $rootScope.loaded = false;
+
+      $rootScope.auth = false;
+
+      sp.on('init.success', function () {
+
+        if (window.auth_hash) {
+
+          sp.send('login', window.auth_hash);
+
+        } else {
+
+          authError();
+          $rootScope.loaded = true;
+
+        }
+
+        $rootScope.$apply();
+
+      });
+
+      sp.on('login.error', function () {
+
+        console.log('login error');
+
+        authError();
+
+        $rootScope.loaded = true;
+
+        $rootScope.$apply();
+
+      });
+
+      sp.on('login.success', function () {
+
+        $rootScope.loaded = true;
+
+        $rootScope.auth = true;
+
+        //load data for widgets
+        sp_api.call('load.user.info', {all: 1});
+        sp_api.call('load.gifts.list', {verbose: 1});
+        sp_api.call('load.actions.list');
+        sp_api.call('load.user.history');
+        sp_api.call('load.gifts.categories');
+
+        tests_service.loadData(function () {
+
+          _tags = _tags.concat(tests_service.getData().map(function (item) {
+            return item.tag
+          }));
+
+          sp_api.call('tags.exist', {tags: _tags});
+
+        });
+
+        $rootScope.$apply();
+
+      });
+
+      sp.on('actions.perform.success', function (res) {
+
+        sp_api.call('load.actions.list');
+
+        sp_api.call('load.user.info', {all: 1});
+
+        sp_api.call('load.user.history');
+
+        $rootScope.$broadcast('notifier:notify', {
+
+          header: 'Благодарим Вас',
+          body: res && res.data && res.data.response && res.data.response.points ? 'На ваш счет начислено ' + res.data.response.points + ' бонусных баллов.' : 'На ваш счет начислены бонусные баллы.'
+
+        });
+
+        $rootScope.$apply();
+
+      });
+
+      sp.on('actions.perform.error', function () {
+        sp_api.call('load.actions.list');
+      });
+
+      sp.on('tags.add.success', function () {
+
+        $timeout(function () {
+
+          sp_api.call('tags.exist', {tags: _tags});
+          sp_api.call('load.user.history');
+
+        }, 3000);
+
+      });
+
+      function authError() {
+
+        $rootScope.$broadcast('notifier:notify', {
+
+          header: 'Ошибка',
+          body: 'Неверный auth_hash'
+
+        });
+
+      }
+
+
+    }]);
 
 }());
 
@@ -4342,142 +4494,6 @@ optional:!0},"#":{pattern:/\d/,recursive:!0},A:{pattern:/[a-zA-Z0-9]/},S:{patter
 
 (function () {
 
-  angular.module('core', [
-      'ipCookie'
-    ])
-
-    .run(["sp", "ipCookie", "sp_api", "$rootScope", "user_service", "tests_service", "$timeout", "giftAccessTag", function (sp, ipCookie, sp_api, $rootScope, user_service, tests_service, $timeout, giftAccessTag) {
-
-      $rootScope.config = window._mtt_config || {};
-
-      var _tags = [];
-
-      // for fill profile action
-      _tags.push(user_service.getTags().fill_profile);
-
-      // for access to gifts
-      _tags.push(giftAccessTag);
-
-      sp.send('init', {
-
-        partner_id: $rootScope.config.partner_id || 1520,
-        domain: $rootScope.config.domain || 'http://sailplay.ru',
-        lang: 'ru'
-
-      });
-
-      $rootScope.loaded = false;
-
-      $rootScope.auth = false;
-
-      sp.on('init.success', function () {
-
-        if (window.auth_hash) {
-
-          sp.send('login', window.auth_hash);
-
-        } else {
-
-          authError();
-          $rootScope.loaded = true;
-
-        }
-
-        $rootScope.$apply();
-
-      });
-
-      sp.on('login.error', function () {
-
-        console.log('login error');
-
-        authError();
-
-        $rootScope.loaded = true;
-
-        $rootScope.$apply();
-
-      });
-
-      sp.on('login.success', function () {
-
-        $rootScope.loaded = true;
-
-        $rootScope.auth = true;
-
-        //load data for widgets
-        sp_api.call('load.user.info', {all: 1});
-        sp_api.call('load.gifts.list', {verbose: 1});
-        sp_api.call('load.actions.list');
-        sp_api.call('load.user.history');
-        sp_api.call('load.gifts.categories');
-
-        tests_service.loadData(function () {
-
-          _tags = _tags.concat(tests_service.getData().map(function (item) {
-            return item.tag
-          }));
-
-          sp_api.call('tags.exist', {tags: _tags});
-
-        });
-
-        $rootScope.$apply();
-
-      });
-
-      sp.on('actions.perform.success', function (res) {
-
-        sp_api.call('load.actions.list');
-
-        sp_api.call('load.user.info', {all: 1});
-
-        sp_api.call('load.user.history');
-
-        $rootScope.$broadcast('notifier:notify', {
-
-          header: 'Благодарим Вас',
-          body: res && res.data && res.data.response && res.data.response.points ? 'На ваш счет начислено ' + res.data.response.points + ' бонусных баллов.' : 'На ваш счет начислены бонусные баллы.'
-
-        });
-
-        $rootScope.$apply();
-
-      });
-
-      sp.on('actions.perform.error', function () {
-        sp_api.call('load.actions.list');
-      });
-
-      sp.on('tags.add.success', function () {
-
-        $timeout(function () {
-
-          sp_api.call('tags.exist', {tags: _tags});
-          sp_api.call('load.user.history');
-
-        }, 3000);
-
-      });
-
-      function authError() {
-
-        $rootScope.$broadcast('notifier:notify', {
-
-          header: 'Ошибка',
-          body: 'Неверный auth_hash'
-
-        });
-
-      }
-
-
-    }]);
-
-}());
-
-(function () {
-
   angular.module('sp.actions', [])
 
     .service('tests_service', ["$http", function ($http) {
@@ -4806,7 +4822,7 @@ optional:!0},"#":{pattern:/\d/,recursive:!0},A:{pattern:/[a-zA-Z0-9]/},S:{patter
         },
         link: function (scope, elm) {
 
-          elm.attr('data-styles', $rootScope.config.social_styles || 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/1d4796587373184fefd8b608e6eba603.css');
+          elm.attr('data-styles', $rootScope.config.social_styles || 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/230323d1bcab6fd2819810e95eca0620.css');
 
           sp.actions && sp.actions.parse(elm[0], scope.action);
 
