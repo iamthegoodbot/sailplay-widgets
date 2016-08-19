@@ -8,7 +8,7 @@
   background: none !important;
 }
 .social_actions_btn {
-  margin-left: -110px !important;
+  margin-left: -90px !important;
   margin-top: -30px !important;
 }
 .social_actions_btn iframe {
@@ -412,6 +412,7 @@ input[type="button"]:disabled {
   line-height: 46px;
   height: 46px;
   white-space: nowrap;
+  overflow: hidden;
   font-size: 14px;
   font-weight: 300;
   width: 100%;
@@ -454,7 +455,9 @@ input[type="button"]:disabled {
   lable: left;
   width: 100%;
   box-sizing: border-box;
-  line-height: 34px;
+  line-height: 20px;
+  padding-top: 7px;
+  padding-bottom: 7px;
   color: #000;
   font-size: 14px;
   padding-left: 27px;
@@ -1374,8 +1377,8 @@ input[type="button"]:disabled {
     float: left;
   }
   .bns_overlay .bns_overlay_iner .close_overlay {
-    right: 30px;
-    top: 30px;
+    right: 10px;
+    top: 7px;
   }
   .bns_top .bns_top_block .bns_top_bot .btb_item {
     margin: 31px 16px 0;
@@ -1409,6 +1412,17 @@ input[type="button"]:disabled {
   .bns_overlay {
     overflow-y: auto;
   }
+  .bns_overlay .bns_overlay_iner .bns_hist_table td:nth-child(1) {
+    padding-right: 5px;
+  }
+  .bns_overlay .bns_overlay_iner .bns_hist_table td:nth-child(2) span b {
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-left: 0px;
+  }
+  .bns_overlay .bns_overlay_iner .bns_hist_table td:nth-child(2)::after {
+    display: none;
+  }
   .bns_overlay .b_about a {
     width: 32.7%;
   }
@@ -1417,6 +1431,14 @@ input[type="button"]:disabled {
   .bns_select_gift .bns_select_cat_gift .bscg_item {
     margin: 0px;
     width: 48%;
+  }
+  .bns_select_gift .bns_to_more {
+    position: relative;
+    top: -20px;
+    float: right;
+  }
+  .mb_item_left .social_actions_btn {
+    margin-left: -90px !important;
   }
   .bns_top .bns_top_block .bns_top_text h2 {
     margin-top: 31px;
@@ -1475,7 +1497,7 @@ input[type="button"]:disabled {
     padding: 20px 10px;
   }
   .bns_overlay .bns_overlay_iner .close_overlay {
-    top: 20px;
+    top: 7px;
   }
   .bns_overlay .bns_input_block label {
     width: 100%;

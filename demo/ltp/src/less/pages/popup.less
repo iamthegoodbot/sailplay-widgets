@@ -1,0 +1,348 @@
+.sp_history-popup {
+  .sp-block-reset();
+
+  width: 566px;
+  background-color: #fff;
+  .box-shadow(0px 0px 30px rgba(0, 0, 0, 0.3));
+  padding: 50px 69px 39px;
+  max-width: 90%;
+  @media (max-width: (@screen-md-min - 1px)) {
+    padding: 20px 15px;
+  }
+  @media (max-width: (@screen-sm-min - 1px)) {
+  }
+  @media (max-width: (@screen-xs-min - 1px)) {
+  }
+  &__head-wr {
+    margin-bottom: 50px;
+    @media (max-width: (@screen-md-min - 1px)) {
+      margin-bottom: 30px;
+    }
+    @media (max-width: (@screen-sm-min - 1px)) {
+    }
+    @media (max-width: (@screen-xs-min - 1px)) {
+    }
+  }
+  &__head {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 11px;
+  }
+  &__title {
+    font-size: 16px;
+    font-weight: 300;
+    color: @gray;
+  }
+  &__item {
+    border-bottom: 1px solid #e6e6e6;
+    padding-bottom: 34px;
+    margin-bottom: 32px;
+    &:last-child {
+      margin-bottom: 0;
+      border: none;
+    }
+  }
+
+  &__item-date {
+    display: block;
+    font-size: 14px;
+    font-weight: 300;
+    color: @gray;
+    margin-bottom: 17px;
+  }
+  &__item-name {
+    display: block;
+    font-size: 16px;
+    font-weight: 400;
+  }
+  &__item-points {
+    float: right;
+    font-size: 18px;
+    font-weight: 700;
+    color: @color1;
+    margin-left: 15px;
+    &.this-dec {
+      color: #AFAFAF;
+    }
+  }
+
+  &__close {
+    position: absolute;
+    z-index: 1;
+    right: 24px;
+    top: 25px;
+    width: 14px;
+    height: 13px;
+    .sprite(70px, 0);
+    cursor: pointer;
+  }
+
+  &__close_btn {
+    padding-top: 11px;
+    width: 200px;
+    display: block;
+    margin: 30px auto 0;
+  }
+}
+
+.sp_gift-popup {
+  .sp-block-reset();
+
+  width: 500px;
+  background-color: #fff;
+  .box-shadow(0px 0px 30px rgba(0, 0, 0, 0.3));
+  padding: 20px 60px 40px;
+  max-width: 90%;
+  @media (max-width: (@screen-md-min - 1px)) {
+    padding: 20px 15px;
+  }
+  @media (max-width: (@screen-sm-min - 1px)) {
+  }
+  @media (max-width: (@screen-xs-min - 1px)) {
+  }
+
+  &__text {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px 0;
+  }
+
+  &__img {
+    height: 240px;
+    background-color: #F5F5F5;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+  }
+
+  &__btn {
+    padding-top: 11px;
+    width: 49%;
+    &.left {
+      float: left;
+    }
+    &.right {
+      float: right;
+    }
+  }
+
+  &__close {
+    position: absolute;
+    z-index: 1;
+    right: 24px;
+    top: 25px;
+    width: 14px;
+    height: 13px;
+    .sprite(70px, 0);
+    cursor: pointer;
+  }
+}
+
+.sp_notify-popup {
+  .sp-block-reset();
+
+  width: 500px;
+  background-color: #fff;
+  .box-shadow(0px 0px 30px rgba(0, 0, 0, 0.3));
+  padding: 20px 60px 40px;
+  max-width: 90%;
+  @media (max-width: (@screen-md-min - 1px)) {
+    padding: 20px 15px;
+  }
+  @media (max-width: (@screen-sm-min - 1px)) {
+  }
+  @media (max-width: (@screen-xs-min - 1px)) {
+  }
+
+  &__header {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin: 10px 0;
+  }
+
+  &__body {
+    text-align: center;
+    margin: 10px 0 20px;
+  }
+
+  &__btn {
+    padding-top: 11px;
+    width: 50%;
+    margin: 0 auto;
+  }
+
+  &__close {
+    position: absolute;
+    z-index: 1;
+    right: 24px;
+    top: 25px;
+    width: 14px;
+    height: 13px;
+    .sprite(70px, 0);
+    cursor: pointer;
+  }
+}
+
+.sp_action-popup {
+  .sp-block-reset();
+
+  width: 550px;
+  background-color: #fff;
+  .box-shadow(0px 0px 30px rgba(0, 0, 0, 0.3));
+  padding: 0;
+  max-width: 90%;
+  @media (max-width: (@screen-md-min - 1px)) {
+  }
+  @media (max-width: (@screen-sm-min - 1px)) {
+  }
+  @media (max-width: (@screen-xs-min - 1px)) {
+  }
+
+  &__header {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: left;
+    background-color: #f5f5f5;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 30px 60px;
+  }
+
+  &__wrap {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 30px 60px;
+    min-height: 210px;
+  }
+
+  &__text {
+    display: block;
+    width: 60%;
+    float: right;
+    padding-top: 10px;
+  }
+
+  &__img_wrapper {
+    display: block;
+    float: left;
+    width: 100px;
+  }
+
+  &__img {
+    display: block;
+    float: left;
+    width: 100px;
+    height: 100px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
+
+  &__points {
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+    color: #00E1E6;
+    font-size: 18px;
+  }
+
+  &__btn {
+    margin: 0 auto 30px;
+    padding-top: 11px;
+    width: 50%;
+  }
+
+  &__close {
+    position: absolute;
+    z-index: 1;
+    right: 24px;
+    top: 25px;
+    width: 14px;
+    height: 13px;
+    .sprite(70px, 0);
+    cursor: pointer;
+  }
+}
+
+.sp_profile-popup {
+  .sp-block-reset();
+
+  width: 550px;
+  background-color: #fff;
+  .box-shadow(0px 0px 30px rgba(0, 0, 0, 0.3));
+  padding: 0;
+  max-width: 90%;
+  @media (max-width: (@screen-md-min - 1px)) {
+  }
+  @media (max-width: (@screen-sm-min - 1px)) {
+  }
+  @media (max-width: (@screen-xs-min - 1px)) {
+  }
+
+  &__header {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: left;
+    background-color: #f5f5f5;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 30px 60px;
+  }
+
+  &__wrap {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 30px 60px;
+    min-height: 210px;
+  }
+
+  &__text {
+    display: block;
+    width: 60%;
+    float: right;
+  }
+
+  &__img_wrapper {
+    display: block;
+    float: left;
+    width: 100px;
+  }
+
+  &__img {
+    display: block;
+    float: left;
+    width: 100px;
+    height: 100px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
+
+  &__points {
+    width: 100%;
+    text-align: center;
+    color: #00E1E6;
+    font-size: 18px;
+  }
+
+  &__btn {
+    margin: 0 auto 30px;
+    padding-top: 11px;
+    width: 50%;
+  }
+
+  &__close {
+    position: absolute;
+    z-index: 1;
+    right: 24px;
+    top: 25px;
+    width: 14px;
+    height: 13px;
+    .sprite(70px, 0);
+    cursor: pointer;
+  }
+}

@@ -13,7 +13,7 @@
 }
 
 .social_actions_btn {
-  margin-left: -110px !important;
+  margin-left: -90px !important;
   margin-top: -30px !important;
   iframe {
     height: 60px !important;
@@ -435,6 +435,7 @@ input[type="button"] {
         line-height: 46px;
         height: 46px;
         white-space: nowrap;
+        overflow: hidden;
         font-size: 14px;
         font-weight: 300;
         width: 100%;
@@ -477,7 +478,9 @@ input[type="button"] {
           lable: left;
           width: 100%;
           box-sizing: border-box;
-          line-height: 34px;
+          line-height: 20px;
+          padding-top: 7px;
+          padding-bottom: 7px;
           color: #000;
           font-size: 14px;
           padding-left: 27px;
@@ -1500,8 +1503,8 @@ input[type="button"] {
       transform: translateX(0%) translateY(0%) scale(1, 1);
       float: left;
       .close_overlay {
-        right: 30px;
-        top: 30px;
+        right: 10px;
+        top: 7px;
       }
     }
   }
@@ -1559,6 +1562,25 @@ input[type="button"] {
       //margin-top: 0px !Important;
 
     }
+    .bns_overlay_iner {
+      .bns_hist_table {
+        td:nth-child(1) {
+          padding-right: 5px;
+        }
+        td:nth-child(2){
+          span {
+            b {
+              padding-right: 0px;
+              padding-left: 0px;
+              margin-left: 0px;
+            }
+          }
+          &::after {
+            display: none;
+          }
+        }
+      }
+    }
     .b_about {
       a {
         width: 32.7%;
@@ -1574,6 +1596,16 @@ input[type="button"] {
         margin: 0px;
         width: 48%;
       }
+    }
+    .bns_to_more {
+      position: relative;
+      top: -20px;
+      float: right;
+    }
+  }
+  .mb_item_left {
+    .social_actions_btn {
+      margin-left: -90px !important;
     }
   }
 
@@ -1666,7 +1698,7 @@ input[type="button"] {
     .bns_overlay_iner {
       padding: 20px 10px;
       .close_overlay {
-        top: 20px;
+        top: 7px;
       }
     }
     .bns_input_block {
