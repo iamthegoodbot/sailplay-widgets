@@ -95,16 +95,24 @@
 
           $rootScope.$apply(function () {
             self.data(point, res);
-            console.log('sailplay.api:' + point + '.success');
-            console.dir(self.data(point)());
+
+            if ($rootScope.debug) {
+              console.log('sailplay.api:' + point + '.success');
+              console.dir(self.data(point)());
+            }
+
           });
 
         });
 
         sp.on(point + '.error', function (res) {
           $rootScope.$apply(function () {
-            console.log('sailplay.api:' + point + '.error');
-            console.dir(res);
+
+            if ($rootScope.debug) {
+              console.log('sailplay.api:' + point + '.error');
+              console.dir(res);
+            }
+
             self.data(point, null);
           });
         });

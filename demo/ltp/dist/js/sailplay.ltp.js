@@ -2452,36 +2452,26 @@ module.run(['$templateCache', function($templateCache) {
 
       });
 
-      sp.on('login.success', function () {
+      sp.on('login.success', loadData);
 
-        $rootScope.loaded = true;
+      sp.on('actions.perform.success', loadData);
+
+      sp.on('gift.purchase.force_complete.success', loadData);
+
+      function loadData(){
 
         //load data for widgets
-        sp_api.call('load.user.info', {all: 1});
+        sp_api.call('load.user.info', {all: 1, purchases: 1});
         sp_api.call('load.badges.list');
         sp_api.call('load.actions.list');
         sp_api.call('load.user.history');
-        sp_api.call('load.gifts.list');
+        sp_api.call('load.gifts.list', {verbose: 1});
 
         $rootScope.$apply();
 
-      });
-
-      sp.on('actions.perform.success', function () {
-        sp_api.call('load.actions.list');
-      });
-
-      sp.on('actions.perform.error', function () {
-        sp_api.call('load.actions.list');
-      });
-
-      sp.on('actions.perform.complete', function () {
-        sp_api.call('load.actions.list');
-      });
+      }
 
       sp.on('gifts.purchase.success', function (res) {
-
-        console.dir(res);
 
         $rootScope.$broadcast('notifier:notify', {
 
@@ -2493,10 +2483,6 @@ module.run(['$templateCache', function($templateCache) {
         $rootScope.$apply();
 
       });
-
-      //sp.on('actions.social.connect.complete', function () {
-      //  sp_api.call('load.actions.list');
-      //});
 
 
     }]);
@@ -2902,7 +2888,7 @@ window.matchMedia=window.matchMedia||(function(e,f){var c,a=e.documentElement,b=
         },
         link: function (scope, elm) {
 
-          elm.attr('data-styles', $rootScope.config.social_styles || 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/4164ea8221f2093fca2398c2ed899318.css');
+          elm.attr('data-styles', $rootScope.config.social_styles || 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/cd771b62c6fa4de976c421f909690e69.css');
 
           sp.actions && sp.actions.parse(elm[0], scope.action);
 
@@ -3178,16 +3164,24 @@ window.matchMedia=window.matchMedia||(function(e,f){var c,a=e.documentElement,b=
 
           $rootScope.$apply(function () {
             self.data(point, res);
-            console.log('sailplay.api:' + point + '.success');
-            console.dir(self.data(point)());
+
+            if ($rootScope.debug) {
+              console.log('sailplay.api:' + point + '.success');
+              console.dir(self.data(point)());
+            }
+
           });
 
         });
 
         sp.on(point + '.error', function (res) {
           $rootScope.$apply(function () {
-            console.log('sailplay.api:' + point + '.error');
-            console.dir(res);
+
+            if ($rootScope.debug) {
+              console.log('sailplay.api:' + point + '.error');
+              console.dir(res);
+            }
+
             self.data(point, null);
           });
         });

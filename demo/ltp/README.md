@@ -1,7 +1,7 @@
 # SailPlay widget for Local Trade Pros
 
 ## Install
-Add this script to the page:
+Paste this code to the page in <head> section to load the script:
 
     <script type="text/javascript">
 
@@ -11,7 +11,7 @@ Add this script to the page:
         };
 
         var _links = {
-            js: 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/6d03322fb4041e8b124ce65f4d3d9c1b.js',
+            js: 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/775a07dcfeccb3da88ee01c47b948de3.js',
             css: 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/8a3b9f43c6edf7b5665b0e78dffdcda8.css'
         };
 
@@ -34,7 +34,7 @@ Add this script to the page:
 
 
 ## Placement
-Add this tag to the page:
+Paste this code to <body> to render the content loaded via above mentioned script:
    
     <sailplay-ltp></sailplay-ltp>
 

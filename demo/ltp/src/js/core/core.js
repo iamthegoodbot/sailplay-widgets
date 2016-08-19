@@ -42,36 +42,26 @@
 
       });
 
-      sp.on('login.success', function () {
+      sp.on('login.success', loadData);
 
-        $rootScope.loaded = true;
+      sp.on('actions.perform.success', loadData);
+
+      sp.on('gift.purchase.force_complete.success', loadData);
+
+      function loadData(){
 
         //load data for widgets
-        sp_api.call('load.user.info', {all: 1});
+        sp_api.call('load.user.info', {all: 1, purchases: 1});
         sp_api.call('load.badges.list');
         sp_api.call('load.actions.list');
         sp_api.call('load.user.history');
-        sp_api.call('load.gifts.list');
+        sp_api.call('load.gifts.list', {verbose: 1});
 
         $rootScope.$apply();
 
-      });
-
-      sp.on('actions.perform.success', function () {
-        sp_api.call('load.actions.list');
-      });
-
-      sp.on('actions.perform.error', function () {
-        sp_api.call('load.actions.list');
-      });
-
-      sp.on('actions.perform.complete', function () {
-        sp_api.call('load.actions.list');
-      });
+      }
 
       sp.on('gifts.purchase.success', function (res) {
-
-        console.dir(res);
 
         $rootScope.$broadcast('notifier:notify', {
 
@@ -83,10 +73,6 @@
         $rootScope.$apply();
 
       });
-
-      //sp.on('actions.social.connect.complete', function () {
-      //  sp_api.call('load.actions.list');
-      //});
 
 
     });
