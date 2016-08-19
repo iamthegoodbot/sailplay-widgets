@@ -1,7 +1,7 @@
 # SailPlay widget for Local Trade Pros
 
 ## Install
-Paste this code to the page in <head> section to load the script:
+Paste this code to the page in < head > section to load the script:
 
     <script type="text/javascript">
 
