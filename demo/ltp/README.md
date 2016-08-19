@@ -34,7 +34,7 @@ Paste this code to the page in <head> section to load the script:
 
 
 ## Placement
-Paste this code to <body> to render the content loaded via above mentioned script:
+Paste this code to < body > to render the content loaded via above mentioned script:
    
     <sailplay-ltp></sailplay-ltp>
 
