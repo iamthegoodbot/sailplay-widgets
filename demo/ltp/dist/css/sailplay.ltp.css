@@ -1999,6 +1999,11 @@ hr {
   float: left;
   width: 100px;
 }
+@media (max-width: 479px) {
+  .sp_action-popup__img_wrapper {
+    width: 40% !important;
+  }
+}
 .sp_action-popup__img {
   display: block;
   float: left;
@@ -2007,6 +2012,12 @@ hr {
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
+}
+@media (max-width: 479px) {
+  .sp_action-popup__img {
+    background-size: 40px !important;
+    width: 100% !important;
+  }
 }
 .sp_action-popup__points {
   font-weight: bold;

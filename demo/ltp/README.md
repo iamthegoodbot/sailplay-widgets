@@ -12,7 +12,7 @@ Paste this code to the page in < head > section to load the script:
 
         var _links = {
             js: 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/775a07dcfeccb3da88ee01c47b948de3.js',
-            css: 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/8a3b9f43c6edf7b5665b0e78dffdcda8.css'
+            css: 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/5cf3839c610bacf0094ffa5f8cfde7e2.css'
         };
 
         document.addEventListener('DOMContentLoaded', function () {

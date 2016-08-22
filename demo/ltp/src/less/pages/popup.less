@@ -229,6 +229,11 @@
     display: block;
     float: left;
     width: 100px;
+
+    @media (max-width: (@screen-xs-min - 1px)) {
+      width: 40% !important;
+    }
+
   }
 
   &__img {
@@ -239,6 +244,12 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
+
+    @media (max-width: (@screen-xs-min - 1px)) {
+      background-size: 40px !important;
+      width: 100% !important;
+    }
+
   }
 
   &__points {
