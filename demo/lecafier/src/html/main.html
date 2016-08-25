@@ -44,6 +44,18 @@
         </table>
     </div>
 
+    <h2 class="bonus">Бейджи</h2>
+    <div class="row rblock bonus_badges" data-sailplay-badges data-ng-cloak>
+        <div class="badge__list" data-ng-if="badges && badges() && badges().one_level_badges">
+            <div class="badge__item" data-ng-repeat="badge in $parent.badges().one_level_badges"
+                 data-ng-class="{is_received : badge.is_received}"
+                 data-scroll-to=".bonus_tasks">
+                <img data-ng-src="{{ badge.thumbs.url_50x50 | sailplay_pic }}" alt="{{ badge.name }}">
+                <span class="badge__item-name" data-ng-bind="badge.name"></span>
+            </div>
+        </div>
+    </div>
+
     <h2 class="bonus">История транзакций</h2>
     <div class="row rblock bonus_history" data-sailplay-history data-ng-cloak>
         <div class="col-sm-4">
@@ -109,7 +121,6 @@
 
             </table>
         </div>
-
         <div class="col-sm-12">
 
             <dir-pagination-controls data-max-size="5" data-pagination-id="history_pages"
@@ -194,4 +205,9 @@
 
 
     </div>
+
+    <gift-popup></gift-popup>
+
+    <notify-popup></notify-popup>
+
 </div>

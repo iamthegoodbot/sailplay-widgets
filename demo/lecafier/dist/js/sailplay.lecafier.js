@@ -2317,7 +2317,137 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/html/main.html',
-    '<div class="container-fluid" data-ng-show="global.auth"><h1>Бонусная программа</h1><div class="row rblock bonus_pers" data-sailplay-profile="" data-ng-cloak=""><div class="rankimg" title="{{ statusList[currentStatus].name }}"><div class="{{ get_status_pic(currentStatus) }}"></div></div><div class="ranktitle">Здравствуйте,<div class="name" data-ng-bind="user().user.name || \'уважаемый покупатель\'"></div><p>Ваш ранг: <strong data-ng-bind="statusList[currentStatus].name"></strong></p><p data-ng-if="statusList[currentStatus + 1]">До ранга <strong data-ng-bind="statusList[currentStatus + 1].name"></strong> осталось сделать {{ (statusList[currentStatus + 1].purchases - user().purchases.count) }} {{ (statusList[currentStatus + 1].purchases - user().purchases.count) | sailplay_pluralize:\'покупка,покупки,покупок\' }}</p></div><div class="scale"><div data-ng-style="{width: get_progress()}"></div><div><span data-ng-repeat="status in statusList" data-ng-class="{active: $index == currentStatus }"></span></div></div><table class="scale"><thead><tr><td data-ng-repeat="status in statusList"><div data-ng-bind="status.name" data-ng-class="{active: $index == currentStatus, disabled : $index > currentStatus }"></div></td></tr></thead><tbody><tr><td data-ng-repeat="status in statusList" data-ng-bind="status.description"></td></tr></tbody></table></div><h2 class="bonus">История транзакций</h2><div class="row rblock bonus_history" data-sailplay-history="" data-ng-cloak=""><div class="col-sm-4"><div class="current"><div class="big">{{ user().user_points.confirmed | number }}<div class="small" data-ng-if="user().user_points.unconfirmed">+ {{ user().user_points.unconfirmed | number }}<div class="info"><div class="title">Неподтвержденные капли:</div><table class="points"><tr data-ng-repeat="item in history() | filter:{is_completed:false} | limitTo:3"><td data-ng-bind="item.action_date | date:\'d.MM.yyyy\'"></td><td data-ng-class="{present: item.action == \'gift_purchase\'}"><span data-ng-if="item.action == \'gift_purchase\'">&#xF128;</span> <b data-ng-bind="item | history_item"></b></td><td data-ng-class="{t1: item.active == \'purchase\', t2: item.action != \'gift_purchase\' && item.action != \'purchase\', t3 : item.action == \'gift_purchase\'}" data-ng-if="item.points_delta"><b data-ng-bind="((item.points_delta|number) || 0)"></b> {{ item.points_delta | sailplay_pluralize:\'кофейная капеля,кофейные капли,кофейных капель\' }}</td></tr></table></div></div></div><div class="note"><span>Кофейных капель</span></div></div></div><div class="col-sm-8 last"><div class="title">Ваши последние действия:</div><table class="points"><tr data-dir-paginate="item in history() | filter:is_completed:true | itemsPerPage:5" data-pagination-id="history_pages"><td data-ng-bind="item.action_date | date:\'d.MM.yyyy\'"></td><td data-ng-class="{present: item.action == \'gift_purchase\'}"><span data-ng-if="item.action == \'gift_purchase\'">&#xF128;</span> <b data-ng-bind="item | history_item"></b></td><td data-ng-class="{t1: item.active == \'purchase\', t2: item.action != \'gift_purchase\' && item.action != \'purchase\', t3 : item.action == \'gift_purchase\'}" data-ng-if="item.points_delta"><b data-ng-bind="((item.points_delta|number) || 0)"></b> {{ item.points_delta | sailplay_pluralize:\'кофейная капеля,кофейные капли,кофейных капель\' }}</td></tr></table></div><div class="col-sm-12"><dir-pagination-controls data-max-size="5" data-pagination-id="history_pages" data-template-url="/html/ui/ui.pagination.controls.html" data-auto-hide="true"></dir-pagination-controls></div></div><h2 class="bonus">Подарки</h2><div class="row rblock bonus_gifts" data-sailplay-gifts="" data-ng-cloak=""><div id="gift-slider"><div class="gift-item" data-ng-repeat="gift in gifts()" data-gifts-slider=""><a href="#" class="pic" style="background-image: url(\'{{ gift.thumbs.url_250x250 | sailplay_pic }}\')" title="{{ gift.name }}"></a><div class="title" data-ng-bind="gift.name"></div><div class="bottom" data-ng-if="user().user_points.confirmed >= gift.points"><div><b data-ng-bind="gift.points|number"></b> {{ gift.points | sailplay_pluralize:\'кофейная капеля,кофейные капли,кофейных капель\'}}</div></div><div class="bottom" data-ng-if="user().user_points.confirmed < gift.points"><div><b data-ng-bind="gift.points|number"></b> {{ (gift.points - user().user_points.confirmed) | sailplay_pluralize:\'кофейная капеля,кофейные капли,кофейных капель\' }}<div data-ng-bind="\'(Вам не хватает \' + ((gift.points - user().user_points.confirmed) | sailplay_pluralize:\'кофейная капеля,кофейные капли,кофейных капель\') + \')\'"></div></div></div><div class="more"><div class="desc" data-ng-bind-html="gift.descr | to_trusted"></div><div class="giftbtn"><a href="#" data-ng-class="{greenbtn: user().user_points.confirmed >= gift.points, disabled: user().user_points.confirmed < gift.points }" data-ng-click="$event.preventDefault();make_purchase(gift);">Получить подарок</a></div></div></div></div></div><h2 class="bonus">Заработать больше капель</h2><div class="row rblock bonus_tasks" data-sailplay-actions="" data-ng-cloak=""><div class="item col-sm-4" data-ng-repeat="action in actions().actions | filter:check_in_list"><div class="inner"><div class="pic" data-ng-bind-html="action_data(action).pic | to_trusted"></div><div data-ng-bind-html="action_data(action).name | to_trusted"></div><span><b data-ng-bind="action.points | number"></b> {{ action.points | sailplay_pluralize:\'кофейная капеля,кофейные капли,кофейных капель\'}}</span> <a href="#" data-ng-class="{ greenbtn : !action.socialType }" data-sailplay-action="" data-action="action">Выполнить</a></div></div></div></div>');
+    '<div class="container-fluid" data-ng-show="global.auth"><h1>Бонусная программа</h1><div class="row rblock bonus_pers" data-sailplay-profile="" data-ng-cloak=""><div class="rankimg" title="{{ statusList[currentStatus].name }}"><div class="{{ get_status_pic(currentStatus) }}"></div></div><div class="ranktitle">Здравствуйте,<div class="name" data-ng-bind="user().user.name || \'уважаемый покупатель\'"></div><p>Ваш ранг: <strong data-ng-bind="statusList[currentStatus].name"></strong></p><p data-ng-if="statusList[currentStatus + 1]">До ранга <strong data-ng-bind="statusList[currentStatus + 1].name"></strong> осталось сделать {{ (statusList[currentStatus + 1].purchases - user().purchases.count) }} {{ (statusList[currentStatus + 1].purchases - user().purchases.count) | sailplay_pluralize:\'покупка,покупки,покупок\' }}</p></div><div class="scale"><div data-ng-style="{width: get_progress()}"></div><div><span data-ng-repeat="status in statusList" data-ng-class="{active: $index == currentStatus }"></span></div></div><table class="scale"><thead><tr><td data-ng-repeat="status in statusList"><div data-ng-bind="status.name" data-ng-class="{active: $index == currentStatus, disabled : $index > currentStatus }"></div></td></tr></thead><tbody><tr><td data-ng-repeat="status in statusList" data-ng-bind="status.description"></td></tr></tbody></table></div><h2 class="bonus">Бейджи</h2><div class="row rblock bonus_badges" data-sailplay-badges="" data-ng-cloak=""><div class="badge__list" data-ng-if="badges && badges() && badges().one_level_badges"><div class="badge__item" data-ng-repeat="badge in $parent.badges().one_level_badges" data-ng-class="{is_received : badge.is_received}" data-scroll-to=".bonus_tasks"><img data-ng-src="{{ badge.thumbs.url_50x50 | sailplay_pic }}" alt="{{ badge.name }}"> <span class="badge__item-name" data-ng-bind="badge.name"></span></div></div></div><h2 class="bonus">История транзакций</h2><div class="row rblock bonus_history" data-sailplay-history="" data-ng-cloak=""><div class="col-sm-4"><div class="current"><div class="big">{{ user().user_points.confirmed | number }}<div class="small" data-ng-if="user().user_points.unconfirmed">+ {{ user().user_points.unconfirmed | number }}<div class="info"><div class="title">Неподтвержденные капли:</div><table class="points"><tr data-ng-repeat="item in history() | filter:{is_completed:false} | limitTo:3"><td data-ng-bind="item.action_date | date:\'d.MM.yyyy\'"></td><td data-ng-class="{present: item.action == \'gift_purchase\'}"><span data-ng-if="item.action == \'gift_purchase\'">&#xF128;</span> <b data-ng-bind="item | history_item"></b></td><td data-ng-class="{t1: item.active == \'purchase\', t2: item.action != \'gift_purchase\' && item.action != \'purchase\', t3 : item.action == \'gift_purchase\'}" data-ng-if="item.points_delta"><b data-ng-bind="((item.points_delta|number) || 0)"></b> {{ item.points_delta | sailplay_pluralize:\'кофейная капеля,кофейные капли,кофейных капель\' }}</td></tr></table></div></div></div><div class="note"><span>Кофейных капель</span></div></div></div><div class="col-sm-8 last"><div class="title">Ваши последние действия:</div><table class="points"><tr data-dir-paginate="item in history() | filter:is_completed:true | itemsPerPage:5" data-pagination-id="history_pages"><td data-ng-bind="item.action_date | date:\'d.MM.yyyy\'"></td><td data-ng-class="{present: item.action == \'gift_purchase\'}"><span data-ng-if="item.action == \'gift_purchase\'">&#xF128;</span> <b data-ng-bind="item | history_item"></b></td><td data-ng-class="{t1: item.active == \'purchase\', t2: item.action != \'gift_purchase\' && item.action != \'purchase\', t3 : item.action == \'gift_purchase\'}" data-ng-if="item.points_delta"><b data-ng-bind="((item.points_delta|number) || 0)"></b> {{ item.points_delta | sailplay_pluralize:\'кофейная капеля,кофейные капли,кофейных капель\' }}</td></tr></table></div><div class="col-sm-12"><dir-pagination-controls data-max-size="5" data-pagination-id="history_pages" data-template-url="/html/ui/ui.pagination.controls.html" data-auto-hide="true"></dir-pagination-controls></div></div><h2 class="bonus">Подарки</h2><div class="row rblock bonus_gifts" data-sailplay-gifts="" data-ng-cloak=""><div id="gift-slider"><div class="gift-item" data-ng-repeat="gift in gifts()" data-gifts-slider=""><a href="#" class="pic" style="background-image: url(\'{{ gift.thumbs.url_250x250 | sailplay_pic }}\')" title="{{ gift.name }}"></a><div class="title" data-ng-bind="gift.name"></div><div class="bottom" data-ng-if="user().user_points.confirmed >= gift.points"><div><b data-ng-bind="gift.points|number"></b> {{ gift.points | sailplay_pluralize:\'кофейная капеля,кофейные капли,кофейных капель\'}}</div></div><div class="bottom" data-ng-if="user().user_points.confirmed < gift.points"><div><b data-ng-bind="gift.points|number"></b> {{ (gift.points - user().user_points.confirmed) | sailplay_pluralize:\'кофейная капеля,кофейные капли,кофейных капель\' }}<div data-ng-bind="\'(Вам не хватает \' + ((gift.points - user().user_points.confirmed) | sailplay_pluralize:\'кофейная капеля,кофейные капли,кофейных капель\') + \')\'"></div></div></div><div class="more"><div class="desc" data-ng-bind-html="gift.descr | to_trusted"></div><div class="giftbtn"><a href="#" data-ng-class="{greenbtn: user().user_points.confirmed >= gift.points, disabled: user().user_points.confirmed < gift.points }" data-ng-click="$event.preventDefault();make_purchase(gift);">Получить подарок</a></div></div></div></div></div><h2 class="bonus">Заработать больше капель</h2><div class="row rblock bonus_tasks" data-sailplay-actions="" data-ng-cloak=""><div class="item col-sm-4" data-ng-repeat="action in actions().actions | filter:check_in_list"><div class="inner"><div class="pic" data-ng-bind-html="action_data(action).pic | to_trusted"></div><div data-ng-bind-html="action_data(action).name | to_trusted"></div><span><b data-ng-bind="action.points | number"></b> {{ action.points | sailplay_pluralize:\'кофейная капеля,кофейные капли,кофейных капель\'}}</span> <a href="#" data-ng-class="{ greenbtn : !action.socialType }" data-sailplay-action="" data-action="action">Выполнить</a></div></div></div><gift-popup></gift-popup><notify-popup></notify-popup></div>');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('templates');
+} catch (e) {
+  module = angular.module('templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('/html/ui/ui.gift.popup.html',
+    '<div class="popup popup__gift" data-ng-cloak="" data-ng-if="data && share_data"><div class="popup_overlay" data-ng-click="$parent.data = null"></div><div class="popup_content"><div class="popup_header"><span class="popup_header-title">Подтверждение</span> <span class="popup_header-close" data-ng-click="$parent.data = null"><?xml version="1.0" encoding="utf-8"?><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewbox="0 0 29 30" style="enable-background:new 0 0 29 30;" xml:space="preserve"><style type="text/css">\n' +
+    '                    .st0 {\n' +
+    '                        fill-rule: evenodd;\n' +
+    '                        clip-rule: evenodd;\n' +
+    '                        fill: #FFFFFF;\n' +
+    '                    }\n' +
+    '                </style><polygon class="st0" points="20.9,9.8 19.7,8.6 14.5,13.8 9.3,8.6 8.1,9.8 13.3,15 8.1,20.2 9.3,21.4 14.5,16.2 19.7,21.4 20.9,20.2 15.7,15"></polygon></svg></span></div><div class="popup_body"><div class="popup_body__parts left"><img data-ng-src="{{ $parent.data.thumbs.url_250x250 | sailplay_pic }}" alt="{{ $parent.data.name }}"> <span class="gift_name" data-ng-bind="$parent.data.name"></span></div><div class="popup_body__parts right"><span class="header_text">Поздравляем!</span> <span class="body_text">Подарок успешно добавлен в корзину!</span> <span class="body_text">*Для его получения необходимо завершить покупку через корзину</span><div class="share_buttons"><a href="#" class="share_button type_fb" data-ng-click="$event.preventDefault();make_share(\'fb\')"><div class="origin"><?xml version="1.0" encoding="utf-8"?><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewbox="0 0 39.6 40" style="enable-background:new 0 0 39.6 40;" xml:space="preserve"><style type="text/css">\n' +
+    '                                .type_fb .origin .st0 {\n' +
+    '                                    fill: #E6EAEE;\n' +
+    '                                }\n' +
+    '\n' +
+    '                                .type_fb .origin .st1 {\n' +
+    '                                    fill: #4B6296;\n' +
+    '                                }\n' +
+    '\n' +
+    '                                .type_fb .origin .st2 {\n' +
+    '                                    fill: #E45E4C;\n' +
+    '                                }\n' +
+    '                            </style><path class="st1" d="M15.4,16.9h1.9v-0.8v-0.8v-0.1c0-0.8,0-2,0.6-2.8c0.6-0.8,1.5-1.4,2.9-1.4c2.4,0,3.3,0.3,3.3,0.3l-0.5,2.8 c0,0-0.8-0.2-1.5-0.2c-0.7,0-1.4,0.3-1.4,1v0.3v1v0.8h3l-0.2,2.7h-2.8V29h-3.5v-9.4h-1.9V16.9L15.4,16.9z"></path></svg></div><div class="hover"><?xml version="1.0" encoding="utf-8"?><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewbox="0 0 39.6 40" style="enable-background:new 0 0 39.6 40;" xml:space="preserve"><style type="text/css">\n' +
+    '                                .type_fb .hover .st0 {\n' +
+    '                                    fill: #E6EAEE;\n' +
+    '                                }\n' +
+    '\n' +
+    '                                .type_fb .hover .st1 {\n' +
+    '                                    fill-rule: evenodd;\n' +
+    '                                    clip-rule: evenodd;\n' +
+    '                                    fill: #6A95C7;\n' +
+    '                                }\n' +
+    '\n' +
+    '                                .type_fb .hover .st2 {\n' +
+    '                                    fill: #4B6296;\n' +
+    '                                }\n' +
+    '                            </style><path class="st2" d="M15.4,16.9h1.9v-0.8v-0.8v-0.1c0-0.8,0-2,0.6-2.8c0.6-0.8,1.5-1.4,2.9-1.4c2.4,0,3.3,0.3,3.3,0.3l-0.5,2.8 c0,0-0.8-0.2-1.5-0.2c-0.7,0-1.4,0.3-1.4,1v0.3v1v0.8h3l-0.2,2.7h-2.8V29h-3.5v-9.4h-1.9V16.9L15.4,16.9z"></path></svg></div></a> <a href="#" class="share_button type_ok" data-ng-click="$event.preventDefault();make_share(\'ok\')"><div class="origin"><?xml version="1.0" encoding="utf-8"?><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewbox="0 0 39.6 40" style="enable-background:new 0 0 39.6 40;" xml:space="preserve"><style type="text/css">\n' +
+    '                                .type_ok .origin .st0 {\n' +
+    '                                    fill-rule: evenodd;\n' +
+    '                                    clip-rule: evenodd;\n' +
+    '                                    fill: #4B6296;\n' +
+    '                                }\n' +
+    '                            </style><path class="st0" d="M25.9,20.8c-0.3-0.6-1.1-1.1-2.3-0.2c-1.5,1.2-3.9,1.2-3.9,1.2s-2.4,0-3.9-1.2c-1.1-0.9-1.9-0.4-2.3,0.2 c-0.5,1.1,0.1,1.6,1.4,2.4c1.1,0.7,2.7,1,3.7,1.1l-0.8,0.8c-1.2,1.2-2.4,2.4-3.2,3.2c-0.5,0.5-0.5,1.3,0,1.7l0.1,0.1 c0.2,0.2,0.6,0.4,0.9,0.4h0c0.3,0,0.6-0.1,0.9-0.4l3.2-3.2c1.2,1.2,2.4,2.4,3.2,3.2c0.5,0.5,1.3,0.5,1.7,0l0.1-0.1 c0.5-0.5,0.5-1.3,0-1.7l-3.2-3.2l-0.9-0.9c1-0.1,2.6-0.4,3.7-1.1C25.9,22.3,26.5,21.8,25.9,20.8L25.9,20.8z M19.8,12.1 c1.5,0,2.6,1.2,2.6,2.6c0,1.5-1.2,2.6-2.6,2.6s-2.6-1.2-2.6-2.6C17.1,13.3,18.3,12.1,19.8,12.1L19.8,12.1z M19.8,20.1 c3,0,5.3-2.4,5.3-5.3c0-3-2.4-5.3-5.3-5.3c-3,0-5.3,2.4-5.3,5.3C14.4,17.7,16.8,20.1,19.8,20.1L19.8,20.1z"></path></svg></div><div class="hover"><?xml version="1.0" encoding="utf-8"?><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewbox="0 0 39.6 40" style="enable-background:new 0 0 39.6 40;" xml:space="preserve"><style type="text/css">\n' +
+    '                                .type_ok .hover .st0 {\n' +
+    '                                    fill: #E6EAEE;\n' +
+    '                                }\n' +
+    '\n' +
+    '                                .type_ok .hover .st1 {\n' +
+    '                                    fill: #4B6296;\n' +
+    '                                }\n' +
+    '\n' +
+    '                                .type_ok .hover .st2 {\n' +
+    '                                    fill-rule: evenodd;\n' +
+    '                                    clip-rule: evenodd;\n' +
+    '                                    fill: #EE812F;\n' +
+    '                                }\n' +
+    '                            </style><path class="st2" d="M25.9,20.8c-0.3-0.6-1.1-1.1-2.3-0.2c-1.5,1.2-3.9,1.2-3.9,1.2s-2.4,0-3.9-1.2c-1.1-0.9-1.9-0.4-2.3,0.2 c-0.5,1.1,0.1,1.6,1.4,2.4c1.1,0.7,2.7,1,3.7,1.1l-0.8,0.8c-1.2,1.2-2.4,2.4-3.2,3.2c-0.5,0.5-0.5,1.3,0,1.7l0.1,0.1 c0.2,0.2,0.6,0.4,0.9,0.4h0c0.3,0,0.6-0.1,0.9-0.4l3.2-3.2c1.2,1.2,2.4,2.4,3.2,3.2c0.5,0.5,1.3,0.5,1.7,0l0.1-0.1 c0.5-0.5,0.5-1.3,0-1.7l-3.2-3.2l-0.9-0.9c1-0.1,2.6-0.4,3.7-1.1C25.9,22.3,26.5,21.8,25.9,20.8L25.9,20.8z M19.8,12.1 c1.5,0,2.6,1.2,2.6,2.6c0,1.5-1.2,2.6-2.6,2.6s-2.6-1.2-2.6-2.6C17.1,13.3,18.3,12.1,19.8,12.1L19.8,12.1z M19.8,20.1 c3,0,5.3-2.4,5.3-5.3c0-3-2.4-5.3-5.3-5.3c-3,0-5.3,2.4-5.3,5.3C14.4,17.7,16.8,20.1,19.8,20.1L19.8,20.1z"></path></svg></div></a> <a href="#" class="share_button type_vk" data-ng-click="$event.preventDefault();make_share(\'vk\')"><div class="origin"><?xml version="1.0" encoding="utf-8"?><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewbox="0 0 39.6 40" style="enable-background:new 0 0 39.6 40;" xml:space="preserve"><style type="text/css">\n' +
+    '                                .type_vk .origin .st0 {\n' +
+    '                                    fill-rule: evenodd;\n' +
+    '                                    clip-rule: evenodd;\n' +
+    '                                    fill: #4B6296;\n' +
+    '                                }\n' +
+    '                            </style><path class="st0" d="M19.5,26.8H21c0,0,0.4,0,0.7-0.3c0.2-0.2,0.2-0.6,0.2-0.6s0-1.9,0.9-2.2c0.9-0.3,2,1.9,3.2,2.7 c0.9,0.6,1.6,0.5,1.6,0.5l3.2,0c0,0,1.7-0.1,0.9-1.4c-0.1-0.1-0.5-1-2.4-2.8c-2-1.9-1.7-1.6,0.7-4.8c1.5-2,2.1-3.2,1.9-3.7 c-0.2-0.5-1.3-0.4-1.3-0.4l-3.6,0c0,0-0.3,0-0.5,0.1c-0.2,0.1-0.3,0.4-0.3,0.4s-0.6,1.5-1.3,2.8c-1.6,2.7-2.2,2.9-2.5,2.7 c-0.6-0.4-0.5-1.6-0.5-2.4c0-2.6,0.4-3.7-0.8-4c-0.4-0.1-0.7-0.2-1.7-0.2c-1.3,0-2.4,0-3,0.3c-0.4,0.2-0.7,0.6-0.5,0.7 c0.2,0,0.8,0.1,1.1,0.5c0.4,0.5,0.4,1.6,0.4,1.6s0.2,3.1-0.5,3.5c-0.5,0.3-1.2-0.3-2.6-2.7c-0.7-1.3-1.3-2.7-1.3-2.7 s-0.1-0.3-0.3-0.4c-0.2-0.2-0.6-0.2-0.6-0.2l-3.4,0c0,0-0.5,0-0.7,0.2c-0.2,0.2,0,0.6,0,0.6s2.7,6.3,5.7,9.4 C16.4,27,19.5,26.8,19.5,26.8L19.5,26.8z"></path></svg></div><div class="hover"><?xml version="1.0" encoding="utf-8"?><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewbox="0 0 39.6 40" style="enable-background:new 0 0 39.6 40;" xml:space="preserve"><style type="text/css">\n' +
+    '                                .type_vk .hover .st0 {\n' +
+    '                                    fill-rule: evenodd;\n' +
+    '                                    clip-rule: evenodd;\n' +
+    '                                    fill: #6A95C7;\n' +
+    '                                }\n' +
+    '                            </style><path class="st0" d="M19.5,26.8H21c0,0,0.4,0,0.7-0.3c0.2-0.2,0.2-0.6,0.2-0.6s0-1.9,0.9-2.2c0.9-0.3,2,1.9,3.2,2.7 c0.9,0.6,1.6,0.5,1.6,0.5l3.2,0c0,0,1.7-0.1,0.9-1.4c-0.1-0.1-0.5-1-2.4-2.8c-2-1.9-1.7-1.6,0.7-4.8c1.5-2,2.1-3.2,1.9-3.7 c-0.2-0.5-1.3-0.4-1.3-0.4l-3.6,0c0,0-0.3,0-0.5,0.1c-0.2,0.1-0.3,0.4-0.3,0.4s-0.6,1.5-1.3,2.8c-1.6,2.7-2.2,2.9-2.5,2.7 c-0.6-0.4-0.5-1.6-0.5-2.4c0-2.6,0.4-3.7-0.8-4c-0.4-0.1-0.7-0.2-1.7-0.2c-1.3,0-2.4,0-3,0.3c-0.4,0.2-0.7,0.6-0.5,0.7 c0.2,0,0.8,0.1,1.1,0.5c0.4,0.5,0.4,1.6,0.4,1.6s0.2,3.1-0.5,3.5c-0.5,0.3-1.2-0.3-2.6-2.7c-0.7-1.3-1.3-2.7-1.3-2.7 s-0.1-0.3-0.3-0.4c-0.2-0.2-0.6-0.2-0.6-0.2l-3.4,0c0,0-0.5,0-0.7,0.2c-0.2,0.2,0,0.6,0,0.6s2.7,6.3,5.7,9.4 C16.4,27,19.5,26.8,19.5,26.8L19.5,26.8z"></path></svg></div></a> <a href="#" class="share_button type_tw" data-ng-click="$event.preventDefault();make_share(\'tw\')"><div class="origin"><?xml version="1.0" encoding="utf-8"?><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewbox="0 0 39.6 40" style="enable-background:new 0 0 39.6 40;" xml:space="preserve"><style type="text/css">\n' +
+    '                                .type_tw .origin .st0 {\n' +
+    '                                    fill: #4B6296;\n' +
+    '                                }\n' +
+    '                            </style><path class="st0" d="M29.3,14.1c-0.7,0.3-1.4,0.5-2.2,0.6c0.8-0.5,1.4-1.2,1.7-2.2c-0.8,0.4-1.6,0.8-2.5,0.9 c-0.7-0.8-1.7-1.2-2.8-1.2c-2.1,0-3.9,1.7-3.9,3.9c0,0.3,0,0.6,0.1,0.9c-3.2-0.2-6.1-1.7-8-4.1c-0.3,0.6-0.5,1.2-0.5,2 c0,1.3,0.7,2.5,1.7,3.2c-0.6,0-1.2-0.2-1.8-0.5c0,0,0,0,0,0c0,1.9,1.3,3.5,3.1,3.8c-0.3,0.1-0.7,0.1-1,0.1c-0.3,0-0.5,0-0.7-0.1 c0.5,1.5,1.9,2.7,3.6,2.7c-1.3,1-3,1.7-4.8,1.7c-0.3,0-0.6,0-0.9-0.1c1.7,1.1,3.8,1.7,6,1.7c7.2,0,11.1-5.9,11.1-11.1 c0-0.2,0-0.3,0-0.5C28.1,15.6,28.7,14.9,29.3,14.1L29.3,14.1z"></path></svg></div><div class="hover"><?xml version="1.0" encoding="utf-8"?><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewbox="0 0 39.6 40" style="enable-background:new 0 0 39.6 40;" xml:space="preserve"><style type="text/css">\n' +
+    '                                .type_tw .hover .st0 {\n' +
+    '                                    fill: #E6EAEE;\n' +
+    '                                }\n' +
+    '\n' +
+    '                                .type_tw .hover .st1 {\n' +
+    '                                    fill: #4B6296;\n' +
+    '                                }\n' +
+    '\n' +
+    '                                .type_tw .hover .st2 {\n' +
+    '                                    fill: #45BFEF;\n' +
+    '                                }\n' +
+    '                            </style><path class="st2" d="M29.3,14.1c-0.7,0.3-1.4,0.5-2.2,0.6c0.8-0.5,1.4-1.2,1.7-2.2c-0.8,0.4-1.6,0.8-2.5,0.9 c-0.7-0.8-1.7-1.2-2.8-1.2c-2.1,0-3.9,1.7-3.9,3.9c0,0.3,0,0.6,0.1,0.9c-3.2-0.2-6.1-1.7-8-4.1c-0.3,0.6-0.5,1.2-0.5,2 c0,1.3,0.7,2.5,1.7,3.2c-0.6,0-1.2-0.2-1.8-0.5c0,0,0,0,0,0c0,1.9,1.3,3.5,3.1,3.8c-0.3,0.1-0.7,0.1-1,0.1c-0.3,0-0.5,0-0.7-0.1 c0.5,1.5,1.9,2.7,3.6,2.7c-1.3,1-3,1.7-4.8,1.7c-0.3,0-0.6,0-0.9-0.1c1.7,1.1,3.8,1.7,6,1.7c7.2,0,11.1-5.9,11.1-11.1 c0-0.2,0-0.3,0-0.5C28.1,15.6,28.7,14.9,29.3,14.1L29.3,14.1z"></path></svg></div></a> <a href="#" class="share_button type_gp" data-ng-click="$event.preventDefault();make_share(\'gp\')"><div class="origin"><?xml version="1.0" encoding="utf-8"?><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewbox="0 0 39.6 40" style="enable-background:new 0 0 39.6 40;" xml:space="preserve"><style type="text/css">\n' +
+    '                                .type_gp .origin .st0 {\n' +
+    '                                    fill: #E6EAEE;\n' +
+    '                                }\n' +
+    '\n' +
+    '                                .type_gp .origin .st1 {\n' +
+    '                                    fill: #4B6296;\n' +
+    '                                }\n' +
+    '                            </style><g><path class="st1" d="M20.6,13.8c-0.8,0.8-1.6,1.6-2.4,2.5c-0.6-0.5-1.3-0.9-2.1-1.1c-2.7-0.6-5.3,1.2-5.8,3.9 c-0.5,2.8,1.2,5.4,4,5.8c2.2,0.4,4.3-0.6,5-2.7c0.1-0.2,0.1-0.3,0.1-0.5c-1.5,0-3,0-4.5,0c0-1.1,0-2.2,0-3.2c0-0.1,0.2-0.2,0.3-0.2 c0.5,0,1,0,1.6,0c1.8,0,3.6,0,5.5,0c0.4,0,0.6,0.1,0.7,0.5c0.3,2.7-0.2,5.2-2.1,7.2c-1.3,1.4-3,2.1-4.8,2.3 c-3.8,0.4-7.4-1.7-8.8-5.3c-1.9-4.9,1.2-10.4,6.4-11.2c2.5-0.4,4.8,0.2,6.8,1.9C20.5,13.7,20.5,13.7,20.6,13.8z"></path><path class="st1" d="M25,18.5c1,0,1.9,0,2.9,0c0-1,0-1.9,0-2.9c0.7,0,1.3,0,2,0c0.1,0,0.2,0.2,0.2,0.3c0,0.7,0,1.4,0,2.1 c0,0.1,0,0.3,0,0.5c1,0,1.9,0,2.9,0c0,0.7,0,1.4,0,2.1c-1,0-1.9,0-2.9,0c0,1,0,1.9,0,2.9c-0.7,0-1.4,0-2.1,0c0-0.9,0-1.9,0-2.9 c-0.5,0-0.9,0-1.3,0c-0.5,0-1,0-1.5-0.1c0-0.5,0-1.1-0.1-1.6C25,18.9,25,18.7,25,18.5z"></path></g></svg></div><div class="hover"><?xml version="1.0" encoding="utf-8"?><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewbox="0 0 39.6 40" style="enable-background:new 0 0 39.6 40;" xml:space="preserve"><style type="text/css">\n' +
+    '                                .type_gp .hover .st0 {\n' +
+    '                                    fill: #E6EAEE;\n' +
+    '                                }\n' +
+    '\n' +
+    '                                .type_gp .hover .st1 {\n' +
+    '                                    fill: #4B6296;\n' +
+    '                                }\n' +
+    '\n' +
+    '                                .type_gp .hover .st2 {\n' +
+    '                                    fill: #E45E4C;\n' +
+    '                                }\n' +
+    '                            </style><g><path class="st2" d="M20.6,13.8c-0.8,0.8-1.6,1.6-2.4,2.5c-0.6-0.5-1.3-0.9-2.1-1.1c-2.7-0.6-5.3,1.2-5.8,3.9 c-0.5,2.8,1.2,5.4,4,5.8c2.2,0.4,4.3-0.6,5-2.7c0.1-0.2,0.1-0.3,0.1-0.5c-1.5,0-3,0-4.5,0c0-1.1,0-2.2,0-3.2c0-0.1,0.2-0.2,0.3-0.2 c0.5,0,1,0,1.6,0c1.8,0,3.6,0,5.5,0c0.4,0,0.6,0.1,0.7,0.5c0.3,2.7-0.2,5.2-2.1,7.2c-1.3,1.4-3,2.1-4.8,2.3 c-3.8,0.4-7.4-1.7-8.8-5.3c-1.9-4.9,1.2-10.4,6.4-11.2c2.5-0.4,4.8,0.2,6.8,1.9C20.5,13.7,20.5,13.7,20.6,13.8z"></path><path class="st2" d="M25,18.5c1,0,1.9,0,2.9,0c0-1,0-1.9,0-2.9c0.7,0,1.3,0,2,0c0.1,0,0.2,0.2,0.2,0.3c0,0.7,0,1.4,0,2.1 c0,0.1,0,0.3,0,0.5c1,0,1.9,0,2.9,0c0,0.7,0,1.4,0,2.1c-1,0-1.9,0-2.9,0c0,1,0,1.9,0,2.9c-0.7,0-1.4,0-2.1,0c0-0.9,0-1.9,0-2.9 c-0.5,0-0.9,0-1.3,0c-0.5,0-1,0-1.5-0.1c0-0.5,0-1.1-0.1-1.6C25,18.9,25,18.7,25,18.5z"></path></g></svg></div></a></div></div></div></div></div>');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('templates');
+} catch (e) {
+  module = angular.module('templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('/html/ui/ui.notify.popup.html',
+    '<div class="popup popup__notyfy" data-ng-cloak="" data-ng-if="data"><div class="popup_overlay" data-ng-click="$parent.data = null"></div><div class="popup_content"><div class="popup_header"><span class="popup_header-title" data-ng-bind="$parent.data.title"></span> <span class="popup_header-close" data-ng-click="$parent.data = null"><?xml version="1.0" encoding="utf-8"?><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewbox="0 0 29 30" style="enable-background:new 0 0 29 30;" xml:space="preserve"><style type="text/css">\n' +
+    '                    .st0 {\n' +
+    '                        fill-rule: evenodd;\n' +
+    '                        clip-rule: evenodd;\n' +
+    '                        fill: #FFFFFF;\n' +
+    '                    }\n' +
+    '                </style><polygon class="st0" points="20.9,9.8 19.7,8.6 14.5,13.8 9.3,8.6 8.1,9.8 13.3,15 8.1,20.2 9.3,21.4 14.5,16.2 19.7,21.4 20.9,20.2 15.7,15"></polygon></svg></span></div><div class="popup_body"><div class="popup_body__parts left"><div class="img"><div class="{{ $parent.data.img }}"></div></div></div><div class="popup_body__parts right" style="vertical-align: middle"><span class="header_text" data-ng-bind="$parent.data.header"></span> <span class="body_text" data-ng-bind-html="$parent.data.text | to_trusted"></span></div></div></div></div>');
 }]);
 })();
 
@@ -2373,7 +2503,7 @@ module.run(['$templateCache', function($templateCache) {
       'ipCookie'
     ])
 
-    .run(function (sp, ipCookie, sp_api, $rootScope, $timeout) {
+    .run(function (sp, ipCookie, sp_api, $rootScope, spShare, $filter, spAction) {
 
       $rootScope.config = window._lecafier_config || {};
 
@@ -2384,6 +2514,12 @@ module.run(['$templateCache', function($templateCache) {
         lang: 'ru'
 
       });
+
+      spShare.init({
+        baseUrl: document.location.protocol + '//' + document.location.host,
+        fbAppId: $rootScope.config.fbAppId
+      });
+
 
       $rootScope.loaded = false;
 
@@ -2430,6 +2566,8 @@ module.run(['$templateCache', function($templateCache) {
 
         sp_api.call('load.actions.list');
 
+        sp_api.call('load.badges.list');
+
         sp_api.call('load.user.history');
 
         $rootScope.$apply();
@@ -2442,7 +2580,7 @@ module.run(['$templateCache', function($templateCache) {
 
         sp_api.call('load.user.info', {all: 1, purchases: 1});
 
-        if($("#gift-slider").data('owlCarousel')) {
+        if ($("#gift-slider").data('owlCarousel')) {
 
           $("#gift-slider").data('owlCarousel').destroy();
 
@@ -2450,7 +2588,19 @@ module.run(['$templateCache', function($templateCache) {
 
         sp_api.call('load.gifts.list', {verbose: 1});
 
+        sp_api.call('load.badges.list');
+
         sp_api.call('load.user.history');
+
+        var _data = res.data;
+
+        // BAD
+        $rootScope.$broadcast('notify.show', {
+          title: 'Подтверждение',
+          img: 'l' + $('.rankimg .status').attr('class'),
+          header: 'ПОЗДРАВЛЯЕМ!',
+          text: 'Вам зачислено <br><span class="orange">' + _data.response.points + ' ' + $filter('sailplay_pluralize')(_data.response.points, 'кофейная капеля,кофейные капли,кофейных капель') + '</span><br> за ' + spAction.get_action_data(_data.action).notify
+        });
 
         $rootScope.$apply();
 
@@ -2460,7 +2610,7 @@ module.run(['$templateCache', function($templateCache) {
 
         sp_api.call('load.user.info', {all: 1, purchases: 1});
 
-        if($("#gift-slider").data('owlCarousel')) {
+        if ($("#gift-slider").data('owlCarousel')) {
 
           $("#gift-slider").data('owlCarousel').destroy();
 
@@ -2468,21 +2618,28 @@ module.run(['$templateCache', function($templateCache) {
 
         sp_api.call('load.gifts.list', {verbose: 1});
 
+        sp_api.call('load.badges.list');
+
         sp_api.call('load.user.history');
 
         $rootScope.$apply();
 
       });
 
-
-      sp.on('actions.perform.error', function () {
+      sp.on('actions.perform.error', function (res) {
 
         sp_api.call('load.actions.list');
+
+        $rootScope.$broadcast('notify.show', {
+          title: 'Ошибка',
+          img: 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/2e2f4177c30b7b90a2407a7d7921e6f6.png',
+          header: 'Oooops!',
+          text: 'К сожалению, что-то пошло не так,<br> пожалуйста, проверьте правильность<br> выполенных действий'
+        });
 
         $rootScope.$apply();
 
       });
-
 
     });
 
@@ -2543,41 +2700,85 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
       "system": {
         "inviteFriend": {
           name: 'Пригласить<br>друзей',
+          notify: 'приглашения друга',
           pic: '&#xF209;'
         }
       },
       "social": {
         "fb": {
           "partner_page": {
-            "name": "Рассказать в <br>Facebook",
+            "name": "Рассказать о магазине<br> в Facebook",
+            "notify": 'рассказ о магазине в Facebook',
             "pic": "&#xF343;"
           },
           "like": {
             "name": "Вступить в группу<br>Facebook",
+            "notify": 'вступление в группу Facebook',
+            "pic": "&#xF343;"
+          },
+          "purchase": {
+            "name": "Рассказать о покупке<br> в Facebook",
+            "notify": 'рассказ о покупке в Facebook',
             "pic": "&#xF343;"
           }
         },
         "vk": {
           "partner_page": {
-            "name": "Рассказать в <br>ВКонтакте",
+            "name": "Рассказать о магазине<br> в ВКонтакте",
+            "notify": 'рассказ о магазине в Вконтакте ',
             "pic": "&#xF361;"
           },
           "like": {
             "name": "Вступить в группу<br>ВКонтакте",
+            "notify": 'вступление в группу Вконтакте',
+            "pic": "&#xF361;"
+          },
+          "purchase": {
+            "name": "Рассказать о покупке<br> в ВКонтакте",
+            "notify": 'рассказ о покупке в Вконтакте ',
             "pic": "&#xF361;"
           }
         },
         "tw": {
           "partner_page": {
-            "name": "Рассказать в <br>Twitter",
+            "name": "Рассказать о магазине<br> в Twitter",
+            "notify": 'рассказ о магазине в Twitter',
             "pic": "&#xF360;"
           },
           "like": {
             "name": "Подписаться на нас<br>в Twitter",
+            "notify": 'подписку на нас в Twitter',
+            "pic": "&#xF360;"
+          },
+          "purchase": {
+            "name": "Рассказать о покупке<br> в Twitter",
+            "notify": 'рассказ о покупке в Twitter',
             "pic": "&#xF360;"
           }
-        },
+        }
       }
+    })
+
+    .service('spAction', function (actions_data) {
+
+      var that = this;
+
+      that.get_action_data = function (action) {
+
+        var data = {};
+
+        if (!action) return data;
+
+        if (action.socialType) data = actions_data.social[action.socialType] && actions_data.social[action.socialType][action.action];
+
+        if (actions_data.system[action.type]) data = actions_data.system[action.type];
+
+        return data;
+
+      };
+
+      return that;
+
     })
 
     .directive('sailplayAction', function (sp, $rootScope) {
@@ -2601,7 +2802,7 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
 
     })
 
-    .directive('sailplayActions', function (sp_api, sp, actions_data) {
+    .directive('sailplayActions', function (sp_api, sp, spAction) {
 
       return {
 
@@ -2632,19 +2833,32 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
 
           });
 
-          scope.action_data = function (action) {
+          scope.action_data = spAction.get_action_data;
 
-            var data = {};
+        }
 
-            if (!action) return data;
+      };
 
-            if (action.socialType) data = actions_data.social[action.socialType] && actions_data.social[action.socialType][action.action];
+    });
 
-            if (actions_data.system[action.type]) data = actions_data.system[action.type];
+}());
 
-            return data;
+(function () {
 
-          };
+  angular.module('sp.badges', [])
+
+
+    .directive('sailplayBadges', function (sp_api) {
+
+      return {
+
+        restrict: 'A',
+        replace: false,
+        scope: true,
+        link: function (scope) {
+
+          scope.user = sp_api.data('load.user.info');
+          scope.badges = sp_api.data('load.badges.list');
 
         }
 
@@ -2658,14 +2872,61 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
 
   angular.module('sp.gifts', [])
 
-    .directive('sailplayGifts', function (sp, sp_api, $timeout, $rootScope, $filter) {
+    .directive('giftPopup', function (sp, spShare, $filter) {
+
+      return {
+
+        restrict: 'E',
+        replace: false,
+        templateUrl: '/html/ui/ui.gift.popup.html',
+        scope: true,
+        link: function (scope) {
+
+          scope.data = null;
+          scope.share_data = null;
+
+          scope.$on('gift.open', function (e, gift) {
+            scope.data = gift;
+          });
+
+          scope.$on('gift.close', function () {
+            scope.data = null;
+            scope.share_data = null;
+          });
+
+          sp.on('gifts.get.success', function (share_data) {
+            scope.share_data = share_data;
+            scope.$digest();
+          });
+
+
+          scope.make_share = function (soc) {
+
+            var _share = {
+              shareImage: $filter('sailplay_pic')(scope.data.thumbs.url_250x250),
+              sharedLink: document.location.href,
+              shareTitle: scope.data.name,
+              shareDescription: scope.share_data.share_msg
+            };
+
+            spShare.custom(soc, _share);
+
+          }
+
+        }
+
+      }
+
+    })
+
+    .directive('sailplayGifts', function (sp, sp_api, $rootScope) {
 
       return {
 
         restrict: 'A',
         replace: false,
         scope: true,
-        link: function (scope, element) {
+        link: function (scope) {
 
           scope.gifts = sp_api.data('load.gifts.list');
           scope.user = sp_api.data('load.user.info');
@@ -2673,8 +2934,22 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
           scope.make_purchase = function (gift) {
 
             if (scope.user().user_points.confirmed < gift.points) return;
+
             $("#gift-slider").data('owlCarousel').destroy();
+
             sp.send('gifts.purchase', {gift: gift});
+
+            sp.on('gifts.purchase.success', function () {
+
+              $rootScope.$apply(function () {
+
+                sp_api.call('gifts.get', gift.id);
+
+                $rootScope.$broadcast('gift.open', gift);
+
+              });
+
+            })
 
           };
 
@@ -2767,6 +3042,8 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
       'sp.actions',
       'sp.gifts',
       'sp.profile',
+      'sp.share',
+      'sp.badges',
       'sp.history'
 
     ])
@@ -2788,6 +3065,7 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
         'load.user.info',
         'load.gifts.list',
         'load.user.history',
+        'load.badges.list',
         'load.actions.list'
 
       ];
@@ -2949,7 +3227,7 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
 
             statusList.forEach(function (_item, _index) {
 
-              if (scope.user().purchases.count >= _item.purchases) {
+              if (scope.user().purchases.count > _item.purchases) {
 
                 _num = _index;
 
@@ -2980,16 +3258,175 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
 
 (function () {
 
+  angular.module('sp.share', [])
+
+    .service('spShare', function () {
+
+      var _data = {};
+
+      function _init(shareParams) {
+        _data.baseUrl = shareParams.baseUrl;
+        _data.sharedLink = encodeURIComponent(_data.baseUrl);
+        _data.shareImage = encodeURIComponent(_data.baseUrl + shareParams.shareImage);
+        _data.shareTitle = encodeURIComponent(shareParams.shareTitle);
+        _data.shareDescription = encodeURIComponent(shareParams.shareDescription);
+        _data.host = shareParams.link || window.location.host;
+        _data.fbAppId = encodeURIComponent(shareParams.fbAppId);
+      }
+
+      function _share(network) {
+        _data.network = network;
+        makeLinks(_data);
+      }
+
+      function _shareCustom(network, shareParams) {
+
+        if (_data.baseUrl && shareParams.sharedLink && shareParams.sharedLink.indexOf('http') !== 0) {
+          shareParams.sharedLink = _data.baseUrl + shareParams.sharedLink;
+        }
+        if (_data.baseUrl && shareParams.shareImage && shareParams.shareImage.indexOf('http') !== 0) {
+          shareParams.shareImage = _data.baseUrl + shareParams.shareImage;
+        }
+
+        var customShareData = {};
+        customShareData.network = network;
+        customShareData.fbAppId = _data.fbAppId;
+        customShareData.sharedLink = encodeURIComponent(shareParams.sharedLink);
+        customShareData.shareImage = encodeURIComponent(shareParams.shareImage);
+        customShareData.shareTitle = encodeURIComponent(shareParams.shareTitle);
+        customShareData.shareDescription = encodeURIComponent(shareParams.shareDescription);
+
+        makeLinks(customShareData);
+      }
+
+      function makeLinks(sd) {
+
+        switch (sd.network) {
+          case "vk":
+            sharePopup("http://vkontakte.ru/share.php?url=" + sd.sharedLink + '&image=' + sd.shareImage + '&title=' + sd.shareTitle + '&description=' + sd.shareDescription);
+            break;
+          case "fb":
+            sharePopup('https://www.facebook.com/dialog/feed?app_id=' + sd.fbAppId + '&display=popup&name=' + sd.shareTitle + '&description=' + sd.shareDescription + '&picture=' + sd.shareImage + '&link=' + sd.sharedLink + '&redirect_uri=' + sd.sharedLink, 550, 300);
+            break;
+          case "tw":
+            sharePopup("https://twitter.com/intent/tweet?original_referer=" + sd.sharedLink + "&tw_p=tweetbutton&url=" + sd.sharedLink + "&text=" /*+ sd.shareTitle +' '*/ + sd.shareDescription);
+            break;
+          case "ok":
+            sharePopup("http://www.odnoklassniki.ru/dk?st.cmd=addShare&st.s=1&st._surl=" + sd.sharedLink + "&st.comments=" + sd.shareTitle + ". " + sd.shareDescription, 480);
+            break;
+          case "gp":
+            sharePopup("https://plus.google.com/share?url=" + window.location.href);
+            break;
+        }
+
+        function sharePopup(url, width, height) {
+          if (!width) width = 400;
+          if (!height) height = 400;
+
+          var share_window = window.open(url, '_blank', 'height=' + height + ',width=' + width + ',menubar=no,toolbar=no,location=no');
+          var uri_regex = new RegExp(_data.host);
+
+          var watch_timer = setInterval(function () {
+            try {
+              if (share_window.closed) {
+                clearInterval(watch_timer);
+                return;
+              }
+              if (uri_regex.test(share_window.location)) {
+                clearInterval(watch_timer);
+                share_window.close();
+              }
+            } catch (e) {
+            }
+          }, 200);
+
+        }
+      }
+
+      return {
+        share: _share,
+        custom: _shareCustom,
+        init: _init
+      };
+
+    })
+
+}());
+
+(function () {
+
   angular.module('ui', [
       'angularUtils.directives.dirPagination'
     ])
+
+    /**
+     * Notify directives
+     * @type {{title: string, img: string, header: string, text: string}}
+     * @private
+     */
+    .directive('notifyPopup', function (sp, spShare, $filter) {
+
+      return {
+
+        restrict: 'E',
+        replace: false,
+        templateUrl: '/html/ui/ui.notify.popup.html',
+        scope: true,
+        link: function (scope) {
+
+          scope.data = null;
+
+          scope.$on('notify.show', function (e, gift) {
+            scope.data = gift;
+          });
+
+          scope.$on('notify.hide', function () {
+            scope.data = null;
+          });
+
+        }
+
+      }
+
+    })
+
+    .directive('scrollTo', function () {
+      return {
+        restrict: 'A',
+        replace: false,
+        scope: false,
+        link: function (scope, el, attr) {
+
+          var to = $(attr.scrollTo);
+          var time = attr.scrollTime;
+
+          $(el).on('click', function(){
+
+            if(!to.length) return;
+
+            var offset = to.offset().top + $(window).height() > $('body').height() ? $('body').height() - $(window).height() : to.offset().top;
+
+            $("html, body").delay(100).animate({
+              scrollTop: offset
+            }, time || 500, function(){
+              to.addClass('scrolled');
+              setTimeout(function(){
+                to.removeClass('scrolled')
+              }, 1000)
+            });
+
+          })
+
+        }
+      }
+    })
 
     .directive('giftsSlider', function ($compile, $timeout) {
       return {
         restrict: 'A',
         replace: false,
         scope: false,
-        link: function (scope, element, attrs) {
+        link: function (scope) {
 
           if (scope.$last) { // all are rendered
 
@@ -3001,11 +3438,11 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
                 navigation: true,
                 navigationText: ['&#xF2FA;', '&#xF2FB;'],
                 pagination: false,
-                itemsDesktop : [850,2],
-                itemsDesktopSmall : false,
+                itemsDesktop: [850, 2],
+                itemsDesktopSmall: false,
                 itemsTablet: false,
                 itemsTabletSmall: false,
-                itemsMobile : [620,1]
+                itemsMobile: [620, 1]
               });
 
             }, 10);

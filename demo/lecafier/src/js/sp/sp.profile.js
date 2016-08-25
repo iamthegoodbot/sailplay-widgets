@@ -62,7 +62,7 @@
 
             statusList.forEach(function (_item, _index) {
 
-              if (scope.user().purchases.count >= _item.purchases) {
+              if (scope.user().purchases.count > _item.purchases) {
 
                 _num = _index;
 
