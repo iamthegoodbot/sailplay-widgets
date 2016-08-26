@@ -13,7 +13,7 @@
 
             <p data-ng-if="statusList[currentStatus + 1]">
                 До ранга <strong data-ng-bind="statusList[currentStatus + 1].name"></strong>
-                осталось сделать {{ (statusList[currentStatus + 1].purchases - user().purchases.count) }}
+                осталось сделать {{ ((statusList[currentStatus + 1].purchases + 1 ) - user().purchases.count) }}
                 {{ (statusList[currentStatus + 1].purchases - user().purchases.count) |
                 sailplay_pluralize:'покупка,покупки,покупок' }}
             </p>

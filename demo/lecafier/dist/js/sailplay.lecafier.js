@@ -2317,7 +2317,7 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/html/main.html',
-    '<div class="container-fluid" data-ng-show="global.auth"><h1>Бонусная программа</h1><div class="row rblock bonus_pers" data-sailplay-profile="" data-ng-cloak=""><div class="rankimg" title="{{ statusList[currentStatus].name }}"><div class="{{ get_status_pic(currentStatus) }}"></div></div><div class="ranktitle">Здравствуйте,<div class="name" data-ng-bind="user().user.name || \'уважаемый покупатель\'"></div><p>Ваш ранг: <strong data-ng-bind="statusList[currentStatus].name"></strong></p><p data-ng-if="statusList[currentStatus + 1]">До ранга <strong data-ng-bind="statusList[currentStatus + 1].name"></strong> осталось сделать {{ (statusList[currentStatus + 1].purchases - user().purchases.count) }} {{ (statusList[currentStatus + 1].purchases - user().purchases.count) | sailplay_pluralize:\'покупка,покупки,покупок\' }}</p></div><div class="scale"><div data-ng-style="{width: get_progress()}"></div><div><span data-ng-repeat="status in statusList" data-ng-class="{active: $index == currentStatus }"></span></div></div><table class="scale"><thead><tr><td data-ng-repeat="status in statusList"><div data-ng-bind="status.name" data-ng-class="{active: $index == currentStatus, disabled : $index > currentStatus }"></div></td></tr></thead><tbody><tr><td data-ng-repeat="status in statusList" data-ng-bind="status.description"></td></tr></tbody></table></div><h2 class="bonus">Бейджи</h2><div class="row rblock bonus_badges" data-sailplay-badges="" data-ng-cloak=""><div class="badge__list" data-ng-if="badges && badges() && badges().one_level_badges"><div class="badge__item" data-ng-repeat="badge in $parent.badges().one_level_badges" data-ng-class="{is_received : badge.is_received}" data-scroll-to=".bonus_tasks"><img data-ng-src="{{ badge.thumbs.url_50x50 | sailplay_pic }}" alt="{{ badge.name }}"> <span class="badge__item-name" data-ng-bind="badge.name"></span></div></div></div><h2 class="bonus">История транзакций</h2><div class="row rblock bonus_history" data-sailplay-history="" data-ng-cloak=""><div class="col-sm-4"><div class="current"><div class="big">{{ user().user_points.confirmed | number }}<div class="small" data-ng-if="user().user_points.unconfirmed">+ {{ user().user_points.unconfirmed | number }}<div class="info"><div class="title">Неподтвержденные капли:</div><table class="points"><tr data-ng-repeat="item in history() | filter:{is_completed:false} | limitTo:3"><td data-ng-bind="item.action_date | date:\'d.MM.yyyy\'"></td><td data-ng-class="{present: item.action == \'gift_purchase\'}"><span data-ng-if="item.action == \'gift_purchase\'">&#xF128;</span> <b data-ng-bind="item | history_item"></b></td><td data-ng-class="{t1: item.active == \'purchase\', t2: item.action != \'gift_purchase\' && item.action != \'purchase\', t3 : item.action == \'gift_purchase\'}" data-ng-if="item.points_delta"><b data-ng-bind="((item.points_delta|number) || 0)"></b> {{ item.points_delta | sailplay_pluralize:\'кофейная капеля,кофейные капли,кофейных капель\' }}</td></tr></table></div></div></div><div class="note"><span>Кофейных капель</span></div></div></div><div class="col-sm-8 last"><div class="title">Ваши последние действия:</div><table class="points"><tr data-dir-paginate="item in history() | filter:is_completed:true | itemsPerPage:5" data-pagination-id="history_pages"><td data-ng-bind="item.action_date | date:\'d.MM.yyyy\'"></td><td data-ng-class="{present: item.action == \'gift_purchase\'}"><span data-ng-if="item.action == \'gift_purchase\'">&#xF128;</span> <b data-ng-bind="item | history_item"></b></td><td data-ng-class="{t1: item.active == \'purchase\', t2: item.action != \'gift_purchase\' && item.action != \'purchase\', t3 : item.action == \'gift_purchase\'}" data-ng-if="item.points_delta"><b data-ng-bind="((item.points_delta|number) || 0)"></b> {{ item.points_delta | sailplay_pluralize:\'кофейная капеля,кофейные капли,кофейных капель\' }}</td></tr></table></div><div class="col-sm-12"><dir-pagination-controls data-max-size="5" data-pagination-id="history_pages" data-template-url="/html/ui/ui.pagination.controls.html" data-auto-hide="true"></dir-pagination-controls></div></div><h2 class="bonus">Подарки</h2><div class="row rblock bonus_gifts" data-sailplay-gifts="" data-ng-cloak=""><div id="gift-slider"><div class="gift-item" data-ng-repeat="gift in gifts()" data-gifts-slider=""><a href="#" class="pic" style="background-image: url(\'{{ gift.thumbs.url_250x250 | sailplay_pic }}\')" title="{{ gift.name }}"></a><div class="title" data-ng-bind="gift.name"></div><div class="bottom" data-ng-if="user().user_points.confirmed >= gift.points"><div><b data-ng-bind="gift.points|number"></b> {{ gift.points | sailplay_pluralize:\'кофейная капеля,кофейные капли,кофейных капель\'}}</div></div><div class="bottom" data-ng-if="user().user_points.confirmed < gift.points"><div><b data-ng-bind="gift.points|number"></b> {{ (gift.points - user().user_points.confirmed) | sailplay_pluralize:\'кофейная капеля,кофейные капли,кофейных капель\' }}<div data-ng-bind="\'(Вам не хватает \' + ((gift.points - user().user_points.confirmed) | sailplay_pluralize:\'кофейная капеля,кофейные капли,кофейных капель\') + \')\'"></div></div></div><div class="more"><div class="desc" data-ng-bind-html="gift.descr | to_trusted"></div><div class="giftbtn"><a href="#" data-ng-class="{greenbtn: user().user_points.confirmed >= gift.points, disabled: user().user_points.confirmed < gift.points }" data-ng-click="$event.preventDefault();make_purchase(gift);">Получить подарок</a></div></div></div></div></div><h2 class="bonus">Заработать больше капель</h2><div class="row rblock bonus_tasks" data-sailplay-actions="" data-ng-cloak=""><div class="item col-sm-4" data-ng-repeat="action in actions().actions | filter:check_in_list"><div class="inner"><div class="pic" data-ng-bind-html="action_data(action).pic | to_trusted"></div><div data-ng-bind-html="action_data(action).name | to_trusted"></div><span><b data-ng-bind="action.points | number"></b> {{ action.points | sailplay_pluralize:\'кофейная капеля,кофейные капли,кофейных капель\'}}</span> <a href="#" data-ng-class="{ greenbtn : !action.socialType }" data-sailplay-action="" data-action="action">Выполнить</a></div></div></div><gift-popup></gift-popup><notify-popup></notify-popup></div>');
+    '<div class="container-fluid" data-ng-show="global.auth"><h1>Бонусная программа</h1><div class="row rblock bonus_pers" data-sailplay-profile="" data-ng-cloak=""><div class="rankimg" title="{{ statusList[currentStatus].name }}"><div class="{{ get_status_pic(currentStatus) }}"></div></div><div class="ranktitle">Здравствуйте,<div class="name" data-ng-bind="user().user.name || \'уважаемый покупатель\'"></div><p>Ваш ранг: <strong data-ng-bind="statusList[currentStatus].name"></strong></p><p data-ng-if="statusList[currentStatus + 1]">До ранга <strong data-ng-bind="statusList[currentStatus + 1].name"></strong> осталось сделать {{ ((statusList[currentStatus + 1].purchases + 1 ) - user().purchases.count) }} {{ (statusList[currentStatus + 1].purchases - user().purchases.count) | sailplay_pluralize:\'покупка,покупки,покупок\' }}</p></div><div class="scale"><div data-ng-style="{width: get_progress()}"></div><div><span data-ng-repeat="status in statusList" data-ng-class="{active: $index == currentStatus }"></span></div></div><table class="scale"><thead><tr><td data-ng-repeat="status in statusList"><div data-ng-bind="status.name" data-ng-class="{active: $index == currentStatus, disabled : $index > currentStatus }"></div></td></tr></thead><tbody><tr><td data-ng-repeat="status in statusList" data-ng-bind="status.description"></td></tr></tbody></table></div><h2 class="bonus">Бейджи</h2><div class="row rblock bonus_badges" data-sailplay-badges="" data-ng-cloak=""><div class="badge__list" data-ng-if="badges && badges() && badges().one_level_badges"><div class="badge__item" data-ng-repeat="badge in $parent.badges().one_level_badges" data-ng-class="{is_received : badge.is_received}" data-scroll-to=".bonus_tasks"><img data-ng-src="{{ badge.thumbs.url_50x50 | sailplay_pic }}" alt="{{ badge.name }}"> <span class="badge__item-name" data-ng-bind="badge.name"></span></div></div></div><h2 class="bonus">История транзакций</h2><div class="row rblock bonus_history" data-sailplay-history="" data-ng-cloak=""><div class="col-sm-4"><div class="current"><div class="big">{{ user().user_points.confirmed | number }}<div class="small" data-ng-if="user().user_points.unconfirmed">+ {{ user().user_points.unconfirmed | number }}<div class="info"><div class="title">Неподтвержденные капли:</div><table class="points"><tr data-ng-repeat="item in history() | filter:{is_completed:false} | limitTo:3"><td data-ng-bind="item.action_date | date:\'d.MM.yyyy\'"></td><td data-ng-class="{present: item.action == \'gift_purchase\'}"><span data-ng-if="item.action == \'gift_purchase\'">&#xF128;</span> <b data-ng-bind="item | history_item"></b></td><td data-ng-class="{t1: item.active == \'purchase\', t2: item.action != \'gift_purchase\' && item.action != \'purchase\', t3 : item.action == \'gift_purchase\'}" data-ng-if="item.points_delta"><b data-ng-bind="((item.points_delta|number) || 0)"></b> {{ item.points_delta | sailplay_pluralize:\'кофейная капеля,кофейные капли,кофейных капель\' }}</td></tr></table></div></div></div><div class="note"><span>Кофейных капель</span></div></div></div><div class="col-sm-8 last"><div class="title">Ваши последние действия:</div><table class="points"><tr data-dir-paginate="item in history() | filter:is_completed:true | itemsPerPage:5" data-pagination-id="history_pages"><td data-ng-bind="item.action_date | date:\'d.MM.yyyy\'"></td><td data-ng-class="{present: item.action == \'gift_purchase\'}"><span data-ng-if="item.action == \'gift_purchase\'">&#xF128;</span> <b data-ng-bind="item | history_item"></b></td><td data-ng-class="{t1: item.active == \'purchase\', t2: item.action != \'gift_purchase\' && item.action != \'purchase\', t3 : item.action == \'gift_purchase\'}" data-ng-if="item.points_delta"><b data-ng-bind="((item.points_delta|number) || 0)"></b> {{ item.points_delta | sailplay_pluralize:\'кофейная капеля,кофейные капли,кофейных капель\' }}</td></tr></table></div><div class="col-sm-12"><dir-pagination-controls data-max-size="5" data-pagination-id="history_pages" data-template-url="/html/ui/ui.pagination.controls.html" data-auto-hide="true"></dir-pagination-controls></div></div><h2 class="bonus">Подарки</h2><div class="row rblock bonus_gifts" data-sailplay-gifts="" data-ng-cloak=""><div id="gift-slider"><div class="gift-item" data-ng-repeat="gift in gifts()" data-gifts-slider=""><a href="#" class="pic" style="background-image: url(\'{{ gift.thumbs.url_250x250 | sailplay_pic }}\')" title="{{ gift.name }}"></a><div class="title" data-ng-bind="gift.name"></div><div class="bottom" data-ng-if="user().user_points.confirmed >= gift.points"><div><b data-ng-bind="gift.points|number"></b> {{ gift.points | sailplay_pluralize:\'кофейная капеля,кофейные капли,кофейных капель\'}}</div></div><div class="bottom" data-ng-if="user().user_points.confirmed < gift.points"><div><b data-ng-bind="gift.points|number"></b> {{ (gift.points - user().user_points.confirmed) | sailplay_pluralize:\'кофейная капеля,кофейные капли,кофейных капель\' }}<div data-ng-bind="\'(Вам не хватает \' + ((gift.points - user().user_points.confirmed) | sailplay_pluralize:\'кофейная капеля,кофейные капли,кофейных капель\') + \')\'"></div></div></div><div class="more"><div class="desc" data-ng-bind-html="gift.descr | to_trusted"></div><div class="giftbtn"><a href="#" data-ng-class="{greenbtn: user().user_points.confirmed >= gift.points, disabled: user().user_points.confirmed < gift.points }" data-ng-click="$event.preventDefault();make_purchase(gift);">Получить подарок</a></div></div></div></div></div><h2 class="bonus">Заработать больше капель</h2><div class="row rblock bonus_tasks" data-sailplay-actions="" data-ng-cloak=""><div class="item col-sm-4" data-ng-repeat="action in actions().actions | filter:check_in_list"><div class="inner"><div class="pic" data-ng-bind-html="action_data(action).pic | to_trusted"></div><div data-ng-bind-html="action_data(action).name | to_trusted"></div><span><b data-ng-bind="action.points | number"></b> {{ action.points | sailplay_pluralize:\'кофейная капеля,кофейные капли,кофейных капель\'}}</span> <a href="#" data-ng-class="{ greenbtn : !action.socialType }" data-sailplay-action="" data-action="action">Выполнить</a></div></div></div><gift-popup></gift-popup><notify-popup></notify-popup></div>');
 }]);
 })();
 
@@ -2467,7 +2467,7 @@ module.run(['$templateCache', function($templateCache) {
 
   angular.module('lecafier', ['core', 'ui', 'sp', 'templates'])
 
-    .directive('sailplayLecafier', function ($rootScope, $locale) {
+    .directive('sailplayLecafier', ["$rootScope", "$locale", function ($rootScope, $locale) {
 
       return {
         restrict: 'E',
@@ -2483,7 +2483,7 @@ module.run(['$templateCache', function($templateCache) {
         }
       }
 
-    });
+    }]);
 
 
   setTimeout(function () {
@@ -2503,7 +2503,7 @@ module.run(['$templateCache', function($templateCache) {
       'ipCookie'
     ])
 
-    .run(function (sp, ipCookie, sp_api, $rootScope, spShare, $filter, spAction) {
+    .run(["sp", "ipCookie", "sp_api", "$rootScope", "spShare", "$filter", "spAction", function (sp, ipCookie, sp_api, $rootScope, spShare, $filter, spAction) {
 
       $rootScope.config = window._lecafier_config || {};
 
@@ -2641,7 +2641,7 @@ module.run(['$templateCache', function($templateCache) {
 
       });
 
-    });
+    }]);
 
 }());
 
@@ -2759,7 +2759,7 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
       }
     })
 
-    .service('spAction', function (actions_data) {
+    .service('spAction', ["actions_data", function (actions_data) {
 
       var that = this;
 
@@ -2779,9 +2779,9 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
 
       return that;
 
-    })
+    }])
 
-    .directive('sailplayAction', function (sp, $rootScope) {
+    .directive('sailplayAction', ["sp", "$rootScope", function (sp, $rootScope) {
 
       return {
 
@@ -2800,9 +2800,9 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
 
       };
 
-    })
+    }])
 
-    .directive('sailplayActions', function (sp_api, sp, spAction) {
+    .directive('sailplayActions', ["sp_api", "sp", "spAction", function (sp_api, sp, spAction) {
 
       return {
 
@@ -2839,7 +2839,7 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
 
       };
 
-    });
+    }]);
 
 }());
 
@@ -2848,7 +2848,7 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
   angular.module('sp.badges', [])
 
 
-    .directive('sailplayBadges', function (sp_api) {
+    .directive('sailplayBadges', ["sp_api", function (sp_api) {
 
       return {
 
@@ -2864,7 +2864,7 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
 
       };
 
-    });
+    }]);
 
 }());
 
@@ -2872,7 +2872,7 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
 
   angular.module('sp.gifts', [])
 
-    .directive('giftPopup', function (sp, spShare, $filter) {
+    .directive('giftPopup', ["sp", "spShare", "$filter", function (sp, spShare, $filter) {
 
       return {
 
@@ -2917,9 +2917,9 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
 
       }
 
-    })
+    }])
 
-    .directive('sailplayGifts', function (sp, sp_api, $rootScope) {
+    .directive('sailplayGifts', ["sp", "sp_api", "$rootScope", function (sp, sp_api, $rootScope) {
 
       return {
 
@@ -2957,7 +2957,7 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
 
       };
 
-    });
+    }]);
 
 }());
 
@@ -2966,7 +2966,7 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
   angular.module('sp.history', [])
 
 
-    .directive('sailplayHistory', function (sp_api) {
+    .directive('sailplayHistory', ["sp_api", function (sp_api) {
 
       return {
 
@@ -2988,7 +2988,7 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
 
       };
 
-    })
+    }])
 
     .constant('history_texts', {
       "purchase": "Покупка",
@@ -3007,7 +3007,7 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
       "custom_action": "Экстра"
     })
 
-    .filter('history_item', function (history_texts) {
+    .filter('history_item', ["history_texts", function (history_texts) {
 
       return function (historyItem) {
         switch (historyItem.action) {
@@ -3031,7 +3031,7 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
         }
         return history_texts[historyItem.action];
       }
-    });
+    }]);
 
 }());
 
@@ -3048,13 +3048,13 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
 
     ])
 
-    .service('sp', function ($window) {
+    .service('sp', ["$window", function ($window) {
 
       return $window.SAILPLAY || {};
 
-    })
+    }])
 
-    .service('sp_api', function ($q, sp, $rootScope) {
+    .service('sp_api', ["$q", "sp", "$rootScope", function ($q, sp, $rootScope) {
 
       var self = this;
 
@@ -3120,7 +3120,7 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
 
       };
 
-    })
+    }])
 
     .filter('to_trusted', ['$sce', function ($sce) {
       return function (text) {
@@ -3137,7 +3137,7 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
       }
     })
 
-    .filter('sailplay_pic', function (sp) {
+    .filter('sailplay_pic', ["sp", function (sp) {
 
       function repair_pic_url(url) {
         if (/^((http|https|ftp):\/\/)/.test(url)) {
@@ -3159,7 +3159,7 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
 
       };
 
-    });
+    }]);
 
 }());
 
@@ -3195,7 +3195,7 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
       }
     ])
 
-    .directive('sailplayProfile', function (sp_api, sp, statusList, $rootScope) {
+    .directive('sailplayProfile', ["sp_api", "sp", "statusList", "$rootScope", function (sp_api, sp, statusList, $rootScope) {
 
       return {
 
@@ -3252,7 +3252,7 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
 
       };
 
-    });
+    }]);
 
 }());
 
@@ -3364,7 +3364,7 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
      * @type {{title: string, img: string, header: string, text: string}}
      * @private
      */
-    .directive('notifyPopup', function (sp, spShare, $filter) {
+    .directive('notifyPopup', ["sp", "spShare", "$filter", function (sp, spShare, $filter) {
 
       return {
 
@@ -3388,7 +3388,7 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
 
       }
 
-    })
+    }])
 
     .directive('scrollTo', function () {
       return {
@@ -3421,7 +3421,7 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
       }
     })
 
-    .directive('giftsSlider', function ($compile, $timeout) {
+    .directive('giftsSlider', ["$compile", "$timeout", function ($compile, $timeout) {
       return {
         restrict: 'A',
         replace: false,
@@ -3452,6 +3452,6 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
         }
 
       };
-    });
+    }]);
 
 }());
