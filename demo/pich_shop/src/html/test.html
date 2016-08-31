@@ -1,0 +1,32 @@
+<div class="sp_widget" data-ng-cloak data-ng-show="exist && exist()">
+
+    <span data-ng-if="data.tag | sailplay_tag:exist()">Данный опрос уже пройден</span>
+
+    <form class="sp_l-section sp_intview" data-ng-show="data && !(data.tag | sailplay_tag:exist())">
+        <h1 class="sp_intview__head">Пройти опрос</h1>
+        <div class="sp_intview__title">Вопрос {{ step + 1 }}/{{ data.data.length }}</div>
+
+        <div class="sp_intview__quest-wr">
+            <div class="sp_intview__quest" data-ng-bind="data.data[step].label"></div>
+
+            <div class="sp_common-block-param has-pretty-child"
+                 data-ng-repeat="answer in data.data[step].answers"  data-ng-click="change(answer)">
+
+                <div class="clearfix prettycheckbox labelright sp_common-check-wr js-target blue">
+                    <input type="checkbox" class="js-create-checkbox-custom" style="display: none;"
+                           data-ng-model="answer.model">
+                    <a href="#" data-ng-class="{checked: answer.model }"></a>
+                </div>
+                <span class="sp_common-label js-satellite" data-ng-bind="answer.label"></span>
+            </div>
+
+            <textarea name="" id="" cols="30" rows="10" data-ng-show="showTextArea()" data-ng-model="var_model" class="sp_common-textarea sp_intview__textarea js-toggle-textarea"></textarea>
+        </div>
+
+        <!-- /inner -->
+        <input type="submit" class="sp_common-btn sp_profile__submit" data-ng-disabled="!isNext()" data-ng-click="next()">
+    </form>
+
+    <notify-popup></notify-popup>
+
+</div>

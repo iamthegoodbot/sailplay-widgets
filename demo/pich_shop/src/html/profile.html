@@ -1,0 +1,50 @@
+<div class="sp_widget" data-ng-cloak>
+
+    <span data-ng-if="data.tag | sailplay_tag:exist()">Действие выполнено.</span>
+
+    <div class="sp_l-section sp_profile" data-ng-if="form && user && user() && !(data.tag | sailplay_tag:exist())">
+        <h1 class="sp_profile__head">Заполнить профиль</h1>
+
+        <div class="sp_profile__in">
+            <div class="sp_profile__left">
+                <div class="sp_profile__set">
+                    <div class="sp_profile__inp-title">Фамилия</div>
+                    <input type="text" class="sp_common-input" data-ng-model="form.lastName">
+                </div>
+                <div class="sp_profile__set">
+                    <div class="sp_profile__inp-title">Имя</div>
+                    <input type="text" class="sp_common-input" data-ng-model="form.firstName">
+                </div>
+                <div class="sp_profile__set">
+                    <div class="sp_profile__inp-title">Отчество</div>
+                    <input type="text" class="sp_common-input" data-ng-model="form.middleName">
+                </div>
+                <div class="sp_profile__set">
+                    <div class="sp_profile__inp-title">Пол</div>
+                    <input type="text" class="sp_common-input" data-ng-model="form.sex">
+                </div>
+            </div>
+            <!-- /left -->
+            <div class="sp_profile__right">
+                <div class="sp_profile__set">
+                    <div class="sp_profile__inp-title">E-mail</div>
+                    <input type="text" class="sp_common-input" data-ng-model="form.addEmail">
+                </div>
+                <div class="sp_profile__set">
+                    <div class="sp_profile__inp-title">Контактный телефон</div>
+                    <input type="text" class="sp_common-input" data-ng-model="form.addPhone">
+                </div>
+                <div class="sp_profile__set">
+                    <div class="sp_profile__inp-title">Домашний адрес</div>
+                    <input type="text" class="sp_common-input" data-ng-model="form.address">
+                </div>
+            </div>
+            <!-- /right -->
+        </div>
+        <!-- /inner -->
+        <input type="submit" class="sp_common-btn sp_profile__submit" data-ng-click="submit()" data-ng-disabled="!canSubmit()">
+    </div>
+
+    <notify-popup></notify-popup>
+
+</div>

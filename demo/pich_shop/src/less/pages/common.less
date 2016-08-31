@@ -1,0 +1,161 @@
+
+.sp_common-btn {
+  display: block;
+  height: 38px;
+  width: 100%;
+
+  background-color: @color1;
+  cursor: pointer;
+
+  .proxima-bold();
+  font-size: 12px;
+  text-align: center;
+  text-transform: uppercase;
+  line-height: 38px;
+  color: #fff;
+  .alink(#fff);
+
+  border: none;
+
+  .clear-submit();
+  &:hover {
+    background-color: lighten(@color1, 3%)
+  }
+  &:active {
+    background-color: darken(@color1, 5%)
+  }
+
+  &:disabled {
+    opacity: .5;
+    cursor: default;
+    &:hover {
+      background-color: @color1;
+    }
+  }
+
+  &.this-white {
+    background-color: #fff;
+
+    border: 1px solid #e6e6e6;
+    color: #000;
+    .alink(#000);
+
+    &:hover {
+      background-color: darken(#fff, 3%)
+    }
+    &:active {
+      background-color: darken(#fff, 7%)
+    }
+  }
+}
+
+.popup {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  font-size: 0;
+  text-align: center;
+
+  &:before {
+    content: '';
+    display: inline-block;
+    width: 0;
+    height: 100%;
+    vertical-align: middle;
+  }
+
+  &_overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+  }
+
+  &_content {
+    width: 600px;
+    height: auto;
+    display: inline-block;
+    position: relative;
+    background: white;
+    vertical-align: middle;
+    z-index: 2;
+  }
+
+  &_header {
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 20px;
+    text-align: left;
+    background: #f26522;
+    font-family: 'proxima_nova_bold', sans-serif;
+    font-weight: normal;
+    position: relative;
+    box-sizing: border-box;
+
+    &-title {
+      width: 100%;
+      box-sizing: border-box;
+      overflow: hidden;
+      color: white;
+      font-size: 18px;
+      text-overflow: ellipsis;
+    }
+
+    &-close {
+      position: absolute;
+      right: 20px;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      svg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        transition: .3s ease;
+      }
+    }
+
+  }
+
+  &_body {
+    display: block;
+    padding: 10px 0;
+    font-size: 0;
+
+    .header_text {
+      font-size: 18px;
+      font-family: 'proxima_nova_bold', sans-serif;
+      display: inline-block;
+      width: 100%;
+      padding: 10px 0;
+      box-sizing: border-box;
+    }
+
+    .body_text {
+      display: inline-block;
+      font-family: 'proxima_nova', sans-serif;
+      width: 100%;
+      font-size: 14px;
+      box-sizing: border-box;
+      padding: 15px 0;
+    }
+
+  }
+
+  .colored {
+    color: #00a897;
+  }
+
+}

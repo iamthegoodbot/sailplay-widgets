@@ -1,0 +1,104 @@
+/* forms */
+@input-height: 25px;
+@input-side-padding: 7px;
+@textarea-vertical-padding: 9px;
+
+@input-border-radius: 4px;
+@input-border-color: #adadad;
+@input-active-border-color: darken(@input-border-color, 15%);
+
+@input-font-size: 16px;
+@input-text-color: #333333;
+@input-placeholder-color: lighten(@input-text-color, 50%);
+
+.sp_common-input {
+	display: block;
+	width: 100%;
+	height: @input-height;
+	padding: 0 @input-side-padding;
+
+	border: 1px solid @input-border-color;
+	
+	.proxima();
+	font-size: @input-font-size;
+	line-height: @input-height;
+	color: @input-text-color;
+
+	
+	.transition(border-color 150ms linear 0ms);
+	&:active, &:focus {
+		outline: none !important;
+		border-color: @input-active-border-color;
+	}
+	&::-webkit-input-placeholder {color: @input-placeholder-color;}
+	&::-moz-placeholder {color: @input-placeholder-color;}
+	&:-moz-placeholder {color: @input-placeholder-color;}
+	&:-ms-input-placeholder {color: @input-placeholder-color;}
+}
+.sp_common-textarea {
+	display: block;
+	width: 100%;
+	padding: @textarea-vertical-padding @input-side-padding;
+
+	border: 1px solid @input-border-color;
+
+	.proxima();
+	font-size: @input-font-size;
+	font-weight: normal;
+	color: @input-text-color;
+	height: 100px;
+
+
+	.transition(border-color 150ms linear 0ms);
+	resize: none;
+	&:active, &:focus {
+		outline: none !important;
+		border-color: @input-active-border-color;
+	}
+	&::-webkit-input-placeholder {color: @input-placeholder-color;}
+	&::-moz-placeholder {color: @input-placeholder-color;}
+	&:-moz-placeholder {color: @input-placeholder-color;}
+	&:-ms-input-placeholder {color: @input-placeholder-color;}
+}
+
+
+// checkboxes
+.sp_common-block-param {
+	display: block;
+	padding-left: 28px;
+	position: relative;
+
+	margin-bottom: 22px;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+
+	label {
+		display: none;
+	}
+}
+.sp_common-label {
+	font-size: 14px;
+	line-height: 1;
+	.proxima();
+	cursor: pointer;
+	.user-select(none);
+}
+.sp_common-check-wr {
+	display: inline-block;
+	a {
+		position: absolute;
+		display: block;
+		width: 14px;
+		height: 14px;
+		border: 1px solid @input-border-color;
+
+		left: 0px;
+		top: 2px;
+
+		&.checked {
+			background: url("@{burl}checkbox-arrow.png") no-repeat center;
+		}
+	}
+}
