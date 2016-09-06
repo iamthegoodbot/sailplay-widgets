@@ -2349,7 +2349,7 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/html/main.html',
-    '<div class="sp_widget" data-ng-cloak="" data-ng-show="global.auth"><section class="sp_l-section sp_history" data-ng-cloak="" data-sailplay-profile=""><div class="sp_history__col this-col1"><div class="sp_person-b"><div class="sp_person-b__img" style="background-image: url({{ user().user.pic | sailplay_pic }});"></div><div class="sp_person-b__st-title">Ваш статус</div><div class="sp_person-b__stat" data-ng-bind="statusList[getNum(user().user_points.total)].name || \'Отсутсвует\'"></div><div class="sp_person-b__info"><span class="sp_person-b__info-itm" data-ng-bind="user().user.name || \'Имя не указано\'"></span> <span class="sp_person-b__info-itm" data-ng-bind="user().user.phone || \'Телефон не указан\'"></span> <span class="sp_person-b__info-itm" data-ng-bind="user().user.email || \'Email не указан\'"></span></div></div></div><div class="sp_history__col this-col2" data-ng-cloak="" data-sailplay-history=""><div class="sp_hist-list"><div class="sp_hist-list__head">Здравствуйте, {{ user().user.name || \'уважаемый пользователь\' }}</div><div class="sp_hist-list__ttl">Ваши последние действия</div><div class="sp_hist-itm" data-ng-repeat="item in history() | limitTo:3"><div class="sp_hist-itm__img" style="background-image: url({{ item | history_image }});"></div><div class="sp_hist-itm__inner"><div class="sp_hist-itm__info" data-ng-bind="item.action_date | date:\'d / MM / yyyy\'"></div><div class="sp_hist-itm__info-row"><div class="sp_hist-itm__price" data-ng-if="item.points_delta" data-ng-bind="(item.points_delta | number) + \' \' + (item.points_delta | sailplay_pluralize:\'балл,баллы,баллов\')"></div><div class="sp_hist-itm__name" data-ng-bind="item | history_name"></div></div></div></div><a href="history.html" class="sp_common-btn this-white sp_lkhist-btn">История действий</a></div></div><div class="sp_history__col this-col3"><div class="sp_history-count"><div class="sp_history-count__val" data-ng-bind="user().user_points.confirmed | number"></div><div class="sp_history-count__plus">+</div><div class="sp_history-count__remain" data-ng-bind="user().user_points.unconfirmed | number"></div><div class="sp_history-count__ttl">Неподтвержденных<br>баллов</div></div></div></section><section class="sp_l-section sp_status-bar-sec js-status-bar-wrap" data-ng-cloak="" data-sailplay-status=""><div class="sp_status-icons"><div class="sp_status-icons__item js-point this-point-{{ $index+1 }}" data-ng-repeat="status in statusList" data-ng-class="{ \'this-active\' : getNum(user().user_points.total) >= $index }" data-ng-style="{width : getWidth()}"><div class="sp_status-icons__img"><img data-ng-src="{{ status.image.origin }}" alt="{{ status.name }}"></div><div class="sp_status-icons__img this-active-img"><img data-ng-src="{{ status.image.active }}" alt="{{ status.name }}"></div><div class="sp_status-icons__text" data-ng-bind="status.name"></div></div></div><div class="sp_status-bar"><div class="sp_status-bar__line" data-ng-repeat="status in statusList" data-ng-if="$index != 0" data-ng-style="{ left: (100 / statusList.length * $index) + \'%\' }"></div><div class="sp_status-bar__inner js-bar" data-ng-style="{ width: getBarWidth(user().user_points.total) }"></div></div><div class="sp_stbar-titles"><div class="sp_stbar-titles__item" data-ng-repeat="status in statusList" data-ng-style="{width : getWidth()}" data-ng-bind="(status.limit[1] ? (status.limit[1] | number) : \'> \' + (status.limit[0] | number)) + \' \' + ( (status.limit[1] ? status.limit[1] : status.limit[0]) | sailplay_pluralize:\'балл,баллы,баллов\')"></div></div></section><section class="sp_l-centered sp_gifts" data-ng-cloak="" data-sailplay-gifts=""><h1 class="sp_gifts__head this-center">Подарки</h1><div class="sp_gifts__title this-center">Покупайте подарки за баллы</div><div class="sp_gifts-items-wr"><div class="sp_giftitm__col" data-ng-repeat="gift in gifts() | limitTo:4"><div class="sp_giftitm"><div class="sp_giftitm__over"><a href="#" class="sp_giftitm__btn" data-ng-click="$event.preventDefault();make_purchase(gift);">Подключить</a></div><div class="sp_giftitm__inner"><div class="sp_giftitm__img" style="background-image: url(\'{{ gift.thumbs.url_250x250 | sailplay_pic }}\');"></div><div class="sp_giftitm__info" data-ng-bind="gift.name"></div><div class="sp_giftitm__price"><span class="sp_giftitm__price-val" data-ng-bind="gift.points | number"></span> {{ gift.points | sailplay_pluralize:\'балл,баллы,баллов\' }}</div></div></div></div><a href="gifts.html" class="sp_common-btn this-white sp_lkgifts-btn">Показать все подарки</a></div></section><section class="sp_l-centered sp_tasks-sec" data-ng-cloak="" data-sailplay-actions=""><h1 class="sp_tasks-sec__head this-center">Задания</h1><div class="sp_tasks-sec__title this-center">Выполняйте задания – получайте баллы</div><div class="sp_tasks-sec__col" data-ng-repeat="action in actions().actions | filter:check_in_list"><div class="sp_tasks-cell"><span class="sp_tasks-cell__icon" style="background-image: url({{ action_data(action).pic }});"></span> <span class="sp_tasks-cell__txt"><span class="sp_tasks-cell__txt-in" data-ng-bind="action_data(action).name"></span></span> <span class="sp_tasks-cell__btn" data-sailplay-action="" data-action="action" data-ng-class="{ styled : action.type != \'socialSharing\' }">Получить</span> <span class="sp_tasks-cell__count" data-ng-bind="\'+ \' + (action.points | number) + \' \' + (action.points | sailplay_pluralize:\'балл,балла,баллов\')"></span></div></div><div class="sp_tasks-sec__col" data-ng-repeat="action in custom_action" data-ng-if="!action.disabled && exist && exist() && !(action.tag | sailplay_tag:exist())"><div class="sp_tasks-cell" data-ng-class="{ tag : action.type == \'tag\'}"><span class="sp_tasks-cell__icon" style="background-image: url({{ action.image}});"></span> <span class="sp_tasks-cell__txt"><span class="sp_tasks-cell__txt-in" data-ng-bind="action.name"></span></span> <span data-ng-click="open_custom_action(action);" class="sp_tasks-cell__btn styled">Получить</span> <span class="sp_tasks-cell__count" data-ng-bind="\'+ \' + (action.points | number) + \' \' + (action.points | sailplay_pluralize:\'балл,балла,баллов\')"></span></div></div></section><notify-popup></notify-popup></div>');
+    '<div class="sp_widget" data-ng-cloak="" data-ng-show="global.auth"><section class="sp_l-section sp_history" data-ng-cloak="" data-sailplay-profile=""><div class="sp_history__col this-col1"><div class="sp_person-b"><div class="sp_person-b__img" style="background-image: url({{ user().user.pic | sailplay_pic }});"></div><div class="sp_person-b__st-title">Ваш статус</div><div class="sp_person-b__stat" data-ng-bind="statusList[getNum(user().user_points.confirmed + user().user_points.spent)].name || \'Отсутсвует\'"></div><div class="sp_person-b__info"><span class="sp_person-b__info-itm" data-ng-bind="user().user.name || \'Имя не указано\'"></span> <span class="sp_person-b__info-itm" data-ng-bind="user().user.phone || \'Телефон не указан\'"></span> <span class="sp_person-b__info-itm" data-ng-bind="user().user.email || \'Email не указан\'"></span></div></div></div><div class="sp_history__col this-col2" data-ng-cloak="" data-sailplay-history=""><div class="sp_hist-list"><div class="sp_hist-list__head">Здравствуйте, {{ user().user.name || \'уважаемый пользователь\' }}</div><div class="sp_hist-list__ttl">Ваши последние действия</div><div class="sp_hist-itm" data-ng-repeat="item in history() | limitTo:3"><div class="sp_hist-itm__img" style="background-image: url({{ item | history_image }});"></div><div class="sp_hist-itm__inner"><div class="sp_hist-itm__info" data-ng-bind="item.action_date | date:\'d / MM / yyyy\'"></div><div class="sp_hist-itm__info-row"><div class="sp_hist-itm__price" data-ng-if="item.points_delta" data-ng-bind="(item.points_delta | number) + \' \' + (item.points_delta | sailplay_pluralize:\'балл,баллы,баллов\')"></div><div class="sp_hist-itm__name" data-ng-bind="item | history_name"></div></div></div></div><a href="history.html" class="sp_common-btn this-white sp_lkhist-btn">История действий</a></div></div><div class="sp_history__col this-col3"><div class="sp_history-count"><div class="sp_history-count__val" data-ng-bind="user().user_points.confirmed | number"></div><div class="sp_history-count__plus">+</div><div class="sp_history-count__remain" data-ng-bind="user().user_points.unconfirmed | number"></div><div class="sp_history-count__ttl">Неподтвержденных<br>баллов</div></div></div></section><section class="sp_l-section sp_status-bar-sec js-status-bar-wrap" data-ng-cloak="" data-sailplay-status=""><div class="sp_status-icons"><div class="sp_status-icons__item js-point this-point-{{ $index+1 }}" data-ng-repeat="status in statusList" data-ng-class="{ \'this-active\' : getNum(user().user_points.confirmed + user().user_points.spent) >= $index }" data-ng-style="{width : getWidth()}"><div class="sp_status-icons__img"><img data-ng-src="{{ status.image.origin }}" alt="{{ status.name }}"></div><div class="sp_status-icons__img this-active-img"><img data-ng-src="{{ status.image.active }}" alt="{{ status.name }}"></div><div class="sp_status-icons__text" data-ng-bind="status.name"></div></div></div><div class="sp_status-bar"><div class="sp_status-bar__line" data-ng-repeat="status in statusList" data-ng-if="$index != 0" data-ng-style="{ left: (100 / statusList.length * $index) + \'%\' }"></div><div class="sp_status-bar__inner js-bar" data-ng-style="{ width: getBarWidth(user().user_points.confirmed + user().user_points.spent) }"></div></div><div class="sp_stbar-titles"><div class="sp_stbar-titles__item" data-ng-repeat="status in statusList" data-ng-style="{width : getWidth()}" data-ng-bind="(status.limit[1] ? (status.limit[1] | number) : \'> \' + (status.limit[0] | number)) + \' \' + ( (status.limit[1] ? status.limit[1] : status.limit[0]) | sailplay_pluralize:\'балл,баллы,баллов\')"></div></div></section><section class="sp_l-centered sp_gifts" data-ng-cloak="" data-sailplay-gifts=""><h1 class="sp_gifts__head this-center">Подарки</h1><div class="sp_gifts__title this-center">Покупайте подарки за баллы</div><div class="sp_gifts-items-wr"><div class="sp_giftitm__col" data-ng-repeat="gift in gifts() | limitTo:4"><div class="sp_giftitm"><div class="sp_giftitm__over"><a href="#" class="sp_giftitm__btn" data-ng-click="$event.preventDefault();make_purchase(gift);">Подключить</a></div><div class="sp_giftitm__inner"><div class="sp_giftitm__img" style="background-image: url(\'{{ gift.thumbs.url_250x250 | sailplay_pic }}\');"></div><div class="sp_giftitm__info" data-ng-bind="gift.name"></div><div class="sp_giftitm__price"><span class="sp_giftitm__price-val" data-ng-bind="gift.points | number"></span> {{ gift.points | sailplay_pluralize:\'балл,баллы,баллов\' }}</div></div></div></div><a href="gifts.html" class="sp_common-btn this-white sp_lkgifts-btn">Показать все подарки</a></div></section><section class="sp_l-centered sp_tasks-sec" data-ng-cloak="" data-sailplay-actions=""><h1 class="sp_tasks-sec__head this-center">Задания</h1><div class="sp_tasks-sec__title this-center">Выполняйте задания – получайте баллы</div><div class="sp_tasks-sec__col" data-ng-repeat="action in actions().actions | filter:check_in_list"><div class="sp_tasks-cell"><span class="sp_tasks-cell__icon" style="background-image: url({{ action_data(action).pic }});"></span> <span class="sp_tasks-cell__txt"><span class="sp_tasks-cell__txt-in" data-ng-bind="action_data(action).name"></span></span> <span class="sp_tasks-cell__btn" data-sailplay-action="" data-action="action" data-ng-class="{ styled : action.type != \'socialSharing\' }">Получить</span> <span class="sp_tasks-cell__count" data-ng-bind="\'+ \' + (action.points | number) + \' \' + (action.points | sailplay_pluralize:\'балл,балла,баллов\')"></span></div></div><div class="sp_tasks-sec__col" data-ng-repeat="action in custom_action" data-ng-if="!action.disabled && exist && exist() && !(action.tag | sailplay_tag:exist())"><div class="sp_tasks-cell" data-ng-class="{ tag : action.type == \'tag\'}"><span class="sp_tasks-cell__icon" style="background-image: url({{ action.image}});"></span> <span class="sp_tasks-cell__txt"><span class="sp_tasks-cell__txt-in" data-ng-bind="action.name"></span></span> <span data-ng-click="open_custom_action(action);" class="sp_tasks-cell__btn styled">Получить</span> <span class="sp_tasks-cell__count" data-ng-bind="\'+ \' + (action.points | number) + \' \' + (action.points | sailplay_pluralize:\'балл,балла,баллов\')"></span></div></div></section><notify-popup></notify-popup></div>');
 }]);
 })();
 
@@ -2361,7 +2361,7 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/html/profile.html',
-    '<div class="sp_widget" data-ng-cloak=""><span data-ng-if="data.tag | sailplay_tag:exist()">Действие выполнено.</span><div class="sp_l-section sp_profile" data-ng-if="form && user && user() && !(data.tag | sailplay_tag:exist())"><h1 class="sp_profile__head">Заполнить профиль</h1><div class="sp_profile__in"><div class="sp_profile__left"><div class="sp_profile__set"><div class="sp_profile__inp-title">Фамилия</div><input type="text" class="sp_common-input" data-ng-model="form.lastName"></div><div class="sp_profile__set"><div class="sp_profile__inp-title">Имя</div><input type="text" class="sp_common-input" data-ng-model="form.firstName"></div><div class="sp_profile__set"><div class="sp_profile__inp-title">Отчество</div><input type="text" class="sp_common-input" data-ng-model="form.middleName"></div><div class="sp_profile__set"><div class="sp_profile__inp-title">Пол</div><input type="text" class="sp_common-input" data-ng-model="form.sex"></div></div><div class="sp_profile__right"><div class="sp_profile__set"><div class="sp_profile__inp-title">E-mail</div><input type="text" class="sp_common-input" data-ng-model="form.addEmail"></div><div class="sp_profile__set"><div class="sp_profile__inp-title">Контактный телефон</div><input type="text" class="sp_common-input" data-ng-model="form.addPhone"></div><div class="sp_profile__set"><div class="sp_profile__inp-title">Домашний адрес</div><input type="text" class="sp_common-input" data-ng-model="form.address"></div></div></div><input type="submit" class="sp_common-btn sp_profile__submit" data-ng-click="submit()" data-ng-disabled="!canSubmit()"></div><notify-popup></notify-popup></div>');
+    '<div class="sp_widget" data-ng-cloak=""><span data-ng-if="data.tag | sailplay_tag:exist()">Действие выполнено.</span><div class="sp_l-section sp_profile" data-ng-if="form && user && user() && !(data.tag | sailplay_tag:exist())"><h1 class="sp_profile__head">Заполнить профиль</h1><div class="sp_profile__in"><div class="sp_profile__left"><div class="sp_profile__set"><div class="sp_profile__inp-title">Фамилия</div><input type="text" class="sp_common-input" data-ng-model="form.lastName"></div><div class="sp_profile__set"><div class="sp_profile__inp-title">Имя</div><input type="text" class="sp_common-input" data-ng-model="form.firstName"></div><div class="sp_profile__set"><div class="sp_profile__inp-title">Отчество</div><input type="text" class="sp_common-input" data-ng-model="form.middleName"></div><div class="sp_profile__set" ng-init="sex_data =[{value : 1, label: \'Мужской\'}, {value : 2, label: \'Женский\'}]"><div class="sp_profile__inp-title">Пол</div><select name="sex" class="sp_common-input" data-ng-model="form.sex" data-ng-options="x.value as x.label for x in sex_data track by x.value"></select></div></div><div class="sp_profile__right"><div class="sp_profile__set"><div class="sp_profile__inp-title">E-mail</div><input type="text" class="sp_common-input" data-ng-model="form.addEmail"></div><div class="sp_profile__set"><div class="sp_profile__inp-title">Контактный телефон</div><input type="text" class="sp_common-input" data-ng-model="form.addPhone"></div><div class="sp_profile__set"><div class="sp_profile__inp-title">Домашний адрес</div><input type="text" class="sp_common-input" data-ng-model="form.address"></div></div></div><input type="submit" class="sp_common-btn sp_profile__submit" data-ng-click="submit()" data-ng-disabled="!canSubmit()"></div><notify-popup></notify-popup></div>');
 }]);
 })();
 
@@ -2403,7 +2403,7 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/html/ui/ui.pagination.controls.html',
-    '<div class="sp_l-section" data-ng-if="1 < pages.length || !autoHide"><div class="sp_paginate"><div class="sp_paginate__inner"><a href="#" class="sp_paginate__item" data-ng-repeat="pageNumber in pages track by tracker(pageNumber, $index)" data-ng-class="{ \'this-active\' : pagination.current == pageNumber, disabled : pageNumber == \'...\' }" data-ng-click="setCurrent(pageNumber);$event.preventDefault();"></a></div></div></div>');
+    '<div class="sp_l-section" data-ng-if="1 < pages.length || !autoHide"><div class="sp_paginate"><div class="sp_paginate__inner"><a href="#" class="sp_paginate__item" data-ng-repeat="pageNumber in pages track by tracker(pageNumber, $index)" data-ng-class="{ \'this-active\' : pagination.current == pageNumber, disabled : pageNumber == \'...\' }" data-ng-click="setCurrent(pageNumber);$event.preventDefault();" data-ng-bind="pageNumber"></a></div></div></div>');
 }]);
 })();
 
@@ -2411,7 +2411,7 @@ module.run(['$templateCache', function($templateCache) {
 
   angular.module('pichshop', ['core', 'ui', 'sp', 'templates'])
 
-    .directive('sailplayPichshop', function ($rootScope, $locale) {
+    .directive('sailplayPichshop', ["$rootScope", "$locale", function ($rootScope, $locale) {
 
       return {
         restrict: 'E',
@@ -2427,9 +2427,9 @@ module.run(['$templateCache', function($templateCache) {
         }
       }
 
-    })
+    }])
 
-    .directive('sailplayHistory', function (sp_api, $rootScope, $locale, Status) {
+    .directive('sailplayHistory', ["sp_api", "$rootScope", "$locale", "Status", function (sp_api, $rootScope, $locale, Status) {
 
       return {
         restrict: 'E',
@@ -2451,9 +2451,9 @@ module.run(['$templateCache', function($templateCache) {
         }
       }
 
-    })
+    }])
 
-    .directive('sailplayProfile', function (sp, sp_api, $rootScope, $locale, sp_api) {
+    .directive('sailplayProfile', ["sp", "sp_api", "$rootScope", "$locale", function (sp, sp_api, $rootScope, $locale) {
 
       return {
         restrict: 'E',
@@ -2466,7 +2466,7 @@ module.run(['$templateCache', function($templateCache) {
             lastName: null,
             firstName: null,
             middleName: null,
-            sex: 'Мужской',
+            sex: null,
             addEmail: null,
             addPhone: null,
             address: null
@@ -2496,7 +2496,7 @@ module.run(['$templateCache', function($templateCache) {
               scope.form.lastName &&
               scope.form.firstName &&
               scope.form.middleName &&
-              (scope.form.sex.toLowerCase() == 'мужской' || scope.form.sex.toLowerCase() == 'женский') &&
+              scope.form.sex &&
               scope.form.addEmail &&
               scope.form.addPhone &&
               scope.form.address
@@ -2511,8 +2511,6 @@ module.run(['$templateCache', function($templateCache) {
           scope.submit = function () {
 
             var data = angular.copy(scope.form);
-
-            data.sex = scope.form.sex.toLowerCase() == 'мужской' ? 1 : 2;
 
             delete data.address;
 
@@ -2529,7 +2527,7 @@ module.run(['$templateCache', function($templateCache) {
 
             sp_api.call('tags.add', tags, function () {
 
-              var variables = {"Адресс": scope.form.address};
+              var variables = {"Адрес": scope.form.address};
 
               sp_api.call('vars.add', {custom_vars: variables}, function () {
 
@@ -2575,9 +2573,9 @@ module.run(['$templateCache', function($templateCache) {
         }
       }
 
-    })
+    }])
 
-    .directive('sailplayGifts', function (sp_api, $rootScope, $locale) {
+    .directive('sailplayGifts', ["sp_api", "$rootScope", "$locale", function (sp_api, $rootScope, $locale) {
 
       return {
         restrict: 'E',
@@ -2595,9 +2593,9 @@ module.run(['$templateCache', function($templateCache) {
         }
       }
 
-    })
+    }])
 
-    .directive('sailplayTest', function ($rootScope, $locale, sp, $timeout, sp_api) {
+    .directive('sailplayTest', ["$rootScope", "$locale", "sp", "$timeout", "sp_api", function ($rootScope, $locale, sp, $timeout, sp_api) {
 
       return {
         restrict: 'E',
@@ -2727,7 +2725,7 @@ module.run(['$templateCache', function($templateCache) {
         }
       }
 
-    });
+    }]);
 
 
   setTimeout(function () {
@@ -2749,7 +2747,7 @@ module.run(['$templateCache', function($templateCache) {
       'ipCookie'
     ])
 
-    .run(function (sp, ipCookie, sp_api, $rootScope, $filter, spAction) {
+    .run(["sp", "ipCookie", "sp_api", "$rootScope", "$filter", "spAction", function (sp, ipCookie, sp_api, $rootScope, $filter, spAction) {
 
       $rootScope.config = window._pichshop_config || {};
 
@@ -2891,7 +2889,7 @@ module.run(['$templateCache', function($templateCache) {
 
       }
 
-    });
+    }]);
 
 }());
 
@@ -2939,7 +2937,7 @@ window.matchMedia=window.matchMedia||(function(e,f){var c,a=e.documentElement,b=
       }
     })
 
-    .service('spAction', function (actions_data) {
+    .service('spAction', ["actions_data", function (actions_data) {
 
       var that = this;
 
@@ -2959,9 +2957,9 @@ window.matchMedia=window.matchMedia||(function(e,f){var c,a=e.documentElement,b=
 
       return that;
 
-    })
+    }])
 
-    .directive('sailplayAction', function (sp, $rootScope) {
+    .directive('sailplayAction', ["sp", "$rootScope", function (sp, $rootScope) {
 
       return {
 
@@ -2980,9 +2978,9 @@ window.matchMedia=window.matchMedia||(function(e,f){var c,a=e.documentElement,b=
 
       };
 
-    })
+    }])
 
-    .directive('sailplayActions', function (sp_api, sp, spAction, $rootScope) {
+    .directive('sailplayActions', ["sp_api", "sp", "spAction", "$rootScope", function (sp_api, sp, spAction, $rootScope) {
 
       return {
 
@@ -3039,7 +3037,7 @@ window.matchMedia=window.matchMedia||(function(e,f){var c,a=e.documentElement,b=
 
       };
 
-    });
+    }]);
 
 }());
 
@@ -3047,7 +3045,7 @@ window.matchMedia=window.matchMedia||(function(e,f){var c,a=e.documentElement,b=
 
   angular.module('sp.gifts', [])
 
-    .directive('sailplayGifts', function (sp, sp_api, $rootScope) {
+    .directive('sailplayGifts', ["sp", "sp_api", "$rootScope", function (sp, sp_api, $rootScope) {
 
       return {
 
@@ -3081,7 +3079,7 @@ window.matchMedia=window.matchMedia||(function(e,f){var c,a=e.documentElement,b=
 
       };
 
-    });
+    }]);
 
 }());
 
@@ -3090,7 +3088,7 @@ window.matchMedia=window.matchMedia||(function(e,f){var c,a=e.documentElement,b=
   angular.module('sp.history', [])
 
 
-    .directive('sailplayHistory', function (sp_api) {
+    .directive('sailplayHistory', ["sp_api", function (sp_api) {
 
       return {
 
@@ -3112,7 +3110,7 @@ window.matchMedia=window.matchMedia||(function(e,f){var c,a=e.documentElement,b=
 
       };
 
-    })
+    }])
 
     .constant('history_object', {
       "purchase": {
@@ -3121,7 +3119,7 @@ window.matchMedia=window.matchMedia||(function(e,f){var c,a=e.documentElement,b=
       },
       "gift_purchase": {
         "text": "Подарок",
-        "image": "dist/image/pig_icon.png"
+        "image": "dist/image/gift_icon.png"
       },
       "badge": {
         "text": "Бейджик",
@@ -3133,7 +3131,7 @@ window.matchMedia=window.matchMedia||(function(e,f){var c,a=e.documentElement,b=
       },
       "referral": {
         "text": "Регистрация друга",
-        "image": "dist/image/pig_icon.png"
+        "image": "dist/image/hist-friend.png"
       },
       "referred": {
         "text": "Регистрация по приглашению",
@@ -3173,7 +3171,7 @@ window.matchMedia=window.matchMedia||(function(e,f){var c,a=e.documentElement,b=
       }
     })
 
-    .filter('history_name', function (history_object) {
+    .filter('history_name', ["history_object", function (history_object) {
 
       return function (historyItem) {
         switch (historyItem.action) {
@@ -3197,9 +3195,9 @@ window.matchMedia=window.matchMedia||(function(e,f){var c,a=e.documentElement,b=
         }
         return history_object[historyItem.action].text;
       }
-    })
+    }])
 
-    .filter('history_image', function (history_object) {
+    .filter('history_image', ["history_object", function (history_object) {
 
       return function (historyItem) {
         switch (historyItem.action) {
@@ -3223,7 +3221,7 @@ window.matchMedia=window.matchMedia||(function(e,f){var c,a=e.documentElement,b=
         }
         return history_object[historyItem.action].image;
       }
-    });
+    }]);
 
 }());
 
@@ -3239,13 +3237,13 @@ window.matchMedia=window.matchMedia||(function(e,f){var c,a=e.documentElement,b=
 
     ])
 
-    .service('sp', function ($window) {
+    .service('sp', ["$window", function ($window) {
 
       return $window.SAILPLAY || {};
 
-    })
+    }])
 
-    .service('sp_api', function ($q, sp, $rootScope) {
+    .service('sp_api', ["$q", "sp", "$rootScope", function ($q, sp, $rootScope) {
 
       var self = this;
 
@@ -3312,7 +3310,7 @@ window.matchMedia=window.matchMedia||(function(e,f){var c,a=e.documentElement,b=
 
       };
 
-    })
+    }])
 
     .filter('to_trusted', ['$sce', function ($sce) {
       return function (text) {
@@ -3339,7 +3337,7 @@ window.matchMedia=window.matchMedia||(function(e,f){var c,a=e.documentElement,b=
       }
     })
 
-    .filter('sailplay_pic', function (sp) {
+    .filter('sailplay_pic', ["sp", function (sp) {
 
       function repair_pic_url(url) {
         if (/^((http|https|ftp):\/\/)/.test(url)) {
@@ -3361,7 +3359,7 @@ window.matchMedia=window.matchMedia||(function(e,f){var c,a=e.documentElement,b=
 
       };
 
-    });
+    }]);
 
 }());
 
@@ -3369,7 +3367,7 @@ window.matchMedia=window.matchMedia||(function(e,f){var c,a=e.documentElement,b=
 
   angular.module('sp.profile', [])
 
-    .directive('sailplayProfile', function (sp_api, sp, $rootScope, Status) {
+    .directive('sailplayProfile', ["sp_api", "sp", "$rootScope", "Status", function (sp_api, sp, $rootScope, Status) {
 
       return {
 
@@ -3388,7 +3386,7 @@ window.matchMedia=window.matchMedia||(function(e,f){var c,a=e.documentElement,b=
 
       };
 
-    });
+    }]);
 
 }());
 
@@ -3396,7 +3394,7 @@ window.matchMedia=window.matchMedia||(function(e,f){var c,a=e.documentElement,b=
 
   angular.module('sp.status', [])
 
-    .service('Status', function ($rootScope) {
+    .service('Status', ["$rootScope", function ($rootScope) {
 
       this.getNum = function (points) {
 
@@ -3420,9 +3418,9 @@ window.matchMedia=window.matchMedia||(function(e,f){var c,a=e.documentElement,b=
 
       return this;
 
-    })
+    }])
 
-    .directive('sailplayStatus', function (sp_api, $rootScope, Status) {
+    .directive('sailplayStatus', ["sp_api", "$rootScope", "Status", function (sp_api, $rootScope, Status) {
 
       return {
 
@@ -3482,7 +3480,7 @@ window.matchMedia=window.matchMedia||(function(e,f){var c,a=e.documentElement,b=
 
       };
 
-    });
+    }]);
 
 }());
 
@@ -3497,7 +3495,7 @@ window.matchMedia=window.matchMedia||(function(e,f){var c,a=e.documentElement,b=
      * @type {{title: string, header: string, text: string}}
      * @private
      */
-    .directive('notifyPopup', function (sp, $filter) {
+    .directive('notifyPopup', ["sp", "$filter", function (sp, $filter) {
 
       return {
 
@@ -3521,7 +3519,7 @@ window.matchMedia=window.matchMedia||(function(e,f){var c,a=e.documentElement,b=
 
       }
 
-    })
+    }])
 
     .directive('scrollTo', function () {
       return {

@@ -7,7 +7,7 @@
                      style="background-image: url({{ user().user.pic | sailplay_pic }});"></div>
                 <div class="sp_person-b__st-title">Ваш статус</div>
                 <div class="sp_person-b__stat"
-                     data-ng-bind="statusList[getNum(user().user_points.total)].name || 'Отсутсвует'"></div>
+                     data-ng-bind="statusList[getNum(user().user_points.confirmed + user().user_points.spent)].name || 'Отсутсвует'"></div>
 
                 <div class="sp_person-b__info">
                     <span class="sp_person-b__info-itm" data-ng-bind="user().user.name || 'Имя не указано'"></span>
@@ -59,7 +59,7 @@
         <div class="sp_status-icons">
 
             <div class="sp_status-icons__item js-point this-point-{{ $index+1 }}" data-ng-repeat="status in statusList"
-                 data-ng-class="{ 'this-active' : getNum(user().user_points.total) >= $index }"
+                 data-ng-class="{ 'this-active' : getNum(user().user_points.confirmed + user().user_points.spent) >= $index }"
                  data-ng-style="{width : getWidth()}">
                 <div class="sp_status-icons__img">
                     <img data-ng-src="{{ status.image.origin }}" alt="{{ status.name }}">
@@ -75,7 +75,7 @@
             <div class="sp_status-bar__line" data-ng-repeat="status in statusList" data-ng-if="$index != 0"
                  data-ng-style="{ left: (100 / statusList.length * $index) + '%' }"></div>
             <div class="sp_status-bar__inner js-bar"
-                 data-ng-style="{ width: getBarWidth(user().user_points.total) }"></div>
+                 data-ng-style="{ width: getBarWidth(user().user_points.confirmed + user().user_points.spent) }"></div>
         </div>
         <div class="sp_stbar-titles">
             <div class="sp_stbar-titles__item" data-ng-repeat="status in statusList"

@@ -34,7 +34,7 @@
       },
       "gift_purchase": {
         "text": "Подарок",
-        "image": "dist/image/pig_icon.png"
+        "image": "dist/image/gift_icon.png"
       },
       "badge": {
         "text": "Бейджик",
@@ -46,7 +46,7 @@
       },
       "referral": {
         "text": "Регистрация друга",
-        "image": "dist/image/pig_icon.png"
+        "image": "dist/image/hist-friend.png"
       },
       "referred": {
         "text": "Регистрация по приглашению",

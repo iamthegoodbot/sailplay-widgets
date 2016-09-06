@@ -44,7 +44,7 @@
 
     })
 
-    .directive('sailplayProfile', function (sp, sp_api, $rootScope, $locale, sp_api) {
+    .directive('sailplayProfile', function (sp, sp_api, $rootScope, $locale) {
 
       return {
         restrict: 'E',
@@ -57,7 +57,7 @@
             lastName: null,
             firstName: null,
             middleName: null,
-            sex: 'Мужской',
+            sex: null,
             addEmail: null,
             addPhone: null,
             address: null
@@ -87,7 +87,7 @@
               scope.form.lastName &&
               scope.form.firstName &&
               scope.form.middleName &&
-              (scope.form.sex.toLowerCase() == 'мужской' || scope.form.sex.toLowerCase() == 'женский') &&
+              scope.form.sex &&
               scope.form.addEmail &&
               scope.form.addPhone &&
               scope.form.address
@@ -102,8 +102,6 @@
           scope.submit = function () {
 
             var data = angular.copy(scope.form);
-
-            data.sex = scope.form.sex.toLowerCase() == 'мужской' ? 1 : 2;
 
             delete data.address;
 
@@ -120,7 +118,7 @@
 
             sp_api.call('tags.add', tags, function () {
 
-              var variables = {"Адресс": scope.form.address};
+              var variables = {"Адрес": scope.form.address};
 
               sp_api.call('vars.add', {custom_vars: variables}, function () {
 

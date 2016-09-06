@@ -19,9 +19,10 @@
                     <div class="sp_profile__inp-title">Отчество</div>
                     <input type="text" class="sp_common-input" data-ng-model="form.middleName">
                 </div>
-                <div class="sp_profile__set">
+                <div class="sp_profile__set" ng-init="sex_data =[{value : 1, label: 'Мужской'}, {value : 2, label: 'Женский'}] ">
                     <div class="sp_profile__inp-title">Пол</div>
-                    <input type="text" class="sp_common-input" data-ng-model="form.sex">
+                    <select name="sex" class="sp_common-input" data-ng-model="form.sex"
+                            data-ng-options="x.value as x.label for x in sex_data track by x.value"></select>
                 </div>
             </div>
             <!-- /left -->
@@ -42,7 +43,8 @@
             <!-- /right -->
         </div>
         <!-- /inner -->
-        <input type="submit" class="sp_common-btn sp_profile__submit" data-ng-click="submit()" data-ng-disabled="!canSubmit()">
+        <input type="submit" class="sp_common-btn sp_profile__submit" data-ng-click="submit()"
+               data-ng-disabled="!canSubmit()">
     </div>
 
     <notify-popup></notify-popup>

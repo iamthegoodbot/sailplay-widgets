@@ -207,7 +207,10 @@
   display: block;
   width: 100%;
   height: 25px;
+  background: transparent;
   padding: 0 7px;
+  -webkit-appearance: none;
+  border-radius: 0;
   border: 1px solid #adadad;
   font-family: 'proxima_nova', sans-serif;
   font-size: 16px;
@@ -886,7 +889,8 @@
   text-align: center;
 }
 .sp_history-count__val {
-  font-size: 90px;
+  font-size: 80px;
+  white-space: nowrap;
   line-height: 80px;
   font-family: 'proxima_nova_bold', sans-serif;
   color: #f26522;

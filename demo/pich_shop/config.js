@@ -1,6 +1,6 @@
 window._pichshop_config = {
   partner_id: 1601,
-  auth_hash: 'a5413d092cc1f55c8f6832cffa47c990bd1d8385',
+  auth_hash: 'bb352a69135914bc6bf59b39fe9ea13fd16464c5',
   statusList: [
     {
       name: 'Зубная фея',
