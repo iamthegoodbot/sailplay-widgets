@@ -5,7 +5,6 @@ window._pichshop_config = {
     {
       name: 'Зубная фея',
       limit: [0, 2000],
-      percents: 5,
       image: {
         origin: 'dist/image/status/origin/1.png',
         active: 'dist/image/status/active/1.png'
@@ -14,7 +13,6 @@ window._pichshop_config = {
     {
       name: 'Добрый волшебник',
       limit: [2000, 4000],
-      percents: 6,
       image: {
         origin: 'dist/image/status/origin/2.png',
         active: 'dist/image/status/active/2.png'
@@ -23,7 +21,6 @@ window._pichshop_config = {
     {
       name: 'Цветик-семицветик',
       limit: [4000, 7000],
-      percents: 7,
       image: {
         origin: 'dist/image/status/origin/3.png',
         active: 'dist/image/status/active/3.png'
@@ -32,7 +29,6 @@ window._pichshop_config = {
     {
       name: 'Птица счастья',
       limit: [7000, 12000],
-      percents: 10,
       image: {
         origin: 'dist/image/status/origin/4.png',
         active: 'dist/image/status/active/4.png'
@@ -41,7 +37,6 @@ window._pichshop_config = {
     {
       name: 'Хоттабыч',
       limit: [12000, 20000],
-      percents: 12,
       image: {
         origin: 'dist/image/status/origin/5.png',
         active: 'dist/image/status/active/5.png'
@@ -50,7 +45,6 @@ window._pichshop_config = {
     {
       name: 'Золотая рыбка',
       limit: [20000, 40000],
-      percents: 15,
       image: {
         origin: 'dist/image/status/origin/6.png',
         active: 'dist/image/status/active/6.png'
@@ -59,7 +53,6 @@ window._pichshop_config = {
     {
       name: 'Дед Мороз',
       limit: [40000, null],
-      percents: 17,
       image: {
         origin: 'dist/image/status/origin/7.png',
         active: 'dist/image/status/active/7.png'
@@ -98,7 +91,7 @@ window._pichshop_config = {
               tag: 'Я покупаю подарки в Pichshop на день рождения друзей'
             },
             {
-              label: ' На Новый год',
+              label: 'На Новый год',
               tag: 'Я покупаю подарки в Pichshop на Новый год'
             },
             {

@@ -689,6 +689,7 @@
   color: #262626;
   margin-top: 50px;
   margin-bottom: 30px;
+  overflow: visible;
 }
 .sp_history:before,
 .sp_history:after {
