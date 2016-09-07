@@ -40,6 +40,27 @@
     });
   });
 
+  //LOAD ACTIONS LIST
+  sp.on('load.actions.custom.list', function () {
+    if(sp.config() == {}){
+      alert('Please init SailPlay HUB first!');
+      return;
+    }
+    var params = {
+      auth_hash: sp.config().auth_hash
+    };
+
+    JSONP.get(sp.config().DOMAIN + sp.config().urls.actions.custom.list, params, function (res) {
+      //      console.dir(res);
+      if (res.status == 'ok') {
+        _actions_config = res.data;
+        sp.send('load.actions.custom.list.success', res.actions);
+      } else {
+        sp.send('load.actions.custom.list.error', res);
+      }
+    });
+  });
+
   sp.on('set.actions.list', function (actions) {
     _actions_config = actions;
   });
