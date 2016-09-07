@@ -41,6 +41,7 @@
         __dirname + '/node_modules/sailplay-hub-actions/sailplay.hub.actions.js',
         __dirname + '/node_modules/angular/angular.min.js',
         __dirname + '/node_modules/angular-cookie/angular-cookie.min.js',
+        __dirname + '/node_modules/angular-touch/angular-touch.min.js',
         __dirname + '/node_modules/angular-utils-pagination/dirPagination.js',
         __dirname + '/src/js/**/**/*.js'
       ])

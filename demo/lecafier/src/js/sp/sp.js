@@ -5,6 +5,8 @@
       'sp.actions',
       'sp.gifts',
       'sp.profile',
+      'sp.share',
+      'sp.badges',
       'sp.history'
 
     ])
@@ -26,6 +28,7 @@
         'load.user.info',
         'load.gifts.list',
         'load.user.history',
+        'load.badges.list',
         'load.actions.list'
 
       ];

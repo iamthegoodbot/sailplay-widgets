@@ -7,6 +7,7 @@
   "dependencies": {
     "angular": "latest",
     "angular-cookie": "latest",
+    "angular-touch": "^1.5.8",
     "angular-utils-pagination": "^0.11.1",
     "gulp-imagemin": "^3.0.1",
     "jquery": "^2.2.3",

@@ -1,0 +1,10 @@
+<div class="sp_l-section" data-ng-if="1 < pages.length || !autoHide">
+    <div class="sp_paginate">
+        <div class="sp_paginate__inner">
+            <a href="#" class="sp_paginate__item" data-ng-repeat="pageNumber in pages track by tracker(pageNumber, $index)"
+            data-ng-class="{ 'this-active' : pagination.current == pageNumber, disabled : pageNumber == '...' }"
+            data-ng-click="setCurrent(pageNumber);$event.preventDefault();"
+            data-ng-bind="pageNumber"></a>
+        </div>
+    </div>
+</div>

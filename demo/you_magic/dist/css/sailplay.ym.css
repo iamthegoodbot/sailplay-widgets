@@ -8,7 +8,7 @@
   background: none !important;
 }
 .social_actions_btn {
-  margin-left: -110px !important;
+  margin-left: -90px !important;
   margin-top: -30px !important;
 }
 .social_actions_btn iframe {
@@ -58,6 +58,7 @@ html {
   z-index: 10000;
   background-color: rgba(0, 0, 0, 0.3);
   display: none;
+  overflow-y: auto;
 }
 .bns_overlay .bns_overlay_iner {
   position: absolute;
@@ -411,6 +412,7 @@ input[type="button"]:disabled {
   line-height: 46px;
   height: 46px;
   white-space: nowrap;
+  overflow: hidden;
   font-size: 14px;
   font-weight: 300;
   width: 100%;
@@ -453,7 +455,9 @@ input[type="button"]:disabled {
   lable: left;
   width: 100%;
   box-sizing: border-box;
-  line-height: 34px;
+  line-height: 20px;
+  padding-top: 7px;
+  padding-bottom: 7px;
   color: #000;
   font-size: 14px;
   padding-left: 27px;
@@ -668,6 +672,14 @@ input[type="button"]:disabled {
   border-radius: 62px;
   text-decoration: none;
   margin-top: 54px;
+  -webkit-transition: all 300ms ease;
+  -moz-transition: all 300ms ease;
+  -ms-transition: all 300ms ease;
+  -o-transition: all 300ms ease;
+  transition: all 300ms ease;
+}
+.bns_top .bns_top_block .bns_top_text a:hover {
+  background-color: #95B841;
 }
 .bns_top .bns_top_block .bns_top_bot {
   float: left;
@@ -763,7 +775,9 @@ input[type="button"]:disabled {
 }
 .bns_prof_info .bns_prof_right {
   float: right;
-  width: 800px;
+  width: 100%;
+  margin-bottom: 50px;
+  margin-top: 20px;
 }
 .bns_prof_info .bns_prof_right .bns_ball_naw {
   float: left;
@@ -772,9 +786,14 @@ input[type="button"]:disabled {
   font-size: 33px;
   font-weight: bold;
   font-family: 'RotondaC bold';
+  width: 100%;
+  text-align: center;
+  line-height: 26px;
 }
 .bns_prof_info .bns_prof_right .bns_line {
-  width: 600px;
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
   height: 5px;
   background-color: #C4C4C4;
   margin-top: 47px;
@@ -829,6 +848,11 @@ input[type="button"]:disabled {
   position: absolute;
   right: 0px;
   border-right: 1px solid #95B841;
+  min-height: 65px;
+}
+.bns_prof_info .bns_prof_right .bns_line .bns_line_path .bns_line_info.invert span {
+  position: absolute;
+  border-radius: 0 6px 6px 0;
 }
 .bns_prof_info .bns_prof_right .bns_line .bns_line_path .bns_line_info span {
   margin-top: 35px;
@@ -1003,16 +1027,15 @@ input[type="button"]:disabled {
   overflow: hidden;
 }
 .bns_select_gift .bns_select_cat_gift .bscg_item .bscg_img {
-  width: 73px;
-  height: 73px;
-  border-radius: 73px;
+  width: 75px;
+  height: 75px;
   display: inline-block;
   text-align: center;
   line-height: 73px;
   position: relative;
   transition: all 0.4s ease;
 }
-.bns_select_gift .bns_select_cat_gift .bscg_item .bscg_img img {
+.bns_select_gift .bns_select_cat_gift .bscg_item .bscg_img div {
   transition: all 0.4s ease;
   position: absolute;
   left: 0;
@@ -1020,6 +1043,11 @@ input[type="button"]:disabled {
   bottom: 0;
   right: 0;
   margin: auto;
+  width: 100%;
+  height: 100%;
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 .bns_select_gift .bns_select_cat_gift .bscg_item .bscg_img_origin {
   transform: scale(1) translateZ(0);
@@ -1045,9 +1073,6 @@ input[type="button"]:disabled {
   font-size: 14px;
   text-decoration: none;
   margin-top: 4px;
-}
-.bns_select_gift .bns_select_cat_gift .bscg_item.act .bscg_img {
-  background-color: #913494;
 }
 .bns_select_gift .bns_select_cat_gift .bscg_item.act .bscg_img_origin {
   transition-delay: 0.4s;
@@ -1277,38 +1302,13 @@ input[type="button"]:disabled {
   font-weight: 300;
   line-height: 18px;
 }
-@media screen and (min-width: 1170px) {
-  .iner_block {
-    width: 90%;
-    margin-left: 5%;
-  }
-  .bns_prof_info .bns_prof_right {
-    width: 70%;
-  }
-  .bns_prof_info .bns_prof_right .bns_line {
-    width: 77%;
-  }
-}
-@media screen and (max-width: 1450px) {
-  .bns_prof_info .bns_prof_right .bns_line {
-    width: 74%;
-  }
-}
-@media screen and (max-width: 1300px) {
-  .bns_prof_info .bns_prof_right {
-    width: 65%;
-  }
-  .bns_prof_info .bns_prof_right .bns_line {
-    width: 70%;
-  }
-}
 @media screen and (max-width: 1190px) {
   .iner_block {
     width: 90%;
     margin-left: 5%;
   }
   .bns_prof_info .bns_prof_right {
-    width: 65%;
+    width: 100%;
   }
   .bns_prof_info .bns_prof_right .bns_ball_naw {
     width: 100%;
@@ -1365,11 +1365,20 @@ input[type="button"]:disabled {
 @media screen and (max-width: 800px) {
   .bns_overlay .bns_overlay_iner {
     width: 100%;
+    margin-left: 0px;
     box-sizing: border-box;
+    left: 0px;
+    top: 30px;
+    margin-top: 0;
+    position: relative;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -webkit-transform: translateX(0%) translateY(0%) scale(1, 1);
+    transform: translateX(0%) translateY(0%) scale(1, 1);
+    float: left;
   }
   .bns_overlay .bns_overlay_iner .close_overlay {
-    right: 30px;
-    top: 30px;
+    right: 10px;
+    top: 7px;
   }
   .bns_top .bns_top_block .bns_top_bot .btb_item {
     margin: 31px 16px 0;
@@ -1403,6 +1412,17 @@ input[type="button"]:disabled {
   .bns_overlay {
     overflow-y: auto;
   }
+  .bns_overlay .bns_overlay_iner .bns_hist_table td:nth-child(1) {
+    padding-right: 5px;
+  }
+  .bns_overlay .bns_overlay_iner .bns_hist_table td:nth-child(2) span b {
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-left: 0px;
+  }
+  .bns_overlay .bns_overlay_iner .bns_hist_table td:nth-child(2)::after {
+    display: none;
+  }
   .bns_overlay .b_about a {
     width: 32.7%;
   }
@@ -1411,6 +1431,14 @@ input[type="button"]:disabled {
   .bns_select_gift .bns_select_cat_gift .bscg_item {
     margin: 0px;
     width: 48%;
+  }
+  .bns_select_gift .bns_to_more {
+    position: relative;
+    top: -20px;
+    float: right;
+  }
+  .mb_item_left .social_actions_btn {
+    margin-left: -90px !important;
   }
   .bns_top .bns_top_block .bns_top_text h2 {
     margin-top: 31px;
@@ -1435,7 +1463,8 @@ input[type="button"]:disabled {
     width: 100%;
   }
   .bns_prof_info .bns_prof_left .bns_prof_menu {
-    width: 190px;
+    width: 160px;
+    margin-top: 0;
   }
   .bns_header {
     font-size: 34px;
@@ -1468,7 +1497,7 @@ input[type="button"]:disabled {
     padding: 20px 10px;
   }
   .bns_overlay .bns_overlay_iner .close_overlay {
-    top: 20px;
+    top: 7px;
   }
   .bns_overlay .bns_input_block label {
     width: 100%;
@@ -1498,9 +1527,13 @@ input[type="button"]:disabled {
     margin-top: 10px;
     margin-bottom: 10px;
     margin-right: 0;
+    margin-left: 20px;
   }
   .bns_overlay .b_about_main {
     width: 100%;
+  }
+  .bns_overlay .b_about_main .b_about_item {
+    padding: 35px 20px 0px;
   }
 }
 @media screen and (min-width: 1630px) {

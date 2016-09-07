@@ -1,0 +1,62 @@
+<div class="sp_widget" data-ng-show="global.auth">
+
+
+    <div class="sp_l-section sp_history" data-ng-cloak data-sailplay-history>
+        <div class="sp_history__col this-col1">
+
+            <div class="sp_person-b">
+                <div class="sp_person-b__img"
+                     style="background-image: url({{ user().user.pic | sailplay_pic }});"></div>
+                <div class="sp_person-b__st-title">Ваш статус</div>
+                <div class="sp_person-b__stat"
+                     data-ng-bind="statusList[getNum(user().user_points.total)].name || 'Отсутсвует'"></div>
+
+                <div class="sp_person-b__info">
+                    <span class="sp_person-b__info-itm" data-ng-bind="user().user.name || 'Имя не указано'"></span>
+                    <span class="sp_person-b__info-itm" data-ng-bind="user().user.phone || 'Телефон не указан'"></span>
+                    <span class="sp_person-b__info-itm" data-ng-bind="user().user.email || 'Email не указан'"></span>
+                </div>
+            </div>
+
+        </div>
+        <!-- /col1 -->
+        <div class="sp_history__col this-col2">
+            <div class="sp_hist-list">
+                <div class="sp_hist-list__head">Здравствуйте, {{ user().user.name || 'уважаемый пользователь' }}</div>
+                <div class="sp_hist-list__ttl">Ваши последние действия</div>
+
+                <div class="sp_hist-itm" data-dir-paginate="item in history() | itemsPerPage:10" data-pagination-id="history_pages">
+                    <div class="sp_hist-itm__img" style="background-image: url({{ item | history_image }});"></div>
+                    <div class="sp_hist-itm__inner">
+                        <div class="sp_hist-itm__info" data-ng-bind="item.action_date | date:'d / MM / yyyy'"></div>
+                        <div class="sp_hist-itm__info-row">
+                            <div class="sp_hist-itm__price" data-ng-if="item.points_delta"
+                                 data-ng-bind="(item.points_delta | number) + ' ' + (item.points_delta | sailplay_pluralize:'балл,баллы,баллов')">
+                            </div>
+                            <div class="sp_hist-itm__name" data-ng-bind="item | history_name"></div>
+                        </div>
+                        <!--<div class="sp_hist-itm__info">Количество: 2</div>-->
+                    </div>
+                </div>
+                <!-- /item -->
+
+            </div>
+        </div>
+        <!-- /col2 -->
+        <div class="sp_history__col this-col3">
+            <div class="sp_history-count">
+                <div class="sp_history-count__val" data-ng-bind="user().user_points.confirmed | number"></div>
+                <div class="sp_history-count__plus">+</div>
+                <div class="sp_history-count__remain" data-ng-bind="user().user_points.unconfirmed | number"></div>
+                <div class="sp_history-count__ttl">Неподтвержденных <br>баллов</div>
+            </div>
+        </div>
+        <!-- /col3 -->
+    </div>
+
+    <dir-pagination-controls data-max-size="6" data-pagination-id="history_pages"
+                             data-template-url="/html/ui/ui.pagination.controls.html"
+                             data-auto-hide="true"></dir-pagination-controls>
+
+
+</div>

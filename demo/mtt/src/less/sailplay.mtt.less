@@ -569,6 +569,13 @@ body, html {
                 padding-top: 17px;
                 border-right: 1px solid #fff;
                 top: 14px;
+                &.invert {
+                  span {
+                    position: relative;
+                    right: -100px;
+                    border-radius: 0px 5px 5px 0px;
+                  }
+                }
                 span {
                   float: right;
                   line-height: 30px;
@@ -876,8 +883,7 @@ body, html {
         background-position: center center;
         background-repeat: no-repeat;
         display: block;
-        top: 50%;
-        margin-top: -55px;
+        top: 130px;
       }
       .arr_right {
         position: absolute;
@@ -891,8 +897,7 @@ body, html {
         background-position: center center;
         background-repeat: no-repeat;
         display: block;
-        top: 50%;
-        margin-top: -55px;
+        top: 130px;
       }
       .bon_slide_cat_item {
         float: left;
@@ -1321,6 +1326,7 @@ body, html {
         padding: 20px 35px;
         box-sizing: border-box;
         white-space: nowrap;
+        min-height: 116px;
         &.cycle-pager-active {
           background-color: #893E90;
           span {
@@ -1423,6 +1429,7 @@ body, html {
 
   .bn_wrap .bns_about_page .b_about a span {
     max-width: 140px;
+    min-height: 105px;
   }
 
 }
@@ -1433,7 +1440,6 @@ body, html {
 
     .progress_text {
       border: none !important;
-
       &:before {
         content: '';
         width: 1px;
@@ -1448,7 +1454,6 @@ body, html {
       span {
 
         position: relative;
-        left: 50%;
         border-radius: 5px !important;
 
       }
@@ -1588,7 +1593,24 @@ body, html {
 }
 
 @media screen and (max-width: 650px) {
+
   .bn_wrap {
+    .more_bonus {
+      .more_bonus_main {
+        .mb_popup {
+          .mb_popup_main {
+            .edit_profile_input {
+              label {
+                width: 100%;
+              }
+              input[type="text"] {
+                width: 100%;
+              }
+            }
+          }
+        }
+      }
+    }
     .bns_about_page {
       .b_about {
         a {
@@ -1666,7 +1688,7 @@ body, html {
         .mb_item {
           width: 48%;
           position: relative;
-          height: 220px;
+          height: 233px;
           margin-right: 0px;
           &:nth-child(2n) {
             margin-right: 0;
@@ -1736,9 +1758,30 @@ body, html {
       }
     }
   }
+
+  .bn_wrap .bns_about_page .b_about a span {
+    min-height: 0px;
+  }
 }
 
 @media screen and (max-width: 430px) {
+  .bn_wrap {
+    .bon_choice_main {
+      .bon_item_main {
+        .bon_slide_cat_item {
+          .bon_item {
+            width: 195px;
+            margin-left: 14px;
+            img {
+              width: 100%;
+              height: auto;
+            }
+          }
+        }
+      }
+    }
+  }
+
   .bn_wrap {
     .top_main {
       .top_text_main {
@@ -1746,7 +1789,7 @@ body, html {
           .top_text_item {
             span {
               line-height: 19px;
-              margin-top: 10 pxk
+              margin-top: 10px;
             }
           }
         }

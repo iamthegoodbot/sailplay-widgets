@@ -328,7 +328,7 @@
         },
         link: function (scope, elm) {
 
-          elm.attr('data-styles', $rootScope.config.social_styles || 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/1d4796587373184fefd8b608e6eba603.css');
+          elm.attr('data-styles', $rootScope.config.social_styles || 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/230323d1bcab6fd2819810e95eca0620.css');
 
           sp.actions && sp.actions.parse(elm[0], scope.action);
 

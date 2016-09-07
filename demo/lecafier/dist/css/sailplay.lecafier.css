@@ -4917,6 +4917,24 @@ h2.bonus {
   padding: 40px 25px 20px 25px;
   background: #f8fafb;
   margin-bottom: 15px;
+  position: relative;
+}
+.bonus_tasks:before {
+  position: absolute;
+  content: '';
+  background: #bdcf32;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: .5s;
+  display: block;
+}
+.bonus_tasks.scrolled:before {
+  opacity: 1;
+  visibility: visible;
 }
 .bonus_tasks .item {
   padding: 0px 12px;
@@ -4979,6 +4997,42 @@ h2.bonus {
 }
 .bonus_tasks .item:hover a {
   top: 62px;
+}
+.bonus_badges {
+  padding: 25px 0;
+}
+.bonus_badges .badge__list {
+  font-size: 0;
+}
+.bonus_badges .badge__item {
+  width: 20%;
+  height: auto;
+  font-size: 16px;
+  box-sizing: border-box;
+  padding: 0 10px;
+  text-align: center;
+  display: inline-block;
+  cursor: pointer;
+  vertical-align: top;
+}
+.bonus_badges .badge__item img {
+  width: 50px;
+  display: inline-block;
+  transition: .3s;
+  opacity: .3;
+  transform: translateZ(0);
+}
+.bonus_badges .badge__item-name {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 14px;
+  width: 100%;
+}
+.bonus_badges .badge__item.is_received img {
+  opacity: 1;
+}
+.bonus_badges .badge__item:hover img {
+  opacity: 1;
 }
 @media (max-width: 768px) {
   .bonus_pers .ranktitle {
@@ -5056,4 +5110,207 @@ h2.bonus {
     padding-right: 2px;
     font-size: 7px;
   }
+}
+.popup {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  font-size: 0;
+  text-align: center;
+}
+.popup:before {
+  content: '';
+  display: inline-block;
+  width: 0;
+  height: 100%;
+  vertical-align: middle;
+}
+.popup_overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+.popup_content {
+  width: 600px;
+  height: auto;
+  display: inline-block;
+  position: relative;
+  background: white;
+  vertical-align: middle;
+  z-index: 2;
+}
+.popup_header {
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  padding: 0 20px;
+  text-align: left;
+  background: #4a6986;
+  position: relative;
+  box-sizing: border-box;
+}
+.popup_header-title {
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  color: white;
+  font-size: 18px;
+  text-overflow: ellipsis;
+}
+.popup_header-close {
+  position: absolute;
+  right: 20px;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+.popup_header-close svg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  transition: .3s ease;
+}
+.popup_body {
+  display: block;
+  padding: 30px 0;
+  font-size: 0;
+}
+.popup_body__parts {
+  display: inline-block;
+  vertical-align: middle;
+}
+.popup_body__parts.left {
+  width: 40%;
+}
+.popup_body__parts.left img {
+  max-width: 60%;
+}
+.popup_body__parts.left .img {
+  background: url(https://d3sailplay.cdnvideo.ru/media/assets/assetfile/2e2f4177c30b7b90a2407a7d7921e6f6.png) -815px 0px no-repeat;
+  width: 272px;
+  height: 190px;
+  transform: scale(0.7);
+  display: inline-block;
+}
+.popup_body__parts.left .img > div {
+  width: 160px;
+  height: 160px;
+  position: relative;
+  top: 15px;
+  left: 56px;
+  background-image: url(https://d3sailplay.cdnvideo.ru/media/assets/assetfile/2e2f4177c30b7b90a2407a7d7921e6f6.png);
+}
+.popup_body__parts.left .img > div.l1 {
+  background-position: 0px 0px;
+}
+.popup_body__parts.left .img > div.l2 {
+  background-position: -163px 0px;
+}
+.popup_body__parts.left .img > div.l3 {
+  background-position: -326px 0px;
+}
+.popup_body__parts.left .img > div.l4 {
+  background-position: -489px 0px;
+}
+.popup_body__parts.left .img > div.l5 {
+  background-position: -652px 0px;
+}
+.popup_body__parts.left .gift_name {
+  color: #262626;
+  font-size: 14px;
+  max-width: 100%;
+  box-sizing: border-box;
+  display: inline-block;
+  padding: 20px 15px;
+}
+.popup_body__parts.right {
+  width: 60%;
+  color: #4a6986;
+  text-align: left;
+  box-sizing: border-box;
+  padding: 0 50px 0 20px;
+  vertical-align: top;
+}
+.popup_body__parts.right .header_text {
+  font-size: 18px;
+  display: inline-block;
+  width: 100%;
+  padding: 10px 0;
+  box-sizing: border-box;
+  border-bottom: 1px solid #4a6986;
+}
+.popup_body__parts.right .body_text {
+  display: inline-block;
+  width: 100%;
+  font-size: 14px;
+  box-sizing: border-box;
+  padding: 15px 0;
+}
+.popup .share_buttons {
+  width: 100%;
+  box-sizing: border-box;
+  color: #262626;
+  font-size: 0;
+}
+.popup .share_buttons .share_button {
+  display: inline-block;
+  font-size: 16px;
+  margin-left: 5px;
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  line-height: 30px;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  position: relative;
+  transition: .3s ease;
+}
+.popup .share_buttons .share_button:first-child {
+  margin-left: 0;
+}
+.popup .share_buttons .share_button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.popup .share_buttons .share_button > div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  transition: .3s ease;
+}
+.popup .share_buttons .share_button > div svg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+.popup .share_buttons .share_button .hover {
+  display: none;
+}
+.popup .share_buttons .share_button:hover .origin {
+  display: none;
+}
+.popup .share_buttons .share_button:hover .hover {
+  display: block;
+}
+.popup .orange {
+  color: #d9a537;
 }
