@@ -40,7 +40,7 @@
 
       var self = this;
 
-      self.limits = [0, 15000, 30000];
+      self.limits = [0, 25000, 50000];
 
       self.get_limits = function () {
         return angular.copy(self.limits);

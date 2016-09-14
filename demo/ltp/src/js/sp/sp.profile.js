@@ -15,12 +15,6 @@
           scope.badges = sp_api.data('load.badges.list');
 
           scope.limits = status_service.get_limits();
-          //
-          //scope.get_percents = function(){
-          //  var points = scope.user && scope.user && scope.user() ? scope.user().user_points.confirmed + scope.user().user_points.spent : 0;
-          //  var max = scope.limits[scope.limits.length-1];
-          //  return ((points*100)/max) || 0;
-          //};
 
           scope.get_next = function () {
             var statuses = scope.badges && scope.badges() && scope.badges().multilevel_badges && scope.badges().multilevel_badges[0];
