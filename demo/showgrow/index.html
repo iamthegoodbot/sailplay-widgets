@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <title>Showgrow Loyalty</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+    <script type="text/javascript">
+
+        window.PARTNER_ID = 1543;
+
+        var _links = {
+            js: './dist/sg.sailplay.js',
+            css: './dist/sg.sailplay.css'
+        };
+
+        document.addEventListener('DOMContentLoaded', function () {
+
+            var _s = document.createElement("link");
+            _s.type = "text/css";
+            _s.rel = "stylesheet";
+            _s.href = _links.css;
+            document.getElementsByTagName("head")[0].appendChild(_s);
+
+            var _j = document.createElement("script");
+            _j.type = "text/javascript";
+            _j.src = _links.js;
+            document.getElementsByTagName("head")[0].appendChild(_j);
+
+        });
+
+    </script>
+
+</head>
+<body style="margin: 0;">
+
+<sailplay-sg></sailplay-sg>
+
+</body>
+</html>

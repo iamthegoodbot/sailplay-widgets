@@ -1,9 +1,8 @@
 {
-  "name": "sailplay.ltp",
-  "version": "0.0.1",
+  "name": "showgrow.sailplay",
+  "version": "1.0.0",
   "description": "",
-  "author": "awesome",
-  "license": "ISC",
+  "scripts": {},
   "dependencies": {
     "angular": "latest",
     "angular-cookie": "latest",

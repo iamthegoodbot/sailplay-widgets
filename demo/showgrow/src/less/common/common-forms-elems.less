@@ -1,0 +1,102 @@
+/* forms */
+@input-height: 59px;
+@input-side-padding: 25px;
+@textarea-vertical-padding: 9px;
+
+@input-border-radius: 4px;
+@input-border-color: #b5bfc7;
+@input-active-border-color: darken(@input-border-color, 15%);
+
+@input-font-size: 16px;
+@input-text-color: #5B5B5B;
+@input-placeholder-color: lighten(@input-text-color, 25%);
+
+.sp_common-input {
+	display: block;
+	width: 100%;
+	height: @input-height;
+	padding: 0 @input-side-padding;
+
+	// border: 1px solid @input-border-color;
+	border: none;
+	background-color: #E4E3E4;
+	// .rounded(@input-border-radius);
+	
+	// .tahoma();
+
+	font-size: @input-font-size;
+	font-family: inherit;
+	font-weight: inherit;
+	color: @input-text-color;
+	
+	// .transition(border-color 150ms linear 0ms);
+	&:active, &:focus {
+		outline: none !important;
+		// border-color: @input-active-border-color;
+		background-color: darken(#E4E3E4, 3%)
+	}
+	&::-webkit-input-placeholder {color: @input-placeholder-color;}
+	&::-moz-placeholder {color: @input-placeholder-color;}
+	&:-moz-placeholder {color: @input-placeholder-color;}
+	&:-ms-input-placeholder {color: @input-placeholder-color;}
+}
+.sp_common-block-param {
+	display: block;
+	position: relative;
+	padding-left: 25px;
+}
+.sp_common-checkbox-wrap {
+	display: block;
+	position: absolute;
+	left: 0px;
+	top: 1px;
+	a {
+		display: block;
+		position: relative;
+		width: 20px;
+		height: 20px;
+		background-color: #E4E3E4;
+		&:hover {
+			// .box-shadow(0px 0px 5px rgba(0,0,0,0.3));
+		}
+		&.checked {
+			background-color: @green;
+			&:after {
+				.picon();
+				.rounded(4px);
+				width: 100%;
+				height: 100%;
+				background: url("@{burl}check.png") no-repeat center;
+			}
+		}
+	}
+	label {
+		display: none;
+	}
+}
+.sp_common-textarea {
+	display: block;
+	width: 100%;
+	padding: @textarea-vertical-padding @input-side-padding;
+
+	border: 1px solid @input-border-color;
+	.rounded(@input-border-radius);
+
+	.tahoma();
+	font-size: @input-font-size;
+	font-weight: normal;
+	color: @input-text-color;
+
+
+	.transition(border-color 150ms linear 0ms);
+	resize: none;
+	&:active, &:focus {
+		outline: none !important;
+		border-color: @input-active-border-color;
+	}
+	&::-webkit-input-placeholder {color: @input-placeholder-color;}
+	&::-moz-placeholder {color: @input-placeholder-color;}
+	&:-moz-placeholder {color: @input-placeholder-color;}
+	&:-ms-input-placeholder {color: @input-placeholder-color;}
+}
+
