@@ -6,7 +6,7 @@
 
       var self = this;
 
-      var cssLink = '//d3sailplay.cdnvideo.ru/media/assets/assetfile/2b7a1c69c47253cc63282b2df2cff4a9.css';
+      var cssLink = 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/2b7a1c69c47253cc63282b2df2cff4a9.css';
 
       self.getCss = function(){
         return cssLink;
