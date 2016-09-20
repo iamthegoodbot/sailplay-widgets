@@ -11,8 +11,8 @@ Paste this code to the page in < head > section to load the script:
         };
 
         var _links = {
-            js: './dist/sg.sailplay.js',
-            css: './dist/sg.sailplay.css'
+            js: 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/81c85081fbeee470eaf428e5ac79f12d.js',
+            css: 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/a91e95549722fff3637f4d225e3b9540.css'
         };
 
         document.addEventListener('DOMContentLoaded', function () {
@@ -41,10 +41,6 @@ Paste this code to < body > to render the content loaded via above mentioned scr
 ## Example
 
 Link: [DEMO](http://test.dev4you.info/sg/ "Demo")
-
-## Download
-
-Link: [here](http://test.dev4you.info/sg/showgrow.zip "here")
 
 ## Development
 

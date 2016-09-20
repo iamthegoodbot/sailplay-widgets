@@ -1,8 +1,8 @@
 @charset "utf-8";
 @font-face {
   font-family: 'motor_oil_1937_m54regular';
-  src: url('fonts/motor_oil_1937_m54-webfont.eot');
-  src: url('fonts/motor_oil_1937_m54-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/motor_oil_1937_m54-webfont.woff2') format('woff2'), url('fonts/motor_oil_1937_m54-webfont.woff') format('woff'), url('fonts/motor_oil_1937_m54-webfont.ttf') format('truetype');
+  src: url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/f98ab43507aa96addc49d9d26f37cc6f.eot');
+  src: url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/f98ab43507aa96addc49d9d26f37cc6f.eot?#iefix') format('embedded-opentype'), url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/eff2c839b7520eec6c82962cc299c065.woff2') format('woff2'), url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/b69fe04e9972866005b5480cf012d02f.woff') format('woff'), url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/389bb2abe991e0d3909c895a20eafd0f.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -67,7 +67,7 @@
   border-radius: 4px;
   width: 100%;
   height: 100%;
-  background: url("image/check.png") no-repeat center;
+  background: url("https://d3sailplay.cdnvideo.ru/media/assets/assetfile/1c4d9805881396999551100243de5b24.png") no-repeat center;
 }
 .sp_common-checkbox-wrap label {
   display: none;
@@ -177,12 +177,12 @@
   color: #333333;
   font-size: 13px;
   font-weight: 200;
-  background-image: url(image/radio.png);
+  background-image: url(https://d3sailplay.cdnvideo.ru/media/assets/assetfile/fded958cc24815303fe7d03cf8ecd357.png);
   background-repeat: no-repeat;
   background-size: auto 100%;
 }
 .check input:checked + label {
-  background-image: url(image/radio_ch.png);
+  background-image: url(https://d3sailplay.cdnvideo.ru/media/assets/assetfile/5bfed95d612068c26b0ff2344de3152c.png);
 }
 .select_block {
   margin-right: 20px;
@@ -209,7 +209,7 @@
   font-weight: inherit;
   color: #5B5B5B;
   -webkit-appearance: none;
-  background-image: url('image/select.png');
+  background-image: url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/a1e402d1cc66b42caea97430b1ba5e83.png');
   -webkit-background-size: 8px 6px;
   background-size: 8px 6px;
   background-position: 95% center;
@@ -318,7 +318,7 @@
 .sp_widget .sp_top-sec {
   padding: 44px 20px 70px;
   min-height: 531px;
-  background: url("image/top-banner.jpg") no-repeat center;
+  background: url("https://d3sailplay.cdnvideo.ru/media/assets/assetfile/a46ba2d39a05f18955a3885acb6e20c9.jpg") no-repeat center;
   background-size: cover;
   color: #fff;
 }
@@ -395,13 +395,13 @@
   background-position: center;
 }
 .sp_widget .sp_top-sec__item.this-icon-1:before {
-  background-image: url("image/icon-01.png");
+  background-image: url("https://d3sailplay.cdnvideo.ru/media/assets/assetfile/2dcffa386e4e3963da21dcfbd11ae472.png");
 }
 .sp_widget .sp_top-sec__item.this-icon-2:before {
-  background-image: url("image/icon-02.png");
+  background-image: url("https://d3sailplay.cdnvideo.ru/media/assets/assetfile/3209ae31128452329bdf2ea53cd9c361.png");
 }
 .sp_widget .sp_top-sec__item.this-icon-3:before {
-  background-image: url("image/icon-03.png");
+  background-image: url("https://d3sailplay.cdnvideo.ru/media/assets/assetfile/86347206059ca2e1f8642847da210256.png");
 }
 .sp_widget .sp_top-sec__item-head {
   font-size: 16px;
@@ -734,16 +734,16 @@
   background-repeat: no-repeat;
 }
 .sp_widget .sp_progress-bar__point-label_image.img_type_1 {
-  background-image: url('image/status-icon-01.png');
+  background-image: url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/a05f441fd5daa2e5fcd300684d0d5c6d.png');
 }
 .sp_widget .sp_progress-bar__point-label_image.img_type_2 {
-  background-image: url('image/status-icon-02.png');
+  background-image: url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/d07d016732a45f88bc921ee8e697cbbd.png');
 }
 .sp_widget .sp_progress-bar__point-label_image.img_type_3 {
-  background-image: url('image/status-icon-03.png');
+  background-image: url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/b61a6d03b8b1e8b71c85f661b59f10d6.png');
 }
 .sp_widget .sp_progress-bar__point-label_image.img_type_4 {
-  background-image: url('image/status-icon-04.png');
+  background-image: url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/12df0f05fea61bd0c098f20d49849ce2.png');
 }
 .sp_widget .sp_status-descr {
   padding-bottom: 40px;
@@ -1013,7 +1013,7 @@
 }
 .sp_widget .sp_gifts-slider .slick-slide {
   outline: none !important;
-  cursor: url('image/grab.png') 8 8, move;
+  cursor: url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/108f8953ae5fe9f94f55af0b2ef0d8ee.png') 8 8, move;
 }
 .sp_widget .sp_gifts-slider .slick-dots {
   margin-top: 6px;
@@ -1182,22 +1182,22 @@
   background-position: center;
 }
 .sp_widget .sp_tasks-cell__icon.this-icon-1 {
-  background-image: url('image/task-icon-01.png');
+  background-image: url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/aeac0a63429fda6ab0bda5b7ec4bf8da.png');
 }
 .sp_widget .sp_tasks-cell__icon.this-icon-2 {
-  background-image: url('image/task-icon-02.png');
+  background-image: url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/603b26dae4883b0f5ffff0304bc542dd.png');
 }
 .sp_widget .sp_tasks-cell__icon.this-icon-3 {
-  background-image: url('image/task-icon-03.png');
+  background-image: url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/097c222885c48fda454a4cad518dc23d.png');
 }
 .sp_widget .sp_tasks-cell__icon.this-icon-4 {
-  background-image: url('image/task-icon-04.png');
+  background-image: url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/3fa7f3d91522efdcd7d3d1ab5b783e68.png');
 }
 .sp_widget .sp_tasks-cell__icon.this-icon-5 {
-  background-image: url('image/task-icon-05.png');
+  background-image: url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/1c87ee091ce7a329d3a179714e868088.png');
 }
 .sp_widget .sp_tasks-cell__icon.this-icon-6 {
-  background-image: url('image/task-icon-06.png');
+  background-image: url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/0705a2094b038ad1d41c7dbd0cedb22c.png');
 }
 .sp_widget .sp_tasks-cell__text {
   display: table;
@@ -1760,7 +1760,7 @@ body {
   position: absolute;
   left: 50%;
   top: 50%;
-  background-image: url("image/status.gif");
+  background-image: url("https://d3sailplay.cdnvideo.ru/media/assets/assetfile/dd32b85c0127a322157f76ee4069e6f6.gif");
   background-repeat: no-repeat;
   background-position: center;
   margin: -100px 0 0 -100px;
