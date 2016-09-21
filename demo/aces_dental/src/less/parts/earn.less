@@ -1,0 +1,132 @@
+.bns_earn {
+  float: left;
+  width: 100%;
+  background-color: @white-bg;
+  h2 {
+    color: @text-black;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: 'Crimson';
+    line-height: 46px;
+    width: 100%;
+    float: left;
+    margin: 0;
+    font-weight: 600;
+    box-sizing: border-box;
+    padding-left: 20px;
+  }
+  h3 {
+    color: @text-black;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: 'Crimson';
+    line-height: 16px;
+    width: 100%;
+    float: left;
+    margin: 0;
+    font-weight: 600;
+    box-sizing: border-box;
+    padding-left: 20px;
+    margin: 0;
+  }
+  .bns_earn_main {
+    float: left;
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 0 11px;
+    margin-top: 24px;
+    .bns_earn_item {
+      float: left;
+      display: inline-block;
+      width: 320px;
+      height: 104px;
+      border: 1px solid @block-bg;
+      margin-right:11px;
+      margin-left: 11px;
+      margin-bottom:22px;
+      -webkit-transition: all 300ms ease;
+      -moz-transition: all 300ms ease;
+      -ms-transition: all 300ms ease;
+      -o-transition: all 300ms ease;
+      transition: all 300ms ease;
+      .bns_earn_item_left {
+        float: left;
+        width: 30%;
+        height: 100%;
+        text-align: center;
+        position: relative;
+        img {
+          vertical-align: middle;
+        }
+        &:before {
+          vertical-align: middle;
+          height: 100%;
+          display: inline-block;
+          content: '';
+        }
+        &:after {
+          position: absolute;
+          width: 1px;
+          height: 80%;
+          top:10%;
+          right: 0px;
+          background-color: @text-green;
+          content: '';
+          display: block;
+        }
+      }
+      &:hover {
+        .bns_earn_item_right {
+          .bns_earn_btn {
+            opacity: 1;
+          }
+        }
+      }
+      .bns_earn_item_right {
+        float: left;
+        width: 70%;
+        height: 100%;
+        box-sizing: border-box;
+        position: relative;
+        padding-left: 21px;
+        .bns_earn_btn {
+          position: absolute;
+          left: 10%;
+          width: 80%;
+          top:50%;
+          margin-top: -28px;
+          opacity: 0;
+          font-family: Arial;
+          -webkit-transition: all 300ms ease;
+          -moz-transition: all 300ms ease;
+          -ms-transition: all 300ms ease;
+          -o-transition: all 300ms ease;
+          transition: all 300ms ease;
+        }
+        .bns_earn_point {
+          width: 100%;
+          text-align: left;
+          display: inline-block;
+          color: @text-green;
+          font-size: 15px;
+          font-family: 'Crimson';
+          font-weight: 600;
+          float: left;
+        }
+        .bns_earn_name {
+          font-family: 'Crimson';
+          font-weight: 600;
+          margin-top: 30px;
+          font-size: 14px;
+          color:@text-black;
+          margin-bottom: 5px;
+          display: inline-block;
+          width: 100%;
+          float: left;
+          text-align: left;
+        }
+      }
+    }
+  }
+}

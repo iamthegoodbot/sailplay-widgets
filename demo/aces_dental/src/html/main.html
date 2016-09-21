@@ -1,0 +1,274 @@
+<div class="sailplay_wrapper" data-ng-show="global.loaded">
+
+    <div class="bns_overlay js_over_login" data-ng-if="!global.auth"
+         data-ng-style="{ display:  (!global.auth ? 'block' : 'none')}">
+        <div class="bns_overlay_inner oi_login">
+            <div class="oi_top">
+                <span>Log in</span>
+            </div>
+            <iframe frameborder="0" data-sp-auth="global.remote_login_options"></iframe>
+        </div>
+    </div>
+
+    <div class="bns_overlay js_over_prof" data-ng-cloak data-sailplay-profile-edit
+         data-ng-style="{ display:  (show ? 'block' : 'none')}">
+        <div class="bns_overlay_inner fil_prof">
+            <div class="oi_top">
+                <span class="bns_over_head">Profile</span>
+                <span class="bns_over_subhead">Update your information</span>
+            </div>
+            <form novalidate name="profile">
+                <div class="bns_input_block">
+                    <label>Name</label>
+                    <input type="text" placeholder="Last Name" class="inp_name" data-ng-model="form.lastName"
+                           required>
+                    <input type="text" placeholder="First Name" class="inp_name" data-ng-model="form.firstName"
+                           required>
+                    <!--<span class="bns_err">Invalid Credentials</span>-->
+                </div>
+                <div class="bns_input_block ">
+                    <label>Email</label>
+                    <input type="email" placeholder="Email" data-ng-model="form.addEmail" required>
+                    <!--<span class="bns_err">Invalid Credentials</span>-->
+                </div>
+                <div class="bns_input_block ">
+                    <label>Phone</label>
+                    <input type="text" placeholder="+1-___-___-__-__" data-ng-model="form.addPhone">
+                    <!--<span class="bns_err">Invalid Credentials</span>-->
+                </div>
+                <div class="bns_input_block ">
+                    <label>Gender</label>
+                    <div class="bns_check">
+                        <input type="radio" id="m" value="1" name="gen" data-ng-model="form.sex">
+                        <label for="m">Male</label>
+                        <input type="radio" id="f" value="2" name="gen" data-ng-model="form.sex">
+                        <label for="f">Female</label>
+                    </div>
+                </div>
+                <div class="bns_input_block">
+
+                    <span class="ib_label_text">
+                        Birthdate
+                    </span>
+
+                    <date-picker data-model="form.birthDate"></date-picker>
+
+                </div>
+                <div class="bns_input_block">
+                    <a href="#" class="bns_btn bns_btn_left"
+                       data-ng-click="$event.preventDefault();close();">Cancel</a>
+                    <a href="#" class="bns_btn bns_btn_right" data-ng-class="{disabled : profile.$invalid}"
+                       data-ng-click="$event.preventDefault();save(profile);">Update</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="bns_overlay js_over_hist" data-ng-cloak data-sailplay-history
+         data-ng-style="{ display:  (show ? 'block' : 'none')}">
+        <div class="bns_overlay_inner oi_hist">
+            <div class="oi_top">
+                <span class="bns_over_head">History</span>
+                <span class="bns_over_subhead">History of transactions</span>
+            </div>
+            <div class="hist_main" data-ng-if="history && history()">
+
+                <div class="hist_item" data-dir-paginate="item in history() | itemsPerPage:5"
+                     data-pagination-id="history_pages">
+                    <span class="hist_date" data-ng-bind="item.action_date | date:'medium'"></span>
+                    <span class="hist_name">
+                        <strong data-ng-bind="item | history_item"></strong>
+                    </span>
+                    <span class="hist_point" data-ng-class="{hist_point_minus: item.points_delta < 0 }"
+                          data-ng-bind="(item.points_delta < 0 ? '' : '+ ') + (item.points_delta | number) + ' Smile Points'"></span>
+                </div>
+
+                <dir-pagination-controls data-max-size="5" data-pagination-id="history_pages"
+                                         data-template-url="/html/ui/ui.pagination.controls.html"
+                                         data-auto-hide="true"></dir-pagination-controls>
+
+            </div>
+            <div class="bns_input_block">
+                <a href="#" class="bns_btn bns_btn_center" data-ng-click="$event.preventDefault();show = null;">Back</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="bns_inner_block" data-ng-if="global.auth">
+        <div class="bns_top_img">
+            <div class="bns_top_text">
+                <h2>Stress Less and Smile More<br>
+                    Aces Dental Loyalty Rewards Program! </h2>
+                <div class="bns_top_text_icon">
+                    <span class="btti1">For every dollar you and your insurance company spend towards your treatment get points!</span>
+                    <span class="btti2">Redeem points for gift cards at major retailers or Amazon.com!</span>
+                    <span class="btti3">Get rewarded with points for interacting with us on Social Media!</span>
+                </div>
+            </div>
+        </div>
+        <div class="bns_top" data-ng-cloak data-sailplay-profile data-ng-show="user && user()">
+            <div class="bns_top_left">
+                <div class="bns_ava">
+                    <div class="ava">
+                        <img data-ng-src="{{ user().user.pic | sailplay_pic }}" alt="user().user.name || 'No name'">
+                    </div>
+                    <a href="#" class="ava_logout" data-ng-click="$event.preventDefault();logout();">Logout</a>
+                </div>
+                <div class="bns_prof_info">
+                    <div class="bns_name" data-ng-bind="user().user.name || 'No name'"></div>
+                    <div class="bns_email" data-ng-bind="user().user.email || 'No email'"></div>
+                    <div class="bns_phone" data-ng-bind="user().user.phone || 'No phone'"></div>
+                    <a href="#" class="bns_btn bns_btn_open_prof"
+                       data-ng-click="$event.preventDefault();edit_profile();">Update your profile</a>
+                </div>
+            </div>
+            <div class="bns_top_right">
+                <span class="bns_num_point">
+                    <strong data-ng-bind="user().user_points.confirmed | number"></strong>
+                     Smile Points
+                </span>
+                <a href="#" class="bns_btn bns_btn_opne_hist" data-ng-click="$event.preventDefault();show_history();">View
+                    history</a>
+            </div>
+        </div>
+        <div class="bns_gift" data-ng-cloak data-sailplay-gifts>
+            <h2>Gifts</h2>
+            <div class="bns_gift_main">
+
+                <div class="bns_gift_item" data-ng-repeat="gift in gifts()" data-gifts-slider>
+                    <div class="bns_gift_item_img">
+                        <img data-ng-src="{{ gift.thumbs.url_250x250 | sailplay_pic }}"
+                             alt="{{ gift.name }}">
+                    </div>
+                    <span class="bns_gift_item_name" data-ng-bind="gift.name"></span>
+                    <span class="bns_gift_item_point" data-ng-bind="gift.points + ' Smile Points'"></span>
+                    <a href="#" class="bns_btn"
+                       data-ng-click="$event.preventDefault();$parent.gift_open = gift;">Get</a>
+                </div>
+
+            </div>
+
+            <div class="bns_overlay js_over_gift" data-ng-if="gift_open"
+                 data-ng-style="{ display:  (gift_open ? 'block' : 'none')}">
+                <div class="bns_overlay_inner oi_login">
+                    <div class="oi_top">
+                        <span>Are you sure?</span>
+                    </div>
+                    <div class="sure_main">
+                        <div class="bns_gift_item">
+                            <div class="bns_gift_item_img">
+                                <img data-ng-src="{{ $parent.gift_open.thumbs.url_250x250 | sailplay_pic }}"
+                                     alt="{{ $parent.gift_open.name }}">
+                            </div>
+                            <span class="bns_gift_item_name" data-ng-bind="$parent.gift_open.name"></span>
+                            <span class="bns_gift_item_point"
+                                  data-ng-bind="$parent.gift_open.points + ' Smile Points'"></span>
+                        </div>
+                    </div>
+                    <div class="bns_input_block">
+                        <a href="#" class="bns_btn bns_btn_left js_open_sucs"
+                           data-ng-class="{disabled : user().user_points.confirmed < gift.points}"
+                           data-ng-click="$event.preventDefault();get_gift($parent.gift_open);">Yes, get!</a>
+                        <a href="#" class="bns_btn bns_btn_right js_open_cansel"
+                           data-ng-click="$event.preventDefault();$parent.gift_open = null;">No, cancel</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bns_overlay js_over_sucsess" data-ng-if="gift_success"
+                 data-ng-style="{ display:  (gift_success ? 'block' : 'none')}">
+                <div class="bns_overlay_inner oi_login">
+                    <div class="oi_top">
+                        <span>Success</span>
+                    </div>
+                    <div class="sure_main">
+                        <div class="bns_gift_item">
+                            <div class="bns_gift_item_img">
+                                <img data-ng-src="{{ $parent.gift_success.thumbs.url_250x250 | sailplay_pic }}"
+                                     alt="{{ $parent.gift_success.name }}">
+                            </div>
+                    <span class="bns_gift_item_name ta_center">
+                        Contact our o ce to receive your gift!
+                    </span>
+                        </div>
+                    </div>
+                    <div class="bns_input_block">
+                        <a href="#" class="bns_btn bns_btn_close"
+                           data-ng-click="$parent.gift_open = null;$event.preventDefault();$parent.gift_success = null;">Close</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="bns_earn" data-ng-cloak data-sailplay-actions>
+            <h2>Earn more points by:</h2>
+            <h3>For every dollar spent, you’ll earn 1 smile point</h3>
+
+            <div class="bns_earn_main" data-ng-if="actions && actions()">
+
+                <div class="bns_earn_item" data-ng-repeat="action in actions().actions | filter:check_in_list">
+                    <div class="bns_earn_item_left">
+                        <img data-ng-src="{{ action_data(action).pic }}" alt="{{ action_data(action).name }}">
+                    </div>
+                    <div class="bns_earn_item_right">
+                        <span class="bns_earn_name" data-ng-bind="action_data(action).name"></span>
+                        <span class="bns_earn_point" data-ng-bind="(action.points | number) + ' Smile Points'"></span>
+                        <a href="#" class="bns_btn bns_earn_btn" data-sailplay-action data-action="action">Get</a>
+                    </div>
+                </div>
+
+                <div class="bns_earn_item" data-ng-repeat="review in reviews"
+                     data-ng-show="!check_review(review, exist())">
+                    <div class="bns_earn_item_left">
+                        <img src="https://d3sailplay.cdnvideo.ru/media/assets/assetfile/52f3aa5849849e22de2c2901e4bec460.png"
+                             alt="{{ review.name }}">
+                    </div>
+                    <div class="bns_earn_item_right">
+                        <span class="bns_earn_name" data-ng-bind="review.name"></span>
+                        <span class="bns_earn_point" data-ng-bind="review.points + ' Smile Points'"></span>
+                        <a href="#" class="bns_btn bns_earn_btn"
+                           data-ng-click="$event.preventDefault();$parent.$parent.open_review = review;">Get</a>
+                    </div>
+                </div>
+
+                <div class="bns_earn_item">
+                    <div class="bns_earn_item_left">
+                        <img src="https://d3sailplay.cdnvideo.ru/media/assets/assetfile/52f3aa5849849e22de2c2901e4bec460.png"
+                             alt="Edit Profile">
+                    </div>
+                    <div class="bns_earn_item_right">
+                        <span class="bns_earn_name">Edit Profile</span>
+                        <a href="#" class="bns_btn bns_earn_btn"
+                           data-ng-click="$event.preventDefault();edit_profile();">Edit</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="bns_overlay" data-ng-if="open_review"
+                 data-ng-style="{ display:  ($parent.open_review ? 'block' : 'none')}">
+                <div class="bns_overlay_inner review">
+                    <div class="oi_top">
+                        <span data-ng-bind="$parent.open_review.name"></span>
+                    </div>
+                    <div class="sure_main">
+
+                        <a href="#" class="bns_btn bns_review"
+                           data-ng-repeat="button in $parent.open_review.buttons"
+                           data-ng-show="!check_tag(button.tag, exist())"
+                           data-ng-click="$event.preventDefault();link(button);" data-ng-bind="button.name"></a>
+
+                    </div>
+                    <div class="bns_input_block">
+                        <a href="#" class="bns_btn bns_btn_close"
+                           data-ng-click="$event.preventDefault();$parent.open_review = null;">Close</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <notify-popup></notify-popup>
+
+</div>
