@@ -81,6 +81,12 @@
 
       };
 
+      self.reset = function(){
+
+        data = {};
+
+      }
+
     })
 
     .service('tagHelper', function () {

@@ -18,6 +18,7 @@
 
       $rootScope.remote_login_options = {
         background: 'transparent',
+        lang: 'en',
         disabled_options: ['socials', 'agreement']
       };
 
@@ -90,7 +91,7 @@
 
       sp.on('tags.add.success', function () {
 
-        setTimeout(function(){
+        setTimeout(function () {
 
           $rootScope.$apply(loadData);
 
@@ -135,9 +136,20 @@
         loadData();
       });
 
+      function getTimeZone() {
+        var offset = new Date().getTimezoneOffset(), o = Math.abs(offset);
+        return (offset < 0 ? "+" : "-") + ("00" + Math.floor(o / 60)).slice(-2) + ":" + ("00" + (o % 60)).slice(-2);
+      }
+
       function loadData() {
 
-        $(".bns_gift_main").slick('unslick');
+        sp_api.reset();
+
+        if ($(".bns_gift_main").length) {
+
+          $(".bns_gift_main.slick-initialized").slick('unslick');
+
+        }
 
         sp_api.call('load.actions.list');
 
@@ -145,7 +157,7 @@
 
         sp_api.call('load.gifts.list', {verbose: 1});
 
-        sp_api.call('load.user.history');
+        sp_api.call('load.user.history', {tz: getTimeZone()});
 
         if (TAGS) sp_api.call('tags.exist', {tags: TAGS});
 

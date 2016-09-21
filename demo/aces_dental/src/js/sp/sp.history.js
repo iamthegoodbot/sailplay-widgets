@@ -55,7 +55,12 @@
       "custom_action": "Extra"
     })
 
-    .filter('history_item', function (history_texts) {
+    .constant('socialList', {
+      "gp": "Google +",
+      "fb": "Facebook"
+    })
+
+    .filter('history_item', function (history_texts, socialList) {
 
       return function (historyItem) {
         switch (historyItem.action) {
@@ -68,13 +73,13 @@
           case 'sharing':
             switch (historyItem.social_action) {
               case 'like':
-                return history_texts.enter_group + historyItem.social_type;
+                return history_texts.enter_group + socialList[historyItem.social_type] || historyItem.social_type;
               case 'purchase':
-                return history_texts.share_purchase + historyItem.social_type;
+                return history_texts.share_purchase + socialList[historyItem.social_type] || historyItem.social_type;
               case 'partner_page':
-                return history_texts.social_share + historyItem.social_type;
+                return history_texts.social_share + socialList[historyItem.social_type] || historyItem.social_type;
               case 'badge':
-                return history_texts.share_badge + historyItem.social_type;
+                return history_texts.share_badge + socialList[historyItem.social_type] || historyItem.social_type;
             }
         }
         return history_texts[historyItem.action];

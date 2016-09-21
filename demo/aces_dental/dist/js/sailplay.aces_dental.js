@@ -2345,7 +2345,7 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/html/main.html',
-    '<div class="sailplay_wrapper" data-ng-show="global.loaded"><div class="bns_overlay js_over_login" data-ng-if="!global.auth" data-ng-style="{ display: (!global.auth ? \'block\' : \'none\')}"><div class="bns_overlay_inner oi_login"><div class="oi_top"><span>Log in</span></div><iframe frameborder="0" data-sp-auth="global.remote_login_options"></iframe></div></div><div class="bns_overlay js_over_prof" data-ng-cloak="" data-sailplay-profile-edit="" data-ng-style="{ display: (show ? \'block\' : \'none\')}"><div class="bns_overlay_inner fil_prof"><div class="oi_top"><span class="bns_over_head">Profile</span> <span class="bns_over_subhead">Update your information</span></div><form novalidate="" name="profile"><div class="bns_input_block"><label>Name</label> <input type="text" placeholder="Last Name" class="inp_name" data-ng-model="form.lastName" required=""> <input type="text" placeholder="First Name" class="inp_name" data-ng-model="form.firstName" required=""></div><div class="bns_input_block"><label>Email</label> <input type="email" placeholder="Email" data-ng-model="form.addEmail" required=""></div><div class="bns_input_block"><label>Phone</label> <input type="text" placeholder="+1-___-___-__-__" data-ng-model="form.addPhone"></div><div class="bns_input_block"><label>Gender</label><div class="bns_check"><input type="radio" id="m" value="1" name="gen" data-ng-model="form.sex"> <label for="m">Male</label> <input type="radio" id="f" value="2" name="gen" data-ng-model="form.sex"> <label for="f">Female</label></div></div><div class="bns_input_block"><span class="ib_label_text">Birthdate</span><date-picker data-model="form.birthDate"></date-picker></div><div class="bns_input_block"><a href="#" class="bns_btn bns_btn_left" data-ng-click="$event.preventDefault();close();">Cancel</a> <a href="#" class="bns_btn bns_btn_right" data-ng-class="{disabled : profile.$invalid}" data-ng-click="$event.preventDefault();save(profile);">Update</a></div></form></div></div><div class="bns_overlay js_over_hist" data-ng-cloak="" data-sailplay-history="" data-ng-style="{ display: (show ? \'block\' : \'none\')}"><div class="bns_overlay_inner oi_hist"><div class="oi_top"><span class="bns_over_head">History</span> <span class="bns_over_subhead">History of transactions</span></div><div class="hist_main" data-ng-if="history && history()"><div class="hist_item" data-dir-paginate="item in history() | itemsPerPage:5" data-pagination-id="history_pages"><span class="hist_date" data-ng-bind="item.action_date | date:\'medium\'"></span> <span class="hist_name"><strong data-ng-bind="item | history_item"></strong></span> <span class="hist_point" data-ng-class="{hist_point_minus: item.points_delta < 0 }" data-ng-bind="(item.points_delta < 0 ? \'\' : \'+ \') + (item.points_delta | number) + \' Smile Points\'"></span></div><dir-pagination-controls data-max-size="5" data-pagination-id="history_pages" data-template-url="/html/ui/ui.pagination.controls.html" data-auto-hide="true"></dir-pagination-controls></div><div class="bns_input_block"><a href="#" class="bns_btn bns_btn_center" data-ng-click="$event.preventDefault();show = null;">Back</a></div></div></div><div class="bns_inner_block" data-ng-if="global.auth"><div class="bns_top_img"><div class="bns_top_text"><h2>Stress Less and Smile More<br>Aces Dental Loyalty Rewards Program!</h2><div class="bns_top_text_icon"><span class="btti1">For every dollar you and your insurance company spend towards your treatment get points!</span> <span class="btti2">Redeem points for gift cards at major retailers or Amazon.com!</span> <span class="btti3">Get rewarded with points for interacting with us on Social Media!</span></div></div></div><div class="bns_top" data-ng-cloak="" data-sailplay-profile="" data-ng-show="user && user()"><div class="bns_top_left"><div class="bns_ava"><div class="ava"><img data-ng-src="{{ user().user.pic | sailplay_pic }}" alt="user().user.name || \'No name\'"></div><a href="#" class="ava_logout" data-ng-click="$event.preventDefault();logout();">Logout</a></div><div class="bns_prof_info"><div class="bns_name" data-ng-bind="user().user.name || \'No name\'"></div><div class="bns_email" data-ng-bind="user().user.email || \'No email\'"></div><div class="bns_phone" data-ng-bind="user().user.phone || \'No phone\'"></div><a href="#" class="bns_btn bns_btn_open_prof" data-ng-click="$event.preventDefault();edit_profile();">Update your profile</a></div></div><div class="bns_top_right"><span class="bns_num_point"><strong data-ng-bind="user().user_points.confirmed | number"></strong> Smile Points</span> <a href="#" class="bns_btn bns_btn_opne_hist" data-ng-click="$event.preventDefault();show_history();">View history</a></div></div><div class="bns_gift" data-ng-cloak="" data-sailplay-gifts=""><h2>Gifts</h2><div class="bns_gift_main"><div class="bns_gift_item" data-ng-repeat="gift in gifts()" data-gifts-slider=""><div class="bns_gift_item_img"><img data-ng-src="{{ gift.thumbs.url_250x250 | sailplay_pic }}" alt="{{ gift.name }}"></div><span class="bns_gift_item_name" data-ng-bind="gift.name"></span> <span class="bns_gift_item_point" data-ng-bind="gift.points + \' Smile Points\'"></span> <a href="#" class="bns_btn" data-ng-click="$event.preventDefault();$parent.gift_open = gift;">Get</a></div></div><div class="bns_overlay js_over_gift" data-ng-if="gift_open" data-ng-style="{ display: (gift_open ? \'block\' : \'none\')}"><div class="bns_overlay_inner oi_login"><div class="oi_top"><span>Are you sure?</span></div><div class="sure_main"><div class="bns_gift_item"><div class="bns_gift_item_img"><img data-ng-src="{{ $parent.gift_open.thumbs.url_250x250 | sailplay_pic }}" alt="{{ $parent.gift_open.name }}"></div><span class="bns_gift_item_name" data-ng-bind="$parent.gift_open.name"></span> <span class="bns_gift_item_point" data-ng-bind="$parent.gift_open.points + \' Smile Points\'"></span></div></div><div class="bns_input_block"><a href="#" class="bns_btn bns_btn_left js_open_sucs" data-ng-class="{disabled : user().user_points.confirmed < gift.points}" data-ng-click="$event.preventDefault();get_gift($parent.gift_open);">Yes, get!</a> <a href="#" class="bns_btn bns_btn_right js_open_cansel" data-ng-click="$event.preventDefault();$parent.gift_open = null;">No, cancel</a></div></div></div><div class="bns_overlay js_over_sucsess" data-ng-if="gift_success" data-ng-style="{ display: (gift_success ? \'block\' : \'none\')}"><div class="bns_overlay_inner oi_login"><div class="oi_top"><span>Success</span></div><div class="sure_main"><div class="bns_gift_item"><div class="bns_gift_item_img"><img data-ng-src="{{ $parent.gift_success.thumbs.url_250x250 | sailplay_pic }}" alt="{{ $parent.gift_success.name }}"></div><span class="bns_gift_item_name ta_center">Contact our o ce to receive your gift!</span></div></div><div class="bns_input_block"><a href="#" class="bns_btn bns_btn_close" data-ng-click="$parent.gift_open = null;$event.preventDefault();$parent.gift_success = null;">Close</a></div></div></div></div><div class="bns_earn" data-ng-cloak="" data-sailplay-actions=""><h2>Earn more points by:</h2><h3>For every dollar spent, you’ll earn 1 smile point</h3><div class="bns_earn_main" data-ng-if="actions && actions()"><div class="bns_earn_item" data-ng-repeat="action in actions().actions | filter:check_in_list"><div class="bns_earn_item_left"><img data-ng-src="{{ action_data(action).pic }}" alt="{{ action_data(action).name }}"></div><div class="bns_earn_item_right"><span class="bns_earn_name" data-ng-bind="action_data(action).name"></span> <span class="bns_earn_point" data-ng-bind="(action.points | number) + \' Smile Points\'"></span> <a href="#" class="bns_btn bns_earn_btn" data-sailplay-action="" data-action="action">Get</a></div></div><div class="bns_earn_item" data-ng-repeat="review in reviews" data-ng-show="!check_review(review, exist())"><div class="bns_earn_item_left"><img src="https://d3sailplay.cdnvideo.ru/media/assets/assetfile/52f3aa5849849e22de2c2901e4bec460.png" alt="{{ review.name }}"></div><div class="bns_earn_item_right"><span class="bns_earn_name" data-ng-bind="review.name"></span> <span class="bns_earn_point" data-ng-bind="review.points + \' Smile Points\'"></span> <a href="#" class="bns_btn bns_earn_btn" data-ng-click="$event.preventDefault();$parent.$parent.open_review = review;">Get</a></div></div><div class="bns_earn_item"><div class="bns_earn_item_left"><img src="https://d3sailplay.cdnvideo.ru/media/assets/assetfile/52f3aa5849849e22de2c2901e4bec460.png" alt="Edit Profile"></div><div class="bns_earn_item_right"><span class="bns_earn_name">Edit Profile</span> <a href="#" class="bns_btn bns_earn_btn" data-ng-click="$event.preventDefault();edit_profile();">Edit</a></div></div></div><div class="bns_overlay" data-ng-if="open_review" data-ng-style="{ display: ($parent.open_review ? \'block\' : \'none\')}"><div class="bns_overlay_inner review"><div class="oi_top"><span data-ng-bind="$parent.open_review.name"></span></div><div class="sure_main"><a href="#" class="bns_btn bns_review" data-ng-repeat="button in $parent.open_review.buttons" data-ng-show="!check_tag(button.tag, exist())" data-ng-click="$event.preventDefault();link(button);" data-ng-bind="button.name"></a></div><div class="bns_input_block"><a href="#" class="bns_btn bns_btn_close" data-ng-click="$event.preventDefault();$parent.open_review = null;">Close</a></div></div></div></div></div><notify-popup></notify-popup></div>');
+    '<div class="sailplay_wrapper" data-ng-show="global.loaded"><div class="bns_overlay js_over_login" data-ng-if="!global.auth" data-ng-style="{ display: (!global.auth ? \'block\' : \'none\')}"><div class="bns_overlay_inner oi_login"><div class="oi_top"><span>Log in</span></div><iframe frameborder="0" data-sp-auth="global.remote_login_options"></iframe></div></div><div class="bns_overlay js_over_prof" data-ng-cloak="" data-sailplay-profile-edit="" data-ng-style="{ display: (show ? \'block\' : \'none\')}"><div class="bns_overlay_inner fil_prof"><div class="oi_top"><span class="bns_over_head">Profile</span> <span class="bns_over_subhead">Update your information</span></div><form novalidate="" name="profile"><div class="bns_input_block"><label>Name</label> <input type="text" placeholder="Last Name" class="inp_name" data-ng-model="form.lastName" required=""> <input type="text" placeholder="First Name" class="inp_name" data-ng-model="form.firstName" required=""></div><div class="bns_input_block"><label>Email</label> <input type="email" placeholder="Email" data-ng-model="form.addEmail" required=""></div><div class="bns_input_block"><label>Phone</label> <input type="text" placeholder="+1-___-___-__-__" data-ng-model="form.addPhone" required=""></div><div class="bns_input_block"><label>Gender</label><div class="bns_check"><input type="radio" id="m" value="1" name="gen" data-ng-model="form.sex"> <label for="m">Male</label> <input type="radio" id="f" value="2" name="gen" data-ng-model="form.sex"> <label for="f">Female</label></div></div><div class="bns_input_block"><span class="ib_label_text">Birthdate</span><date-picker data-model="form.birthDate"></date-picker></div><div class="bns_input_block"><a href="#" class="bns_btn bns_btn_left" data-ng-click="$event.preventDefault();close();">Cancel</a> <a href="#" class="bns_btn bns_btn_right" data-ng-class="{disabled : profile.$invalid}" data-ng-click="$event.preventDefault();save(profile);">Update</a></div></form></div></div><div class="bns_overlay js_over_hist" data-ng-cloak="" data-sailplay-history="" data-ng-style="{ display: (show ? \'block\' : \'none\')}"><div class="bns_overlay_inner oi_hist"><div class="oi_top"><span class="bns_over_head">History</span> <span class="bns_over_subhead">History of transactions</span></div><div class="hist_main" data-ng-if="history && history()"><div class="hist_item" data-dir-paginate="item in history() | itemsPerPage:5" data-pagination-id="history_pages"><span class="hist_date" data-ng-bind="item.action_date | date:\'medium\'"></span> <span class="hist_name"><strong data-ng-bind="item | history_item"></strong></span> <span class="hist_point" data-ng-class="{hist_point_minus: item.points_delta < 0 }" data-ng-bind="(item.points_delta < 0 ? \'\' : \'+ \') + (item.points_delta | number) + \' Smile Points\'"></span></div><dir-pagination-controls data-max-size="5" data-pagination-id="history_pages" data-template-url="/html/ui/ui.pagination.controls.html" data-auto-hide="true"></dir-pagination-controls></div><div class="bns_input_block"><a href="#" class="bns_btn bns_btn_center" data-ng-click="$event.preventDefault();show = null;">Back</a></div></div></div><div class="bns_inner_block" data-ng-if="global.auth"><div class="bns_top_img"><div class="bns_top_text"><h2>Stress Less and Smile More<br>Aces Dental Loyalty Rewards Program!</h2><div class="bns_top_text_icon"><span class="btti1">Get points for every dollar you and your insurance company spend towards your treatment!</span> <span class="btti2">Redeem points for gift cards at major retailers or Amazon.com!</span> <span class="btti3">Get rewarded with points for interacting with us on Social Media!</span></div></div></div><div class="bns_top" data-ng-cloak="" data-sailplay-profile="" data-ng-show="user && user()"><div class="bns_top_left"><div class="bns_ava"><div class="ava"><img data-ng-src="{{ user().user.pic | sailplay_pic }}" alt="user().user.name || \'No name\'"></div><a href="#" class="ava_logout" data-ng-click="$event.preventDefault();logout();">Logout</a></div><div class="bns_prof_info"><div class="bns_name" data-ng-bind="user().user.name || \'No name\'"></div><div class="bns_email" data-ng-bind="user().user.email || \'No email\'"></div><div class="bns_phone" data-ng-bind="user().user.phone || \'No phone\'"></div><a href="#" class="bns_btn bns_btn_open_prof" data-ng-click="$event.preventDefault();edit_profile();">Update your profile</a></div></div><div class="bns_top_right"><span class="bns_num_point"><strong data-ng-bind="user().user_points.confirmed | number"></strong> Smile Points</span> <a href="#" class="bns_btn bns_btn_opne_hist" data-ng-click="$event.preventDefault();show_history();">View history</a></div></div><div class="bns_gift" data-ng-cloak="" data-sailplay-gifts=""><h2>Gifts</h2><div class="bns_gift_main"><div class="bns_gift_item" data-ng-repeat="gift in gifts()" data-gifts-slider=""><div class="bns_gift_item_img"><img data-ng-src="{{ gift.thumbs.url_250x250 | sailplay_pic }}" alt="{{ gift.name }}"></div><span class="bns_gift_item_name" data-ng-bind="gift.name"></span> <span class="bns_gift_item_point" data-ng-bind="(gift.points | number) + \' Smile Points\'"></span> <a href="#" class="bns_btn" data-ng-click="$event.preventDefault();$parent.gift_open = gift;">Get</a></div></div><div class="bns_overlay js_over_gift" data-ng-if="gift_open" data-ng-style="{ display: (gift_open ? \'block\' : \'none\')}"><div class="bns_overlay_inner oi_login"><div class="oi_top"><span>Are you sure?</span></div><div class="sure_main"><div class="bns_gift_item"><div class="bns_gift_item_img"><img data-ng-src="{{ $parent.gift_open.thumbs.url_250x250 | sailplay_pic }}" alt="{{ $parent.gift_open.name }}"></div><span class="bns_gift_item_name" data-ng-bind="$parent.gift_open.name"></span> <span class="bns_gift_item_point" data-ng-bind="($parent.gift_open.points | number) + \' Smile Points\'"></span></div></div><div class="bns_input_block"><a href="#" class="bns_btn bns_btn_left js_open_sucs" data-ng-class="{disabled : user().user_points.confirmed < gift.points}" data-ng-click="$event.preventDefault();get_gift($parent.gift_open);">Yes, get!</a> <a href="#" class="bns_btn bns_btn_right js_open_cansel" data-ng-click="$event.preventDefault();$parent.gift_open = null;">No, cancel</a></div></div></div><div class="bns_overlay js_over_sucsess" data-ng-if="gift_success" data-ng-style="{ display: (gift_success ? \'block\' : \'none\')}"><div class="bns_overlay_inner oi_login"><div class="oi_top"><span>Success</span></div><div class="sure_main"><div class="bns_gift_item"><div class="bns_gift_item_img"><img data-ng-src="{{ $parent.gift_success.thumbs.url_250x250 | sailplay_pic }}" alt="{{ $parent.gift_success.name }}"></div><span class="bns_gift_item_name ta_center">Congratulations! Contact our office to receive your gift!</span></div></div><div class="bns_input_block"><a href="#" class="bns_btn bns_btn_close" data-ng-click="$parent.gift_open = null;$event.preventDefault();$parent.gift_success = null;">Close</a></div></div></div></div><div class="bns_earn" data-ng-cloak="" data-sailplay-actions=""><h2>Earn more points by:</h2><h3>For every dollar spent, you’ll earn 1 smile point</h3><div class="bns_earn_main" data-ng-if="actions && actions()"><div class="bns_earn_item" data-ng-repeat="action in actions().actions | filter:check_in_list"><div class="bns_earn_item_left"><img data-ng-src="{{ action_data(action).pic }}" alt="{{ action_data(action).name }}"></div><div class="bns_earn_item_right"><span class="bns_earn_name" data-ng-bind="action_data(action).name"></span> <span class="bns_earn_point" data-ng-bind="(action.points | number) + \' Smile Points\'"></span> <a href="#" class="bns_btn bns_earn_btn" data-sailplay-action="" data-action="action">Get</a></div></div><div class="bns_earn_item" data-ng-repeat="review in reviews" data-ng-show="!check_review(review, exist())"><div class="bns_earn_item_left"><img data-ng-src="{{ review.pic }}" alt="{{ review.name }}"></div><div class="bns_earn_item_right"><span class="bns_earn_name" data-ng-bind="review.name"></span> <span class="bns_earn_point" data-ng-bind="review.points + \' Smile Points\'"></span> <a href="#" class="bns_btn bns_earn_btn" data-ng-click="$event.preventDefault();$parent.$parent.open_review = review;">Get</a></div></div></div><div class="bns_overlay" data-ng-if="open_review" data-ng-style="{ display: ($parent.open_review ? \'block\' : \'none\')}"><div class="bns_overlay_inner review"><div class="oi_top"><span data-ng-bind="$parent.open_review.name"></span></div><div class="sure_main"><a href="#" class="bns_btn bns_review" data-ng-repeat="button in $parent.open_review.buttons" data-ng-show="!check_tag(button.tag, exist())" data-ng-click="$event.preventDefault();link(button);" data-ng-bind="button.name"></a></div><div class="bns_input_block"><a href="#" class="bns_btn bns_btn_close" data-ng-click="$event.preventDefault();$parent.open_review = null;">Close</a></div></div></div></div></div><notify-popup></notify-popup></div>');
 }]);
 })();
 
@@ -2357,7 +2357,7 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/html/ui/ui.datepicker.html',
-    '<div data-ng-if="model"><div class="bns_select bns_select_date"><span data-ng-bind="$parent.model[0] || \'Day\'"></span><div class="bns_select_popup"><a href="#" data-ng-repeat="day in $parent.range(1, $parent.days[$parent.model[1] || 1])" data-ng-bind="day" data-ng-click="$event.preventDefault();$parent.$parent.model[0] = day;"></a></div></div><div class="bns_select bns_select_man"><span data-ng-bind="$parent.months[$parent.model[1]] || \'Month\'"></span><div class="bns_select_popup"><a href="#" data-ng-repeat="(key, value) in $parent.months track by $index" data-ng-bind="value" data-ng-click="$event.preventDefault();$parent.$parent.model[1] = +key;"></a></div></div><div class="bns_select bns_select_year"><span data-ng-bind="$parent.model[2] || \'Year\'"></span><div class="bns_select_popup"><a href="#" data-ng-repeat="year in $parent.years" data-ng-bind="year" data-ng-click="$event.preventDefault();$parent.$parent.model[2] = year;"></a></div></div></div>');
+    '<div data-ng-if="model"><div class="bns_select bns_select_date" style="width: 60px;"><span data-ng-bind="$parent.model[0] || \'Day\'"></span><div class="bns_select_popup"><a href="#" data-ng-repeat="day in $parent.range(1, $parent.days[$parent.model[1] || 1])" data-ng-bind="day" data-ng-click="$event.preventDefault();$parent.$parent.model[0] = day;"></a></div></div><div class="bns_select bns_select_man" style="width: 150px;"><span data-ng-bind="$parent.months[$parent.model[1]] || \'Month\'"></span><div class="bns_select_popup"><a href="#" data-ng-repeat="(key, value) in $parent.months track by $index" data-ng-bind="value" data-ng-click="$event.preventDefault();$parent.$parent.model[1] = +key;"></a></div></div><div class="bns_select bns_select_year" style="width: 60px;"><span data-ng-bind="$parent.model[2] || \'Year\'"></span><div class="bns_select_popup"><a href="#" data-ng-repeat="year in $parent.years" data-ng-bind="year" data-ng-click="$event.preventDefault();$parent.$parent.model[2] = year;"></a></div></div></div>');
 }]);
 })();
 
@@ -2439,6 +2439,7 @@ module.run(['$templateCache', function($templateCache) {
 
       $rootScope.remote_login_options = {
         background: 'transparent',
+        lang: 'en',
         disabled_options: ['socials', 'agreement']
       };
 
@@ -2511,7 +2512,7 @@ module.run(['$templateCache', function($templateCache) {
 
       sp.on('tags.add.success', function () {
 
-        setTimeout(function(){
+        setTimeout(function () {
 
           $rootScope.$apply(loadData);
 
@@ -2556,9 +2557,20 @@ module.run(['$templateCache', function($templateCache) {
         loadData();
       });
 
+      function getTimeZone() {
+        var offset = new Date().getTimezoneOffset(), o = Math.abs(offset);
+        return (offset < 0 ? "+" : "-") + ("00" + Math.floor(o / 60)).slice(-2) + ":" + ("00" + (o % 60)).slice(-2);
+      }
+
       function loadData() {
 
-        $(".bns_gift_main").slick('unslick');
+        sp_api.reset();
+
+        if ($(".bns_gift_main").length) {
+
+          $(".bns_gift_main.slick-initialized").slick('unslick');
+
+        }
 
         sp_api.call('load.actions.list');
 
@@ -2566,7 +2578,7 @@ module.run(['$templateCache', function($templateCache) {
 
         sp_api.call('load.gifts.list', {verbose: 1});
 
-        sp_api.call('load.user.history');
+        sp_api.call('load.user.history', {tz: getTimeZone()});
 
         if (TAGS) sp_api.call('tags.exist', {tags: TAGS});
 
@@ -5501,17 +5513,18 @@ module.run(['$templateCache', function($templateCache) {
     .constant('reviews_data', [
       {
         name: 'Leave a review on Google',
+        pic: 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/bbc394e07931fba967c4e73de13ada19.png',
         points: 100,
         buttons: [
           {
-            name: 'Review Southwest',
+            name: 'Review Rainbow',
             link: 'https://www.google.com/webhp?sourceid=chrome-instant&rlz=1C1OPRB_enUS508US508&ion=1&espv=2&ie=UTF-8#q=aces%20dental%20rainbow&lrd=0x80c8c7ae1622e309:0xa7d3e66393ad392c,3',
-            tag: 'G: Review Southwest'
+            tag: 'G: Review Rainbow'
           },
           {
-            name: 'Review Southeast',
+            name: 'Review Sunset',
             link: 'https://www.google.com/webhp?sourceid=chrome-instant&rlz=1C1OPRB_enUS508US508&ion=1&espv=2&ie=UTF-8#q=aces+dental+sunset&lrd=0x80c8cffd9b854223:0xf0175d958af0960d,3',
-            tag: 'G: Review Southeast'
+            tag: 'G: Review Sunset'
           },
           {
             name: 'Review Flagstaff',
@@ -5522,12 +5535,13 @@ module.run(['$templateCache', function($templateCache) {
       },
       {
         name: 'Leave a review on Yelp',
+        pic: 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/52f3aa5849849e22de2c2901e4bec460.png',
         points: 100,
         buttons: [
           {
-            name: 'Review Southwest',
+            name: 'Review Rainbow',
             link: 'https://www.yelp.com/biz/aces-braces-and-dental-las-vegas',
-            tag: 'Y: Review Southwest'
+            tag: 'Y: Review Rainbow'
           }
         ]
       }
@@ -5669,21 +5683,42 @@ module.run(['$templateCache', function($templateCache) {
 
           scope.get_gift = function (gift) {
 
-            if (scope.user().user_points.confirmed < gift.points) return;
+            if (scope.user().user_points.confirmed < gift.points) {
+
+              $rootScope.$broadcast('notify:show', {
+                title: 'Error',
+                text: 'Not enough Smile Points'
+              });
+
+              return;
+            }
 
             sp.send('gifts.purchase', {gift: gift});
 
-            sp.on('gifts.purchase.success', function () {
+          };
 
-              $rootScope.$apply(function () {
+          sp.on('gifts.purchase.success', function () {
 
-                scope.gift_success = gift;
+            $rootScope.$apply(function () {
 
+              scope.gift_success = angular.copy(scope.gift_open);
+
+            });
+
+          });
+
+          sp.on('gifts.purchase.error', function (res) {
+
+            $rootScope.$apply(function () {
+
+              $rootScope.$broadcast('notify:show', {
+                title: 'Error',
+                text: res.message
               });
 
-            })
+            });
 
-          };
+          });
 
         }
 
@@ -5750,7 +5785,12 @@ module.run(['$templateCache', function($templateCache) {
       "custom_action": "Extra"
     })
 
-    .filter('history_item', function (history_texts) {
+    .constant('socialList', {
+      "gp": "Google +",
+      "fb": "Facebook"
+    })
+
+    .filter('history_item', function (history_texts, socialList) {
 
       return function (historyItem) {
         switch (historyItem.action) {
@@ -5763,13 +5803,13 @@ module.run(['$templateCache', function($templateCache) {
           case 'sharing':
             switch (historyItem.social_action) {
               case 'like':
-                return history_texts.enter_group + historyItem.social_type;
+                return history_texts.enter_group + socialList[historyItem.social_type] || historyItem.social_type;
               case 'purchase':
-                return history_texts.share_purchase + historyItem.social_type;
+                return history_texts.share_purchase + socialList[historyItem.social_type] || historyItem.social_type;
               case 'partner_page':
-                return history_texts.social_share + historyItem.social_type;
+                return history_texts.social_share + socialList[historyItem.social_type] || historyItem.social_type;
               case 'badge':
-                return history_texts.share_badge + historyItem.social_type;
+                return history_texts.share_badge + socialList[historyItem.social_type] || historyItem.social_type;
             }
         }
         return history_texts[historyItem.action];
@@ -5860,6 +5900,12 @@ module.run(['$templateCache', function($templateCache) {
         sp.send(name, params, callback);
 
       };
+
+      self.reset = function(){
+
+        data = {};
+
+      }
 
     })
 
@@ -6338,7 +6384,7 @@ module.run(['$templateCache', function($templateCache) {
 
             $timeout(function () {
 
-              $('.bns_gift_main').slick({
+              $('.bns_gift_main').not('.slick-initialized').slick({
                 slidesToShow: 3,
                 slidesToScroll: 1,
                 slide: '.bns_gift_item',
@@ -6358,7 +6404,7 @@ module.run(['$templateCache', function($templateCache) {
                 ]
               });
 
-            }, 10);
+            }, 500);
 
           }
 

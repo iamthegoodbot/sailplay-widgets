@@ -64,9 +64,14 @@
   .bns_select {
     float: left;
     position: relative;
-    margin-right: 11px;
-    z-index:1;
+    margin-left: 5px;
+    z-index: 1;
     margin-bottom: 50px;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
     &:hover {
       .bns_select_popup {
         display: block;
@@ -78,7 +83,6 @@
       float: left;
       width: 100%;
       box-sizing: border-box;
-      padding: 0px 10px;
       text-align: center;
       background-color: transparent;
       border: 3px solid @btn-bg;

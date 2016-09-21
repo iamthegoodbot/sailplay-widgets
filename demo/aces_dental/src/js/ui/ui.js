@@ -100,7 +100,7 @@
 
             $timeout(function () {
 
-              $('.bns_gift_main').slick({
+              $('.bns_gift_main').not('.slick-initialized').slick({
                 slidesToShow: 3,
                 slidesToScroll: 1,
                 slide: '.bns_gift_item',
@@ -120,7 +120,7 @@
                 ]
               });
 
-            }, 10);
+            }, 500);
 
           }
 

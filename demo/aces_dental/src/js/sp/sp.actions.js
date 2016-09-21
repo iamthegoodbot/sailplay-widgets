@@ -30,17 +30,18 @@
     .constant('reviews_data', [
       {
         name: 'Leave a review on Google',
+        pic: 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/bbc394e07931fba967c4e73de13ada19.png',
         points: 100,
         buttons: [
           {
-            name: 'Review Southwest',
+            name: 'Review Rainbow',
             link: 'https://www.google.com/webhp?sourceid=chrome-instant&rlz=1C1OPRB_enUS508US508&ion=1&espv=2&ie=UTF-8#q=aces%20dental%20rainbow&lrd=0x80c8c7ae1622e309:0xa7d3e66393ad392c,3',
-            tag: 'G: Review Southwest'
+            tag: 'G: Review Rainbow'
           },
           {
-            name: 'Review Southeast',
+            name: 'Review Sunset',
             link: 'https://www.google.com/webhp?sourceid=chrome-instant&rlz=1C1OPRB_enUS508US508&ion=1&espv=2&ie=UTF-8#q=aces+dental+sunset&lrd=0x80c8cffd9b854223:0xf0175d958af0960d,3',
-            tag: 'G: Review Southeast'
+            tag: 'G: Review Sunset'
           },
           {
             name: 'Review Flagstaff',
@@ -51,12 +52,13 @@
       },
       {
         name: 'Leave a review on Yelp',
+        pic: 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/52f3aa5849849e22de2c2901e4bec460.png',
         points: 100,
         buttons: [
           {
-            name: 'Review Southwest',
+            name: 'Review Rainbow',
             link: 'https://www.yelp.com/biz/aces-braces-and-dental-las-vegas',
-            tag: 'Y: Review Southwest'
+            tag: 'Y: Review Rainbow'
           }
         ]
       }

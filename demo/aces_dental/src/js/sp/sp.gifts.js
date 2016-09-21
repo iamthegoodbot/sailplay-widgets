@@ -21,21 +21,42 @@
 
           scope.get_gift = function (gift) {
 
-            if (scope.user().user_points.confirmed < gift.points) return;
+            if (scope.user().user_points.confirmed < gift.points) {
+
+              $rootScope.$broadcast('notify:show', {
+                title: 'Error',
+                text: 'Not enough Smile Points'
+              });
+
+              return;
+            }
 
             sp.send('gifts.purchase', {gift: gift});
 
-            sp.on('gifts.purchase.success', function () {
+          };
 
-              $rootScope.$apply(function () {
+          sp.on('gifts.purchase.success', function () {
 
-                scope.gift_success = gift;
+            $rootScope.$apply(function () {
 
+              scope.gift_success = angular.copy(scope.gift_open);
+
+            });
+
+          });
+
+          sp.on('gifts.purchase.error', function (res) {
+
+            $rootScope.$apply(function () {
+
+              $rootScope.$broadcast('notify:show', {
+                title: 'Error',
+                text: res.message
               });
 
-            })
+            });
 
-          };
+          });
 
         }
 
