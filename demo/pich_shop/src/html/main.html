@@ -23,7 +23,7 @@
                 <div class="sp_hist-list__ttl">Ваши последние действия</div>
 
                 <div class="sp_hist-itm" data-ng-repeat="item in history() | limitTo:3">
-                    <div class="sp_hist-itm__img" style="background-image: url({{ item | history_image }});"></div>
+                    <div class="sp_hist-itm__img" style="background-image: url({{ item | history_image | img_folder }});"></div>
                     <div class="sp_hist-itm__inner">
                         <div class="sp_hist-itm__info" data-ng-bind="item.action_date | date:'d / MM / yyyy'"></div>
                         <div class="sp_hist-itm__info-row">
@@ -37,7 +37,7 @@
                 </div>
                 <!-- /item -->
 
-                <a href="history.html" class="sp_common-btn this-white sp_lkhist-btn">История действий</a>
+                <a data-ng-href="{{ global.config.pages.history }}" class="sp_common-btn this-white sp_lkhist-btn">История действий</a>
 
 
             </div>
@@ -62,10 +62,10 @@
                  data-ng-class="{ 'this-active' : getNum(user().user_points.confirmed + user().user_points.spent) >= $index }"
                  data-ng-style="{width : getWidth()}">
                 <div class="sp_status-icons__img">
-                    <img data-ng-src="{{ status.image.origin }}" alt="{{ status.name }}">
+                    <img data-ng-src="{{ status.image.origin | img_folder }}" alt="{{ status.name }}">
                 </div>
                 <div class="sp_status-icons__img this-active-img">
-                    <img data-ng-src="{{ status.image.active }}" alt="{{ status.name }}">
+                    <img data-ng-src="{{ status.image.active | img_folder }}" alt="{{ status.name }}">
                 </div>
                 <div class="sp_status-icons__text" data-ng-bind="status.name"></div>
             </div>
@@ -109,7 +109,7 @@
 
             </div>
 
-            <a href="gifts.html" class="sp_common-btn this-white sp_lkgifts-btn">Показать все подарки</a>
+            <a data-ng-href="{{ global.config.pages.gifts }}" class="sp_common-btn this-white sp_lkgifts-btn">Показать все подарки</a>
         </div>
         <!-- /items wr -->
 
@@ -121,7 +121,7 @@
 
         <div class="sp_tasks-sec__col" data-ng-repeat="action in actions().actions | filter:check_in_list">
             <div class="sp_tasks-cell">
-                <span class="sp_tasks-cell__icon" style="background-image: url({{ action_data(action).pic }});"></span>
+                <span class="sp_tasks-cell__icon" style="background-image: url({{ action_data(action).pic | img_folder }});"></span>
                     <span class="sp_tasks-cell__txt">
                         <span class="sp_tasks-cell__txt-in"
                               data-ng-bind="action_data(action).name"></span>
@@ -135,7 +135,7 @@
 
         <div class="sp_tasks-sec__col" data-ng-repeat="action in custom_action" data-ng-if="!action.disabled && exist && exist() && !(action.tag | sailplay_tag:exist())">
             <div class="sp_tasks-cell" data-ng-class="{ tag : action.type == 'tag'}">
-                <span class="sp_tasks-cell__icon" style="background-image: url({{ action.image}});"></span>
+                <span class="sp_tasks-cell__icon" style="background-image: url({{ action.image | img_folder }});"></span>
                 <span class="sp_tasks-cell__txt">
                     <span class="sp_tasks-cell__txt-in" data-ng-bind="action.name"></span>
                 </span>

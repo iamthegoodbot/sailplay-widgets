@@ -1,5 +1,7 @@
 <div class="sp_widget" data-ng-cloak data-ng-show="exist && exist()">
 
+    <a data-ng-href="{{ global.config.pages.main }}" class="sp_common-btn this-white back_to_main">Назад</a>
+
     <span data-ng-if="data.tag | sailplay_tag:exist()">Данный опрос уже пройден</span>
 
     <form class="sp_l-section sp_intview" data-ng-show="data && !(data.tag | sailplay_tag:exist())">

@@ -1362,3 +1362,6 @@
   color: #00a897;
   font-family: 'proxima_nova_bold', sans-serif;
 }
+.back_to_main {
+  width: 200px;
+}

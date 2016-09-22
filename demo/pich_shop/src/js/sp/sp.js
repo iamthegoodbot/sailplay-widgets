@@ -100,14 +100,27 @@
       }
     })
 
-    .filter('sailplay_tag', function(){
-      return function(tag, data){
+    .filter('sailplay_tag', function () {
+      return function (tag, data) {
         if (!tag || !data) return;
         var el = data.tags.filter(function (item) {
           return item.name === tag;
         })[0];
         return el && el.exist || false;
       }
+    })
+
+
+    .filter('img_folder', function ($rootScope) {
+
+      return function (pic_url) {
+
+        if (!pic_url) return '';
+
+        return $rootScope.config.imgPath ? $rootScope.config.imgPath + pic_url : pic_url;
+
+      };
+
     })
 
     .filter('sailplay_pic', function (sp) {
