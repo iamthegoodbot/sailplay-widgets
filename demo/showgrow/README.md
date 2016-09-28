@@ -5,10 +5,7 @@ Paste this code to the page in < head > section to load the script:
 
     <script type="text/javascript">
 
-        window._showgrow_config = {
-            partner_id: ' ** PARTNER_ID ** ',
-            auth_hash: ' ** AUTH_HASH ** '
-        };
+        window.PARTNER_ID = ** PARTNER_ID **;
 
         var _links = {
             js: 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/81c85081fbeee470eaf428e5ac79f12d.js',
