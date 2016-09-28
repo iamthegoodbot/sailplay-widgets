@@ -10,8 +10,8 @@ Paste this code to the page in < head > section to load the script:
             };
 
             var _links = {
-                js: 'dist/js/sailplay.aces_dental.js',
-                css: 'dist/css/sailplay.aces_dental.css'
+                js: 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/02dad0519796c243a224ce386718b595.js',
+                css: 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/13db7f19e1f47f589b83a38375364b00.css'
             };
 
             document.addEventListener('DOMContentLoaded', function () {
