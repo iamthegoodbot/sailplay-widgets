@@ -20,24 +20,34 @@
 @import "pages/common.less";
 @import "pages/forms.less";
 
+
 @import "pages/profile-edit.less";
 @import "pages/interview.less";
 @import "pages/gifts.less";
 @import "pages/history.less";
 @import "pages/lk.less";
 
-.back_to_main {
+.sp_lk_back {
   width: 200px;
+  margin: 10px 0;
+  text-decoration: none;
 }
 
-@media (max-width: @screen-md-max) {
+.sp_lk_edit {
+	margin-top: 20px;
 }
 
-@media (max-width: @screen-sm-max) {
-}
 
-@media (max-width: @screen-xs-max) {
-}
+		@media (max-width: @screen-md-max) {
+		}
+		@media (max-width: @screen-sm-max) {
+		}
+		@media (max-width: @screen-xs-max) {
+		}
+		@media (max-width: 600px) {
 
-@media (max-width: (@screen-xs-min - 1px)) {
-}
+			.popup_content {
+				width: 100%;
+			}
+
+		}

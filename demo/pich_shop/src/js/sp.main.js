@@ -1,333 +1,421 @@
 (function () {
 
-  angular.module('pichshop', ['core', 'ui', 'sp', 'templates'])
+		angular.module('pichshop', ['core', 'ui', 'sp', 'templates'])
 
-    .directive('sailplayPichshop', function ($rootScope, $locale) {
+				.directive('sailplayPichshop', function ($rootScope, $locale) {
 
-      return {
-        restrict: 'E',
-        replace: true,
-        scope: true,
-        templateUrl: '/html/main.html',
-        link: function (scope, element) {
+						return {
+								restrict: 'E',
+								replace: true,
+								scope: true,
+								templateUrl: '/html/main.html',
+								link: function (scope, element) {
 
-          scope.global = $rootScope;
+										scope.global = $rootScope;
 
-          $locale.NUMBER_FORMATS.GROUP_SEP = ' ';
+										$locale.NUMBER_FORMATS.GROUP_SEP = ' ';
 
-        }
-      }
+								}
+						}
 
-    })
+				})
 
-    .directive('sailplayHistory', function (sp_api, $rootScope, $locale, Status) {
+				.directive('sailplayHistory', function (sp_api, $rootScope, $locale, Status) {
 
-      return {
-        restrict: 'E',
-        replace: true,
-        scope: true,
-        templateUrl: '/html/history.html',
-        link: function (scope, element) {
+						return {
+								restrict: 'E',
+								replace: true,
+								scope: true,
+								templateUrl: '/html/history.html',
+								link: function (scope, element) {
 
-          scope.global = $rootScope;
+										scope.global = $rootScope;
 
-          $locale.NUMBER_FORMATS.GROUP_SEP = ' ';
+										$locale.NUMBER_FORMATS.GROUP_SEP = ' ';
 
-          scope.user = sp_api.data('load.user.info');
+										scope.user = sp_api.data('load.user.info');
 
-          scope.getNum = Status.getNum;
+										scope.getNum = Status.getNum;
 
-          scope.statusList = $rootScope.config.statusList;
+										scope.statusList = $rootScope.config.statusList;
 
-        }
-      }
+								}
+						}
 
-    })
+				})
 
-    .directive('sailplayProfile', function (sp, sp_api, $rootScope, $locale) {
+				.directive('sailplayProfile', function (sp, sp_api, $rootScope, $locale, $filter, ipCookie) {
 
-      return {
-        restrict: 'E',
-        replace: true,
-        scope: true,
-        templateUrl: '/html/profile.html',
-        link: function (scope, element) {
+						return {
+								restrict: 'E',
+								replace: true,
+								scope: true,
+								templateUrl: '/html/profile.html',
+								link: function (scope, element) {
 
-          var form = {
-            lastName: null,
-            firstName: null,
-            middleName: null,
-            sex: null,
-            addEmail: null,
-            addPhone: null,
-            address: null
-          };
+										var form = {
+												lastName: null,
+												firstName: null,
+												middleName: null,
+												sex: 1,
+												addEmail: null,
+												addPhone: null,
+												address: null
+										};
 
-          scope.data = null;
+										scope.sexList = [{id: 1, value : 1, label: 'Мужской'}, {id: 2, value : 2, label: 'Женский'}];
 
-          scope.form = angular.copy(form);
+										sp.on('load.user.info.success', function () {
 
-          scope.user = sp_api.data('load.user.info');
+												scope.form = {
+														lastName: scope.user && scope.user().user.last_name || null,
+														firstName: scope.user && scope.user().user.first_name || null,
+														middleName: scope.user && scope.user().user.middle_name ||  null,
+														sex: scope.user && scope.user().user.sex || 1,
+														addEmail: scope.user && scope.user().user.email ||  null,
+														addPhone: scope.user && scope.user().user.phone ||  null,
+														address: ipCookie('sailplay_address')
+												};
 
-          scope.exist = sp_api.data('tags.exist');
+												scope.$digest();
 
-          scope.global = $rootScope;
+										})
 
-          $locale.NUMBER_FORMATS.GROUP_SEP = ' ';
+										scope.data = null;
 
-          var id = sp.url_params() && SAILPLAY.url_params().id || null;
+										scope.form = angular.copy(form);
 
-          scope.data = $rootScope.config.customActions.filter(function (item) {
-            return item.type === 'form' && item.id == id
-          })[0];
+										scope.user = sp_api.data('load.user.info');
 
-          scope.canSubmit = function () {
+										scope.exist = sp_api.data('tags.exist');
 
-            if (
-              scope.form.lastName &&
-              scope.form.firstName &&
-              scope.form.middleName &&
-              scope.form.sex &&
-              scope.form.addEmail &&
-              scope.form.addPhone &&
-              scope.form.address
-            ) {
-              return true;
-            } else {
-              return false;
-            }
+										scope.global = $rootScope;
 
-          };
+										$locale.NUMBER_FORMATS.GROUP_SEP = ' ';
 
-          scope.submit = function () {
+										var id = sp.url_params() && SAILPLAY.url_params().id || null;
 
-            var data = angular.copy(scope.form);
+										scope.data = $rootScope.config && $rootScope.config.customActions.filter(function (item) {
+												return item.type === 'form' && item.id == id
+										})[0];
 
-            delete data.address;
+										scope.canSubmit = function () {
 
-            data.auth_hash = sp.config().auth_hash;
+												if (
+														scope.form.lastName &&
+														scope.form.firstName &&
+														scope.form.middleName &&
+														scope.form.sex &&
+														scope.form.addEmail &&
+														scope.form.addPhone &&
+														scope.form.address
+												) {
+														return true;
+												} else {
+														return false;
+												}
 
-            sp_api.call('user.update', data)
+										};
 
-          };
+										scope.submit = function () {
 
-          sp.on('user.update.success', function () {
+												var data = {};
 
-            var tags = {tags: []};
-            tags.tags.push(scope.data.tag);
+												if (scope.form.firstName !== scope.user().user.first_name) {
+														data.firstName = scope.form.firstName;
+												}
 
-            sp_api.call('tags.add', tags, function () {
+												if (scope.form.lastName !== scope.user().user.last_name) {
+														data.lastName = scope.form.lastName;
+												}
 
-              var variables = {"Адрес": scope.form.address};
+												if (scope.form.middleName !== scope.user().user.middle_name) {
+														data.middleName = scope.form.middleName;
+												}
 
-              sp_api.call('vars.add', {custom_vars: variables}, function () {
+												if (scope.form.sex !== scope.user().user.sex) {
+														data.sex = scope.form.sex;
+												}
 
-                scope.$apply(finish);
+												if (scope.form.addEmail !== scope.user().user.email) {
+														data.addEmail = scope.form.addEmail;
+												}
 
-              });
+												if (scope.form.addPhone !== scope.user().user.phone) {
+														data.addPhone = scope.form.addPhone;
+												}
 
-              scope.$digest();
+												if (!Object.keys(data).length) {
 
-            });
-            scope.$digest();
 
-          });
+														if(scope.form.address != ipCookie('sailplay_address')){
+																add_vars();
+														} else {
 
-          sp.on('user.update.error', function (res) {
+																$rootScope.$broadcast('notify.show', {
+																		title: 'Ошибка',
+																		header: 'Oooops!',
+																		text: 'Нет изменений'
+																});
 
-            var texts = {
-              '-200010': 'Такой e-mail уже используется',
-              '-200007': 'Такой телефон уже используется'
-            };
+														}
 
-            $rootScope.$broadcast('notify.show', {
-              title: 'Ошибка',
-              header: 'Oooops!',
-              text: (res && texts[res.status_code]) || res.message
-            });
+														return;
 
-            scope.$digest();
+												}
 
-          });
+												data.auth_hash = sp.config().auth_hash;
 
-          function finish() {
+												sp_api.call('user.update', data)
 
-            $rootScope.$broadcast('notify.show', {
-              title: 'Подтверждение',
-              header: 'ПОЗДРАВЛЯЕМ!',
-              text: 'Вы выполнили действие.'
-            });
+										};
 
-          }
+										function add_vars() {
 
+												var variables = {"Адрес": scope.form.address};
 
-        }
-      }
+												sp_api.call('vars.add', {custom_vars: variables}, function () {
 
-    })
+														ipCookie('sailplay_address', scope.form.address);
 
-    .directive('sailplayGifts', function (sp_api, $rootScope, $locale) {
+														scope.$apply(finish);
 
-      return {
-        restrict: 'E',
-        replace: true,
-        scope: true,
-        templateUrl: '/html/gifts.html',
-        link: function (scope, element) {
+												});
 
-          scope.global = $rootScope;
+										}
 
-          scope.user = sp_api.data('load.user.info');
+										sp.on('user.update.success', function () {
 
-          $locale.NUMBER_FORMATS.GROUP_SEP = ' ';
+														scope.$digest();
 
-        }
-      }
+														if ($filter('sailplay_tag')(scope.data.tag, scope.exist())) {
 
-    })
+																add_vars();
 
-    .directive('sailplayTest', function ($rootScope, $locale, sp, $timeout, sp_api) {
+																return;
 
-      return {
-        restrict: 'E',
-        replace: true,
-        scope: true,
-        templateUrl: '/html/test.html',
-        link: function (scope, element) {
+														}
 
-          scope.global = $rootScope;
+														var tags = {tags: []};
 
-          scope.exist = sp_api.data('tags.exist');
+														tags.tags.push(scope.data.tag);
 
-          $locale.NUMBER_FORMATS.GROUP_SEP = ' ';
+														sp_api.call('tags.add', tags, function () {
 
-          scope.step = 0;
+																add_vars();
+																scope.$digest();
 
-          scope.tags = [];
+														});
 
-          scope.vars = {};
+										});
 
-          scope.var_model = null;
+										sp.on('user.update.error', function (res) {
 
-          var id = sp.url_params() && SAILPLAY.url_params().id || null;
+												var texts = {
+														'-200010': 'Такой e-mail уже используется',
+														'-200007': 'Такой телефон уже используется'
+												};
 
-          scope.data = $rootScope.config.customActions.filter(function (item) {
-            return item.type === 'test' && item.id == id
-          })[0];
+												$rootScope.$broadcast('notify.show', {
+														title: 'Ошибка',
+														header: 'Oooops!',
+														text: (res && texts[res.status_code]) || res.message
+												});
 
-          if (scope.data) {
+												scope.$digest();
 
-            scope.tags.push(scope.data.tag);
+										});
 
-          } else {
+										function finish() {
 
-            $timeout(function () {
+												var data = {
+														title: 'Подтверждение',
+														header: 'ПОЗДРАВЛЯЕМ!',
+														text: 'Вы получили ' + scope.data.points + ' баллов за заполнение профиля'
+												};
 
-              $rootScope.$broadcast('notify.show', {
-                title: 'Ошибка',
-                header: 'Oooops!',
-                text: 'К сожалению, такого опроса не существует.'
-              });
+												if ($filter('sailplay_tag')(scope.data.tag, scope.exist())) {
 
-            }, 0)
+														data = {
+																title: 'Подтверждение',
+																header: 'Профиль',
+																text: 'Данные успешно обновлены.'
+														};
 
-          }
+												}
 
-          scope.isNext = function () {
-            if (!scope.data || !scope.data.data) return;
-            var empty_vaiable = false;
-            var result = scope.data.data[scope.step].answers.filter(function (item) {
-              if (item.model && item.variable && !scope.var_model) {
-                empty_vaiable = true;
-              }
-              return item.model;
-            }).length;
-            return result && !empty_vaiable;
-          };
+												$rootScope.$broadcast('notify.show', data);
 
-          scope.change = function (answer) {
-            var textarea = $('.js-toggle-textarea');
-            answer.model = !answer.model;
-            if (answer.model && scope.variable) {
+										}
 
-            }
-          };
 
-          scope.showTextArea = function () {
-            if (!scope.data || !scope.data.data) return;
-            var result = scope.data.data[scope.step].answers.filter(function (item) {
-              return item.model && item.variable;
-            }).length;
-            return result;
-          };
+								}
+						}
 
-          scope.next = function () {
+				})
 
-            scope.data.data[scope.step].answers.forEach(function (item) {
-              if (item.model) {
-                scope.tags.push(item.tag);
-                if (item.variable) {
-                  scope.vars[item.variable] = scope.var_model;
-                }
-              }
+				.directive('sailplayGifts', function (sp_api, $rootScope, $locale) {
 
-            });
+						return {
+								restrict: 'E',
+								replace: true,
+								scope: true,
+								templateUrl: '/html/gifts.html',
+								link: function (scope, element) {
 
-            if ((scope.step + 1) >= scope.data.data.length) {
-              send();
-            } else {
-              scope.step++;
-            }
+										scope.global = $rootScope;
 
-            scope.var_model = null;
+										scope.user = sp_api.data('load.user.info');
 
-          };
+										$locale.NUMBER_FORMATS.GROUP_SEP = ' ';
 
-          function send() {
+								}
+						}
 
-            function finish() {
+				})
 
-              $rootScope.$broadcast('notify.show', {
-                title: 'Подтверждение',
-                header: 'ПОЗДРАВЛЯЕМ!',
-                text: 'Вы прошли опрос.'
-              });
+				.directive('sailplayTest', function ($rootScope, $locale, sp, $timeout, sp_api) {
 
-              scope.data = null;
+						return {
+								restrict: 'E',
+								replace: true,
+								scope: true,
+								templateUrl: '/html/test.html',
+								link: function (scope, element) {
 
-            }
+										scope.global = $rootScope;
 
-            sp_api.call('tags.add', {tags: scope.tags}, function () {
+										scope.exist = sp_api.data('tags.exist');
 
-              if (Object.keys(scope.vars).length) {
-                sp_api.call('vars.add', {custom_vars: scope.vars}, function () {
-                  finish();
-                  scope.$digest();
-                })
-              } else {
-                finish()
-              }
-              scope.$digest();
+										$locale.NUMBER_FORMATS.GROUP_SEP = ' ';
 
-            });
+										scope.step = 0;
 
-          }
+										scope.tags = [];
 
-        }
-      }
+										scope.vars = {};
 
-    });
+										scope.var_model = null;
 
+										var id = sp.url_params() && SAILPLAY.url_params().id || null;
 
-  setTimeout(function () {
+										scope.data = $rootScope.config.customActions.filter(function (item) {
+												return item.type === 'test' && item.id == id
+										})[0];
 
-    var app_blocks = document.querySelectorAll('sailplay-pichshop, sailplay-history, sailplay-profile, sailplay-gifts, sailplay-test');
+										if (scope.data) {
 
-    app_blocks.forEach(function (item) {
-      angular.bootstrap(item, ['pichshop'])
-    });
+												scope.tags.push(scope.data.tag);
 
-  }, 0);
+										} else {
+
+												$timeout(function () {
+
+														$rootScope.$broadcast('notify.show', {
+																title: 'Ошибка',
+																header: 'Oooops!',
+																text: 'К сожалению, такого опроса не существует.'
+														});
+
+												}, 0)
+
+										}
+
+										scope.isNext = function () {
+												if (!scope.data || !scope.data.data) return;
+												var empty_vaiable = false;
+												var result = scope.data.data[scope.step].answers.filter(function (item) {
+														if (item.model && item.variable && !scope.var_model) {
+																empty_vaiable = true;
+														}
+														return item.model;
+												}).length;
+												return result && !empty_vaiable;
+										};
+
+										scope.change = function (answer) {
+												var textarea = $('.js-toggle-textarea');
+												answer.model = !answer.model;
+												if (answer.model && scope.variable) {
+
+												}
+										};
+
+										scope.showTextArea = function () {
+												if (!scope.data || !scope.data.data) return;
+												var result = scope.data.data[scope.step].answers.filter(function (item) {
+														return item.model && item.variable;
+												}).length;
+												return result;
+										};
+
+										scope.next = function () {
+
+												scope.data.data[scope.step].answers.forEach(function (item) {
+														if (item.model) {
+																scope.tags.push(item.tag);
+																if (item.variable) {
+																		scope.vars[item.variable] = scope.var_model;
+																}
+														}
+
+												});
+
+												if ((scope.step + 1) >= scope.data.data.length) {
+														send();
+												} else {
+														scope.step++;
+												}
+
+												scope.var_model = null;
+
+										};
+
+										function send() {
+
+												function finish() {
+
+														$rootScope.$broadcast('notify.show', {
+																title: 'Подтверждение',
+																header: 'ПОЗДРАВЛЯЕМ!',
+																text: 'Вы прошли опрос.'
+														});
+
+														scope.data = null;
+
+												}
+
+												sp_api.call('tags.add', {tags: scope.tags}, function () {
+
+														if (Object.keys(scope.vars).length) {
+																sp_api.call('vars.add', {custom_vars: scope.vars}, function () {
+																		finish();
+																		scope.$digest();
+																})
+														} else {
+																finish()
+														}
+														scope.$digest();
+
+												});
+
+										}
+
+								}
+						}
+
+				});
+
+
+		setTimeout(function () {
+
+				var app_blocks = document.querySelectorAll('sailplay-pichshop, sailplay-history, sailplay-profile, sailplay-gifts, sailplay-test');
+
+				if(app_blocks && app_blocks[0]) {
+					angular.bootstrap(app_blocks[0], ['pichshop'])
+				}
+
+		}, 0);
 
 
 }());

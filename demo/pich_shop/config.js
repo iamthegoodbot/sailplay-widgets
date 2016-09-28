@@ -1,6 +1,6 @@
 window._pichshop_config = {
   partner_id: 1601,
-  auth_hash: 'a1fbaa8abb1d686ab31bb2b26fd444998a8e48e3',
+  auth_hash: 'bb352a69135914bc6bf59b39fe9ea13fd16464c5',
   statusList: [
     {
       name: 'Зубная фея',
@@ -114,17 +114,17 @@ window._pichshop_config = {
     {
       id: 'profile',
       type: 'form',
-      tag: 'Заполнил профил',
+      tag: 'Заполнил профиль',
       name: 'Заполнил профиль',
       points: 100,
       href: 'profile.html',
       image: 'task-icon-03.png'
     }
   ],
-  pages: {
-    main: 'index.html',
-    history: 'history.html',
-    gifts: 'gifts.html'
-  },
-  imgPath: 'dist/image/'
+		pages: {
+				main: 'index.html',
+				history: 'history.html',
+				gifts: 'gifts.html'
+		},
+		imgFolder: 'dist/image/'
 };

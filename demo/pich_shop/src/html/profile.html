@@ -1,10 +1,8 @@
-<div class="sp_widget" data-ng-cloak>
+<div class="sp_widget" data-ng-cloak data-ng-if="data">
 
-    <a data-ng-href="{{ global.config.pages.main }}" class="sp_common-btn this-white back_to_main">Назад</a>
+		 <a data-ng-href="{{ global.config.pages.main }}" class="sp_common-btn this-white sp_lk_back">Назад</a>
 
-    <span data-ng-if="data.tag | sailplay_tag:exist()">Действие выполнено.</span>
-
-    <div class="sp_l-section sp_profile" data-ng-if="form && user && user() && !(data.tag | sailplay_tag:exist())">
+    <div class="sp_l-section sp_profile" data-ng-if="form && user && user() && exist && exist()">
         <h1 class="sp_profile__head">Заполнить профиль</h1>
 
         <div class="sp_profile__in">
@@ -21,10 +19,10 @@
                     <div class="sp_profile__inp-title">Отчество</div>
                     <input type="text" class="sp_common-input" data-ng-model="form.middleName">
                 </div>
-                <div class="sp_profile__set" ng-init="sex_data =[{value : 1, label: 'Мужской'}, {value : 2, label: 'Женский'}] ">
+                <div class="sp_profile__set">
                     <div class="sp_profile__inp-title">Пол</div>
                     <select name="sex" class="sp_common-input" data-ng-model="form.sex"
-                            data-ng-options="x.value as x.label for x in sex_data track by x.value"></select>
+                            data-ng-options="x.value as x.label for x in sexList"></select>
                 </div>
             </div>
             <!-- /left -->

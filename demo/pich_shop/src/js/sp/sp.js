@@ -100,8 +100,8 @@
       }
     })
 
-    .filter('sailplay_tag', function () {
-      return function (tag, data) {
+    .filter('sailplay_tag', function(){
+      return function(tag, data){
         if (!tag || !data) return;
         var el = data.tags.filter(function (item) {
           return item.name === tag;
@@ -110,18 +110,17 @@
       }
     })
 
+		  .filter('img_folder', function ($rootScope) {
 
-    .filter('img_folder', function ($rootScope) {
+				  return function (pic_url) {
 
-      return function (pic_url) {
+						  if (!pic_url) return '';
 
-        if (!pic_url) return '';
+						  return $rootScope.config.imgFolder ? $rootScope.config.imgFolder + pic_url : pic_url;
 
-        return $rootScope.config.imgPath ? $rootScope.config.imgPath + pic_url : pic_url;
+				  };
 
-      };
-
-    })
+		  })
 
     .filter('sailplay_pic', function (sp) {
 

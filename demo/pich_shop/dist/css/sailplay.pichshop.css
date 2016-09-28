@@ -973,7 +973,7 @@
   clear: both;
 }
 .sp_paginate__inner {
-  float: right;
+  text-align: center;
 }
 .sp_paginate__inner:before,
 .sp_paginate__inner:after {
@@ -984,8 +984,7 @@
   clear: both;
 }
 .sp_paginate__item {
-  display: block;
-  float: left;
+  display: inline-block;
   width: 38px;
   height: 38px;
   border: 1px solid #ECECEC;
@@ -1103,6 +1102,12 @@
 .sp_status-icons__item.this-active .sp_status-icons__img.this-active-img {
   display: block;
 }
+@media (max-width: 600px) {
+  .sp_status-icons__item.this-show .sp_status-icons__text {
+    visibility: visible;
+    opacity: 1;
+  }
+}
 .sp_status-icons__img {
   margin-bottom: 10px;
 }
@@ -1124,6 +1129,17 @@
   padding: 0 5px;
   box-sizing: border-box;
   font-family: 'proxima_nova_bold', sans-serif;
+}
+@media (max-width: 767px) {
+  .sp_status-icons .sp_status-icons__text {
+    font-size: 10px;
+  }
+}
+@media (max-width: 600px) {
+  .sp_status-icons .sp_status-icons__text {
+    visibility: hidden;
+    opacity: 0;
+  }
 }
 .sp_status-bar {
   width: 100%;
@@ -1362,6 +1378,16 @@
   color: #00a897;
   font-family: 'proxima_nova_bold', sans-serif;
 }
-.back_to_main {
+.sp_lk_back {
   width: 200px;
+  margin: 10px 0;
+  text-decoration: none;
+}
+.sp_lk_edit {
+  margin-top: 20px;
+}
+@media (max-width: 600px) {
+  .popup_content {
+    width: 100%;
+  }
 }

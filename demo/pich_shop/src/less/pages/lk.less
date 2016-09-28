@@ -38,6 +38,19 @@
         }
       }
     }
+
+    &.this-show {
+
+      @media (max-width: 600px) {
+
+        .sp_status-icons__text{
+          visibility: visible;
+          opacity: 1;
+        }
+
+      }
+    }
+
   }
   &__img {
     margin-bottom: 10px;
@@ -60,6 +73,23 @@
     padding: 0 5px;
     box-sizing: border-box;
     .proxima-bold();
+  }
+
+  @media (max-width: @screen-xs-max) {
+
+    .sp_status-icons__text{
+      font-size: 10px;
+    }
+
+  }
+
+  @media (max-width: 600px) {
+
+    .sp_status-icons__text{
+      visibility: hidden;
+      opacity: 0;
+    }
+
   }
 
 }
