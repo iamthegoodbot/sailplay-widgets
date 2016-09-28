@@ -920,14 +920,13 @@
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  font-family: 'proxima_nova', sans-serif;
   font-size: 14px;
   font-weight: 300;
   line-height: 1.42857143;
   color: #262626;
   margin-top: 30px;
   margin-bottom: 30px;
-  font-family: 'proxima_nova_bold', sans-serif;
+  font-family: 'proxima_nova', sans-serif;
 }
 .sp_paginate:before,
 .sp_paginate:after {
@@ -1010,6 +1009,7 @@
 .sp_paginate__item.this-active {
   background-color: #ECECEC;
   color: #fff;
+  font-family: 'proxima_nova_bold', sans-serif;
 }
 .sp_paginate__item.this-active:link {
   color: #fff;
@@ -1022,6 +1022,14 @@
 }
 .sp_paginate__item.this-active:active {
   color: #fff;
+}
+@media (max-width: 600px) {
+  .sp_lkhist-btn {
+    width: 100% !important;
+  }
+  .sp_lk_edit {
+    width: 100% !important;
+  }
 }
 .sp_lkhist-btn {
   width: 220px;
@@ -1384,7 +1392,8 @@
   text-decoration: none;
 }
 .sp_lk_edit {
-  margin-top: 20px;
+  width: 220px;
+  margin: 20px auto 0;
 }
 @media (max-width: 600px) {
   .popup_content {
