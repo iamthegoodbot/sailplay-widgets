@@ -252,7 +252,7 @@
 .__sp__lead_wrapper .__sp__lead_autocomplete.state_show_list .__sp__lead_dropdown_overlay {
   display: block;
 }
-.__sp__lead_wrapper .__sp__lead_autocomplete.state_show_list.for_mobile .__sp__lead_dropdown_overlay {
+.__sp__lead_wrapper .__sp__lead_autocomplete.state_show_list.for_mobile .suggestion_wrapper {
   display: block;
   position: fixed;
   top: 50%;
@@ -264,7 +264,7 @@
   margin-top: -150px;
   height: 300px;
 }
-.__sp__lead_wrapper .__sp__lead_autocomplete.state_show_list.for_mobile .__sp__lead_dropdown_overlay ul {
+.__sp__lead_wrapper .__sp__lead_autocomplete.state_show_list.for_mobile .suggestion_wrapper ul {
   max-height: 100%;
 }
 .__sp__lead_wrapper .__sp__lead_autocomplete.state_show_list .suggestion_wrapper {
