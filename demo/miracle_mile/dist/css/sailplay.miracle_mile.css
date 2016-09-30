@@ -72,6 +72,9 @@
   top: 68px;
   left: 0px;
   right: 0px;
+  max-height: 100px;
+  overflow-x: hidden;
+  overflow-y: auto;
   background-color: #b3afa9;
   border-radius: 0 0 3px 3px ;
   border: 1px solid #b3afa9;

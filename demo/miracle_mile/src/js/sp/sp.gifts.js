@@ -25,7 +25,7 @@
 
               $rootScope.$broadcast('notify:show', {
                 title: 'Error',
-                text: 'Not enough Smile Points'
+                text: 'Not enough points'
               });
 
               return;

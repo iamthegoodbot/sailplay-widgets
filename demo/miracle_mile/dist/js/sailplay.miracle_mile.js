@@ -5546,7 +5546,7 @@ module.run(['$templateCache', function($templateCache) {
       {
         name: 'Subscribe to E-newsletter',
         desc: 'Sign up for our E-Newsletter at the bottom of this page to find out about special offers and receive 10 bonus points! (Make sure to add your email address to your loyalty account by updating your profile first)',
-        check_tag: false,
+        check_tag: true,
         pic: 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/4b8f30e67b23e703ca24752fcf7c4496.png',
         points: 100,
         buttons: [
@@ -5716,7 +5716,7 @@ module.run(['$templateCache', function($templateCache) {
 
               $rootScope.$broadcast('notify:show', {
                 title: 'Error',
-                text: 'Not enough Smile Points'
+                text: 'Not enough points'
               });
 
               return;
