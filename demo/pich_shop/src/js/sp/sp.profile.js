@@ -17,6 +17,18 @@
 
           scope.statusList = $rootScope.config.statusList;
 
+		        scope.getEditLink = function(){
+
+				        if(!$rootScope.config || !$rootScope.config.customActions) return;
+
+				        var profile_action = $rootScope.config.customActions.filter(function(action){
+													return action.id == 'profile'
+				        })[0] || {};
+
+				        return profile_action.href + '?id=' + profile_action.id;
+
+		        }
+
         }
 
       };

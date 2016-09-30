@@ -1,5 +1,6 @@
 <div class="sp_widget" data-ng-show="global.auth">
 
+		<a data-ng-href="{{ global.config.pages.main }}" class="sp_common-btn this-white sp_lk_back">Назад</a>
 
     <div class="sp_l-section sp_history" data-ng-cloak data-sailplay-history>
         <div class="sp_history__col this-col1">
@@ -26,7 +27,7 @@
                 <div class="sp_hist-list__ttl">Ваши последние действия</div>
 
                 <div class="sp_hist-itm" data-dir-paginate="item in history() | itemsPerPage:10" data-pagination-id="history_pages">
-                    <div class="sp_hist-itm__img" style="background-image: url({{ item | history_image }});"></div>
+                    <div class="sp_hist-itm__img" style="background-image: url({{ item | history_image | img_folder }});"></div>
                     <div class="sp_hist-itm__inner">
                         <div class="sp_hist-itm__info" data-ng-bind="item.action_date | date:'d / MM / yyyy'"></div>
                         <div class="sp_hist-itm__info-row">

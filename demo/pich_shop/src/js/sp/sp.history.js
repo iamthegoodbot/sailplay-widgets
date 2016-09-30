@@ -30,59 +30,59 @@
     .constant('history_object', {
       "purchase": {
         "text": "Покупка",
-        "image": "dist/image/order_icon.png"
+        "image": "order_icon.png"
       },
       "gift_purchase": {
         "text": "Подарок",
-        "image": "dist/image/gift_icon.png"
+        "image": "gift_icon.png"
       },
       "badge": {
         "text": "Бейджик",
-        "image": "dist/image/pig_icon.png"
+        "image": "pig_icon.png"
       },
       "registration": {
         "text": "Регистрация",
-        "image": "dist/image/pig_icon.png"
+        "image": "pig_icon.png"
       },
       "referral": {
         "text": "Регистрация друга",
-        "image": "dist/image/hist-friend.png"
+        "image": "hist-friend.png"
       },
       "referred": {
         "text": "Регистрация по приглашению",
-        "image": "dist/image/pig_icon.png"
+        "image": "pig_icon.png"
       },
       "referred_purchase": {
         "text": "Покупка приглашенного пользователя",
-        "image": "dist/image/order_icon.png"
+        "image": "order_icon.png"
       },
       "promocode": {
         "text": "За ввод промокода",
-        "image": "dist/image/pig_icon.png"
+        "image": "pig_icon.png"
       },
       "enter_group": {
         "text": "Вступление в группу ",
-        "image": "dist/image/task-icon-02.png"
+        "image": "task-icon-02.png"
       },
       "share_purchase": {
         "text": "Рассказ о покупке в ",
-        "image": "dist/image/task-icon-02.png"
+        "image": "task-icon-02.png"
       },
       "social_share": {
         "text": "Рассказ в ",
-        "image": "dist/image/task-icon-02.png"
+        "image": "task-icon-02.png"
       },
       "share_badge": {
         "text": "Рассказ о бейджике в ",
-        "image": "dist/image/task-icon-02.png"
+        "image": "task-icon-02.png"
       },
       "earn_badge": {
         "text": "Получен бейджик ",
-        "image": "dist/image/pig_icon.png"
+        "image": "pig_icon.png"
       },
       "custom_action": {
         "text": "Экстра",
-        "image": "dist/image/pig_icon.png"
+        "image": "pig_icon.png"
       }
     })
 

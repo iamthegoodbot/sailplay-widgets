@@ -1,7 +1,6 @@
 // 22.96
 // 55  70px 70px
 
-
 .sp_history {
 	.sp-block-reset();
 	.clearfix();
@@ -233,14 +232,13 @@
 	margin-top: 30px;
 	margin-bottom: 30px;
 
-	.proxima-bold();
+	.proxima();
 	&__inner {
-		float: right;
+		text-align: center;
 		.clearfix();
 	}
 	&__item {
-		display: block;
-		float: left;
+		display: inline-block;
 		width: 38px;
 		height: 38px;
 		border: 1px solid #ECECEC;
@@ -258,6 +256,19 @@
 			background-color: #ECECEC;
 			color: #fff;
 			.alink(#fff);
+			.proxima-bold();
 		}
 	}
+}
+
+@media (max-width: 600px) {
+
+	.sp_lkhist-btn {
+		width: 100% !important;
+	}
+
+	.sp_lk_edit {
+		width: 100% !important;
+	}
+
 }

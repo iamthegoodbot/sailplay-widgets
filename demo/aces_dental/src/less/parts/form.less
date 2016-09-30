@@ -1,0 +1,171 @@
+.bns_btn {
+  height: 44px;
+  line-height: 44px;
+  background-color: @btn-bg;
+  text-align: center;
+  color: @btn-color;
+  font-size: 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+  border: 0;
+  font-family: 'Crimson';
+  font-weight: bold;
+  &.bns_btn_left {
+    float: left;
+  }
+  &.bns_btn_right {
+    float: right;
+  }
+  &.disabled {
+    cursor: default;
+    background: grey;
+  }
+}
+.bns_input_block {
+  float: left;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0px 50px;
+  position: relative;
+  min-height: 68px;
+  .bns_check {
+    float: left;
+    width: 70%;
+    input {
+      display: none;
+    }
+    input:checked + label {
+      &:before {
+        background-color: @btn-bg;
+      }
+    }
+    label {
+      width: auto;
+      padding-left:37px;
+      margin-right:20px;
+      color: @gray;
+      position: relative;
+      &:before {
+        display: block;
+        content: '';
+        position: absolute;
+        left: 0px;
+        top:50%;
+        width: 20px;
+        margin-top: -13px;
+        height: 20px;
+        border: 3px solid @btn-bg;
+        border-radius: 26px;
+        background-color: transparent;
+      }
+    }
+  }
+  .bns_select {
+    float: left;
+    position: relative;
+    margin-left: 5px;
+    z-index: 1;
+    margin-bottom: 50px;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:hover {
+      .bns_select_popup {
+        display: block;
+      }
+    }
+    span {
+      color: @gray;
+      font-size: 18px;
+      float: left;
+      width: 100%;
+      box-sizing: border-box;
+      text-align: center;
+      background-color: transparent;
+      border: 3px solid @btn-bg;
+      border-radius: 3px;
+      line-height: 40px;
+    }
+    .bns_select_popup {
+      display: none;
+      position: absolute;
+      top:43px;
+      left:0px;
+      right: 0px;
+      max-height: 100px;
+      overflow: auto;
+      border-radius: 0 0 3px 3px ;
+      border: 3px solid @btn-bg;
+      text-align: center;
+      background-color: @white-bg;
+      a {
+        float: left;
+        width: 100%;
+        line-height: 25px;
+        text-decoration: none;
+        color: @gray;
+      }
+    }
+  }
+  &.err {
+    input[type="text"] {
+      border: 3px solid @err-color;
+    }
+    .bns_err {
+      display: block;
+    }
+  }
+  .bns_btn_left, .bns_btn_right  {
+    width: 40%;
+    margin-bottom: 35px;
+  }
+  label, .ib_label_text {
+    float: left;
+    line-height: 40px;
+    color: @text-black;
+    font-size: 22px;
+    width: 30%;
+    font-weight: 600;
+    text-align: left;
+  }
+  input[type="text"], input[type="email"] {
+    float: left;
+    width: 70%;
+    border-width: 3px;
+    border-color: @btn-bg;
+    border-style: solid;
+    background-color: transparent;
+    font-size: 20px;
+    height: 40px;
+    padding: 0px 20px;
+    box-sizing: border-box;
+    outline: none;
+    color: @gray;
+    border-radius: 4px;
+    &.inp_name {
+      width: 34%;
+
+    }
+    &.inp_name:nth-child(2) {
+      float: right;
+    }
+  }
+  input[type="submit"] {
+    width: 238px;
+    margin-bottom: 37px;
+  }
+  .bns_err {
+    position: absolute;
+    bottom: 5px;
+    left: 0px;
+    box-sizing: border-box;
+    padding-left: 21px;
+    left:30%;
+    color: @err-color;
+    font-size: 14px;
+    display: none;
+  }
+}

@@ -110,6 +110,18 @@
       }
     })
 
+		  .filter('img_folder', function ($rootScope) {
+
+				  return function (pic_url) {
+
+						  if (!pic_url) return '';
+
+						  return $rootScope.config.imgFolder ? $rootScope.config.imgFolder + pic_url : pic_url;
+
+				  };
+
+		  })
+
     .filter('sailplay_pic', function (sp) {
 
       function repair_pic_url(url) {

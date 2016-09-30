@@ -1,0 +1,125 @@
+.bns_gift {
+  float: left;
+  width: 100%;
+  background-color: @white-bg;
+  h2 {
+    color: @text-black;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: 'Crimson';
+    line-height: 90px;
+    width: 100%;
+    float: left;
+    margin: 0;
+    font-weight: 600;
+    box-sizing: border-box;
+    padding-left: 20px;
+  }
+  .bns_gift_main {
+    float: left;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0px 50px 35px;
+    position: relative;
+    overflow: hidden;
+    .slick-prev {
+      position: absolute;
+      left: 24px;
+      top: 50%;
+      width: 18px;
+      display: block;
+      outline: none;
+      height: 60px;
+      margin-top: -50px;
+      background-image: url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/2575378f5331499bc51d3a87e673baad.png');
+      text-indent: -9999px;
+      border: 0;
+      background-color: transparent;
+    }
+    .slick-next {
+      position: absolute;
+      right: 24px;
+      top: 50%;
+      width: 18px;
+      display: block;
+      outline: none;
+      height: 60px;
+      margin-top: -50px;
+      background-image: url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/947406771e506f73e7993c4d0eda7b1c.png');
+      text-indent: -9999px;
+      border: 0;
+      background-color: transparent;
+    }
+    .slick-track {
+      min-width: 1052px;
+      height: 360px;
+      overflow: hidden;
+    }
+    .bns_gift_item {
+
+      margin-right: 11px;
+      margin-left: 11px;
+
+      display: inline-block;
+      float: left;
+      height: 351px;
+      margin-top: 5px;
+      -webkit-box-shadow: 0 0 1px 0 rgba(0, 0, 0, 1);
+      box-shadow: 0 0 1px 0 rgba(0, 0, 0, 1);
+      &:focus {
+        outline: none;
+      }
+      &:hover {
+        -webkit-box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.4);
+        box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.4);
+        .bns_btn {
+          color: @btn-color;
+          background-color: @btn-bg;
+        }
+      }
+      .bns_gift_item_img {
+        float: left;
+        width: 100%;
+        position: relative;
+        text-align: center;
+        height: 227px;
+        img {
+          display: inline-block;
+          margin-top: 10px;
+          max-height: 180px;
+        }
+      }
+      .bns_gift_item_name {
+        float: left;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0 50px;
+        font-size: 17px;
+        color: @text-black;
+        margin-bottom: 5px;
+        font-family: 'Crimson';
+        font-weight: 600;
+      }
+      .bns_gift_item_point {
+        float: left;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0 50px;
+        margin-bottom: 12px;
+        color: @text-green;
+        font-size: 17px;
+        font-family: 'Crimson';
+        font-weight: 600;
+      }
+      .bns_btn {
+        width: 66%;
+        margin-left: 17%;
+        color: @btn-bg;
+        background-color: @btn-color;
+        border: 2px solid @btn-bg;
+        line-height: 39px;
+        height: 39px;
+      }
+    }
+  }
+}

@@ -7,7 +7,7 @@
         "inviteFriend": {
           name: 'Пригласить друга или подругу',
           notify: 'приглашения друга или подруги',
-          pic: 'dist/image/task-icon-01.png'
+          pic: 'task-icon-01.png'
         }
       },
       "social": {
@@ -15,17 +15,17 @@
           "partner_page": {
             "name": "Рассказать о магазине в Facebook",
             "notify": 'рассказ о магазине в Facebook',
-            "pic": "dist/image/task-icon-02.png"
+            "pic": "task-icon-02.png"
           },
           "like": {
             "name": "Вступить в группу Facebook",
             "notify": 'вступление в группу Facebook',
-            "pic": "dist/image/task-icon-02.png"
+            "pic": "task-icon-02.png"
           },
           "purchase": {
             "name": "Рассказать о покупке в Facebook",
             "notify": 'рассказ о покупке в Facebook',
-            "pic": "dist/image/task-icon-02.png"
+            "pic": "task-icon-02.png"
           }
         }
       }

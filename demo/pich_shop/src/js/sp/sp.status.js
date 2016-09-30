@@ -47,6 +47,12 @@
             return (100 / scope.statusList.length) + '%'
           };
 
+          scope.show = null;
+
+          scope.show_name = function(index){
+            scope.show = index == scope.show ? null : index;
+          };
+
           scope.getBarWidth = function (points) {
 
             var len = scope.statusList.length;

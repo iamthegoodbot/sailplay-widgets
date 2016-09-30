@@ -2325,7 +2325,7 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/html/gifts.html',
-    '<div class="sp_widget" data-ng-cloak=""><section class="sp_l-centered sp_gifts" data-ng-cloak="" data-sailplay-gifts=""><h1 class="sp_gifts__head">ПОДАРКИ</h1><div class="sp_gifts__title">Покупайте подарки за баллы</div><div class="sp_gifts-items-wr"><div class="sp_giftitm__col" data-ng-repeat="gift in gifts()"><div class="sp_giftitm"><div class="sp_giftitm__over"><a href="#" class="sp_giftitm__btn" data-ng-click="$event.preventDefault();make_purchase(gift);">Подключить</a></div><div class="sp_giftitm__inner"><div class="sp_giftitm__img" style="background-image: url(\'{{ gift.thumbs.url_250x250 | sailplay_pic }}\');"></div><div class="sp_giftitm__info" data-ng-bind="gift.name"></div><div class="sp_giftitm__price"><span class="sp_giftitm__price-val" data-ng-bind="gift.points | number"></span> {{ gift.points | sailplay_pluralize:\'балл,баллы,баллов\' }}</div></div></div></div></div></section><notify-popup></notify-popup></div>');
+    '<div class="sp_widget" data-ng-cloak=""><a data-ng-href="{{ global.config.pages.main }}" class="sp_common-btn this-white sp_lk_back">Назад</a><section class="sp_l-centered sp_gifts" data-ng-cloak="" data-sailplay-gifts=""><h1 class="sp_gifts__head">ПОДАРКИ</h1><div class="sp_gifts__title">Покупайте подарки за баллы</div><div class="sp_gifts-items-wr"><div class="sp_giftitm__col" data-ng-repeat="gift in gifts()"><div class="sp_giftitm"><div class="sp_giftitm__over"><a href="#" class="sp_giftitm__btn" data-ng-click="$event.preventDefault();make_purchase(gift);">Получить</a></div><div class="sp_giftitm__inner"><div class="sp_giftitm__img" style="background-image: url(\'{{ gift.thumbs.url_250x250 | sailplay_pic }}\');"></div><div class="sp_giftitm__info" data-ng-bind="gift.name"></div><div class="sp_giftitm__price"><span class="sp_giftitm__price-val" data-ng-bind="gift.points | number"></span> {{ gift.points | sailplay_pluralize:\'балл,баллы,баллов\' }}</div></div></div></div></div></section><notify-popup></notify-popup></div>');
 }]);
 })();
 
@@ -2337,7 +2337,7 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/html/history.html',
-    '<div class="sp_widget" data-ng-show="global.auth"><div class="sp_l-section sp_history" data-ng-cloak="" data-sailplay-history=""><div class="sp_history__col this-col1"><div class="sp_person-b"><div class="sp_person-b__img" style="background-image: url({{ user().user.pic | sailplay_pic }});"></div><div class="sp_person-b__st-title">Ваш статус</div><div class="sp_person-b__stat" data-ng-bind="statusList[getNum(user().user_points.total)].name || \'Отсутсвует\'"></div><div class="sp_person-b__info"><span class="sp_person-b__info-itm" data-ng-bind="user().user.name || \'Имя не указано\'"></span> <span class="sp_person-b__info-itm" data-ng-bind="user().user.phone || \'Телефон не указан\'"></span> <span class="sp_person-b__info-itm" data-ng-bind="user().user.email || \'Email не указан\'"></span></div></div></div><div class="sp_history__col this-col2"><div class="sp_hist-list"><div class="sp_hist-list__head">Здравствуйте, {{ user().user.name || \'уважаемый пользователь\' }}</div><div class="sp_hist-list__ttl">Ваши последние действия</div><div class="sp_hist-itm" data-dir-paginate="item in history() | itemsPerPage:10" data-pagination-id="history_pages"><div class="sp_hist-itm__img" style="background-image: url({{ item | history_image }});"></div><div class="sp_hist-itm__inner"><div class="sp_hist-itm__info" data-ng-bind="item.action_date | date:\'d / MM / yyyy\'"></div><div class="sp_hist-itm__info-row"><div class="sp_hist-itm__price" data-ng-if="item.points_delta" data-ng-bind="(item.points_delta | number) + \' \' + (item.points_delta | sailplay_pluralize:\'балл,баллы,баллов\')"></div><div class="sp_hist-itm__name" data-ng-bind="item | history_name"></div></div></div></div></div></div><div class="sp_history__col this-col3"><div class="sp_history-count"><div class="sp_history-count__val" data-ng-bind="user().user_points.confirmed | number"></div><div class="sp_history-count__plus">+</div><div class="sp_history-count__remain" data-ng-bind="user().user_points.unconfirmed | number"></div><div class="sp_history-count__ttl">Неподтвержденных<br>баллов</div></div></div></div><dir-pagination-controls data-max-size="6" data-pagination-id="history_pages" data-template-url="/html/ui/ui.pagination.controls.html" data-auto-hide="true"></dir-pagination-controls></div>');
+    '<div class="sp_widget" data-ng-show="global.auth"><a data-ng-href="{{ global.config.pages.main }}" class="sp_common-btn this-white sp_lk_back">Назад</a><div class="sp_l-section sp_history" data-ng-cloak="" data-sailplay-history=""><div class="sp_history__col this-col1"><div class="sp_person-b"><div class="sp_person-b__img" style="background-image: url({{ user().user.pic | sailplay_pic }});"></div><div class="sp_person-b__st-title">Ваш статус</div><div class="sp_person-b__stat" data-ng-bind="statusList[getNum(user().user_points.total)].name || \'Отсутсвует\'"></div><div class="sp_person-b__info"><span class="sp_person-b__info-itm" data-ng-bind="user().user.name || \'Имя не указано\'"></span> <span class="sp_person-b__info-itm" data-ng-bind="user().user.phone || \'Телефон не указан\'"></span> <span class="sp_person-b__info-itm" data-ng-bind="user().user.email || \'Email не указан\'"></span></div></div></div><div class="sp_history__col this-col2"><div class="sp_hist-list"><div class="sp_hist-list__head">Здравствуйте, {{ user().user.name || \'уважаемый пользователь\' }}</div><div class="sp_hist-list__ttl">Ваши последние действия</div><div class="sp_hist-itm" data-dir-paginate="item in history() | itemsPerPage:10" data-pagination-id="history_pages"><div class="sp_hist-itm__img" style="background-image: url({{ item | history_image | img_folder }});"></div><div class="sp_hist-itm__inner"><div class="sp_hist-itm__info" data-ng-bind="item.action_date | date:\'d / MM / yyyy\'"></div><div class="sp_hist-itm__info-row"><div class="sp_hist-itm__price" data-ng-if="item.points_delta" data-ng-bind="(item.points_delta | number) + \' \' + (item.points_delta | sailplay_pluralize:\'балл,баллы,баллов\')"></div><div class="sp_hist-itm__name" data-ng-bind="item | history_name"></div></div></div></div></div></div><div class="sp_history__col this-col3"><div class="sp_history-count"><div class="sp_history-count__val" data-ng-bind="user().user_points.confirmed | number"></div><div class="sp_history-count__plus">+</div><div class="sp_history-count__remain" data-ng-bind="user().user_points.unconfirmed | number"></div><div class="sp_history-count__ttl">Неподтвержденных<br>баллов</div></div></div></div><dir-pagination-controls data-max-size="6" data-pagination-id="history_pages" data-template-url="/html/ui/ui.pagination.controls.html" data-auto-hide="true"></dir-pagination-controls></div>');
 }]);
 })();
 
@@ -2349,7 +2349,7 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/html/main.html',
-    '<div class="sp_widget" data-ng-cloak="" data-ng-show="global.auth"><section class="sp_l-section sp_history" data-ng-cloak="" data-sailplay-profile=""><div class="sp_history__col this-col1"><div class="sp_person-b"><div class="sp_person-b__img" style="background-image: url({{ user().user.pic | sailplay_pic }});"></div><div class="sp_person-b__st-title">Ваш статус</div><div class="sp_person-b__stat" data-ng-bind="statusList[getNum(user().user_points.confirmed + user().user_points.spent)].name || \'Отсутсвует\'"></div><div class="sp_person-b__info"><span class="sp_person-b__info-itm" data-ng-bind="user().user.name || \'Имя не указано\'"></span> <span class="sp_person-b__info-itm" data-ng-bind="user().user.phone || \'Телефон не указан\'"></span> <span class="sp_person-b__info-itm" data-ng-bind="user().user.email || \'Email не указан\'"></span></div></div></div><div class="sp_history__col this-col2" data-ng-cloak="" data-sailplay-history=""><div class="sp_hist-list"><div class="sp_hist-list__head">Здравствуйте, {{ user().user.name || \'уважаемый пользователь\' }}</div><div class="sp_hist-list__ttl">Ваши последние действия</div><div class="sp_hist-itm" data-ng-repeat="item in history() | limitTo:3"><div class="sp_hist-itm__img" style="background-image: url({{ item | history_image }});"></div><div class="sp_hist-itm__inner"><div class="sp_hist-itm__info" data-ng-bind="item.action_date | date:\'d / MM / yyyy\'"></div><div class="sp_hist-itm__info-row"><div class="sp_hist-itm__price" data-ng-if="item.points_delta" data-ng-bind="(item.points_delta | number) + \' \' + (item.points_delta | sailplay_pluralize:\'балл,баллы,баллов\')"></div><div class="sp_hist-itm__name" data-ng-bind="item | history_name"></div></div></div></div><a href="history.html" class="sp_common-btn this-white sp_lkhist-btn">История действий</a></div></div><div class="sp_history__col this-col3"><div class="sp_history-count"><div class="sp_history-count__val" data-ng-bind="user().user_points.confirmed | number"></div><div class="sp_history-count__plus">+</div><div class="sp_history-count__remain" data-ng-bind="user().user_points.unconfirmed | number"></div><div class="sp_history-count__ttl">Неподтвержденных<br>баллов</div></div></div></section><section class="sp_l-section sp_status-bar-sec js-status-bar-wrap" data-ng-cloak="" data-sailplay-status=""><div class="sp_status-icons"><div class="sp_status-icons__item js-point this-point-{{ $index+1 }}" data-ng-repeat="status in statusList" data-ng-class="{ \'this-active\' : getNum(user().user_points.confirmed + user().user_points.spent) >= $index }" data-ng-style="{width : getWidth()}"><div class="sp_status-icons__img"><img data-ng-src="{{ status.image.origin }}" alt="{{ status.name }}"></div><div class="sp_status-icons__img this-active-img"><img data-ng-src="{{ status.image.active }}" alt="{{ status.name }}"></div><div class="sp_status-icons__text" data-ng-bind="status.name"></div></div></div><div class="sp_status-bar"><div class="sp_status-bar__line" data-ng-repeat="status in statusList" data-ng-if="$index != 0" data-ng-style="{ left: (100 / statusList.length * $index) + \'%\' }"></div><div class="sp_status-bar__inner js-bar" data-ng-style="{ width: getBarWidth(user().user_points.confirmed + user().user_points.spent) }"></div></div><div class="sp_stbar-titles"><div class="sp_stbar-titles__item" data-ng-repeat="status in statusList" data-ng-style="{width : getWidth()}" data-ng-bind="(status.limit[1] ? (status.limit[1] | number) : \'> \' + (status.limit[0] | number)) + \' \' + ( (status.limit[1] ? status.limit[1] : status.limit[0]) | sailplay_pluralize:\'балл,баллы,баллов\')"></div></div></section><section class="sp_l-centered sp_gifts" data-ng-cloak="" data-sailplay-gifts=""><h1 class="sp_gifts__head this-center">Подарки</h1><div class="sp_gifts__title this-center">Покупайте подарки за баллы</div><div class="sp_gifts-items-wr"><div class="sp_giftitm__col" data-ng-repeat="gift in gifts() | limitTo:4"><div class="sp_giftitm"><div class="sp_giftitm__over"><a href="#" class="sp_giftitm__btn" data-ng-click="$event.preventDefault();make_purchase(gift);">Подключить</a></div><div class="sp_giftitm__inner"><div class="sp_giftitm__img" style="background-image: url(\'{{ gift.thumbs.url_250x250 | sailplay_pic }}\');"></div><div class="sp_giftitm__info" data-ng-bind="gift.name"></div><div class="sp_giftitm__price"><span class="sp_giftitm__price-val" data-ng-bind="gift.points | number"></span> {{ gift.points | sailplay_pluralize:\'балл,баллы,баллов\' }}</div></div></div></div><a href="gifts.html" class="sp_common-btn this-white sp_lkgifts-btn">Показать все подарки</a></div></section><section class="sp_l-centered sp_tasks-sec" data-ng-cloak="" data-sailplay-actions=""><h1 class="sp_tasks-sec__head this-center">Задания</h1><div class="sp_tasks-sec__title this-center">Выполняйте задания – получайте баллы</div><div class="sp_tasks-sec__col" data-ng-repeat="action in actions().actions | filter:check_in_list"><div class="sp_tasks-cell"><span class="sp_tasks-cell__icon" style="background-image: url({{ action_data(action).pic }});"></span> <span class="sp_tasks-cell__txt"><span class="sp_tasks-cell__txt-in" data-ng-bind="action_data(action).name"></span></span> <span class="sp_tasks-cell__btn" data-sailplay-action="" data-action="action" data-ng-class="{ styled : action.type != \'socialSharing\' }">Получить</span> <span class="sp_tasks-cell__count" data-ng-bind="\'+ \' + (action.points | number) + \' \' + (action.points | sailplay_pluralize:\'балл,балла,баллов\')"></span></div></div><div class="sp_tasks-sec__col" data-ng-repeat="action in custom_action" data-ng-if="!action.disabled && exist && exist() && !(action.tag | sailplay_tag:exist())"><div class="sp_tasks-cell" data-ng-class="{ tag : action.type == \'tag\'}"><span class="sp_tasks-cell__icon" style="background-image: url({{ action.image}});"></span> <span class="sp_tasks-cell__txt"><span class="sp_tasks-cell__txt-in" data-ng-bind="action.name"></span></span> <span data-ng-click="open_custom_action(action);" class="sp_tasks-cell__btn styled">Получить</span> <span class="sp_tasks-cell__count" data-ng-bind="\'+ \' + (action.points | number) + \' \' + (action.points | sailplay_pluralize:\'балл,балла,баллов\')"></span></div></div></section><notify-popup></notify-popup></div>');
+    '<div class="sp_widget" data-ng-cloak="" data-ng-show="global.auth"><section class="sp_l-section sp_history" data-ng-cloak="" data-sailplay-profile=""><div class="sp_history__col this-col1"><div class="sp_person-b"><div class="sp_person-b__img" style="background-image: url({{ user().user.pic | sailplay_pic }});"></div><div class="sp_person-b__st-title">Ваш статус</div><div class="sp_person-b__stat" data-ng-bind="statusList[getNum(user().user_points.confirmed + user().user_points.spent)].name || \'Отсутсвует\'"></div><div class="sp_person-b__info"><span class="sp_person-b__info-itm" data-ng-bind="user().user.name || \'Имя не указано\'"></span> <span class="sp_person-b__info-itm" data-ng-bind="user().user.phone || \'Телефон не указан\'"></span> <span class="sp_person-b__info-itm" data-ng-bind="user().user.email || \'Email не указан\'"></span> <a data-ng-href="{{ getEditLink() }}" class="sp_common-btn this-white sp_lk_edit">Редактировать профиль</a></div></div></div><div class="sp_history__col this-col2" data-ng-cloak="" data-sailplay-history=""><div class="sp_hist-list"><div class="sp_hist-list__head">Здравствуйте, {{ user().user.name || \'уважаемый пользователь\' }}</div><div class="sp_hist-list__ttl">Ваши последние действия</div><div class="sp_hist-itm" data-ng-repeat="item in history() | limitTo:3"><div class="sp_hist-itm__img" style="background-image: url({{ item | history_image | img_folder }});"></div><div class="sp_hist-itm__inner"><div class="sp_hist-itm__info" data-ng-bind="item.action_date | date:\'d / MM / yyyy\'"></div><div class="sp_hist-itm__info-row"><div class="sp_hist-itm__price" data-ng-if="item.points_delta" data-ng-bind="(item.points_delta | number) + \' \' + (item.points_delta | sailplay_pluralize:\'балл,баллы,баллов\')"></div><div class="sp_hist-itm__name" data-ng-bind="item | history_name"></div></div></div></div><a data-ng-href="{{ global.config.pages.history }}" class="sp_common-btn this-white sp_lkhist-btn">История действий</a></div></div><div class="sp_history__col this-col3"><div class="sp_history-count"><div class="sp_history-count__val" data-ng-bind="user().user_points.confirmed | number"></div><div class="sp_history-count__plus">+</div><div class="sp_history-count__remain" data-ng-bind="user().user_points.unconfirmed | number"></div><div class="sp_history-count__ttl">Неподтвержденных<br>баллов</div></div></div></section><section class="sp_l-section sp_status-bar-sec js-status-bar-wrap" data-ng-cloak="" data-sailplay-status=""><div class="sp_status-icons"><div class="sp_status-icons__item js-point this-point-{{ $index+1 }}" data-ng-repeat="status in statusList" data-ng-click="show_name($index);" data-ng-class="{ \'this-active\' : getNum(user().user_points.confirmed + user().user_points.spent) >= $index, \'this-show\' : $parent.show == $index }" data-ng-style="{width : getWidth()}"><div class="sp_status-icons__img"><img data-ng-src="{{ status.image.origin | img_folder }}" alt="{{ status.name }}"></div><div class="sp_status-icons__img this-active-img"><img data-ng-src="{{ status.image.active | img_folder }}" alt="{{ status.name }}"></div><div class="sp_status-icons__text" data-ng-bind="status.name"></div></div></div><div class="sp_status-bar"><div class="sp_status-bar__line" data-ng-repeat="status in statusList" data-ng-if="$index != 0" data-ng-style="{ left: (100 / statusList.length * $index) + \'%\' }"></div><div class="sp_status-bar__inner js-bar" data-ng-style="{ width: getBarWidth(user().user_points.confirmed + user().user_points.spent) }"></div></div><div class="sp_stbar-titles"><div class="sp_stbar-titles__item" data-ng-repeat="status in statusList" data-ng-style="{width : getWidth()}" data-ng-bind="(status.limit[1] ? (status.limit[1] | number) : \'> \' + (status.limit[0] | number)) + \' \' + ( (status.limit[1] ? status.limit[1] : status.limit[0]) | sailplay_pluralize:\'балл,баллы,баллов\')"></div></div></section><section class="sp_l-centered sp_gifts" data-ng-cloak="" data-sailplay-gifts=""><h1 class="sp_gifts__head this-center">Подарки</h1><div class="sp_gifts__title this-center">Покупайте подарки за баллы</div><div class="sp_gifts-items-wr"><div class="sp_giftitm__col" data-ng-repeat="gift in gifts() | limitTo:4"><div class="sp_giftitm"><div class="sp_giftitm__over"><a href="#" class="sp_giftitm__btn" data-ng-click="$event.preventDefault();make_purchase(gift);">Получить</a></div><div class="sp_giftitm__inner"><div class="sp_giftitm__img" style="background-image: url(\'{{ gift.thumbs.url_250x250 | sailplay_pic }}\');"></div><div class="sp_giftitm__info" data-ng-bind="gift.name"></div><div class="sp_giftitm__price"><span class="sp_giftitm__price-val" data-ng-bind="gift.points | number"></span> {{ gift.points | sailplay_pluralize:\'балл,баллы,баллов\' }}</div></div></div></div><a data-ng-href="{{ global.config.pages.gifts }}" class="sp_common-btn this-white sp_lkgifts-btn">Показать все подарки</a></div></section><section class="sp_l-centered sp_tasks-sec" data-ng-cloak="" data-sailplay-actions=""><h1 class="sp_tasks-sec__head this-center">Задания</h1><div class="sp_tasks-sec__title this-center">Выполняйте задания – получайте баллы</div><div class="sp_tasks-sec__col" data-ng-repeat="action in actions().actions | filter:check_in_list"><div class="sp_tasks-cell"><span class="sp_tasks-cell__icon" style="background-image: url({{ action_data(action).pic | img_folder }});"></span> <span class="sp_tasks-cell__txt"><span class="sp_tasks-cell__txt-in" data-ng-bind="action_data(action).name"></span></span> <span class="sp_tasks-cell__btn" data-sailplay-action="" data-action="action" data-ng-class="{ styled : action.type != \'socialSharing\' }">Получить</span> <span class="sp_tasks-cell__count" data-ng-bind="\'+ \' + (action.points | number) + \' \' + (action.points | sailplay_pluralize:\'балл,балла,баллов\')"></span></div></div><div class="sp_tasks-sec__col" data-ng-repeat="action in custom_action" data-ng-if="!action.disabled && exist && exist() && !(action.tag | sailplay_tag:exist())"><div class="sp_tasks-cell" data-ng-class="{ tag : action.type == \'tag\'}"><span class="sp_tasks-cell__icon" style="background-image: url({{ action.image | img_folder }});"></span> <span class="sp_tasks-cell__txt"><span class="sp_tasks-cell__txt-in" data-ng-bind="action.name"></span></span> <span data-ng-click="open_custom_action(action);" class="sp_tasks-cell__btn styled">Получить</span> <span class="sp_tasks-cell__count" data-ng-bind="\'+ \' + (action.points | number) + \' \' + (action.points | sailplay_pluralize:\'балл,балла,баллов\')"></span></div></div></section><notify-popup></notify-popup></div>');
 }]);
 })();
 
@@ -2361,7 +2361,7 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/html/profile.html',
-    '<div class="sp_widget" data-ng-cloak=""><span data-ng-if="data.tag | sailplay_tag:exist()">Действие выполнено.</span><div class="sp_l-section sp_profile" data-ng-if="form && user && user() && !(data.tag | sailplay_tag:exist())"><h1 class="sp_profile__head">Заполнить профиль</h1><div class="sp_profile__in"><div class="sp_profile__left"><div class="sp_profile__set"><div class="sp_profile__inp-title">Фамилия</div><input type="text" class="sp_common-input" data-ng-model="form.lastName"></div><div class="sp_profile__set"><div class="sp_profile__inp-title">Имя</div><input type="text" class="sp_common-input" data-ng-model="form.firstName"></div><div class="sp_profile__set"><div class="sp_profile__inp-title">Отчество</div><input type="text" class="sp_common-input" data-ng-model="form.middleName"></div><div class="sp_profile__set" ng-init="sex_data =[{value : 1, label: \'Мужской\'}, {value : 2, label: \'Женский\'}]"><div class="sp_profile__inp-title">Пол</div><select name="sex" class="sp_common-input" data-ng-model="form.sex" data-ng-options="x.value as x.label for x in sex_data track by x.value"></select></div></div><div class="sp_profile__right"><div class="sp_profile__set"><div class="sp_profile__inp-title">E-mail</div><input type="text" class="sp_common-input" data-ng-model="form.addEmail"></div><div class="sp_profile__set"><div class="sp_profile__inp-title">Контактный телефон</div><input type="text" class="sp_common-input" data-ng-model="form.addPhone"></div><div class="sp_profile__set"><div class="sp_profile__inp-title">Домашний адрес</div><input type="text" class="sp_common-input" data-ng-model="form.address"></div></div></div><input type="submit" class="sp_common-btn sp_profile__submit" data-ng-click="submit()" data-ng-disabled="!canSubmit()"></div><notify-popup></notify-popup></div>');
+    '<div class="sp_widget" data-ng-cloak="" data-ng-if="data"><a data-ng-href="{{ global.config.pages.main }}" class="sp_common-btn this-white sp_lk_back">Назад</a><div class="sp_l-section sp_profile" data-ng-if="form && user && user() && exist && exist()"><h1 class="sp_profile__head">Заполнить профиль</h1><div class="sp_profile__in"><div class="sp_profile__left"><div class="sp_profile__set"><div class="sp_profile__inp-title">Фамилия</div><input type="text" class="sp_common-input" data-ng-model="form.lastName"></div><div class="sp_profile__set"><div class="sp_profile__inp-title">Имя</div><input type="text" class="sp_common-input" data-ng-model="form.firstName"></div><div class="sp_profile__set"><div class="sp_profile__inp-title">Отчество</div><input type="text" class="sp_common-input" data-ng-model="form.middleName"></div><div class="sp_profile__set"><div class="sp_profile__inp-title">Пол</div><select name="sex" class="sp_common-input" data-ng-model="form.sex" data-ng-options="x.value as x.label for x in sexList"></select></div></div><div class="sp_profile__right"><div class="sp_profile__set"><div class="sp_profile__inp-title">E-mail</div><input type="text" class="sp_common-input" data-ng-model="form.addEmail"></div><div class="sp_profile__set"><div class="sp_profile__inp-title">Контактный телефон</div><input type="text" class="sp_common-input" data-ng-model="form.addPhone"></div><div class="sp_profile__set"><div class="sp_profile__inp-title">Домашний адрес</div><input type="text" class="sp_common-input" data-ng-model="form.address"></div></div></div><input type="submit" class="sp_common-btn sp_profile__submit" data-ng-click="submit()" data-ng-disabled="!canSubmit()"></div><notify-popup></notify-popup></div>');
 }]);
 })();
 
@@ -2373,7 +2373,7 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/html/test.html',
-    '<div class="sp_widget" data-ng-cloak="" data-ng-show="exist && exist()"><span data-ng-if="data.tag | sailplay_tag:exist()">Данный опрос уже пройден</span><form class="sp_l-section sp_intview" data-ng-show="data && !(data.tag | sailplay_tag:exist())"><h1 class="sp_intview__head">Пройти опрос</h1><div class="sp_intview__title">Вопрос {{ step + 1 }}/{{ data.data.length }}</div><div class="sp_intview__quest-wr"><div class="sp_intview__quest" data-ng-bind="data.data[step].label"></div><div class="sp_common-block-param has-pretty-child" data-ng-repeat="answer in data.data[step].answers" data-ng-click="change(answer)"><div class="clearfix prettycheckbox labelright sp_common-check-wr js-target blue"><input type="checkbox" class="js-create-checkbox-custom" style="display: none;" data-ng-model="answer.model"> <a href="#" data-ng-class="{checked: answer.model }"></a></div><span class="sp_common-label js-satellite" data-ng-bind="answer.label"></span></div><textarea name="" id="" cols="30" rows="10" data-ng-show="showTextArea()" data-ng-model="var_model" class="sp_common-textarea sp_intview__textarea js-toggle-textarea"></textarea></div><input type="submit" class="sp_common-btn sp_profile__submit" data-ng-disabled="!isNext()" data-ng-click="next()"></form><notify-popup></notify-popup></div>');
+    '<div class="sp_widget" data-ng-cloak="" data-ng-show="exist && exist()"><a data-ng-href="{{ global.config.pages.main }}" class="sp_common-btn this-white sp_lk_back">Назад</a> <span data-ng-if="data.tag | sailplay_tag:exist()">Данный опрос уже пройден</span><form class="sp_l-section sp_intview" data-ng-show="data && !(data.tag | sailplay_tag:exist())"><h1 class="sp_intview__head">Пройти опрос</h1><div class="sp_intview__title">Вопрос {{ step + 1 }}/{{ data.data.length }}</div><div class="sp_intview__quest-wr"><div class="sp_intview__quest" data-ng-bind="data.data[step].label"></div><div class="sp_common-block-param has-pretty-child" data-ng-repeat="answer in data.data[step].answers" data-ng-click="change(answer)"><div class="clearfix prettycheckbox labelright sp_common-check-wr js-target blue"><input type="checkbox" class="js-create-checkbox-custom" style="display: none;" data-ng-model="answer.model"> <a href="#" data-ng-class="{checked: answer.model }"></a></div><span class="sp_common-label js-satellite" data-ng-bind="answer.label"></span></div><textarea name="" id="" cols="30" rows="10" data-ng-show="showTextArea()" data-ng-model="var_model" class="sp_common-textarea sp_intview__textarea js-toggle-textarea"></textarea></div><input type="submit" class="sp_common-btn sp_profile__submit" data-ng-disabled="!isNext()" data-ng-click="next()"></form><notify-popup></notify-popup></div>');
 }]);
 })();
 
@@ -2409,334 +2409,422 @@ module.run(['$templateCache', function($templateCache) {
 
 (function () {
 
-  angular.module('pichshop', ['core', 'ui', 'sp', 'templates'])
+		angular.module('pichshop', ['core', 'ui', 'sp', 'templates'])
 
-    .directive('sailplayPichshop', ["$rootScope", "$locale", function ($rootScope, $locale) {
+				.directive('sailplayPichshop', ["$rootScope", "$locale", function ($rootScope, $locale) {
 
-      return {
-        restrict: 'E',
-        replace: true,
-        scope: true,
-        templateUrl: '/html/main.html',
-        link: function (scope, element) {
+						return {
+								restrict: 'E',
+								replace: true,
+								scope: true,
+								templateUrl: '/html/main.html',
+								link: function (scope, element) {
 
-          scope.global = $rootScope;
+										scope.global = $rootScope;
 
-          $locale.NUMBER_FORMATS.GROUP_SEP = ' ';
+										$locale.NUMBER_FORMATS.GROUP_SEP = ' ';
 
-        }
-      }
+								}
+						}
 
-    }])
+				}])
 
-    .directive('sailplayHistory', ["sp_api", "$rootScope", "$locale", "Status", function (sp_api, $rootScope, $locale, Status) {
+				.directive('sailplayHistory', ["sp_api", "$rootScope", "$locale", "Status", function (sp_api, $rootScope, $locale, Status) {
 
-      return {
-        restrict: 'E',
-        replace: true,
-        scope: true,
-        templateUrl: '/html/history.html',
-        link: function (scope, element) {
+						return {
+								restrict: 'E',
+								replace: true,
+								scope: true,
+								templateUrl: '/html/history.html',
+								link: function (scope, element) {
 
-          scope.global = $rootScope;
+										scope.global = $rootScope;
 
-          $locale.NUMBER_FORMATS.GROUP_SEP = ' ';
+										$locale.NUMBER_FORMATS.GROUP_SEP = ' ';
 
-          scope.user = sp_api.data('load.user.info');
+										scope.user = sp_api.data('load.user.info');
 
-          scope.getNum = Status.getNum;
+										scope.getNum = Status.getNum;
 
-          scope.statusList = $rootScope.config.statusList;
+										scope.statusList = $rootScope.config.statusList;
 
-        }
-      }
+								}
+						}
 
-    }])
+				}])
 
-    .directive('sailplayProfile', ["sp", "sp_api", "$rootScope", "$locale", function (sp, sp_api, $rootScope, $locale) {
+				.directive('sailplayProfile', ["sp", "sp_api", "$rootScope", "$locale", "$filter", "ipCookie", function (sp, sp_api, $rootScope, $locale, $filter, ipCookie) {
 
-      return {
-        restrict: 'E',
-        replace: true,
-        scope: true,
-        templateUrl: '/html/profile.html',
-        link: function (scope, element) {
+						return {
+								restrict: 'E',
+								replace: true,
+								scope: true,
+								templateUrl: '/html/profile.html',
+								link: function (scope, element) {
 
-          var form = {
-            lastName: null,
-            firstName: null,
-            middleName: null,
-            sex: null,
-            addEmail: null,
-            addPhone: null,
-            address: null
-          };
+										var form = {
+												lastName: null,
+												firstName: null,
+												middleName: null,
+												sex: 1,
+												addEmail: null,
+												addPhone: null,
+												address: null
+										};
 
-          scope.data = null;
+										scope.sexList = [{id: 1, value : 1, label: 'Мужской'}, {id: 2, value : 2, label: 'Женский'}];
 
-          scope.form = angular.copy(form);
+										sp.on('load.user.info.success', function () {
 
-          scope.user = sp_api.data('load.user.info');
+												scope.form = {
+														lastName: scope.user && scope.user().user.last_name || null,
+														firstName: scope.user && scope.user().user.first_name || null,
+														middleName: scope.user && scope.user().user.middle_name ||  null,
+														sex: scope.user && scope.user().user.sex || 1,
+														addEmail: scope.user && scope.user().user.email ||  null,
+														addPhone: scope.user && scope.user().user.phone ||  null,
+														address: ipCookie('sailplay_address')
+												};
 
-          scope.exist = sp_api.data('tags.exist');
+												scope.$digest();
 
-          scope.global = $rootScope;
+										})
 
-          $locale.NUMBER_FORMATS.GROUP_SEP = ' ';
+										scope.data = null;
 
-          var id = sp.url_params() && SAILPLAY.url_params().id || null;
+										scope.form = angular.copy(form);
 
-          scope.data = $rootScope.config.customActions.filter(function (item) {
-            return item.type === 'form' && item.id == id
-          })[0];
+										scope.user = sp_api.data('load.user.info');
 
-          scope.canSubmit = function () {
+										scope.exist = sp_api.data('tags.exist');
 
-            if (
-              scope.form.lastName &&
-              scope.form.firstName &&
-              scope.form.middleName &&
-              scope.form.sex &&
-              scope.form.addEmail &&
-              scope.form.addPhone &&
-              scope.form.address
-            ) {
-              return true;
-            } else {
-              return false;
-            }
+										scope.global = $rootScope;
 
-          };
+										$locale.NUMBER_FORMATS.GROUP_SEP = ' ';
 
-          scope.submit = function () {
+										var id = sp.url_params() && SAILPLAY.url_params().id || null;
 
-            var data = angular.copy(scope.form);
+										scope.data = $rootScope.config && $rootScope.config.customActions.filter(function (item) {
+												return item.type === 'form' && item.id == id
+										})[0];
 
-            delete data.address;
+										scope.canSubmit = function () {
 
-            data.auth_hash = sp.config().auth_hash;
+												if (
+														scope.form.lastName &&
+														scope.form.firstName &&
+														scope.form.middleName &&
+														scope.form.sex &&
+														scope.form.addEmail &&
+														scope.form.addPhone &&
+														scope.form.address
+												) {
+														return true;
+												} else {
+														return false;
+												}
 
-            sp_api.call('user.update', data)
+										};
 
-          };
+										scope.submit = function () {
 
-          sp.on('user.update.success', function () {
+												var data = {};
 
-            var tags = {tags: []};
-            tags.tags.push(scope.data.tag);
+												if (scope.form.firstName !== scope.user().user.first_name) {
+														data.firstName = scope.form.firstName;
+												}
 
-            sp_api.call('tags.add', tags, function () {
+												if (scope.form.lastName !== scope.user().user.last_name) {
+														data.lastName = scope.form.lastName;
+												}
 
-              var variables = {"Адрес": scope.form.address};
+												if (scope.form.middleName !== scope.user().user.middle_name) {
+														data.middleName = scope.form.middleName;
+												}
 
-              sp_api.call('vars.add', {custom_vars: variables}, function () {
+												if (scope.form.sex !== scope.user().user.sex) {
+														data.sex = scope.form.sex;
+												}
 
-                scope.$apply(finish);
+												if (scope.form.addEmail !== scope.user().user.email) {
+														data.addEmail = scope.form.addEmail;
+												}
 
-              });
+												if (scope.form.addPhone !== scope.user().user.phone) {
+														data.addPhone = scope.form.addPhone;
+												}
 
-              scope.$digest();
+												if (!Object.keys(data).length) {
 
-            });
-            scope.$digest();
 
-          });
+														if(scope.form.address != ipCookie('sailplay_address')){
+																add_vars();
+														} else {
 
-          sp.on('user.update.error', function (res) {
+																$rootScope.$broadcast('notify.show', {
+																		title: 'Ошибка',
+																		header: 'Oooops!',
+																		text: 'Нет изменений'
+																});
 
-            var texts = {
-              '-200010': 'Такой e-mail уже используется',
-              '-200007': 'Такой телефон уже используется'
-            };
+														}
 
-            $rootScope.$broadcast('notify.show', {
-              title: 'Ошибка',
-              header: 'Oooops!',
-              text: (res && texts[res.status_code]) || res.message
-            });
+														return;
 
-            scope.$digest();
+												}
 
-          });
+												data.auth_hash = sp.config().auth_hash;
 
-          function finish() {
+												sp_api.call('user.update', data)
 
-            $rootScope.$broadcast('notify.show', {
-              title: 'Подтверждение',
-              header: 'ПОЗДРАВЛЯЕМ!',
-              text: 'Вы выполнили действие.'
-            });
+										};
 
-          }
+										function add_vars() {
 
+												var variables = {"Адрес": scope.form.address};
 
-        }
-      }
+												sp_api.call('vars.add', {custom_vars: variables}, function () {
 
-    }])
+														ipCookie('sailplay_address', scope.form.address);
 
-    .directive('sailplayGifts', ["sp_api", "$rootScope", "$locale", function (sp_api, $rootScope, $locale) {
+														scope.$apply(finish);
 
-      return {
-        restrict: 'E',
-        replace: true,
-        scope: true,
-        templateUrl: '/html/gifts.html',
-        link: function (scope, element) {
+												});
 
-          scope.global = $rootScope;
+										}
 
-          scope.user = sp_api.data('load.user.info');
+										sp.on('user.update.success', function () {
 
-          $locale.NUMBER_FORMATS.GROUP_SEP = ' ';
+														scope.$digest();
 
-        }
-      }
+														if ($filter('sailplay_tag')(scope.data.tag, scope.exist())) {
 
-    }])
+																add_vars();
 
-    .directive('sailplayTest', ["$rootScope", "$locale", "sp", "$timeout", "sp_api", function ($rootScope, $locale, sp, $timeout, sp_api) {
+																return;
 
-      return {
-        restrict: 'E',
-        replace: true,
-        scope: true,
-        templateUrl: '/html/test.html',
-        link: function (scope, element) {
+														}
 
-          scope.global = $rootScope;
+														var tags = {tags: []};
 
-          scope.exist = sp_api.data('tags.exist');
+														tags.tags.push(scope.data.tag);
 
-          $locale.NUMBER_FORMATS.GROUP_SEP = ' ';
+														sp_api.call('tags.add', tags, function () {
 
-          scope.step = 0;
+																add_vars();
+																scope.$digest();
 
-          scope.tags = [];
+														});
 
-          scope.vars = {};
+										});
 
-          scope.var_model = null;
+										sp.on('user.update.error', function (res) {
 
-          var id = sp.url_params() && SAILPLAY.url_params().id || null;
+												var texts = {
+														'-200010': 'Такой e-mail уже используется',
+														'-200007': 'Такой телефон уже используется'
+												};
 
-          scope.data = $rootScope.config.customActions.filter(function (item) {
-            return item.type === 'test' && item.id == id
-          })[0];
+												$rootScope.$broadcast('notify.show', {
+														title: 'Ошибка',
+														header: 'Oooops!',
+														text: (res && texts[res.status_code]) || res.message
+												});
 
-          if (scope.data) {
+												scope.$digest();
 
-            scope.tags.push(scope.data.tag);
+										});
 
-          } else {
+										function finish() {
 
-            $timeout(function () {
+												var data = {
+														title: 'Подтверждение',
+														header: 'ПОЗДРАВЛЯЕМ!',
+														text: 'Вы получили ' + scope.data.points + ' баллов за заполнение профиля'
+												};
 
-              $rootScope.$broadcast('notify.show', {
-                title: 'Ошибка',
-                header: 'Oooops!',
-                text: 'К сожалению, такого опроса не существует.'
-              });
+												if ($filter('sailplay_tag')(scope.data.tag, scope.exist())) {
 
-            }, 0)
+														data = {
+																title: 'Подтверждение',
+																header: 'Профиль',
+																text: 'Данные успешно обновлены.'
+														};
 
-          }
+												}
 
-          scope.isNext = function () {
-            if (!scope.data || !scope.data.data) return;
-            var empty_vaiable = false;
-            var result = scope.data.data[scope.step].answers.filter(function (item) {
-              if (item.model && item.variable && !scope.var_model) {
-                empty_vaiable = true;
-              }
-              return item.model;
-            }).length;
-            return result && !empty_vaiable;
-          };
+												$rootScope.$broadcast('notify.show', data);
 
-          scope.change = function (answer) {
-            var textarea = $('.js-toggle-textarea');
-            answer.model = !answer.model;
-            if (answer.model && scope.variable) {
+										}
 
-            }
-          };
 
-          scope.showTextArea = function () {
-            if (!scope.data || !scope.data.data) return;
-            var result = scope.data.data[scope.step].answers.filter(function (item) {
-              return item.model && item.variable;
-            }).length;
-            return result;
-          };
+								}
+						}
 
-          scope.next = function () {
+				}])
 
-            scope.data.data[scope.step].answers.forEach(function (item) {
-              if (item.model) {
-                scope.tags.push(item.tag);
-                if (item.variable) {
-                  scope.vars[item.variable] = scope.var_model;
-                }
-              }
+				.directive('sailplayGifts', ["sp_api", "$rootScope", "$locale", function (sp_api, $rootScope, $locale) {
 
-            });
+						return {
+								restrict: 'E',
+								replace: true,
+								scope: true,
+								templateUrl: '/html/gifts.html',
+								link: function (scope, element) {
 
-            if ((scope.step + 1) >= scope.data.data.length) {
-              send();
-            } else {
-              scope.step++;
-            }
+										scope.global = $rootScope;
 
-            scope.var_model = null;
+										scope.user = sp_api.data('load.user.info');
 
-          };
+										$locale.NUMBER_FORMATS.GROUP_SEP = ' ';
 
-          function send() {
+								}
+						}
 
-            function finish() {
+				}])
 
-              $rootScope.$broadcast('notify.show', {
-                title: 'Подтверждение',
-                header: 'ПОЗДРАВЛЯЕМ!',
-                text: 'Вы прошли опрос.'
-              });
+				.directive('sailplayTest', ["$rootScope", "$locale", "sp", "$timeout", "sp_api", function ($rootScope, $locale, sp, $timeout, sp_api) {
 
-              scope.data = null;
+						return {
+								restrict: 'E',
+								replace: true,
+								scope: true,
+								templateUrl: '/html/test.html',
+								link: function (scope, element) {
 
-            }
+										scope.global = $rootScope;
 
-            sp_api.call('tags.add', {tags: scope.tags}, function () {
+										scope.exist = sp_api.data('tags.exist');
 
-              if (Object.keys(scope.vars).length) {
-                sp_api.call('vars.add', {custom_vars: scope.vars}, function () {
-                  finish();
-                  scope.$digest();
-                })
-              } else {
-                finish()
-              }
-              scope.$digest();
+										$locale.NUMBER_FORMATS.GROUP_SEP = ' ';
 
-            });
+										scope.step = 0;
 
-          }
+										scope.tags = [];
 
-        }
-      }
+										scope.vars = {};
 
-    }]);
+										scope.var_model = null;
 
+										var id = sp.url_params() && SAILPLAY.url_params().id || null;
 
-  setTimeout(function () {
+										scope.data = $rootScope.config.customActions.filter(function (item) {
+												return item.type === 'test' && item.id == id
+										})[0];
 
-    var app_blocks = document.querySelectorAll('sailplay-pichshop, sailplay-history, sailplay-profile, sailplay-gifts, sailplay-test');
+										if (scope.data) {
 
-    app_blocks.forEach(function (item) {
-      angular.bootstrap(item, ['pichshop'])
-    });
+												scope.tags.push(scope.data.tag);
 
-  }, 0);
+										} else {
+
+												$timeout(function () {
+
+														$rootScope.$broadcast('notify.show', {
+																title: 'Ошибка',
+																header: 'Oooops!',
+																text: 'К сожалению, такого опроса не существует.'
+														});
+
+												}, 0)
+
+										}
+
+										scope.isNext = function () {
+												if (!scope.data || !scope.data.data) return;
+												var empty_vaiable = false;
+												var result = scope.data.data[scope.step].answers.filter(function (item) {
+														if (item.model && item.variable && !scope.var_model) {
+																empty_vaiable = true;
+														}
+														return item.model;
+												}).length;
+												return result && !empty_vaiable;
+										};
+
+										scope.change = function (answer) {
+												var textarea = $('.js-toggle-textarea');
+												answer.model = !answer.model;
+												if (answer.model && scope.variable) {
+
+												}
+										};
+
+										scope.showTextArea = function () {
+												if (!scope.data || !scope.data.data) return;
+												var result = scope.data.data[scope.step].answers.filter(function (item) {
+														return item.model && item.variable;
+												}).length;
+												return result;
+										};
+
+										scope.next = function () {
+
+												scope.data.data[scope.step].answers.forEach(function (item) {
+														if (item.model) {
+																scope.tags.push(item.tag);
+																if (item.variable) {
+																		scope.vars[item.variable] = scope.var_model;
+																}
+														}
+
+												});
+
+												if ((scope.step + 1) >= scope.data.data.length) {
+														send();
+												} else {
+														scope.step++;
+												}
+
+												scope.var_model = null;
+
+										};
+
+										function send() {
+
+												function finish() {
+
+														$rootScope.$broadcast('notify.show', {
+																title: 'Подтверждение',
+																header: 'ПОЗДРАВЛЯЕМ!',
+																text: 'Вы прошли опрос.'
+														});
+
+														scope.data = null;
+
+												}
+
+												sp_api.call('tags.add', {tags: scope.tags}, function () {
+
+														if (Object.keys(scope.vars).length) {
+																sp_api.call('vars.add', {custom_vars: scope.vars}, function () {
+																		finish();
+																		scope.$digest();
+																})
+														} else {
+																finish()
+														}
+														scope.$digest();
+
+												});
+
+										}
+
+								}
+						}
+
+				}]);
+
+
+		setTimeout(function () {
+
+				var app_blocks = document.querySelectorAll('sailplay-pichshop, sailplay-history, sailplay-profile, sailplay-gifts, sailplay-test');
+
+				if(app_blocks && app_blocks[0]) {
+					angular.bootstrap(app_blocks[0], ['pichshop'])
+				}
+
+		}, 0);
 
 
 }());
@@ -2893,6 +2981,17 @@ module.run(['$templateCache', function($templateCache) {
 
 }());
 
+/* Modernizr 2.6.2 (Custom Build) | MIT & BSD
+ * Build: http://modernizr.com/download/#-fontface-backgroundsize-borderimage-borderradius-boxshadow-flexbox-hsla-multiplebgs-opacity-rgba-textshadow-cssanimations-csscolumns-generatedcontent-cssgradients-cssreflections-csstransforms-csstransforms3d-csstransitions-applicationcache-canvas-canvastext-draganddrop-hashchange-history-audio-video-indexeddb-input-inputtypes-localstorage-postmessage-sessionstorage-websockets-websqldatabase-webworkers-geolocation-inlinesvg-smil-svg-svgclippaths-touch-webgl-shiv-mq-cssclasses-addtest-prefixed-teststyles-testprop-testallprops-hasevent-prefixes-domprefixes-load
+ */
+;window.Modernizr=function(a,b,c){function D(a){j.cssText=a}function E(a,b){return D(n.join(a+";")+(b||""))}function F(a,b){return typeof a===b}function G(a,b){return!!~(""+a).indexOf(b)}function H(a,b){for(var d in a){var e=a[d];if(!G(e,"-")&&j[e]!==c)return b=="pfx"?e:!0}return!1}function I(a,b,d){for(var e in a){var f=b[a[e]];if(f!==c)return d===!1?a[e]:F(f,"function")?f.bind(d||b):f}return!1}function J(a,b,c){var d=a.charAt(0).toUpperCase()+a.slice(1),e=(a+" "+p.join(d+" ")+d).split(" ");return F(b,"string")||F(b,"undefined")?H(e,b):(e=(a+" "+q.join(d+" ")+d).split(" "),I(e,b,c))}function K(){e.input=function(c){for(var d=0,e=c.length;d<e;d++)u[c[d]]=c[d]in k;return u.list&&(u.list=!!b.createElement("datalist")&&!!a.HTMLDataListElement),u}("autocomplete autofocus list placeholder max min multiple pattern required step".split(" ")),e.inputtypes=function(a){for(var d=0,e,f,h,i=a.length;d<i;d++)k.setAttribute("type",f=a[d]),e=k.type!=="text",e&&(k.value=l,k.style.cssText="position:absolute;visibility:hidden;",/^range$/.test(f)&&k.style.WebkitAppearance!==c?(g.appendChild(k),h=b.defaultView,e=h.getComputedStyle&&h.getComputedStyle(k,null).WebkitAppearance!=="textfield"&&k.offsetHeight!==0,g.removeChild(k)):/^(search|tel)$/.test(f)||(/^(url|email)$/.test(f)?e=k.checkValidity&&k.checkValidity()===!1:e=k.value!=l)),t[a[d]]=!!e;return t}("search tel url email datetime date month week time datetime-local number range color".split(" "))}var d="2.6.2",e={},f=!0,g=b.documentElement,h="modernizr",i=b.createElement(h),j=i.style,k=b.createElement("input"),l=":)",m={}.toString,n=" -webkit- -moz- -o- -ms- ".split(" "),o="Webkit Moz O ms",p=o.split(" "),q=o.toLowerCase().split(" "),r={svg:"http://www.w3.org/2000/svg"},s={},t={},u={},v=[],w=v.slice,x,y=function(a,c,d,e){var f,i,j,k,l=b.createElement("div"),m=b.body,n=m||b.createElement("body");if(parseInt(d,10))while(d--)j=b.createElement("div"),j.id=e?e[d]:h+(d+1),l.appendChild(j);return f=["&#173;",'<style id="s',h,'">',a,"</style>"].join(""),l.id=h,(m?l:n).innerHTML+=f,n.appendChild(l),m||(n.style.background="",n.style.overflow="hidden",k=g.style.overflow,g.style.overflow="hidden",g.appendChild(n)),i=c(l,a),m?l.parentNode.removeChild(l):(n.parentNode.removeChild(n),g.style.overflow=k),!!i},z=function(b){var c=a.matchMedia||a.msMatchMedia;if(c)return c(b).matches;var d;return y("@media "+b+" { #"+h+" { position: absolute; } }",function(b){d=(a.getComputedStyle?getComputedStyle(b,null):b.currentStyle)["position"]=="absolute"}),d},A=function(){function d(d,e){e=e||b.createElement(a[d]||"div"),d="on"+d;var f=d in e;return f||(e.setAttribute||(e=b.createElement("div")),e.setAttribute&&e.removeAttribute&&(e.setAttribute(d,""),f=F(e[d],"function"),F(e[d],"undefined")||(e[d]=c),e.removeAttribute(d))),e=null,f}var a={select:"input",change:"input",submit:"form",reset:"form",error:"img",load:"img",abort:"img"};return d}(),B={}.hasOwnProperty,C;!F(B,"undefined")&&!F(B.call,"undefined")?C=function(a,b){return B.call(a,b)}:C=function(a,b){return b in a&&F(a.constructor.prototype[b],"undefined")},Function.prototype.bind||(Function.prototype.bind=function(b){var c=this;if(typeof c!="function")throw new TypeError;var d=w.call(arguments,1),e=function(){if(this instanceof e){var a=function(){};a.prototype=c.prototype;var f=new a,g=c.apply(f,d.concat(w.call(arguments)));return Object(g)===g?g:f}return c.apply(b,d.concat(w.call(arguments)))};return e}),s.flexbox=function(){return J("flexWrap")},s.canvas=function(){var a=b.createElement("canvas");return!!a.getContext&&!!a.getContext("2d")},s.canvastext=function(){return!!e.canvas&&!!F(b.createElement("canvas").getContext("2d").fillText,"function")},s.webgl=function(){return!!a.WebGLRenderingContext},s.touch=function(){var c;return"ontouchstart"in a||a.DocumentTouch&&b instanceof DocumentTouch?c=!0:y(["@media (",n.join("touch-enabled),("),h,")","{#modernizr{top:9px;position:absolute}}"].join(""),function(a){c=a.offsetTop===9}),c},s.geolocation=function(){return"geolocation"in navigator},s.postmessage=function(){return!!a.postMessage},s.websqldatabase=function(){return!!a.openDatabase},s.indexedDB=function(){return!!J("indexedDB",a)},s.hashchange=function(){return A("hashchange",a)&&(b.documentMode===c||b.documentMode>7)},s.history=function(){return!!a.history&&!!history.pushState},s.draganddrop=function(){var a=b.createElement("div");return"draggable"in a||"ondragstart"in a&&"ondrop"in a},s.websockets=function(){return"WebSocket"in a||"MozWebSocket"in a},s.rgba=function(){return D("background-color:rgba(150,255,150,.5)"),G(j.backgroundColor,"rgba")},s.hsla=function(){return D("background-color:hsla(120,40%,100%,.5)"),G(j.backgroundColor,"rgba")||G(j.backgroundColor,"hsla")},s.multiplebgs=function(){return D("background:url(https://),url(https://),red url(https://)"),/(url\s*\(.*?){3}/.test(j.background)},s.backgroundsize=function(){return J("backgroundSize")},s.borderimage=function(){return J("borderImage")},s.borderradius=function(){return J("borderRadius")},s.boxshadow=function(){return J("boxShadow")},s.textshadow=function(){return b.createElement("div").style.textShadow===""},s.opacity=function(){return E("opacity:.55"),/^0.55$/.test(j.opacity)},s.cssanimations=function(){return J("animationName")},s.csscolumns=function(){return J("columnCount")},s.cssgradients=function(){var a="background-image:",b="gradient(linear,left top,right bottom,from(#9f9),to(white));",c="linear-gradient(left top,#9f9, white);";return D((a+"-webkit- ".split(" ").join(b+a)+n.join(c+a)).slice(0,-a.length)),G(j.backgroundImage,"gradient")},s.cssreflections=function(){return J("boxReflect")},s.csstransforms=function(){return!!J("transform")},s.csstransforms3d=function(){var a=!!J("perspective");return a&&"webkitPerspective"in g.style&&y("@media (transform-3d),(-webkit-transform-3d){#modernizr{left:9px;position:absolute;height:3px;}}",function(b,c){a=b.offsetLeft===9&&b.offsetHeight===3}),a},s.csstransitions=function(){return J("transition")},s.fontface=function(){var a;return y('@font-face {font-family:"font";src:url("https://")}',function(c,d){var e=b.getElementById("smodernizr"),f=e.sheet||e.styleSheet,g=f?f.cssRules&&f.cssRules[0]?f.cssRules[0].cssText:f.cssText||"":"";a=/src/i.test(g)&&g.indexOf(d.split(" ")[0])===0}),a},s.generatedcontent=function(){var a;return y(["#",h,"{font:0/0 a}#",h,':after{content:"',l,'";visibility:hidden;font:3px/1 a}'].join(""),function(b){a=b.offsetHeight>=3}),a},s.video=function(){var a=b.createElement("video"),c=!1;try{if(c=!!a.canPlayType)c=new Boolean(c),c.ogg=a.canPlayType('video/ogg; codecs="theora"').replace(/^no$/,""),c.h264=a.canPlayType('video/mp4; codecs="avc1.42E01E"').replace(/^no$/,""),c.webm=a.canPlayType('video/webm; codecs="vp8, vorbis"').replace(/^no$/,"")}catch(d){}return c},s.audio=function(){var a=b.createElement("audio"),c=!1;try{if(c=!!a.canPlayType)c=new Boolean(c),c.ogg=a.canPlayType('audio/ogg; codecs="vorbis"').replace(/^no$/,""),c.mp3=a.canPlayType("audio/mpeg;").replace(/^no$/,""),c.wav=a.canPlayType('audio/wav; codecs="1"').replace(/^no$/,""),c.m4a=(a.canPlayType("audio/x-m4a;")||a.canPlayType("audio/aac;")).replace(/^no$/,"")}catch(d){}return c},s.localstorage=function(){try{return localStorage.setItem(h,h),localStorage.removeItem(h),!0}catch(a){return!1}},s.sessionstorage=function(){try{return sessionStorage.setItem(h,h),sessionStorage.removeItem(h),!0}catch(a){return!1}},s.webworkers=function(){return!!a.Worker},s.applicationcache=function(){return!!a.applicationCache},s.svg=function(){return!!b.createElementNS&&!!b.createElementNS(r.svg,"svg").createSVGRect},s.inlinesvg=function(){var a=b.createElement("div");return a.innerHTML="<svg/>",(a.firstChild&&a.firstChild.namespaceURI)==r.svg},s.smil=function(){return!!b.createElementNS&&/SVGAnimate/.test(m.call(b.createElementNS(r.svg,"animate")))},s.svgclippaths=function(){return!!b.createElementNS&&/SVGClipPath/.test(m.call(b.createElementNS(r.svg,"clipPath")))};for(var L in s)C(s,L)&&(x=L.toLowerCase(),e[x]=s[L](),v.push((e[x]?"":"no-")+x));return e.input||K(),e.addTest=function(a,b){if(typeof a=="object")for(var d in a)C(a,d)&&e.addTest(d,a[d]);else{a=a.toLowerCase();if(e[a]!==c)return e;b=typeof b=="function"?b():b,typeof f!="undefined"&&f&&(g.className+=" "+(b?"":"no-")+a),e[a]=b}return e},D(""),i=k=null,function(a,b){function k(a,b){var c=a.createElement("p"),d=a.getElementsByTagName("head")[0]||a.documentElement;return c.innerHTML="x<style>"+b+"</style>",d.insertBefore(c.lastChild,d.firstChild)}function l(){var a=r.elements;return typeof a=="string"?a.split(" "):a}function m(a){var b=i[a[g]];return b||(b={},h++,a[g]=h,i[h]=b),b}function n(a,c,f){c||(c=b);if(j)return c.createElement(a);f||(f=m(c));var g;return f.cache[a]?g=f.cache[a].cloneNode():e.test(a)?g=(f.cache[a]=f.createElem(a)).cloneNode():g=f.createElem(a),g.canHaveChildren&&!d.test(a)?f.frag.appendChild(g):g}function o(a,c){a||(a=b);if(j)return a.createDocumentFragment();c=c||m(a);var d=c.frag.cloneNode(),e=0,f=l(),g=f.length;for(;e<g;e++)d.createElement(f[e]);return d}function p(a,b){b.cache||(b.cache={},b.createElem=a.createElement,b.createFrag=a.createDocumentFragment,b.frag=b.createFrag()),a.createElement=function(c){return r.shivMethods?n(c,a,b):b.createElem(c)},a.createDocumentFragment=Function("h,f","return function(){var n=f.cloneNode(),c=n.createElement;h.shivMethods&&("+l().join().replace(/\w+/g,function(a){return b.createElem(a),b.frag.createElement(a),'c("'+a+'")'})+");return n}")(r,b.frag)}function q(a){a||(a=b);var c=m(a);return r.shivCSS&&!f&&!c.hasCSS&&(c.hasCSS=!!k(a,"article,aside,figcaption,figure,footer,header,hgroup,nav,section{display:block}mark{background:#FF0;color:#000}")),j||p(a,c),a}var c=a.html5||{},d=/^<|^(?:button|map|select|textarea|object|iframe|option|optgroup)$/i,e=/^(?:a|b|code|div|fieldset|h1|h2|h3|h4|h5|h6|i|label|li|ol|p|q|span|strong|style|table|tbody|td|th|tr|ul)$/i,f,g="_html5shiv",h=0,i={},j;(function(){try{var a=b.createElement("a");a.innerHTML="<xyz></xyz>",f="hidden"in a,j=a.childNodes.length==1||function(){b.createElement("a");var a=b.createDocumentFragment();return typeof a.cloneNode=="undefined"||typeof a.createDocumentFragment=="undefined"||typeof a.createElement=="undefined"}()}catch(c){f=!0,j=!0}})();var r={elements:c.elements||"abbr article aside audio bdi canvas data datalist details figcaption figure footer header hgroup mark meter nav output progress section summary time video",shivCSS:c.shivCSS!==!1,supportsUnknownElements:j,shivMethods:c.shivMethods!==!1,type:"default",shivDocument:q,createElement:n,createDocumentFragment:o};a.html5=r,q(b)}(this,b),e._version=d,e._prefixes=n,e._domPrefixes=q,e._cssomPrefixes=p,e.mq=z,e.hasEvent=A,e.testProp=function(a){return H([a])},e.testAllProps=J,e.testStyles=y,e.prefixed=function(a,b,c){return b?J(a,b,c):J(a,"pfx")},g.className=g.className.replace(/(^|\s)no-js(\s|$)/,"$1$2")+(f?" js "+v.join(" "):""),e}(this,this.document),function(a,b,c){function d(a){return"[object Function]"==o.call(a)}function e(a){return"string"==typeof a}function f(){}function g(a){return!a||"loaded"==a||"complete"==a||"uninitialized"==a}function h(){var a=p.shift();q=1,a?a.t?m(function(){("c"==a.t?B.injectCss:B.injectJs)(a.s,0,a.a,a.x,a.e,1)},0):(a(),h()):q=0}function i(a,c,d,e,f,i,j){function k(b){if(!o&&g(l.readyState)&&(u.r=o=1,!q&&h(),l.onload=l.onreadystatechange=null,b)){"img"!=a&&m(function(){t.removeChild(l)},50);for(var d in y[c])y[c].hasOwnProperty(d)&&y[c][d].onload()}}var j=j||B.errorTimeout,l=b.createElement(a),o=0,r=0,u={t:d,s:c,e:f,a:i,x:j};1===y[c]&&(r=1,y[c]=[]),"object"==a?l.data=c:(l.src=c,l.type=a),l.width=l.height="0",l.onerror=l.onload=l.onreadystatechange=function(){k.call(this,r)},p.splice(e,0,u),"img"!=a&&(r||2===y[c]?(t.insertBefore(l,s?null:n),m(k,j)):y[c].push(l))}function j(a,b,c,d,f){return q=0,b=b||"j",e(a)?i("c"==b?v:u,a,b,this.i++,c,d,f):(p.splice(this.i++,0,a),1==p.length&&h()),this}function k(){var a=B;return a.loader={load:j,i:0},a}var l=b.documentElement,m=a.setTimeout,n=b.getElementsByTagName("script")[0],o={}.toString,p=[],q=0,r="MozAppearance"in l.style,s=r&&!!b.createRange().compareNode,t=s?l:n.parentNode,l=a.opera&&"[object Opera]"==o.call(a.opera),l=!!b.attachEvent&&!l,u=r?"object":l?"script":"img",v=l?"script":u,w=Array.isArray||function(a){return"[object Array]"==o.call(a)},x=[],y={},z={timeout:function(a,b){return b.length&&(a.timeout=b[0]),a}},A,B;B=function(a){function b(a){var a=a.split("!"),b=x.length,c=a.pop(),d=a.length,c={url:c,origUrl:c,prefixes:a},e,f,g;for(f=0;f<d;f++)g=a[f].split("="),(e=z[g.shift()])&&(c=e(c,g));for(f=0;f<b;f++)c=x[f](c);return c}function g(a,e,f,g,h){var i=b(a),j=i.autoCallback;i.url.split(".").pop().split("?").shift(),i.bypass||(e&&(e=d(e)?e:e[a]||e[g]||e[a.split("/").pop().split("?")[0]]),i.instead?i.instead(a,e,f,g,h):(y[i.url]?i.noexec=!0:y[i.url]=1,f.load(i.url,i.forceCSS||!i.forceJS&&"css"==i.url.split(".").pop().split("?").shift()?"c":c,i.noexec,i.attrs,i.timeout),(d(e)||d(j))&&f.load(function(){k(),e&&e(i.origUrl,h,g),j&&j(i.origUrl,h,g),y[i.url]=2})))}function h(a,b){function c(a,c){if(a){if(e(a))c||(j=function(){var a=[].slice.call(arguments);k.apply(this,a),l()}),g(a,j,b,0,h);else if(Object(a)===a)for(n in m=function(){var b=0,c;for(c in a)a.hasOwnProperty(c)&&b++;return b}(),a)a.hasOwnProperty(n)&&(!c&&!--m&&(d(j)?j=function(){var a=[].slice.call(arguments);k.apply(this,a),l()}:j[n]=function(a){return function(){var b=[].slice.call(arguments);a&&a.apply(this,b),l()}}(k[n])),g(a[n],j,b,n,h))}else!c&&l()}var h=!!a.test,i=a.load||a.both,j=a.callback||f,k=j,l=a.complete||f,m,n;c(h?a.yep:a.nope,!!i),i&&c(i)}var i,j,l=this.yepnope.loader;if(e(a))g(a,0,l,0);else if(w(a))for(i=0;i<a.length;i++)j=a[i],e(j)?g(j,0,l,0):w(j)?B(j):Object(j)===j&&h(j,l);else Object(a)===a&&h(a,l)},B.addPrefix=function(a,b){z[a]=b},B.addFilter=function(a){x.push(a)},B.errorTimeout=1e4,null==b.readyState&&b.addEventListener&&(b.readyState="loading",b.addEventListener("DOMContentLoaded",A=function(){b.removeEventListener("DOMContentLoaded",A,0),b.readyState="complete"},0)),a.yepnope=k(),a.yepnope.executeStack=h,a.yepnope.injectJs=function(a,c,d,e,i,j){var k=b.createElement("script"),l,o,e=e||B.errorTimeout;k.src=a;for(o in d)k.setAttribute(o,d[o]);c=j?h:c||f,k.onreadystatechange=k.onload=function(){!l&&g(k.readyState)&&(l=1,c(),k.onload=k.onreadystatechange=null)},m(function(){l||(l=1,c(1))},e),i?k.onload():n.parentNode.insertBefore(k,n)},a.yepnope.injectCss=function(a,c,d,e,g,i){var e=b.createElement("link"),j,c=i?h:c||f;e.href=a,e.rel="stylesheet",e.type="text/css";for(j in d)e.setAttribute(j,d[j]);g||(n.parentNode.insertBefore(e,n),m(c,0))}}(this,document),Modernizr.load=function(){yepnope.apply(window,[].slice.call(arguments,0))};
+
+/*! matchMedia() polyfill - Test a CSS media type/query in JS. Authors & copyright (c) 2012: Scott Jehl, Paul Irish, Nicholas Zakas. Dual MIT/BSD license */
+/*! NOTE: If you're already including a window.matchMedia polyfill via Modernizr or otherwise, you don't need this part */
+window.matchMedia=window.matchMedia||(function(e,f){var c,a=e.documentElement,b=a.firstElementChild||a.firstChild,d=e.createElement("body"),g=e.createElement("div");g.id="mq-test-1";g.style.cssText="position:absolute;top:-100em";d.style.background="none";d.appendChild(g);return function(h){g.innerHTML='&shy;<style media="'+h+'"> #mq-test-1 { width: 42px; }</style>';a.insertBefore(d,b);c=g.offsetWidth==42;a.removeChild(d);return{matches:c,media:h}}})(document);
+
+/*! Respond.js v1.1.0: min/max-width media query polyfill. (c) Scott Jehl. MIT/GPLv2 Lic. j.mp/respondjs  */
+(function(e){e.respond={};respond.update=function(){};respond.mediaQueriesSupported=e.matchMedia&&e.matchMedia("only all").matches;if(respond.mediaQueriesSupported){return}var w=e.document,s=w.documentElement,i=[],k=[],q=[],o={},h=30,f=w.getElementsByTagName("head")[0]||s,g=w.getElementsByTagName("base")[0],b=f.getElementsByTagName("link"),d=[],a=function(){var D=b,y=D.length,B=0,A,z,C,x;for(;B<y;B++){A=D[B],z=A.href,C=A.media,x=A.rel&&A.rel.toLowerCase()==="stylesheet";if(!!z&&x&&!o[z]){if(A.styleSheet&&A.styleSheet.rawCssText){m(A.styleSheet.rawCssText,z,C);o[z]=true}else{if((!/^([a-zA-Z:]*\/\/)/.test(z)&&!g)||z.replace(RegExp.$1,"").split("/")[0]===e.location.host){d.push({href:z,media:C})}}}}u()},u=function(){if(d.length){var x=d.shift();n(x.href,function(y){m(y,x.href,x.media);o[x.href]=true;u()})}},m=function(I,x,z){var G=I.match(/@media[^\{]+\{([^\{\}]*\{[^\}\{]*\})+/gi),J=G&&G.length||0,x=x.substring(0,x.lastIndexOf("/")),y=function(K){return K.replace(/(url\()['"]?([^\/\)'"][^:\)'"]+)['"]?(\))/g,"$1"+x+"$2$3")},A=!J&&z,D=0,C,E,F,B,H;if(x.length){x+="/"}if(A){J=1}for(;D<J;D++){C=0;if(A){E=z;k.push(y(I))}else{E=G[D].match(/@media *([^\{]+)\{([\S\s]+?)$/)&&RegExp.$1;k.push(RegExp.$2&&y(RegExp.$2))}B=E.split(",");H=B.length;for(;C<H;C++){F=B[C];i.push({media:F.split("(")[0].match(/(only\s+)?([a-zA-Z]+)\s?/)&&RegExp.$2||"all",rules:k.length-1,hasquery:F.indexOf("(")>-1,minw:F.match(/\(min\-width:[\s]*([\s]*[0-9\.]+)(px|em)[\s]*\)/)&&parseFloat(RegExp.$1)+(RegExp.$2||""),maxw:F.match(/\(max\-width:[\s]*([\s]*[0-9\.]+)(px|em)[\s]*\)/)&&parseFloat(RegExp.$1)+(RegExp.$2||"")})}}j()},l,r,v=function(){var z,A=w.createElement("div"),x=w.body,y=false;A.style.cssText="position:absolute;font-size:1em;width:1em";if(!x){x=y=w.createElement("body");x.style.background="none"}x.appendChild(A);s.insertBefore(x,s.firstChild);z=A.offsetWidth;if(y){s.removeChild(x)}else{x.removeChild(A)}z=p=parseFloat(z);return z},p,j=function(I){var x="clientWidth",B=s[x],H=w.compatMode==="CSS1Compat"&&B||w.body[x]||B,D={},G=b[b.length-1],z=(new Date()).getTime();if(I&&l&&z-l<h){clearTimeout(r);r=setTimeout(j,h);return}else{l=z}for(var E in i){var K=i[E],C=K.minw,J=K.maxw,A=C===null,L=J===null,y="em";if(!!C){C=parseFloat(C)*(C.indexOf(y)>-1?(p||v()):1)}if(!!J){J=parseFloat(J)*(J.indexOf(y)>-1?(p||v()):1)}if(!K.hasquery||(!A||!L)&&(A||H>=C)&&(L||H<=J)){if(!D[K.media]){D[K.media]=[]}D[K.media].push(k[K.rules])}}for(var E in q){if(q[E]&&q[E].parentNode===f){f.removeChild(q[E])}}for(var E in D){var M=w.createElement("style"),F=D[E].join("\n");M.type="text/css";M.media=E;f.insertBefore(M,G.nextSibling);if(M.styleSheet){M.styleSheet.cssText=F}else{M.appendChild(w.createTextNode(F))}q.push(M)}},n=function(x,z){var y=c();if(!y){return}y.open("GET",x,true);y.onreadystatechange=function(){if(y.readyState!=4||y.status!=200&&y.status!=304){return}z(y.responseText)};if(y.readyState==4){return}y.send(null)},c=(function(){var x=false;try{x=new XMLHttpRequest()}catch(y){x=new ActiveXObject("Microsoft.XMLHTTP")}return function(){return x}})();a();respond.update=a;function t(){j(true)}if(e.addEventListener){e.addEventListener("resize",t,false)}else{if(e.attachEvent){e.attachEvent("onresize",t)}}})(this);
 (function () {
 
   angular.module('sp.actions', [])
@@ -2902,7 +3001,7 @@ module.run(['$templateCache', function($templateCache) {
         "inviteFriend": {
           name: 'Пригласить друга или подругу',
           notify: 'приглашения друга или подруги',
-          pic: 'dist/image/task-icon-01.png'
+          pic: 'task-icon-01.png'
         }
       },
       "social": {
@@ -2910,17 +3009,17 @@ module.run(['$templateCache', function($templateCache) {
           "partner_page": {
             "name": "Рассказать о магазине в Facebook",
             "notify": 'рассказ о магазине в Facebook',
-            "pic": "dist/image/task-icon-02.png"
+            "pic": "task-icon-02.png"
           },
           "like": {
             "name": "Вступить в группу Facebook",
             "notify": 'вступление в группу Facebook',
-            "pic": "dist/image/task-icon-02.png"
+            "pic": "task-icon-02.png"
           },
           "purchase": {
             "name": "Рассказать о покупке в Facebook",
             "notify": 'рассказ о покупке в Facebook',
-            "pic": "dist/image/task-icon-02.png"
+            "pic": "task-icon-02.png"
           }
         }
       }
@@ -3104,59 +3203,59 @@ module.run(['$templateCache', function($templateCache) {
     .constant('history_object', {
       "purchase": {
         "text": "Покупка",
-        "image": "dist/image/order_icon.png"
+        "image": "order_icon.png"
       },
       "gift_purchase": {
         "text": "Подарок",
-        "image": "dist/image/gift_icon.png"
+        "image": "gift_icon.png"
       },
       "badge": {
         "text": "Бейджик",
-        "image": "dist/image/pig_icon.png"
+        "image": "pig_icon.png"
       },
       "registration": {
         "text": "Регистрация",
-        "image": "dist/image/pig_icon.png"
+        "image": "pig_icon.png"
       },
       "referral": {
         "text": "Регистрация друга",
-        "image": "dist/image/hist-friend.png"
+        "image": "hist-friend.png"
       },
       "referred": {
         "text": "Регистрация по приглашению",
-        "image": "dist/image/pig_icon.png"
+        "image": "pig_icon.png"
       },
       "referred_purchase": {
         "text": "Покупка приглашенного пользователя",
-        "image": "dist/image/order_icon.png"
+        "image": "order_icon.png"
       },
       "promocode": {
         "text": "За ввод промокода",
-        "image": "dist/image/pig_icon.png"
+        "image": "pig_icon.png"
       },
       "enter_group": {
         "text": "Вступление в группу ",
-        "image": "dist/image/task-icon-02.png"
+        "image": "task-icon-02.png"
       },
       "share_purchase": {
         "text": "Рассказ о покупке в ",
-        "image": "dist/image/task-icon-02.png"
+        "image": "task-icon-02.png"
       },
       "social_share": {
         "text": "Рассказ в ",
-        "image": "dist/image/task-icon-02.png"
+        "image": "task-icon-02.png"
       },
       "share_badge": {
         "text": "Рассказ о бейджике в ",
-        "image": "dist/image/task-icon-02.png"
+        "image": "task-icon-02.png"
       },
       "earn_badge": {
         "text": "Получен бейджик ",
-        "image": "dist/image/pig_icon.png"
+        "image": "pig_icon.png"
       },
       "custom_action": {
         "text": "Экстра",
-        "image": "dist/image/pig_icon.png"
+        "image": "pig_icon.png"
       }
     })
 
@@ -3326,6 +3425,18 @@ module.run(['$templateCache', function($templateCache) {
       }
     })
 
+		  .filter('img_folder', ["$rootScope", function ($rootScope) {
+
+				  return function (pic_url) {
+
+						  if (!pic_url) return '';
+
+						  return $rootScope.config.imgFolder ? $rootScope.config.imgFolder + pic_url : pic_url;
+
+				  };
+
+		  }])
+
     .filter('sailplay_pic', ["sp", function (sp) {
 
       function repair_pic_url(url) {
@@ -3370,6 +3481,18 @@ module.run(['$templateCache', function($templateCache) {
           scope.getNum = Status.getNum;
 
           scope.statusList = $rootScope.config.statusList;
+
+		        scope.getEditLink = function(){
+
+				        if(!$rootScope.config || !$rootScope.config.customActions) return;
+
+				        var profile_action = $rootScope.config.customActions.filter(function(action){
+													return action.id == 'profile'
+				        })[0] || {};
+
+				        return profile_action.href + '?id=' + profile_action.id;
+
+		        }
 
         }
 
@@ -3428,6 +3551,12 @@ module.run(['$templateCache', function($templateCache) {
             return (100 / scope.statusList.length) + '%'
           };
 
+          scope.show = null;
+
+          scope.show_name = function(index){
+            scope.show = index == scope.show ? null : index;
+          };
+
           scope.getBarWidth = function (points) {
 
             var len = scope.statusList.length;
@@ -3473,17 +3602,6 @@ module.run(['$templateCache', function($templateCache) {
 
 }());
 
-/* Modernizr 2.6.2 (Custom Build) | MIT & BSD
- * Build: http://modernizr.com/download/#-fontface-backgroundsize-borderimage-borderradius-boxshadow-flexbox-hsla-multiplebgs-opacity-rgba-textshadow-cssanimations-csscolumns-generatedcontent-cssgradients-cssreflections-csstransforms-csstransforms3d-csstransitions-applicationcache-canvas-canvastext-draganddrop-hashchange-history-audio-video-indexeddb-input-inputtypes-localstorage-postmessage-sessionstorage-websockets-websqldatabase-webworkers-geolocation-inlinesvg-smil-svg-svgclippaths-touch-webgl-shiv-mq-cssclasses-addtest-prefixed-teststyles-testprop-testallprops-hasevent-prefixes-domprefixes-load
- */
-;window.Modernizr=function(a,b,c){function D(a){j.cssText=a}function E(a,b){return D(n.join(a+";")+(b||""))}function F(a,b){return typeof a===b}function G(a,b){return!!~(""+a).indexOf(b)}function H(a,b){for(var d in a){var e=a[d];if(!G(e,"-")&&j[e]!==c)return b=="pfx"?e:!0}return!1}function I(a,b,d){for(var e in a){var f=b[a[e]];if(f!==c)return d===!1?a[e]:F(f,"function")?f.bind(d||b):f}return!1}function J(a,b,c){var d=a.charAt(0).toUpperCase()+a.slice(1),e=(a+" "+p.join(d+" ")+d).split(" ");return F(b,"string")||F(b,"undefined")?H(e,b):(e=(a+" "+q.join(d+" ")+d).split(" "),I(e,b,c))}function K(){e.input=function(c){for(var d=0,e=c.length;d<e;d++)u[c[d]]=c[d]in k;return u.list&&(u.list=!!b.createElement("datalist")&&!!a.HTMLDataListElement),u}("autocomplete autofocus list placeholder max min multiple pattern required step".split(" ")),e.inputtypes=function(a){for(var d=0,e,f,h,i=a.length;d<i;d++)k.setAttribute("type",f=a[d]),e=k.type!=="text",e&&(k.value=l,k.style.cssText="position:absolute;visibility:hidden;",/^range$/.test(f)&&k.style.WebkitAppearance!==c?(g.appendChild(k),h=b.defaultView,e=h.getComputedStyle&&h.getComputedStyle(k,null).WebkitAppearance!=="textfield"&&k.offsetHeight!==0,g.removeChild(k)):/^(search|tel)$/.test(f)||(/^(url|email)$/.test(f)?e=k.checkValidity&&k.checkValidity()===!1:e=k.value!=l)),t[a[d]]=!!e;return t}("search tel url email datetime date month week time datetime-local number range color".split(" "))}var d="2.6.2",e={},f=!0,g=b.documentElement,h="modernizr",i=b.createElement(h),j=i.style,k=b.createElement("input"),l=":)",m={}.toString,n=" -webkit- -moz- -o- -ms- ".split(" "),o="Webkit Moz O ms",p=o.split(" "),q=o.toLowerCase().split(" "),r={svg:"http://www.w3.org/2000/svg"},s={},t={},u={},v=[],w=v.slice,x,y=function(a,c,d,e){var f,i,j,k,l=b.createElement("div"),m=b.body,n=m||b.createElement("body");if(parseInt(d,10))while(d--)j=b.createElement("div"),j.id=e?e[d]:h+(d+1),l.appendChild(j);return f=["&#173;",'<style id="s',h,'">',a,"</style>"].join(""),l.id=h,(m?l:n).innerHTML+=f,n.appendChild(l),m||(n.style.background="",n.style.overflow="hidden",k=g.style.overflow,g.style.overflow="hidden",g.appendChild(n)),i=c(l,a),m?l.parentNode.removeChild(l):(n.parentNode.removeChild(n),g.style.overflow=k),!!i},z=function(b){var c=a.matchMedia||a.msMatchMedia;if(c)return c(b).matches;var d;return y("@media "+b+" { #"+h+" { position: absolute; } }",function(b){d=(a.getComputedStyle?getComputedStyle(b,null):b.currentStyle)["position"]=="absolute"}),d},A=function(){function d(d,e){e=e||b.createElement(a[d]||"div"),d="on"+d;var f=d in e;return f||(e.setAttribute||(e=b.createElement("div")),e.setAttribute&&e.removeAttribute&&(e.setAttribute(d,""),f=F(e[d],"function"),F(e[d],"undefined")||(e[d]=c),e.removeAttribute(d))),e=null,f}var a={select:"input",change:"input",submit:"form",reset:"form",error:"img",load:"img",abort:"img"};return d}(),B={}.hasOwnProperty,C;!F(B,"undefined")&&!F(B.call,"undefined")?C=function(a,b){return B.call(a,b)}:C=function(a,b){return b in a&&F(a.constructor.prototype[b],"undefined")},Function.prototype.bind||(Function.prototype.bind=function(b){var c=this;if(typeof c!="function")throw new TypeError;var d=w.call(arguments,1),e=function(){if(this instanceof e){var a=function(){};a.prototype=c.prototype;var f=new a,g=c.apply(f,d.concat(w.call(arguments)));return Object(g)===g?g:f}return c.apply(b,d.concat(w.call(arguments)))};return e}),s.flexbox=function(){return J("flexWrap")},s.canvas=function(){var a=b.createElement("canvas");return!!a.getContext&&!!a.getContext("2d")},s.canvastext=function(){return!!e.canvas&&!!F(b.createElement("canvas").getContext("2d").fillText,"function")},s.webgl=function(){return!!a.WebGLRenderingContext},s.touch=function(){var c;return"ontouchstart"in a||a.DocumentTouch&&b instanceof DocumentTouch?c=!0:y(["@media (",n.join("touch-enabled),("),h,")","{#modernizr{top:9px;position:absolute}}"].join(""),function(a){c=a.offsetTop===9}),c},s.geolocation=function(){return"geolocation"in navigator},s.postmessage=function(){return!!a.postMessage},s.websqldatabase=function(){return!!a.openDatabase},s.indexedDB=function(){return!!J("indexedDB",a)},s.hashchange=function(){return A("hashchange",a)&&(b.documentMode===c||b.documentMode>7)},s.history=function(){return!!a.history&&!!history.pushState},s.draganddrop=function(){var a=b.createElement("div");return"draggable"in a||"ondragstart"in a&&"ondrop"in a},s.websockets=function(){return"WebSocket"in a||"MozWebSocket"in a},s.rgba=function(){return D("background-color:rgba(150,255,150,.5)"),G(j.backgroundColor,"rgba")},s.hsla=function(){return D("background-color:hsla(120,40%,100%,.5)"),G(j.backgroundColor,"rgba")||G(j.backgroundColor,"hsla")},s.multiplebgs=function(){return D("background:url(https://),url(https://),red url(https://)"),/(url\s*\(.*?){3}/.test(j.background)},s.backgroundsize=function(){return J("backgroundSize")},s.borderimage=function(){return J("borderImage")},s.borderradius=function(){return J("borderRadius")},s.boxshadow=function(){return J("boxShadow")},s.textshadow=function(){return b.createElement("div").style.textShadow===""},s.opacity=function(){return E("opacity:.55"),/^0.55$/.test(j.opacity)},s.cssanimations=function(){return J("animationName")},s.csscolumns=function(){return J("columnCount")},s.cssgradients=function(){var a="background-image:",b="gradient(linear,left top,right bottom,from(#9f9),to(white));",c="linear-gradient(left top,#9f9, white);";return D((a+"-webkit- ".split(" ").join(b+a)+n.join(c+a)).slice(0,-a.length)),G(j.backgroundImage,"gradient")},s.cssreflections=function(){return J("boxReflect")},s.csstransforms=function(){return!!J("transform")},s.csstransforms3d=function(){var a=!!J("perspective");return a&&"webkitPerspective"in g.style&&y("@media (transform-3d),(-webkit-transform-3d){#modernizr{left:9px;position:absolute;height:3px;}}",function(b,c){a=b.offsetLeft===9&&b.offsetHeight===3}),a},s.csstransitions=function(){return J("transition")},s.fontface=function(){var a;return y('@font-face {font-family:"font";src:url("https://")}',function(c,d){var e=b.getElementById("smodernizr"),f=e.sheet||e.styleSheet,g=f?f.cssRules&&f.cssRules[0]?f.cssRules[0].cssText:f.cssText||"":"";a=/src/i.test(g)&&g.indexOf(d.split(" ")[0])===0}),a},s.generatedcontent=function(){var a;return y(["#",h,"{font:0/0 a}#",h,':after{content:"',l,'";visibility:hidden;font:3px/1 a}'].join(""),function(b){a=b.offsetHeight>=3}),a},s.video=function(){var a=b.createElement("video"),c=!1;try{if(c=!!a.canPlayType)c=new Boolean(c),c.ogg=a.canPlayType('video/ogg; codecs="theora"').replace(/^no$/,""),c.h264=a.canPlayType('video/mp4; codecs="avc1.42E01E"').replace(/^no$/,""),c.webm=a.canPlayType('video/webm; codecs="vp8, vorbis"').replace(/^no$/,"")}catch(d){}return c},s.audio=function(){var a=b.createElement("audio"),c=!1;try{if(c=!!a.canPlayType)c=new Boolean(c),c.ogg=a.canPlayType('audio/ogg; codecs="vorbis"').replace(/^no$/,""),c.mp3=a.canPlayType("audio/mpeg;").replace(/^no$/,""),c.wav=a.canPlayType('audio/wav; codecs="1"').replace(/^no$/,""),c.m4a=(a.canPlayType("audio/x-m4a;")||a.canPlayType("audio/aac;")).replace(/^no$/,"")}catch(d){}return c},s.localstorage=function(){try{return localStorage.setItem(h,h),localStorage.removeItem(h),!0}catch(a){return!1}},s.sessionstorage=function(){try{return sessionStorage.setItem(h,h),sessionStorage.removeItem(h),!0}catch(a){return!1}},s.webworkers=function(){return!!a.Worker},s.applicationcache=function(){return!!a.applicationCache},s.svg=function(){return!!b.createElementNS&&!!b.createElementNS(r.svg,"svg").createSVGRect},s.inlinesvg=function(){var a=b.createElement("div");return a.innerHTML="<svg/>",(a.firstChild&&a.firstChild.namespaceURI)==r.svg},s.smil=function(){return!!b.createElementNS&&/SVGAnimate/.test(m.call(b.createElementNS(r.svg,"animate")))},s.svgclippaths=function(){return!!b.createElementNS&&/SVGClipPath/.test(m.call(b.createElementNS(r.svg,"clipPath")))};for(var L in s)C(s,L)&&(x=L.toLowerCase(),e[x]=s[L](),v.push((e[x]?"":"no-")+x));return e.input||K(),e.addTest=function(a,b){if(typeof a=="object")for(var d in a)C(a,d)&&e.addTest(d,a[d]);else{a=a.toLowerCase();if(e[a]!==c)return e;b=typeof b=="function"?b():b,typeof f!="undefined"&&f&&(g.className+=" "+(b?"":"no-")+a),e[a]=b}return e},D(""),i=k=null,function(a,b){function k(a,b){var c=a.createElement("p"),d=a.getElementsByTagName("head")[0]||a.documentElement;return c.innerHTML="x<style>"+b+"</style>",d.insertBefore(c.lastChild,d.firstChild)}function l(){var a=r.elements;return typeof a=="string"?a.split(" "):a}function m(a){var b=i[a[g]];return b||(b={},h++,a[g]=h,i[h]=b),b}function n(a,c,f){c||(c=b);if(j)return c.createElement(a);f||(f=m(c));var g;return f.cache[a]?g=f.cache[a].cloneNode():e.test(a)?g=(f.cache[a]=f.createElem(a)).cloneNode():g=f.createElem(a),g.canHaveChildren&&!d.test(a)?f.frag.appendChild(g):g}function o(a,c){a||(a=b);if(j)return a.createDocumentFragment();c=c||m(a);var d=c.frag.cloneNode(),e=0,f=l(),g=f.length;for(;e<g;e++)d.createElement(f[e]);return d}function p(a,b){b.cache||(b.cache={},b.createElem=a.createElement,b.createFrag=a.createDocumentFragment,b.frag=b.createFrag()),a.createElement=function(c){return r.shivMethods?n(c,a,b):b.createElem(c)},a.createDocumentFragment=Function("h,f","return function(){var n=f.cloneNode(),c=n.createElement;h.shivMethods&&("+l().join().replace(/\w+/g,function(a){return b.createElem(a),b.frag.createElement(a),'c("'+a+'")'})+");return n}")(r,b.frag)}function q(a){a||(a=b);var c=m(a);return r.shivCSS&&!f&&!c.hasCSS&&(c.hasCSS=!!k(a,"article,aside,figcaption,figure,footer,header,hgroup,nav,section{display:block}mark{background:#FF0;color:#000}")),j||p(a,c),a}var c=a.html5||{},d=/^<|^(?:button|map|select|textarea|object|iframe|option|optgroup)$/i,e=/^(?:a|b|code|div|fieldset|h1|h2|h3|h4|h5|h6|i|label|li|ol|p|q|span|strong|style|table|tbody|td|th|tr|ul)$/i,f,g="_html5shiv",h=0,i={},j;(function(){try{var a=b.createElement("a");a.innerHTML="<xyz></xyz>",f="hidden"in a,j=a.childNodes.length==1||function(){b.createElement("a");var a=b.createDocumentFragment();return typeof a.cloneNode=="undefined"||typeof a.createDocumentFragment=="undefined"||typeof a.createElement=="undefined"}()}catch(c){f=!0,j=!0}})();var r={elements:c.elements||"abbr article aside audio bdi canvas data datalist details figcaption figure footer header hgroup mark meter nav output progress section summary time video",shivCSS:c.shivCSS!==!1,supportsUnknownElements:j,shivMethods:c.shivMethods!==!1,type:"default",shivDocument:q,createElement:n,createDocumentFragment:o};a.html5=r,q(b)}(this,b),e._version=d,e._prefixes=n,e._domPrefixes=q,e._cssomPrefixes=p,e.mq=z,e.hasEvent=A,e.testProp=function(a){return H([a])},e.testAllProps=J,e.testStyles=y,e.prefixed=function(a,b,c){return b?J(a,b,c):J(a,"pfx")},g.className=g.className.replace(/(^|\s)no-js(\s|$)/,"$1$2")+(f?" js "+v.join(" "):""),e}(this,this.document),function(a,b,c){function d(a){return"[object Function]"==o.call(a)}function e(a){return"string"==typeof a}function f(){}function g(a){return!a||"loaded"==a||"complete"==a||"uninitialized"==a}function h(){var a=p.shift();q=1,a?a.t?m(function(){("c"==a.t?B.injectCss:B.injectJs)(a.s,0,a.a,a.x,a.e,1)},0):(a(),h()):q=0}function i(a,c,d,e,f,i,j){function k(b){if(!o&&g(l.readyState)&&(u.r=o=1,!q&&h(),l.onload=l.onreadystatechange=null,b)){"img"!=a&&m(function(){t.removeChild(l)},50);for(var d in y[c])y[c].hasOwnProperty(d)&&y[c][d].onload()}}var j=j||B.errorTimeout,l=b.createElement(a),o=0,r=0,u={t:d,s:c,e:f,a:i,x:j};1===y[c]&&(r=1,y[c]=[]),"object"==a?l.data=c:(l.src=c,l.type=a),l.width=l.height="0",l.onerror=l.onload=l.onreadystatechange=function(){k.call(this,r)},p.splice(e,0,u),"img"!=a&&(r||2===y[c]?(t.insertBefore(l,s?null:n),m(k,j)):y[c].push(l))}function j(a,b,c,d,f){return q=0,b=b||"j",e(a)?i("c"==b?v:u,a,b,this.i++,c,d,f):(p.splice(this.i++,0,a),1==p.length&&h()),this}function k(){var a=B;return a.loader={load:j,i:0},a}var l=b.documentElement,m=a.setTimeout,n=b.getElementsByTagName("script")[0],o={}.toString,p=[],q=0,r="MozAppearance"in l.style,s=r&&!!b.createRange().compareNode,t=s?l:n.parentNode,l=a.opera&&"[object Opera]"==o.call(a.opera),l=!!b.attachEvent&&!l,u=r?"object":l?"script":"img",v=l?"script":u,w=Array.isArray||function(a){return"[object Array]"==o.call(a)},x=[],y={},z={timeout:function(a,b){return b.length&&(a.timeout=b[0]),a}},A,B;B=function(a){function b(a){var a=a.split("!"),b=x.length,c=a.pop(),d=a.length,c={url:c,origUrl:c,prefixes:a},e,f,g;for(f=0;f<d;f++)g=a[f].split("="),(e=z[g.shift()])&&(c=e(c,g));for(f=0;f<b;f++)c=x[f](c);return c}function g(a,e,f,g,h){var i=b(a),j=i.autoCallback;i.url.split(".").pop().split("?").shift(),i.bypass||(e&&(e=d(e)?e:e[a]||e[g]||e[a.split("/").pop().split("?")[0]]),i.instead?i.instead(a,e,f,g,h):(y[i.url]?i.noexec=!0:y[i.url]=1,f.load(i.url,i.forceCSS||!i.forceJS&&"css"==i.url.split(".").pop().split("?").shift()?"c":c,i.noexec,i.attrs,i.timeout),(d(e)||d(j))&&f.load(function(){k(),e&&e(i.origUrl,h,g),j&&j(i.origUrl,h,g),y[i.url]=2})))}function h(a,b){function c(a,c){if(a){if(e(a))c||(j=function(){var a=[].slice.call(arguments);k.apply(this,a),l()}),g(a,j,b,0,h);else if(Object(a)===a)for(n in m=function(){var b=0,c;for(c in a)a.hasOwnProperty(c)&&b++;return b}(),a)a.hasOwnProperty(n)&&(!c&&!--m&&(d(j)?j=function(){var a=[].slice.call(arguments);k.apply(this,a),l()}:j[n]=function(a){return function(){var b=[].slice.call(arguments);a&&a.apply(this,b),l()}}(k[n])),g(a[n],j,b,n,h))}else!c&&l()}var h=!!a.test,i=a.load||a.both,j=a.callback||f,k=j,l=a.complete||f,m,n;c(h?a.yep:a.nope,!!i),i&&c(i)}var i,j,l=this.yepnope.loader;if(e(a))g(a,0,l,0);else if(w(a))for(i=0;i<a.length;i++)j=a[i],e(j)?g(j,0,l,0):w(j)?B(j):Object(j)===j&&h(j,l);else Object(a)===a&&h(a,l)},B.addPrefix=function(a,b){z[a]=b},B.addFilter=function(a){x.push(a)},B.errorTimeout=1e4,null==b.readyState&&b.addEventListener&&(b.readyState="loading",b.addEventListener("DOMContentLoaded",A=function(){b.removeEventListener("DOMContentLoaded",A,0),b.readyState="complete"},0)),a.yepnope=k(),a.yepnope.executeStack=h,a.yepnope.injectJs=function(a,c,d,e,i,j){var k=b.createElement("script"),l,o,e=e||B.errorTimeout;k.src=a;for(o in d)k.setAttribute(o,d[o]);c=j?h:c||f,k.onreadystatechange=k.onload=function(){!l&&g(k.readyState)&&(l=1,c(),k.onload=k.onreadystatechange=null)},m(function(){l||(l=1,c(1))},e),i?k.onload():n.parentNode.insertBefore(k,n)},a.yepnope.injectCss=function(a,c,d,e,g,i){var e=b.createElement("link"),j,c=i?h:c||f;e.href=a,e.rel="stylesheet",e.type="text/css";for(j in d)e.setAttribute(j,d[j]);g||(n.parentNode.insertBefore(e,n),m(c,0))}}(this,document),Modernizr.load=function(){yepnope.apply(window,[].slice.call(arguments,0))};
-
-/*! matchMedia() polyfill - Test a CSS media type/query in JS. Authors & copyright (c) 2012: Scott Jehl, Paul Irish, Nicholas Zakas. Dual MIT/BSD license */
-/*! NOTE: If you're already including a window.matchMedia polyfill via Modernizr or otherwise, you don't need this part */
-window.matchMedia=window.matchMedia||(function(e,f){var c,a=e.documentElement,b=a.firstElementChild||a.firstChild,d=e.createElement("body"),g=e.createElement("div");g.id="mq-test-1";g.style.cssText="position:absolute;top:-100em";d.style.background="none";d.appendChild(g);return function(h){g.innerHTML='&shy;<style media="'+h+'"> #mq-test-1 { width: 42px; }</style>';a.insertBefore(d,b);c=g.offsetWidth==42;a.removeChild(d);return{matches:c,media:h}}})(document);
-
-/*! Respond.js v1.1.0: min/max-width media query polyfill. (c) Scott Jehl. MIT/GPLv2 Lic. j.mp/respondjs  */
-(function(e){e.respond={};respond.update=function(){};respond.mediaQueriesSupported=e.matchMedia&&e.matchMedia("only all").matches;if(respond.mediaQueriesSupported){return}var w=e.document,s=w.documentElement,i=[],k=[],q=[],o={},h=30,f=w.getElementsByTagName("head")[0]||s,g=w.getElementsByTagName("base")[0],b=f.getElementsByTagName("link"),d=[],a=function(){var D=b,y=D.length,B=0,A,z,C,x;for(;B<y;B++){A=D[B],z=A.href,C=A.media,x=A.rel&&A.rel.toLowerCase()==="stylesheet";if(!!z&&x&&!o[z]){if(A.styleSheet&&A.styleSheet.rawCssText){m(A.styleSheet.rawCssText,z,C);o[z]=true}else{if((!/^([a-zA-Z:]*\/\/)/.test(z)&&!g)||z.replace(RegExp.$1,"").split("/")[0]===e.location.host){d.push({href:z,media:C})}}}}u()},u=function(){if(d.length){var x=d.shift();n(x.href,function(y){m(y,x.href,x.media);o[x.href]=true;u()})}},m=function(I,x,z){var G=I.match(/@media[^\{]+\{([^\{\}]*\{[^\}\{]*\})+/gi),J=G&&G.length||0,x=x.substring(0,x.lastIndexOf("/")),y=function(K){return K.replace(/(url\()['"]?([^\/\)'"][^:\)'"]+)['"]?(\))/g,"$1"+x+"$2$3")},A=!J&&z,D=0,C,E,F,B,H;if(x.length){x+="/"}if(A){J=1}for(;D<J;D++){C=0;if(A){E=z;k.push(y(I))}else{E=G[D].match(/@media *([^\{]+)\{([\S\s]+?)$/)&&RegExp.$1;k.push(RegExp.$2&&y(RegExp.$2))}B=E.split(",");H=B.length;for(;C<H;C++){F=B[C];i.push({media:F.split("(")[0].match(/(only\s+)?([a-zA-Z]+)\s?/)&&RegExp.$2||"all",rules:k.length-1,hasquery:F.indexOf("(")>-1,minw:F.match(/\(min\-width:[\s]*([\s]*[0-9\.]+)(px|em)[\s]*\)/)&&parseFloat(RegExp.$1)+(RegExp.$2||""),maxw:F.match(/\(max\-width:[\s]*([\s]*[0-9\.]+)(px|em)[\s]*\)/)&&parseFloat(RegExp.$1)+(RegExp.$2||"")})}}j()},l,r,v=function(){var z,A=w.createElement("div"),x=w.body,y=false;A.style.cssText="position:absolute;font-size:1em;width:1em";if(!x){x=y=w.createElement("body");x.style.background="none"}x.appendChild(A);s.insertBefore(x,s.firstChild);z=A.offsetWidth;if(y){s.removeChild(x)}else{x.removeChild(A)}z=p=parseFloat(z);return z},p,j=function(I){var x="clientWidth",B=s[x],H=w.compatMode==="CSS1Compat"&&B||w.body[x]||B,D={},G=b[b.length-1],z=(new Date()).getTime();if(I&&l&&z-l<h){clearTimeout(r);r=setTimeout(j,h);return}else{l=z}for(var E in i){var K=i[E],C=K.minw,J=K.maxw,A=C===null,L=J===null,y="em";if(!!C){C=parseFloat(C)*(C.indexOf(y)>-1?(p||v()):1)}if(!!J){J=parseFloat(J)*(J.indexOf(y)>-1?(p||v()):1)}if(!K.hasquery||(!A||!L)&&(A||H>=C)&&(L||H<=J)){if(!D[K.media]){D[K.media]=[]}D[K.media].push(k[K.rules])}}for(var E in q){if(q[E]&&q[E].parentNode===f){f.removeChild(q[E])}}for(var E in D){var M=w.createElement("style"),F=D[E].join("\n");M.type="text/css";M.media=E;f.insertBefore(M,G.nextSibling);if(M.styleSheet){M.styleSheet.cssText=F}else{M.appendChild(w.createTextNode(F))}q.push(M)}},n=function(x,z){var y=c();if(!y){return}y.open("GET",x,true);y.onreadystatechange=function(){if(y.readyState!=4||y.status!=200&&y.status!=304){return}z(y.responseText)};if(y.readyState==4){return}y.send(null)},c=(function(){var x=false;try{x=new XMLHttpRequest()}catch(y){x=new ActiveXObject("Microsoft.XMLHTTP")}return function(){return x}})();a();respond.update=a;function t(){j(true)}if(e.addEventListener){e.addEventListener("resize",t,false)}else{if(e.attachEvent){e.attachEvent("onresize",t)}}})(this);
 (function () {
 
   angular.module('ui', [

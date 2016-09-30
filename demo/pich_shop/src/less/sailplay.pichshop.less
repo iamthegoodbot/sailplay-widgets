@@ -27,6 +27,16 @@
 @import "pages/history.less";
 @import "pages/lk.less";
 
+.sp_lk_back {
+  width: 200px;
+  margin: 10px 0;
+  text-decoration: none;
+}
+
+.sp_lk_edit {
+	width: 220px;
+	margin: 20px auto 0;
+}
 
 
 		@media (max-width: @screen-md-max) {
@@ -35,5 +45,10 @@
 		}
 		@media (max-width: @screen-xs-max) {
 		}
-		@media (max-width: (@screen-xs-min - 1px)) {
+		@media (max-width: 600px) {
+
+			.popup_content {
+				width: 100%;
+			}
+
 		}

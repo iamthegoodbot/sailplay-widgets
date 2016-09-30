@@ -1,8 +1,8 @@
 {
-  "name": "sailplay.klooker",
+  "name": "sailplay.ltp",
   "version": "0.0.1",
   "description": "",
-  "author": "Saike",
+  "author": "awesome",
   "license": "ISC",
   "dependencies": {
     "angular": "latest",
