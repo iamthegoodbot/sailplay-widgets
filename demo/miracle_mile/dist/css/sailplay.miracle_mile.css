@@ -361,6 +361,8 @@ body {
 }
 .bns_overlay .bns_overlay_inner.review .bns_btn {
   padding: 0 20px;
+  min-width: 200px;
+  margin-bottom: 20px;
 }
 .bns_top {
   float: left;

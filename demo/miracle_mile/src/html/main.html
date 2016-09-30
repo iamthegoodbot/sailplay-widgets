@@ -212,7 +212,7 @@
                                      alt="{{ $parent.gift_success.name }}">
                             </div>
                     <span class="bns_gift_item_name ta_center">
-                        Congratulations! Come into the store to receive your gift!
+                        Congratulations! You’ll receive information about claiming your gift momentarily via SMS!
                     </span>
                         </div>
                     </div>
@@ -273,12 +273,11 @@
                             <span class="oi_top__desc" data-ng-bind="$parent.open_custom.desc"></span>
                             <a href="#" class="bns_btn bns_review"
                                data-ng-repeat="button in $parent.open_custom.buttons"
-                               data-ng-show="!check_tag(button.tag, exist())"
                                data-ng-click="$event.preventDefault();link(button);" data-ng-bind="button.name"></a>
 
                         </div>
                         <div class="bns_input_block">
-                            <a href="#" class="bns_btn bns_btn_close"
+                            <a href="#" class="bns_btn"
                                data-ng-click="$event.preventDefault();$parent.$parent.open_custom = null;">Close</a>
                         </div>
                     </div>

@@ -10,8 +10,8 @@ Paste this code to the page in < head > section to load the script:
             };
 
             var _links = {
-                js: '',
-                css: ''
+                js: 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/8b6f7557e50f7c8150fae1501758e9a9.js',
+                css: 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/cccf8c078277cf09cc34a9d9c2dfb746.css'
             };
 
             document.addEventListener('DOMContentLoaded', function () {
