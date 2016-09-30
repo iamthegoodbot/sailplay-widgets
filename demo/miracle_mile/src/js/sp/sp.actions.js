@@ -62,7 +62,7 @@
         buttons: [
           {
             name: 'Subscribe',
-            add_tag: true,
+            add_tag: false,
             link: 'http://www.miraclemilehd.com/join-our-mailing-list--xnewsletter',
             tag: 'E-newsletter'
           }
@@ -71,13 +71,13 @@
       {
         name: 'Schedule a Test Drive',
         desc: 'Schedule a test drive and receive 10 free bonus points! (Make sure to add your email address to your loyalty account by updating your profile first)',
-        check_tag: false,
+        check_tag: true,
         pic: 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/b2a9c1a70427c3563c7030cefe794427.png',
         points: 100,
         buttons: [
           {
             name: 'Schedule a ride',
-            add_tag: true,
+            add_tag: false,
             link: 'http://www.miraclemilehd.com/schedule-a-test-ride--xsched_ride',
             tag: 'Test Drive'
           }
