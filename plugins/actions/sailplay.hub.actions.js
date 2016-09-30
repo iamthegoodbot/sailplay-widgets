@@ -53,7 +53,6 @@
     JSONP.get(sp.config().DOMAIN + sp.config().urls.actions.custom.list, params, function (res) {
       //      console.dir(res);
       if (res.status == 'ok') {
-        _actions_config = res.data;
         sp.send('load.actions.custom.list.success', res.actions);
       } else {
         sp.send('load.actions.custom.list.error', res);
