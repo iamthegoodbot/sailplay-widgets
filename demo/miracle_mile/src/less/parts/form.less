@@ -1,0 +1,133 @@
+.bns_btn {
+  height: 58px;
+  line-height: 58px;
+  background-color: @btn-bg;
+  text-align: center;
+  color: @btn-color;
+  font-size: 26px;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+  border: 0;
+  &.bns_btn_left {
+    float: left;
+  }
+  &.bns_btn_right {
+    float: right;
+  }
+  &.type-disabled {
+    cursor: default;
+    background: grey;
+  }
+}
+.bns_input_block {
+  float: left;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0px 50px;
+  position: relative;
+  .bns_select {
+    float: left;
+    position: relative;
+    margin-right: 11px;
+    z-index:1;
+    margin-bottom: 50px;
+    &:hover {
+      .bns_select_popup {
+        display: block;
+      }
+    }
+    span {
+      color: @text-white;
+      font-size: 20px;
+      float: left;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 0px 23px 0 6px;
+      background-color: @gray;
+      border: 2px solid @gray;
+      border-radius: 3px;
+      line-height: 64px;
+      background-image: url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/303e1f38393495b1a059952843abeeb0.png');
+      background-repeat: no-repeat;
+      background-position: 90% center;
+    }
+    .bns_select_popup {
+      display: none;
+      position: absolute;
+      top:68px;
+      left:0px;
+      right: 0px;
+      background-color: @gray;
+      border-radius: 0 0 3px 3px ;
+      border: 1px solid @gray;
+      text-align: center;
+      a {
+        float: left;
+        width: 100%;
+        line-height: 25px;
+        text-decoration: none;
+        color: @text-white;
+      }
+    }
+  }
+  &.err {
+    input[type="text"] {
+      border: 2px solid @err-color;
+    }
+    .bns_err {
+      display: block;
+    }
+  }
+  .bns_btn_left, .bns_btn_right  {
+    width: 40%;
+    margin-bottom: 35px;
+  }
+  .ib_login_text {
+    float: left;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 20px;
+    line-height: 24px;
+    color: @text-white;
+    margin-bottom: 15px;
+    text-align: left;
+  }
+  .ib_label_text {
+    float: left;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: left;
+    color: @text-white;
+    margin-bottom: 15px;
+  }
+  input[type="text"], input[type="email"] {
+    float: left;
+    width: 100%;
+    border-width: 2px;
+    border-color: @gray;
+    border-style: solid;
+    background-color: @gray;
+    font-size: 20px;
+    height: 68px;
+    padding: 0px 20px;
+    box-sizing: border-box;
+    outline: none;
+    color: @text-white;
+    margin-bottom: 15px;
+  }
+  input[type="submit"] {
+    width: 238px;
+    margin-bottom: 37px;
+  }
+  .bns_err {
+    position: absolute;
+    bottom: 10px;
+    left: 50px;
+    color: @err-color;
+    font-size: 20px;
+    display: none;
+  }
+}

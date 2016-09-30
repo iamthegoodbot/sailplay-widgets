@@ -1,0 +1,216 @@
+.bns_overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  left: 0;
+  top: 0;
+  text-align: center;
+  z-index: 11111;
+  overflow-y: auto;
+  ::-webkit-input-placeholder {
+    color: @text-white;
+  }
+  ::-moz-placeholder {
+    color: @text-white;
+  }
+  /* Firefox 19+ */
+  :-moz-placeholder {
+    color: @text-white;
+  }
+  /* Firefox 18- */
+  :-ms-input-placeholder {
+    color: @text-white;
+  }
+  &:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+  }
+  .bns_overlay_inner {
+    width: 502px;
+    vertical-align: middle;
+    background-color: @block-bg;
+    display: inline-block;
+
+    &.oi_login {
+      .oi_top {
+        margin-bottom: 0;
+      }
+      iframe {
+        position: relative;
+        width: 100%;
+        display: block;
+        height: 350px;
+      }
+    }
+
+    &.oi_hist {
+      width: 880px;
+      .bns_btn {
+        width: 260px;
+        margin-bottom: 25px;
+      }
+    }
+    .oi_top {
+      width: 100%;
+      background-color: @btn-bg;
+      box-sizing: border-box;
+      padding-left: 50px;
+      float: left;
+      margin-bottom: 25px;
+      span {
+        line-height: 75px;
+        color: @text-white;
+        font-size: 35px;
+        font-family: 'Rajdhani';
+        float: left;
+      }
+    }
+    .empty_history {
+      margin-bottom: 10px;
+      color: white;
+      display: inline-block;
+    }
+    .sure_main {
+      float: left;
+      width: 80%;
+      margin-left: 10%;
+      .bns_gift_item {
+        width: 100%;
+        display: block;
+        float: left;
+        .bns_gift_item_img {
+          float: left;
+          width: 100%;
+          position: relative;
+          margin-top: 20px;
+          img {
+            height: 280px;
+            margin: 0 auto;
+            width: auto;
+          }
+        }
+        .bns_gift_item_name {
+          float: left;
+          width: 100%;
+          font-size: 20px;
+          color: @text-white;
+          margin-top: 15px;
+          margin-bottom: 5px;
+          text-align: left;
+          &.ta_center {
+            text-align: center;
+          }
+        }
+        .bns_gift_item_descr {
+          float: left;
+          width: 100%;
+          font-size: 18px;
+          color: @text-white;
+          margin-top: 5px;
+          margin-bottom: 5px;
+          text-align: left;
+        }
+        .bns_gift_item_point {
+          float: left;
+          width: 100%;
+          color: @text-orange;
+          font-size: 30px;
+          font-weight: bold;
+          font-family: 'Rajdhani';
+          text-align: left;
+          margin-bottom: 40px;
+        }
+      }
+    }
+    .bns_forg {
+      float: left;
+      width: 100%;
+      text-align: center;
+      color: @forg;
+      font-size: 20px;
+      text-decoration: none;
+      margin-bottom: 28px;
+    }
+    .bns_btn_close {
+      width: 248px;
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+    .hist_main {
+      float: left;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 0px 50px;
+      .hist_item {
+        float: left;
+        width: 100%;
+        position: relative;
+        margin-bottom: 35px;
+        .hist_date {
+          color: #87807c;
+          float: left;
+          width: 15%;
+          font-size: 20px;
+          text-align: left;
+        }
+        .hist_name {
+          float: left;
+          width: 65%;
+          padding-right: 20%;
+          color: @text-white;
+          position: relative;
+          text-align: left;
+          strong {
+            font-size: 20px;
+            padding-right: 15px;
+            background-color: @block-bg;
+            position: relative;
+            z-index: 1;
+          }
+          &:after {
+            width: 100%;
+            height: 3px;
+            background-image: url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/5758afbfac03bcf1802be1e0ef7b7d8a.png');
+            content: '';
+            display: block;
+            position: absolute;
+            left: 0px;
+            top: 10px;
+          }
+        }
+        .hist_point {
+          position: absolute;
+          font-size: 25px;
+          right: 0px;
+          top: 0px;
+          line-height: 1;
+          background-color: @block-bg;
+          padding-left: 10px;
+          font-weight: bold;
+          font-family: 'Rajdhani';
+          color: @text-orange;
+          &.hist_point_minus {
+            color: @text-white;
+          }
+        }
+      }
+    }
+
+    &.review {
+
+      .oi_top__desc {
+        display: inline-block;
+        margin-bottom: 20px;
+        color: white;
+      }
+      .bns_btn {
+        padding: 0 20px;
+      }
+    }
+
+  }
+}
