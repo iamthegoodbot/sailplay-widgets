@@ -38,7 +38,7 @@ var SAILPLAY = (function(w, d){
         '</div>';
     var mob_class = '';
   } else {
-    var input_date = '<input type="date" max="2000-01-01">';
+    var input_date = '<input type="date" max="2000-01-01" data-ng-model="form.birthDate">';
     var mob_class = 'for_mobile';
   }
   angular.module('mno.lead', [ 'mno.data', 'ui.mask' ])
