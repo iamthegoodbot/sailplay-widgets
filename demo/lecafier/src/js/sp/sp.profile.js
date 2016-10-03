@@ -51,7 +51,7 @@
           };
 
           scope.get_status_pic = function(status){
-            return scope.currentStatus || scope.currentStatus == 0 ? 'status l' + scope.currentStatus : ''
+            return scope.currentStatus || scope.currentStatus == 0 ? 'status l' + (scope.currentStatus + 1) : ''
           };
 
           function update() {
