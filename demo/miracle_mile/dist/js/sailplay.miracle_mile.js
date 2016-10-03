@@ -2337,13 +2337,103 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
     }
 })();
 
+(function(module) {
+try {
+  module = angular.module('templates');
+} catch (e) {
+  module = angular.module('templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('/html/main.html',
+    '<div class="sailplay_wrapper" data-ng-show="global.loaded"><div class="bns_overlay js_over_login" data-ng-if="!global.auth" data-ng-style="{ display: (!global.auth ? \'block\' : \'none\')}"><div class="bns_overlay_inner oi_login"><div class="oi_top"><span>Log in</span></div><iframe frameborder="0" data-sp-auth="global.remote_login_options"></iframe></div></div><div class="bns_overlay js_over_prof" data-ng-cloak="" data-sailplay-profile-edit="" data-ng-style="{ display: (show ? \'block\' : \'none\')}"><div class="bns_overlay_inner fil_prof"><div class="oi_top"><span class="bns_over_head">Profile</span></div><form novalidate="" name="profile"><div class="bns_input_block"><input type="text" placeholder="Last Name" class="inp_name" data-ng-model="form.lastName" required=""></div><div class="bns_input_block"><input type="text" placeholder="First Name" class="inp_name" data-ng-model="form.firstName" required=""></div><div class="bns_input_block"><input type="email" placeholder="Email" data-ng-model="form.addEmail" required=""></div><div class="bns_input_block"><input type="text" placeholder="Phone number" data-ng-model="form.addPhone" required=""></div><div class="bns_input_block"><span class="ib_label_text">Birthdate</span><date-picker data-model="form.birthDate"></date-picker></div><div class="bns_input_block"><a href="#" class="bns_btn bns_btn_left" data-ng-click="$event.preventDefault();close();body_lock(false);">Cancel</a> <a href="#" class="bns_btn bns_btn_right" data-ng-class="{\'type-disabled\' : profile.$invalid}" data-ng-click="$event.preventDefault();save(profile);body_lock(false);">Update</a></div></form></div></div><div class="bns_overlay js_over_hist" data-ng-cloak="" data-sailplay-history="" data-ng-style="{ display: (show ? \'block\' : \'none\')}"><div class="bns_overlay_inner oi_hist"><div class="oi_top"><span>History</span></div><span class="empty_history" data-ng-show="history && history() && !history().length">Empty history</span><div class="hist_main" data-ng-if="history && history()"><div class="hist_item" data-dir-paginate="item in history() | itemsPerPage:5" data-pagination-id="history_pages"><span class="hist_date" data-ng-bind="item.action_date | date:\'dd.MM.yyyy\'"></span> <span class="hist_name"><strong data-ng-bind="item | history_item"></strong></span> <span data-ng-if="item.points_delta" class="hist_point" data-ng-class="{hist_point_minus: item.points_delta < 0 }" data-ng-bind="(item.points_delta < 0 ? \'\' : \'+ \') + (item.points_delta | number) + \' points\'"></span></div><dir-pagination-controls data-max-size="5" data-pagination-id="history_pages" data-template-url="/html/ui/ui.pagination.controls.html" data-auto-hide="true"></dir-pagination-controls></div><div class="bns_input_block"><a href="#" class="bns_btn bns_btn_center" data-ng-click="$event.preventDefault();show = null;">Back</a></div></div></div><div class="bns_inner_block" data-ng-if="global.auth"><div class="bns_top" data-ng-cloak="" data-sailplay-profile="" data-ng-show="user && user()"><div class="bns_top_left"><div class="bns_ava"><div class="no_ava" data-ng-if="default_pic(user().user.pic)"><span>Like us on facebook to add your photo here</span></div><div class="ava" data-ng-if="!default_pic(user().user.pic)"><img data-ng-src="{{ user().user.pic | sailplay_pic }}" alt="user().user.name || \'No name\'"></div></div><div class="bns_name">{{ user().user.name || \'No name\' }} <span class="saiplay_logout" data-ng-click="logout();">(Logout)</span></div><div class="bns_email" data-ng-bind="user().user.email || \'No email\'"></div><div class="bns_phone" data-ng-bind="user().user.phone || \'No phone\'"></div><a href="#" class="bns_btn bns_btn_open_prof" data-ng-click="$event.preventDefault();edit_profile();body_lock(true);">Update your profile</a></div><div class="bns_top_center"><span class="bns_num_point"><strong data-ng-bind="user().user_points.confirmed | number"></strong> points</span> <a href="#" class="bns_btn bns_btn_opne_hist" data-ng-click="$event.preventDefault();show_history();">History</a></div><div class="bns_top_right" data-ng-cloak="" data-sailplay-status=""><div class="bns_stat_sp_main" data-ng-if="badges && badges() && user && user()"><div class="bns_stat_sp_now"><div class="bns_circle_main"><div class="bns_circle_line" data-ng-style="{\'transform\': \'rotate(\'+getPercents(user().user_points)+\'deg)\', \'-webkit-transform\': \'rotate(\'+getPercents(user().user_points)+\'deg)\', \'-ms-transform\': \'rotate(\'+getPercents(user().user_points)+\'deg)\'}"></div></div></div><div class="bns_stat_point bns_stat_point{{ $index + 1 }}" data-ng-repeat="badge in $parent.badges().multilevel_badges[0]" data-ng-class="{act : badge.is_recieved }">{{ $index+1 }}<div class="bns_stat_point_info"><span class="bspi_head" data-ng-bind="badge.name"></span> <img data-ng-src="{{ (badge.is_received ? badge.thumbs.url_250x250 : badge.thumbs.url_gs) | sailplay_pic }}" alt="{{ badge.name }}"> <span class="bspi_text" data-ng-bind="badge.descr"></span> <span class="bspi_point" data-ng-bind="limits[$index] + \' points\'"></span></div></div><div class="bns_stat_text">Your status: <strong data-ng-bind="(getCurrentStatus() && getCurrentStatus().name) || \'No status\'"></strong></div><div class="bns_to_next">Earned in total:<br>{{ (user().user_points.confirmed + user().user_points.spent + user().user_points.spent_extra ) }}</div></div></div></div><div class="bns_gift" data-ng-cloak="" data-sailplay-gifts="" data-ng-show="gifts && gifts() && gifts().length"><h2>Gifts</h2><div class="bns_gift_main"><div class="bns_gift_item" data-ng-repeat="gift in gifts()" data-gifts-slider=""><div class="bns_gift_item_img"><img data-ng-src="{{ gift.thumbs.url_250x250 | sailplay_pic }}" alt="{{ gift.name }}"> <a href="#" class="bns_btn" data-ng-click="$event.preventDefault();$parent.gift_open = gift;body_lock(true);">Get this gift</a></div><span class="bns_gift_item_name" data-ng-bind="gift.name"></span> <span class="bns_gift_item_point" data-ng-bind="(gift.points | number) + \' points\'"></span></div></div><div class="bns_overlay js_over_gift" data-ng-if="gift_open" data-ng-style="{ display: (gift_open ? \'block\' : \'none\')}"><div class="bns_overlay_inner oi_login"><div class="oi_top"><span>Are you sure?</span></div><div class="sure_main"><div class="bns_gift_item"><div class="bns_gift_item_img"><img data-ng-src="{{ $parent.gift_open.thumbs.url_250x250 | sailplay_pic }}" alt="{{ $parent.gift_open.name }}"></div><span class="bns_gift_item_name" data-ng-bind="$parent.gift_open.name"></span> <span class="bns_gift_item_descr" data-ng-bind="$parent.gift_open.descr"></span> <span class="bns_gift_item_point" data-ng-bind="($parent.gift_open.points | number) + \' bonus\'"></span></div></div><div class="bns_input_block"><a href="#" class="bns_btn bns_btn_left js_open_sucs" data-ng-class="{\'type-disabled\' : user().user_points.confirmed < gift.points}" data-ng-click="$event.preventDefault();get_gift($parent.gift_open);">Yes, get!</a> <a href="#" class="bns_btn bns_btn_right js_open_cansel" data-ng-click="$event.preventDefault();$parent.gift_open = null;body_lock(false);">No, cancel</a></div></div></div><div class="bns_overlay js_over_sucsess" data-ng-if="gift_success" data-ng-style="{ display: (gift_success ? \'block\' : \'none\')}"><div class="bns_overlay_inner oi_login"><div class="oi_top"><span>Success</span></div><div class="sure_main"><div class="bns_gift_item"><div class="bns_gift_item_img"><img data-ng-src="{{ $parent.gift_success.thumbs.url_250x250 | sailplay_pic }}" alt="{{ $parent.gift_success.name }}"></div><span class="bns_gift_item_name ta_center">Congratulations! You’ll receive information about claiming your gift momentarily via SMS!</span></div></div><div class="bns_input_block"><a href="#" class="bns_btn bns_btn_close" data-ng-click="$parent.gift_open = null;$event.preventDefault();$parent.gift_success = null;body_lock(false);">Close</a></div></div></div></div><div class="bns_earn" data-ng-cloak="" data-sailplay-actions=""><h2>Earn more points by:</h2><div class="bns_earn_main" data-ng-if="actions && actions()"><div class="bns_earn_item" data-ng-repeat="action in actions().actions | filter:check_in_list"><div class="bns_earn_item_left"><img data-ng-src="{{ action_data(action).pic }}" alt="{{ action_data(action).name }}"></div><div class="bns_earn_item_right"><span class="bns_earn_name" data-ng-bind="action_data(action).name"></span> <span class="bns_earn_point"><strong data-ng-bind="(action.points | number) + \' \'"></strong> points</span> <a href="#" class="bns_btn bns_earn_btn" data-sailplay-action="" data-action="action" data-text="Get bonus points">Get bonus points</a></div></div><div class="bns_earn_item" data-ng-repeat="custom in customs" data-ng-show="!custom.check_tag || ( custom.check_tag && !check_custom(custom, exist()) )"><div class="bns_earn_item_left"><img data-ng-src="{{ custom.pic }}" alt="{{ custom.name }}"></div><div class="bns_earn_item_right"><span class="bns_earn_name" data-ng-bind="custom.name"></span> <span class="bns_earn_point"><strong data-ng-bind="(custom.points | number) + \' \'"></strong> points</span> <a href="#" class="bns_btn bns_earn_btn" data-ng-click="$event.preventDefault();$parent.$parent.open_custom = custom;">Get bonus points</a></div></div><div class="bns_overlay" data-ng-if="open_custom" data-ng-style="{ display: ($parent.open_custom ? \'block\' : \'none\')}"><div class="bns_overlay_inner review"><div class="oi_top"><span class="oi_top__name" data-ng-bind="$parent.open_custom.name"></span></div><div class="sure_main"><span class="oi_top__desc" data-ng-bind="$parent.open_custom.desc"></span> <a href="#" class="bns_btn bns_review" data-ng-repeat="button in $parent.open_custom.buttons" data-ng-click="$event.preventDefault();link(button);" data-ng-bind="button.name"></a></div><div class="bns_input_block"><a href="#" class="bns_btn" data-ng-click="$event.preventDefault();$parent.$parent.open_custom = null;">Close</a></div></div></div></div></div></div><notify-popup></notify-popup></div>');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('templates');
+} catch (e) {
+  module = angular.module('templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('/html/ui/ui.datepicker.html',
+    '<div data-ng-if="model"><div class="bns_select bns_select_date" style="width: 100px;"><span data-ng-bind="$parent.model[0] || \'Day\'"></span><div class="bns_select_popup"><a href="#" data-ng-repeat="day in $parent.range(1, $parent.days[$parent.model[1] || 1])" data-ng-bind="day" data-ng-click="$event.preventDefault();$parent.$parent.model[0] = day;"></a></div></div><div class="bns_select bns_select_man" style="width: 168px;"><span data-ng-bind="$parent.months[$parent.model[1]] || \'Month\'"></span><div class="bns_select_popup"><a href="#" data-ng-repeat="(key, value) in $parent.months track by $index" data-ng-bind="value" data-ng-click="$event.preventDefault();$parent.$parent.model[1] = +key;"></a></div></div><div class="bns_select bns_select_year" style="width: 100px;"><span data-ng-bind="$parent.model[2] || \'Year\'"></span><div class="bns_select_popup"><a href="#" data-ng-repeat="year in $parent.years" data-ng-bind="year" data-ng-click="$event.preventDefault();$parent.$parent.model[2] = year;"></a></div></div></div>');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('templates');
+} catch (e) {
+  module = angular.module('templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('/html/ui/ui.notify.popup.html',
+    '<div class="bns_overlay" data-ng-if="data" data-ng-style="{ display: ($parent.data ? \'block\' : \'none\')}"><div class="bns_overlay_inner notify"><div class="oi_top"><span data-ng-bind="$parent.data.title"></span></div><div class="bns_input_block notify_text" data-ng-bind="data.text"></div><div class="bns_input_block"><a href="#" class="bns_btn" data-ng-click="$event.preventDefault();$parent.data = null;">OK</a></div></div></div>');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('templates');
+} catch (e) {
+  module = angular.module('templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('/html/ui/ui.pagination.controls.html',
+    '<div class="pagenavigation" data-ng-if="1 < pages.length || !autoHide"><span class="pages"><a href="#" data-ng-repeat="pageNumber in pages track by tracker(pageNumber, $index)" data-ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == \'...\' }" data-ng-click="setCurrent(pageNumber);$event.preventDefault();">{{ pageNumber }}</a></span></div>');
+}]);
+})();
+
+(function () {
+
+  angular.module('miracle_mile', ['core', 'ui', 'sp', 'templates'])
+
+    .directive('sailplayMm', function ($rootScope, $locale) {
+
+      return {
+        restrict: 'E',
+        replace: true,
+        scope: true,
+        templateUrl: '/html/main.html',
+        link: function (scope, element) {
+
+          scope.global = $rootScope;
+
+          scope.body_lock = function (state) {
+            if (state) {
+              $('body').css('overflow', 'hidden');
+            } else {
+              $('body').css('overflow', '');
+            }
+          };
+
+          $locale.NUMBER_FORMATS.GROUP_SEP = ' ';
+
+        }
+      }
+
+    });
+
+
+  setTimeout(function () {
+
+    var app_container = document.getElementsByTagName('sailplay-mm')[0];
+
+    app_container && angular.bootstrap(app_container, ['miracle_mile']);
+
+  }, 0);
+
+
+}());
+
 (function () {
 
   angular.module('core', [
       'ipCookie'
     ])
 
-    .run(["sp", "ipCookie", "sp_api", "$rootScope", "custom_data", "spProfileTag", "actions_data", function (sp, ipCookie, sp_api, $rootScope, custom_data, spProfileTag, actions_data) {
+    .run(function (sp, ipCookie, sp_api, $rootScope, custom_data, spProfileTag, actions_data) {
 
       $rootScope.config = window.sailplay_config || {};
 
@@ -2501,7 +2591,7 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
 
       }
 
-    }]);
+    });
 
 }());
 
@@ -5462,7 +5552,7 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
         buttons: [
           {
             name: 'Subscribe',
-            add_tag: true,
+            add_tag: false,
             link: 'http://www.miraclemilehd.com/join-our-mailing-list--xnewsletter',
             tag: 'E-newsletter'
           }
@@ -5471,13 +5561,13 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
       {
         name: 'Schedule a Test Drive',
         desc: 'Schedule a test drive and receive 10 free bonus points! (Make sure to add your email address to your loyalty account by updating your profile first)',
-        check_tag: false,
+        check_tag: true,
         pic: 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/b2a9c1a70427c3563c7030cefe794427.png',
         points: 100,
         buttons: [
           {
             name: 'Schedule a ride',
-            add_tag: true,
+            add_tag: false,
             link: 'http://www.miraclemilehd.com/schedule-a-test-ride--xsched_ride',
             tag: 'Test Drive'
           }
@@ -5485,7 +5575,7 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
       },
     ])
 
-    .service('spAction', ["actions_data", function (actions_data) {
+    .service('spAction', function (actions_data) {
 
       var that = this;
 
@@ -5505,9 +5595,9 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
 
       return that;
 
-    }])
+    })
 
-    .directive('sailplayAction', ["sp", "$rootScope", function (sp, $rootScope) {
+    .directive('sailplayAction', function (sp, $rootScope) {
 
       return {
 
@@ -5526,9 +5616,9 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
 
       };
 
-    }])
+    })
 
-    .directive('sailplayActions', ["sp_api", "sp", "spAction", "custom_data", "tagHelper", function (sp_api, sp, spAction, custom_data, tagHelper) {
+    .directive('sailplayActions', function (sp_api, sp, spAction, custom_data, tagHelper) {
 
       return {
 
@@ -5595,7 +5685,7 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
 
       };
 
-    }]);
+    });
 
 }());
 
@@ -5603,7 +5693,7 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
 
   angular.module('sp.gifts', [])
 
-    .directive('sailplayGifts', ["sp", "sp_api", "$rootScope", function (sp, sp_api, $rootScope) {
+    .directive('sailplayGifts', function (sp, sp_api, $rootScope) {
 
       return {
 
@@ -5663,7 +5753,7 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
 
       };
 
-    }]);
+    });
 
 }());
 
@@ -5672,7 +5762,7 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
   angular.module('sp.history', [])
 
 
-    .directive('sailplayHistory', ["sp_api", "$rootScope", function (sp_api, $rootScope) {
+    .directive('sailplayHistory', function (sp_api, $rootScope) {
 
       return {
 
@@ -5705,7 +5795,7 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
 
       };
 
-    }])
+    })
 
     .constant('history_texts', {
       "purchase": "Purchase",
@@ -5729,7 +5819,7 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
       "fb": "Facebook"
     })
 
-    .filter('history_item', ["history_texts", "socialList", function (history_texts, socialList) {
+    .filter('history_item', function (history_texts, socialList) {
 
       return function (historyItem) {
         switch (historyItem.action) {
@@ -5753,7 +5843,7 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
         }
         return history_texts[historyItem.action];
       }
-    }]);
+    });
 
 }());
 
@@ -5769,13 +5859,13 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
 
     ])
 
-    .service('sp', ["$window", function ($window) {
+    .service('sp', function ($window) {
 
       return $window.SAILPLAY || {};
 
-    }])
+    })
 
-    .service('sp_api', ["$q", "sp", "$rootScope", function ($q, sp, $rootScope) {
+    .service('sp_api', function ($q, sp, $rootScope) {
 
       var self = this;
 
@@ -5848,7 +5938,7 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
 
       }
 
-    }])
+    })
 
     .service('tagHelper', function () {
 
@@ -5881,7 +5971,7 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
       }
     })
 
-    .filter('sailplay_pic', ["sp", function (sp) {
+    .filter('sailplay_pic', function (sp) {
 
       function repair_pic_url(url) {
         if (/^((http|https|ftp):\/\/)/.test(url)) {
@@ -5903,7 +5993,7 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
 
       };
 
-    }]);
+    });
 
 }());
 
@@ -5927,7 +6017,7 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
 
     .constant('spProfileTag', 'Filled Profile')
 
-    .service('spProfile', ["sp_api", "defaultProfile", function (sp_api, defaultProfile) {
+    .service('spProfile', function (sp_api, defaultProfile) {
 
       var self = this;
 
@@ -5953,9 +6043,9 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
 
       return self;
 
-    }])
+    })
 
-    .directive('sailplayProfileEdit', ["sp_api", "$rootScope", "spProfile", "spProfileErrors", "sp", "spProfileTag", "tagHelper", function (sp_api, $rootScope, spProfile, spProfileErrors, sp, spProfileTag, tagHelper) {
+    .directive('sailplayProfileEdit', function (sp_api, $rootScope, spProfile, spProfileErrors, sp, spProfileTag, tagHelper) {
 
       return {
 
@@ -6108,9 +6198,9 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
 
       };
 
-    }])
+    })
 
-    .directive('sailplayProfile', ["sp", "sp_api", function (sp, sp_api) {
+    .directive('sailplayProfile', function (sp, sp_api) {
 
       return {
 
@@ -6141,7 +6231,7 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
 
       };
 
-    }]);
+    });
 
 }());
 
@@ -6151,7 +6241,7 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
 
     .constant('spStatusLimits', [0, 500, 1500, 7500, 15000])
 
-    .directive('sailplayStatus', ["sp", "sp_api", "spStatusLimits", function (sp, sp_api, spStatusLimits) {
+    .directive('sailplayStatus', function (sp, sp_api, spStatusLimits) {
 
       return {
 
@@ -6205,7 +6295,7 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
 
       };
 
-    }]);
+    });
 
 }());
 
@@ -6261,7 +6351,7 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
 
     })
 
-    .directive('datePicker', ["dateService", function (dateService) {
+    .directive('datePicker', function (dateService) {
       return {
         restrict: 'E',
         replace: true,
@@ -6287,7 +6377,7 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
         }
       }
 
-    }]);
+    });
 
 
 }());
@@ -6355,7 +6445,7 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
       }
     })
 
-    .directive('spAuth', ["$rootScope", "sp", function ($rootScope, sp) {
+    .directive('spAuth', function ($rootScope, sp) {
       return {
         restrict: 'A',
         replace: false,
@@ -6380,9 +6470,9 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
 
         }
       }
-    }])
+    })
 
-    .directive('giftsSlider', ["$compile", "$timeout", function ($compile, $timeout) {
+    .directive('giftsSlider', function ($compile, $timeout) {
       return {
         restrict: 'A',
         replace: false,
@@ -6420,96 +6510,6 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
         }
 
       };
-    }]);
-
-}());
-
-(function(module) {
-try {
-  module = angular.module('templates');
-} catch (e) {
-  module = angular.module('templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('/html/main.html',
-    '<div class="sailplay_wrapper" data-ng-show="global.loaded"><div class="bns_overlay js_over_login" data-ng-if="!global.auth" data-ng-style="{ display: (!global.auth ? \'block\' : \'none\')}"><div class="bns_overlay_inner oi_login"><div class="oi_top"><span>Log in</span></div><iframe frameborder="0" data-sp-auth="global.remote_login_options"></iframe></div></div><div class="bns_overlay js_over_prof" data-ng-cloak="" data-sailplay-profile-edit="" data-ng-style="{ display: (show ? \'block\' : \'none\')}"><div class="bns_overlay_inner fil_prof"><div class="oi_top"><span class="bns_over_head">Profile</span></div><form novalidate="" name="profile"><div class="bns_input_block"><input type="text" placeholder="Last Name" class="inp_name" data-ng-model="form.lastName" required=""></div><div class="bns_input_block"><input type="text" placeholder="First Name" class="inp_name" data-ng-model="form.firstName" required=""></div><div class="bns_input_block"><input type="email" placeholder="Email" data-ng-model="form.addEmail" required=""></div><div class="bns_input_block"><input type="text" placeholder="Phone number" data-ng-model="form.addPhone" required=""></div><div class="bns_input_block"><span class="ib_label_text">Birthdate</span><date-picker data-model="form.birthDate"></date-picker></div><div class="bns_input_block"><a href="#" class="bns_btn bns_btn_left" data-ng-click="$event.preventDefault();close();body_lock(false);">Cancel</a> <a href="#" class="bns_btn bns_btn_right" data-ng-class="{\'type-disabled\' : profile.$invalid}" data-ng-click="$event.preventDefault();save(profile);body_lock(false);">Update</a></div></form></div></div><div class="bns_overlay js_over_hist" data-ng-cloak="" data-sailplay-history="" data-ng-style="{ display: (show ? \'block\' : \'none\')}"><div class="bns_overlay_inner oi_hist"><div class="oi_top"><span>History</span></div><span class="empty_history" data-ng-show="history && history() && !history().length">Empty history</span><div class="hist_main" data-ng-if="history && history()"><div class="hist_item" data-dir-paginate="item in history() | itemsPerPage:5" data-pagination-id="history_pages"><span class="hist_date" data-ng-bind="item.action_date | date:\'dd.MM.yyyy\'"></span> <span class="hist_name"><strong data-ng-bind="item | history_item"></strong></span> <span data-ng-if="item.points_delta" class="hist_point" data-ng-class="{hist_point_minus: item.points_delta < 0 }" data-ng-bind="(item.points_delta < 0 ? \'\' : \'+ \') + (item.points_delta | number) + \' points\'"></span></div><dir-pagination-controls data-max-size="5" data-pagination-id="history_pages" data-template-url="/html/ui/ui.pagination.controls.html" data-auto-hide="true"></dir-pagination-controls></div><div class="bns_input_block"><a href="#" class="bns_btn bns_btn_center" data-ng-click="$event.preventDefault();show = null;">Back</a></div></div></div><div class="bns_inner_block" data-ng-if="global.auth"><div class="bns_top" data-ng-cloak="" data-sailplay-profile="" data-ng-show="user && user()"><div class="bns_top_left"><div class="bns_ava"><div class="no_ava" data-ng-if="default_pic(user().user.pic)"><span>Like us on facebook to add your photo here</span></div><div class="ava" data-ng-if="!default_pic(user().user.pic)"><img data-ng-src="{{ user().user.pic | sailplay_pic }}" alt="user().user.name || \'No name\'"></div></div><div class="bns_name">{{ user().user.name || \'No name\' }} <span class="saiplay_logout" data-ng-click="logout();">(Logout)</span></div><div class="bns_email" data-ng-bind="user().user.email || \'No email\'"></div><div class="bns_phone" data-ng-bind="user().user.phone || \'No phone\'"></div><a href="#" class="bns_btn bns_btn_open_prof" data-ng-click="$event.preventDefault();edit_profile();body_lock(true);">Update your profile</a></div><div class="bns_top_center"><span class="bns_num_point"><strong data-ng-bind="user().user_points.confirmed | number"></strong> points</span> <a href="#" class="bns_btn bns_btn_opne_hist" data-ng-click="$event.preventDefault();show_history();">History</a></div><div class="bns_top_right" data-ng-cloak="" data-sailplay-status=""><div class="bns_stat_sp_main" data-ng-if="badges && badges() && user && user()"><div class="bns_stat_sp_now"><div class="bns_circle_main"><div class="bns_circle_line" data-ng-style="{\'transform\': \'rotate(\'+getPercents(user().user_points)+\'deg)\', \'-webkit-transform\': \'rotate(\'+getPercents(user().user_points)+\'deg)\', \'-ms-transform\': \'rotate(\'+getPercents(user().user_points)+\'deg)\'}"></div></div></div><div class="bns_stat_point bns_stat_point{{ $index + 1 }}" data-ng-repeat="badge in $parent.badges().multilevel_badges[0]" data-ng-class="{act : badge.is_recieved }">{{ $index+1 }}<div class="bns_stat_point_info"><span class="bspi_head" data-ng-bind="badge.name"></span> <img data-ng-src="{{ (badge.is_received ? badge.thumbs.url_250x250 : badge.thumbs.url_gs) | sailplay_pic }}" alt="{{ badge.name }}"> <span class="bspi_text" data-ng-bind="badge.descr"></span> <span class="bspi_point" data-ng-bind="limits[$index] + \' points\'"></span></div></div><div class="bns_stat_text">Your status: <strong data-ng-bind="(getCurrentStatus() && getCurrentStatus().name) || \'No status\'"></strong></div><div class="bns_to_next">Earned in total:<br>{{ (user().user_points.confirmed + user().user_points.spent + user().user_points.spent_extra ) }}</div></div></div></div><div class="bns_gift" data-ng-cloak="" data-sailplay-gifts="" data-ng-show="gifts && gifts() && gifts().length"><h2>Gifts</h2><div class="bns_gift_main"><div class="bns_gift_item" data-ng-repeat="gift in gifts()" data-gifts-slider=""><div class="bns_gift_item_img"><img data-ng-src="{{ gift.thumbs.url_250x250 | sailplay_pic }}" alt="{{ gift.name }}"> <a href="#" class="bns_btn" data-ng-click="$event.preventDefault();$parent.gift_open = gift;body_lock(true);">Get this gift</a></div><span class="bns_gift_item_name" data-ng-bind="gift.name"></span> <span class="bns_gift_item_point" data-ng-bind="(gift.points | number) + \' points\'"></span></div></div><div class="bns_overlay js_over_gift" data-ng-if="gift_open" data-ng-style="{ display: (gift_open ? \'block\' : \'none\')}"><div class="bns_overlay_inner oi_login"><div class="oi_top"><span>Are you sure?</span></div><div class="sure_main"><div class="bns_gift_item"><div class="bns_gift_item_img"><img data-ng-src="{{ $parent.gift_open.thumbs.url_250x250 | sailplay_pic }}" alt="{{ $parent.gift_open.name }}"></div><span class="bns_gift_item_name" data-ng-bind="$parent.gift_open.name"></span> <span class="bns_gift_item_descr" data-ng-bind="$parent.gift_open.descr"></span> <span class="bns_gift_item_point" data-ng-bind="($parent.gift_open.points | number) + \' bonus\'"></span></div></div><div class="bns_input_block"><a href="#" class="bns_btn bns_btn_left js_open_sucs" data-ng-class="{\'type-disabled\' : user().user_points.confirmed < gift.points}" data-ng-click="$event.preventDefault();get_gift($parent.gift_open);">Yes, get!</a> <a href="#" class="bns_btn bns_btn_right js_open_cansel" data-ng-click="$event.preventDefault();$parent.gift_open = null;body_lock(false);">No, cancel</a></div></div></div><div class="bns_overlay js_over_sucsess" data-ng-if="gift_success" data-ng-style="{ display: (gift_success ? \'block\' : \'none\')}"><div class="bns_overlay_inner oi_login"><div class="oi_top"><span>Success</span></div><div class="sure_main"><div class="bns_gift_item"><div class="bns_gift_item_img"><img data-ng-src="{{ $parent.gift_success.thumbs.url_250x250 | sailplay_pic }}" alt="{{ $parent.gift_success.name }}"></div><span class="bns_gift_item_name ta_center">Congratulations! You’ll receive information about claiming your gift momentarily via SMS!</span></div></div><div class="bns_input_block"><a href="#" class="bns_btn bns_btn_close" data-ng-click="$parent.gift_open = null;$event.preventDefault();$parent.gift_success = null;body_lock(false);">Close</a></div></div></div></div><div class="bns_earn" data-ng-cloak="" data-sailplay-actions=""><h2>Earn more points by:</h2><div class="bns_earn_main" data-ng-if="actions && actions()"><div class="bns_earn_item" data-ng-repeat="action in actions().actions | filter:check_in_list"><div class="bns_earn_item_left"><img data-ng-src="{{ action_data(action).pic }}" alt="{{ action_data(action).name }}"></div><div class="bns_earn_item_right"><span class="bns_earn_name" data-ng-bind="action_data(action).name"></span> <span class="bns_earn_point"><strong data-ng-bind="(action.points | number) + \' \'"></strong> points</span> <a href="#" class="bns_btn bns_earn_btn" data-sailplay-action="" data-action="action" data-text="Get bonus points">Get bonus points</a></div></div><div class="bns_earn_item" data-ng-repeat="custom in customs" data-ng-show="!custom.check_tag || ( custom.check_tag && !check_custom(custom, exist()) )"><div class="bns_earn_item_left"><img data-ng-src="{{ custom.pic }}" alt="{{ custom.name }}"></div><div class="bns_earn_item_right"><span class="bns_earn_name" data-ng-bind="custom.name"></span> <span class="bns_earn_point"><strong data-ng-bind="(custom.points | number) + \' \'"></strong> points</span> <a href="#" class="bns_btn bns_earn_btn" data-ng-click="$event.preventDefault();$parent.$parent.open_custom = custom;">Get bonus points</a></div></div><div class="bns_overlay" data-ng-if="open_custom" data-ng-style="{ display: ($parent.open_custom ? \'block\' : \'none\')}"><div class="bns_overlay_inner review"><div class="oi_top"><span class="oi_top__name" data-ng-bind="$parent.open_custom.name"></span></div><div class="sure_main"><span class="oi_top__desc" data-ng-bind="$parent.open_custom.desc"></span> <a href="#" class="bns_btn bns_review" data-ng-repeat="button in $parent.open_custom.buttons" data-ng-click="$event.preventDefault();link(button);" data-ng-bind="button.name"></a></div><div class="bns_input_block"><a href="#" class="bns_btn" data-ng-click="$event.preventDefault();$parent.$parent.open_custom = null;">Close</a></div></div></div></div></div></div><notify-popup></notify-popup></div>');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('templates');
-} catch (e) {
-  module = angular.module('templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('/html/ui/ui.datepicker.html',
-    '<div data-ng-if="model"><div class="bns_select bns_select_date" style="width: 100px;"><span data-ng-bind="$parent.model[0] || \'Day\'"></span><div class="bns_select_popup"><a href="#" data-ng-repeat="day in $parent.range(1, $parent.days[$parent.model[1] || 1])" data-ng-bind="day" data-ng-click="$event.preventDefault();$parent.$parent.model[0] = day;"></a></div></div><div class="bns_select bns_select_man" style="width: 168px;"><span data-ng-bind="$parent.months[$parent.model[1]] || \'Month\'"></span><div class="bns_select_popup"><a href="#" data-ng-repeat="(key, value) in $parent.months track by $index" data-ng-bind="value" data-ng-click="$event.preventDefault();$parent.$parent.model[1] = +key;"></a></div></div><div class="bns_select bns_select_year" style="width: 100px;"><span data-ng-bind="$parent.model[2] || \'Year\'"></span><div class="bns_select_popup"><a href="#" data-ng-repeat="year in $parent.years" data-ng-bind="year" data-ng-click="$event.preventDefault();$parent.$parent.model[2] = year;"></a></div></div></div>');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('templates');
-} catch (e) {
-  module = angular.module('templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('/html/ui/ui.notify.popup.html',
-    '<div class="bns_overlay" data-ng-if="data" data-ng-style="{ display: ($parent.data ? \'block\' : \'none\')}"><div class="bns_overlay_inner notify"><div class="oi_top"><span data-ng-bind="$parent.data.title"></span></div><div class="bns_input_block notify_text" data-ng-bind="data.text"></div><div class="bns_input_block"><a href="#" class="bns_btn" data-ng-click="$event.preventDefault();$parent.data = null;">OK</a></div></div></div>');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('templates');
-} catch (e) {
-  module = angular.module('templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('/html/ui/ui.pagination.controls.html',
-    '<div class="pagenavigation" data-ng-if="1 < pages.length || !autoHide"><span class="pages"><a href="#" data-ng-repeat="pageNumber in pages track by tracker(pageNumber, $index)" data-ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == \'...\' }" data-ng-click="setCurrent(pageNumber);$event.preventDefault();">{{ pageNumber }}</a></span></div>');
-}]);
-})();
-
-(function () {
-
-  angular.module('miracle_mile', ['core', 'ui', 'sp', 'templates'])
-
-    .directive('sailplayMm', ["$rootScope", "$locale", function ($rootScope, $locale) {
-
-      return {
-        restrict: 'E',
-        replace: true,
-        scope: true,
-        templateUrl: '/html/main.html',
-        link: function (scope, element) {
-
-          scope.global = $rootScope;
-
-          scope.body_lock = function (state) {
-            if (state) {
-              $('body').css('overflow', 'hidden');
-            } else {
-              $('body').css('overflow', '');
-            }
-          };
-
-          $locale.NUMBER_FORMATS.GROUP_SEP = ' ';
-
-        }
-      }
-
-    }]);
-
-
-  setTimeout(function () {
-
-    var app_container = document.getElementsByTagName('sailplay-mm')[0];
-
-    app_container && angular.bootstrap(app_container, ['miracle_mile']);
-
-  }, 0);
-
+    });
 
 }());
