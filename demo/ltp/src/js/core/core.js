@@ -65,8 +65,8 @@
 
         $rootScope.$broadcast('notifier:notify', {
 
-          header: 'Gift received!',
-          body: res.coupon_number ? 'Coupon number: ' + res.coupon_number : res.success_message
+          header: 'INFO',
+          body: 'Redemption request received. Please check your email for details!'
 
         });
 
