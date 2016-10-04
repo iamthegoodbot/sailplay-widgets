@@ -1,0 +1,130 @@
+.bns_gift {
+  float: left;
+  width: 100%;
+  h2 {
+    color: @text-orange;
+    font-size: 50px;
+    font-weight: bold;
+    font-family: 'Rajdhani';
+    line-height: 90px;
+    width: 100%;
+    float: left;
+    margin: 0;
+    padding-top: 10px;
+  }
+  .bns_gift_main {
+    float: left;
+    width: 100%;
+    background-color: @block-bg;
+    box-sizing: border-box;
+    padding:40px 75px 35px;
+    position: relative;
+    overflow: hidden;
+    .slick-prev {
+      position: absolute;
+      left:24px;
+      top:50%;
+      width: 29px;
+      display: block;
+      outline: none;
+      height: 50px;
+      margin-top: -25px;
+      background-image:url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/fb396203d7472a5420f26156427d225c.png');
+      background-repeat: no-repeat;
+      text-indent: -9999px;
+      border: 0;
+      background-color: transparent;
+    }
+    .slick-next {
+      position: absolute;
+      right:24px;
+      top:50%;
+      width: 29px;
+      display: block;
+      outline: none;
+      height: 50px;
+      margin-top: -25px;
+      background-image:url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/76a797d7148f83ef6c518f2ac0c8bc76.png');
+      background-repeat: no-repeat;
+      text-indent: -9999px;
+      border: 0;
+      background-color: transparent;
+    }
+    .slick-track {
+      min-width: 1052px;
+      height: 363px;
+      overflow: hidden;
+    }
+    .bns_gift_item {
+      width: 320px;
+      margin-right:15px;
+      margin-left: 15px;
+      min-width: 320px;
+      display: block;
+      float: left;
+      &:focus {
+        outline: none;
+      }
+      &:hover {
+        .bns_gift_item_img {
+          img {
+            -webkit-filter: blur(3px);
+            -moz-filter: blur(3px);
+            -o-filter: blur(3px);
+            -ms-filter: blur(3px);
+            filter: blur(3px);
+          }
+          .bns_btn {
+            opacity: 1;
+          }
+        }
+      }
+      .bns_gift_item_img {
+        float: left;
+        width: 100%;
+        position: relative;
+        img {
+          -webkit-transition: all 300ms ease;
+          -moz-transition: all 300ms ease;
+          -ms-transition: all 300ms ease;
+          -o-transition: all 300ms ease;
+          transition: all 300ms ease;
+          height: 280px;
+          margin: 0 auto;
+          width: auto;
+        }
+        .bns_btn {
+          width: 80%;
+          left: 10%;
+          -webkit-box-shadow: 0 0 6px 0 rgba(0,0,0,0.7);
+          box-shadow: 0 0 6px 0 rgba(0,0,0,0.7);
+          top:50%;
+          margin-top: -29px;
+          position: absolute;
+          opacity: 0;
+          -webkit-transition: all 300ms ease;
+          -moz-transition: all 300ms ease;
+          -ms-transition: all 300ms ease;
+          -o-transition: all 300ms ease;
+          transition: all 300ms ease;
+        }
+      }
+      .bns_gift_item_name {
+        float: left;
+        width: 100%;
+        font-size: 20px;
+        color: @text-white;
+        margin-top: 5px;
+        margin-bottom: 5px;
+      }
+      .bns_gift_item_point {
+        float: left;
+        width: 100%;
+        color: @text-orange;
+        font-size: 30px;
+        font-weight: bold;
+        font-family: 'Rajdhani';
+      }
+    }
+  }
+}

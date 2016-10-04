@@ -1,0 +1,171 @@
+@media screen and (max-width: 1200px) {
+  .bns_inner_block {
+    width: 100%;
+    box-sizing: border-box;
+    padding-left: 5%;
+    padding-right: 5%;
+    float: left;
+    overflow: hidden;
+    min-width: 390px;
+  }
+
+}
+
+@media screen and (max-width: 1200px) {
+  .bns_top {
+    .bns_top_left {
+      width: 100%;
+
+    }
+    .bns_top_center {
+      width: 50%;
+      position: relative;
+      left: 0px;
+      top: 0px;
+    }
+    .bns_top_right {
+      position: relative;
+      left: 0px;
+      top: 0px;
+      float: right;
+    }
+  }
+}
+
+@media screen and (max-width: 880px) {
+  .bns_overlay .bns_overlay_inner {
+    width: 100% !important;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .bns_top {
+    .bns_top_center {
+      width: 100%;
+    }
+    .bns_top_right {
+      width: 100%;
+      .bns_stat_sp_main {
+        .bns_stat_point {
+          z-index: 2;
+          &:hover {
+            z-index: 3;
+          }
+          &.bns_stat_point5 {
+            .bns_stat_point_info {
+              left: auto;
+              margin-left: 0;
+              right: 0px;
+            }
+          }
+          .bns_stat_point_info {
+            width: 300px;
+            margin-left: -150px;
+            bottom: 30px;
+            left: 50%;
+            top: auto;
+            margin-top: 0;
+            height: auto;
+            &:after {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .bns_gift {
+    .bns_gift_main {
+      padding: 40px 0px 35px;
+      .slick-next, .slick-prev {
+        display: none !important;
+      }
+
+    }
+  }
+
+  .bns_earn {
+    h2 {
+      font-size: 37px;
+    }
+  }
+
+  .bns_input_block {
+    padding: 0px 10px;
+  }
+
+  .bns_overlay {
+    .bns_overlay_inner {
+      width: 90% !important;
+      .hist_main {
+        padding: 0px 20px;
+        .hist_item {
+          .hist_date {
+            width: 100%;
+            font-size: 16px;
+            margin-bottom: 5px;
+
+          }
+          .hist_name {
+            padding-right: 0;
+            width: 100%;
+            &:after {
+              display: none;
+            }
+          }
+          .hist_point {
+            font-size: 22px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .bns_earn {
+    .bns_earn_main {
+      width: 100%;
+      margin-left: 0;
+      .bns_earn_item {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0px;
+      }
+    }
+  }
+
+  .bns_gift {
+    .bns_gift_main {
+      .bns_gift_item {
+        .bns_gift_item_img {
+          width: auto;
+          height: 294px;
+        }
+      }
+    }
+  }
+
+  .bns_top {
+    .bns_top_right {
+      .bns_stat_sp_main {
+        .bns_stat_point {
+          &.bns_stat_point1 {
+            .bns_stat_point_info {
+              left: 0;
+              margin-left: 0;
+            }
+          }
+          &.bns_stat_point2 {
+            .bns_stat_point_info {
+              left: 0;
+              margin-left: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+
+}
