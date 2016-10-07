@@ -1,0 +1,93 @@
+// basic url adress
+@burl: "../img/";
+@burlfonts: "../font/";
+
+@import "fonts/cocogothic.less";
+@import "fonts/antiquetrady.less";
+@import "fonts/muller.less";
+
+@import "modules/fonts-std.less";
+
+// bootstrap
+@import "bootstrap/bootstrap.less";
+
+// layout
+@import "layout/layout.less";
+
+// modules
+@import "modules/variables.less";
+@import "modules/mixins.less";
+
+//pages
+@import "pages/common.less";
+@import "pages/forms.less";
+@import "pages/index.less";
+@import "pages/popups.less";
+
+@import "plugins/slick.less";
+@import "plugins/selectize/selectize.default.less";
+@import "plugins/selectize-redefinition.less";
+
+.tooltip {
+	display: inline-block;
+	margin-left: 5px;
+	position: relative;
+	font-family: Muller;
+
+	&_icon {
+		border-radius: 50%;
+		width: 18px;
+		display: inline-block;
+		height: 18px;
+		line-height: 18px;
+		box-sizing: border-box;
+		cursor: pointer;
+		font-size: 14px;
+		text-align: center;
+		color: #820d41;
+		border: 1px solid #000;
+	}
+
+	&_text {
+		display: none;
+		width: 300px;
+		height: 50px;
+		padding: 7px;
+		line-height: 18px;
+		font-size: 14px;
+		background: white;
+		border-radius: 5px;
+		position: absolute;
+		left: -130px;
+		top: -50px;
+		box-sizing: border-box;
+
+		a {
+			color: #820d41;
+			cursor: pointer;
+			text-decoration: underline;
+
+			&:hover {
+				text-decoration: none;
+			}
+
+		}
+
+	}
+
+	&:hover {
+		.tooltip_text {
+			display: block;
+		}
+	}
+
+}
+
+		@media (max-width: @screen-md-max) {
+		}
+		@media (max-width: @screen-sm-max) {
+		}
+		@media (max-width: @screen-xs-max) {
+		}
+		@media (max-width: (@screen-xs-min - 1px)) {
+		}

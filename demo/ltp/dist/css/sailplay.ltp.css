@@ -1306,7 +1306,7 @@ hr {
   padding-right: 10px;
   margin-bottom: 18px;
 }
-@media (max-width: 991px) {
+@media (max-width: 1199px) {
   .sp_tasks-sec__col {
     width: 50%;
   }

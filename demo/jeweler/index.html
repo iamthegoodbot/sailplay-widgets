@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <!--<link rel="stylesheet" type="text/css" href="dist/css/main.css">-->
+
+    <!--<script src="lib/js/vendor/jquery-1.10.1.min.js"></script>-->
+    <!--<script src="lib/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>-->
+    <!--<script src="lib/js/plugins/slick.min.js"></script>-->
+    <!--<script src="lib/js/plugins/jquery.bpopup.min.js"></script>-->
+    <!--<script src="lib/js/plugins/prettyCheckable.min.js"></script>-->
+    <!--<script src="lib/js/plugins/selectize.min.js"></script>-->
+    <!--<script src="lib/js/plugins/jquery.mask.min.js"></script>-->
+
+    <!--<script src="js/common.js"></script>-->
+
+    <!--<script type="text/javascript" src="config/local.js"></script>-->
+    <!--<script type="text/javascript" src="config/locale.ru.js"></script>-->
+    <!--<script type="text/javascript" src="dist/js/sailplay.widgets.js"></script>-->
+
+
+    <script type="text/javascript">
+
+        window._CONFIG = {
+            SAILPLAY: {
+                partner_id: 1569,
+                auth_hash: 'ceab6984cfe3e4aa8ea7f336b85857e51ffa958f'
+            }
+        };
+
+        var _links = {
+            js: './dist/js/sailplay.widgets.js',
+            css: './dist/css/main.css'
+        };
+
+//        var _links = {
+//            js: 'https://sailplay.ru/_integration/jeweler/profile/dist/js/sailplay.widgets.js',
+//            css: 'https://sailplay.ru/_integration/jeweler/profile/dist/css/main.css'
+//        };
+
+        document.addEventListener('DOMContentLoaded', function () {
+
+            var _s = document.createElement("link");
+            _s.type = "text/css";
+            _s.rel = "stylesheet";
+            _s.href = _links.css;
+            document.getElementsByTagName("head")[0].appendChild(_s);
+
+            var _j = document.createElement("script");
+            _j.type = "text/javascript";
+            _j.src = _links.js;
+            document.getElementsByTagName("head")[0].appendChild(_j);
+
+        });
+
+    </script>
+
+</head>
+<body>
+
+<sailplay-widgets></sailplay-widgets>
+
+</body>
+</html>

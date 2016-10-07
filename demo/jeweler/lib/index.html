@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="description" content="Golf description">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="favicon.png" type="image/png">
+
+
+  <link rel="stylesheet" href="dist/css/main.css">
+
+  <script src="js/vendor/jquery-1.10.1.min.js"></script>
+  <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+
+</head>
+<body>
+
+<div class="sp_widget">
+
+  <section class="sp_l-centered sp_person-sec">
+    <div class="sp_person-sec__col1">
+      <div class="sp_person-sec__hd">Добро пожаловать</div>
+      <div class="sp_person-sec__ttl">в клуб покупателей "Бронницкий ювелир"</div>
+    </div>
+    <div class="sp_person-sec__col2">
+      <div class="sp_person-cell">
+        <div class="sp_person-cell__photo" style="background-image: url('img/person-01.jpg');"></div>
+        <a href="#" class="sp_cmn-btn person-cell__btn js-open-profile-popup">Изменить профиль</a>
+      </div>
+    </div>
+    <div class="sp_person-sec__col3">
+      <div class="sp_person-info">
+        <div class="sp_person-info__hd">Здравствуйте,</div>
+        <div class="sp_person-info__name">Виктория Петрова</div>
+        <div class="sp_person-info__cont">
+          petrova@gmail.com <br>
+          892688152222
+        </div>
+        <div class="sp_person-info__status">
+          <div class="sp_person-info__stat-hd">Ваш статус: серебрянный</div>
+          До статуса <b>Золотой</b> осталась 100 баллов
+        </div>
+      </div>
+      <a href="#" class="sp_person-sec__more">условия доставки</a>
+    </div>
+  </section>
+
+  <section class="sp_l-centered sp_info-sec">
+    <div class="sp_info-sec__l">
+      <div class="sp_points-cell">
+        <div class="sp_points-cell__hd">Ваши баллы</div>
+        <div class="status-info-counter">
+          <div class="status-info-counter__val">750</div>
+          <div class="status-info-counter__remain">
+            +50
+            <div class="status-info-counter__popup">
+              Неподтвержденные баллы, которые начислятся после оплаты
+            </div>
+          </div>
+        </div>
+        <div class="sp_points-cell__ttl">бонусных баллов</div>
+        <a href="#" class="sp_cmn-btn sp_cmn-btn_red sp_points-cell__btn js-open-history-popup">История транзакций</a>
+      </div>
+    </div>
+    <div class="sp_info-sec__r">
+      <div class="sp_status-cell">
+        <div class="sp_status-cell__hd">Ваш статус:</div>
+        <div class="sp_status-cell__img" style="background-image: url(img/status-02.svg);"></div>
+        <div class="sp_status-cell__ttl">Статус 2</div>
+        <a href="#" class="sp_cmn-btn sp_cmn-btn_red sp_status-cell__btn js-open-status-popup">Список статусов</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sp_l-centered sp_progr-sec">
+    <div class="sp_progr-sec__l">
+      <div class="sp_progr-sec__txt">
+        До следющего сатуса осталось <b>100 баллов</b>
+      </div>
+    </div>
+    <div class="sp_progr-sec__r">
+
+      <div class="sp_progr-cell">
+        <!-- в data-width указывается ширина бара отоснительно всей длинны -->
+        <div class="sp_progr-bar js-status-bar" data-width="90">
+          <div class="sp_progr-bar__inner">
+            <div class="sp_progr-bar__inner-bar this-inner1 js-status-bar__inner"></div>
+          </div>
+          <div class="sp_progr-bar__inner">
+            <div class="sp_progr-bar__inner-bar this-inner2 js-status-bar__inner"></div>
+          </div>
+          <div class="sp_progr-bar__inner">
+            <div class="sp_progr-bar__inner-bar this-inner3 js-status-bar__inner"></div>
+          </div>
+          <div class="sp_progr-bar__inner">
+            <div class="sp_progr-bar__inner-bar this-inner4 js-status-bar__inner"></div>
+          </div>
+
+          <div class="sp_progr-bar__point this-point-1">
+            <div class="sp_progr-bar__point-img" style="background-image: url(img/status-01.svg);"></div>
+            <div class="sp_progr-bar__point-name">Статус 1</div>
+          </div>
+          <div class="sp_progr-bar__point this-point-2">
+            <div class="sp_progr-bar__point-img" style="background-image: url(img/status-02.svg);"></div>
+            <div class="sp_progr-bar__point-name">Статус 2</div>
+          </div>
+          <div class="sp_progr-bar__point this-point-3">
+            <div class="sp_progr-bar__point-img" style="background-image: url(img/status-03.svg);"></div>
+            <div class="sp_progr-bar__point-name">Статус 3</div>
+          </div>
+          <div class="sp_progr-bar__point this-point-4">
+            <div class="sp_progr-bar__point-img" style="background-image: url(img/status-04.svg);"></div>
+            <div class="sp_progr-bar__point-name">Статус 4</div>
+          </div>
+          <div class="sp_progr-bar__point this-point-5">
+            <div class="sp_progr-bar__point-img" style="background-image: url(img/status-05.svg);"></div>
+            <div class="sp_progr-bar__point-name">Статус 5</div>
+          </div>
+        </div>
+      </div>
+      <!-- /sp_progr-cell -->
+    </div>
+  </section>
+
+  <section class="sp_l-section sp_badges-sec">
+    <div class="sp_cmn-sec-head">Бейджи</div>
+    <div class="sp_badges-sec__row">
+      <div class="sp_badges-itm">
+        <div class="sp_badges-itm__img">
+          <img src="img/badge-01.svg" alt="">
+        </div>
+        <div class="sp_badges-itm__cover">
+          <div class="sp_badges-itm__inner">Бейдж 1</div>
+        </div>
+      </div>
+      <div class="sp_badges-itm">
+        <div class="sp_badges-itm__img">
+          <img src="img/badge-02.svg" alt="">
+        </div>
+        <div class="sp_badges-itm__cover">
+          <div class="sp_badges-itm__inner">Бейдж 2</div>
+        </div>
+      </div>
+      <div class="sp_badges-itm">
+        <div class="sp_badges-itm__img">
+          <img src="img/badge-02.svg" alt="">
+        </div>
+        <div class="sp_badges-itm__cover">
+          <div class="sp_badges-itm__inner">Бейдж 3</div>
+        </div>
+      </div>
+      <div class="sp_badges-itm">
+        <div class="sp_badges-itm__img">
+          <img src="img/badge-01.svg" alt="">
+        </div>
+        <div class="sp_badges-itm__cover">
+          <div class="sp_badges-itm__inner">Бейдж 4</div>
+        </div>
+      </div>
+      <div class="sp_badges-itm">
+        <div class="sp_badges-itm__img">
+          <img src="img/badge-02.svg" alt="">
+        </div>
+        <div class="sp_badges-itm__cover">
+          <div class="sp_badges-itm__inner">Бейдж 5</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sp_l-section sp_gift-sec">
+    <div class="sp_cmn-sec-head">Подарки</div>
+    <div class="sp_gift-slider js-gift-slider">
+      <div>
+        <div class="sp_gift-slider__slide">
+          <div class="sp_gift-slider__img" style="background-image: url(img/gift-01.jpg);"></div>
+          <div class="sp_gift-slider__hd">Серьги с английским замком</div>
+          <div class="sp_gift-slider__ttl">Серебро Ag 925097, Фианит, 2,79г</div>
+          <div class="sp_gift-slider__price">450 баллов</div>
+          <a href="#" class="sp_cmn-btn-sm sp_gift-slider__btn js-open-gift-popup">Получить</a>
+        </div>
+      </div>
+      <div>
+        <div class="sp_gift-slider__slide">
+          <div class="sp_gift-slider__img" style="background-image: url(img/gift-02.jpg);"></div>
+          <div class="sp_gift-slider__hd">Серьги с английским замком</div>
+          <div class="sp_gift-slider__ttl">Серебро Ag 925097, Фианит, 2,79г</div>
+          <div class="sp_gift-slider__price">450 баллов</div>
+          <a href="#" class="sp_cmn-btn-sm sp_gift-slider__btn js-open-gift-popup">Получить</a>
+        </div>
+      </div>
+      <div>
+        <div class="sp_gift-slider__slide">
+          <div class="sp_gift-slider__img" style="background-image: url(img/gift-03.jpg);"></div>
+          <div class="sp_gift-slider__hd">Серьги с английским замком</div>
+          <div class="sp_gift-slider__ttl">Серебро Ag 925097, Фианит, 2,79г</div>
+          <div class="sp_gift-slider__price">450 баллов</div>
+          <a href="#" class="sp_cmn-btn-sm sp_gift-slider__btn js-open-gift-popup">Получить</a>
+        </div>
+      </div>
+      <div>
+        <div class="sp_gift-slider__slide">
+          <div class="sp_gift-slider__img" style="background-image: url(img/gift-02.jpg);"></div>
+          <div class="sp_gift-slider__hd">Серьги с английским замком</div>
+          <div class="sp_gift-slider__ttl">Серебро Ag 925097, Фианит, 2,79г</div>
+          <div class="sp_gift-slider__price">450 баллов</div>
+          <a href="#" class="sp_cmn-btn-sm sp_gift-slider__btn js-open-gift-popup">Получить</a>
+        </div>
+      </div>
+      <div>
+        <div class="sp_gift-slider__slide">
+          <div class="sp_gift-slider__img" style="background-image: url(img/gift-03.jpg);"></div>
+          <div class="sp_gift-slider__hd">Серьги с английским замком</div>
+          <div class="sp_gift-slider__ttl">Серебро Ag 925097, Фианит, 2,79г</div>
+          <div class="sp_gift-slider__price">450 баллов</div>
+          <a href="#" class="sp_cmn-btn-sm sp_gift-slider__btn js-open-gift-popup">Получить</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="sp_task-sec-wrap">
+    <div class="sp_l-section sp_task-sec">
+      <div class="sp_cmn-sec-head">Задания</div>
+
+      <div class="sp_task-slider js-task-slider">
+        <div>
+          <div class="sp_task-slider__slide">
+            <div class="sp_task-slider__ico" style="background-image: url(img/task-icon-06.svg);"></div>
+            <div class="sp_task-slider__hd">Рассказать о покупке</div>
+            <div class="sp_task-slider__price">150 баллов</div>
+
+            <div class="sp_task-slider__cover">
+              <a href="#" class="sp_cmn-btn-sm sp_task-slider__btn">Выполнить</a>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="sp_task-slider__slide">
+            <div class="sp_task-slider__ico" style="background-image: url(img/task-icon-07.svg);"></div>
+            <div class="sp_task-slider__hd">Пригласить друга</div>
+            <div class="sp_task-slider__price">150 баллов</div>
+
+            <div class="sp_task-slider__cover">
+              <a href="#" class="sp_cmn-btn-sm sp_task-slider__btn">Выполнить</a>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="sp_task-slider__slide">
+            <div class="sp_task-slider__ico" style="background-image: url(img/task-icon-01.svg);"></div>
+            <div class="sp_task-slider__hd">Подписаться на рассылку</div>
+            <div class="sp_task-slider__price">150 баллов</div>
+
+            <div class="sp_task-slider__cover">
+              <a href="#" class="sp_cmn-btn-sm sp_task-slider__btn">Выполнить</a>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="sp_task-slider__slide">
+            <div class="sp_task-slider__ico" style="background-image: url(img/task-icon-02.svg);"></div>
+            <div class="sp_task-slider__hd">Пройти опрос</div>
+            <div class="sp_task-slider__price">150 баллов</div>
+
+            <div class="sp_task-slider__cover">
+              <a href="#" class="sp_cmn-btn-sm sp_task-slider__btn">Выполнить</a>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="sp_task-slider__slide">
+            <div class="sp_task-slider__ico" style="background-image: url(img/task-icon-03.svg);"></div>
+            <div class="sp_task-slider__hd">Заполните профиль</div>
+            <div class="sp_task-slider__price">150 баллов</div>
+
+            <div class="sp_task-slider__cover">
+              <a href="#" class="sp_cmn-btn-sm sp_task-slider__btn js-open-profile-popup">Выполнить</a>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="sp_task-slider__slide">
+            <div class="sp_task-slider__ico" style="background-image: url(img/task-icon-04.svg);"></div>
+            <div class="sp_task-slider__hd">Вступить в группу</div>
+            <div class="sp_task-slider__price">150 баллов</div>
+
+            <div class="sp_task-slider__cover">
+              <a href="#" class="sp_cmn-btn-sm sp_task-slider__btn">Выполнить</a>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="sp_task-slider__slide">
+            <div class="sp_task-slider__ico" style="background-image: url(img/task-icon-05.svg);"></div>
+            <div class="sp_task-slider__hd">Вступить в группу</div>
+            <div class="sp_task-slider__price">150 баллов</div>
+
+            <div class="sp_task-slider__cover">
+              <a href="#" class="sp_cmn-btn-sm sp_task-slider__btn">Выполнить</a>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="sp_task-slider__slide">
+            <div class="sp_task-slider__ico" style="background-image: url(img/task-icon-04.svg);"></div>
+            <div class="sp_task-slider__hd">Рассказать о магазине</div>
+            <div class="sp_task-slider__price">150 баллов</div>
+
+            <div class="sp_task-slider__cover">
+              <a href="#" class="sp_cmn-btn-sm sp_task-slider__btn">Выполнить</a>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="sp_task-slider__slide">
+            <div class="sp_task-slider__ico" style="background-image: url(img/task-icon-05.svg);"></div>
+            <div class="sp_task-slider__hd">Рассказать о магазине</div>
+            <div class="sp_task-slider__price">150 баллов</div>
+
+            <div class="sp_task-slider__cover">
+              <a href="#" class="sp_cmn-btn-sm sp_task-slider__btn">Выполнить</a>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="sp_task-slider__slide">
+            <div class="sp_task-slider__ico" style="background-image: url(img/task-icon-04.svg);"></div>
+            <div class="sp_task-slider__hd">Рассказать о покупке</div>
+            <div class="sp_task-slider__price">150 баллов</div>
+
+            <div class="sp_task-slider__cover">
+              <a href="#" class="sp_cmn-btn-sm sp_task-slider__btn">Выполнить</a>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="sp_task-slider__slide">
+            <div class="sp_task-slider__ico" style="background-image: url(img/task-icon-05.svg);"></div>
+            <div class="sp_task-slider__hd">Рассказать о покупке</div>
+            <div class="sp_task-slider__price">150 баллов</div>
+
+            <div class="sp_task-slider__cover">
+              <a href="#" class="sp_cmn-btn-sm sp_task-slider__btn">Выполнить</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+</div>
+<!-- /sp_widget -->
+
+
+<div class="sp_hist-popup js-history-popup" style="display: none;">
+  <div class="sp_cmn-popup-close js-close-popup"></div>
+  <div class="sp_hist-popup__hd">История транзакций</div>
+  <div class="sp_hist-list">
+    <div class="sp_hist-list__itm">
+      <div class="sp_hist-list__val">150 баллов</div>
+      Покупка
+    </div>
+    <div class="sp_hist-list__itm">
+      <div class="sp_hist-list__val">120 баллов</div>
+      Покупка
+    </div>
+    <div class="sp_hist-list__itm">
+      <div class="sp_hist-list__val">120 баллов</div>
+      Покупка
+    </div>
+    <div class="sp_hist-list__itm">
+      <div class="sp_hist-list__val">120 баллов</div>
+      Покупка
+    </div>
+    <div class="sp_hist-list__itm this-dec">
+      <div class="sp_hist-list__val">-450 баллов</div>
+      Получение подарка
+    </div>
+    <div class="sp_hist-list__itm this-dec">
+      <div class="sp_hist-list__val">-450 баллов</div>
+      Получение подарка
+    </div>
+    <div class="sp_hist-list__itm">
+      <div class="sp_hist-list__val">120 баллов</div>
+      Покупка
+    </div>
+    <div class="sp_hist-list__itm">
+      <div class="sp_hist-list__val">120 баллов</div>
+      Покупка
+    </div>
+    <div class="sp_hist-list__itm">
+      <div class="sp_hist-list__val">120 баллов</div>
+      Покупка
+    </div>
+  </div>
+  <!-- /list -->
+
+  <div class="sp_cmn-breadcr">
+    <div class="sp_cmn-breadcr__inner">
+      <a href="#" class="sp_cmn-breadcr__arrow this-left"></a>
+      <a href="#" class="sp_cmn-breadcr__arrow this-right"></a>
+
+      <a href="#" class="sp_cmn-breadcr__itm this-active">1</a>
+      <a href="#" class="sp_cmn-breadcr__itm">2</a>
+      <a href="#" class="sp_cmn-breadcr__itm">3</a>
+      <a href="#" class="sp_cmn-breadcr__itm">4</a>
+      <span class="sp_cmn-breadcr__itm">...</span>
+      <a href="#" class="sp_cmn-breadcr__itm">10</a>
+    </div>
+  </div>
+</div>
+<!-- /hist popup -->
+
+<div class="sp_stat-popup js-status-popup" style="display: none;">
+  <div class="sp_stat-popup__hd">Описание статусов</div>
+  <div class="sp_stat-pop-itm">
+    <div class="sp_stat-pop-itm__img"><img src="img/status-01.svg" alt=""></div>
+    <div class="sp_stat-pop-itm__text">
+      Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet
+      dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam. Lorem ipsum dolor sit amet, consectetuer
+      adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi
+      enim ad minim veniam.
+    </div>
+  </div>
+  <div class="sp_stat-pop-itm">
+    <div class="sp_stat-pop-itm__img"><img src="img/status-02.svg" alt=""></div>
+    <div class="sp_stat-pop-itm__text">
+      Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet
+      dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam. Lorem ipsum dolor sit amet, consectetuer
+      adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi
+      enim ad minim veniam.
+    </div>
+  </div>
+  <div class="sp_stat-pop-itm">
+    <div class="sp_stat-pop-itm__img"><img src="img/status-03.svg" alt=""></div>
+    <div class="sp_stat-pop-itm__text">
+      Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet
+      dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam. Lorem ipsum dolor sit amet, consectetuer
+      adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi
+      enim ad minim veniam.
+    </div>
+  </div>
+  <div class="sp_stat-pop-itm">
+    <div class="sp_stat-pop-itm__img"><img src="img/status-04.svg" alt=""></div>
+    <div class="sp_stat-pop-itm__text">
+      Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet
+      dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam. Lorem ipsum dolor sit amet, consectetuer
+      adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi
+      enim ad minim veniam.
+    </div>
+  </div>
+  <div class="sp_stat-pop-itm">
+    <div class="sp_stat-pop-itm__img"><img src="img/status-05.svg" alt=""></div>
+    <div class="sp_stat-pop-itm__text">
+      Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet
+      dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam. Lorem ipsum dolor sit amet, consectetuer
+      adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi
+      enim ad minim veniam.
+    </div>
+  </div>
+  <div class="sp_stat-popup__btns">
+    <div class="sp_stat-popup__btn sp_cmn-btn-sm js-close-popup">ОК</div>
+  </div>
+</div>
+
+
+<div class="sp_gift-popup js-gift-popup" style="display: none;">
+  <div class="sp_gift-popup__hd">450 бонусных балов будут списаны с вашего счета</div>
+  <div class="sp_gift-popup__img" style="background-image: url(img/gift-01.jpg);"></div>
+  <div class="sp_gift-popup__ttl">Вы уверены?</div>
+  <div class="sp_gift-popup__btns">
+    <div class="sp_gift-popup__btn sp_cmn-btn-sm js-close-popup">Да</div>
+    <div class="sp_gift-popup__btn sp_cmn-btn-sm js-close-popup">Отмена</div>
+  </div>
+
+</div>
+
+<div class="sp_profile-popup js-profile-popup" style="display: none;">
+  <div class="sp_profile-popup__hd">Изменить профиль</div>
+
+  <form action="" class="sp_profile-form">
+    <div class="sp_profile-form__set">
+      <input type="text" class="sp_cmn-input" placeholder="Email">
+    </div>
+    <div class="sp_profile-form__set">
+      <input type="text" class="sp_cmn-input js-create-mask" placeholder="Телефон">
+    </div>
+    <div class="sp_profile-form__set">
+      <div class="sp_profile-form__ttl">Дата рождения</div>
+      <div class="sp_profile-form__dates">
+        <div class="sp_profile-form__dates-col">
+          <select name="" id="" class="js-create-select sp_cmn-selectize">
+            <option value="01">01</option>
+            <option value="02">02</option>
+            <option value="03">03</option>
+            <option value="04">04</option>
+            <option value="05">05</option>
+            <option value="06">06</option>
+            <option value="07">07</option>
+            <option value="08">08</option>
+            <option value="09">09</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
+            <option value="20">20</option>
+            <option value="21">21</option>
+            <option value="22">22</option>
+            <option value="23">23</option>
+            <option value="24">24</option>
+            <option value="25">25</option>
+            <option value="26">26</option>
+            <option value="27">27</option>
+            <option value="28">28</option>
+            <option value="29">29</option>
+            <option value="30">30</option>
+            <option value="31">31</option>
+          </select>
+        </div>
+        <div class="sp_profile-form__dates-col">
+          <select name="" id="" class="js-create-select sp_cmn-selectize">
+            <option value="01">01</option>
+            <option value="02">02</option>
+            <option value="03">03</option>
+            <option value="04">04</option>
+            <option value="05">05</option>
+            <option value="06">06</option>
+            <option value="07">07</option>
+            <option value="08">08</option>
+            <option value="09">09</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+          </select>
+
+        </div>
+        <div class="sp_profile-form__dates-col">
+          <select name="" id="" class="js-create-select sp_cmn-selectize">
+            <option value="1924">1924</option>
+            <option value="1925">1925</option>
+            <option value="1926">1926</option>
+            <option value="1927">1927</option>
+            <option value="1928">1928</option>
+            <option value="1929">1929</option>
+            <option value="1930">1930</option>
+            <option value="1931">1931</option>
+            <option value="1932">1932</option>
+            <option value="1933">1933</option>
+            <option value="1934">1934</option>
+            <option value="1935">1935</option>
+            <option value="1936">1936</option>
+            <option value="1937">1937</option>
+            <option value="1938">1938</option>
+            <option value="1939">1939</option>
+            <option value="1940">1940</option>
+            <option value="1941">1941</option>
+            <option value="1942">1942</option>
+            <option value="1943">1943</option>
+            <option value="1944">1944</option>
+            <option value="1945">1945</option>
+            <option value="1946">1946</option>
+            <option value="1947">1947</option>
+            <option value="1948">1948</option>
+            <option value="1949">1949</option>
+            <option value="1950">1950</option>
+            <option value="1951">1951</option>
+            <option value="1952">1952</option>
+            <option value="1953">1953</option>
+            <option value="1954">1954</option>
+            <option value="1955">1955</option>
+            <option value="1956">1956</option>
+            <option value="1957">1957</option>
+            <option value="1958">1958</option>
+            <option value="1959">1959</option>
+            <option value="1960">1960</option>
+            <option value="1961">1961</option>
+            <option value="1962">1962</option>
+            <option value="1963">1963</option>
+            <option value="1964">1964</option>
+            <option value="1965">1965</option>
+            <option value="1966">1966</option>
+            <option value="1967">1967</option>
+            <option value="1968">1968</option>
+            <option value="1969">1969</option>
+            <option value="1970">1970</option>
+            <option value="1971">1971</option>
+            <option value="1972">1972</option>
+            <option value="1973">1973</option>
+            <option value="1974">1974</option>
+            <option value="1975">1975</option>
+            <option value="1976">1976</option>
+            <option value="1977">1977</option>
+            <option value="1978">1978</option>
+            <option value="1979">1979</option>
+            <option value="1980">1980</option>
+            <option value="1981">1981</option>
+            <option value="1982">1982</option>
+            <option value="1983">1983</option>
+            <option value="1984">1984</option>
+            <option value="1985">1985</option>
+            <option value="1986">1986</option>
+            <option value="1987">1987</option>
+            <option value="1988">1988</option>
+            <option value="1989">1989</option>
+            <option value="1990">1990</option>
+            <option value="1991">1991</option>
+            <option value="1992">1992</option>
+            <option value="1993">1993</option>
+            <option value="1994">1994</option>
+            <option value="1995">1995</option>
+            <option value="1996">1996</option>
+            <option value="1997">1997</option>
+            <option value="1998">1998</option>
+            <option value="1999">1999</option>
+            <option value="2000">2000</option>
+            <option value="2001">2001</option>
+            <option value="2002">2002</option>
+            <option value="2003">2003</option>
+            <option value="2004">2004</option>
+            <option value="2005">2005</option>
+            <option value="2006">2006</option>
+            <option value="2007">2007</option>
+            <option value="2008">2008</option>
+            <option value="2009">2009</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="sp_profile-form__set">
+      <div class="sp_cmn-inline-param">
+        <input name="name1" type="radio" class="js-create-radio">
+
+        <div class="sp_cmn-label js-satellite">Замужем/женат</div>
+      </div>
+      <div class="sp_cmn-inline-param">
+        <input name="name1" type="radio" class="js-create-radio">
+
+        <div class="sp_cmn-label js-satellite">Холост</div>
+      </div>
+    </div>
+    <div class="sp_profile-form__set">
+      <input type="text" class="sp_cmn-input" placeholder="Имя супруга/супруги">
+    </div>
+    <div class="sp_profile-form__set">
+      <div class="sp_profile-form__ttl">Дата рождения супруга/супруги</div>
+      <div class="sp_profile-form__dates">
+        <div class="sp_profile-form__dates-col">
+          <select name="" id="" class="js-create-select sp_cmn-selectize">
+            <option value="01">01</option>
+            <option value="02">02</option>
+            <option value="03">03</option>
+            <option value="04">04</option>
+            <option value="05">05</option>
+            <option value="06">06</option>
+            <option value="07">07</option>
+            <option value="08">08</option>
+            <option value="09">09</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
+            <option value="20">20</option>
+            <option value="21">21</option>
+            <option value="22">22</option>
+            <option value="23">23</option>
+            <option value="24">24</option>
+            <option value="25">25</option>
+            <option value="26">26</option>
+            <option value="27">27</option>
+            <option value="28">28</option>
+            <option value="29">29</option>
+            <option value="30">30</option>
+            <option value="31">31</option>
+          </select>
+        </div>
+        <!-- /date-col -->
+        <div class="sp_profile-form__dates-col">
+          <select name="" id="" class="js-create-select sp_cmn-selectize">
+            <option value="01">01</option>
+            <option value="02">02</option>
+            <option value="03">03</option>
+            <option value="04">04</option>
+            <option value="05">05</option>
+            <option value="06">06</option>
+            <option value="07">07</option>
+            <option value="08">08</option>
+            <option value="09">09</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+          </select>
+
+        </div>
+        <!-- /date-col -->
+        <div class="sp_profile-form__dates-col">
+          <select name="" id="" class="js-create-select sp_cmn-selectize">
+            <option value="1924">1924</option>
+            <option value="1925">1925</option>
+            <option value="1926">1926</option>
+            <option value="1927">1927</option>
+            <option value="1928">1928</option>
+            <option value="1929">1929</option>
+            <option value="1930">1930</option>
+            <option value="1931">1931</option>
+            <option value="1932">1932</option>
+            <option value="1933">1933</option>
+            <option value="1934">1934</option>
+            <option value="1935">1935</option>
+            <option value="1936">1936</option>
+            <option value="1937">1937</option>
+            <option value="1938">1938</option>
+            <option value="1939">1939</option>
+            <option value="1940">1940</option>
+            <option value="1941">1941</option>
+            <option value="1942">1942</option>
+            <option value="1943">1943</option>
+            <option value="1944">1944</option>
+            <option value="1945">1945</option>
+            <option value="1946">1946</option>
+            <option value="1947">1947</option>
+            <option value="1948">1948</option>
+            <option value="1949">1949</option>
+            <option value="1950">1950</option>
+            <option value="1951">1951</option>
+            <option value="1952">1952</option>
+            <option value="1953">1953</option>
+            <option value="1954">1954</option>
+            <option value="1955">1955</option>
+            <option value="1956">1956</option>
+            <option value="1957">1957</option>
+            <option value="1958">1958</option>
+            <option value="1959">1959</option>
+            <option value="1960">1960</option>
+            <option value="1961">1961</option>
+            <option value="1962">1962</option>
+            <option value="1963">1963</option>
+            <option value="1964">1964</option>
+            <option value="1965">1965</option>
+            <option value="1966">1966</option>
+            <option value="1967">1967</option>
+            <option value="1968">1968</option>
+            <option value="1969">1969</option>
+            <option value="1970">1970</option>
+            <option value="1971">1971</option>
+            <option value="1972">1972</option>
+            <option value="1973">1973</option>
+            <option value="1974">1974</option>
+            <option value="1975">1975</option>
+            <option value="1976">1976</option>
+            <option value="1977">1977</option>
+            <option value="1978">1978</option>
+            <option value="1979">1979</option>
+            <option value="1980">1980</option>
+            <option value="1981">1981</option>
+            <option value="1982">1982</option>
+            <option value="1983">1983</option>
+            <option value="1984">1984</option>
+            <option value="1985">1985</option>
+            <option value="1986">1986</option>
+            <option value="1987">1987</option>
+            <option value="1988">1988</option>
+            <option value="1989">1989</option>
+            <option value="1990">1990</option>
+            <option value="1991">1991</option>
+            <option value="1992">1992</option>
+            <option value="1993">1993</option>
+            <option value="1994">1994</option>
+            <option value="1995">1995</option>
+            <option value="1996">1996</option>
+            <option value="1997">1997</option>
+            <option value="1998">1998</option>
+            <option value="1999">1999</option>
+            <option value="2000">2000</option>
+            <option value="2001">2001</option>
+            <option value="2002">2002</option>
+            <option value="2003">2003</option>
+            <option value="2004">2004</option>
+            <option value="2005">2005</option>
+            <option value="2006">2006</option>
+            <option value="2007">2007</option>
+            <option value="2008">2008</option>
+            <option value="2009">2009</option>
+          </select>
+        </div>
+        <!-- /date-col -->
+      </div>
+      <!-- /dates -->
+    </div>
+    <!-- /set -->
+    <div class="sp_profile-form__set">
+      <div class="sp_cmn-inline-param">
+        <input name="checkboxname" type="checkbox" class="js-create-checkbox">
+
+        <div class="sp_cmn-label js-satellite">Есть дети</div>
+      </div>
+    </div>
+    <div class="sp_profile-form__set">
+      <div class="sp_profile-form__ttl">Скрывать историю транзакции</div>
+      <div class="sp_cmn-inline-param">
+        <input name="name2" type="radio" class="js-create-radio">
+
+        <div class="sp_cmn-label js-satellite">Да</div>
+      </div>
+      <div class="sp_cmn-inline-param">
+        <input name="name2" type="radio" class="js-create-radio">
+
+        <div class="sp_cmn-label js-satellite">Нет</div>
+      </div>
+    </div>
+    <!-- /set -->
+
+    <div class="sp_profile-form__btns">
+      <a href="#" class="sp_cmn-btn-sm sp_profile-form__btn">Отправить</a>
+      <a href="#" class="sp_cmn-btn-sm sp_profile-form__btn js-close-popup">Отмена</a>
+    </div>
+  </form>
+</div>
+<!-- /profile popup -->
+
+<div class="sp_task-popup js-task-popup" style="display: none;">
+  <div class="sp_cmn-popup-close js-close-popup"></div>
+  <div class="sp_task-popup__hd">Рассказать о покупке</div>
+  <div class="sp_task-popup__inner">
+    <div class="sp_task-popup__l">
+      <img class="sp_task-popup__img" src="img/task-icon-06.svg" alt="">
+    </div>
+    <div class="sp_task-popup__r">
+      <p>Lorem ipsum dolor sit amet, mea no consul euismod meliore. Ei detracto detraxit vim, an augue accusam
+        temporibus eum. Cum illum augue moderatius no. Pro duis ludus ne, eam enim alterum liberavisse at.</p>
+
+      <p>Cum vide scaevola ut, vis viris mandamus in. Et ius vidit assentior mnesarchum. Est id fugit sonet democritum.
+        Sit ad utroque accommodare.</p>
+    </div>
+  </div>
+  <div class="sp_cmn-btn-sm sp_task-popup__btn js-close-popup">ОК</div>
+</div>
+
+
+<script src="js/plugins/slick.min.js"></script>
+<script src="js/plugins/jquery.bpopup.min.js"></script>
+<script src="js/plugins/prettyCheckable.min.js"></script>
+<script src="js/plugins/selectize.min.js"></script>
+<script src="js/plugins/jquery.mask.min.js"></script>
+
+<script src="js/common.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,144 @@
+.sp_cmn-btn {
+  display: block;
+  height: 55px;
+  width: 100%;
+  overflow: hidden;
+
+  cursor: pointer;
+
+  font-size: 15px;
+  text-transform: uppercase;
+  line-height: 59px;
+  text-align: center;
+  color: #313B49;
+  .alink(#313B49, @red);
+
+  border: 1px solid #313B49;
+  border-radius: 28px;
+  &:hover {
+    background-color: rgba(255, 255, 255, .4);
+    border-color: @red;
+    color: @red;
+  }
+  &:active {
+    background-color: rgba(255, 255, 255, .6);
+  }
+
+  &_red {
+    background-color: #820d41;
+    border-color: #820d41;
+    color: #fff;
+    .alink(#fff);
+    &:hover {
+      background-color: lighten(#820d41, 5%);
+    }
+    &:active {
+      background-color: darken(#820d41, 3%);
+    }
+  }
+
+  &:disabled {
+    background-color: @input-border-color;
+    color: #808080;
+  }
+}
+
+.sp_cmn-btn-sm {
+  display: block;
+  height: 38px;
+  width: 100%;
+  overflow: hidden;
+
+  cursor: pointer;
+
+  font-size: 15px;
+  text-transform: uppercase;
+  line-height: 42px;
+  text-align: center;
+
+  border: 1px solid #313B49;
+  border-radius: 28px;
+
+  background-color: #820d41;
+  border-color: #820d41;
+  color: #fff;
+  .alink(#fff);
+  &:hover {
+   /* background-color: lighten(#820d41, 5%); */
+  }
+  &:active {
+    /* background-color: darken(#820d41, 3%); */
+  }
+
+  &:disabled {
+    background-color: @input-border-color;
+    //color: #808080;
+    border: 1px solid @input-border-color;
+  }
+}
+
+.sp_cmn-sec-head {
+  .muller();
+  font-size: 40px;
+  text-align: center;
+  margin-bottom: 25px;
+  text-transform: uppercase;
+}
+
+.sp_cmn-breadcr {
+  text-align: center;
+  padding: 0 30px;
+  &__inner {
+    display: inline-block;
+    position: relative;
+  }
+  &__itm {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1;
+    padding: 0 4px 2px;
+
+    .alink(@color-text-main, @red);
+    &.this-active {
+      color: @red;
+      border-bottom: 1px solid @red;
+    }
+    &:hover {
+      color: @red;
+    }
+  }
+  &__arrow {
+    position: absolute;
+    width: 6px;
+    height: 8px;
+    top: 39%;
+    margin-top: -4px;
+    background-color: red;
+    &.this-left {
+      left: -14px;
+      background: url("https://d3sailplay.cdnvideo.ru/media/assets/assetfile/eead5542c9e188907d185192b16da8b4.png") no-repeat center;
+    }
+    &.this-right {
+      right: -14px;
+      background: url("https://d3sailplay.cdnvideo.ru/media/assets/assetfile/54191274c2ac2f95281907c0836f183c.png") no-repeat center;
+    }
+    opacity: .8;
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+}
+
+.sp_cmn-popup-close {
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+
+  background: url("https://d3sailplay.cdnvideo.ru/media/assets/assetfile/9d9c35daa6ad76b5b26b7a190dc85457.svg") no-repeat center;
+  background-size: contain;
+  cursor: pointer;
+}

@@ -1,0 +1,169 @@
+/* forms */
+@input-height: 48px;
+@input-side-padding: 12px;
+
+@input-border-color: #E6E6E6;
+@input-active-border-color: darken(@input-border-color, 15%);
+
+@input-font-size: 16px;
+@input-text-color: @color-text-main;
+@input-placeholder-color: #808080;
+
+.sp_cmn-input {
+  display: block;
+  width: 100%;
+  height: @input-height;
+  padding: 0 @input-side-padding;
+
+  border: 1px solid @input-border-color;
+
+  font-size: @input-font-size;
+  font-weight: normal;
+  color: @input-text-color;
+
+  .muller();
+  font-weight: 300;
+  font-size: 13px;
+
+  .transition(border-color 150ms linear 0ms);
+  &:active, &:focus {
+    outline: none !important;
+    border-color: @input-active-border-color;
+  }
+  &::-webkit-input-placeholder {
+    color: @input-placeholder-color;
+  }
+  &::-moz-placeholder {
+    color: @input-placeholder-color;
+  }
+  &:-moz-placeholder {
+    color: @input-placeholder-color;
+  }
+  &:-ms-input-placeholder {
+    color: @input-placeholder-color;
+  }
+}
+
+.sp_cmn-radio-wrap {
+  display: block;
+  position: absolute;
+  left: 0px;
+  top: 1px;
+  a {
+    display: block;
+    position: relative;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 1px solid #000;
+    &:hover {
+      .box-shadow(0px 0px 5px rgba(0, 0, 0, 0.3));
+    }
+    &.checked {
+      border-color: @red;
+      background-color: @red;
+    }
+  }
+  label {
+    display: none;
+  }
+}
+
+.sp_cmn-checkbox-wrap {
+  display: block;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  a {
+    display: block;
+    position: relative;
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    border: 1px solidН #000;
+    &:hover {
+      .box-shadow(0px 0px 5px rgba(0, 0, 0, 0.3));
+    }
+    &.checked {
+      border-color: @red;
+      background-color: @red;
+      background-image: url("https://d3sailplay.cdnvideo.ru/media/assets/assetfile/58c932599f2ac4a949d6c02cb35c8c3d.png");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 9px 6px;
+    }
+  }
+  label {
+    display: none;
+  }
+}
+
+.sp_cmn-label {
+  cursor: pointer;
+}
+
+.sp_cmn-inline-param {
+  display: inline-block;
+  position: relative;
+  padding-left: 0px;
+
+  font-size: 13px;
+  line-height: 1;
+  font-weight: 300;
+
+  margin-right: 55px;
+  .outer_label {
+    display: inline-block;
+    padding: 4px;
+    border-radius: 4px;
+  }
+  &:last-child {
+    margin-bottom: 0;
+  }
+  @media (max-width: (@screen-lg-min - 1px)) {
+    //1199px
+  }
+  @media (max-width: (@screen-md-min - 1px)) {
+    //991px
+  }
+  @media (max-width: (@screen-sm-min - 1px)) {
+    //767px
+    display: block;
+    margin-bottom: 7px;
+  }
+  @media (max-width: (@screen-xs-min - 1px)) {
+    //479px
+  }
+}
+
+.outer_label {
+
+  padding-left: 20px !important;
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 15px 15px;
+
+  &.radio {
+
+    background-image: url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/983ed13b88728b6e3cd1515d0cd02065.png');
+    &.checked {
+      background-image: url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/0a4056ee69b2c116a90879dad1c057f8.png');
+
+    }
+
+  }
+
+  &.checkbox {
+
+    background-image: url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/7bc83e69d13bd06a8e3a92a1a9561221.png');
+    &.checked {
+      background-image: url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/4444eb710d3576c02f34c6ad3f3f9184.png');
+
+    }
+
+  }
+  input {
+    display:none;
+  }
+
+}
