@@ -152,7 +152,7 @@ body {
   margin: 0;
 }
 .bns_inner_block {
-  width: 1200px;
+  width: 100%;
   margin: auto;
 }
 .bns_overlay {
@@ -828,6 +828,7 @@ body {
 }
 .bns_earn .bns_earn_main .bns_earn_item .bns_earn_item_left img {
   vertical-align: middle;
+  display: inline-block;
 }
 .bns_earn .bns_earn_main .bns_earn_item .bns_earn_item_left:before {
   vertical-align: middle;

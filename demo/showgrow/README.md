@@ -8,7 +8,7 @@ Paste this code to the page in < head > section to load the script:
         window.PARTNER_ID = ** PARTNER_ID **;
 
         var _links = {
-            js: 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/81c85081fbeee470eaf428e5ac79f12d.js',
+            js: 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/867ede14eb8294ba38ea4ec09365fde0.js',
             css: 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/a91e95549722fff3637f4d225e3b9540.css'
         };
 

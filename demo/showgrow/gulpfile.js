@@ -26,6 +26,7 @@
       __dirname + '/node_modules/sailplay-hub/sailplay.hub.js',
       __dirname + '/node_modules/sailplay-hub-actions/sailplay.hub.actions.js',
       __dirname + '/node_modules/angular/angular.min.js',
+      __dirname + '/node_modules/angular-cookie/angular-cookie.min.js',
       __dirname + '/src/js/**/**/*.js'
     ]).pipe(concat('sg.sailplay.js'))
       .pipe(gulp.dest(__dirname + '/dist/'));

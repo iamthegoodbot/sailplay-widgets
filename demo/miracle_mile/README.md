@@ -11,7 +11,7 @@ Paste this code to the page in < head > section to load the script:
 
             var _links = {
                 js: 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/19ad17cf6c0c628204e08d2ac275fbc0.js',
-                css: 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/cccf8c078277cf09cc34a9d9c2dfb746.css'
+                css: 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/14d4c1b2dabcbbdea3c225233b1b86db.css'
             };
 
             document.addEventListener('DOMContentLoaded', function () {
