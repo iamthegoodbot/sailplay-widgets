@@ -17,7 +17,7 @@
 
           scope.get_width = function(){
             if(scope.user && scope.user()){
-              var width = status_service.count_percents(scope.user().user_points.confirmed + scope.user().user_points.spent) || 0;
+              var width = status_service.count_percents(scope.user().user_points.confirmed) || 0;
               return width > 100 ? 100 : width < 0 ? 0 : width;
             } else {
               return 0;

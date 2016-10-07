@@ -11,8 +11,8 @@ Paste this code to the page in < head > section to load the script:
         };
 
         var _links = {
-            js: 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/53cf807d25fd81deaf3524c1db963857.js',
-            css: 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/5cf3839c610bacf0094ffa5f8cfde7e2.css'
+            js: 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/c93d4d9ffdc72bda9c13cfbc6aaa1c7c.js',
+            css: 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/785c9bde4a71bf37bf7dcb3fa5872aea.css'
         };
 
         document.addEventListener('DOMContentLoaded', function () {

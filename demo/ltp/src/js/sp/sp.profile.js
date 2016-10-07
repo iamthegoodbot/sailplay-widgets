@@ -31,7 +31,7 @@
 
           scope.get_offset = function () {
             var arr = scope.limits;
-            var limit = scope.user && scope.user && scope.user() ? scope.user().user_points.confirmed + scope.user().user_points.spent : 0;
+            var limit = scope.user && scope.user && scope.user() ? scope.user().user_points.confirmed : 0;
             var result = [];
             for (var i = 0, len = arr.length; i < len; i++) {
               var current_limit = arr[i];
