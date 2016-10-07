@@ -473,6 +473,38 @@ var SAILPLAY = (function () {
 
   });
 
+  //user feedback
+  sp.on('users.feedback', function (params, callback) {
+
+    if (_config == {}) {
+      initError();
+      return;
+    }
+
+    params = params || {};
+
+    if (_config.auth_hash) {
+      params.auth_hash = _config.auth_hash;
+    }
+    else {
+      sp.send('auth.error');
+      return;
+    }
+
+    JSONP.get(_config.DOMAIN + _config.urls.users.feedback, params, function (res) {
+
+      callback && callback(res);
+
+      if (res.status === 'ok') {
+        sp.send('users.feedback.success', res);
+      }
+      else {
+        sp.send('users.feedback.error', res);
+      }
+    });
+
+  });
+
   //USER HISTORY
   sp.on('load.user.history', function (params) {
     if (_config == {}) {
