@@ -172,7 +172,9 @@ var SAILPLAY = (function () {
 
       var data = {};
 
-      if (messageEvent.origin == _config.DOMAIN) {
+      var _domain = _config.DOMAIN.indexOf('http:') != -1 || _config.DOMAIN.indexOf('https:') != -1 ? _config.DOMAIN : 'http:' + _config.DOMAIN;
+
+      if (messageEvent.origin == _domain) {
         try {
           data = JSON.parse(messageEvent.data);
         }
