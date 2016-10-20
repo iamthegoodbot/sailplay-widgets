@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PJ Loyalty</title>
+
+    <link rel="stylesheet" type="text/css" href="css/pj.css">
+
+    <link rel="stylesheet" type="text/css" href="https://www.papajohns.ru/publish/default/style.css">
+
+    <script src="js/dist/sailplay_pj.min.js"></script>
+
+    <script>
+        window.onload = function () {
+
+            SAILPLAY.on('init.success', function () {
+                SAILPLAY.send('pj.bootstrap', document.body); // запускаем приложение после того, как инициализировали хаб
+                SAILPLAY.send('login', '055118312f0c11c84997141b9cd0615b5eb94fe0'); //авторизуем пользователя
+            });
+
+            SAILPLAY.send('init', {
+                partner_id: 5, // ид партнера
+                domain: 'https://crm.papajohns.ru',
+                lang: 'ru'
+            });
+
+        };
+
+    </script>
+</head>
+<body>
+
+<style>
+
+    .sailplay-widget-wrapper {
+        position: relative;
+        width: 945px;
+        margin: auto;
+        z-index: 1;
+        background: white;
+    }
+
+</style>
+
+
+<sailplay-widgets></sailplay-widgets>
+
+</body>
+</html>

@@ -7,6 +7,7 @@ module.exports = function (grunt) {
       dist: {
         src: [
           //lib section
+          'js/angular.js',
           'js/sailplay_hub.js',
           'js/pj.filters.js',
           'js/pj.services.js',
