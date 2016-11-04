@@ -132,14 +132,14 @@
               modal: true,
               modalClose: true,
               modalColor: '#000',
-              opacity: 0.3
+              opacity: 1
             });
 
           });
 
 
           scope.reset_notifier = function () {
-
+            if(!scope.data) return;
             $('.js-notify-popup').bPopup().close();
             $timeout(function () {
               scope.data = angular.copy(new_data);

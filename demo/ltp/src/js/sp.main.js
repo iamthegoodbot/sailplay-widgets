@@ -15,8 +15,8 @@
           $locale.NUMBER_FORMATS.GROUP_SEP = ' ';
 
           // preloader
-          $('#sp_status').fadeOut();
-          $('#sp_preloader').delay(350).fadeOut('slow');
+          $('#sp_status').fadeOut(100);
+          $('#sp_preloader').delay(350).fadeOut(100);
           $('body').delay(350).css({'overflow': 'visible'});
 
           scope.close_history = function () {
