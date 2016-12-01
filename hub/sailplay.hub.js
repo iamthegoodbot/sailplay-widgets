@@ -402,7 +402,7 @@ var SAILPLAY = (function () {
     req.width = 0;
     req.height = 0;
     req.style.border = 'none';
-    req.src = _config.DOMAIN + '/users/logout';
+    req.src = _config.DOMAIN + '/users/logout/';
     document.body.appendChild(req);
     req.onload = function () {
       document.body.removeChild(req);
