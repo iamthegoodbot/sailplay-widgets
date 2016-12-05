@@ -786,7 +786,7 @@ var SAILPLAY = (function () {
         }
       });
     } else {
-      SAILPLAY.send('tags.add.auth.error', tags);
+      SAILPLAY.send('tags.add.auth.error', data.tags);
     }
   });
 
