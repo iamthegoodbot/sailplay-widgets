@@ -786,7 +786,7 @@ var SAILPLAY = (function () {
         }
       });
     } else {
-      SAILPLAY.send('tags.add.auth.error', tags);
+      SAILPLAY.send('tags.add.auth.error', data);
     }
   });
 
@@ -846,7 +846,7 @@ var SAILPLAY = (function () {
         }
       });
     } else {
-      sp.send('tags.exist.auth.error', tags);
+      sp.send('tags.exist.auth.error', data);
     }
 
   });
