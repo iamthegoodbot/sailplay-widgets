@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+
+<head>
+
+    <title>21 shop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <script type="text/javascript">
+
+        window.sailplay_config = {
+            auth_hash: '600d8307f3ec446c7803d7900b6de254a3706659',
+            partner_id: 1189,
+            domain: 'http://skazka.loc'
+        };
+
+        var _links = {
+            js: './dist/js/sailplay.21shop.js',
+            css: './dist/css/sailplay.21shop.css'
+        };
+
+        document.addEventListener('DOMContentLoaded', function () {
+
+            var _s = document.createElement("link");
+            _s.type = "text/css";
+            _s.rel = "stylesheet";
+            _s.href = _links.css;
+            document.getElementsByTagName("head")[0].appendChild(_s);
+
+            var _j = document.createElement("script");
+            _j.type = "text/javascript";
+            _j.src = _links.js;
+            document.getElementsByTagName("head")[0].appendChild(_j);
+
+        });
+
+    </script>
+
+</head>
+
+<body style="margin: 0;">
+
+<sailplay-shop21></sailplay-shop21>
+
+</body>
+</html>

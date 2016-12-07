@@ -1,0 +1,111 @@
+.bns_gift {
+  float: left;
+  width: 100%;
+
+  h2 {
+    color: @text-black;
+    font-size: 38px;
+    line-height: 100px;
+    width: 100%;
+    float: left;
+    text-align: center;
+    font-family: 'FuturaFuturisC';
+    margin: 0;
+    font-weight: 600;
+  }
+  .bns_gift_main {
+    float: left;
+    width: 100%;
+    box-sizing: border-box;
+    padding:0px 50px 0px;
+    position: relative;
+    overflow: hidden;
+    .slick-prev {
+      position: absolute;
+      left:24px;
+      top:50%;
+      width: 24px;
+      display: block;
+      outline: none;
+      height: 105px;
+      margin-top: -90px;
+      background-image:url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/afb282bd3c49b248380d9c412b5ea232.png');
+      text-indent: -9999px;
+      border: 0;
+      background-color: transparent;
+    }
+    .slick-next {
+      position: absolute;
+      right:24px;
+      top:50%;
+      width: 24px;
+      display: block;
+      outline: none;
+      height: 105px;
+      margin-top: -90px;
+      background-image:url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/358f5fc64be877cbdba8f11343ea59f9.png');
+      text-indent: -9999px;
+      border: 0;
+      background-color: transparent;
+    }
+    .bns_gift_item {
+      margin-right:11px;
+      margin-left: 11px;
+      display: inline-block;
+      float: left;
+      height: 280px;
+      margin-top: 5px;
+      &:focus {
+        outline: none;
+      }
+      .bns_gift_item_img {
+        float: left;
+        width: 100%;
+        position: relative;
+        text-align: center;
+        height:150px;
+        img {
+          display: inline-block;
+          margin-top: 20px;
+          height: 120px;
+          width: auto;
+        }
+      }
+      .bns_gift_item_name {
+        float: left;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0 5px;
+        font-size: 15px;
+        color: @text-black;
+        margin-bottom: 5px;
+        font-weight: 300;
+        text-align: center;
+      }
+      .bns_gift_item_point {
+        float: left;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0 50px;
+        margin-bottom: 12px;
+        color: @text-black;
+        font-size: 15px;
+        font-weight: bold;
+        text-align: center;
+      }
+      .bns_btn {
+        width: 66%;
+        margin-left:17%;
+        color:  @btn-color;
+        background-color: @btn-bg;
+        line-height: 36px;
+        height: 36px;
+        font-size: 18px;
+        margin-top: 17px;
+        &.bns_btn_nact {
+          background-color: @btn-bg-grey;
+        }
+      }
+    }
+  }
+}

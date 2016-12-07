@@ -1,0 +1,102 @@
+.bns_line {
+  float: left;
+  width: 100%;
+  height: 143px;
+  -webkit-box-shadow: 0 0px 20px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0px 20px 0 rgba(0, 0, 0, 0.2);
+  margin-top:20px;
+  .bns_line_left {
+    float: left;
+    width: 18%;
+    background-color: @bg-wh-gray;
+    span {
+      float: left;
+      width: 100%;
+      text-align: center;
+      font-size: 17px;
+      font-weight: 300;
+      color: @text-black;
+      margin-top: 37px;
+      box-sizing: border-box;
+      padding: 0px 20px;
+      line-height: 23px;
+      margin-bottom: 37px;
+      strong {
+        font-weight: bold;
+        color: @text-red;
+        float: left;
+        width: 100%;
+      }
+    }
+  }
+  .bns_line_right {
+    float: left;
+    width: 82%;
+    height: 145px;
+    position: relative;
+    .bns_line_main {
+      float: left;
+      width: 100%;
+      height: 80px;
+      margin-top: 10px;
+      background-color: @line-bg;
+      position: relative;
+      .bns_line_fill {
+        position: absolute;
+        left:0px;
+        top:0px;
+        width: 0%;
+        height: 100%;
+        background-color: @line-fil;
+      }
+      .bns_line_traf {
+        position: absolute;
+        left:0px;
+        top:0px;
+        width: 100%;
+        height: 100%;
+        background-image: url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/817e3c46fcd582468d43d63c9979db07.svg');
+        background-size: contain;
+        background-position: -3px top;
+      }
+    }
+    .bns_stst {
+      position: absolute;
+      width: 33%;
+      height: 100%;
+      border-right: 2px solid @text-black;
+      text-align: center;
+      span {
+        display: inline-block;
+        margin-top:100px;
+        line-height: 26px;
+        width: 100%;
+        text-align: center;
+        font-size: 18px;
+        color: @text-black;
+        img {
+          margin-right: 4px;
+          position: relative;
+          height: 20px;
+          display: inline-block;
+          vertical-align: middle;
+        }
+      }
+      &.bns_stst1 {
+        left:0px;
+      }
+      &.bns_stst2 {
+        left:33%;
+      }
+      &.bns_stst3 {
+        left:66%;
+        border-right: 0;
+      }
+      &.bns_stst4 {
+        left: 100%;
+        border-right: 0;
+        width: 0px;
+      }
+    }
+  }
+}
