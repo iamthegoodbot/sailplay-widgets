@@ -26,8 +26,9 @@
                 "font-weight": "bold",
                 "left": "0",
                 "top": "0",
-                "font-size": "26px",
+                "font-size": "22px",
                 "cursor": "pointer",
+                "text-transform": "uppercase",
                 "display": "inline-block"
               }
             }
@@ -47,8 +48,9 @@
                 "font-weight": "bold",
                 "left": "0",
                 "top": "0",
-                "font-size": "26px",
+                "font-size": "22px",
                 "cursor": "pointer",
+                "text-transform": "uppercase",
                 "display": "inline-block"
               }
             }
@@ -68,8 +70,9 @@
                 "font-weight": "bold",
                 "left": "0",
                 "top": "0",
-                "font-size": "26px",
+                "font-size": "22px",
                 "cursor": "pointer",
+                "text-transform": "uppercase",
                 "display": "inline-block"
               }
             }
@@ -91,8 +94,9 @@
                 "font-weight": "bold",
                 "left": "0",
                 "top": "0",
-                "font-size": "26px",
+                "font-size": "22px",
                 "cursor": "pointer",
+                "text-transform": "uppercase",
                 "display": "inline-block"
               }
             }
@@ -112,8 +116,9 @@
                 "font-weight": "bold",
                 "left": "0",
                 "top": "0",
-                "font-size": "26px",
+                "font-size": "22px",
                 "cursor": "pointer",
+                "text-transform": "uppercase",
                 "display": "inline-block"
               }
             }
@@ -133,8 +138,9 @@
                 "font-weight": "bold",
                 "left": "0",
                 "top": "0",
-                "font-size": "26px",
+                "font-size": "22px",
                 "cursor": "pointer",
+                "text-transform": "uppercase",
                 "display": "inline-block"
               }
             }

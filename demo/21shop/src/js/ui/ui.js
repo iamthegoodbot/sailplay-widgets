@@ -100,6 +100,7 @@
 
           if (scope.$last) { // all are rendered
 
+            // Issue!!! maybe some async
             $timeout(function () {
 
               $('.bns_gift_main').not('.slick-initialized').slick({
@@ -122,7 +123,7 @@
                 ]
               });
 
-            }, 300);
+            }, 700);
 
           }
 

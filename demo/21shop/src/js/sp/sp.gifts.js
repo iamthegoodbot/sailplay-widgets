@@ -40,6 +40,7 @@
             $rootScope.$apply(function () {
 
               scope.gift_success = angular.copy(scope.gift_open);
+              scope.gift_open = null;
 
             });
 

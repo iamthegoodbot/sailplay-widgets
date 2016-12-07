@@ -11,14 +11,14 @@
       sp.send('init', {
 
         partner_id: $rootScope.config.partner_id || 1,
-        domain: $rootScope.config.domain || 'http://sailplay.net',
-        lang: 'en'
+        domain: $rootScope.config.domain || 'http://sailplay.ru',
+        lang: 'ru'
 
       });
 
       $rootScope.remote_login_options = {
         background: 'rgba(0, 0, 0, 0.5)',
-        lang: 'en',
+        lang: 'ru',
         disabled_options: ['socials', 'agreement']
       };
 

@@ -80,10 +80,11 @@
             <span class="empty_history" data-ng-show="history && history() && !history().length">Пусто</span>
             <div class="hist_main" data-ng-if="history && history()">
 
-                <div class="hist_item" data-dir-paginate="item in history() | itemsPerPage:5"
+                <div class="hist_item" data-dir-paginate="item in history() | filter:hasPoints | itemsPerPage:5"
                      data-pagination-id="history_pages">
                     <span class="hist_date" data-ng-bind="item.action_date | date:'dd.MM.yyyy'"></span>
-                    <span class="hist_name">
+                    <span class="hist_name"
+                          data-ng-class="{'type-grey' : !item.is_completed}">
                         <strong data-ng-bind="item | history_item"></strong>
                     </span>
                     <span data-ng-if="item.points_delta" class="hist_point"
@@ -131,11 +132,11 @@
                     </div>
                     <div class="bns_stat">
                         Статус: <strong
-                            data-ng-bind="user().user_status ? user().user_status.name : 'Нет статуса'"></strong>
+                            data-ng-bind="user().user_status && user().user_status.name ? user().user_status.name : 'Нет статуса'"></strong>
                     </div>
                     <div class="bns_phone"
-                         data-ng-bind="user().user.phone && ('+' + (user().user.phone | tel)) || 'Нет телефона'"></div>
-                    <div class="bns_email" data-ng-bind="user().user.email || 'Нет e-mail(a)'"></div>
+                         data-ng-bind="user().user.phone && ('+' + (user().user.phone | tel)) || 'Телефона не указан'"></div>
+                    <div class="bns_email" data-ng-bind="user().user.email || 'E-mail не указан'"></div>
                     <a href="#" class="bns_btn_open_prof"
                        data-ng-click="$event.preventDefault();edit_profile();body_lock(true);">Редактировать</a>
                 </div>
@@ -154,13 +155,13 @@
             </div>
             <div class="bns_top_right">
                 <img class="icon_stat_now" data-ng-src="{{ user().user_status.pic | sailplay_pic }}"
-                     alt="user().user_status.name || 'Нет статуса'">
+                     alt="{{ user().user_status.name || 'Нет статуса' }}">
             </div>
         </div>
 
         <div class="bns_line" data-ng-cloak data-sailplay-status>
             <div class="bns_line_left" data-ng-if=" badges && badges() && user && user()">
-                <span data-ng-if="toNextStatus(user().purchases.sum)">До следющего статуса осталось <strong>{{ toNextStatus(user().purchases.sum) + ' ' + ( toNextStatus(user().purchases.sum) | sailplay_pluralize:'рубль,рубля,рублей') }}</strong></span>
+                <span data-ng-if="toNextStatus(user().purchases.sum)">До следющего статуса осталось <strong>{{(toNextStatus(user().purchases.sum) | number) + ' ' + ( toNextStatus(user().purchases.sum) | sailplay_pluralize:'рубль,рубля,рублей') }}</strong></span>
                 <span data-ng-if="!toNextStatus(user().purchases.sum)">Вы совершили покупок на сумму <strong>{{(user().purchases.sum | number) + ' ' + ( user().purchases.sum | sailplay_pluralize:'рубль,рубля,рублей') }} </strong></span>
             </div>
             <div class="bns_line_right" data-ng-if="badges && badges() && user && user()">
@@ -174,13 +175,13 @@
                 <span>
                      <img data-ng-src="{{ (badge.is_received ? badge.thumbs.url_250x250 : badge.thumbs.url_gs) | sailplay_pic }}"
                           alt="{{ badge.name }}">
-                    {{ badge.name }}
+                    <span data-ng-bind="badge.name"></span>
                 </span>
                 </div>
             </div>
         </div>
 
-        <div class="bns_gift" data-ng-cloak data-sailplay-gifts data-ng-show="gifts && gifts() && gifts().length">
+        <div class="bns_gift" data-ng-cloak data-sailplay-gifts>
 
             <h2>ПОДАРКИ</h2>
 
@@ -194,6 +195,7 @@
                     <span class="bns_gift_item_name" data-ng-bind="gift.name" titel="{{ gift.name }}"></span>
                     <span class="bns_gift_item_point" data-ng-bind="(gift.points | number) + ' ' + (gift.points | sailplay_pluralize:'балл,балла,баллов')"></span>
                     <a href="#" class="bns_btn"
+                       data-ng-class="{'type-disabled' : user().user_points.confirmed < gift.points}"
                        data-ng-click="$event.preventDefault();$parent.gift_open = gift;body_lock(true);">Получить</a>
                 </div>
 
@@ -219,8 +221,9 @@
                     </div>
                     <div class="bns_input_block">
                         <a href="#" class="bns_btn bns_btn_left js_open_sucs"
-                           data-ng-class="{'type-disabled' : user().user_points.confirmed < gift.points}"
-                           data-ng-click="$event.preventDefault();get_gift($parent.gift_open);">Да</a>
+                           data-ng-bind="user().user_points.confirmed < $parent.gift_open.points ? 'Недостаточно баллов' : 'Да'"
+                           data-ng-class="{'type-disabled' : user().user_points.confirmed < $parent.gift_open.points}"
+                           data-ng-click="$event.preventDefault();get_gift($parent.gift_open);"></a>
                         <a href="#" class="bns_btn bns_btn_right js_open_cansel"
                            data-ng-click="$event.preventDefault();$parent.gift_open = null;body_lock(false);">Нет</a>
                     </div>
@@ -240,7 +243,7 @@
                                      alt="{{ $parent.gift_success.name }}">
                             </div>
                         <span class="bns_gift_item_name">
-                            Поздравления! Вам отправлена смс с инструкцией!
+                            Подарок добавлен в вашу корзину и будет доставлен со следующим заказом
                         </span>
                         </div>
                     </div>

@@ -2406,7 +2406,7 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/html/main.html',
-    '<div class="sailplay_wrapper" data-ng-show="global.loaded"><div class="bns_overlay js_over_prof" data-ng-cloak="" data-sailplay-profile-edit="" data-ng-style="{ display: (show ? \'block\' : \'none\')}"><div class="bns_overlay_inner fil_prof"><div class="oi_top"><span class="bns_over_head">Редактирование профиля</span></div><form novalidate="" name="profile"><div class="bns_input_block"><label>Фамилия:</label> <input type="text" data-ng-model="form.lastName" required=""></div><div class="bns_input_block"><label>Имя:</label> <input type="text" data-ng-model="form.firstName" required=""></div><div class="bns_input_block"><label>E-mail:</label> <input type="text" data-ng-model="form.addEmail" required=""></div><div class="bns_input_block"><label>Телефон:*</label> <input type="text" data-ui-mask="+9 (999) 999-9999" data-ng-model="form.addPhone" required=""></div><div class="bns_input_block"><span class="ib_label_text">Дата рождения</span><div style="width: 50%;display: inline-block;"><date-picker data-model="form.birthDate"></date-picker></div></div><div class="bns_input_block"><label>Пол:</label><div class="bns_check"><input type="radio" data-ng-model="form.sex" id="m" data-ng-value="1" name="gen" required=""> <label for="m">Мужской</label> <input type="radio" data-ng-model="form.sex" id="f" data-ng-value="2" name="gen" required=""> <label for="f">Женский</label></div></div><div class="bns_input_block"><a href="#" class="bns_btn bns_btn_left" data-ng-click="$event.preventDefault();close();body_lock(false);">Отмена</a> <a href="#" class="bns_btn bns_btn_right" data-ng-class="{\'type-disabled\' : profile.$invalid}" data-ng-click="$event.preventDefault();save(profile);body_lock(false);">Сохранить</a></div></form></div></div><div class="bns_overlay js_over_hist" data-ng-cloak="" data-sailplay-history="" data-ng-style="{ display: (show ? \'block\' : \'none\')}"><div class="bns_overlay_inner oi_hist"><div class="oi_top"><span class="bns_over_head">История</span></div><span class="empty_history" data-ng-show="history && history() && !history().length">Пусто</span><div class="hist_main" data-ng-if="history && history()"><div class="hist_item" data-dir-paginate="item in history() | itemsPerPage:5" data-pagination-id="history_pages"><span class="hist_date" data-ng-bind="item.action_date | date:\'dd.MM.yyyy\'"></span> <span class="hist_name"><strong data-ng-bind="item | history_item"></strong></span> <span data-ng-if="item.points_delta" class="hist_point" data-ng-class="{hist_point_minus: item.points_delta < 0 }" data-ng-bind="(item.points_delta < 0 ? \'\' : \'+ \') + (item.points_delta | number) + \' \' + (item.points_delta | sailplay_pluralize:\'балл,балла,баллов\')"></span></div><dir-pagination-controls data-max-size="5" data-pagination-id="history_pages" data-template-url="/html/ui/ui.pagination.controls.html" data-auto-hide="true"></dir-pagination-controls></div><div class="bns_input_block"><a href="#" class="bns_btn bns_btn_center" data-ng-click="$event.preventDefault();show = null;">Назад</a></div></div></div><div class="bns_inner_block" data-ng-if="global.auth"><div class="bns_top_img"><div class="bns_top_text"><h2>БОНУСНАЯ ПРОГРАММА</h2><div class="bns_top_text_icon"><span class="btti1">Выполняйте<br>задания</span> <span class="btti2">Получайте<br>бонусы</span> <span class="btti3">Оплачивайте<br>бонусами<br>(1 бонус = 1 руб.)</span></div></div></div><div class="bns_top" data-ng-cloak="" data-sailplay-profile="" data-ng-show="user && user()"><div class="bns_top_left"><div class="bns_ava"><a href="#" class="ava" data-ng-click="$event.preventDefault();edit_profile();body_lock(true);"><img data-ng-src="{{ user().user.pic | sailplay_pic }}" alt="user().user.name || \'Нет имени\'"></a></div><div class="bns_prof_info"><div class="bns_name">{{ user().user.name || \'Нет имени\' }}</div><div class="bns_stat">Статус: <strong data-ng-bind="user().user_status ? user().user_status.name : \'Нет статуса\'"></strong></div><div class="bns_phone" data-ng-bind="user().user.phone && (\'+\' + (user().user.phone | tel)) || \'Нет телефона\'"></div><div class="bns_email" data-ng-bind="user().user.email || \'Нет e-mail(a)\'"></div><a href="#" class="bns_btn_open_prof" data-ng-click="$event.preventDefault();edit_profile();body_lock(true);">Редактировать</a></div></div><div class="bns_top_center"><div class="bns_point"><span class="bns_p_num">{{ user().user_points.confirmed | number }} <span class="bns_p_next" data-ng-if="user().user_points.unconfirmed">+{{ user().user_points.unconfirmed | number }}</span></span> <span class="bns_p_text" data-ng-bind="user().user_points.confirmed | sailplay_pluralize:\'балл,балла,баллов\'"></span></div><a href="#" class="bns_btn bns_btn_opne_hist" data-ng-click="$event.preventDefault();show_history();">ИСТОРИЯ ПОКУПОК</a></div><div class="bns_top_right"><img class="icon_stat_now" data-ng-src="{{ user().user_status.pic | sailplay_pic }}" alt="user().user_status.name || \'Нет статуса\'"></div></div><div class="bns_line" data-ng-cloak="" data-sailplay-status=""><div class="bns_line_left" data-ng-if="badges && badges() && user && user()"><span data-ng-if="toNextStatus(user().purchases.sum)">До следющего статуса осталось <strong>{{ toNextStatus(user().purchases.sum) + \' \' + ( toNextStatus(user().purchases.sum) | sailplay_pluralize:\'рубль,рубля,рублей\') }}</strong></span> <span data-ng-if="!toNextStatus(user().purchases.sum)">Вы совершили покупок на сумму <strong>{{(user().purchases.sum | number) + \' \' + ( user().purchases.sum | sailplay_pluralize:\'рубль,рубля,рублей\') }}</strong></span></div><div class="bns_line_right" data-ng-if="badges && badges() && user && user()"><div class="bns_line_main"><div class="bns_line_fill" data-ng-style="{{ getProgress(user().purchases.sum) }}"></div><div class="bns_line_traf"></div></div><div class="bns_stst" data-ng-repeat="badge in $parent.badges().multilevel_badges[0]" data-ng-style="{{ getStatusCss($index) }}" data-ng-class="{act : badge.is_recieved }"><span><img data-ng-src="{{ (badge.is_received ? badge.thumbs.url_250x250 : badge.thumbs.url_gs) | sailplay_pic }}" alt="{{ badge.name }}"> {{ badge.name }}</span></div></div></div><div class="bns_gift" data-ng-cloak="" data-sailplay-gifts="" data-ng-show="gifts && gifts() && gifts().length"><h2>ПОДАРКИ</h2><div class="bns_gift_main"><div class="bns_gift_item" data-ng-repeat="gift in gifts()" data-gifts-slider=""><div class="bns_gift_item_img"><img data-ng-src="{{ gift.thumbs.url_250x250 | sailplay_pic }}" alt="{{ gift.name }}"></div><span class="bns_gift_item_name" data-ng-bind="gift.name" titel="{{ gift.name }}"></span> <span class="bns_gift_item_point" data-ng-bind="(gift.points | number) + \' \' + (gift.points | sailplay_pluralize:\'балл,балла,баллов\')"></span> <a href="#" class="bns_btn" data-ng-click="$event.preventDefault();$parent.gift_open = gift;body_lock(true);">Получить</a></div></div><div class="bns_overlay js_over_gift" data-ng-if="gift_open" data-ng-style="{ display: (gift_open ? \'block\' : \'none\')}"><div class="bns_overlay_inner oi_login"><div class="oi_top"><span class="bns_over_head">Вы уверены?</span></div><div class="sure_main"><div class="bns_gift_item"><div class="bns_gift_item_img"><img data-ng-src="{{ $parent.gift_open.thumbs.url_250x250 | sailplay_pic }}" alt="{{ $parent.gift_open.name }}"></div><span class="bns_gift_item_point" data-ng-bind="($parent.gift_open.points | number) + \' \' + ($parent.gift_open.points | sailplay_pluralize:\'балл,балла,баллов\')"></span> <span class="bns_gift_item_name" data-ng-bind="$parent.gift_open.name"></span> <span class="bns_gift_item_descr" data-ng-bind="$parent.gift_open.descr"></span></div></div><div class="bns_input_block"><a href="#" class="bns_btn bns_btn_left js_open_sucs" data-ng-class="{\'type-disabled\' : user().user_points.confirmed < gift.points}" data-ng-click="$event.preventDefault();get_gift($parent.gift_open);">Да</a> <a href="#" class="bns_btn bns_btn_right js_open_cansel" data-ng-click="$event.preventDefault();$parent.gift_open = null;body_lock(false);">Нет</a></div></div></div><div class="bns_overlay js_over_sucsess" data-ng-if="gift_success" data-ng-style="{ display: (gift_success ? \'block\' : \'none\')}"><div class="bns_overlay_inner oi_login"><div class="oi_top"><span class="bns_over_head">Готово</span></div><div class="sure_main"><div class="bns_gift_item"><div class="bns_gift_item_img"><img data-ng-src="{{ $parent.gift_success.thumbs.url_250x250 | sailplay_pic }}" alt="{{ $parent.gift_success.name }}"></div><span class="bns_gift_item_name">Поздравления! Вам отправлена смс с инструкцией!</span></div></div><div class="bns_input_block"><a href="#" class="bns_btn bns_btn_center" data-ng-click="$parent.gift_open = null;$event.preventDefault();$parent.gift_success = null;body_lock(false);">Закрыть</a></div></div></div></div><div class="bns_earn" data-ng-cloak="" data-sailplay-actions=""><h2>ЗАДАНИЯ</h2><div class="bns_earn_main"><div class="bns_earn_item" data-ng-repeat="action in actions().actions | filter:check_in_list"><div class="bns_earn_item_left"><img data-ng-src="{{ action_data(action).pic }}" alt="{{ action_data(action).name }}"></div><div class="bns_earn_item_right"><span class="bns_earn_name" data-ng-bind="action_data(action).name"></span> <span class="bns_earn_point"><strong data-ng-bind="(action.points | number) + \' \'"></strong> {{ action.points | sailplay_pluralize:\'балл,балла,баллов\' }}</span></div><a href="#" class="bns_btn bns_earn_btn" data-sailplay-action="" data-styles="{{ action_styles(action_data(action)) }}" data-action="action" data-text="Получить">Получить</a></div><div class="bns_earn_item" data-ng-repeat="custom in customs" data-ng-show="!custom.check_tag || ( custom.check_tag && !check_custom(custom, exist()) )"><div class="bns_earn_item_left"><img data-ng-src="{{ custom.pic }}" alt="{{ custom.name }}"></div><div class="bns_earn_item_right"><span class="bns_earn_name" data-ng-bind="custom.name"></span> <span class="bns_earn_point"><strong data-ng-bind="(custom.points | number) + \' \'"></strong> {{ custom.points | sailplay_pluralize:\'балл,балла,баллов\' }}</span></div><a href="#" class="bns_btn bns_earn_btn" data-ng-click="$event.preventDefault();$parent.$parent.open_custom = custom;">Получить</a></div></div><div class="bns_overlay" data-ng-if="open_custom" data-ng-style="{ display: ($parent.open_custom ? \'block\' : \'none\')}"><div class="bns_overlay_inner review"><div class="oi_top"><span class="oi_top__name" data-ng-bind="$parent.open_custom.name"></span></div><div class="sure_main"><span class="oi_top__desc" data-ng-bind="$parent.open_custom.desc"></span> <a href="#" class="bns_btn bns_review" data-ng-repeat="button in $parent.open_custom.buttons" data-ng-click="$event.preventDefault();link(button);" data-ng-bind="button.name"></a></div><div class="bns_input_block"><a href="#" class="bns_btn" data-ng-click="$event.preventDefault();$parent.$parent.open_custom = null;">Закрыть</a></div></div></div></div></div><notify-popup></notify-popup></div>');
+    '<div class="sailplay_wrapper" data-ng-show="global.loaded"><div class="bns_overlay js_over_prof" data-ng-cloak="" data-sailplay-profile-edit="" data-ng-style="{ display: (show ? \'block\' : \'none\')}"><div class="bns_overlay_inner fil_prof"><div class="oi_top"><span class="bns_over_head">Редактирование профиля</span></div><form novalidate="" name="profile"><div class="bns_input_block"><label>Фамилия:</label> <input type="text" data-ng-model="form.lastName" required=""></div><div class="bns_input_block"><label>Имя:</label> <input type="text" data-ng-model="form.firstName" required=""></div><div class="bns_input_block"><label>E-mail:</label> <input type="text" data-ng-model="form.addEmail" required=""></div><div class="bns_input_block"><label>Телефон:*</label> <input type="text" data-ui-mask="+9 (999) 999-9999" data-ng-model="form.addPhone" required=""></div><div class="bns_input_block"><span class="ib_label_text">Дата рождения</span><div style="width: 50%;display: inline-block;"><date-picker data-model="form.birthDate"></date-picker></div></div><div class="bns_input_block"><label>Пол:</label><div class="bns_check"><input type="radio" data-ng-model="form.sex" id="m" data-ng-value="1" name="gen" required=""> <label for="m">Мужской</label> <input type="radio" data-ng-model="form.sex" id="f" data-ng-value="2" name="gen" required=""> <label for="f">Женский</label></div></div><div class="bns_input_block"><a href="#" class="bns_btn bns_btn_left" data-ng-click="$event.preventDefault();close();body_lock(false);">Отмена</a> <a href="#" class="bns_btn bns_btn_right" data-ng-class="{\'type-disabled\' : profile.$invalid}" data-ng-click="$event.preventDefault();save(profile);body_lock(false);">Сохранить</a></div></form></div></div><div class="bns_overlay js_over_hist" data-ng-cloak="" data-sailplay-history="" data-ng-style="{ display: (show ? \'block\' : \'none\')}"><div class="bns_overlay_inner oi_hist"><div class="oi_top"><span class="bns_over_head">История</span></div><span class="empty_history" data-ng-show="history && history() && !history().length">Пусто</span><div class="hist_main" data-ng-if="history && history()"><div class="hist_item" data-dir-paginate="item in history() | filter:hasPoints | itemsPerPage:5" data-pagination-id="history_pages"><span class="hist_date" data-ng-bind="item.action_date | date:\'dd.MM.yyyy\'"></span> <span class="hist_name" data-ng-class="{\'type-grey\' : !item.is_completed}"><strong data-ng-bind="item | history_item"></strong></span> <span data-ng-if="item.points_delta" class="hist_point" data-ng-class="{hist_point_minus: item.points_delta < 0 }" data-ng-bind="(item.points_delta < 0 ? \'\' : \'+ \') + (item.points_delta | number) + \' \' + (item.points_delta | sailplay_pluralize:\'балл,балла,баллов\')"></span></div><dir-pagination-controls data-max-size="5" data-pagination-id="history_pages" data-template-url="/html/ui/ui.pagination.controls.html" data-auto-hide="true"></dir-pagination-controls></div><div class="bns_input_block"><a href="#" class="bns_btn bns_btn_center" data-ng-click="$event.preventDefault();show = null;">Назад</a></div></div></div><div class="bns_inner_block" data-ng-if="global.auth"><div class="bns_top_img"><div class="bns_top_text"><h2>БОНУСНАЯ ПРОГРАММА</h2><div class="bns_top_text_icon"><span class="btti1">Выполняйте<br>задания</span> <span class="btti2">Получайте<br>бонусы</span> <span class="btti3">Оплачивайте<br>бонусами<br>(1 бонус = 1 руб.)</span></div></div></div><div class="bns_top" data-ng-cloak="" data-sailplay-profile="" data-ng-show="user && user()"><div class="bns_top_left"><div class="bns_ava"><a href="#" class="ava" data-ng-click="$event.preventDefault();edit_profile();body_lock(true);"><img data-ng-src="{{ user().user.pic | sailplay_pic }}" alt="user().user.name || \'Нет имени\'"></a></div><div class="bns_prof_info"><div class="bns_name">{{ user().user.name || \'Нет имени\' }}</div><div class="bns_stat">Статус: <strong data-ng-bind="user().user_status && user().user_status.name ? user().user_status.name : \'Нет статуса\'"></strong></div><div class="bns_phone" data-ng-bind="user().user.phone && (\'+\' + (user().user.phone | tel)) || \'Телефона не указан\'"></div><div class="bns_email" data-ng-bind="user().user.email || \'E-mail не указан\'"></div><a href="#" class="bns_btn_open_prof" data-ng-click="$event.preventDefault();edit_profile();body_lock(true);">Редактировать</a></div></div><div class="bns_top_center"><div class="bns_point"><span class="bns_p_num">{{ user().user_points.confirmed | number }} <span class="bns_p_next" data-ng-if="user().user_points.unconfirmed">+{{ user().user_points.unconfirmed | number }}</span></span> <span class="bns_p_text" data-ng-bind="user().user_points.confirmed | sailplay_pluralize:\'балл,балла,баллов\'"></span></div><a href="#" class="bns_btn bns_btn_opne_hist" data-ng-click="$event.preventDefault();show_history();">ИСТОРИЯ ПОКУПОК</a></div><div class="bns_top_right"><img class="icon_stat_now" data-ng-src="{{ user().user_status.pic | sailplay_pic }}" alt="{{ user().user_status.name || \'Нет статуса\' }}"></div></div><div class="bns_line" data-ng-cloak="" data-sailplay-status=""><div class="bns_line_left" data-ng-if="badges && badges() && user && user()"><span data-ng-if="toNextStatus(user().purchases.sum)">До следющего статуса осталось <strong>{{(toNextStatus(user().purchases.sum) | number) + \' \' + ( toNextStatus(user().purchases.sum) | sailplay_pluralize:\'рубль,рубля,рублей\') }}</strong></span> <span data-ng-if="!toNextStatus(user().purchases.sum)">Вы совершили покупок на сумму <strong>{{(user().purchases.sum | number) + \' \' + ( user().purchases.sum | sailplay_pluralize:\'рубль,рубля,рублей\') }}</strong></span></div><div class="bns_line_right" data-ng-if="badges && badges() && user && user()"><div class="bns_line_main"><div class="bns_line_fill" data-ng-style="{{ getProgress(user().purchases.sum) }}"></div><div class="bns_line_traf"></div></div><div class="bns_stst" data-ng-repeat="badge in $parent.badges().multilevel_badges[0]" data-ng-style="{{ getStatusCss($index) }}" data-ng-class="{act : badge.is_recieved }"><span><img data-ng-src="{{ (badge.is_received ? badge.thumbs.url_250x250 : badge.thumbs.url_gs) | sailplay_pic }}" alt="{{ badge.name }}"> <span data-ng-bind="badge.name"></span></span></div></div></div><div class="bns_gift" data-ng-cloak="" data-sailplay-gifts=""><h2>ПОДАРКИ</h2><div class="bns_gift_main"><div class="bns_gift_item" data-ng-repeat="gift in gifts()" data-gifts-slider=""><div class="bns_gift_item_img"><img data-ng-src="{{ gift.thumbs.url_250x250 | sailplay_pic }}" alt="{{ gift.name }}"></div><span class="bns_gift_item_name" data-ng-bind="gift.name" titel="{{ gift.name }}"></span> <span class="bns_gift_item_point" data-ng-bind="(gift.points | number) + \' \' + (gift.points | sailplay_pluralize:\'балл,балла,баллов\')"></span> <a href="#" class="bns_btn" data-ng-class="{\'type-disabled\' : user().user_points.confirmed < gift.points}" data-ng-click="$event.preventDefault();$parent.gift_open = gift;body_lock(true);">Получить</a></div></div><div class="bns_overlay js_over_gift" data-ng-if="gift_open" data-ng-style="{ display: (gift_open ? \'block\' : \'none\')}"><div class="bns_overlay_inner oi_login"><div class="oi_top"><span class="bns_over_head">Вы уверены?</span></div><div class="sure_main"><div class="bns_gift_item"><div class="bns_gift_item_img"><img data-ng-src="{{ $parent.gift_open.thumbs.url_250x250 | sailplay_pic }}" alt="{{ $parent.gift_open.name }}"></div><span class="bns_gift_item_point" data-ng-bind="($parent.gift_open.points | number) + \' \' + ($parent.gift_open.points | sailplay_pluralize:\'балл,балла,баллов\')"></span> <span class="bns_gift_item_name" data-ng-bind="$parent.gift_open.name"></span> <span class="bns_gift_item_descr" data-ng-bind="$parent.gift_open.descr"></span></div></div><div class="bns_input_block"><a href="#" class="bns_btn bns_btn_left js_open_sucs" data-ng-bind="user().user_points.confirmed < $parent.gift_open.points ? \'Недостаточно баллов\' : \'Да\'" data-ng-class="{\'type-disabled\' : user().user_points.confirmed < $parent.gift_open.points}" data-ng-click="$event.preventDefault();get_gift($parent.gift_open);"></a> <a href="#" class="bns_btn bns_btn_right js_open_cansel" data-ng-click="$event.preventDefault();$parent.gift_open = null;body_lock(false);">Нет</a></div></div></div><div class="bns_overlay js_over_sucsess" data-ng-if="gift_success" data-ng-style="{ display: (gift_success ? \'block\' : \'none\')}"><div class="bns_overlay_inner oi_login"><div class="oi_top"><span class="bns_over_head">Готово</span></div><div class="sure_main"><div class="bns_gift_item"><div class="bns_gift_item_img"><img data-ng-src="{{ $parent.gift_success.thumbs.url_250x250 | sailplay_pic }}" alt="{{ $parent.gift_success.name }}"></div><span class="bns_gift_item_name">Подарок добавлен в вашу корзину и будет доставлен со следующим заказом</span></div></div><div class="bns_input_block"><a href="#" class="bns_btn bns_btn_center" data-ng-click="$parent.gift_open = null;$event.preventDefault();$parent.gift_success = null;body_lock(false);">Закрыть</a></div></div></div></div><div class="bns_earn" data-ng-cloak="" data-sailplay-actions=""><h2>ЗАДАНИЯ</h2><div class="bns_earn_main"><div class="bns_earn_item" data-ng-repeat="action in actions().actions | filter:check_in_list"><div class="bns_earn_item_left"><img data-ng-src="{{ action_data(action).pic }}" alt="{{ action_data(action).name }}"></div><div class="bns_earn_item_right"><span class="bns_earn_name" data-ng-bind="action_data(action).name"></span> <span class="bns_earn_point"><strong data-ng-bind="(action.points | number) + \' \'"></strong> {{ action.points | sailplay_pluralize:\'балл,балла,баллов\' }}</span></div><a href="#" class="bns_btn bns_earn_btn" data-sailplay-action="" data-styles="{{ action_styles(action_data(action)) }}" data-action="action" data-text="Получить">Получить</a></div><div class="bns_earn_item" data-ng-repeat="custom in customs" data-ng-show="!custom.check_tag || ( custom.check_tag && !check_custom(custom, exist()) )"><div class="bns_earn_item_left"><img data-ng-src="{{ custom.pic }}" alt="{{ custom.name }}"></div><div class="bns_earn_item_right"><span class="bns_earn_name" data-ng-bind="custom.name"></span> <span class="bns_earn_point"><strong data-ng-bind="(custom.points | number) + \' \'"></strong> {{ custom.points | sailplay_pluralize:\'балл,балла,баллов\' }}</span></div><a href="#" class="bns_btn bns_earn_btn" data-ng-click="$event.preventDefault();$parent.$parent.open_custom = custom;">Получить</a></div></div><div class="bns_overlay" data-ng-if="open_custom" data-ng-style="{ display: ($parent.open_custom ? \'block\' : \'none\')}"><div class="bns_overlay_inner review"><div class="oi_top"><span class="oi_top__name" data-ng-bind="$parent.open_custom.name"></span></div><div class="sure_main"><span class="oi_top__desc" data-ng-bind="$parent.open_custom.desc"></span> <a href="#" class="bns_btn bns_review" data-ng-repeat="button in $parent.open_custom.buttons" data-ng-click="$event.preventDefault();link(button);" data-ng-bind="button.name"></a></div><div class="bns_input_block"><a href="#" class="bns_btn" data-ng-click="$event.preventDefault();$parent.$parent.open_custom = null;">Закрыть</a></div></div></div></div></div><notify-popup></notify-popup></div>');
 }]);
 })();
 
@@ -2455,7 +2455,7 @@ module.run(['$templateCache', function($templateCache) {
     'templates'
   ])
 
-    .directive('sailplayShop21', ["$rootScope", "$locale", function ($rootScope, $locale) {
+    .directive('sailplayShop21', function ($rootScope, $locale) {
 
       return {
         restrict: 'E',
@@ -2479,7 +2479,7 @@ module.run(['$templateCache', function($templateCache) {
         }
       }
 
-    }]);
+    });
 
 
   setTimeout(function () {
@@ -2499,21 +2499,21 @@ module.run(['$templateCache', function($templateCache) {
     'ipCookie'
   ])
 
-    .run(["sp", "ipCookie", "sp_api", "$rootScope", "custom_data", "spProfileTag", "actions_data", function (sp, ipCookie, sp_api, $rootScope, custom_data, spProfileTag, actions_data) {
+    .run(function (sp, ipCookie, sp_api, $rootScope, custom_data, spProfileTag, actions_data) {
 
       $rootScope.config = window.sailplay_config || {};
 
       sp.send('init', {
 
         partner_id: $rootScope.config.partner_id || 1,
-        domain: $rootScope.config.domain || 'http://sailplay.net',
-        lang: 'en'
+        domain: $rootScope.config.domain || 'http://sailplay.ru',
+        lang: 'ru'
 
       });
 
       $rootScope.remote_login_options = {
         background: 'rgba(0, 0, 0, 0.5)',
-        lang: 'en',
+        lang: 'ru',
         disabled_options: ['socials', 'agreement']
       };
 
@@ -2662,7 +2662,7 @@ module.run(['$templateCache', function($templateCache) {
 
       }
 
-    }]);
+    });
 
 }());
 
@@ -5587,8 +5587,9 @@ module.run(['$templateCache', function($templateCache) {
                 "font-weight": "bold",
                 "left": "0",
                 "top": "0",
-                "font-size": "26px",
+                "font-size": "22px",
                 "cursor": "pointer",
+                "text-transform": "uppercase",
                 "display": "inline-block"
               }
             }
@@ -5608,8 +5609,9 @@ module.run(['$templateCache', function($templateCache) {
                 "font-weight": "bold",
                 "left": "0",
                 "top": "0",
-                "font-size": "26px",
+                "font-size": "22px",
                 "cursor": "pointer",
+                "text-transform": "uppercase",
                 "display": "inline-block"
               }
             }
@@ -5629,8 +5631,9 @@ module.run(['$templateCache', function($templateCache) {
                 "font-weight": "bold",
                 "left": "0",
                 "top": "0",
-                "font-size": "26px",
+                "font-size": "22px",
                 "cursor": "pointer",
+                "text-transform": "uppercase",
                 "display": "inline-block"
               }
             }
@@ -5652,8 +5655,9 @@ module.run(['$templateCache', function($templateCache) {
                 "font-weight": "bold",
                 "left": "0",
                 "top": "0",
-                "font-size": "26px",
+                "font-size": "22px",
                 "cursor": "pointer",
+                "text-transform": "uppercase",
                 "display": "inline-block"
               }
             }
@@ -5673,8 +5677,9 @@ module.run(['$templateCache', function($templateCache) {
                 "font-weight": "bold",
                 "left": "0",
                 "top": "0",
-                "font-size": "26px",
+                "font-size": "22px",
                 "cursor": "pointer",
+                "text-transform": "uppercase",
                 "display": "inline-block"
               }
             }
@@ -5694,8 +5699,9 @@ module.run(['$templateCache', function($templateCache) {
                 "font-weight": "bold",
                 "left": "0",
                 "top": "0",
-                "font-size": "26px",
+                "font-size": "22px",
                 "cursor": "pointer",
+                "text-transform": "uppercase",
                 "display": "inline-block"
               }
             }
@@ -5706,7 +5712,7 @@ module.run(['$templateCache', function($templateCache) {
 
     .constant('custom_data', [])
 
-    .service('spAction', ["actions_data", function (actions_data) {
+    .service('spAction', function (actions_data) {
 
       var self = this;
 
@@ -5758,9 +5764,9 @@ module.run(['$templateCache', function($templateCache) {
 
       return self;
 
-    }])
+    })
 
-    .directive('sailplayAction', ["sp", "$rootScope", "$compile", "$timeout", function (sp, $rootScope, $compile, $timeout) {
+    .directive('sailplayAction', function (sp, $rootScope, $compile, $timeout) {
       
       var init_state;
       
@@ -5798,9 +5804,9 @@ module.run(['$templateCache', function($templateCache) {
 
       };
 
-    }])
+    })
 
-    .directive('sailplayActions', ["sp_api", "sp", "spAction", "custom_data", "tagHelper", function (sp_api, sp, spAction, custom_data, tagHelper) {
+    .directive('sailplayActions', function (sp_api, sp, spAction, custom_data, tagHelper) {
 
       return {
 
@@ -5870,7 +5876,7 @@ module.run(['$templateCache', function($templateCache) {
 
       };
 
-    }]);
+    });
 
 }());
 
@@ -5878,7 +5884,7 @@ module.run(['$templateCache', function($templateCache) {
 
   angular.module('sp.gifts', [])
 
-    .directive('sailplayGifts', ["sp", "sp_api", "$rootScope", function (sp, sp_api, $rootScope) {
+    .directive('sailplayGifts', function (sp, sp_api, $rootScope) {
 
       return {
 
@@ -5916,6 +5922,7 @@ module.run(['$templateCache', function($templateCache) {
             $rootScope.$apply(function () {
 
               scope.gift_success = angular.copy(scope.gift_open);
+              scope.gift_open = null;
 
             });
 
@@ -5938,7 +5945,7 @@ module.run(['$templateCache', function($templateCache) {
 
       };
 
-    }]);
+    });
 
 }());
 
@@ -5947,7 +5954,7 @@ module.run(['$templateCache', function($templateCache) {
   angular.module('sp.history', [])
 
 
-    .directive('sailplayHistory', ["sp_api", "$rootScope", function (sp_api, $rootScope) {
+    .directive('sailplayHistory', function (sp_api, $rootScope) {
 
       return {
 
@@ -5963,6 +5970,10 @@ module.run(['$templateCache', function($templateCache) {
           scope.history = sp_api.data('load.user.history');
 
           scope.history_current_page = 0;
+
+          scope.hasPoints = function (item) {
+            return item.points_delta;
+          };
 
           scope.set_current_page = function (page) {
             scope.history_current_page = page;
@@ -5980,7 +5991,7 @@ module.run(['$templateCache', function($templateCache) {
 
       };
 
-    }])
+    })
 
     .constant('history_texts', {
       "purchase": "Покупка",
@@ -6004,7 +6015,7 @@ module.run(['$templateCache', function($templateCache) {
       "fb": "Facebook"
     })
 
-    .filter('history_item', ["history_texts", "socialList", function (history_texts, socialList) {
+    .filter('history_item', function (history_texts, socialList) {
 
       return function (historyItem) {
         switch (historyItem.action) {
@@ -6028,7 +6039,7 @@ module.run(['$templateCache', function($templateCache) {
         }
         return history_texts[historyItem.action];
       }
-    }]);
+    });
 
 }());
 
@@ -6044,13 +6055,13 @@ module.run(['$templateCache', function($templateCache) {
 
   ])
 
-    .service('sp', ["$window", function ($window) {
+    .service('sp', function ($window) {
 
       return $window.SAILPLAY || {};
 
-    }])
+    })
 
-    .service('sp_api', ["$q", "sp", "$rootScope", function ($q, sp, $rootScope) {
+    .service('sp_api', function ($q, sp, $rootScope) {
 
       var self = this;
 
@@ -6123,7 +6134,7 @@ module.run(['$templateCache', function($templateCache) {
 
       }
 
-    }])
+    })
 
     .service('tagHelper', function () {
 
@@ -6201,7 +6212,7 @@ module.run(['$templateCache', function($templateCache) {
       };
     })
 
-    .filter('sailplay_pic', ["sp", function (sp) {
+    .filter('sailplay_pic', function (sp) {
 
       function repair_pic_url(url) {
         if (/^((http|https|ftp):\/\/)/.test(url)) {
@@ -6223,7 +6234,7 @@ module.run(['$templateCache', function($templateCache) {
 
       };
 
-    }]);
+    });
 
 }());
 
@@ -6232,8 +6243,8 @@ module.run(['$templateCache', function($templateCache) {
   angular.module('sp.profile', [])
 
     .constant('spProfileErrors', {
-      '-200008': 'Этот телефон уже используется.',
-      '-200010': 'Этот email уже используется.'
+      '-200008': 'Указанный телефон уже принадлежит другому пользователю. Свяжитесь с технической поддержкой или измените контактные данные на кассе в любом из розничных магазинов.',
+      '-200010': 'Указанный email адрес уже принадлежит другому пользователю. Свяжитесь с технической поддержкой или измените контактные данные на кассе в любом из розничных магазинов.'
     })
 
     .constant('defaultProfile', {
@@ -6247,7 +6258,7 @@ module.run(['$templateCache', function($templateCache) {
 
     .constant('spProfileTag', 'Filled Profile')
 
-    .service('spProfile', ["sp_api", "defaultProfile", function (sp_api, defaultProfile) {
+    .service('spProfile', function (sp_api, defaultProfile) {
 
       var self = this;
 
@@ -6273,9 +6284,9 @@ module.run(['$templateCache', function($templateCache) {
 
       return self;
 
-    }])
+    })
 
-    .directive('sailplayProfileEdit', ["sp_api", "$rootScope", "spProfile", "spProfileErrors", "sp", "spProfileTag", "tagHelper", function (sp_api, $rootScope, spProfile, spProfileErrors, sp, spProfileTag, tagHelper) {
+    .directive('sailplayProfileEdit', function (sp_api, $rootScope, spProfile, spProfileErrors, sp, spProfileTag, tagHelper) {
 
       return {
 
@@ -6428,9 +6439,9 @@ module.run(['$templateCache', function($templateCache) {
 
       };
 
-    }])
+    })
 
-    .directive('sailplayProfile', ["sp", "sp_api", function (sp, sp_api) {
+    .directive('sailplayProfile', function (sp, sp_api) {
 
       return {
 
@@ -6457,7 +6468,7 @@ module.run(['$templateCache', function($templateCache) {
 
       };
 
-    }]);
+    });
 
 }());
 
@@ -6465,9 +6476,9 @@ module.run(['$templateCache', function($templateCache) {
 
   angular.module('sp.status', [])
 
-    .constant('spStatusLimits', [0, 7000, 20000])
+    .constant('spStatusLimits', [7000, 20000, 100000])
 
-    .directive('sailplayStatus', ["sp", "sp_api", "spStatusLimits", function (sp, sp_api, spStatusLimits) {
+    .directive('sailplayStatus', function (sp, sp_api, spStatusLimits) {
 
       return {
 
@@ -6509,40 +6520,36 @@ module.run(['$templateCache', function($templateCache) {
 
           scope.getProgress = function (points) {
 
-            if (!points) return;
+            if (typeof points == 'undefined') return;
 
             var status_points = angular.copy(spStatusLimits);
 
-            if (status_points[status_points.length - 1] && (points > status_points[status_points.length - 1])) {
+            if (status_points[status_points.length - 1] && (points >= status_points[status_points.length - 1])) {
               return {
                 width: '100%'
               };
             }
 
-            var multiplier = 100 / (status_points.length - 1);
+            var multiplier = 100 / status_points.length;
 
             var state = 0;
 
-            for (var i = 1, len = status_points.length; i < len; i++) {
+            for (var i = 0, len = status_points.length; i < len; i++) {
               if (points >= status_points[i]) {
                 state++;
               }
             }
-            var current = 0;
+            var current = points;
 
             var total = status_points[0];
 
-            if (state === 0) {
-              return {
-                width: '0%'
-              };
-            } else {
-              current = (points - status_points[state]);
-              total = status_points[state + 1] ? (status_points[state + 1] - status_points[state]) : status_points[state];
+            if(state != 0) {
+              current = points - status_points[state - 1];
+              total = status_points[state - 1] ? (status_points[state] - status_points[state-1]) : status_points[state];
             }
 
             return {
-              width: parseInt((current * 100 / total / 100 * 10) + (state * multiplier)) + '%'
+              width: parseFloat( ((current/total) * 100) / status_points.length + (state * multiplier)).toFixed(2) + '%'
             };
 
           };
@@ -6551,7 +6558,7 @@ module.run(['$templateCache', function($templateCache) {
 
       };
 
-    }]);
+    });
 
 }());
 
@@ -6621,7 +6628,7 @@ module.run(['$templateCache', function($templateCache) {
 
     })
 
-    .directive('datePicker', ["dateService", function (dateService) {
+    .directive('datePicker', function (dateService) {
       return {
         restrict: 'E',
         replace: true,
@@ -6648,7 +6655,7 @@ module.run(['$templateCache', function($templateCache) {
         }
       }
 
-    }]);
+    });
 
 
 }());
@@ -6718,7 +6725,7 @@ module.run(['$templateCache', function($templateCache) {
       }
     })
 
-    .directive('spAuth', ["$rootScope", "sp", function ($rootScope, sp) {
+    .directive('spAuth', function ($rootScope, sp) {
       return {
         restrict: 'A',
         replace: false,
@@ -6743,9 +6750,9 @@ module.run(['$templateCache', function($templateCache) {
 
         }
       }
-    }])
+    })
 
-    .directive('giftsSlider', ["$compile", "$timeout", function ($compile, $timeout) {
+    .directive('giftsSlider', function ($compile, $timeout) {
       return {
         restrict: 'A',
         replace: false,
@@ -6754,6 +6761,7 @@ module.run(['$templateCache', function($templateCache) {
 
           if (scope.$last) { // all are rendered
 
+            // Issue!!! maybe some async
             $timeout(function () {
 
               $('.bns_gift_main').not('.slick-initialized').slick({
@@ -6776,13 +6784,13 @@ module.run(['$templateCache', function($templateCache) {
                 ]
               });
 
-            }, 300);
+            }, 700);
 
           }
 
         }
 
       };
-    }]);
+    });
 
 }());

@@ -2,7 +2,7 @@
 
   angular.module('sp.status', [])
 
-    .constant('spStatusLimits', [0, 7000, 20000])
+    .constant('spStatusLimits', [7000, 20000, 100000])
 
     .directive('sailplayStatus', function (sp, sp_api, spStatusLimits) {
 
@@ -46,40 +46,36 @@
 
           scope.getProgress = function (points) {
 
-            if (!points) return;
+            if (typeof points == 'undefined') return;
 
             var status_points = angular.copy(spStatusLimits);
 
-            if (status_points[status_points.length - 1] && (points > status_points[status_points.length - 1])) {
+            if (status_points[status_points.length - 1] && (points >= status_points[status_points.length - 1])) {
               return {
                 width: '100%'
               };
             }
 
-            var multiplier = 100 / (status_points.length - 1);
+            var multiplier = 100 / status_points.length;
 
             var state = 0;
 
-            for (var i = 1, len = status_points.length; i < len; i++) {
+            for (var i = 0, len = status_points.length; i < len; i++) {
               if (points >= status_points[i]) {
                 state++;
               }
             }
-            var current = 0;
+            var current = points;
 
             var total = status_points[0];
 
-            if (state === 0) {
-              return {
-                width: '0%'
-              };
-            } else {
-              current = (points - status_points[state]);
-              total = status_points[state + 1] ? (status_points[state + 1] - status_points[state]) : status_points[state];
+            if(state != 0) {
+              current = points - status_points[state - 1];
+              total = status_points[state - 1] ? (status_points[state] - status_points[state-1]) : status_points[state];
             }
 
             return {
-              width: parseInt((current * 100 / total / 100 * 10) + (state * multiplier)) + '%'
+              width: parseFloat( ((current/total) * 100) / status_points.length + (state * multiplier)).toFixed(2) + '%'
             };
 
           };

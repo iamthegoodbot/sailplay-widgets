@@ -6,12 +6,14 @@ Paste this code to the page in < head > section to load the script:
     <script type="text/javascript">
 
             window.sailplay_config = {
-                partner_id: ** PARNER ID **
+                auth_hash: 'AUTH_HASH',
+                partner_id: PARTNER_ID,
+                lang: 'ru'
             };
 
             var _links = {
-                js: 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/19ad17cf6c0c628204e08d2ac275fbc0.js',
-                css: 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/14d4c1b2dabcbbdea3c225233b1b86db.css'
+                js: './dist/js/sailplay.21shop.js',
+                css: './dist/css/sailplay.21shop.css'
             };
 
             document.addEventListener('DOMContentLoaded', function () {

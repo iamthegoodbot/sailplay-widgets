@@ -20,6 +20,10 @@
 
           scope.history_current_page = 0;
 
+          scope.hasPoints = function (item) {
+            return item.points_delta;
+          };
+
           scope.set_current_page = function (page) {
             scope.history_current_page = page;
           };
