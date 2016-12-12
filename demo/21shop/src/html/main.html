@@ -83,13 +83,14 @@
                 <div class="hist_item" data-dir-paginate="item in history() | filter:hasPoints | itemsPerPage:5"
                      data-pagination-id="history_pages">
                     <span class="hist_date" data-ng-bind="item.action_date | date:'dd.MM.yyyy'"></span>
-                    <span class="hist_name"
-                          data-ng-class="{'type-grey' : !item.is_completed}">
+                    <span class="hist_name">
                         <strong data-ng-bind="item | history_item"></strong>
                     </span>
                     <span data-ng-if="item.points_delta" class="hist_point"
-                          data-ng-class="{hist_point_minus: item.points_delta < 0 }"
-                          data-ng-bind="(item.points_delta < 0 ? '' : '+ ') + (item.points_delta | number) + ' ' + (item.points_delta |
+                          data-ng-class="{
+                          hist_point_not_completed: !item.is_completed,
+                          hist_point_minus: item.points_delta < 0
+                           }" data-ng-bind="(item.points_delta < 0 ? '' : '+ ') + (item.points_delta | number) + ' ' + (item.points_delta |
                             sailplay_pluralize:'балл,балла,баллов')"></span>
                 </div>
 
@@ -193,7 +194,8 @@
                              alt="{{ gift.name }}">
                     </div>
                     <span class="bns_gift_item_name" data-ng-bind="gift.name" titel="{{ gift.name }}"></span>
-                    <span class="bns_gift_item_point" data-ng-bind="(gift.points | number) + ' ' + (gift.points | sailplay_pluralize:'балл,балла,баллов')"></span>
+                    <span class="bns_gift_item_point"
+                          data-ng-bind="(gift.points | number) + ' ' + (gift.points | sailplay_pluralize:'балл,балла,баллов')"></span>
                     <a href="#" class="bns_btn"
                        data-ng-class="{'type-disabled' : user().user_points.confirmed < gift.points}"
                        data-ng-click="$event.preventDefault();$parent.gift_open = gift;body_lock(true);">Получить</a>

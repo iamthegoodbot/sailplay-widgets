@@ -74,6 +74,8 @@
             return historyItem.name || history_texts.custom_action;
           case 'extra':
             return historyItem.name || history_texts.custom_action;
+          case 'purchase':
+            return history_texts.purchase +  ' (' + historyItem.order_num + ')';
           case 'sharing':
             switch (historyItem.social_action) {
               case 'like':

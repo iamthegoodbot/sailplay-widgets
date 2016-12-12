@@ -401,9 +401,6 @@ body {
   font-size: 15px;
   margin-top: 5px;
 }
-.bns_overlay .bns_overlay_inner .hist_main .hist_item .hist_name.type-grey {
-  color: grey;
-}
 .bns_overlay .bns_overlay_inner .hist_main .hist_item .hist_name strong {
   float: left;
   width: 100%;
@@ -415,6 +412,12 @@ body {
   float: right;
   padding-left: 10px;
   color: #1d1d1b;
+}
+.bns_overlay .bns_overlay_inner .hist_main .hist_item .hist_point.hist_point_not_completed {
+  color: grey;
+}
+.bns_overlay .bns_overlay_inner .hist_main .hist_item .hist_point.hist_point_minus {
+  color: #e21933;
 }
 .bns_top_img {
   float: left;
@@ -1414,7 +1417,7 @@ body {
   margin-left: 0;
 }
 .sailplay_wrapper .pages a.active {
-  color: #dd4010;
+  color: #e21933;
 }
 .sailplay_wrapper .pages a:hover {
   text-decoration: underline;
