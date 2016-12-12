@@ -1,0 +1,25 @@
+<div data-ng-if="model">
+
+    <div class="bns_select bns_select_date" >
+        <span data-ng-bind="$parent.model[0] || 'Day'"></span>
+        <div class="bns_select_popup">
+            <a href="#" data-ng-repeat="day in $parent.range(1, $parent.days[$parent.model[1] || 1])" data-ng-bind="day"
+               data-ng-click="$event.preventDefault();$parent.$parent.model[0] = day;"></a>
+        </div>
+    </div>
+    <div class="bns_select bns_select_mon">
+        <span data-ng-bind="$parent.months[$parent.model[1]] || 'Month'"></span>
+        <div class="bns_select_popup">
+            <a href="#" data-ng-repeat="(key, value) in $parent.months track by $index" data-ng-bind="value"
+               data-ng-click="$event.preventDefault();$parent.$parent.model[1] = +key;"></a>
+        </div>
+    </div>
+    <div class="bns_select bns_select_year">
+        <span data-ng-bind="$parent.model[2] || 'Year'"></span>
+        <div class="bns_select_popup">
+            <a href="#" data-ng-repeat="year in $parent.years" data-ng-bind="year"
+               data-ng-click="$event.preventDefault();$parent.$parent.model[2] = year;"></a>
+        </div>
+    </div>
+
+</div>

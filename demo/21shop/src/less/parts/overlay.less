@@ -1,0 +1,210 @@
+.bns_overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: none;
+  text-align: center;
+  top: 0;
+  left: 0;
+  z-index: 11111;
+  overflow-y: auto;
+  ::-webkit-input-placeholder {color:@gray;}
+  ::-moz-placeholder          {color:@gray;}/* Firefox 19+ */
+  :-moz-placeholder           {color:@gray;}/* Firefox 18- */
+  :-ms-input-placeholder      {color:@gray;}
+  &:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+  }
+  &.bns_overlay_page {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: auto;
+    background-color: transparent;
+  }
+  .bns_overlay_inner {
+    width: 560px;
+    vertical-align: middle;
+    background-color: @white-bg;
+    display: inline-block;
+    .bns_over_btn_l, .bns_over_btn_r {
+      float: left;
+      font-size: 12px;
+      font-weight: 300;
+      color: @text-black;
+      margin-bottom: 20px;
+      margin-left: 30px;
+    }
+    .bns_over_btn_r {
+      float: right;
+      margin-right: 30px;
+    }
+    &.oi_hist {
+      .oi_top {
+        padding-left: 0;
+        height: 105px;
+        span.bns_over_head  {
+          font-family: 'FuturaFuturisC';
+          font-size: 40px;
+          line-height: 105px;
+          letter-spacing: -1px;
+          text-align: center;
+          margin: 0;
+        }
+      }
+      .bns_btn {
+        width: 161px;
+        font-size: 26px;
+        height: 54px;
+        line-height: 54px;
+        margin-top: 0;
+        margin-bottom:25px;
+      }
+    }
+    .oi_top {
+      width: 100%;
+      background-color: @overlay-top;
+      box-sizing: border-box;
+      padding-left: 30px;
+      float: left;
+      margin-bottom: 15px;
+      height: 54px;
+      span {
+        line-height: 54px;
+        color: @text-white;
+        font-size: 23px;
+        float: left;
+        text-align: left;
+        &.bns_over_head {
+          width: 100%;
+        }
+      }
+    }
+    .sure_main {
+      float: left;
+      width: 80%;
+      margin-left: 10%;
+      .bns_gift_item {
+        width: 100%;
+        display: block;
+        float: left;
+        .bns_gift_item_img {
+          float: left;
+          width: 100%;
+          position: relative;
+          text-align: center;
+          height: 170px;
+          img {
+            display: inline-block;
+            margin-top: 40px;
+            height: 120px;
+            width: auto;
+          }
+        }
+        .bns_gift_item_point {
+          float: left;
+          width: 100%;
+          box-sizing: border-box;
+          font-size: 12px;
+          font-weight: bold;
+          color: @text-black;
+          margin-bottom: 10px;
+          text-align: center;
+        }
+        .bns_gift_item_name {
+          float: left;
+          width: 100%;
+          box-sizing: border-box;
+          font-size: 12px;
+          font-weight: normal;
+          color: @text-black;
+          margin-bottom: 10px;
+          text-align: center;
+        }
+        .bns_gift_item_descr {
+          float: left;
+          width: 100%;
+          box-sizing: border-box;
+          font-size: 12px;
+          font-weight: normal;
+          color: @text-black;
+          margin-bottom: 10px;
+          text-align: center;
+        }
+      }
+    }
+    .bns_ok {
+      width: 220px;
+      height: 44px;
+      line-height: 44px;
+      font-size: 26px;
+      margin-top: 20px;
+    }
+    .bns_btn_close {
+      width: 248px;
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+    .hist_main {
+      float: left;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 0px 65px;
+      .hist_item {
+        float: left;
+        width: 100%;
+        position: relative;
+        margin-bottom: 30px;
+        padding-bottom: 30px;
+        border-bottom: 1px solid #afb1b2;
+        &:last-child {
+          border-bottom: 0px;
+          padding-bottom: 0;
+        }
+        .hist_date {
+          color: @text-black;
+          float: left;
+          font-size: 15px;
+          text-align: left;
+          width: 100%;
+          margin-bottom: 15px;
+        }
+        .hist_name {
+          float: left;
+          width: 65%;
+          color: @text-black;
+          position: relative;
+          text-align: left;
+          font-weight: bold;
+          font-size: 15px;
+          margin-top: 5px;
+          strong {
+            float: left;
+            width: 100%;
+            font-weight: normal;
+          }
+        }
+        .hist_point {
+          font-size:20px;
+          font-weight: bold;
+          float: right;
+          padding-left: 10px;
+          color: @text-black;
+
+          &.hist_point_not_completed {
+            color: grey;
+          }
+
+          &.hist_point_minus {
+            color: #e21933;
+          }
+
+        }
+      }
+    }
+  }
+}

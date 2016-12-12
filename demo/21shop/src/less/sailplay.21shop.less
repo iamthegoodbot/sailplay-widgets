@@ -1,0 +1,52 @@
+@import "parts/main.less";
+
+.sailplay_wrapper {
+  margin: 0;
+  padding: 0;
+
+  .pages {
+    display: inline-block;
+    margin: 10px 0;
+
+    a {
+      margin-left: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      color: black;
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &.active {
+        color: #e21933;
+      }
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+    }
+
+  }
+
+  .saiplay_logout {
+    display: inline-block;
+    font-size: 16px;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+
+  .bns_overlay {
+
+    .notify {
+
+      .bns_btn {
+        min-width: 180px !important;
+      }
+
+    }
+
+  }
+
+}

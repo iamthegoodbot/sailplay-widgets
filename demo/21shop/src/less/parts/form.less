@@ -1,0 +1,192 @@
+.bns_btn {
+  height: 36px;
+  line-height: 36px;
+  background-color: @btn-bg;
+  text-align: center;
+  color: @btn-color;
+  font-size: 15px;
+  text-decoration: none;
+  display: inline-block;
+  border: 0;
+  font-family: 'FuturaFuturisC';
+  &.bns_btn_left {
+    float: left;
+  }
+  &.bns_btn_right {
+    float: right;
+  }
+  &.bns_btn_center {
+    display: inline-block;
+    float: none;
+    padding: 0 20px;
+  }
+  &.type-disabled {
+    cursor: default;
+    background-color: grey !important;
+  }
+}
+.bns_over_err_block {
+  overflow: hidden;
+  box-sizing: border-box;
+  margin: 15px 30px;
+  padding: 15px;
+  background-color: @err-bg-color;
+  border: 1px solid @err-bord-color;
+  text-align: left;
+  display: none;
+  &.act {
+    display: block;
+  }
+  span {
+    width: 100%;
+    float: left;
+    font-size: 12px;
+  }
+}
+.fil_prof {
+  .bns_input_block {
+    label, .ib_label_text {
+      width: 50%;
+    }
+    input[type="text"] {
+      width: 50%;
+    }
+  }
+}
+
+.bns_input_block {
+  float: left;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0px 30px;
+  position: relative;
+  margin-bottom: 20px;
+  .bns_check {
+    float: left;
+    width: 70%;
+    input {
+      display: none;
+    }
+    input:checked + label {
+      &:before {
+        background-color: @btn-bg;
+      }
+    }
+    label {
+      width: auto;
+      padding-left:22px;
+      margin-right:20px;
+      color: @gray;
+      position: relative;
+      &:before {
+        display: block;
+        content: '';
+        position: absolute;
+        left: 0px;
+        top:50%;
+        width: 9px;
+        margin-top: -8px;
+        height: 9px;
+        border: 3px solid @bg-gray;
+        border-radius: 26px;
+        background-color: @bg-gray;
+      }
+    }
+  }
+  .bns_select {
+    float: left;
+    position: relative;
+    margin-right: 2%;
+    z-index:1;
+
+    &.bns_select_date {
+      width: 20%;
+    }
+    &.bns_select_mon {
+      width: 51%;
+    }
+    &.bns_select_year {
+      width: 25%;
+      margin-right: 0;
+    }
+
+    &:hover {
+      .bns_select_popup {
+        display: block;
+      }
+    }
+    span {
+      color: @gray;
+      font-size: 12px;
+      float: left;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 0px 23px 0 6px;
+      background-color: transparent;
+      border-width: 1px ;
+      border-color: #cccccc;
+      border-style: solid;
+      line-height: 31px;
+      background-image:  url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/783861a9b63a00881b35db2f0f379cb0.png');
+      background-position: 90% center;
+      background-repeat: no-repeat;
+    }
+    .bns_select_popup {
+      display: none;
+      max-height: 100px;
+      overflow: auto;
+      position: absolute;
+      top:32px;
+      left:0px;
+      right: 0px;
+      border-width: 1px ;
+      border-color: #cccccc;
+      border-style: solid;
+      text-align: center;
+      background-color: @white-bg;
+      a {
+        float: left;
+        width: 100%;
+        line-height: 25px;
+        text-decoration: none;
+        color: @gray;
+      }
+    }
+  }
+  .bns_btn_left, .bns_btn_right  {
+    width: 40%;
+  }
+  label, .ib_label_text {
+    float: left;
+    line-height: 33px;
+    color: @text-black;
+    font-size: 15px;
+    width: 30%;
+    text-align: left;
+  }
+  &.err input[type="text"] {
+    background-color: #fafec4;
+  }
+  input[type="text"] {
+    float: left;
+    width: 100%;
+    border-width: 1px ;
+    border-color: #cccccc;
+    border-style: solid;
+    font-size: 12px;
+    font-weight: 300;
+    height: 31px;
+    padding: 0px 12px;
+    box-sizing: border-box;
+    outline: none;
+    color: @text-black;
+  }
+  input[type="submit"] {
+    width: 238px;
+    margin-bottom: 37px;
+    &.js_login {
+      width: 100%;
+      margin-bottom: 0;
+    }
+  }
+}

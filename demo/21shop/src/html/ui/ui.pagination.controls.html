@@ -1,0 +1,15 @@
+<div class="pagenavigation" data-ng-if="1 < pages.length || !autoHide">
+
+    <span class="pages">
+
+
+        <a href="#" data-ng-repeat="pageNumber in pages track by tracker(pageNumber, $index)"
+           data-ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }"
+           data-ng-click="setCurrent(pageNumber);$event.preventDefault();">
+            {{ pageNumber }}
+        </a>
+
+
+    </span>
+
+</div>
