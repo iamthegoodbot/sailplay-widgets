@@ -1,6 +1,8 @@
 (function () {
 
-  var SAILPLAY = (function () {
+  if(!window) return;
+
+  window.SAILPLAY = (function () {
 
     //methods that not supported in old browsers
     if (!Array.prototype.indexOf) {
@@ -1032,15 +1034,5 @@
     return sp;
 
   }());
-
-  //make SailPlay HUB importable
-  if (typeof exports !== 'undefined') {
-    if (typeof module !== 'undefined' && module.exports) {
-      exports = module.exports = _;
-    }
-    exports = SAILPLAY;
-  } else {
-    window.SAILPLAY = SAILPLAY;
-  }
 
 }());
