@@ -6,7 +6,7 @@
 
             var self = this;
 
-            var CSS_LINK = 'http://dev4you.info/test/alpina/btns_styles.css';
+            var CSS_LINK = 'https://sailplays3.cdnvideo.ru/media/assets/assetfile/15b0930e2468b996c6a0cdb9dc5d3948.css';
 
             var TAGS = {
                 fillProfile: 'Заполнил профиль',

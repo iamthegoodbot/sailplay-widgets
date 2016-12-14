@@ -6,13 +6,15 @@
             return {
                 restrict: 'E',
                 replace: true,
-                template: '<div class="col-xs-12 col-md-8 common-invert-col">\n\n    <div class="slider-cell common-shaded-cell" data-ng-if="user && gifts">\n        <div class="slider-cell__top">\n            <div class="slider-cell__head">Список подарков</div>\n            <div class="slider-cell__count">{{ giftsCountTitle(gifts_list) }}</div>\n            <div class="slider-cell__capt">Подарки, на которые вы можете потратить свои баллы</div>\n        </div>\n        <div class="slider-gifts__wrap" data-ng-if="gifts && gifts_list.length">\n            <div class="slider-gifts__counter"><span class="js-gifts-slider__cur">1</span>/<span\n                    class="js-gifts-slider__all" data-ng-bind="gifts.length"></span></div>\n            <div class="slider-gifts royalSlider js-gifts-slider">\n\n                <div class="slider-gifts__slide" data-ng-repeat="slide in gifts">\n                    <div class="slider-gift-item" \n                         data-ng-class="{ \'this-active\' : user.user_points.confirmed > gift.points}"\n                         data-ng-repeat="gift in slide">\n                        <div class="slider-gift-item__img">\n                            <img data-ng-src="{{ getImage(gift) }}" alt="">\n                            <div class="slider-gift-item__img-over">\n                            </div>\n                        </div>\n                        <div class="slider-gift-item__btn-wr" data-ng-if="user.user_points.confirmed > gift.points">\n                            <a href="#" class="slider-gift-item__btn"\n                            data-ng-click="getGift(gift);$event.preventDefault();">Получить</a>\n                        </div>\n                        <div class="slider-gift-item__name" data-ng-bind="gift.name"></div>\n                        <div class="slider-gift-item__price" data-ng-bind="getPrice(gift)"></div>\n                    </div>\n                    <!-- /item -->\n                </div>\n                <!-- /slide -->\n\n            </div>\n            <!-- /slider -->\n        </div>\n        <!-- /slider wrap -->\n    </div>\n    <!-- /slider cell -->\n\n</div>\n',
+                template: '<div class="col-xs-12 col-md-8 common-invert-col">\n\n    <div class="slider-cell common-shaded-cell" data-ng-if="user && gifts">\n        <div class="slider-cell__top">\n            <div class="slider-cell__head">Список подарков</div>\n            <div class="slider-cell__count">{{ giftsCountTitle(gifts_list) }}</div>\n            <div class="slider-cell__capt">Подарки, на которые вы можете потратить свои баллы</div>\n        </div>\n        <div class="slider-gifts__wrap" data-ng-show="gifts && gifts_list.length" data-ng-class="{unload: !load}">\n            <div class="slider-gifts__counter"><span class="js-gifts-slider__cur">1</span>/<span\n                    class="js-gifts-slider__all" data-ng-bind="gifts.length"></span></div>\n            <div class="slider-gifts royalSlider js-gifts-slider">\n\n                <div class="slider-gifts__slide" data-ng-repeat="slide in gifts">\n                    <div class="slider-gift-item" \n                         data-ng-class="{ \'this-active\' : user.user_points.confirmed > gift.points}"\n                         data-ng-repeat="gift in slide">\n                        <div class="slider-gift-item__img">\n                            <img data-ng-src="{{ getImage(gift) }}" alt="">\n                            <div class="slider-gift-item__img-over">\n                            </div>\n                        </div>\n                        <div class="slider-gift-item__btn-wr" data-ng-if="user.user_points.confirmed > gift.points">\n                            <a href="#" class="slider-gift-item__btn"\n                            data-ng-click="getGift(gift);$event.preventDefault();">Получить</a>\n                        </div>\n                        <div class="slider-gift-item__name" data-ng-bind="gift.name"></div>\n                        <div class="slider-gift-item__price" data-ng-bind="getPrice(gift)"></div>\n                    </div>\n                    <!-- /item -->\n                </div>\n                <!-- /slide -->\n\n            </div>\n            <!-- /slider -->\n        </div>\n        <!-- /slider wrap -->\n    </div>\n    <!-- /slider cell -->\n\n</div>\n',
                 scope: true,
                 link: function (scope) {
+                    scope.load = false;
                     scope.user = null;
                     scope.gifts = null;
                     scope.gifts_list = null;
                     function clean(){
+                        scope.load = false;
                         if(jQuery(".js-gifts-slider") && jQuery(".js-gifts-slider").data('royalSlider')){
                             jQuery(".js-gifts-slider").data('royalSlider').destroy();
                         }
@@ -27,6 +29,7 @@
                                 scope.gifts = giftService.getGiftsPages(angular.extend([], gifts));
                                 scope.$digest();
                                 setTimeout(function(){
+                                    scope.load = true;
                                     var sliderControl = jQuery(".js-gifts-slider").royalSlider({
                                         imageScalePadding: 0,
                                         controlNavigation: 'none',
@@ -48,7 +51,8 @@
                                             curSlide.html(sliderControl.currSlideId + 1);
                                         });
                                     }
-                                }, 10);
+                                    scope.$digest();
+                                }, 100);
                                 scope.$digest();
                             });
                         });

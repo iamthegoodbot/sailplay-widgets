@@ -28,7 +28,7 @@
 
 ## Пример
 
-Вы можете посмотреть пример тут: [DEMO](http://dev4you.info/test/alpina/ "Demo")
+Вы можете посмотреть пример тут: [DEMO](http://78.46.209.148/test/alpina_publisher/ "Demo")
 
 ## Разработка
 
