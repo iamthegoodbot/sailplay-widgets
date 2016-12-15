@@ -1,8 +1,6 @@
 (function () {
 
-  if(!window) return;
-
-  window.SAILPLAY = (function () {
+  var SAILPLAY = (function () {
 
     //methods that not supported in old browsers
     if (!Array.prototype.indexOf) {
@@ -1034,5 +1032,9 @@
     return sp;
 
   }());
+
+  if(typeof window !== 'undefined') window.SAILPLAY = SAILPLAY;
+  if(typeof module !== 'undefined') module.exports = SAILPLAY;
+  if(typeof exports !== 'undefined') exports = SAILPLAY;
 
 }());
