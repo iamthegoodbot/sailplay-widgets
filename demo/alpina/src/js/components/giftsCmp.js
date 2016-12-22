@@ -52,7 +52,7 @@
                                         });
                                     }
                                     scope.$digest();
-                                }, 400);
+                                }, 800);
                                 scope.$digest();
                             });
                         });

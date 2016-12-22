@@ -26,7 +26,7 @@
         result = statuses.filter(function (status) {
           return status.is_received;
         });
-        return result.length ? result[-1] ? result[-1] : result[0] : statuses[0];
+        return result.length ? result[result.length-1] ? result[result.length-1] : result[0] : statuses[0];
       };
 
       self.getImages = function (index) {
