@@ -1,0 +1,132 @@
+.sp_cmn-fill-btn {
+	display: block;
+	width: 175px;
+	height: 53px;
+
+	cursor: pointer;
+	background-color: @color1;
+
+	text-align: center;
+	color: #fff;
+	.alink(#fff);
+
+	font-size: 15px;
+	line-height: 1.2;
+	font-weight: 700;
+	padding-top: 17px;
+	&:hover {
+		background-color: lighten(@color1, 5%);
+	}
+	&:active {
+		background-color: darken(@color1, 4%)
+	}
+	&_sm {
+		height: 43px;
+		width: 134px;
+		.arial();
+		font-size: 17px;
+		padding-top: 12px;
+	}
+}
+input.sp_cmn-fill-btn {
+	.clear-submit();
+	padding-top: 0;
+}
+.sp_cmn-btn {
+	display: inline-block;
+	height: 60px;
+	font-size: 16px;
+	line-height: 1;
+	font-weight: 400;
+	text-align: center;
+	padding: 17px 29px 0;
+
+	border: 5px solid @color1;
+	background-color: #fff;
+	color: @color-text-main;
+	.alink(@color-text-main);
+
+	cursor: pointer;
+
+	.trans();
+
+	&:hover {
+		background-color: @color1;
+	}
+}
+input.sp_cmn-btn {
+	.clear-submit();
+	padding-top: 0;
+}
+label.error {
+	font-size: 11px;
+	line-height: 1;
+	color: #e9582b;
+}
+
+.sp_cmn-paginate {
+	position: relative;
+
+	font-size: 16px;
+	line-height: 1;
+	text-align: center;
+	color: #8E8E8D;
+
+
+	padding-top: 15px;
+	padding-bottom: 15px;
+	max-width: 220px;
+
+	&__inner {
+		position: relative;
+		padding-left: 15px;
+		padding-right: 15px;
+		margin: 0 auto;
+		max-width: 200px;
+	}
+	
+	&__itm {
+		display: inline-block;
+		margin: 0 1px 0 2px;
+		padding: 1px 2px 2px;
+		border-radius: 2px;
+		.alink(#8E8E8D, #F18F37);
+		.trans();
+		&.this-active {
+			color: #fff;
+			.alink(#fff);
+			cursor: default;
+			background-color: @color1;
+
+		}
+	}
+	&__delimeter {
+		display: inline-block;
+		margin: 0 0px;
+	}
+	&__left,
+	&__right {
+		position: absolute;
+		width: 8px;
+		height: 14px;
+		top: 50%;
+		margin-top: -8px;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: contain;
+
+		cursor: pointer;
+		opacity: 0.7;
+		&:hover {
+			opacity: 1;
+		}
+	}
+	&__left {
+		left: 0;
+		background-image: url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/00cdc8e9971f0a988c66cac042c29b9f.svg');
+	}
+	&__right {
+		right: 0;
+		background-image: url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/7456c1d21ca7a88fd0d472d26ae796fc.svg');
+	}
+}

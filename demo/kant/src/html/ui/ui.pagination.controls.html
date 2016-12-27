@@ -1,0 +1,18 @@
+<div class="sp_cmn-paginate" data-ng-if="1 < pages.length || !autoHide">
+
+    <div class="sp_cmn-paginate__inner">
+
+        <a href="#" class="sp_cmn-paginate__itm"
+           data-ng-repeat="pageNumber in pages track by tracker(pageNumber, $index)"
+           data-ng-class="{ 'this-active' : pagination.current == pageNumber, 'sp_cmn-paginate__delimeter' : pageNumber == '...' }"
+           data-ng-click="setCurrent(pageNumber);$event.preventDefault();" data-ng-bind="pageNumber"></a>
+
+    </div>
+
+    <a href="#" class="sp_cmn-paginate__left"
+       data-ng-click="setCurrent(pagination.current - 1);$event.preventDefault();"></a>
+
+    <a href="#" class="sp_cmn-paginate__right"
+       data-ng-click="setCurrent(pagination.current + 1);$event.preventDefault();"></a>
+
+</div>

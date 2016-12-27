@@ -1,0 +1,35 @@
+.bns_overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: none;
+  text-align: center;
+  top: 0;
+  left: 0;
+  z-index: 11111;
+  overflow-y: auto;
+  ::-webkit-input-placeholder {color:@gray;}
+  ::-moz-placeholder          {color:@gray;}/* Firefox 19+ */
+  :-moz-placeholder           {color:@gray;}/* Firefox 18- */
+  :-ms-input-placeholder      {color:@gray;}
+  &:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+  }
+  &.bns_overlay_page {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: auto;
+    background-color: transparent;
+  }
+  .bns_overlay_inner {
+    vertical-align: middle;
+    background-color: white;
+    display: inline-block;
+    text-align: left;
+  }
+}

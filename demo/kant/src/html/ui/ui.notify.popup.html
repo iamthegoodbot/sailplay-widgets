@@ -1,0 +1,9 @@
+<div class="bns_overlay" data-ng-if="data" data-ng-style="{ display:  ($parent.data ? 'block' : 'none')}">
+    <div class="bns_overlay_inner notify">
+        <div class="notify_header" data-ng-bind="$parent.data.title"></div>
+        <div class="bns_input_block notify_text" data-ng-bind="$parent.data.text"></div>
+        <div class="bns_input_block">
+            <a href="#" class="bns_btn" data-ng-click="$event.preventDefault();$parent.data = null;">OK</a>
+        </div>
+    </div>
+</div>

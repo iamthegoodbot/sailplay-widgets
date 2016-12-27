@@ -1,0 +1,80 @@
+@import "parts/main.less";
+
+.sailplay_wrapper {
+  margin: 0;
+  padding: 0;
+
+  .pages {
+    display: inline-block;
+    margin: 10px 0;
+
+    a {
+      margin-left: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      color: black;
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &.active {
+        color: #e21933;
+      }
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+    }
+
+  }
+
+  .saiplay_logout {
+    display: inline-block;
+    font-size: 16px;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+
+  .bns_overlay {
+
+    .notify {
+      max-width: 600px;
+      width: 100%;
+      padding: 20px;
+
+      &_header {
+        font-size: 28px;
+        font-family: arial, verdana, sans-serif;
+        text-align: left;
+        margin-bottom: 35px;
+      }
+
+      &_text {
+        font-size: 15px;
+        line-height: 1.2;
+        font-weight: 300;
+        margin-bottom: 30px;
+      }
+
+      .bns_btn {
+        display: inline-block;
+        min-width: 175px;
+        cursor: pointer;
+        background-color: #e9582b;
+        text-align: center;
+        color: #fff;
+        font-size: 15px;
+        line-height: 1.2;
+        text-decoration: none;
+        font-weight: 700;
+        padding: 18px 18px 18px;
+        height: auto;
+      }
+
+    }
+
+  }
+
+}

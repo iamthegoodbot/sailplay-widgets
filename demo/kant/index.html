@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+
+<head>
+
+    <title>КАНТ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <script type="text/javascript">
+
+        window.sailplay_config = {
+            auth_hash: '3f8fac0e2dd49ab422f96f8ae42b87f61c8c7fd3',
+            partner_id: 1593,
+            lang: 'ru',
+            data: {
+                statuses: [
+                    {
+                        discount: 5,
+                        from: 0,
+                        to: 5000
+                    },
+                    {
+                        discount: 7,
+                        from: 5000,
+                        to: 30000
+                    },
+                    {
+                        discount: 10,
+                        from: 30000,
+                        to: 100000
+                    },
+                    {
+                        discount: 15,
+                        from: 100000
+                    }
+                ]
+            }
+        };
+
+        var _links = {
+            js: './dist/js/sailplay.kant.js',
+            css: './dist/css/sailplay.kant.css'
+        };
+
+        document.addEventListener('DOMContentLoaded', function () {
+
+            var _s = document.createElement("link");
+            _s.type = "text/css";
+            _s.rel = "stylesheet";
+            _s.href = _links.css;
+            document.getElementsByTagName("head")[0].appendChild(_s);
+
+            var _j = document.createElement("script");
+            _j.type = "text/javascript";
+            _j.src = _links.js;
+            document.getElementsByTagName("head")[0].appendChild(_j);
+
+        });
+
+    </script>
+
+</head>
+
+<body style="margin: 0;">
+
+<div style="max-width: 1100px;margin: 0 auto;">
+
+    <sailplay-kant></sailplay-kant>
+
+</div>
+
+</body>
+</html>
