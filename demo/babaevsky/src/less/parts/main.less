@@ -1,0 +1,390 @@
+.sailplay_babaevsky {
+  font-family: Arial;
+  color: #262626;
+  font-size: 14px;
+
+  &__header {
+    color: #72321E;
+    font-size: 34px;
+    line-height: 1;
+    font-family: HeliosCondC;
+  }
+
+  &__text {
+    width: 100%;
+    display: block;
+    margin-top: 10px;
+  }
+
+  &__form {
+    box-sizing: border-box;
+    margin: 20px 0;
+    padding: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.3);
+
+    &-field {
+      width: 50%;
+      float: left;
+
+      > span {
+        display: inline-block;
+        width: 100%;
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+
+      > input {
+        width: 80%;
+        line-height: 25px;
+        height: 25px;
+        border: 1px solid #EBDAD3;
+        border-radius: 3px;
+        box-sizing: border-box;
+      }
+
+      &_date {
+        width: 80%;
+      }
+
+      &_radio-group {
+        width: 80%;
+
+        label {
+          margin-left: 20px;
+
+          &:first-child {
+            margin-left: 0;
+          }
+
+          input {
+            position: absolute;
+            visibility: hidden;
+          }
+
+          input[type=radio]:checked ~ i::before {
+            content: '';
+            display: block;
+            border-radius: 50%;
+            background: #7A3618;
+            width: 14px;
+            height: 14px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            margin: auto;
+          }
+
+          i {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #ECECEC;
+            margin-right: 10px;
+            vertical-align: bottom;
+          }
+
+          span {
+            display: inline-block;
+            cursor: pointer;
+          }
+
+        }
+
+      }
+
+      &_checkbox {
+
+        input {
+          position: absolute;
+          visibility: hidden;
+        }
+
+        input[type=checkbox]:checked ~ i {
+          background-image: url(https://d3sailplay.cdnvideo.ru/media/assets/assetfile/9b227de41ffcf0db4b2b0fab512c794a.png);
+        }
+
+        i {
+          background-repeat: no-repeat;
+          background-color: #7A3618;
+          background-size: 60% auto;
+          background-position: center center;
+          cursor: pointer;
+          display: inline-block;
+          position: relative;
+          width: 15px;
+          height: 15px;
+          border-radius: 3px;
+          margin-right: 10px;
+          vertical-align: bottom;
+        }
+
+        a, span {
+          display: inline-block;
+          cursor: pointer;
+          color: black;
+        }
+
+      }
+
+    }
+
+  }
+
+  &__card {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px;
+
+    .sailplay_babaevsky__form-field {
+      width: 100%;
+      float: none;
+    }
+
+    &-types {
+      padding: 20px 0 0;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+
+  }
+
+  form {
+    input[type=submit], button {
+      background: #72321E;
+      color: white;
+      width: auto;
+      display: inline-block;
+      vertical-align: middle;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      border-radius: 3px;
+      height: 40px;
+      line-height: 40px;
+      font-size: 16px;
+      padding: 0 20px;
+      outline: none;
+      border: none;
+      cursor: pointer;
+      text-align: center;
+    }
+  }
+
+  &__agree {
+    width: 100%;
+    float: none;
+    box-sizing: border-box;
+    padding: 20px;
+
+    .sailplay_babaevsky__form-field_checkbox {
+      display: block;
+      margin-top: 10px;
+
+      &:first-child {
+        margin-top: 0;
+      }
+
+    }
+
+  }
+
+  &__buttons {
+    margin: 20px 0;
+    text-align: center;
+    button {
+      margin-left: 20px;
+    }
+  }
+
+  &__clearfix {
+    zoom: 1;
+
+    /* For modern browsers */
+    &:before,
+    &:after {
+      content: "";
+      display: table;
+    }
+
+    &:after {
+      clear: both;
+    }
+
+  }
+
+  &__file-upload {
+    position: relative;
+    display: inline-block;
+
+    > button {
+      display: none;
+    }
+
+    input[type=file] {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer
+    }
+
+  }
+
+  .form_date {
+    float: left;
+    position: relative;
+    z-index: 1;
+
+    span {
+      background: white;
+      color: black;
+      float: left;
+      width: 100%;
+      box-sizing: border-box;
+      padding-left: 10px;
+      border: 1px solid #EBDAD3;
+      border-radius: 3px;
+      line-height: 25px;
+      height: 25px;
+      background-image: url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/303e1f38393495b1a059952843abeeb0.png');
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      background-size: 10px;
+    }
+
+    &__popup {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0px;
+      right: 0px;
+      z-index: 2;
+      max-height: 100px;
+      overflow-x: hidden;
+      overflow-y: auto;
+      background-color: white;
+      border-radius: 0 0 3px 3px;
+      border: 1px solid #EBDAD3;
+      text-align: center;
+
+      a {
+        float: left;
+        width: 100%;
+        line-height: 25px;
+        text-decoration: none;
+        color: black;
+        background: white;
+      }
+
+    }
+
+    &__day {
+      width: 20%;
+    }
+
+    &__month {
+      width: 48%;
+      margin: 0 1%;
+    }
+
+    &__year {
+      width: 30%;
+    }
+
+    &:hover {
+      .form_date__popup {
+        display: block;
+      }
+    }
+
+  }
+
+  .bns_overlay {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: none;
+    overflow: auto;
+    &.visible {
+      display: block;
+    }
+    .bns_overlay_iner {
+      position: absolute;
+      left: 0;
+      right: 0;
+      margin-top: 5%;
+      margin-bottom: 5%;
+      width: 790px;
+      margin-left: auto;
+      margin-right: auto;
+      background-color: #fff;
+      padding: 40px 40px;
+      &.bns_overlay_iner_tr_bg {
+        padding: 0;
+        background-color: transparent;
+        margin-top: -275px;
+      }
+      .close_overlay {
+        position: absolute;
+        right: -30px;
+        top: 0px;
+        width: 17px;
+        height: 17px;
+        background-image: url(https://d3sailplay.cdnvideo.ru/media/assets/assetfile/70307b6d34034ee34047e2863830a862.png);
+        display: block;
+      }
+    }
+
+  }
+
+  &__confirm_popup.bns_overlay {
+
+    .bns_overlay_iner {
+      width: 400px;
+    }
+
+    .sailplay_babaevsky__form-field {
+      width: 100%;
+    }
+
+    input[type=submit] {
+      margin-top: 10px;
+    }
+
+  }
+
+  &__notify_popup.bns_overlay {
+
+    .bns_overlay_iner {
+      width: 500px;
+    }
+
+    .sailplay_babaevsky__form-field {
+      width: 100%;
+    }
+
+    p {
+      padding: 20px 0;
+    }
+
+  }
+
+  input:disabled {
+    opacity: 0.5;
+    cursor: default;
+    pointer-events: none;
+  }
+
+}

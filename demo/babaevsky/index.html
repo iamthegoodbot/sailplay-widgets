@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Бабаевский</title>
+    <link rel="stylesheet" href="./dist/fonts/fonts.css">
+    <link rel="stylesheet" href="./dist/css/sailplay.babaevsky.css">
+    <script src="./dist/js/sailplay.babaevsky.js"></script>
+</head>
+<body style="background: #FCFAF6;margin: 0;">
+
+<div style="margin: 0 auto;width: 1000px;">
+
+    <sailplay-babaevsky></sailplay-babaevsky>
+
+</div>
+
+<script type="text/javascript">
+
+    document.addEventListener('DOMContentLoaded', function () {
+
+        var params = SAILPLAY.url_params();
+
+        window.sailplay_config = {
+            auth_hash: 'cfdb49117902b43b9eb2580d1ede17108799f225',
+            partner_id: params.partner_id,
+            domain: params.domain,
+            lang: params.lang,
+            user: {
+                "first_name": "alex",
+                "last_name": "shestakov",
+                "phone": "79251276671",
+                "email": "alex@sailplay.ru",
+                "sex": "1",
+                "birth_date": "03-09-1987"
+            }
+
+        };
+
+        var loyalty = new Babaevsky();
+
+    });
+
+</script>
+</body>
+</html>
