@@ -666,7 +666,7 @@
     });
 
     //BADGES LIST
-    sp.on('load.badges.list', function () {
+    sp.on('load.badges.list', function (p) {
       if (_config == {}) {
         initError();
         return;
@@ -674,6 +674,9 @@
       var params = {
         auth_hash: _config.auth_hash
       };
+      if(p.include_rules) {
+        params.include_rules = 1;
+      }
       JSONP.get(_config.DOMAIN + _config.urls.badges.list, params, function (res) {
 
         //      console.dir(res);
@@ -822,7 +825,7 @@
     });
 
     // tag exist
-    sp.on("tags.exist", function (data) {
+    sp.on("tags.exist", function (data, callback) {
       if (_config == {}) {
         initError();
         return;
@@ -846,6 +849,7 @@
           } else {
             sp.send('tags.exist.error', res);
           }
+          callback && callback(res);
         });
       } else {
         sp.send('tags.exist.auth.error', data);

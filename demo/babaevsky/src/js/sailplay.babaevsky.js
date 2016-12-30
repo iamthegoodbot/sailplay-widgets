@@ -16,17 +16,6 @@ window.angular.module('babaevsky', ['templates', 'magic', 'sailplay', 'magic.too
     card_photo: "Фото подтверждающего документа"
   })
 
-  .run(function ($rootScope, BabaevskyTags, SailPlayApi) {
-
-
-    var TAGS = Object.keys(BabaevskyTags).map(function (key) {
-      return BabaevskyTags[key];
-    });
-
-    if (TAGS) SailPlayApi.call('tags.exist', {tags: TAGS});
-
-  })
-
   .config(function ($qProvider) {
     $qProvider.errorOnUnhandledRejections(false);
   })
@@ -37,9 +26,6 @@ window.angular.module('babaevsky', ['templates', 'magic', 'sailplay', 'magic.too
 
     // Данные юзера
     self.user = window.sailplay_config && window.sailplay_config.user || null;
-
-    // Проверка тегов
-    self.exist = SailPlayApi.data('tags.exist');
 
     // Пустой объект формы
     self.blank = {
@@ -68,7 +54,7 @@ window.angular.module('babaevsky', ['templates', 'magic', 'sailplay', 'magic.too
         formData.append(key, value);
       });
 
-      var _url = '/api/integration/babaevsky/upload-pic/';
+      var _url = '/api/integration/babaevsky/upload-pic/?token=8a837cd05fe02a5817449b3b9705b24636f0c367&store_department_id=3500';
       // var _url = SAILPLAY.config().DOMAIN + '/js-api/' + SAILPLAY.config().partner.id + '/upload-pic/?callback=sailplay_upload_pic';
 
       return $http({
@@ -233,7 +219,12 @@ window.angular.module('babaevsky', ['templates', 'magic', 'sailplay', 'magic.too
         /**
          * Проверяем наличие тегов
          */
-        SAILPLAY.on('tags.exist.success', function (res) {
+        var TAGS = Object.keys(BabaevskyTags).map(function (key) {
+          return BabaevskyTags[key];
+        });
+
+        if (TAGS) SailPlayApi.call('tags.exist', {tags: TAGS}, function (res) {
+
           if (res.tags.length) {
 
             scope.state = 1;
@@ -292,8 +283,8 @@ window.angular.module('babaevsky', ['templates', 'magic', 'sailplay', 'magic.too
                 final_data.form.addEmail = scope.form.addEmail;
               }
 
-              if (scope.form.addEmail !== BabaevskyForm.user.email) {
-                final_data.form.addEmail = scope.form.addEmail;
+              if (scope.form.addPhone !== BabaevskyForm.user.phone) {
+                final_data.form.addPhone = scope.form.addPhone;
               }
 
               // BAD, VERY BAD =(

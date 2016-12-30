@@ -2,12 +2,12 @@
 
 @font-face {
 	font-family: 'HeliosCondC';
-	src: url('HeliosCondC-Bold.eot');
-	src: url('HeliosCondC-Bold.eot?#iefix') format('embedded-opentype'),
-		url('HeliosCondC-Bold.woff2') format('woff2'),
-		url('HeliosCondC-Bold.woff') format('woff'),
-		url('HeliosCondC-Bold.ttf') format('truetype'),
-		url('HeliosCondC-Bold.svg#HeliosCondC-Bold') format('svg');
+	src: url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/6e4bdcfe2d18e8b6c4fc03a440f0b3ce.eot');
+	src: url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/6e4bdcfe2d18e8b6c4fc03a440f0b3ce.eot?#iefix') format('embedded-opentype'),
+		url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/fb6797b87b112abc1284fa2f00f6b6e8.woff2') format('woff2'),
+		url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/fcb04f208f581dc0c72970be6388b834.woff') format('woff'),
+		url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/6cda3942a50ddd86dd0ceeab01d87a34.ttf') format('truetype'),
+		url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/57bcde92023f0eac9c16494446b1a659.svg#HeliosCondC-Bold') format('svg');
 	font-weight: bold;
 	font-style: normal;
 }

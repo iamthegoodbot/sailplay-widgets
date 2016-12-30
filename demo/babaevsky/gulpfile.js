@@ -25,7 +25,7 @@
     gulp.watch(__dirname + '/src/js/**/*.js', ['build.javascript']);
     gulp.watch(__dirname + '/src/html/**/*.html', ['build.javascript']);
     gulp.watch(__dirname + '/src/less/**/*.less', ['build.less']);
-    gulp.watch(__dirname + '/src/fonts/**/*.*', ['build.fonts']);
+    // gulp.watch(__dirname + '/src/fonts/**/*.*', ['build.fonts']);
   });
 
   gulp.task('build.javascript', ['javascript.concat', 'javascript.ngAnnotate']);
@@ -75,11 +75,11 @@
       }))
       .pipe(gulp.dest(__dirname + '/dist/css/'));
   });
-
-  gulp.task('build.fonts', function () {
-    return gulp.src(__dirname + '/src/fonts/**/*')
-      .pipe(gulp.dest(__dirname + '/dist/fonts'));
-  });
+  //
+  // gulp.task('build.fonts', function () {
+  //   return gulp.src(__dirname + '/src/fonts/**/*')
+  //     .pipe(gulp.dest(__dirname + '/dist/fonts'));
+  // });
 
   gulp.task('build.images', function () {
     return gulp.src(__dirname + '/src/img/**/*')
@@ -88,8 +88,8 @@
   });
 
 
-  gulp.task('default', ['connect', 'watch', 'build.javascript', 'build.less', 'build.fonts']);
+  gulp.task('default', ['connect', 'watch', 'build.javascript', 'build.less']);
 
-  gulp.task('build', ['build.javascript', 'build.less', 'build.fonts']);
+  gulp.task('build', ['build.javascript', 'build.less']);
 
 }());
