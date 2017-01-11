@@ -190,9 +190,11 @@
         <section class="sp_scale-sec" data-ng-cloak data-sailplay-status>
             <div class="sp_scale">
                 <div class="sp_scale__bar">
-                    <div class="sp_scale__progress js-scale" data-ng-style="getProgress(user().purchases.sum)"></div>
+                    <div class="sp_scale__progress js-scale"
+                         data-ng-style="{width: getProgress(user().purchases.sum) + '%'}"></div>
                     <div class="sp_scale__person-wr js-scale-frame">
                         <div class="sp_scale__person js-scale-person"
+                             data-ng-style="getAvatarPosition(user().purchases.sum)"
                              style="background-image: url('{{ user().user.pic | get_avatar }}');"></div>
                     </div>
                 </div>
@@ -207,30 +209,21 @@
                         <div class="sp_footnote" data-ng-bind="$index+1"></div>
                     </div>
                     <div class="sp_scale__popup">
-                        Ваш текущий статус
-                        <div class="sp_scale__pop-count">700 баллов</div>
+                        {{ badge.is_received ? 'Этот статус уже есть' : 'До этого статуса осталось' }}
+                        <div class="sp_scale__pop-count" data-ng-if="getOffsetToStatusByIndex(user().purchases.sum, $index)">
+                            {{ getOffsetToStatusByIndex(user().purchases.sum, $index) | number }}
+                            {{ getOffsetToStatusByIndex(user().purchases.sum, $index) | sailplay_pluralize:'рубль,рубля,рублей' }}
+                        </div>
                     </div>
                 </div>
 
             </div>
         </section>
 
-        <section class="sp_footnote-descr">
-            <div class="sp_footnote-descr__itm">
-                <div class="sp_footnote sp_footnote-descr__count">1</div>
-                Первый взрослый разряд
-            </div>
-            <div class="sp_footnote-descr__itm">
-                <div class="sp_footnote sp_footnote-descr__count">2</div>
-                КМС
-            </div>
-            <div class="sp_footnote-descr__itm">
-                <div class="sp_footnote sp_footnote-descr__count">3</div>
-                Мастер спорта
-            </div>
-            <div class="sp_footnote-descr__itm">
-                <div class="sp_footnote sp_footnote-descr__count">4</div>
-                Мастер спорта Международного класса
+        <section class="sp_footnote-descr" data-sailplay-status data-ng-if="badges && badges() && user && user()">
+            <div class="sp_footnote-descr__itm" daa-ng-repeat="badge in $parent.badges().multilevel_badges[0] track by $index">
+                <div class="sp_footnote sp_footnote-descr__count" data-ng-bind="$index+1"></div>
+                {{ badge.name }}
             </div>
         </section>
 
@@ -251,11 +244,11 @@
             </div>
             <!-- /badge popup -->
 
-            <div class="sp_badge-sec__hd" data-ng-if="getNextStatus(user().purchases.sum)">
+            <div class="sp_badge-sec__hd" data-ng-if="badges && badges() && user && user()">
                 До статуса
-                <b data-ng-bind=""></b>
+                <b data-ng-bind="getNextStatus(user().purchases.sum).name"></b>
                 <br> осталось
-                <b data-ng-bind="(getNextStatus(user().purchases.sum) - user().purchases.sum) + ' '"></b>
+                <b data-ng-bind="((getOffsetToStatus(user().purchases.sum).from - user().purchases.sum) | number) + ' ' + ((getOffsetToStatus(user().purchases.sum).from - user().purchases.sum) | sailplay_pluralize:'рубль,рубля,рублей')"></b>
             </div>
 
             <div class="sp_badge-slider js-badge-slider" data-ng-if="badges && badges()">
@@ -398,7 +391,9 @@
                     <div class="sp_task-cell">
                         <div class="sp_task-cell__l">
                             <div class="sp_task-cell__icn-out">
-                                <div class="sp_task-cell__icn-inn"><img src="https://d3sailplay.cdnvideo.ru/media/assets/assetfile/931f2507b2925bf3c117f2c7682be85b.svg" alt="Заполните профиль"></div>
+                                <div class="sp_task-cell__icn-inn"><img
+                                        src="https://d3sailplay.cdnvideo.ru/media/assets/assetfile/931f2507b2925bf3c117f2c7682be85b.svg"
+                                        alt="Заполните профиль"></div>
                             </div>
                         </div>
                         <div class="sp_task-cell__r">
@@ -411,7 +406,9 @@
                         <div class="sp_task-cell__over">
                             <div class="sp_task-cell__l">
                                 <div class="sp_task-cell__icn-out">
-                                    <div class="sp_task-cell__icn-inn"><img src="https://d3sailplay.cdnvideo.ru/media/assets/assetfile/e6fbe93fdaeb39559e17c5d90ff5ebbd.svg" alt="Заполните профиль"></div>
+                                    <div class="sp_task-cell__icn-inn"><img
+                                            src="https://d3sailplay.cdnvideo.ru/media/assets/assetfile/e6fbe93fdaeb39559e17c5d90ff5ebbd.svg"
+                                            alt="Заполните профиль"></div>
                                 </div>
                             </div>
                             <div class="sp_task-cell__r-over">

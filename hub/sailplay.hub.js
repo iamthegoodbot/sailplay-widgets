@@ -674,8 +674,10 @@
       var params = {
         auth_hash: _config.auth_hash
       };
-      if(p.include_rules) {
-        params.include_rules = 1;
+      if(p){
+        if(p.include_rules) {
+          params.include_rules = 1;
+        }
       }
       JSONP.get(_config.DOMAIN + _config.urls.badges.list, params, function (res) {
 

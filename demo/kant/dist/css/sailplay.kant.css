@@ -1172,7 +1172,7 @@ label.error {
   bottom: 0.6%;
 }
 .sp_scale__person {
-  display: none;
+  display: block;
   position: absolute;
   z-index: 2;
   width: 36px;
