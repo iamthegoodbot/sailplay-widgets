@@ -966,6 +966,20 @@
       });
     });
 
+    sp.on('magic.config', function (name) {
+      if (_config == {}) {
+        initError();
+        return;
+      }
+      JSONP.get(_config.DOMAIN + _config.urls.loyalty_page_config_by_name, { name: name || 'default' }, function (res) {
+        if (res.status == 'ok') {
+          sp.send('magic.config.success', res);
+        } else {
+          sp.send('magic.config.error', res);
+        }
+      });
+    });
+
     //utils
     sp.config = function () {
       return _config;
