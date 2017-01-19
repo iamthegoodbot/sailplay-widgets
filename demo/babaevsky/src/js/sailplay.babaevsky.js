@@ -4,12 +4,20 @@
 
 window.angular.module('babaevsky', ['templates', 'magic', 'sailplay', 'magic.tools'])
 
+  .constant('BabaevskyIntegration', {
+    token: '8a837cd05fe02a5817449b3b9705b24636f0c367',
+    store_department_id: 3500
+  })
+
   .constant('BabaevskyTags', {
     form_complete: "Заполнил анкету",
     form_accepted: "Анкета подтверждена",
     card_bonus: "Бонусная карта",
     card_social: "Социальная карта",
     card_student: "Карта студента"
+  })
+
+  .constant('SailplayApiErrors', function () {
   })
 
   .constant('BabaevskyVariables', {
@@ -20,7 +28,7 @@ window.angular.module('babaevsky', ['templates', 'magic', 'sailplay', 'magic.too
     $qProvider.errorOnUnhandledRejections(false);
   })
 
-  .service('BabaevskyForm', function (SailPlayApi, $q, $http, BabaevskyTags, BabaevskyVariables) {
+  .service('BabaevskyForm', function (SailPlayApi, $q, $http, BabaevskyTags, BabaevskyVariables, BabaevskyIntegration) {
 
     var self = this;
 
@@ -31,10 +39,34 @@ window.angular.module('babaevsky', ['templates', 'magic', 'sailplay', 'magic.too
     self.blank = {
       firstName: null,
       lastName: null,
+      middleName: null,
       addEmail: null,
       addPhone: null,
       sex: 1,
       birthDate: null
+    };
+
+    /**
+     * Generate origin user id
+     * @returns {*}
+     */
+    self.generate_oid = function () {
+
+      if (SAILPLAY.config() == {}) return;
+
+      var url = '/api/integration/babaevsky/generate-oid/';
+
+      return $http({
+        method: 'GET',
+        url: url,
+        params: {
+          token: BabaevskyIntegration.token,
+          store_department_id: BabaevskyIntegration.store_department_id,
+          auth_hash: SAILPLAY.config().auth_hash
+        },
+        transformRequest: angular.identity
+      })
+
     };
 
     /**
@@ -54,8 +86,7 @@ window.angular.module('babaevsky', ['templates', 'magic', 'sailplay', 'magic.too
         formData.append(key, value);
       });
 
-      var _url = '/api/integration/babaevsky/upload-pic/?token=8a837cd05fe02a5817449b3b9705b24636f0c367&store_department_id=3500';
-      // var _url = SAILPLAY.config().DOMAIN + '/js-api/' + SAILPLAY.config().partner.id + '/upload-pic/?callback=sailplay_upload_pic';
+      var _url = '/api/integration/babaevsky/upload-pic/?token=' + BabaevskyIntegration.token + '&store_department_id=' + BabaevskyIntegration.store_department_id;
 
       return $http({
         method: 'POST',
@@ -116,11 +147,13 @@ window.angular.module('babaevsky', ['templates', 'magic', 'sailplay', 'magic.too
 
       if (!self.user) return _form;
 
-      _form.firstName = self.user.first_name;
-      _form.lastName = self.user.last_name;
-      _form.addEmail = self.user.email;
-      _form.sex = self.user.sex && parseInt(self.user.sex);
-      _form.addPhone = self.user.phone;
+      _form.firstName = decodeURIComponent(self.user.first_name) || null;
+      _form.lastName = decodeURIComponent(self.user.last_name) || null;
+      // fix
+      _form.middleName = decodeURIComponent(self.user.middle_name || '') || null;
+      _form.addEmail = decodeURIComponent(self.user.email) || null;
+      _form.sex = self.user.sex && parseInt(self.user.sex) || null;
+      _form.addPhone = self.user.phone || null;
       // BAD, not time to change
       var bd = self.user.birth_date && self.user.birth_date.split('-');
       _form.birthDate = bd ? [parseInt(bd[0]), parseInt(bd[1]), parseInt(bd[2])] : [null, null, null];
@@ -130,68 +163,46 @@ window.angular.module('babaevsky', ['templates', 'magic', 'sailplay', 'magic.too
     };
 
     /**
-     * Финальный метод, обновление информации о пользователе (его данные, теги и переменные)
+     * Обновление информации о пользователе
      * @param data
      * @returns {*}
      */
-    self.final_of_registration = function (data) {
-      return $q(function (resolve, reject) {
-
-        data.form.auth_hash = SAILPLAY.config().auth_hash;
-
-        SailPlayApi.call('users.update', data.form, function (res) {
-          if (res.status == 'error') {
-            resolve(res);
-          } else if (res.status == 'ok') {
-
-            var tags = [];
-            tags.push(BabaevskyTags.form_complete);
-            if(data.type && BabaevskyTags['card_' + data.type])
-              tags.push(BabaevskyTags['card_' + data.type]);
-            
-            SailPlayApi.call('tags.add', {tags: tags}, function (tag_res) {
-              if (tag_res.status == 'error') {
-                resolve(tag_res);
-              } else if (tag_res.status == 'ok') {
-
-                var vars = {};
-                vars[BabaevskyVariables.card_photo] = data.pic;
-
-                SailPlayApi.call('vars.add', {custom_vars: vars}, function (var_res) {
-                  if (var_res.status == 'error') {
-                    resolve(var_res);
-                  } else if (var_res.status == 'ok') {
-
-                    SAILPLAY.jsonp.get(SAILPLAY.config().DOMAIN + SAILPLAY.config().urls.users.info, {
-                      all: 1,
-                      auth_hash: SAILPLAY.config().auth_hash
-                    }, function (res_info) {
-
-                      if (res_info.status == 'error') {
-                        resolve(res_info);
-                      } else if (res_info.status == 'ok') {
-                        resolve(res_info);
-                      }
-
-                    });
-
-                  }
-                })
-
-              }
-            })
-
-          }
-        });
-
+    self.update_user = function (data) {
+      return $q(function (resolve) {
+        if (!data || !Object.keys(data).length) resolve({status: 'ok'});
+        SailPlayApi.call('users.update', data, resolve);
       });
+    };
+
+    /**
+     * Добавление переменных
+     * @param data
+     * @returns {*}
+     */
+    self.add_vars = function (data) {
+      return $q(function (resolve) {
+        if (!data || !data.custom_vars || !Object.keys(data.custom_vars).length) resolve({status: 'ok'});
+        SailPlayApi.call('vars.add', data, resolve);
+      })
+    };
+
+    /**
+     * Добавление тегов
+     * @param data
+     * @returns {*}
+     */
+    self.add_tags = function (data) {
+      return $q(function (resolve) {
+        if (!data || !data.tags || !data.tags.length) resolve({status: 'ok'});
+        SailPlayApi.call('tags.add', data, resolve)
+      })
     };
 
     return self;
 
   })
 
-  .directive('sailplayBabaevsky', function ($rootScope, BabaevskyForm, BabaevskyTags, SailPlayApi) {
+  .directive('sailplayBabaevsky', function ($rootScope, BabaevskyForm, BabaevskyTags, SailPlayApi, BabaevskyVariables) {
 
     return {
       restrict: 'E',
@@ -208,6 +219,9 @@ window.angular.module('babaevsky', ['templates', 'magic', 'sailplay', 'magic.too
         scope.notify = null;
         // Тип карты
         scope.type = 'bonus';
+        // Sailplay UserInfo
+        scope.user = SailPlayApi.data('load.user.info');
+
         /**
          * 0 - нет тегов
          * 1 - есть тег Заполнения анкеты
@@ -215,6 +229,8 @@ window.angular.module('babaevsky', ['templates', 'magic', 'sailplay', 'magic.too
          * @type {number}
          */
         scope.state = 0;
+        // Ссылка на правила
+        scope.rulesLink = decodeURIComponent(SAILPLAY.url_params() && SAILPLAY.url_params().rulesLink);
 
         /**
          * Проверяем наличие тегов
@@ -238,6 +254,7 @@ window.angular.module('babaevsky', ['templates', 'magic', 'sailplay', 'magic.too
             }
 
           }
+
         });
 
         /**
@@ -253,71 +270,43 @@ window.angular.module('babaevsky', ['templates', 'magic', 'sailplay', 'magic.too
 
           scope.phone_code = null;
 
-          var final_data = null;
-
+          // Check code
           BabaevskyForm.check_verification_code(data).then(function (res) {
-
             if (res && res.status == 'ok') {
 
-              scope.show_confirm_phone = false;
+              // Generate origin user id
+              BabaevskyForm.generate_oid().then(function (oid_response) {
+                var oid_res = oid_response.data;
+                if (oid_res.status == 'ok') {
 
-              final_data = {
-                pic: scope.pic_path,
-                type: scope.type,
-                form: {}
-              };
+                  scope.show_confirm_phone = false;
 
-              if (scope.form.firstName !== BabaevskyForm.user.first_name) {
-                final_data.form.firstName = scope.form.firstName;
-              }
-
-              if (scope.form.lastName !== BabaevskyForm.user.last_name) {
-                final_data.form.lastName = scope.form.lastName;
-              }
-
-              if (scope.form.sex !== BabaevskyForm.user.sex) {
-                final_data.form.sex = scope.form.sex;
-              }
-
-              if (scope.form.addEmail !== BabaevskyForm.user.email) {
-                final_data.form.addEmail = scope.form.addEmail;
-              }
-
-              if (scope.form.addPhone !== BabaevskyForm.user.phone) {
-                final_data.form.addPhone = scope.form.addPhone;
-              }
-
-              // BAD, VERY BAD =(
-              var bd = angular.copy(scope.form.birthDate);
-              bd[0] = parseInt(bd[0]) < 10 ? '0' + parseInt(bd[0]) : bd[0];
-              bd[1] = parseInt(bd[1]) < 10 ? '0' + parseInt(bd[1]) : bd[1];
-              bd = bd.join('-');
-
-              if (BabaevskyForm.user.birth_date != bd) {
-                final_data.form.birthDate = bd;
-              }
-
-              BabaevskyForm.final_of_registration(final_data).then(function (res) {
-
-                if (res && res.status == 'ok') {
-                  if(res.user && res.user.origin_user_id) {
-                    scope.notify = 'Здравствуйте, поздравляем Вас с успешной регистрацией в программе лояльности! Номер вашей виртуальной карты ' + res.user.origin_user_id + '. Доступ в личный кабинет будет открыт после модерации анкеты.';
-                  }
                   scope.state = 2;
-                } else {
-                  if (res.message) {
-                    scope.notify = res.message;
-                  }
-                }
 
+                  // Add tag complete form
+                  BabaevskyForm.add_tags({tags: [BabaevskyTags.form_complete]}).then(function (tags_res) {
+                    if (tags_res && tags_res.status == 'ok') {
+
+                      if (oid_res.oid) {
+                        scope.notify = 'Здравствуйте, поздравляем Вас с успешной регистрацией в программе лояльности! Номер вашей виртуальной карты ' + oid_res.oid + '. Доступ в личный кабинет будет открыт после модерации анкеты.';
+                      }
+
+                    } else {
+                      // Add tag error
+                      if (tags_res && tags_res.message) scope.notify = tags_res.message;
+                    }
+                  });
+
+                } else {
+                  if (oid_res && oid_res.message) scope.notify = oid_res.message;
+                }
               });
 
             } else {
-              if (res.message) {
-                scope.notify = res.message;
-              }
+              // Check code error
+              if (res && res.message) scope.notify = res.message;
             }
-          })
+          });
 
 
         };
@@ -337,9 +326,7 @@ window.angular.module('babaevsky', ['templates', 'magic', 'sailplay', 'magic.too
               scope.pic_path = res.temp_file_properties.url;
               scope.notify = 'Фото успешно загружено';
             } else {
-              if (res.message) {
-                scope.notify = res.message;
-              }
+              if (res && res.message) scope.notify = res.message;
             }
           });
         };
@@ -352,20 +339,99 @@ window.angular.module('babaevsky', ['templates', 'magic', 'sailplay', 'magic.too
 
           if (!form || !form.$valid) return;
 
-          var data = {
-            identifier: 'phone',
-            value: scope.form.addPhone
-          };
+          scope.show_confirm_phone = false;
 
-          BabaevskyForm.send_verification_code(data).then(function (res) {
+          var user = {};
+
+          if (scope.form.firstName !== BabaevskyForm.get_form().first_name) {
+            user.firstName = scope.form.firstName;
+          }
+
+          if (scope.form.lastName !== BabaevskyForm.get_form().last_name) {
+            user.lastName = scope.form.lastName;
+          }
+
+          if (scope.form.middleName !== BabaevskyForm.get_form().middle_name) {
+            user.middleName = scope.form.middleName;
+          }
+
+          if (scope.form.sex !== BabaevskyForm.get_form().sex) {
+            user.sex = scope.form.sex;
+          }
+
+          if (scope.form.addEmail !== BabaevskyForm.get_form().addEmail) {
+            user.addEmail = scope.form.addEmail;
+          }
+
+          if (scope.form.addPhone !== BabaevskyForm.get_form().addPhone) {
+            user.addPhone = scope.form.addPhone;
+          }
+
+          // BAD, VERY BAD =(
+          var bd = angular.copy(scope.form.birthDate);
+          bd[0] = parseInt(bd[0]) < 10 ? '0' + parseInt(bd[0]) : bd[0];
+          bd[1] = parseInt(bd[1]) < 10 ? '0' + parseInt(bd[1]) : bd[1];
+          bd = bd.reverse().join('-');
+
+          if (BabaevskyForm.get_form().birth_date != bd) {
+            user.birthDate = bd;
+          }
+
+          // Update user info
+          BabaevskyForm.update_user(user).then(function (res) {
+
             if (res && res.status == 'ok') {
-              scope.show_confirm_phone = true;
+
+              // Add card type tag
+              BabaevskyForm.add_tags({tags: [BabaevskyTags['card_' + scope.type]]}).then(function (tags_res) {
+
+                if (tags_res && tags_res.status == 'ok') {
+
+                  // Add pic_path variable
+                  var vars = {};
+                  if (scope.pic_path) vars[BabaevskyVariables.card_photo] = scope.pic_path;
+                  BabaevskyForm.add_vars({custom_vars: vars}).then(function (vars_res) {
+
+                    if (vars_res && vars_res.status == 'ok') {
+
+                      // Send phone verification code
+
+                      var data = {
+                        identifier: 'phone',
+                        value: scope.form.addPhone
+                      };
+
+                      BabaevskyForm.send_verification_code(data).then(function (res_verification) {
+
+                        if (res_verification && res_verification.status == 'ok') {
+                          scope.show_confirm_phone = true
+                        } else {
+                          // Send phone verification code error
+                          if (res_verification && res_verification.message) scope.notify = res_verification.message
+                        }
+
+                      });
+
+                    } else {
+                      // Add variables error
+                      if (vars_res && vars_res.message) scope.notify = vars_res.message
+                    }
+
+                  });
+
+                } else {
+                  // Add tags error
+                  if (tags_res && tags_res.message) scope.notify = tags_res.message
+                }
+
+              });
+
             } else {
-              if (res.message) {
-                scope.notify = res.message;
-              }
+              // Update user error
+              if (res && res.message) scope.notify = res.message
             }
-          })
+
+          });
 
         };
 
@@ -375,7 +441,7 @@ window.angular.module('babaevsky', ['templates', 'magic', 'sailplay', 'magic.too
         scope.clear = function () {
           scope.form = BabaevskyForm.get_form();
           scope.pic_path = null;
-          scope.type = 'student';
+          scope.type = 'bonus';
         }
 
       }
@@ -402,6 +468,10 @@ function Babaevsky() {
     if (!window.sailplay_config.auth_hash) {
       console.log("Auth_hash not found");
       return;
+    }
+
+    if (SAILPLAY.cookies.readCookie('sailplay_magic_auth_hash') != window.sailplay_config.auth_hash) {
+      document.cookie = 'sailplay_magic_auth_hash' + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
     }
 
     SAILPLAY.send('login', window.sailplay_config.auth_hash);

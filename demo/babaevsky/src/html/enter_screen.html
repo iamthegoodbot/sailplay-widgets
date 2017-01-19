@@ -39,6 +39,18 @@
                     </div>
 
                     <div class="sailplay_babaevsky__form-field">
+                        <span>Отчество*</span>
+                        <input type="text" name="middleName" data-ng-model="form.middleName" required>
+                    </div>
+
+                    <div class="sailplay_babaevsky__form-field">
+                        <span>Дата рождения</span>
+                        <div class="sailplay_babaevsky__form-field_date">
+                            <date-picker data-model="form.birthDate"></date-picker>
+                        </div>
+                    </div>
+
+                    <div class="sailplay_babaevsky__form-field">
                         <span>Пол*</span>
                         <div class="sailplay_babaevsky__form-field_radio-group">
 
@@ -57,12 +69,6 @@
                         </div>
                     </div>
 
-                    <div class="sailplay_babaevsky__form-field">
-                        <span>Дата рождения</span>
-                        <div class="sailplay_babaevsky__form-field_date">
-                            <date-picker data-model="form.birthDate"></date-picker>
-                        </div>
-                    </div>
 
                 </div>
 
@@ -99,8 +105,12 @@
                     <div class="sailplay_babaevsky__card-types"
                          data-ng-if="(type == 'student' || type == 'social') && !pic_path">
 
-                        <p>
+                        <p data-ng-if="type == 'social'">
                             Загрузите скан или фото вашей социальной карты
+                        </p>
+
+                        <p data-ng-if="type == 'student'">
+                            Загрузите скан или фото вашей карты студента
                         </p>
 
                         <label class="sailplay_babaevsky__file-upload">
@@ -118,7 +128,7 @@
                     <label class="sailplay_babaevsky__form-field_checkbox">
                         <input type="checkbox" name="agree" data-ng-model="agree" required>
                         <i></i>
-                        <a href="#">Я принимаю условия</a>
+                        <a data-ng-href="{{ rulesLink }}" target="_blank">Я принимаю условия</a>
                     </label>
 
                     <label class="sailplay_babaevsky__form-field_checkbox">
