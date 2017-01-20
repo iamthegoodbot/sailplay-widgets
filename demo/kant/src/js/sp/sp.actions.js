@@ -15,8 +15,7 @@
               "fb_share_btn": {
                 "font-family": "Arial",
                 "box-sizing": "border-box",
-                "height": "30px",
-                "line-height": "1",
+                "height": "100%",
                 "text-decoration": "none",
                 "color": "#ffffff",
                 "width": "100%",
@@ -24,8 +23,12 @@
                 "left": "0",
                 "top": "0",
                 "font-size": "18px",
+                "line-height": "43px",
                 "cursor": "pointer",
-                "display": "inline-block"
+                "display": "inline-block",
+                "background": "#e9582b",
+                "position": "absolute",
+                "max-width": "134px"
               }
             }
           },
@@ -38,8 +41,7 @@
               "fb_share_btn": {
                 "font-family": "Arial",
                 "box-sizing": "border-box",
-                "height": "30px",
-                "line-height": "1",
+                "height": "100%",
                 "text-decoration": "none",
                 "color": "#ffffff",
                 "width": "100%",
@@ -47,8 +49,12 @@
                 "left": "0",
                 "top": "0",
                 "font-size": "18px",
+                "line-height": "43px",
                 "cursor": "pointer",
-                "display": "inline-block"
+                "display": "inline-block",
+                "background": "#e9582b",
+                "position": "absolute",
+                "max-width": "134px"
               }
             }
           },
@@ -61,8 +67,7 @@
               "fb_share_btn": {
                 "font-family": "Arial",
                 "box-sizing": "border-box",
-                "height": "30px",
-                "line-height": "1",
+                "height": "100%",
                 "text-decoration": "none",
                 "color": "#ffffff",
                 "width": "100%",
@@ -70,8 +75,12 @@
                 "left": "0",
                 "top": "0",
                 "font-size": "18px",
+                "line-height": "43px",
                 "cursor": "pointer",
-                "display": "inline-block"
+                "display": "inline-block",
+                "background": "#e9582b",
+                "position": "absolute",
+                "max-width": "134px"
               }
             }
           }
@@ -86,8 +95,7 @@
               "vk_share_btn": {
                 "font-family": "Arial",
                 "box-sizing": "border-box",
-                "height": "30px",
-                "line-height": "1",
+                "height": "100%",
                 "text-decoration": "none",
                 "color": "#ffffff",
                 "width": "100%",
@@ -95,8 +103,12 @@
                 "left": "0",
                 "top": "0",
                 "font-size": "18px",
+                "line-height": "43px",
                 "cursor": "pointer",
-                "display": "inline-block"
+                "display": "inline-block",
+                "background": "#e9582b",
+                "position": "absolute",
+                "max-width": "134px"
               }
             }
           },
@@ -109,8 +121,7 @@
               "vk_share_btn": {
                 "font-family": "Arial",
                 "box-sizing": "border-box",
-                "height": "30px",
-                "line-height": "1",
+                "height": "100%",
                 "text-decoration": "none",
                 "color": "#ffffff",
                 "width": "100%",
@@ -118,8 +129,12 @@
                 "left": "0",
                 "top": "0",
                 "font-size": "18px",
+                "line-height": "43px",
                 "cursor": "pointer",
-                "display": "inline-block"
+                "display": "inline-block",
+                "background": "#e9582b",
+                "position": "absolute",
+                "max-width": "134px"
               }
             }
           },
@@ -132,8 +147,7 @@
               "vk_share_btn": {
                 "font-family": "Arial",
                 "box-sizing": "border-box",
-                "height": "30px",
-                "line-height": "1",
+                "height": "100%",
                 "text-decoration": "none",
                 "color": "#ffffff",
                 "width": "100%",
@@ -141,8 +155,12 @@
                 "left": "0",
                 "top": "0",
                 "font-size": "18px",
+                "line-height": "43px",
                 "cursor": "pointer",
-                "display": "inline-block"
+                "display": "inline-block",
+                "background": "#e9582b",
+                "position": "absolute",
+                "max-width": "134px"
               }
             }
           }

@@ -33,7 +33,7 @@
         _form.lastName = self.user().user.last_name;
         _form.middleName = self.user().user.middle_name;
         _form.addEmail = self.user().user.email;
-        _form.addPhone = self.user().user.phone;
+        _form.addPhone = self.user().user.phone && self.user().user.phone.slice(1);
 
         return _form;
 
@@ -107,15 +107,15 @@
             }
 
             if (scope.form.middleName !== scope.user().user.middle_name) {
-              data.lastName = scope.form.middleName;
+              data.middleName = scope.form.middleName;
             }
 
             if (scope.form.addEmail !== scope.user().user.email) {
               data.addEmail = scope.form.addEmail;
             }
 
-            if (scope.form.addPhone !== scope.user().user.phone) {
-              data.addPhone = scope.form.addPhone;
+            if (('7' + scope.form.addPhone) !== scope.user().user.phone) {
+              data.addPhone = ('7' + scope.form.addPhone);
             }
 
             if (!Object.keys(data).length) {

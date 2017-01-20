@@ -43924,17 +43924,21 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	      scope.get_progress = function (sum, badges) {
 	        var next = scope.get_next_status(sum, badges);
+	        var current = scope.get_current_status(sum, badges);
 	        if (!next) return { width: 0 };
-	        var purchase_event = null;
-	        if (angular.isArray(next.rules)) {
-	          purchase_event = next.rules.filter(function (event) {
-	            return event.event_id == PURCHASES_EVENT;
-	          })[0];
-	        } else {
-	          purchase_event = next.rules.event_id == PURCHASES_EVENT ? next.rules : null;
-	        }
-	        if (!purchase_event || !purchase_event.value_to_success) return { width: 0 };
-	        var percents = sum > purchase_event.value_to_success ? 100 : purchase_event ? sum * 100 / purchase_event.value_to_success : 0;
+	        var next_purchase_event = void 0,
+	            current_purchase_event = void 0;
+
+	        current_purchase_event = current.rules.filter(function (event) {
+	          return event.event_id == PURCHASES_EVENT;
+	        })[0];
+
+	        next_purchase_event = next.rules.filter(function (event) {
+	          return event.event_id == PURCHASES_EVENT;
+	        })[0];
+
+	        if (!next_purchase_event || !next_purchase_event.value_to_success) return { width: 0 };
+	        var percents = sum > next_purchase_event.value_to_success ? 100 : next_purchase_event ? (current_purchase_event && current_purchase_event.value_to_success ? sum - current_purchase_event.value_to_success : sum) * 100 / (current_purchase_event && current_purchase_event.value_to_success ? next_purchase_event.value_to_success - current_purchase_event.value_to_success : next_purchase_event.value_to_success) : 0;
 	        return { width: (percents < 0 ? 0 : percents > 100 ? 100 : percents) + '%' };
 	      };
 
@@ -43970,6 +43974,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var next = badges.filter(function (badge) {
 	          return !badge.is_received;
 	        })[0];
+	        if (!next) next = badges[badges.length - 1];
 	        return next;
 	      };
 	    };

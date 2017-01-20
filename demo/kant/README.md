@@ -6,9 +6,37 @@ Paste this code to the page in < head > section to load the script:
     <script type="text/javascript">
 
             window.sailplay_config = {
-                auth_hash: 'AUTH_HASH',
-                partner_id: PARTNER_ID,
-                lang: 'ru'
+                auth_hash: 'ab3c82c1eadf07549f9298a93bf877150c6d9650',
+                partner_id: 1593,
+                lang: 'ru',
+                data: {
+                    statuses: [
+                        {
+                            discount: 0,
+                            from: 0,
+                            to: 5000
+                        },
+                        {
+                            discount: 5,
+                            from: 5000,
+                            to: 30000
+                        },
+                        {
+                            discount: 7,
+                            from: 30000,
+                            to: 100000
+                        },
+                        {
+                            discount: 10,
+                            from: 100000,
+                            to: 300000
+                        },
+                        {
+                            discount: 15,
+                            from: 300000
+                        }
+                    ]
+                }
             };
 
             var _links = {
@@ -41,7 +69,7 @@ Paste this code to < body > to render the content loaded via above mentioned scr
 
 ## Example
 
-Link: [DEMO](http://78.46.209.148/test/21shop/ "Demo")
+Link: [DEMO](http://78.46.209.148/test/kant/ "Demo")
 
 ## Development
 

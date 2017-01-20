@@ -1,21 +1,21 @@
 @font-face {
   font-family: 'core_sans_a';
-  src: url('../fonts/coresansa35light-webfont.eot');
-  src: url('../fonts/coresansa35light-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/coresansa35light-webfont.woff2') format('woff2'), url('../fonts/coresansa35light-webfont.woff') format('woff'), url('../fonts/coresansa35light-webfont.ttf') format('truetype');
+  src: url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/34a809daedd61c8f29981cc72517ef16.eot');
+  src: url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/34a809daedd61c8f29981cc72517ef16.eot?#iefix') format('embedded-opentype'), url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/849205cfdef75543db212a16d5156259.woff2') format('woff2'), url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/c8b8c3f22348cdb9ec27bf137cb435f7.woff') format('woff'), url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/34a809daedd61c8f29981cc72517ef16.eot') format('truetype');
   font-weight: 300;
   font-style: normal;
 }
 @font-face {
   font-family: 'core_sans_a';
-  src: url('../fonts/coresansa45regular-webfont.eot');
-  src: url('../fonts/coresansa45regular-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/coresansa45regular-webfont.woff2') format('woff2'), url('../fonts/coresansa45regular-webfont.woff') format('woff'), url('../fonts/coresansa45regular-webfont.ttf') format('truetype');
+  src: url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/8a8e5013d38e0a35a43680c84b7e406c.eot');
+  src: url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/8a8e5013d38e0a35a43680c84b7e406c.eot?#iefix') format('embedded-opentype'), url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/ff8b9e4b0cc38a064d53e006c6baec75.woff2') format('woff2'), url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/bfebc56338d76e747b55d170eeae79a1.woff') format('woff'), url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/93560329ade1bcccd963009900c3e625.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
   font-family: 'core_sans_a';
-  src: url('../fonts/coresansa65bold-webfont.eot');
-  src: url('../fonts/coresansa65bold-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/coresansa65bold-webfont.woff2') format('woff2'), url('../fonts/coresansa65bold-webfont.woff') format('woff'), url('../fonts/coresansa65bold-webfont.ttf') format('truetype');
+  src: url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/b93a6402edba7a053421219bb5f39380.eot');
+  src: url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/b93a6402edba7a053421219bb5f39380.eot?#iefix') format('embedded-opentype'), url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/b1f293b45ff8d87bfb0b5f602a7229c9.woff2') format('woff2'), url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/6809073dc63588b13ed7215ba519efa7.woff') format('woff'), url('https://d3sailplay.cdnvideo.ru/media/assets/assetfile/459093eeb2593d1a417624e0f1d0e1e2.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
 }
@@ -1958,6 +1958,9 @@ label.error {
   height: auto;
   margin: 0 auto;
 }
+.sp_custom_task-popup__btns {
+  position: relative;
+}
 .sp_custom_task-popup__btn {
   display: block;
   max-width: 48%;
@@ -1965,15 +1968,26 @@ label.error {
 }
 @media (max-width: 767px) {
   .sp_custom_task-popup__btn {
-    display: block;
-    width: 100%;
-    max-width: 100%;
-    margin: 0 0 15px;
+    width: 134px !important;
+    margin-top: 14px;
   }
 }
 .sp_custom_task-popup__btn iframe {
-  width: 100% !important;
-  height: 30px !important;
+  width: 50% !important;
+  height: 43px !important;
+  bottom: 0;
+  position: absolute;
+  left: 0;
+}
+@media (max-width: 767px) {
+  .sp_custom_task-popup__btn iframe {
+    width: 134px !important;
+    position: relative;
+  }
+}
+.sp_custom_task-popup__btn.social_action {
+  background: none;
+  padding: 0;
 }
 .sp_task-popup {
   -webkit-box-sizing: border-box;
@@ -2067,6 +2081,9 @@ label.error {
   line-height: 17px;
   margin-bottom: 30px;
 }
+.sp_task-popup__btns {
+  position: relative;
+}
 .sp_task-popup__btns:before,
 .sp_task-popup__btns:after {
   content: " ";
@@ -2087,15 +2104,26 @@ label.error {
 }
 @media (max-width: 767px) {
   .sp_task-popup__btn {
-    display: block;
-    width: 100%;
-    max-width: 100%;
-    margin: 0 0 15px;
+    width: 134px !important;
+    margin-top: 14px;
   }
 }
 .sp_task-popup__btn iframe {
-  width: 100% !important;
-  height: 30px !important;
+  width: 50% !important;
+  height: 43px !important;
+  bottom: 0;
+  position: absolute;
+  left: 0;
+}
+@media (max-width: 767px) {
+  .sp_task-popup__btn iframe {
+    width: 134px !important;
+    position: relative;
+  }
+}
+.sp_task-popup__btn.social_action {
+  background: none;
+  padding: 0;
 }
 .sp_badge-popup {
   -webkit-box-sizing: border-box;
@@ -2765,6 +2793,7 @@ label.error {
 .sailplay_wrapper {
   margin: 0;
   padding: 0;
+  font-family: 'core_sans_a', sans-serif;
 }
 .sailplay_wrapper .pages {
   display: inline-block;

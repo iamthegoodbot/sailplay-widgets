@@ -73,7 +73,7 @@
                         <div class="sp_enter-form__ttl">Телефон <span class="sp_enter-form__req">*</span></div>
                         <div class="sp_enter-form__inp">
                             <input name="phone" type="text" class="sp_cmn-input js-phone-mask"
-                                   data-ui-mask="+9 (999) 999-9999" data-ng-model="form.addPhone" required>
+                                   data-ui-mask="+7 (999) 999 - 99 - 99" data-ng-model="form.addPhone" required>
                         </div>
                     </div>
                     <div class="sp_enter-form__set">
@@ -285,6 +285,7 @@
                         <a href="#" class="sp_cmn-fill-btn sp_cmn-fill-btn_sm sp_task-popup__btn" data-sailplay-action
                            data-styles="{{ action_styles(action_data($parent.show_action)) }}"
                            data-action="$parent.show_action"
+                           data-ng-class="{social_action: $parent.show_action.socialType}"
                            data-text="Получить">Получить</a>
 
                         <a href="#"
