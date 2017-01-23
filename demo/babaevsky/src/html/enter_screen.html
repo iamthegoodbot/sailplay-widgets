@@ -128,7 +128,7 @@
                     <label class="sailplay_babaevsky__form-field_checkbox">
                         <input type="checkbox" name="agree" data-ng-model="agree" required>
                         <i></i>
-                        <a data-ng-href="{{ rulesLink }}" target="_blank">Я принимаю условия</a>
+                        <a href="#" target="_blank" data-ng-click="$event.preventDefault();show_rules();">Я принимаю условия</a>
                     </label>
 
                     <label class="sailplay_babaevsky__form-field_checkbox">
@@ -173,7 +173,7 @@
 
     <magic-modal class="sailplay_babaevsky__notify_popup" data-show="notify">
 
-        <p data-ng-bind="notify"></p>
+        <p data-ng-bind-html="notify | to_trusted"></p>
 
     </magic-modal>
 

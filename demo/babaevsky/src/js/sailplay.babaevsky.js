@@ -47,6 +47,14 @@ window.angular.module('babaevsky', ['templates', 'magic', 'sailplay', 'magic.too
     };
 
     /**
+     * Get rules
+     * @returns {string}
+     */
+    self.get_rules = function () {
+      return '<h3 style="margin: 0;">Согласие на&nbsp;обработку персональных данных и&nbsp;получение информирования.</h3>\n<p style="margin: 0;padding-bottom: 0;">Регистрируясь для участия в&nbsp;программе лояльности сети фирменных магазинов &laquo;Алёнка&raquo;, Вы&nbsp;соглашаетесь\n    с&nbsp;обработкой\n    и&nbsp;использованием своих персональных данных, указанных в&nbsp;электронной анкете при регистрации, компанией ООО\n    &laquo;Объединенная Кондитерская Сеть&raquo;, а&nbsp;также третьими лицами, осуществляющими обработку персональных\n    данных по&nbsp;поручению\n    ООО &laquo;Объединенная Кондитерская Сеть&raquo;, с&nbsp;целью формирования базы данных о&nbsp;покупателях и&nbsp;осуществления\n    телефонной\n    и&nbsp;электронной информационной рассылки<strong> </strong>по&nbsp;SMS и/или E-mail об&nbsp;акциях и&nbsp;специальных\n    предложениях\n    сети фирменных магазинов &laquo;Алёнка&raquo;. Также, Вы&nbsp;выражаете свое согласие на&nbsp;получение рекламной\n    информации об\n    акциях и&nbsp;специальных предложениях сети фирменных магазинов &laquo;Алёнка&raquo; на&nbsp;неограниченный срок, до&nbsp;момента\n    отзыва Вами\n    такого согласия следующими способами: <br>\n    по&nbsp;E-mail: <a href="mailto:corp@alenka.ru" target="_blank">corp@alenka.ru</a>; <br>\n    по&nbsp;номеру телефона горячей\n    линии\n    <a href="tel:+79852163605">+7 (985) 216-36-05</a>.\n</p>';
+    };
+
+    /**
      * Generate origin user id
      * @returns {*}
      */
@@ -229,8 +237,6 @@ window.angular.module('babaevsky', ['templates', 'magic', 'sailplay', 'magic.too
          * @type {number}
          */
         scope.state = 0;
-        // Ссылка на правила
-        scope.rulesLink = decodeURIComponent(SAILPLAY.url_params() && SAILPLAY.url_params().rulesLink);
 
         /**
          * Проверяем наличие тегов
@@ -308,8 +314,15 @@ window.angular.module('babaevsky', ['templates', 'magic', 'sailplay', 'magic.too
             }
           });
 
-
         };
+
+        /**
+         * Show rules
+         */
+        scope.show_rules = function () {
+          scope.notify = BabaevskyForm.get_rules();
+        };
+
 
         /**
          * Загрузка фото карты
