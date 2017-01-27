@@ -1224,6 +1224,10 @@ label.error {
   width: 19px;
   height: 31px;
 }
+.sp_scale__point.this-point-0 {
+  left: 15.6%;
+  top: 74.5%;
+}
 .sp_scale__point.this-point-1 {
   left: 26.7%;
   top: 60.1%;
@@ -1417,7 +1421,7 @@ label.error {
   line-height: 1.42857143;
   color: #1D1D1B;
   margin: 0 auto 80px;
-  padding: 47px 15px 45px;
+  padding: 47px 30px 45px;
   background-color: #f2f2f2;
   box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);
 }
@@ -1497,11 +1501,11 @@ label.error {
 }
 .sp_badge-slider .slick-arrow.slick-left {
   background: url("https://d3sailplay.cdnvideo.ru/media/assets/assetfile/26da6b1bde50c3a895485c5fa91c53de.svg") no-repeat center;
-  left: 0px;
+  left: -26px;
 }
 .sp_badge-slider .slick-arrow.slick-right {
   background: url("https://d3sailplay.cdnvideo.ru/media/assets/assetfile/46bc7dcabc2145fb5050aa065c8cc173.svg") no-repeat center;
-  right: 0px;
+  right: -26px;
 }
 .sp_badge-slider .slick-arrow.slick-disabled {
   display: none !important;
@@ -2824,11 +2828,12 @@ label.error {
   max-width: 600px;
   width: 100%;
   padding: 20px;
+  text-align: center;
 }
 .sailplay_wrapper .bns_overlay .notify_header {
   font-size: 28px;
   font-family: arial, verdana, sans-serif;
-  text-align: left;
+  text-align: center;
   margin-bottom: 35px;
 }
 .sailplay_wrapper .bns_overlay .notify_text {

@@ -274,7 +274,7 @@
      * @param {object}  action   A SailPlay custom action object, received from api.
      *
      */
-    .directive('sailplayActionCustom', function(sp, $document){
+    .directive('sailplayActionCustom', function (sp, $document) {
 
       var init_state;
 
@@ -285,19 +285,19 @@
         scope: {
           action: '='
         },
-        link: function(scope, elm, attrs){
+        link: function (scope, elm, attrs) {
 
           var iframe = $document[0].createElement('iframe');
 
           iframe.style.backgroundColor = "transparent";
           iframe.frameBorder = "0";
-          iframe.allowTransparency="true";
+          iframe.allowTransparency = "true";
 
           elm.append(iframe);
 
-          scope.$watch('action', function(action){
+          scope.$watch('action', function (action) {
 
-            if(action){
+            if (action) {
 
               var config = sp.config();
 
@@ -318,7 +318,7 @@
 
     })
 
-    .directive('sailplayActions', function (sp_api, sp, spAction, tagHelper, spProfileTag) {
+    .directive('sailplayActions', function (sp_api, sp, spAction, tagHelper, spProfileTag, $rootScope, $filter) {
 
       return {
 
@@ -357,6 +357,28 @@
           };
 
           scope.show_action = null;
+
+          sp.on('actions.perform.success', function (res) {
+
+            $rootScope.$apply(function () {
+
+              var msg = '', header = '';
+              if (res.data.response.status == 'ok') {
+                header = 'Поздравляем, задание выполнено!';
+                msg = 'Вам начиcленно: <span style="color:#FF762B;font-weight: bold;">' + res.data.response.points + ' ' + $filter('sailplay_pluralize')(res.data.response.points, 'балл,балла,баллов') + '</span>'
+              } else {
+                header = 'Ошибка';
+                msg = res.data.response.message;
+              }
+              $rootScope.$broadcast('notify:show', {
+                title: header,
+                text: msg
+              });
+              scope.show_action = null;
+            })
+
+          });
+
           /**
            * Показать действие в попапе
            * @param action
@@ -366,6 +388,7 @@
           };
 
           scope.show_custom_action = null;
+
           /**
            * Показать кастомное действие в попапе
            * @param action

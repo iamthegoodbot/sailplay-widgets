@@ -118,7 +118,7 @@
                 respondTo: 'slider',
                 responsive: [
                   {
-                    breakpoint: 1050,
+                    breakpoint: 1000,
                     settings: {
                       slidesToShow: 3,
                       slidesToScroll: 1

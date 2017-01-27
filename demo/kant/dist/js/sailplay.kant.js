@@ -2443,7 +2443,7 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/html/main.html',
-    '<div class="sailplay_wrapper" data-ng-show="global.loaded"><div class="bns_overlay" data-ng-cloak="" data-sailplay-history="" data-ng-style="{ display: (show ? \'block\' : \'none\')}"><div class="bns_overlay_inner sp_hist-popup js-history-popup"><div class="sp_hist-popup__hd">История начислений</div><div class="sp_hist-list"><div class="sp_hist-list__inner"><div class="sp_hist-list__date-itm" data-dir-paginate="item in history() | filter:hasPoints | itemsPerPage:5" data-pagination-id="history_pages"><div class="sp_hist-list__date" data-ng-bind="item.action_date | date:\'dd.MM.yyyy\'"></div><div class="sp_hist-list__itm"><div class="sp_hist-list__count" data-ng-class="{ hist_point_not_completed: !item.is_completed, hist_point_minus: item.points_delta < 0 }" data-ng-bind="(item.points_delta < 0 ? \'\' : \'+ \') + (item.points_delta | number) + \' \' + (item.points_delta | sailplay_pluralize:\'балл,балла,баллов\')"></div><div class="sp_hist-list__name" data-ng-bind="item | history_item">Покупка</div></div></div><dir-pagination-controls data-max-size="5" data-pagination-id="history_pages" data-template-url="/html/ui/ui.pagination.controls.html" data-auto-hide="true"></dir-pagination-controls></div><a href="#" class="sp_hist-list__btn sp_cmn-fill-btn sp_cmn-fill-btn_sm js-close-popup" data-ng-click="$event.preventDefault();show = null;body_lock(false);">Назад</a></div></div></div><div class="bns_overlay" data-ng-cloak="" data-sailplay-profile-edit="" data-ng-style="{ display: (show ? \'block\' : \'none\')}"><div class="bns_overlay_inner sp_enter-popup js-profile-popup"><div class="sp_enter-popup__head">Редактировать профиль</div><form id="profile-edit" class="sp_enter-popup__body" novalidate="" name="profile"><div class="sp_enter-form"><div class="sp_enter-form__set"><div class="sp_enter-form__ttl">Фамилия <span class="sp_enter-form__req">*</span></div><div class="sp_enter-form__inp"><input name="surname" type="text" class="sp_cmn-input" data-ng-model="form.lastName" required=""></div></div><div class="sp_enter-form__set"><div class="sp_enter-form__ttl">Имя <span class="sp_enter-form__req">*</span></div><div class="sp_enter-form__inp"><input name="name" type="text" class="sp_cmn-input" data-ng-model="form.firstName" required=""></div></div><div class="sp_enter-form__set"><div class="sp_enter-form__ttl">Отчество <span class="sp_enter-form__req">*</span></div><div class="sp_enter-form__inp"><input name="" type="text" class="sp_cmn-input" data-ng-model="form.middleName" required=""></div></div><div class="sp_enter-form__set"><div class="sp_enter-form__ttl">Телефон <span class="sp_enter-form__req">*</span></div><div class="sp_enter-form__inp"><input name="phone" type="text" class="sp_cmn-input js-phone-mask" data-ui-mask="+7 (999) 999 - 99 - 99" data-ng-model="form.addPhone" required=""></div></div><div class="sp_enter-form__set"><div class="sp_enter-form__ttl">Эл. почта <span class="sp_enter-form__req">*</span></div><div class="sp_enter-form__inp"><input name="email" type="email" class="sp_cmn-input" data-ng-model="form.addEmail" required=""></div></div><div class="sp_profile-form__btns"><input type="submit" class="sp_cmn-btn sp_profile-form__btn" value="Сохранить" data-ng-click="$event.preventDefault();save(profile);body_lock(false);"> <a href="#" class="sp_cmn-btn sp_profile-form__btn js-close-popup" data-ng-click="$event.preventDefault();close();body_lock(false);">Назад</a></div></div></form></div></div><div class="sp_widget"><section class="sp_main-banner"><div class="sp_main-banner__logo"><img src="https://d3sailplay.cdnvideo.ru/media/assets/assetfile/ba06f0c6b9f57fb004a1180a3d51a377.png" alt="КАНТ"></div><div class="sp_main-banner__hd">Бонусная программа</div><div class="sp_steps sp_main-banner__steps"><div class="sp_steps__itm"><div class="sp_steps__img"><div class="sp_steps__img-in"><img src="https://d3sailplay.cdnvideo.ru/media/assets/assetfile/88e0ce019a406e5fca206881684f248e.svg" alt="Выполняйте задания"></div></div><div class="sp_steps__ttl">Выполняйте задания</div></div><div class="sp_steps__itm"><div class="sp_steps__img"><div class="sp_steps__img-in"><img src="https://d3sailplay.cdnvideo.ru/media/assets/assetfile/ac9c1b53eb2b238b05a6853d57a3699c.svg" alt="Делайте покупки"></div></div><div class="sp_steps__ttl">Делайте покупки</div></div><div class="sp_steps__itm"><div class="sp_steps__img"><div class="sp_steps__img-in"><img src="https://d3sailplay.cdnvideo.ru/media/assets/assetfile/66670cd189c188e1d67321916aa7fbb7.svg" alt="Получайте бонусы"></div></div><div class="sp_steps__ttl">Получайте бонусы</div></div><div class="sp_steps__itm"><div class="sp_steps__img"><div class="sp_steps__img-in"><img src="https://d3sailplay.cdnvideo.ru/media/assets/assetfile/dae46f51f90b566f33f4a994e9b8c0c6.svg" alt="Оплачивайте бонусами"></div></div><div class="sp_steps__ttl">Оплачивайте бонусами</div></div></div><div class="sp_person-sec" data-sailplay-profile=""><div class="sp_person-sec__left"><div class="sp_person-cell"><div class="sp_person-cell__l"><div class="sp_person-cell__photo" style="background-image: url({{ user().user.pic | get_avatar }});"></div></div><div class="sp_person-cell__r"><div class="sp_person-cell__info">{{ user().user.name || \'Имя не указано\' }}<br>{{ user().user.phone && (\'+\' + (user().user.phone | tel)) || \'Телефона не указан\' }}<br>{{ user().user.email || \'Email не указан\' }}<br>Ваш статус: <span class="sp_person-cell__stat" data-ng-bind="user().user_status && user().user_status.name ? user().user_status.name : \'Нет статуса\'"></span></div><a href="#" class="sp_person-cell__lnk js-open-popup" data-targetpopup="js-profile-popup" data-ng-click="$event.preventDefault();edit_profile();body_lock(true);">Изменить</a></div></div></div><div class="sp_person-sec__right"><div class="sp_point-cell"><div class="sp_point-cell__val" data-ng-bind="user().user_points.confirmed | number"></div><div class="sp_point-cell__ttl" data-ng-bind="user().user_points.confirmed | sailplay_pluralize:\'балл,балла,баллов\'"></div><a href="#" class="sp_point-cell__lnk js-open-popup" data-targetpopup="js-history-popup" data-ng-click="$event.preventDefault();show_history();body_lock(true);">История начислений</a><div class="sp_point-cell__btn-wr"><span class="sp_cmn-fill-btn sp_point-cell__btn" data-scrollto="anchor-1">Получить больше баллов</span></div></div></div></div></section><section class="sp_scale-sec" data-ng-cloak="" data-sailplay-status=""><div class="sp_scale"><div class="sp_scale__bar"><div class="sp_scale__progress js-scale" data-ng-style="{width: getProgress(user().purchases.sum) + \'%\'}"></div><div class="sp_scale__person-wr js-scale-frame"><div class="sp_scale__person js-scale-person" data-ng-style="getAvatarPosition(user().purchases.sum)" style="background-image: url(\'{{ user().user.pic | get_avatar }}\');"></div></div></div><img src="https://d3sailplay.cdnvideo.ru/media/assets/assetfile/712bd1dee7bb7398e4772ba33a518e37.png" alt="Scale Bar" class="sp_scale__img"><div class="sp_scale__point js-scale-point this-point-{{ $index+1 }}" data-ng-class="{\'this-active\': badge.is_received}" data-ng-repeat="badge in badges().multilevel_badges[0] track by $index"><div class="sp_scale__point-ttl" data-ng-class="{\'this-right\':$last}"><div class="sp_scale__point-ttl-txt" data-ng-bind="badge.name"></div><div class="sp_footnote" data-ng-bind="$index+1"></div></div><div class="sp_scale__popup">{{ badge.is_received ? \'Этот статус уже есть\' : \'До этого статуса осталось\' }}<div class="sp_scale__pop-count" data-ng-if="getOffsetToStatusByIndex(user().purchases.sum, $index)">{{ getOffsetToStatusByIndex(user().purchases.sum, $index) | number }} {{ getOffsetToStatusByIndex(user().purchases.sum, $index) | sailplay_pluralize:\'рубль,рубля,рублей\' }}</div></div></div></div></section><section class="sp_footnote-descr" data-sailplay-status="" data-ng-if="badges && badges() && user && user()"><div class="sp_footnote-descr__itm" daa-ng-repeat="badge in $parent.badges().multilevel_badges[0] track by $index"><div class="sp_footnote sp_footnote-descr__count" data-ng-bind="$index+1"></div>{{ badge.name }}</div></section><section class="sp_badge-sec" data-sailplay-status=""><div class="bns_overlay" data-ng-style="{ display: (show_badge ? \'block\' : \'none\')}"><div class="bns_overlay_inner sp_badge-popup js-badge-popup"><div class="sp_badge-popup__img" style="background-image: url(\'{{ show_badge.thumbs.url_250x250 | sailplay_pic }}\');"></div><div class="sp_badge-popup__hd" data-ng-bind="show_badge.name"></div><div class="sp_badge-popup__txt" data-ng-bind-html="show_badge.descr | to_trusted"></div><a href="#" class="sp_cmn-fill-btn sp_cmn-fill-btn_sm sp_badge-popup__btn js-close-popup" data-ng-click="$event.preventDefault();show_badge=null;">Назад</a></div></div><div class="sp_badge-sec__hd" data-ng-if="badges && badges() && user && user()">До статуса <b data-ng-bind="getNextStatus(user().purchases.sum).name"></b><br>осталось <b data-ng-bind="((getOffsetToStatus(user().purchases.sum).from - user().purchases.sum) | number) + \' \' + ((getOffsetToStatus(user().purchases.sum).from - user().purchases.sum) | sailplay_pluralize:\'рубль,рубля,рублей\')"></b></div><div class="sp_badge-slider js-badge-slider" data-ng-if="badges && badges()"><div data-ng-repeat="badge in $parent.badges().multilevel_badges[0] track by $index" data-status-slider=""><div class="sp_badge-slide"><div class="sp_badge-slide__img" style="background-image: url(\'{{ badge.thumbs.url_250x250 | sailplay_pic }}\');"></div><div class="sp_badge-slide__hd" data-ng-bind="badge.name"></div><div class="sp_badge-slide__ttl" data-ng-bind-html="getDescr($index) | to_trusted"></div><a href="#" class="sp_badge-slide__more js-open-popup" data-targetpopup="js-badge-popup1" data-ng-click="$event.preventDefault();openBadge(badge);">Подробнее>></a></div></div></div></section><section class="sp_task-sec" data-anchor="anchor-1" data-ng-cloak="" data-sailplay-actions=""><div class="bns_overlay" data-ng-if="show_action" data-ng-style="{ display: ($parent.show_action ? \'block\' : \'none\')}"><div class="bns_overlay_inner sp_task-popup js-task-popup"><div class="sp_task-popup__icn"><img data-ng-src="{{ action_data($parent.show_action).pic }}" alt="{{ action_data($parent.show_action).name }}"></div><div class="sp_task-popup__hd" data-ng-bind="action_data($parent.show_action).name"></div><div class="sp_task-popup__txt" data-ng-bind="action_data($parent.show_action).descr"></div><div class="sp_task-popup__btns"><a href="#" class="sp_cmn-fill-btn sp_cmn-fill-btn_sm sp_task-popup__btn" data-sailplay-action="" data-styles="{{ action_styles(action_data($parent.show_action)) }}" data-action="$parent.show_action" data-ng-class="{social_action: $parent.show_action.socialType}" data-text="Получить">Получить</a> <a href="#" class="sp_cmn-fill-btn sp_cmn-fill-btn_sm sp_task-popup__btn js-close-popup" data-ng-click="$event.preventDefault();$parent.show_action=null;">Отмена</a></div></div></div><div class="bns_overlay" data-ng-if="show_custom_action" data-ng-style="{ display: ($parent.show_custom_action ? \'block\' : \'none\')}"><div class="bns_overlay_inner sp_custom_task-popup js-task-popup"><div class="sp_task-popup__icn"><img data-ng-src="{{ $parent.show_custom_action.icon | sailplay_pic }}" alt="{{ $parent.show_custom_action.name }}"></div><div data-sailplay-action-custom="" data-action="$parent.show_custom_action"></div><a href="#" class="sp_cmn-fill-btn sp_cmn-fill-btn_sm sp_task-popup__btn js-close-popup" data-ng-click="$event.preventDefault();$parent.show_custom_action=null;">Отмена</a></div></div><div class="sp_task-sec__head">Задания</div><div class="sp_task-sec__row"><div class="sp_task-sec__col" data-ng-repeat="action in actions().actions | filter:check_in_list"><div class="sp_task-cell"><div class="sp_task-cell__l"><div class="sp_task-cell__icn-out"><div class="sp_task-cell__icn-inn"><img data-ng-src="{{ action_data(action).pic }}" alt="{{ action_data(action).name }}"></div></div></div><div class="sp_task-cell__r"><div class="sp_task-cell__txt"><div class="sp_task-cell__txt-inn">{{ action_data(action).name }} <span class="sp_task-cell__count" data-ng-bind="(action.points | number) + \' \' + (action.points | sailplay_pluralize:\'балл,балла,баллов\')"></span></div></div></div><div class="sp_task-cell__over"><div class="sp_task-cell__l"><div class="sp_task-cell__icn-out"><div class="sp_task-cell__icn-inn"><img data-ng-src="{{ action_data(action).pic_h }}" alt="{{ action_data(action).name }}"></div></div></div><div class="sp_task-cell__r-over"><a href="#" class="sp_cmn-fill-btn sp_task-cell__btn js-open-popup" data-ng-click="$event.preventDefault();showAction(action);">Выполнить</a></div></div></div></div><div class="sp_task-sec__col" data-ng-repeat="action in actions_custom()"><div class="sp_task-cell"><div class="sp_task-cell__l"><div class="sp_task-cell__icn-out"><div class="sp_task-cell__icn-inn"><img data-ng-src="{{ action.icon | sailplay_pic }}" alt="{{ action.name }}"></div></div></div><div class="sp_task-cell__r"><div class="sp_task-cell__txt"><div class="sp_task-cell__txt-inn">{{ action.name }} <span class="sp_task-cell__count" data-ng-bind="(action.points | number) + \' \' + (action.points | sailplay_pluralize:\'балл,балла,баллов\')"></span></div></div></div><div class="sp_task-cell__over"><div class="sp_task-cell__l"><div class="sp_task-cell__icn-out"><div class="sp_task-cell__icn-inn"><img data-ng-src="{{ action.icon | sailplay_pic }}" alt="{{ action.name }}"></div></div></div><div class="sp_task-cell__r-over"><a href="#" class="sp_cmn-fill-btn sp_task-cell__btn js-open-popup" data-ng-click="$event.preventDefault();showCustomAction(action);">Выполнить</a></div></div></div></div><div class="sp_task-sec__col" data-ng-if="!check_for_exist(fill_profile_tag, exist())"><div class="sp_task-cell"><div class="sp_task-cell__l"><div class="sp_task-cell__icn-out"><div class="sp_task-cell__icn-inn"><img src="https://d3sailplay.cdnvideo.ru/media/assets/assetfile/931f2507b2925bf3c117f2c7682be85b.svg" alt="Заполните профиль"></div></div></div><div class="sp_task-cell__r"><div class="sp_task-cell__txt"><div class="sp_task-cell__txt-inn">Заполните профиль <span class="sp_task-cell__count">200 баллов</span></div></div></div><div class="sp_task-cell__over"><div class="sp_task-cell__l"><div class="sp_task-cell__icn-out"><div class="sp_task-cell__icn-inn"><img src="https://d3sailplay.cdnvideo.ru/media/assets/assetfile/e6fbe93fdaeb39559e17c5d90ff5ebbd.svg" alt="Заполните профиль"></div></div></div><div class="sp_task-cell__r-over"><a href="#" class="sp_cmn-fill-btn sp_task-cell__btn js-open-popup" data-ng-click="$event.preventDefault();edit_profile();body_lock(false);">Выполнить</a></div></div></div></div></div></section></div><notify-popup></notify-popup></div>');
+    '<div class="sailplay_wrapper" data-ng-show="global.loaded"><div class="bns_overlay" data-ng-cloak="" data-sailplay-history="" data-ng-style="{ display: (show ? \'block\' : \'none\')}"><div class="bns_overlay_inner sp_hist-popup js-history-popup"><div class="sp_hist-popup__hd">История начислений</div><div class="sp_hist-list"><div class="sp_hist-list__inner"><div class="sp_hist-list__date-itm" data-dir-paginate="item in history() | filter:hasPoints | itemsPerPage:5" data-pagination-id="history_pages"><div class="sp_hist-list__date" data-ng-bind="item.action_date | date:\'dd.MM.yyyy\'"></div><div class="sp_hist-list__itm"><div class="sp_hist-list__count" data-ng-class="{ hist_point_not_completed: !item.is_completed, hist_point_minus: item.points_delta < 0 }" data-ng-bind="(item.points_delta < 0 ? \'\' : \'+ \') + (item.points_delta | number) + \' \' + (item.points_delta | sailplay_pluralize:\'балл,балла,баллов\')"></div><div class="sp_hist-list__name" data-ng-bind="item | history_item">Покупка</div></div></div><dir-pagination-controls data-max-size="5" data-pagination-id="history_pages" data-template-url="/html/ui/ui.pagination.controls.html" data-auto-hide="true"></dir-pagination-controls></div><a href="#" class="sp_hist-list__btn sp_cmn-fill-btn sp_cmn-fill-btn_sm js-close-popup" data-ng-click="$event.preventDefault();show = null;body_lock(false);">Назад</a></div></div></div><div class="bns_overlay" data-ng-cloak="" data-sailplay-profile-edit="" data-ng-style="{ display: (show ? \'block\' : \'none\')}"><div class="bns_overlay_inner sp_enter-popup js-profile-popup"><div class="sp_enter-popup__head">Редактировать профиль</div><form id="profile-edit" class="sp_enter-popup__body" novalidate="" name="profile"><div class="sp_enter-form"><div class="sp_enter-form__set"><div class="sp_enter-form__ttl">Фамилия <span class="sp_enter-form__req">*</span></div><div class="sp_enter-form__inp"><input name="surname" type="text" class="sp_cmn-input" data-ng-model="form.lastName" required=""></div></div><div class="sp_enter-form__set"><div class="sp_enter-form__ttl">Имя <span class="sp_enter-form__req">*</span></div><div class="sp_enter-form__inp"><input name="name" type="text" class="sp_cmn-input" data-ng-model="form.firstName" required=""></div></div><div class="sp_enter-form__set"><div class="sp_enter-form__ttl">Отчество <span class="sp_enter-form__req">*</span></div><div class="sp_enter-form__inp"><input name="" type="text" class="sp_cmn-input" data-ng-model="form.middleName" required=""></div></div><div class="sp_enter-form__set"><div class="sp_enter-form__ttl">Телефон <span class="sp_enter-form__req">*</span></div><div class="sp_enter-form__inp"><input name="phone" type="text" class="sp_cmn-input js-phone-mask" data-ui-mask="+7 (999) 999 - 99 - 99" data-ng-model="form.addPhone" required=""></div></div><div class="sp_enter-form__set"><div class="sp_enter-form__ttl">Эл. почта <span class="sp_enter-form__req">*</span></div><div class="sp_enter-form__inp"><input name="email" type="email" class="sp_cmn-input" data-ng-model="form.addEmail" required=""></div></div><div class="sp_profile-form__btns"><input type="submit" class="sp_cmn-btn sp_profile-form__btn" value="Сохранить" data-ng-click="$event.preventDefault();save(profile);body_lock(false);"> <a href="#" class="sp_cmn-btn sp_profile-form__btn js-close-popup" data-ng-click="$event.preventDefault();close();body_lock(false);">Назад</a></div></div></form></div></div><div class="sp_widget"><section class="sp_main-banner"><div class="sp_main-banner__logo"><img src="https://d3sailplay.cdnvideo.ru/media/assets/assetfile/ba06f0c6b9f57fb004a1180a3d51a377.png" alt="КАНТ"></div><div class="sp_main-banner__hd">Бонусная программа</div><div class="sp_steps sp_main-banner__steps"><div class="sp_steps__itm"><div class="sp_steps__img"><div class="sp_steps__img-in"><img src="https://d3sailplay.cdnvideo.ru/media/assets/assetfile/88e0ce019a406e5fca206881684f248e.svg" alt="Выполняйте задания"></div></div><div class="sp_steps__ttl">Выполняйте задания</div></div><div class="sp_steps__itm"><div class="sp_steps__img"><div class="sp_steps__img-in"><img src="https://d3sailplay.cdnvideo.ru/media/assets/assetfile/ac9c1b53eb2b238b05a6853d57a3699c.svg" alt="Делайте покупки"></div></div><div class="sp_steps__ttl">Делайте покупки</div></div><div class="sp_steps__itm"><div class="sp_steps__img"><div class="sp_steps__img-in"><img src="https://d3sailplay.cdnvideo.ru/media/assets/assetfile/66670cd189c188e1d67321916aa7fbb7.svg" alt="Получайте бонусы"></div></div><div class="sp_steps__ttl">Получайте бонусы</div></div><div class="sp_steps__itm"><div class="sp_steps__img"><div class="sp_steps__img-in"><img src="https://d3sailplay.cdnvideo.ru/media/assets/assetfile/dae46f51f90b566f33f4a994e9b8c0c6.svg" alt="Оплачивайте бонусами"></div></div><div class="sp_steps__ttl">Оплачивайте бонусами</div></div></div><div class="sp_person-sec" data-sailplay-profile=""><div class="sp_person-sec__left"><div class="sp_person-cell"><div class="sp_person-cell__l"><div class="sp_person-cell__photo" style="background-image: url({{ user().user.pic | get_avatar }});"></div></div><div class="sp_person-cell__r"><div class="sp_person-cell__info">{{ user().user.name || \'Имя не указано\' }}<br>{{ user().user.phone && (user().user.phone | tel) || \'Телефона не указан\' }}<br>{{ user().user.email || \'Email не указан\' }}<br>Ваш статус: <span class="sp_person-cell__stat" data-ng-bind="user().user_status && user().user_status.name ? user().user_status.name : \'Нет статуса\'"></span></div><a href="#" class="sp_person-cell__lnk js-open-popup" data-targetpopup="js-profile-popup" data-ng-click="$event.preventDefault();edit_profile();body_lock(true);">Изменить</a></div></div></div><div class="sp_person-sec__right"><div class="sp_point-cell"><div class="sp_point-cell__val" data-ng-bind="user().user_points.confirmed | number"></div><div class="sp_point-cell__ttl" data-ng-bind="user().user_points.confirmed | sailplay_pluralize:\'балл,балла,баллов\'"></div><a href="#" class="sp_point-cell__lnk js-open-popup" data-targetpopup="js-history-popup" data-ng-click="$event.preventDefault();show_history();body_lock(true);">История начислений</a><div class="sp_point-cell__btn-wr"><span class="sp_cmn-fill-btn sp_point-cell__btn" data-scroll-to="#actions">Получить больше баллов</span></div></div></div></div></section><section class="sp_scale-sec" data-ng-cloak="" data-sailplay-status=""><div class="sp_scale"><div class="sp_scale__bar"><div class="sp_scale__progress js-scale" data-ng-style="{width: getProgress(user().purchases.sum) + \'%\'}"></div><div class="sp_scale__person-wr js-scale-frame"><div class="sp_scale__person js-scale-person" data-ng-style="getAvatarPosition(user().purchases.sum)" style="background-image: url(\'{{ user().user.pic | get_avatar }}\');"></div></div></div><img src="https://d3sailplay.cdnvideo.ru/media/assets/assetfile/712bd1dee7bb7398e4772ba33a518e37.png" alt="Scale Bar" class="sp_scale__img"><div class="sp_scale__point js-scale-point this-point-{{ $index }}" data-ng-class="{\'this-active\': badge.is_received}" data-ng-repeat="badge in badges().multilevel_badges[0] track by $index"><div class="sp_scale__point-ttl" data-ng-class="{\'this-right\':$last}"><div class="sp_scale__point-ttl-txt" data-ng-bind="badge.name"></div><div class="sp_footnote" data-ng-bind="$index+1"></div></div><div class="sp_scale__popup">{{ badge.is_received ? \'Этот статус уже есть\' : \'До этого статуса осталось\' }}<div class="sp_scale__pop-count" data-ng-if="getOffsetToStatusByIndex(user().purchases.sum, $index)">{{ getOffsetToStatusByIndex(user().purchases.sum, $index) | number }} {{ getOffsetToStatusByIndex(user().purchases.sum, $index) | sailplay_pluralize:\'рубль,рубля,рублей\' }}</div></div></div></div></section><section class="sp_footnote-descr" data-sailplay-status="" data-ng-if="badges && badges() && user && user()"><div class="sp_footnote-descr__itm" daa-ng-repeat="badge in $parent.badges().multilevel_badges[0] track by $index"><div class="sp_footnote sp_footnote-descr__count" data-ng-bind="$index+1"></div>{{ badge.name }}</div></section><section class="sp_badge-sec" data-sailplay-status=""><div class="bns_overlay" data-ng-style="{ display: (show_badge ? \'block\' : \'none\')}"><div class="bns_overlay_inner sp_badge-popup js-badge-popup"><div class="sp_badge-popup__img" style="background-image: url(\'{{ show_badge.thumbs.url_250x250 | sailplay_pic }}\');"></div><div class="sp_badge-popup__hd" data-ng-bind="show_badge.name"></div><div class="sp_badge-popup__txt" data-ng-bind-html="show_badge.descr | to_trusted"></div><a href="#" class="sp_cmn-fill-btn sp_cmn-fill-btn_sm sp_badge-popup__btn js-close-popup" data-ng-click="$event.preventDefault();show_badge=null;">Назад</a></div></div><div class="sp_badge-sec__hd" data-ng-if="badges && badges() && user && user() && getNextStatus(user().purchases.sum)">До статуса <b data-ng-bind="getNextStatus(user().purchases.sum).name"></b><br>осталось <b data-ng-bind="((getOffsetToStatus(user().purchases.sum).from - user().purchases.sum) | number) + \' \' + ((getOffsetToStatus(user().purchases.sum).from - user().purchases.sum) | sailplay_pluralize:\'рубль,рубля,рублей\')"></b></div><div class="sp_badge-slider js-badge-slider" data-ng-if="badges && badges()"><div data-ng-repeat="badge in $parent.badges().multilevel_badges[0] track by $index" data-status-slider=""><div class="sp_badge-slide"><div class="sp_badge-slide__img" style="background-image: url(\'{{ badge.thumbs.url_250x250 | sailplay_pic }}\');"></div><div class="sp_badge-slide__hd" data-ng-bind="badge.name"></div><div class="sp_badge-slide__ttl" data-ng-bind-html="getDescr($index+1) | to_trusted"></div><a href="#" class="sp_badge-slide__more js-open-popup" data-targetpopup="js-badge-popup1" data-ng-click="$event.preventDefault();openBadge(badge);">Подробнее>></a></div></div></div></section><section class="sp_task-sec" id="actions" data-ng-cloak="" data-sailplay-actions=""><div class="bns_overlay" data-ng-if="show_action" data-ng-style="{ display: ($parent.show_action ? \'block\' : \'none\')}"><div class="bns_overlay_inner sp_task-popup js-task-popup"><div class="sp_task-popup__icn"><img data-ng-src="{{ action_data($parent.show_action).pic }}" alt="{{ action_data($parent.show_action).name }}"></div><div class="sp_task-popup__hd" data-ng-bind="action_data($parent.show_action).name"></div><div class="sp_task-popup__txt" data-ng-bind="action_data($parent.show_action).descr"></div><div class="sp_task-popup__btns"><a href="#" class="sp_cmn-fill-btn sp_cmn-fill-btn_sm sp_task-popup__btn" data-sailplay-action="" data-styles="{{ action_styles(action_data($parent.show_action)) }}" data-action="$parent.show_action" data-ng-class="{social_action: $parent.show_action.socialType}" data-text="Получить">Получить</a> <a href="#" class="sp_cmn-fill-btn sp_cmn-fill-btn_sm sp_task-popup__btn js-close-popup" data-ng-click="$event.preventDefault();$parent.show_action=null;">Отмена</a></div></div></div><div class="bns_overlay" data-ng-if="show_custom_action" data-ng-style="{ display: ($parent.show_custom_action ? \'block\' : \'none\')}"><div class="bns_overlay_inner sp_custom_task-popup js-task-popup"><div class="sp_task-popup__icn"><img data-ng-src="{{ $parent.show_custom_action.icon | sailplay_pic }}" alt="{{ $parent.show_custom_action.name }}"></div><div data-sailplay-action-custom="" data-action="$parent.show_custom_action"></div><a href="#" class="sp_cmn-fill-btn sp_cmn-fill-btn_sm sp_task-popup__btn js-close-popup" data-ng-click="$event.preventDefault();$parent.show_custom_action=null;">Отмена</a></div></div><div class="sp_task-sec__head">Задания</div><div class="sp_task-sec__row"><div class="sp_task-sec__col" data-ng-repeat="action in actions().actions | filter:check_in_list"><div class="sp_task-cell"><div class="sp_task-cell__l"><div class="sp_task-cell__icn-out"><div class="sp_task-cell__icn-inn"><img data-ng-src="{{ action_data(action).pic }}" alt="{{ action_data(action).name }}"></div></div></div><div class="sp_task-cell__r"><div class="sp_task-cell__txt"><div class="sp_task-cell__txt-inn">{{ action_data(action).name }} <span class="sp_task-cell__count" data-ng-bind="(action.points | number) + \' \' + (action.points | sailplay_pluralize:\'балл,балла,баллов\')"></span></div></div></div><div class="sp_task-cell__over"><div class="sp_task-cell__l"><div class="sp_task-cell__icn-out"><div class="sp_task-cell__icn-inn"><img data-ng-src="{{ action_data(action).pic_h }}" alt="{{ action_data(action).name }}"></div></div></div><div class="sp_task-cell__r-over"><a href="#" class="sp_cmn-fill-btn sp_task-cell__btn js-open-popup" data-ng-click="$event.preventDefault();showAction(action);">Выполнить</a></div></div></div></div><div class="sp_task-sec__col" data-ng-repeat="action in actions_custom()"><div class="sp_task-cell"><div class="sp_task-cell__l"><div class="sp_task-cell__icn-out"><div class="sp_task-cell__icn-inn"><img data-ng-src="{{ action.icon | sailplay_pic }}" alt="{{ action.name }}"></div></div></div><div class="sp_task-cell__r"><div class="sp_task-cell__txt"><div class="sp_task-cell__txt-inn">{{ action.name }} <span class="sp_task-cell__count" data-ng-bind="(action.points | number) + \' \' + (action.points | sailplay_pluralize:\'балл,балла,баллов\')"></span></div></div></div><div class="sp_task-cell__over"><div class="sp_task-cell__l"><div class="sp_task-cell__icn-out"><div class="sp_task-cell__icn-inn"><img data-ng-src="{{ action.icon | sailplay_pic }}" alt="{{ action.name }}"></div></div></div><div class="sp_task-cell__r-over"><a href="#" class="sp_cmn-fill-btn sp_task-cell__btn js-open-popup" data-ng-click="$event.preventDefault();showCustomAction(action);">Выполнить</a></div></div></div></div><div class="sp_task-sec__col" data-ng-if="!check_for_exist(fill_profile_tag, exist())"><div class="sp_task-cell"><div class="sp_task-cell__l"><div class="sp_task-cell__icn-out"><div class="sp_task-cell__icn-inn"><img src="https://d3sailplay.cdnvideo.ru/media/assets/assetfile/931f2507b2925bf3c117f2c7682be85b.svg" alt="Заполните профиль"></div></div></div><div class="sp_task-cell__r"><div class="sp_task-cell__txt"><div class="sp_task-cell__txt-inn">Заполните профиль <span class="sp_task-cell__count">200 баллов</span></div></div></div><div class="sp_task-cell__over"><div class="sp_task-cell__l"><div class="sp_task-cell__icn-out"><div class="sp_task-cell__icn-inn"><img src="https://d3sailplay.cdnvideo.ru/media/assets/assetfile/e6fbe93fdaeb39559e17c5d90ff5ebbd.svg" alt="Заполните профиль"></div></div></div><div class="sp_task-cell__r-over"><a href="#" class="sp_cmn-fill-btn sp_task-cell__btn js-open-popup" data-ng-click="$event.preventDefault();edit_profile();body_lock(false);">Выполнить</a></div></div></div></div></div></section></div><notify-popup></notify-popup></div>');
 }]);
 })();
 
@@ -2467,7 +2467,7 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/html/ui/ui.notify.popup.html',
-    '<div class="bns_overlay" data-ng-if="data" data-ng-style="{ display: ($parent.data ? \'block\' : \'none\')}"><div class="bns_overlay_inner notify"><div class="notify_header" data-ng-bind="$parent.data.title"></div><div class="bns_input_block notify_text" data-ng-bind="$parent.data.text"></div><div class="bns_input_block"><a href="#" class="bns_btn" data-ng-click="$event.preventDefault();$parent.data = null;">OK</a></div></div></div>');
+    '<div class="bns_overlay" data-ng-if="data" data-ng-style="{ display: ($parent.data ? \'block\' : \'none\')}"><div class="bns_overlay_inner notify"><div class="notify_header" data-ng-bind="$parent.data.title"></div><div class="bns_input_block notify_text" data-ng-bind-html="$parent.data.text | to_trusted"></div><div class="bns_input_block"><a href="#" class="bns_btn" data-ng-click="$event.preventDefault();$parent.data = null;">OK</a></div></div></div>');
 }]);
 })();
 
@@ -2492,7 +2492,7 @@ module.run(['$templateCache', function($templateCache) {
     'templates'
   ])
 
-    .directive('sailplayKant', function ($rootScope, $locale) {
+    .directive('sailplayKant', ["$rootScope", "$locale", function ($rootScope, $locale) {
 
       return {
         restrict: 'E',
@@ -2516,7 +2516,7 @@ module.run(['$templateCache', function($templateCache) {
         }
       }
 
-    });
+    }]);
 
 
   setTimeout(function () {
@@ -2536,7 +2536,7 @@ module.run(['$templateCache', function($templateCache) {
     'ipCookie'
   ])
 
-    .run(function (sp, ipCookie, sp_api, $rootScope, spProfileTag, actions_data) {
+    .run(["sp", "ipCookie", "sp_api", "$rootScope", "spProfileTag", "actions_data", function (sp, ipCookie, sp_api, $rootScope, spProfileTag, actions_data) {
 
       $rootScope.config = window.sailplay_config || {};
 
@@ -2688,7 +2688,7 @@ module.run(['$templateCache', function($templateCache) {
 
       }
 
-    });
+    }]);
 
 }());
 
@@ -5755,7 +5755,7 @@ module.run(['$templateCache', function($templateCache) {
       }
     })
 
-    .service('spAction', function (actions_data) {
+    .service('spAction', ["actions_data", function (actions_data) {
 
       var self = this;
 
@@ -5807,9 +5807,9 @@ module.run(['$templateCache', function($templateCache) {
 
       return self;
 
-    })
+    }])
 
-    .directive('sailplayAction', function (sp, $rootScope, $compile, $timeout) {
+    .directive('sailplayAction', ["sp", "$rootScope", "$compile", "$timeout", function (sp, $rootScope, $compile, $timeout) {
 
       var init_state;
 
@@ -5847,7 +5847,7 @@ module.run(['$templateCache', function($templateCache) {
 
       };
 
-    })
+    }])
 
     /**
      * @ngdoc directive
@@ -5861,7 +5861,7 @@ module.run(['$templateCache', function($templateCache) {
      * @param {object}  action   A SailPlay custom action object, received from api.
      *
      */
-    .directive('sailplayActionCustom', function(sp, $document){
+    .directive('sailplayActionCustom', ["sp", "$document", function (sp, $document) {
 
       var init_state;
 
@@ -5872,19 +5872,19 @@ module.run(['$templateCache', function($templateCache) {
         scope: {
           action: '='
         },
-        link: function(scope, elm, attrs){
+        link: function (scope, elm, attrs) {
 
           var iframe = $document[0].createElement('iframe');
 
           iframe.style.backgroundColor = "transparent";
           iframe.frameBorder = "0";
-          iframe.allowTransparency="true";
+          iframe.allowTransparency = "true";
 
           elm.append(iframe);
 
-          scope.$watch('action', function(action){
+          scope.$watch('action', function (action) {
 
-            if(action){
+            if (action) {
 
               var config = sp.config();
 
@@ -5903,9 +5903,9 @@ module.run(['$templateCache', function($templateCache) {
 
       };
 
-    })
+    }])
 
-    .directive('sailplayActions', function (sp_api, sp, spAction, tagHelper, spProfileTag) {
+    .directive('sailplayActions', ["sp_api", "sp", "spAction", "tagHelper", "spProfileTag", "$rootScope", "$filter", function (sp_api, sp, spAction, tagHelper, spProfileTag, $rootScope, $filter) {
 
       return {
 
@@ -5944,6 +5944,28 @@ module.run(['$templateCache', function($templateCache) {
           };
 
           scope.show_action = null;
+
+          sp.on('actions.perform.success', function (res) {
+
+            $rootScope.$apply(function () {
+
+              var msg = '', header = '';
+              if (res.data.response.status == 'ok') {
+                header = 'Поздравляем, задание выполнено!';
+                msg = 'Вам начиcленно: <span style="color:#FF762B;font-weight: bold;">' + res.data.response.points + ' ' + $filter('sailplay_pluralize')(res.data.response.points, 'балл,балла,баллов') + '</span>'
+              } else {
+                header = 'Ошибка';
+                msg = res.data.response.message;
+              }
+              $rootScope.$broadcast('notify:show', {
+                title: header,
+                text: msg
+              });
+              scope.show_action = null;
+            })
+
+          });
+
           /**
            * Показать действие в попапе
            * @param action
@@ -5953,6 +5975,7 @@ module.run(['$templateCache', function($templateCache) {
           };
 
           scope.show_custom_action = null;
+
           /**
            * Показать кастомное действие в попапе
            * @param action
@@ -5999,7 +6022,7 @@ module.run(['$templateCache', function($templateCache) {
 
       };
 
-    });
+    }]);
 
 }());
 
@@ -6007,7 +6030,7 @@ module.run(['$templateCache', function($templateCache) {
 
   angular.module('sp.gifts', [])
 
-    .directive('sailplayGifts', function (sp, sp_api, $rootScope) {
+    .directive('sailplayGifts', ["sp", "sp_api", "$rootScope", function (sp, sp_api, $rootScope) {
 
       return {
 
@@ -6068,7 +6091,7 @@ module.run(['$templateCache', function($templateCache) {
 
       };
 
-    });
+    }]);
 
 }());
 
@@ -6077,7 +6100,7 @@ module.run(['$templateCache', function($templateCache) {
   angular.module('sp.history', [])
 
 
-    .directive('sailplayHistory', function (sp_api, $rootScope) {
+    .directive('sailplayHistory', ["sp_api", "$rootScope", function (sp_api, $rootScope) {
 
       return {
 
@@ -6114,7 +6137,7 @@ module.run(['$templateCache', function($templateCache) {
 
       };
 
-    })
+    }])
 
     .constant('history_texts', {
       "purchase": "Покупка",
@@ -6138,7 +6161,7 @@ module.run(['$templateCache', function($templateCache) {
       "fb": "Facebook"
     })
 
-    .filter('history_item', function (history_texts, socialList) {
+    .filter('history_item', ["history_texts", "socialList", function (history_texts, socialList) {
 
       return function (historyItem) {
         switch (historyItem.action) {
@@ -6164,7 +6187,7 @@ module.run(['$templateCache', function($templateCache) {
         }
         return history_texts[historyItem.action];
       }
-    });
+    }]);
 
 }());
 
@@ -6180,13 +6203,13 @@ module.run(['$templateCache', function($templateCache) {
 
   ])
 
-    .service('sp', function ($window) {
+    .service('sp', ["$window", function ($window) {
 
       return $window.SAILPLAY || {};
 
-    })
+    }])
 
-    .service('sp_api', function ($q, sp, $rootScope) {
+    .service('sp_api', ["$q", "sp", "$rootScope", function ($q, sp, $rootScope) {
 
       var self = this;
 
@@ -6260,7 +6283,7 @@ module.run(['$templateCache', function($templateCache) {
 
       }
 
-    })
+    }])
 
     .service('tagHelper', function () {
 
@@ -6295,52 +6318,25 @@ module.run(['$templateCache', function($templateCache) {
 
     .filter('tel', function () {
       return function (tel) {
+
         if (!tel) {
           return '';
         }
 
-        var value = tel.toString().trim().replace(/^\+/, '');
+        tel = tel.replace(/[^\d]/g, "");
 
-        if (value.match(/[^0-9]/)) {
-          return tel;
+        //check if number length equals to 10
+        if (tel.length >= 10) {
+          //reformat and return phone number
+          return tel.replace(/(\d{1})(\d{3})(\d{3})(\d{2})(\d{2})/, "+$1 ($2) $3-$4-$5");
         }
 
-        var country, city, number;
+        return null
 
-        switch (value.length) {
-          case 10: // +1PPP####### -> C (PPP) ###-####
-            country = 1;
-            city = value.slice(0, 3);
-            number = value.slice(3);
-            break;
-
-          case 11: // +CPPP####### -> CCC (PP) ###-####
-            country = value[0];
-            city = value.slice(1, 4);
-            number = value.slice(4);
-            break;
-
-          case 12: // +CCCPP####### -> CCC (PP) ###-####
-            country = value.slice(0, 3);
-            city = value.slice(3, 5);
-            number = value.slice(5);
-            break;
-
-          default:
-            return tel;
-        }
-
-        if (country == 1) {
-          country = "";
-        }
-
-        number = number.slice(0, 3) + '-' + number.slice(3);
-
-        return (country + " (" + city + ") " + number).trim();
       };
     })
 
-    .filter('get_avatar', function ($filter) {
+    .filter('get_avatar', ["$filter", function ($filter) {
 
       function prepare(url) {
         if (url === '//sailplay.cdnvideo.ru/static/no_avatar100x100.jpg') {
@@ -6355,9 +6351,9 @@ module.run(['$templateCache', function($templateCache) {
         return $filter('sailplay_pic')(prepare(url))
       }
 
-    })
+    }])
 
-    .filter('sailplay_pic', function (sp) {
+    .filter('sailplay_pic', ["sp", function (sp) {
 
       function repair_pic_url(url) {
         if (/^((http|https|ftp):\/\/)/.test(url)) {
@@ -6379,7 +6375,7 @@ module.run(['$templateCache', function($templateCache) {
 
       };
 
-    });
+    }]);
 
 }());
 
@@ -6402,7 +6398,7 @@ module.run(['$templateCache', function($templateCache) {
 
     .constant('spProfileTag', 'Заполнен профиль')
 
-    .service('spProfile', function (sp_api, defaultProfile) {
+    .service('spProfile', ["sp_api", "defaultProfile", function (sp_api, defaultProfile) {
 
       var self = this;
 
@@ -6426,9 +6422,9 @@ module.run(['$templateCache', function($templateCache) {
 
       return self;
 
-    })
+    }])
 
-    .directive('sailplayProfileEdit', function (sp_api, $rootScope, spProfile, spProfileErrors, sp, spProfileTag, tagHelper) {
+    .directive('sailplayProfileEdit', ["sp_api", "$rootScope", "spProfile", "spProfileErrors", "sp", "spProfileTag", "tagHelper", function (sp_api, $rootScope, spProfile, spProfileErrors, sp, spProfileTag, tagHelper) {
 
       return {
 
@@ -6571,9 +6567,9 @@ module.run(['$templateCache', function($templateCache) {
 
       };
 
-    })
+    }])
 
-    .directive('sailplayProfile', function (sp, sp_api) {
+    .directive('sailplayProfile', ["sp", "sp_api", function (sp, sp_api) {
 
       return {
 
@@ -6600,7 +6596,7 @@ module.run(['$templateCache', function($templateCache) {
 
       };
 
-    });
+    }]);
 
 }());
 
@@ -6608,7 +6604,7 @@ module.run(['$templateCache', function($templateCache) {
 
   angular.module('sp.status', [])
 
-    .directive('sailplayStatus', function (sp, sp_api, $filter, $rootScope) {
+    .directive('sailplayStatus', ["sp", "sp_api", "$filter", "$rootScope", function (sp, sp_api, $filter, $rootScope) {
 
       return {
 
@@ -6666,7 +6662,7 @@ module.run(['$templateCache', function($templateCache) {
            * @returns {*}
            */
           scope.getOffsetToStatus = function (points) {
-            if (!points) return scope.limits[0];
+            if (!points) return scope.limits[1];
             var result = null;
             for (var i = 0, len = scope.limits.length; i < len; i++) {
               var current_limit = scope.limits[i];
@@ -6678,19 +6674,18 @@ module.run(['$templateCache', function($templateCache) {
             return result;
           };
 
-
           /**
            * Получение количества баллов до статуса по индекса
            * @param points
            * @param index
            * @returns {number}
            */
-          scope.getOffsetToStatusByIndex = function(points, index) {
-            if(!points || !scope.limits[index])return 0;
-            var _offset = scope.limits[index].from - points;
+          scope.getOffsetToStatusByIndex = function (points, index) {
+            if (!scope.limits[index+1])return 0;
+            var _offset = scope.limits[index+1].from - points;
             return _offset < 0 ? 0 : _offset;
           };
-          
+
           /**
            * Получить следующий статус
            * @param points
@@ -6699,11 +6694,11 @@ module.run(['$templateCache', function($templateCache) {
           scope.getNextStatus = function (points) {
             if (!scope.badges || !scope.badges()) return;
             if (!points) return scope.badges().multilevel_badges[0][0];
-            var result = {};
+            var result = null;
             for (var i = 0, len = scope.limits.length; i < len; i++) {
               var current_limit = scope.limits[i];
-              if (points < current_limit.from) {
-                result = scope.badges().multilevel_badges[0][i];
+              if (points <= current_limit.from) {
+                result = scope.badges().multilevel_badges[0][i-1];
                 break;
               }
             }
@@ -6715,28 +6710,29 @@ module.run(['$templateCache', function($templateCache) {
            * @param points
            * @returns {{top: string, left: string}}
            */
-          scope.getAvatarPosition = function(points){
+          scope.getAvatarPosition = function (points) {
             // ML: алгоритм верстальщика
             var absolutPercent = scope.getProgress(points);
+            absolutPercent = absolutPercent < 0 ? 0 : absolutPercent;
             var scaleWidth = 827.6;
             var scaleHeight = 250.1;
             var scaleCoordinates = [
-              [0.8,248.3],
-              [75.1,215.3],
-              [94.5,215.3],
-              [129.7,192.3],
-              [163.2,204.8],
-              [258.8,143.6],
-              [291.6,161.7],
-              [323.9,137.1],
-              [342.9,150.1],
-              [393.1,112.6],
-              [461.7,140.6],
-              [497.2,122.7],
-              [532.5,146.6],
-              [605.4,76.1],
-              [684.3,117],
-              [826.4,1.6]
+              [0.8, 248.3],
+              [75.1, 215.3],
+              [94.5, 215.3],
+              [129.7, 192.3],
+              [163.2, 204.8],
+              [258.8, 143.6],
+              [291.6, 161.7],
+              [323.9, 137.1],
+              [342.9, 150.1],
+              [393.1, 112.6],
+              [461.7, 140.6],
+              [497.2, 122.7],
+              [532.5, 146.6],
+              [605.4, 76.1],
+              [684.3, 117],
+              [826.4, 1.6]
             ];
 
             // коорд. аватарки
@@ -6749,13 +6745,15 @@ module.run(['$templateCache', function($templateCache) {
               personRangeY1,
               personRangeY2,
               personRangeNum;
-            for(var i = 0; i < scaleCoordinates.length; i++) {
-              if(personX <= scaleCoordinates[i][0]) {
+            for (var i = 0; i < scaleCoordinates.length; i++) {
+              if (personX <= scaleCoordinates[i][0]) {
                 personRangeNum = i;
                 break;
               }
             }
-            if(!personRangeNum) {personRangeNum = scaleCoordinates.length - 1}
+            if (!personRangeNum) {
+              personRangeNum = scaleCoordinates.length - 1
+            }
             personRangeX1 = scaleCoordinates[personRangeNum - 1][0];
             personRangeX2 = scaleCoordinates[personRangeNum][0];
             personRangeY1 = scaleCoordinates[personRangeNum - 1][1];
@@ -6766,10 +6764,16 @@ module.run(['$templateCache', function($templateCache) {
             // отн. значение
             personX = personX / scaleWidth * 100;
             personY = personY / scaleHeight * 100;
-            if(personX > 100) { personX = 100 }
-            if(personY > 100) { personY = 100 }
+            if (personX > 100) {
+              personX = 100
+            }
+            if (personY > 100) {
+              personY = 100
+            }
 
-            return {'top': personY + '%', 'left': personX + '%'};
+            var coords = {'top': personY + '%', 'left': personX + '%'};
+
+            return coords;
 
           };
 
@@ -6781,7 +6785,7 @@ module.run(['$templateCache', function($templateCache) {
           scope.getProgress = function (points) {
             // ML: алгоритм верстальщика
             // позиции точек на графике - фиксировано для графика, не менять
-            var statusPosition = [0, 32, 60, 73, 100];
+            var statusPosition = [0, 16, 32, 60, 73, 100];
             // количество баллов для каждой точки - нужно подставить
             var status_points = scope.limits.map(function (item) {
               return item.from
@@ -6789,30 +6793,31 @@ module.run(['$templateCache', function($templateCache) {
             // текущее количество баллов - подставить
             var leftRange = 0;
 
-            for (var i = 0; i <= 4; i++) {
+            for (var i = 0, len = status_points.length; i <= len; i++) {
               if (points <= status_points[i]) {
                 leftRange = i - 1;
-                if (points == status_points[i]) {
-                }
                 break;
               }
             }
             if (leftRange == -1) {
               leftRange = 0;
             }
-            if (points > status_points[4]) {
+            if (points > status_points[5]) {
               leftRange = 3;
             }
 
+            var localPercent;
             // позиция шкалы отн. меньшего статуса
-            var localPercent = (points - status_points[leftRange]) / (status_points[leftRange + 1] - status_points[leftRange]);
 
+            localPercent = (points - status_points[leftRange]) / (status_points[leftRange + 1] - status_points[leftRange]);
+
+            var absolutPercent;
             // позиция шкалы отн. нуля
-            var absolutPercent = statusPosition[leftRange] + (statusPosition[leftRange + 1] - statusPosition[leftRange]) * localPercent;
+            absolutPercent = statusPosition[leftRange] + (statusPosition[leftRange + 1] - statusPosition[leftRange]) * localPercent;
+
             if (absolutPercent > 100) {
               absolutPercent = 100
             }
-
 
             return absolutPercent
 
@@ -6822,7 +6827,7 @@ module.run(['$templateCache', function($templateCache) {
 
       };
 
-    });
+    }]);
 
 }());
 
@@ -6892,7 +6897,7 @@ module.run(['$templateCache', function($templateCache) {
 
     })
 
-    .directive('datePicker', function (dateService) {
+    .directive('datePicker', ["dateService", function (dateService) {
       return {
         restrict: 'E',
         replace: true,
@@ -6919,7 +6924,7 @@ module.run(['$templateCache', function($templateCache) {
         }
       }
 
-    });
+    }]);
 
 
 }());
@@ -6989,7 +6994,7 @@ module.run(['$templateCache', function($templateCache) {
       }
     })
 
-    .directive('spAuth', function ($rootScope, sp) {
+    .directive('spAuth', ["$rootScope", "sp", function ($rootScope, sp) {
       return {
         restrict: 'A',
         replace: false,
@@ -7014,9 +7019,9 @@ module.run(['$templateCache', function($templateCache) {
 
         }
       }
-    })
+    }])
 
-    .directive('statusSlider', function ($compile, $timeout) {
+    .directive('statusSlider', ["$compile", "$timeout", function ($compile, $timeout) {
       return {
         restrict: 'A',
         replace: false,
@@ -7043,7 +7048,7 @@ module.run(['$templateCache', function($templateCache) {
                 respondTo: 'slider',
                 responsive: [
                   {
-                    breakpoint: 1050,
+                    breakpoint: 1000,
                     settings: {
                       slidesToShow: 3,
                       slidesToScroll: 1
@@ -7073,6 +7078,6 @@ module.run(['$templateCache', function($templateCache) {
         }
 
       };
-    });
+    }]);
 
 }());

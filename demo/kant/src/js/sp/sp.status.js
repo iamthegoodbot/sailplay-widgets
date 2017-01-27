@@ -60,7 +60,7 @@
            * @returns {*}
            */
           scope.getOffsetToStatus = function (points) {
-            if (!points) return scope.limits[0];
+            if (!points) return scope.limits[1];
             var result = null;
             for (var i = 0, len = scope.limits.length; i < len; i++) {
               var current_limit = scope.limits[i];
@@ -72,19 +72,18 @@
             return result;
           };
 
-
           /**
            * Получение количества баллов до статуса по индекса
            * @param points
            * @param index
            * @returns {number}
            */
-          scope.getOffsetToStatusByIndex = function(points, index) {
-            if(!points || !scope.limits[index])return 0;
-            var _offset = scope.limits[index].from - points;
+          scope.getOffsetToStatusByIndex = function (points, index) {
+            if (!scope.limits[index+1])return 0;
+            var _offset = scope.limits[index+1].from - points;
             return _offset < 0 ? 0 : _offset;
           };
-          
+
           /**
            * Получить следующий статус
            * @param points
@@ -93,11 +92,11 @@
           scope.getNextStatus = function (points) {
             if (!scope.badges || !scope.badges()) return;
             if (!points) return scope.badges().multilevel_badges[0][0];
-            var result = {};
+            var result = null;
             for (var i = 0, len = scope.limits.length; i < len; i++) {
               var current_limit = scope.limits[i];
-              if (points < current_limit.from) {
-                result = scope.badges().multilevel_badges[0][i];
+              if (points <= current_limit.from) {
+                result = scope.badges().multilevel_badges[0][i-1];
                 break;
               }
             }
@@ -109,28 +108,29 @@
            * @param points
            * @returns {{top: string, left: string}}
            */
-          scope.getAvatarPosition = function(points){
+          scope.getAvatarPosition = function (points) {
             // ML: алгоритм верстальщика
             var absolutPercent = scope.getProgress(points);
+            absolutPercent = absolutPercent < 0 ? 0 : absolutPercent;
             var scaleWidth = 827.6;
             var scaleHeight = 250.1;
             var scaleCoordinates = [
-              [0.8,248.3],
-              [75.1,215.3],
-              [94.5,215.3],
-              [129.7,192.3],
-              [163.2,204.8],
-              [258.8,143.6],
-              [291.6,161.7],
-              [323.9,137.1],
-              [342.9,150.1],
-              [393.1,112.6],
-              [461.7,140.6],
-              [497.2,122.7],
-              [532.5,146.6],
-              [605.4,76.1],
-              [684.3,117],
-              [826.4,1.6]
+              [0.8, 248.3],
+              [75.1, 215.3],
+              [94.5, 215.3],
+              [129.7, 192.3],
+              [163.2, 204.8],
+              [258.8, 143.6],
+              [291.6, 161.7],
+              [323.9, 137.1],
+              [342.9, 150.1],
+              [393.1, 112.6],
+              [461.7, 140.6],
+              [497.2, 122.7],
+              [532.5, 146.6],
+              [605.4, 76.1],
+              [684.3, 117],
+              [826.4, 1.6]
             ];
 
             // коорд. аватарки
@@ -143,13 +143,15 @@
               personRangeY1,
               personRangeY2,
               personRangeNum;
-            for(var i = 0; i < scaleCoordinates.length; i++) {
-              if(personX <= scaleCoordinates[i][0]) {
+            for (var i = 0; i < scaleCoordinates.length; i++) {
+              if (personX <= scaleCoordinates[i][0]) {
                 personRangeNum = i;
                 break;
               }
             }
-            if(!personRangeNum) {personRangeNum = scaleCoordinates.length - 1}
+            if (!personRangeNum) {
+              personRangeNum = scaleCoordinates.length - 1
+            }
             personRangeX1 = scaleCoordinates[personRangeNum - 1][0];
             personRangeX2 = scaleCoordinates[personRangeNum][0];
             personRangeY1 = scaleCoordinates[personRangeNum - 1][1];
@@ -160,10 +162,16 @@
             // отн. значение
             personX = personX / scaleWidth * 100;
             personY = personY / scaleHeight * 100;
-            if(personX > 100) { personX = 100 }
-            if(personY > 100) { personY = 100 }
+            if (personX > 100) {
+              personX = 100
+            }
+            if (personY > 100) {
+              personY = 100
+            }
 
-            return {'top': personY + '%', 'left': personX + '%'};
+            var coords = {'top': personY + '%', 'left': personX + '%'};
+
+            return coords;
 
           };
 
@@ -175,7 +183,7 @@
           scope.getProgress = function (points) {
             // ML: алгоритм верстальщика
             // позиции точек на графике - фиксировано для графика, не менять
-            var statusPosition = [0, 32, 60, 73, 100];
+            var statusPosition = [0, 16, 32, 60, 73, 100];
             // количество баллов для каждой точки - нужно подставить
             var status_points = scope.limits.map(function (item) {
               return item.from
@@ -183,30 +191,31 @@
             // текущее количество баллов - подставить
             var leftRange = 0;
 
-            for (var i = 0; i <= 4; i++) {
+            for (var i = 0, len = status_points.length; i <= len; i++) {
               if (points <= status_points[i]) {
                 leftRange = i - 1;
-                if (points == status_points[i]) {
-                }
                 break;
               }
             }
             if (leftRange == -1) {
               leftRange = 0;
             }
-            if (points > status_points[4]) {
+            if (points > status_points[5]) {
               leftRange = 3;
             }
 
+            var localPercent;
             // позиция шкалы отн. меньшего статуса
-            var localPercent = (points - status_points[leftRange]) / (status_points[leftRange + 1] - status_points[leftRange]);
 
+            localPercent = (points - status_points[leftRange]) / (status_points[leftRange + 1] - status_points[leftRange]);
+
+            var absolutPercent;
             // позиция шкалы отн. нуля
-            var absolutPercent = statusPosition[leftRange] + (statusPosition[leftRange + 1] - statusPosition[leftRange]) * localPercent;
+            absolutPercent = statusPosition[leftRange] + (statusPosition[leftRange + 1] - statusPosition[leftRange]) * localPercent;
+
             if (absolutPercent > 100) {
               absolutPercent = 100
             }
-
 
             return absolutPercent
 
