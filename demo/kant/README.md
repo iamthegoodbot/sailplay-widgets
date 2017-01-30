@@ -1,4 +1,4 @@
-# SailPlay widget for 21shop
+# SailPlay widget for Kant
 
 ## Install
 Paste this code to the page in < head > section to load the script:
@@ -14,34 +14,39 @@ Paste this code to the page in < head > section to load the script:
                         {
                             discount: 0,
                             from: 0,
+                            to: 1500
+                        },
+                        {
+                            discount: 0,
+                            from: 1500,
                             to: 5000
                         },
                         {
                             discount: 5,
                             from: 5000,
-                            to: 30000
+                            to: 50000
                         },
                         {
                             discount: 7,
-                            from: 30000,
-                            to: 100000
+                            from: 50000,
+                            to: 150000
                         },
                         {
                             discount: 10,
-                            from: 100000,
-                            to: 300000
+                            from: 150000,
+                            to: 500000
                         },
                         {
                             discount: 15,
-                            from: 300000
+                            from: 500000
                         }
                     ]
                 }
             };
 
             var _links = {
-                js: 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/ddabe503dfb3190fe27096f91d6b7643.js',
-                css: 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/8d1c636be9f1f1329daff657daf87024.css'
+                js: 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/56d108fad6e8ac6094ca3cff53d2a197.js',
+                css: 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/f2a6ca8771fdd6d990c19a3a1721d7ea.css'
             };
 
             document.addEventListener('DOMContentLoaded', function () {
@@ -65,7 +70,7 @@ Paste this code to the page in < head > section to load the script:
 ## Placement
 Paste this code to < body > to render the content loaded via above mentioned script:
 
-    <sailplay-shop21></sailplay-shop21>
+    <sailplay-kant></sailplay-kant>
 
 ## Example
 
