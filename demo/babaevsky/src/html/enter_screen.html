@@ -173,7 +173,7 @@
 
     <magic-modal class="sailplay_babaevsky__notify_popup" data-show="notify">
 
-        <p data-ng-bind-html="notify | to_trusted"></p>
+        <p data-ng-if="notify" data-ng-bind-html="notify | to_trusted"></p>
 
     </magic-modal>
 

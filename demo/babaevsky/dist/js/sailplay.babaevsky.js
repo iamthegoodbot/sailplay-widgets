@@ -44317,7 +44317,7 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/html/enter_screen.html',
-    '<div class="sailplay_babaevsky sailplay_babaevsky__clearfix" data-ng-show="state"><div data-ng-show="state != 3"><span class="sailplay_babaevsky__text" style="text-align: center" data-ng-if="state == 2">Ваша анкета находится на модерации</span><div data-ng-show="state != 2"><span class="sailplay_babaevsky__text">Данные, которые Вы предоставляете, заполняя настоящую анкету, будут использованы ООО «Объединенная Кондитерская Сеть» при формировании базы данных о покупателях и для информирования Вас об акциях и специальных предложениях сети магазинов «Аленка». Заполнение Вами настоящей анкеты означает согласие на использование и обработку данных, описанными способами и на получение информации об акциях по телефону (SMS) и по электронной почте по указанному в анкете адресу до момента отзыва Вами такого согласия.</span><form action="#" name="profile_form" novalidate="" data-ng-submit="$event.preventDefault();submit(profile_form);"><div class="sailplay_babaevsky__form sailplay_babaevsky__clearfix"><div class="sailplay_babaevsky__form-field"><span>Фамилия*</span> <input type="text" name="lastName" data-ng-model="form.lastName" required=""></div><div class="sailplay_babaevsky__form-field"><span>Мобильный телефон*</span> <input type="text" name="addPhone" data-ng-model="form.addPhone" required=""></div><div class="sailplay_babaevsky__form-field"><span>Имя*</span> <input type="text" name="firstName" data-ng-model="form.firstName" required=""></div><div class="sailplay_babaevsky__form-field"><span>E-mail*</span> <input type="text" name="addEmail" data-ng-model="form.addEmail" required=""></div><div class="sailplay_babaevsky__form-field"><span>Отчество*</span> <input type="text" name="middleName" data-ng-model="form.middleName" required=""></div><div class="sailplay_babaevsky__form-field"><span>Дата рождения</span><div class="sailplay_babaevsky__form-field_date"><date-picker data-model="form.birthDate"></date-picker></div></div><div class="sailplay_babaevsky__form-field"><span>Пол*</span><div class="sailplay_babaevsky__form-field_radio-group"><label><input type="radio" name="sex" data-ng-model="form.sex" data-ng-value="1" required=""> <i></i> <span>Мужской</span></label> <label><input type="radio" name="sex" data-ng-model="form.sex" data-ng-value="2" required=""> <i></i> <span>Женский</span></label></div></div></div><div class="sailplay_babaevsky__card sailplay_babaevsky__clearfix"><div class="sailplay_babaevsky__form-field"><span>Тип карты</span><div class="sailplay_babaevsky__form-field_radio-group"><label><input type="radio" name="type" data-ng-model="type" data-ng-value="\'bonus\'" required=""> <i></i> <span>Бонусная карта</span></label> <label><input type="radio" name="type" data-ng-model="type" data-ng-value="\'student\'" required=""> <i></i> <span>Карта студента</span></label> <label><input type="radio" name="type" data-ng-model="type" data-ng-value="\'social\'" required=""> <i></i> <span>Социальная карта</span></label></div></div><div class="sailplay_babaevsky__card-types" data-ng-if="(type == \'student\' || type == \'social\') && !pic_path"><p data-ng-if="type == \'social\'">Загрузите скан или фото вашей социальной карты</p><p data-ng-if="type == \'student\'">Загрузите скан или фото вашей карты студента</p><label class="sailplay_babaevsky__file-upload"><input name="card_photo" type="file" data-ng-model="$parent.pic" accept="image/*" onchange="angular.element(this).scope().on_file_change(this)" required=""> <button>Загрузить</button></label></div></div><div class="sailplay_babaevsky__form-field sailplay_babaevsky__agree"><label class="sailplay_babaevsky__form-field_checkbox"><input type="checkbox" name="agree" data-ng-model="agree" required=""> <i></i> <a href="#" target="_blank" data-ng-click="$event.preventDefault();show_rules();">Я принимаю условия</a></label> <label class="sailplay_babaevsky__form-field_checkbox"><input type="checkbox" name="subscribe" data-ng-model="subscribe" required=""> <i></i> <span>Я согласен получать информационные уведомления об акциях и специальных скидках</span></label></div><div class="sailplay_babaevsky__buttons"><input type="submit" value="Активировать карту" data-ng-disabled="profile_form.$invalid"> <button data-ng-click="$event.preventDefault();clear();">Отмена</button></div></form></div></div><div data-ng-if="state == 3"><sailplay-magic></sailplay-magic></div><magic-modal class="sailplay_babaevsky__confirm_popup" data-show="show_confirm_phone"><form action="#" novalidate="" data-ng-submit="$event.preventDefault();confirm_phone($parent.phone_code);"><div class="sailplay_babaevsky__form-field sailplay_babaevsky__clearfix"><span>Введите код подтверждения телефона</span> <input type="text" name="phone_code" data-ng-model="$parent.phone_code" required=""></div><div class="sailplay_babaevsky__form-field sailplay_babaevsky__clearfix"><input type="submit" value="Подтвердить"></div></form></magic-modal><magic-modal class="sailplay_babaevsky__notify_popup" data-show="notify"><p data-ng-bind-html="notify | to_trusted"></p></magic-modal></div>');
+    '<div class="sailplay_babaevsky sailplay_babaevsky__clearfix" data-ng-show="state"><div data-ng-show="state != 3"><span class="sailplay_babaevsky__text" style="text-align: center" data-ng-if="state == 2">Ваша анкета находится на модерации</span><div data-ng-show="state != 2"><span class="sailplay_babaevsky__text">Данные, которые Вы предоставляете, заполняя настоящую анкету, будут использованы ООО «Объединенная Кондитерская Сеть» при формировании базы данных о покупателях и для информирования Вас об акциях и специальных предложениях сети магазинов «Аленка». Заполнение Вами настоящей анкеты означает согласие на использование и обработку данных, описанными способами и на получение информации об акциях по телефону (SMS) и по электронной почте по указанному в анкете адресу до момента отзыва Вами такого согласия.</span><form action="#" name="profile_form" novalidate="" data-ng-submit="$event.preventDefault();submit(profile_form);"><div class="sailplay_babaevsky__form sailplay_babaevsky__clearfix"><div class="sailplay_babaevsky__form-field"><span>Фамилия*</span> <input type="text" name="lastName" data-ng-model="form.lastName" required=""></div><div class="sailplay_babaevsky__form-field"><span>Мобильный телефон*</span> <input type="text" name="addPhone" data-ng-model="form.addPhone" required=""></div><div class="sailplay_babaevsky__form-field"><span>Имя*</span> <input type="text" name="firstName" data-ng-model="form.firstName" required=""></div><div class="sailplay_babaevsky__form-field"><span>E-mail*</span> <input type="text" name="addEmail" data-ng-model="form.addEmail" required=""></div><div class="sailplay_babaevsky__form-field"><span>Отчество*</span> <input type="text" name="middleName" data-ng-model="form.middleName" required=""></div><div class="sailplay_babaevsky__form-field"><span>Дата рождения</span><div class="sailplay_babaevsky__form-field_date"><date-picker data-model="form.birthDate"></date-picker></div></div><div class="sailplay_babaevsky__form-field"><span>Пол*</span><div class="sailplay_babaevsky__form-field_radio-group"><label><input type="radio" name="sex" data-ng-model="form.sex" data-ng-value="1" required=""> <i></i> <span>Мужской</span></label> <label><input type="radio" name="sex" data-ng-model="form.sex" data-ng-value="2" required=""> <i></i> <span>Женский</span></label></div></div></div><div class="sailplay_babaevsky__card sailplay_babaevsky__clearfix"><div class="sailplay_babaevsky__form-field"><span>Тип карты</span><div class="sailplay_babaevsky__form-field_radio-group"><label><input type="radio" name="type" data-ng-model="type" data-ng-value="\'bonus\'" required=""> <i></i> <span>Бонусная карта</span></label> <label><input type="radio" name="type" data-ng-model="type" data-ng-value="\'student\'" required=""> <i></i> <span>Карта студента</span></label> <label><input type="radio" name="type" data-ng-model="type" data-ng-value="\'social\'" required=""> <i></i> <span>Социальная карта</span></label></div></div><div class="sailplay_babaevsky__card-types" data-ng-if="(type == \'student\' || type == \'social\') && !pic_path"><p data-ng-if="type == \'social\'">Загрузите скан или фото вашей социальной карты</p><p data-ng-if="type == \'student\'">Загрузите скан или фото вашей карты студента</p><label class="sailplay_babaevsky__file-upload"><input name="card_photo" type="file" data-ng-model="$parent.pic" accept="image/*" onchange="angular.element(this).scope().on_file_change(this)" required=""> <button>Загрузить</button></label></div></div><div class="sailplay_babaevsky__form-field sailplay_babaevsky__agree"><label class="sailplay_babaevsky__form-field_checkbox"><input type="checkbox" name="agree" data-ng-model="agree" required=""> <i></i> <a href="#" target="_blank" data-ng-click="$event.preventDefault();show_rules();">Я принимаю условия</a></label> <label class="sailplay_babaevsky__form-field_checkbox"><input type="checkbox" name="subscribe" data-ng-model="subscribe" required=""> <i></i> <span>Я согласен получать информационные уведомления об акциях и специальных скидках</span></label></div><div class="sailplay_babaevsky__buttons"><input type="submit" value="Активировать карту" data-ng-disabled="profile_form.$invalid"> <button data-ng-click="$event.preventDefault();clear();">Отмена</button></div></form></div></div><div data-ng-if="state == 3"><sailplay-magic></sailplay-magic></div><magic-modal class="sailplay_babaevsky__confirm_popup" data-show="show_confirm_phone"><form action="#" novalidate="" data-ng-submit="$event.preventDefault();confirm_phone($parent.phone_code);"><div class="sailplay_babaevsky__form-field sailplay_babaevsky__clearfix"><span>Введите код подтверждения телефона</span> <input type="text" name="phone_code" data-ng-model="$parent.phone_code" required=""></div><div class="sailplay_babaevsky__form-field sailplay_babaevsky__clearfix"><input type="submit" value="Подтвердить"></div></form></magic-modal><magic-modal class="sailplay_babaevsky__notify_popup" data-show="notify"><p data-ng-if="notify" data-ng-bind-html="notify | to_trusted"></p></magic-modal></div>');
 }]);
 })();
 
@@ -44340,7 +44340,9 @@ window.angular.module('babaevsky', ['templates', 'magic', 'sailplay', 'magic.too
     card_student: "Карта студента"
   })
 
-  .constant('SailplayApiErrors', function () {
+  .constant('SailplayApiErrors', {
+    '-200007': 'Этот телефон уже используется.',
+    '-200010': 'Этот e-mail уже используется'
   })
 
   .constant('BabaevskyVariables', {
@@ -44533,7 +44535,7 @@ window.angular.module('babaevsky', ['templates', 'magic', 'sailplay', 'magic.too
 
   })
 
-  .directive('sailplayBabaevsky', function ($rootScope, BabaevskyForm, BabaevskyTags, SailPlayApi, BabaevskyVariables) {
+  .directive('sailplayBabaevsky', function ($sce, $rootScope, BabaevskyForm, BabaevskyTags, SailPlayApi, BabaevskyVariables, SailplayApiErrors) {
 
     return {
       restrict: 'E',
@@ -44612,28 +44614,93 @@ window.angular.module('babaevsky', ['templates', 'magic', 'sailplay', 'magic.too
 
                   scope.state = 2;
 
-                  // Add tag complete form
-                  BabaevskyForm.add_tags({tags: [BabaevskyTags.form_complete]}).then(function (tags_res) {
-                    if (tags_res && tags_res.status == 'ok') {
+                  var user = {};
 
-                      if (oid_res.oid) {
-                        scope.notify = 'Здравствуйте, поздравляем Вас с успешной регистрацией в программе лояльности! Номер вашей виртуальной карты ' + oid_res.oid + '. Доступ в личный кабинет будет открыт после модерации анкеты.';
-                      }
+                  if (scope.form.firstName !== BabaevskyForm.get_form().first_name) {
+                    user.firstName = scope.form.firstName;
+                  }
+
+                  if (scope.form.lastName !== BabaevskyForm.get_form().last_name) {
+                    user.lastName = scope.form.lastName;
+                  }
+
+                  if (scope.form.middleName !== BabaevskyForm.get_form().middle_name) {
+                    user.middleName = scope.form.middleName;
+                  }
+
+                  if (scope.form.sex !== BabaevskyForm.get_form().sex) {
+                    user.sex = scope.form.sex;
+                  }
+
+                  if (scope.form.addEmail !== BabaevskyForm.get_form().addEmail) {
+                    user.addEmail = scope.form.addEmail;
+                  }
+
+                  // if (scope.form.addPhone !== BabaevskyForm.get_form().addPhone) {
+                  //   user.addPhone = scope.form.addPhone;
+                  // }
+
+                  // BAD, VERY BAD =(
+                  var bd = angular.copy(scope.form.birthDate);
+                  bd[0] = parseInt(bd[0]) < 10 ? '0' + parseInt(bd[0]) : bd[0];
+                  bd[1] = parseInt(bd[1]) < 10 ? '0' + parseInt(bd[1]) : bd[1];
+                  bd = bd.reverse().join('-');
+
+                  if (BabaevskyForm.get_form().birth_date != bd) {
+                    user.birthDate = bd;
+                  }
+
+                  // Update user info
+                  BabaevskyForm.update_user(user).then(function (res) {
+
+                    if (res && res.status == 'ok') {
+
+                      // Add card type and complete tags
+                      BabaevskyForm.add_tags({tags: [BabaevskyTags['card_' + scope.type], BabaevskyTags.form_complete]}).then(function (tags_res) {
+
+                        if (tags_res && tags_res.status == 'ok') {
+
+                          // Add pic_path variable
+                          var vars = {};
+                          if (scope.pic_path) vars[BabaevskyVariables.card_photo] = scope.pic_path;
+                          BabaevskyForm.add_vars({custom_vars: vars}).then(function (vars_res) {
+
+                            if (vars_res && vars_res.status == 'ok') {
+
+                              if (oid_res.oid) {
+                                scope.notify = 'Здравствуйте, поздравляем Вас с успешной регистрацией в программе лояльности! Номер вашей виртуальной карты ' + oid_res.oid + '. Доступ в личный кабинет будет открыт после модерации анкеты.';
+                              }
+
+
+                            } else {
+                              // Add variables error
+                              if (vars_res && vars_res.message) scope.notify = SailplayApiErrors[vars_res.status_code] || vars_res.message
+                            }
+
+                          });
+
+                        } else {
+                          // Add tags error
+                          if (tags_res && tags_res.message) scope.notify = SailplayApiErrors[tags_res.status_code] || tags_res.message
+                        }
+
+                      });
 
                     } else {
-                      // Add tag error
-                      if (tags_res && tags_res.message) scope.notify = tags_res.message;
+                      // Update user error
+                      if (res && res.message) scope.notify = SailplayApiErrors[res.status_code] || res.message
                     }
+
                   });
 
                 } else {
-                  if (oid_res && oid_res.message) scope.notify = oid_res.message;
+                  if (oid_res && oid_res.message) scope.notify = SailplayApiErrors[oid_res.status_code] || oid_res.message;
                 }
               });
 
             } else {
               // Check code error
-              if (res && res.message) scope.notify = res.message;
+              if (res && res.message) scope.notify = SailplayApiErrors[res.status_code] || res.message;
             }
           });
 
@@ -44662,7 +44729,7 @@ window.angular.module('babaevsky', ['templates', 'magic', 'sailplay', 'magic.too
               scope.pic_path = res.temp_file_properties.url;
               scope.notify = 'Фото успешно загружено';
             } else {
-              if (res && res.message) scope.notify = res.message;
+              if (res && res.message) scope.notify = SailplayApiErrors[res.status_code] || res.message;
             }
           });
         };
@@ -44677,94 +44744,20 @@ window.angular.module('babaevsky', ['templates', 'magic', 'sailplay', 'magic.too
 
           scope.show_confirm_phone = false;
 
-          var user = {};
+          // Send phone verification code
 
-          if (scope.form.firstName !== BabaevskyForm.get_form().first_name) {
-            user.firstName = scope.form.firstName;
-          }
+          var data = {
+            identifier: 'phone',
+            value: scope.form.addPhone
+          };
 
-          if (scope.form.lastName !== BabaevskyForm.get_form().last_name) {
-            user.lastName = scope.form.lastName;
-          }
+          BabaevskyForm.send_verification_code(data).then(function (res_verification) {
 
-          if (scope.form.middleName !== BabaevskyForm.get_form().middle_name) {
-            user.middleName = scope.form.middleName;
-          }
-
-          if (scope.form.sex !== BabaevskyForm.get_form().sex) {
-            user.sex = scope.form.sex;
-          }
-
-          if (scope.form.addEmail !== BabaevskyForm.get_form().addEmail) {
-            user.addEmail = scope.form.addEmail;
-          }
-
-          if (scope.form.addPhone !== BabaevskyForm.get_form().addPhone) {
-            user.addPhone = scope.form.addPhone;
-          }
-
-          // BAD, VERY BAD =(
-          var bd = angular.copy(scope.form.birthDate);
-          bd[0] = parseInt(bd[0]) < 10 ? '0' + parseInt(bd[0]) : bd[0];
-          bd[1] = parseInt(bd[1]) < 10 ? '0' + parseInt(bd[1]) : bd[1];
-          bd = bd.reverse().join('-');
-
-          if (BabaevskyForm.get_form().birth_date != bd) {
-            user.birthDate = bd;
-          }
-
-          // Update user info
-          BabaevskyForm.update_user(user).then(function (res) {
-
-            if (res && res.status == 'ok') {
-
-              // Add card type tag
-              BabaevskyForm.add_tags({tags: [BabaevskyTags['card_' + scope.type]]}).then(function (tags_res) {
-
-                if (tags_res && tags_res.status == 'ok') {
-
-                  // Add pic_path variable
-                  var vars = {};
-                  if (scope.pic_path) vars[BabaevskyVariables.card_photo] = scope.pic_path;
-                  BabaevskyForm.add_vars({custom_vars: vars}).then(function (vars_res) {
-
-                    if (vars_res && vars_res.status == 'ok') {
-
-                      // Send phone verification code
-
-                      var data = {
-                        identifier: 'phone',
-                        value: scope.form.addPhone
-                      };
-
-                      BabaevskyForm.send_verification_code(data).then(function (res_verification) {
-
-                        if (res_verification && res_verification.status == 'ok') {
-                          scope.show_confirm_phone = true
-                        } else {
-                          // Send phone verification code error
-                          if (res_verification && res_verification.message) scope.notify = res_verification.message
-                        }
-
-                      });
-
-                    } else {
-                      // Add variables error
-                      if (vars_res && vars_res.message) scope.notify = vars_res.message
-                    }
-
-                  });
-
-                } else {
-                  // Add tags error
-                  if (tags_res && tags_res.message) scope.notify = tags_res.message
-                }
-
-              });
-
+            if (res_verification && res_verification.status == 'ok') {
+              scope.show_confirm_phone = true;
             } else {
-              // Update user error
-              if (res && res.message) scope.notify = res.message
+              // Send phone verification code error
+              if (res_verification && res_verification.message) scope.notify = SailplayApiErrors[res_verification.status_code] || res_verification.message
             }
 
           });
