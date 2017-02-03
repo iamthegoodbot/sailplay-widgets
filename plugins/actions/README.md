@@ -120,7 +120,7 @@ SAILPLAY.HUB.ACTIONS требует для работы сам хаб, поэт�
     SAILPLAY.send('load.actions.list');
     
     SAILPLAY.on('load.actions.list.success', function(data){
-    
+     //тут любой ваш код для шаринга с необходимым действием: data.actions[n]
      SAILPLAY.send('actions.perform', data.actions[0]); //регистрируем выполнение первого действия из списка, полученного с сервера SailPlay
       
     });
