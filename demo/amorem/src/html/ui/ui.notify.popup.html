@@ -1,0 +1,15 @@
+<div class="bns_overlay" data-ng-if="data" data-ng-style="{ display:  ($parent.data ? 'block' : 'none')}">
+
+    <div class="bns_overlay_inner notify sp_about-popup">
+
+        <div class="bns_overlay__close"
+             data-ng-click="$parent.data = null;body_lock(false);"></div>
+
+        <div class="sp_about-popup__inner js-close-popup">
+            <div class="sp_about-popup__head" data-ng-bind="$parent.data.title"></div>
+            <div class="sp_about-popup__txt"  data-ng-bind-html="$parent.data.text | to_trusted"></div>
+        </div>
+
+    </div>
+
+</div>
