@@ -1,6 +1,6 @@
 
 .sp_header-wr {
-  background: url("@{burl}back-01.jpg") no-repeat 100% 100%;
+  //background: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/1ee8a259510f09d2275004c7599b13c7.png") no-repeat 100% 100%/contain;
   @media (max-width: @screen-md-max) {
   }
   @media (max-width: @screen-sm-max) {
@@ -13,12 +13,14 @@
 }
 
 .sp_header {
+  background: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/1ee8a259510f09d2275004c7599b13c7.png") no-repeat 100% 120% / auto 90%;
   .clearfix();
   padding-top: 30px;
   @width: 41.4%;
   @media (max-width: @screen-md-max) {
   }
   @media (max-width: @screen-sm-max) {
+    background: none;
   }
   @media (max-width: @screen-xs-max) {
     padding-top: 0;
@@ -125,9 +127,13 @@
   }
   &__photo {
     left: 33.3%;
-    top: 19.4%;
+    //top: 19.4%;
     position: absolute;
-    width: 37.4%;
+    //width: 37.4%;
+
+    top: 20.5%;
+    width: 37.1%;
+
     img {
       .img-response();
     }
@@ -140,10 +146,19 @@
 }
 
 .sp_statistic-sec {
+  position: relative;
+  width: 100%;
   .clearfix();
   @width1: 61.2%;
   @pad: 7px;
+
+  .sp_l-centered {
+
+    .clearfix();
+  }
+
   &__back {
+    background: white;
     position: absolute;
     left: 0;
     top: 0;
@@ -187,6 +202,56 @@
     top: 0;
     height: 100%;
     background-color: blue;
+  }
+
+
+  &__backfull {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    @media (max-width: @screen-md-max) {
+    }
+    @media (max-width: @screen-sm-max) {
+      display: none;
+    }
+    @media (max-width: @screen-xs-max) {
+    }
+    @media (max-width: (@screen-xs-min - 1px)) {
+    }
+
+    &-col {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      &.this-left {
+        left: 0;
+        width: @width1;
+        .sp_statistic-sec__back-inn {
+          left: 0;
+          right: @pad;
+          background-color: #776AC5;
+        }
+      }
+      &.this-right {
+        right: 0;
+        width: 100% - @width1;
+        .sp_statistic-sec__back-inn {
+          left: @pad;
+          right: 0;
+          background-color: #8863C1;
+        }
+      }
+    }
+
+    &-inn {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      background-color: blue;
+    }
+
   }
 
   &__left {
@@ -389,6 +454,7 @@
   max-width: 240px;
   margin-left: auto;
   margin-right: auto;
+  overflow: hidden;
   &__img {
     position: relative;
     img {
@@ -544,6 +610,16 @@
 
   cursor: pointer;
 
+  @media (max-width: @screen-sm-max) {
+    text-align: center;
+    display: block;
+
+    &.this-active {
+      display: inline-block;
+    }
+
+  }
+
   &:hover {
     color: darken(#ccc, 10%)
   }
@@ -556,7 +632,8 @@
 }
 
 .sp_tabs-container {
-  padding: 30px 0 100px;
+  //padding: 30px 0 100px;
+  padding: 30px 0;
 }
 
 .sp_task-sec {
@@ -629,22 +706,24 @@
     width: 150px;
     height: 150px;
     &.this-icon-01 {
-      background-image: url("@{burl}task-icon-01.svg");
+      background-image: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/5103c0ed7b8ba4ada37f74967ef4d21c.svg");
     }
     &.this-icon-02 {
-      background-image: url("@{burl}task-icon-02.svg");
+      background-image: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/0e03afddbe53bd4262e54d76430b1b84.svg");
     }
     &.this-icon-03 {
-      background-image: url("@{burl}task-icon-03.svg");
+      //background-image: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/7113a8a5cc67a8b6a00f4d7903e85104.svg");
+      background-image: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/4b1576196fa50cdcc019d7cea6ef39af.png");
+      background-size: auto 35%;
     }
     &.this-icon-04 {
-      background-image: url("@{burl}task-icon-04.svg");
+      background-image: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/8adeeb8911a57879da3d85f3ed435616.svg");
     }
     &.this-icon-05 {
-      background-image: url("@{burl}task-icon-05.svg");
+      background-image: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/9ab871c1f901dad8ace6069ead8c5eb5.svg");
     }
     &.this-icon-06 {
-      background-image: url("@{burl}task-icon-06.svg");
+      background-image: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/b9d2d0d57ec3c6fb039f1104ae67bcd1.svg");
     }
     background-repeat: no-repeat;
     background-position: center;
@@ -785,7 +864,8 @@
     position: absolute;
     z-index: 2;
     display: block;
-    top: 35%;
+    //top: 35%;
+    top: 26%;
     margin-top: -15px;
     width: 0;
     height: 0;
@@ -805,17 +885,17 @@
     }
 
     &.slick-left {
-      left: 15px;
+      left: 20px;
       border-right: 20px solid #D463C1;
       @media (max-width: 1200px) {
-        left: 5px;
+        left: 20px;
       }
     }
     &.slick-right {
-      right: 15px;
+      right: 20px;
       border-left: 20px solid #D463C1;
       @media (max-width: 1200px) {
-        right: 5px;
+        right: 20px;
       }
     }
     &.slick-disabled {
@@ -856,17 +936,17 @@
     }
 
     &.slick-left {
-      left: 15px;
+      left: 20px;
       border-right: 20px solid #D463C1;
       @media (max-width: 1200px) {
-        left: 5px;
+        left: 20px;
       }
     }
     &.slick-right {
-      right: 15px;
+      right: 20px;
       border-left: 20px solid #D463C1;
       @media (max-width: 1200px) {
-        right: 5px;
+        right: 20px;
       }
     }
     &.slick-disabled {
@@ -879,6 +959,7 @@
 }
 
 .sp_collect-slider {
+
   &__slide {
     width: 300px;
     padding: 30px 10px;
@@ -888,7 +969,9 @@
 
     max-width: 95%;
 
-    margin-bottom: 100px;
+    //margin-bottom: 100px;
+    margin-bottom: 200px;
+
 
     &.this-disabled {
       .sp_collect-slider__img-inner {
@@ -900,7 +983,7 @@
         }
       }
       .sp_collect-slider__img {
-        background: url("@{burl}collect-back-disable.svg") no-repeat center;
+        background: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/9c416048e4e6a80015d50cac8da9598f.svg") no-repeat center;
       }
     }
     &:hover {
@@ -915,7 +998,7 @@
     height: 178px;
     margin: 0 auto;
 
-    background: url("@{burl}collect-back.svg") no-repeat center;
+    background: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/b457c54380998a3d8e43843b87f19d2a.svg") no-repeat center;
   }
   &__img-inner {
     position: absolute;
@@ -937,8 +1020,9 @@
     display: none;
     top: 50%;
     margin-top: 25px;
-    width: 330px;
-    margin-left: -330px/2;
+    //width: 330px;
+    width: 280px;
+    margin-left: -280px/2;
   }
 
 }

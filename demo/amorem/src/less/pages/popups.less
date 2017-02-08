@@ -28,9 +28,10 @@
     position: absolute;
     right: 25px;
     top: 37px;
+    z-index: 10;
     width: 32px;
     height: 31px;
-    background: url('@{burl}close-cross.png') no-repeat center;
+    background: url('https://sailplays3.cdnvideo.ru/media/assets/assetfile/53b3b7227b2bc1691b69fcb3a654f4cd.png') no-repeat center;
     cursor: pointer;
     &:hover {
       opacity: 0.8;
@@ -70,8 +71,9 @@
     right: 25px;
     top: 37px;
     width: 32px;
+    z-index: 10;
     height: 31px;
-    background: url('@{burl}close-cross.png') no-repeat center;
+    background: url('https://sailplays3.cdnvideo.ru/media/assets/assetfile/53b3b7227b2bc1691b69fcb3a654f4cd.png') no-repeat center;
     cursor: pointer;
     &:hover {
       opacity: 0.8;
@@ -130,6 +132,7 @@
   }
   &__img {
     margin: 0 auto 20px;
+    max-width: 210px;
     @media (max-width: @screen-md-max) {
     }
     @media (max-width: @screen-sm-max) {
@@ -191,8 +194,9 @@
     right: 25px;
     top: 37px;
     width: 32px;
+    z-index: 10;
     height: 31px;
-    background: url('@{burl}close-cross.png') no-repeat center;
+    background: url('https://sailplays3.cdnvideo.ru/media/assets/assetfile/53b3b7227b2bc1691b69fcb3a654f4cd.png') no-repeat center;
     cursor: pointer;
     &:hover {
       opacity: 0.8;
@@ -376,20 +380,20 @@
 
     .alink(#fff, #ccc);
     &:hover {
-      color: #ccc;
+      color: #ccc !important;
     }
     &.this-active {
       cursor: default;
-      color: #fff;
+      color: #fff !important;
       border-bottom: 1px solid #fff;
       &:hover {
-        color: #fff;
+        color: #fff !important;
       }
     }
     &_delimeter {
-      color: #fff;
+      color: #fff !important;
       &:hover {
-        color: #fff;
+        color: #fff !important;
       }
     }
   }
@@ -397,6 +401,7 @@
     position: absolute;
     top: 30%;
     margin-top: -4px;
+    color: #fff !important;
     &.this-left {
       left: -14px;
     }
@@ -407,6 +412,7 @@
     .alink(#fff, #ccc);
     &:hover {
       opacity: 1;
+      color: #ccc !important;
     }
   }
 

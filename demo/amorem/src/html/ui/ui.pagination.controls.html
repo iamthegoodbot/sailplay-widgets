@@ -2,17 +2,17 @@
 
     <div class="sp_cmn-paginate__inner">
 
+        <a href="#" class="sp_cmn-paginate__arrow this-left"
+           data-ng-click="setCurrent(pagination.current - 1);$event.preventDefault();"><</a>
+
         <a href="#" class="sp_cmn-paginate__itm"
            data-ng-repeat="pageNumber in pages track by tracker(pageNumber, $index)"
            data-ng-class="{ 'this-active' : pagination.current == pageNumber, 'sp_cmn-paginate__delimeter' : pageNumber == '...' }"
            data-ng-click="setCurrent(pageNumber);$event.preventDefault();" data-ng-bind="pageNumber"></a>
 
+        <a href="#" class="sp_cmn-paginate__arrow this-right"
+           data-ng-click="setCurrent(pagination.current + 1);$event.preventDefault();">></a>
+
     </div>
-
-    <a href="#" class="sp_cmn-paginate__arrow this-left"
-       data-ng-click="setCurrent(pagination.current - 1);$event.preventDefault();"></a>
-
-    <a href="#" class="sp_cmn-paginate__arrow this-right"
-       data-ng-click="setCurrent(pagination.current + 1);$event.preventDefault();"></a>
 
 </div>

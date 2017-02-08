@@ -100,13 +100,13 @@
 
       sp.on('gift.purchase.force_complete.success', function (res) {
 
-        $rootScope.$apply(loadData);
+        // $rootScope.$apply(loadData);
 
       });
 
       sp.on('gifts.purchase.success', function () {
 
-        $rootScope.$apply(loadData);
+        // $rootScope.$apply(loadData);
 
       });
 
@@ -136,8 +136,6 @@
         }
 
         sp_api.call('load.actions.list');
-
-        sp_api.call('load.actions.custom.list');
 
         sp_api.call('load.actions.custom.list');
 

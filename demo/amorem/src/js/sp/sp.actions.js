@@ -59,7 +59,7 @@
               }
             }
           },
-          "purchases": {
+          "purchase": {
             "name": "Рассказать о покупке в Facebook",
             "descr": "Описание действия",
             "class": "this-icon-04",
@@ -133,7 +133,7 @@
               }
             }
           },
-          "purchases": {
+          "purchase": {
             "name": "Рассказать о покупке в Вконтакте",
             "descr": "Описание действия",
             "class": "this-icon-01",
@@ -187,6 +187,30 @@
             "name": "Рассказать в Одноклассниках",
             "descr": "Описание действия",
             "class": "this-icon-03",
+            "styles": {
+              "ok_share_btn": {
+                "font-family": "Arial",
+                "box-sizing": "border-box",
+                "height": "100%",
+                "text-decoration": "none",
+                "color": "black",
+                "width": "100%",
+                "font-weight": "normal",
+                "left": "0",
+                "top": "0",
+                "font-size": "14px",
+                "line-height": "43px",
+                "cursor": "pointer",
+                "display": "inline-block",
+                "position": "absolute",
+                "max-width": "175px"
+              }
+            }
+          },
+          "purchase": {
+            "name": "Рассказать о покупке в Одноклассниках",
+            "descr": "Описание действия",
+            "class": "this-icon-01",
             "styles": {
               "ok_share_btn": {
                 "font-family": "Arial",

@@ -19,13 +19,13 @@
             <div class="sp_header__left">
 
                 <img data-ng-if="(user().user.pic | is_default)"
-                     src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/6f99e057b8a1264f3b568bc9fc6b76dd.png"
+                     src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/3f3525dc02b31465b3d23c555bc36979.png"
                      alt="Header Image">
 
                 <div class="sp_profile-cell" data-ng-if="!(user().user.pic | is_default)">
 
                     <img class="sp_profile-cell__img"
-                         src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/5fc3c045b10f6c5cb732d9260ed60dbb.png"
+                         src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/3f3525dc02b31465b3d23c555bc36979.png"
                          alt="Header Image">
 
                     <div class="sp_profile-cell__photo"
@@ -43,9 +43,9 @@
         </div>
     </section>
 
-    <section class="sp_l-centered sp_statistic-sec" data-sailplay-profile>
+    <section class="sp_statistic-sec" data-sailplay-profile>
 
-        <div class="sp_statistic-sec__back">
+        <div class="sp_statistic-sec__backfull">
             <div class="sp_statistic-sec__back-col this-left">
                 <div class="sp_statistic-sec__back-inn"></div>
             </div>
@@ -54,68 +54,81 @@
             </div>
         </div>
 
-        <div class="sp_statistic-sec__left" data-sailplay-status>
+        <div class="sp_l-centered">
 
-            <div class="sp_count-cell">
-
-                <div class="sp_count-cell__inner">
-
-                    <div class="sp_count-cell__left">
-                        <div class="sp_count-cell__count" data-ng-bind="user().user_points.confirmed | number"></div>
-                        <div class="sp_count-cell__count-ttl"
-                             data-ng-bind="user().user_points.confirmed | sailplay_pluralize:'Гармония,Гармонии,Гармоний'"></div>
-                        <div class="sp_cmn-btn sp_count-cell__btn" data-ng-click="show_history();body_lock(true)">История</div>
-                    </div>
-                    <!-- /left -->
-                    <div class="sp_count-cell__right" data-ng-if="badges && badges()">
-
-                        <div class="sp_count-cell__inner-left" data-ng-if="getNextStatus()">
-                            <div class="sp_count-cell__count"
-                                 data-ng-bind="getPurchasesForStatus(getNextStatus()) && getPurchasesForStatus(getNextStatus()) - user().purchases.count"></div>
-                            <div class="sp_count-cell__count-ttl">
-                                {{ getPurchasesForStatus(getNextStatus()) && getPurchasesForStatus(getNextStatus()) -
-                                user().purchases.count | sailplay_pluralize:'покупка,покупкки,покупок' }} осталось до
-                                статуса "{{ getNextStatus().name }}"
-                            </div>
-
-                        </div>
-                        <!-- /inner-left -->
-
-                        <div class="sp_count-cell__inner-right">
-                            <div class="sp_heart-scale">
-                                <div class="sp_heart-scale__inner">
-                                    <div class="sp_heart-scale__rate"
-                                         data-ng-style="{{ getStatusPercents(user().purchases.count) }}"></div>
-                                </div>
-                                <div class="sp_heart-scale__img">
-                                    <img src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/649747a0dfceb2982d00ecb558439d19.png"
-                                         alt="Status Percents">
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- /inner-right -->
-                    </div>
-                    <!-- /right -->
+            <div class="sp_statistic-sec__back">
+                <div class="sp_statistic-sec__back-col this-left">
+                    <div class="sp_statistic-sec__back-inn"></div>
                 </div>
-
+                <div class="sp_statistic-sec__back-col this-right">
+                    <div class="sp_statistic-sec__back-inn"></div>
+                </div>
             </div>
-            <!-- /sp_count-cell -->
-        </div>
-        <!-- /left -->
-        <div class="sp_statistic-sec__right">
 
-            <div class="sp_status-cell">
+            <div class="sp_statistic-sec__left" data-sailplay-status>
 
-                <div class="sp_status-cell__left">
+                <div class="sp_count-cell">
 
-                    <div class="sp_status-cell__img-wr" data-ng-if="getCurrentStatus()">
+                    <div class="sp_count-cell__inner">
 
-                        <img data-ng-src="{{ getCurrentStatus().thumbs.url_250x250 }}"
-                             alt="{{ getCurrentStatus().name }}">
+                        <div class="sp_count-cell__left">
+                            <div class="sp_count-cell__count" data-ng-bind="user().user_points.confirmed | number"></div>
+                            <div class="sp_count-cell__count-ttl"
+                                 data-ng-bind="user().user_points.confirmed | sailplay_pluralize:'Гармония,Гармонии,Гармоний'"></div>
+                            <div class="sp_cmn-btn sp_count-cell__btn" data-ng-click="show_history();body_lock(true)">История</div>
+                        </div>
+                        <!-- /left -->
+                        <div class="sp_count-cell__right" data-ng-if="badges && badges()">
 
-                        <div class="sp_cmn-hint sp_status-cell__hint"
-                             data-ng-bind-html="(getCurrentStatus() | spBadgeDesc).before | to_trusted"></div>
+                            <div class="sp_count-cell__inner-left">
+
+                                <div class="sp_count-cell__count"
+                                     data-ng-bind="user().purchases.count | number"></div>
+
+                                <div class="sp_count-cell__count-ttl"
+                                     data-ng-bind="user().purchases.count | sailplay_pluralize:'покупка,покупки,покупок'">
+                                </div>
+
+                            </div>
+                            <!-- /inner-left -->
+
+                            <div class="sp_count-cell__inner-right">
+                                <div class="sp_heart-scale">
+                                    <div class="sp_heart-scale__inner">
+                                        <div class="sp_heart-scale__rate"
+                                             data-ng-style="{{ getStatusPercents() }}"></div>
+                                    </div>
+                                    <div class="sp_heart-scale__img">
+                                        <img src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/649747a0dfceb2982d00ecb558439d19.png"
+                                             alt="Status Percents">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- /inner-right -->
+                        </div>
+                        <!-- /right -->
+                    </div>
+
+                </div>
+                <!-- /sp_count-cell -->
+            </div>
+            <!-- /left -->
+            <div class="sp_statistic-sec__right" data-sailplay-status>
+
+                <div class="sp_status-cell" data-ng-if="badges && badges()">
+
+                    <div class="sp_status-cell__left">
+
+                        <div class="sp_status-cell__img-wr">
+
+                            <img data-ng-src="{{ getCurrentStatus().thumbs.url_250x250 }}"
+                                 alt="{{ getCurrentStatus().name }}">
+
+                            <div class="sp_cmn-hint sp_status-cell__hint"
+                                 data-ng-bind-html="(getCurrentStatus() | spBadgeDesc).after | to_trusted"></div>
+
+                        </div>
 
                     </div>
 
@@ -124,14 +137,17 @@
                              data-ng-bind="getCurrentStatus() ? getCurrentStatus().name : 'Статус отсутствует'"></div>
                         <div class="sp_status-cell__ttl"></div>
                         <div class="sp_cmn-btn sp_status-cell__btn"
-                             data-ng-click="$parent.show_badges=true;body_lock(true)">Статусы
+                             data-ng-click="$parent.$parent.$parent.show_badges=true;body_lock(true)">Статусы
                         </div>
                     </div>
 
                 </div>
+                <!-- /right -->
 
             </div>
-            <!-- /right -->
+
+        </div>
+
     </section>
 
     <section class="sp_l-section sp_tabs-head-sec" data-sp-tab-menu>
@@ -296,8 +312,12 @@
                             <div class="sp_collect-slider__img-inner this-disabled"
                                  style="background-image: url({{ badge.thumbs.url_gs }});"></div>
 
-                            <div class="sp_cmn-hint sp_collect-slider__hint"
-                                 data-ng-bind="badge.is_received ? (badge | spBadgeDesc).after : (badge | spBadgeDesc).before"></div>
+                            <div class="sp_cmn-hint sp_collect-slider__hint">
+
+                                <div class="sp_cmn-hint__head" data-ng-bind="badge.name"></div>
+                                {{ badge.is_received ? (badge | spBadgeDesc).after : (badge | spBadgeDesc).before }}
+
+                            </div>
 
                         </div>
                     </div>
@@ -331,7 +351,6 @@
 
     </div>
     <!-- /sp tabs container -->
-
 
     <div class="bns_overlay"
          data-ng-style="{ display:  (show_badges ? 'block' : 'none')}">

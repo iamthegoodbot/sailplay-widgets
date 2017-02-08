@@ -56,7 +56,7 @@
       "social_share": "Рассказ в ",
       "share_badge": "Рассказ о бейджике в ",
       "earn_badge": 'Получен бейджик ',
-      "custom_action": "Экстра"
+      "extra": "Экстра "
     })
 
     .constant('socialList', {
@@ -75,6 +75,8 @@
           case 'event':
             return historyItem.name || history_texts.custom_action;
           case 'extra':
+            return historyItem.name || history_texts.custom_action;
+          case 'custom_action':
             return historyItem.name || history_texts.custom_action;
           case 'purchase':
             return history_texts.purchase +  ' (' + historyItem.order_num + ')';

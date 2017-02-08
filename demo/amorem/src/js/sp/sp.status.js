@@ -52,20 +52,23 @@
            * Get current status
            */
           scope.getCurrentStatus = function () {
-            return scope.badges().multilevel_badges[0].filter(function (badge) {
+            if(!scope.badges && !scope.badges()) return null;
+            var received_statuses = scope.badges().multilevel_badges[0].filter(function (badge) {
               return badge.is_received
-            })[0];
+            });
+            return received_statuses.length ? received_statuses[received_statuses.length - 1] : null;
           };
 
           /**
            * Get percents for status bar
-           * @param purchases
            * @returns {string}
            */
-          scope.getStatusPercents = function (purchases) {
-            var last = scope.badges().multilevel_badges[0][scope.badges().multilevel_badges[0].length - 1];
-            var percents = 0;
-            if (last) percents = purchases * 100 / scope.getPurchasesForStatus(last);
+          scope.getStatusPercents = function () {
+            var received_statuses = scope.badges().multilevel_badges[0].filter(function (badge) {
+              return badge.is_received
+            }).length;
+            var len = scope.badges().multilevel_badges[0].length;
+            var percents = 100 / len * received_statuses;
             percents = percents > 100 ? 100 : percents < 0 ? 0 : percents;
             return {
               'height': percents + '%'

@@ -7,31 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
+    <link rel="stylesheet" href="./dist/css/sailplay.amorem.css"/>
+    <script src="./dist/js/sailplay.amorem.js"></script>
     <script type="text/javascript">
-
-      window.sailplay_config = {
-        auth_hash: 'c6e8afa750dfcb904f666b8b0eedb4c8990c70ce',
-        partner_id: 1616,
-        lang: 'ru'
-      };
-
-      var _links = {
-        js: './dist/js/sailplay.amorem.js',
-        css: './dist/css/sailplay.amorem.css'
-      };
 
       document.addEventListener('DOMContentLoaded', function () {
 
-        var _s = document.createElement("link");
-        _s.type = "text/css";
-        _s.rel = "stylesheet";
-        _s.href = _links.css;
-        document.getElementsByTagName("head")[0].appendChild(_s);
+        var params = SAILPLAY.url_params() || {};
 
-        var _j = document.createElement("script");
-        _j.type = "text/javascript";
-        _j.src = _links.js;
-        document.getElementsByTagName("head")[0].appendChild(_j);
+        window.sailplay_config = {
+          auth_hash: params.auth_hash || '908cad8a4630b802cf5b9564fcf19e37536b0c21',
+          partner_id: params.partner_id || 1616,
+          domain: params.domain || 'http://sailplay.ru',
+          lang: 'ru'
+        };
 
       });
 

@@ -439,15 +439,13 @@
 .sp_wrapper .common-submit:focus {
   outline: none !important;
 }
-.sp_wrapper .sp_header-wr {
-  background: url("../image/back-01.jpg") no-repeat 100% 100%;
-}
 @media (max-width: 991px) {
   .sp_wrapper .sp_header-wr {
     background: none;
   }
 }
 .sp_wrapper .sp_header {
+  background: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/1ee8a259510f09d2275004c7599b13c7.png") no-repeat 100% 120% / auto 90%;
   padding-top: 30px;
 }
 .sp_wrapper .sp_header:before,
@@ -457,6 +455,11 @@
 }
 .sp_wrapper .sp_header:after {
   clear: both;
+}
+@media (max-width: 991px) {
+  .sp_wrapper .sp_header {
+    background: none;
+  }
 }
 @media (max-width: 767px) {
   .sp_wrapper .sp_header {
@@ -544,9 +547,9 @@
 }
 .sp_wrapper .sp_profile-cell__photo {
   left: 33.3%;
-  top: 19.4%;
   position: absolute;
-  width: 37.4%;
+  top: 20.5%;
+  width: 37.1%;
   border-radius: 50%;
   background-position: center;
   background-repeat: no-repeat;
@@ -557,6 +560,10 @@
   width: 100%;
   height: auto;
 }
+.sp_wrapper .sp_statistic-sec {
+  position: relative;
+  width: 100%;
+}
 .sp_wrapper .sp_statistic-sec:before,
 .sp_wrapper .sp_statistic-sec:after {
   content: " ";
@@ -565,7 +572,16 @@
 .sp_wrapper .sp_statistic-sec:after {
   clear: both;
 }
+.sp_wrapper .sp_statistic-sec .sp_l-centered:before,
+.sp_wrapper .sp_statistic-sec .sp_l-centered:after {
+  content: " ";
+  display: table;
+}
+.sp_wrapper .sp_statistic-sec .sp_l-centered:after {
+  clear: both;
+}
 .sp_wrapper .sp_statistic-sec__back {
+  background: white;
   position: absolute;
   left: 0;
   top: 0;
@@ -601,6 +617,47 @@
   background-color: #8863C1;
 }
 .sp_wrapper .sp_statistic-sec__back-inn {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  background-color: blue;
+}
+.sp_wrapper .sp_statistic-sec__backfull {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+@media (max-width: 991px) {
+  .sp_wrapper .sp_statistic-sec__backfull {
+    display: none;
+  }
+}
+.sp_wrapper .sp_statistic-sec__backfull-col {
+  position: absolute;
+  top: 0;
+  height: 100%;
+}
+.sp_wrapper .sp_statistic-sec__backfull-col.this-left {
+  left: 0;
+  width: 61.2%;
+}
+.sp_wrapper .sp_statistic-sec__backfull-col.this-left .sp_statistic-sec__back-inn {
+  left: 0;
+  right: 7px;
+  background-color: #776AC5;
+}
+.sp_wrapper .sp_statistic-sec__backfull-col.this-right {
+  right: 0;
+  width: 38.8%;
+}
+.sp_wrapper .sp_statistic-sec__backfull-col.this-right .sp_statistic-sec__back-inn {
+  left: 7px;
+  right: 0;
+  background-color: #8863C1;
+}
+.sp_wrapper .sp_statistic-sec__backfull-inn {
   position: absolute;
   top: 0;
   height: 100%;
@@ -800,6 +857,7 @@
   max-width: 240px;
   margin-left: auto;
   margin-right: auto;
+  overflow: hidden;
 }
 .sp_wrapper .sp_heart-scale__img {
   position: relative;
@@ -947,6 +1005,15 @@
   margin: 0 22px 20px;
   cursor: pointer;
 }
+@media (max-width: 991px) {
+  .sp_wrapper .sp_tabs-head {
+    text-align: center;
+    display: block;
+  }
+  .sp_wrapper .sp_tabs-head.this-active {
+    display: inline-block;
+  }
+}
 .sp_wrapper .sp_tabs-head:hover {
   color: #b3b3b3;
 }
@@ -956,7 +1023,7 @@
   color: #000;
 }
 .sp_wrapper .sp_tabs-container {
-  padding: 30px 0 100px;
+  padding: 30px 0;
 }
 .sp_wrapper .sp_task-sec {
   margin: 20px auto;
@@ -1022,22 +1089,23 @@
   background-position: center;
 }
 .sp_wrapper .sp_task-cell__icon.this-icon-01 {
-  background-image: url("../image/task-icon-01.svg");
+  background-image: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/5103c0ed7b8ba4ada37f74967ef4d21c.svg");
 }
 .sp_wrapper .sp_task-cell__icon.this-icon-02 {
-  background-image: url("../image/task-icon-02.svg");
+  background-image: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/0e03afddbe53bd4262e54d76430b1b84.svg");
 }
 .sp_wrapper .sp_task-cell__icon.this-icon-03 {
-  background-image: url("../image/task-icon-03.svg");
+  background-image: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/4b1576196fa50cdcc019d7cea6ef39af.png");
+  background-size: auto 35%;
 }
 .sp_wrapper .sp_task-cell__icon.this-icon-04 {
-  background-image: url("../image/task-icon-04.svg");
+  background-image: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/8adeeb8911a57879da3d85f3ed435616.svg");
 }
 .sp_wrapper .sp_task-cell__icon.this-icon-05 {
-  background-image: url("../image/task-icon-05.svg");
+  background-image: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/9ab871c1f901dad8ace6069ead8c5eb5.svg");
 }
 .sp_wrapper .sp_task-cell__icon.this-icon-06 {
-  background-image: url("../image/task-icon-06.svg");
+  background-image: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/b9d2d0d57ec3c6fb039f1104ae67bcd1.svg");
 }
 .sp_wrapper .sp_task-cell__icon:after {
   content: "";
@@ -1149,7 +1217,7 @@
   position: absolute;
   z-index: 2;
   display: block;
-  top: 35%;
+  top: 26%;
   margin-top: -15px;
   width: 0;
   height: 0;
@@ -1158,21 +1226,21 @@
   border-bottom: 20px solid transparent;
 }
 .sp_wrapper .sp_collect-slider .slick-arrow.slick-left {
-  left: 15px;
+  left: 20px;
   border-right: 20px solid #D463C1;
 }
 @media (max-width: 1200px) {
   .sp_wrapper .sp_collect-slider .slick-arrow.slick-left {
-    left: 5px;
+    left: 20px;
   }
 }
 .sp_wrapper .sp_collect-slider .slick-arrow.slick-right {
-  right: 15px;
+  right: 20px;
   border-left: 20px solid #D463C1;
 }
 @media (max-width: 1200px) {
   .sp_wrapper .sp_collect-slider .slick-arrow.slick-right {
-    right: 5px;
+    right: 20px;
   }
 }
 .sp_wrapper .sp_collect-slider .slick-arrow.slick-disabled {
@@ -1194,21 +1262,21 @@
   border-bottom: 20px solid transparent;
 }
 .sp_wrapper .sp_gifts-slider .slick-arrow.slick-left {
-  left: 15px;
+  left: 20px;
   border-right: 20px solid #D463C1;
 }
 @media (max-width: 1200px) {
   .sp_wrapper .sp_gifts-slider .slick-arrow.slick-left {
-    left: 5px;
+    left: 20px;
   }
 }
 .sp_wrapper .sp_gifts-slider .slick-arrow.slick-right {
-  right: 15px;
+  right: 20px;
   border-left: 20px solid #D463C1;
 }
 @media (max-width: 1200px) {
   .sp_wrapper .sp_gifts-slider .slick-arrow.slick-right {
-    right: 5px;
+    right: 20px;
   }
 }
 .sp_wrapper .sp_gifts-slider .slick-arrow.slick-disabled {
@@ -1221,7 +1289,7 @@
   border-radius: 5px;
   margin: 0 auto;
   max-width: 95%;
-  margin-bottom: 100px;
+  margin-bottom: 200px;
 }
 .sp_wrapper .sp_collect-slider__slide.this-disabled .sp_collect-slider__img-inner.this-active {
   display: none;
@@ -1230,7 +1298,7 @@
   display: block;
 }
 .sp_wrapper .sp_collect-slider__slide.this-disabled .sp_collect-slider__img {
-  background: url("../image/collect-back-disable.svg") no-repeat center;
+  background: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/9c416048e4e6a80015d50cac8da9598f.svg") no-repeat center;
 }
 .sp_wrapper .sp_collect-slider__slide:hover .sp_collect-slider__hint {
   display: block;
@@ -1240,7 +1308,7 @@
   width: 178px;
   height: 178px;
   margin: 0 auto;
-  background: url("../image/collect-back.svg") no-repeat center;
+  background: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/b457c54380998a3d8e43843b87f19d2a.svg") no-repeat center;
 }
 .sp_wrapper .sp_collect-slider__img-inner {
   position: absolute;
@@ -1259,8 +1327,8 @@
   display: none;
   top: 50%;
   margin-top: 25px;
-  width: 330px;
-  margin-left: -165px;
+  width: 280px;
+  margin-left: -140px;
 }
 .sp_wrapper .sp_achiev-sec {
   text-align: center;
@@ -1309,6 +1377,7 @@
 /* Slider */
 .slick-slider {
   position: relative;
+  padding: 0 60px;
   display: block;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -1434,9 +1503,10 @@
   position: absolute;
   right: 25px;
   top: 37px;
+  z-index: 10;
   width: 32px;
   height: 31px;
-  background: url('../image/close-cross.png') no-repeat center;
+  background: url('https://sailplays3.cdnvideo.ru/media/assets/assetfile/53b3b7227b2bc1691b69fcb3a654f4cd.png') no-repeat center;
   cursor: pointer;
 }
 .bns_overlay__close:hover {
@@ -1518,8 +1588,9 @@
   right: 25px;
   top: 37px;
   width: 32px;
+  z-index: 10;
   height: 31px;
-  background: url('../image/close-cross.png') no-repeat center;
+  background: url('https://sailplays3.cdnvideo.ru/media/assets/assetfile/53b3b7227b2bc1691b69fcb3a654f4cd.png') no-repeat center;
   cursor: pointer;
 }
 .sp_status-popup__close:hover {
@@ -1571,6 +1642,7 @@
 }
 .sp_status-itm__img {
   margin: 0 auto 20px;
+  max-width: 210px;
 }
 @media (max-width: 767px) {
   .sp_status-itm__img {
@@ -1670,8 +1742,9 @@
   right: 25px;
   top: 37px;
   width: 32px;
+  z-index: 10;
   height: 31px;
-  background: url('../image/close-cross.png') no-repeat center;
+  background: url('https://sailplays3.cdnvideo.ru/media/assets/assetfile/53b3b7227b2bc1691b69fcb3a654f4cd.png') no-repeat center;
   cursor: pointer;
 }
 .sp_hist-popup__close:hover {
@@ -2004,26 +2077,27 @@
   color: #fff;
 }
 .sp_cmn-paginate__itm:hover {
-  color: #ccc;
+  color: #ccc !important;
 }
 .sp_cmn-paginate__itm.this-active {
   cursor: default;
-  color: #fff;
+  color: #fff !important;
   border-bottom: 1px solid #fff;
 }
 .sp_cmn-paginate__itm.this-active:hover {
-  color: #fff;
+  color: #fff !important;
 }
 .sp_cmn-paginate__itm_delimeter {
-  color: #fff;
+  color: #fff !important;
 }
 .sp_cmn-paginate__itm_delimeter:hover {
-  color: #fff;
+  color: #fff !important;
 }
 .sp_cmn-paginate__arrow {
   position: absolute;
   top: 30%;
   margin-top: -4px;
+  color: #fff !important;
   opacity: .8;
 }
 .sp_cmn-paginate__arrow.this-left {
@@ -2046,6 +2120,7 @@
 }
 .sp_cmn-paginate__arrow:hover {
   opacity: 1;
+  color: #ccc !important;
 }
 .sp_cmn-btn {
   display: block;
