@@ -438,6 +438,13 @@
           };
 
           /**
+           * Load custom actions
+           */
+          scope.update_custom_actions = function() {
+            sp_api.call('load.actions.custom.list');
+          };
+
+          /**
            * Выполнение действия
            * @param action
            */

@@ -2443,7 +2443,7 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/html/main.html',
-    '<div class="sp_wrapper" data-ng-show="global.loaded"><section class="sp_header-wr sp_l-section-wrap" data-ng-cloak="" data-sailplay-profile=""><div class="sp_header sp_l-centered"><div class="sp_header__right"><div class="sp_header__hd" data-ng-bind="user && user() && (user().user.first_name || user().user.last_name) ? \'Здравстуйте, \' + (user().user.last_name ? user().user.last_name : \'\') + (user().user.first_name ? \' \' + user().user.first_name : \'\') : \'Бонусная программа\'"></div><div class="sp_header__ttl">Совершайте покупки, выполняйте задания, копите гармонии и меняйте их на уютные подарки</div><div class="sp_cmn-btn sp_header__btn js-open-about" data-ng-click="$parent.show_about=true;body_lock(true);">Подробнее</div></div><div class="sp_header__left"><img data-ng-if="(user().user.pic | is_default)" src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/3f3525dc02b31465b3d23c555bc36979.png" alt="Header Image"><div class="sp_profile-cell" data-ng-if="!(user().user.pic | is_default)"><img class="sp_profile-cell__img" src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/3f3525dc02b31465b3d23c555bc36979.png" alt="Header Image"><div class="sp_profile-cell__photo" style="background-image: url({{ user().user.pic | sailplay_pic }});"><img src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/86e254b2d2370385161d04edb30de8a9.png" alt="Avatar"></div></div></div></div></section><section class="sp_statistic-sec" data-sailplay-profile=""><div class="sp_statistic-sec__backfull"><div class="sp_statistic-sec__back-col this-left"><div class="sp_statistic-sec__back-inn"></div></div><div class="sp_statistic-sec__back-col this-right"><div class="sp_statistic-sec__back-inn"></div></div></div><div class="sp_l-centered"><div class="sp_statistic-sec__back"><div class="sp_statistic-sec__back-col this-left"><div class="sp_statistic-sec__back-inn"></div></div><div class="sp_statistic-sec__back-col this-right"><div class="sp_statistic-sec__back-inn"></div></div></div><div class="sp_statistic-sec__left" data-sailplay-status=""><div class="sp_count-cell"><div class="sp_count-cell__inner"><div class="sp_count-cell__left"><div class="sp_count-cell__count" data-ng-bind="user().user_points.confirmed | number"></div><div class="sp_count-cell__count-ttl" data-ng-bind="user().user_points.confirmed | sailplay_pluralize:\'Гармония,Гармонии,Гармоний\'"></div><div class="sp_cmn-btn sp_count-cell__btn" data-ng-click="show_history();body_lock(true)">История</div></div><div class="sp_count-cell__right" data-ng-if="badges && badges()"><div class="sp_count-cell__inner-left"><div class="sp_count-cell__count" data-ng-bind="user().purchases.count | number"></div><div class="sp_count-cell__count-ttl" data-ng-bind="user().purchases.count | sailplay_pluralize:\'покупка,покупки,покупок\'"></div></div><div class="sp_count-cell__inner-right"><div class="sp_heart-scale"><div class="sp_heart-scale__inner"><div class="sp_heart-scale__rate" data-ng-style="{{ getStatusPercents() }}"></div></div><div class="sp_heart-scale__img"><img src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/649747a0dfceb2982d00ecb558439d19.png" alt="Status Percents"></div></div></div></div></div></div></div><div class="sp_statistic-sec__right" data-sailplay-status=""><div class="sp_status-cell" data-ng-if="badges && badges()"><div class="sp_status-cell__left"><div class="sp_status-cell__img-wr"><img data-ng-src="{{ getCurrentStatus().thumbs.url_250x250 }}" alt="{{ getCurrentStatus().name }}"><div class="sp_cmn-hint sp_status-cell__hint" data-ng-bind-html="(getCurrentStatus() | spBadgeDesc).after | to_trusted"></div></div></div><div class="sp_status-cell__right"><div class="sp_status-cell__hd" data-ng-bind="getCurrentStatus() ? getCurrentStatus().name : \'Статус отсутствует\'"></div><div class="sp_status-cell__ttl"></div><div class="sp_cmn-btn sp_status-cell__btn" data-ng-click="$parent.$parent.$parent.show_badges=true;body_lock(true)">Статусы</div></div></div></div></div></section><section class="sp_l-section sp_tabs-head-sec" data-sp-tab-menu=""><div class="sp_tabs-head" data-ng-repeat="menu_item in menu track by $index" data-ng-bind="menu_item.name" data-ng-class="{ \'this-active\': $parent.state == menu_item.alias }" data-ng-click="$parent.state = menu_item.alias"></div></section><div class="sp_tabs-container" data-ng-switch="state"><section class="sp_l-section sp_task-sec this-active-tab" data-ng-switch-default="" data-sailplay-actions="" data-ng-show="actions && actions()"><div class="sp_task-sec__col" data-ng-repeat="action in actions().actions"><div class="sp_task-cell"><div class="sp_task-cell__icon {{ action_data(action).class }}"></div><div class="sp_task-cell__info"><div class="sp_task-cell__txt"><div class="sp_task-cell__txt-inn">{{ action_data(action).name }} <span class="sp_task-cell__count" data-ng-bind="(action.points | number) + \' \' + (action.points | sailplay_pluralize:\'гармония,гармонии,гармоний\')"></span></div></div></div><div class="sp_task-cell__over"><div class="sp_task-cell__btn sp_cmn-btn" data-sailplay-action="" data-styles="{{ action_styles(action_data(action)) }}" data-action="action" data-text="Получить"></div></div></div></div><div class="sp_task-sec__col" data-ng-repeat="action in actions_custom()"><div class="sp_task-cell"><div class="sp_task-cell__icon" data-ng-style="{\'background-image\': \'url({{ action.icon | sailplay_pic }})\'}"></div><div class="sp_task-cell__info"><div class="sp_task-cell__txt"><div class="sp_task-cell__txt-inn">{{ action.name }} <span class="sp_task-cell__count" data-ng-bind="(action.points | number) + \' \' + (action.points | sailplay_pluralize:\'гармония,гармонии,гармоний\')"></span></div></div></div><div class="sp_task-cell__over"><div class="sp_task-cell__btn sp_cmn-btn" data-ng-click="$parent.custom_action=action;body_lock(true);" data-ng-bind="action.button_text"></div></div></div></div><div class="bns_overlay" data-ng-style="{ display: (custom_action ? \'block\' : \'none\')}"><div class="bns_overlay_inner sp_custom_action-popup js-about-popup"><div class="bns_overlay__close" data-ng-click="custom_action = null;body_lock(false);"></div><div class="sp_custom_action-popup__inner" data-sailplay-action-custom="" data-action="custom_action"></div></div></div></section><section class="sp_l-centered sp_gift-sec" data-sailplay-gifts="" data-ng-switch-when="gifts"><div class="sp_gifts-slider js-sp-slider js-slick-slider" data-ng-show="gifts && gifts()"><div data-ng-repeat="gift in gifts()" data-slack-slider=""><div class="sp_gifts-slider__slide"><div class="sp_gifts-slider__slide-img" style="background-image: url({{ gift.thumbs.url_250x250 | sailplay_pic }});"></div><div class="sp_gifts-slider__slide-info"><div class="sp_gifts-slider__slide-ttl" data-ng-bind="gift.name" title="{{ gift.name }}"></div><div class="sp_gifts-slider__slide-val" data-ng-bind="(gift.points | number) + \' \' + (gift.points | sailplay_pluralize:\'гармония,гармонии,гармоний\')"></div><div class="sp_gifts-slider__slide-over"><div class="sp_cmn-btn sp_gifts-slider__btn" data-ng-click="$event.preventDefault();gift_get(gift);body_lock(true);">Получить</div></div></div></div></div></div><div class="bns_overlay" data-ng-style="{ display: (gift_success && gift_success_show ? \'block\' : \'none\')}"><div class="bns_overlay__close" data-ng-click="gift_success = null;gift_success_show = null;body_lock(false);"></div><div class="bns_overlay_inner sp_gift-popup"><div class="sp_gift-popup__img" style="background-image: url({{ gift_success.thumbs.url_250x250 | sailplay_pic }});"></div><div class="sp_gift-popup__ttl">Подарок добавлен в корзину! {{ gift_success.points }} {{ gift_success.points | sailplay_pluralize:\'гармония,гармонии,гармоний\' }} будет списано с Вашего бонусного счета при оплате заказа</div><div class="sp_gift-popup__btn sp_cmn-btn js-close-popup" data-ng-click="gift_success = null;gift_success_show = null;body_lock(false);">Хорошо</div></div></div><div class="bns_overlay" data-ng-style="{ display: (gift_error ? \'block\' : \'none\')}"><div class="bns_overlay__close" data-ng-click="gift_error = null;body_lock(false);"></div><div class="bns_overlay_inner sp_gift-popup"><div class="sp_gift-popup__img" style="background-image: url({{ gift_error.thumbs.url_250x250 | sailplay_pic }});"></div><div class="sp_gift-popup__ttl">Не хватает {{ gift_error.points - user().user_points.confirmed }} {{ (gift_error.points - user().user_points.confirmed) | sailplay_pluralize:\'гармония,гармонии,гармоний\' }}</div></div></div></section><section class="sp_l-centered sp_collect-sec" data-ng-switch-when="collections" data-sailplay-badges=""><div class="sp_collect-slider js-sp-slider js-slick-slider" data-ng-show="badges && badges()"><div data-ng-repeat="badge in badges().one_level_badges | filter:only_collections track by $index" data-slack-slider=""><div class="sp_collect-slider__slide" data-ng-class="{\'this-active\': badge.is_received, \'this-disabled\': !badge.is_received}"><div class="sp_collect-slider__img"><div class="sp_collect-slider__img-inner this-active" style="background-image: url({{ badge.is_received ? badge.thumbs.url_250x250 : badge.thumbs.url_gs }});"></div><div class="sp_collect-slider__img-inner this-disabled" style="background-image: url({{ badge.thumbs.url_gs }});"></div><div class="sp_cmn-hint sp_collect-slider__hint"><div class="sp_cmn-hint__head" data-ng-bind="badge.name"></div>{{ badge.is_received ? (badge | spBadgeDesc).after : (badge | spBadgeDesc).before }}</div></div></div></div></div></section><section class="sp_l-centered sp_achiev-sec" data-ng-switch-when="achievements" data-sailplay-badges=""><div class="sp_achiev-sec__itm" data-ng-repeat="badge in badges().one_level_badges | filter:only_achievements track by $index" data-ng-class="{\'this-active\': badge.is_received, \'this-disabled\': !badge.is_received}"><div class="sp_achiev-sec__itm-inner this-active" style="background-image: url({{ badge.thumbs.url_250x250 }});"></div><div class="sp_achiev-sec__itm-inner this-disabled" style="background-image: url({{ badge.thumbs.url_gs }});"></div><div class="sp_cmn-hint sp_achiev-sec__hint"><div class="sp_cmn-hint__head" data-ng-bind="badge.name"></div>{{ badge.is_received ? (badge | spBadgeDesc).after : (badge | spBadgeDesc).before }}</div></div></section></div><div class="bns_overlay" data-ng-style="{ display: (show_badges ? \'block\' : \'none\')}"><div class="sp_hist-popup__close js-close-popup" data-ng-click="show_badges = null;body_lock(false);"></div><div class="bns_overlay_inner sp_status-popup js-status-popup" data-sailplay-status=""><div class="sp_status-popup__inner"><div class="sp_status-popup__col" data-ng-repeat="badge in badges().multilevel_badges[0] track by $index"><div class="sp_status-itm" data-ng-class="{\'this-active\': badge.is_received}"><div class="sp_status-itm__img"><img data-ng-src="{{ badge.thumbs.url_250x250 }}" alt="{{ badge.name }}"></div><div class="sp_status-itm__hd" data-ng-bind="badge.name"></div><div class="sp_status-itm__ttl" data-ng-bind="(badge | spBadgeDesc).before"></div></div></div></div></div></div><div class="bns_overlay" data-sailplay-history="" data-ng-style="{ display: (show ? \'block\' : \'none\')}"><div class="sp_hist-popup__close js-close-popup" data-ng-click="show = null;body_lock(false);"></div><div class="bns_overlay_inner sp_hist-popup js-hist-popup"><div class="sp_hist-popup__inner"><div class="sp_hist-popup__hd">История</div><div class="sp_hist-popup__ttl">Здесь отображается история покупок, накопления баллов, а так же полученные вами подарки</div><div class="sp_hist-popup-itm" data-dir-paginate="item in history() | filter:hasPoints | itemsPerPage:5" data-pagination-id="history_pages"><div class="sp_hist-popup-itm__count" data-ng-class="{ hist_point_not_completed: !item.is_completed, hist_point_minus: item.points_delta < 0}" data-ng-bind="(item.points_delta < 0 ? \'\' : \'+ \') + (item.points_delta | number) + \' \' + (item.points_delta | sailplay_pluralize:\'гармония,гармонии,гармоний\')"></div><div class="sp_hist-popup-itm__date" data-ng-bind="item.action_date | date:\'dd.MM.yyyy HH:mm\'"></div><div class="sp_hist-popup-itm__info" data-ng-bind="item | history_item"></div></div><dir-pagination-controls data-max-size="5" data-pagination-id="history_pages" data-template-url="/html/ui/ui.pagination.controls.html" data-auto-hide="true"></dir-pagination-controls></div></div></div><div class="bns_overlay" data-ng-style="{ display: (show_about ? \'block\' : \'none\')}"><div class="bns_overlay_inner sp_about-popup js-about-popup"><div class="bns_overlay__close" data-ng-click="show_about = null;body_lock(false);"></div><div class="sp_about-popup__inner js-close-popup"><div class="sp_about-popup__head">Любите получать подарки?<br>А мы любим их дарить!</div><div class="sp_about-popup__txt">Принимайте участие в бонусной программе Amorem, которая позволяет нашим постоянным клиентам получать бонусные баллы и обменивать их на подарки от Amorem. Как работает данная программа? Вы регистрируетесь, совершаете покупки, выполняете интересные задания и получаете Гармонии (бонусные баллы). Чем больше покупок и выполненных заданий, тем больше Гармоний. Накапливаете необходимое количество Гармоний и обмениваете их на подарки.</div></div></div></div><notify-popup></notify-popup></div>');
+    '<div class="sp_wrapper" data-ng-show="global.loaded"><section class="sp_header-wr sp_l-section-wrap" data-ng-cloak="" data-sailplay-profile=""><div class="sp_header sp_l-centered"><div class="sp_header__right"><div class="sp_header__hd" data-ng-bind="user && user() && (user().user.first_name || user().user.last_name) ? \'Здравстуйте, \' + (user().user.last_name ? user().user.last_name : \'\') + (user().user.first_name ? \' \' + user().user.first_name : \'\') : \'Бонусная программа\'"></div><div class="sp_header__ttl">Совершайте покупки, выполняйте задания, копите гармонии и меняйте их на уютные подарки</div><div class="sp_cmn-btn sp_header__btn js-open-about" data-ng-click="$parent.show_about=true;body_lock(true);">Подробнее</div></div><div class="sp_header__left"><img data-ng-if="(user().user.pic | is_default)" src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/3f3525dc02b31465b3d23c555bc36979.png" alt="Header Image"><div class="sp_profile-cell" data-ng-if="!(user().user.pic | is_default)"><img class="sp_profile-cell__img" src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/3f3525dc02b31465b3d23c555bc36979.png" alt="Header Image"><div class="sp_profile-cell__photo" style="background-image: url({{ user().user.pic | sailplay_pic }});"><img src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/86e254b2d2370385161d04edb30de8a9.png" alt="Avatar"></div></div></div></div></section><section class="sp_statistic-sec" data-sailplay-profile=""><div class="sp_statistic-sec__backfull"><div class="sp_statistic-sec__back-col this-left"><div class="sp_statistic-sec__back-inn"></div></div><div class="sp_statistic-sec__back-col this-right"><div class="sp_statistic-sec__back-inn"></div></div></div><div class="sp_l-centered"><div class="sp_statistic-sec__back"><div class="sp_statistic-sec__back-col this-left"><div class="sp_statistic-sec__back-inn"></div></div><div class="sp_statistic-sec__back-col this-right"><div class="sp_statistic-sec__back-inn"></div></div></div><div class="sp_statistic-sec__left" data-sailplay-status=""><div class="sp_count-cell"><div class="sp_count-cell__inner"><div class="sp_count-cell__left"><div class="sp_count-cell__count" data-ng-bind="user().user_points.confirmed | number"></div><div class="sp_count-cell__count-ttl" data-ng-bind="user().user_points.confirmed | sailplay_pluralize:\'Гармония,Гармонии,Гармоний\'"></div><div class="sp_cmn-btn sp_count-cell__btn" data-ng-click="show_history();body_lock(true)">История</div></div><div class="sp_count-cell__right" data-ng-if="badges && badges()"><div class="sp_count-cell__inner-left"><div class="sp_count-cell__count" data-ng-bind="user().purchases.count | number"></div><div class="sp_count-cell__count-ttl" data-ng-bind="user().purchases.count | sailplay_pluralize:\'покупка,покупки,покупок\'"></div></div><div class="sp_count-cell__inner-right"><div class="sp_heart-scale"><div class="sp_heart-scale__inner"><div class="sp_heart-scale__rate" data-ng-style="{{ getStatusPercents() }}"></div></div><div class="sp_heart-scale__img"><img src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/649747a0dfceb2982d00ecb558439d19.png" alt="Status Percents"></div></div></div></div></div></div></div><div class="sp_statistic-sec__right" data-sailplay-status=""><div class="sp_status-cell" data-ng-if="badges && badges()"><div class="sp_status-cell__left"><div class="sp_status-cell__img-wr"><img data-ng-src="{{ getCurrentStatus().thumbs.url_250x250 }}" alt="{{ getCurrentStatus().name }}"><div class="sp_cmn-hint sp_status-cell__hint" data-ng-bind-html="(getCurrentStatus() | spBadgeDesc).after | to_trusted"></div></div></div><div class="sp_status-cell__right"><div class="sp_status-cell__hd" data-ng-bind="getCurrentStatus() ? getCurrentStatus().name : \'Статус отсутствует\'"></div><div class="sp_status-cell__ttl"></div><div class="sp_cmn-btn sp_status-cell__btn" data-ng-click="$parent.$parent.$parent.show_badges=true;body_lock(true)">Статусы</div></div></div></div></div></section><section class="sp_l-section sp_tabs-head-sec" data-sp-tab-menu=""><div class="sp_tabs-head" data-ng-repeat="menu_item in menu track by $index" data-ng-bind="menu_item.name" data-ng-class="{ \'this-active\': $parent.state == menu_item.alias }" data-ng-click="$parent.state = menu_item.alias"></div></section><div class="sp_tabs-container" data-ng-switch="state"><section class="sp_l-section sp_task-sec this-active-tab" data-ng-switch-default="" data-sailplay-actions="" data-ng-show="actions && actions()"><div class="sp_task-sec__col" data-ng-repeat="action in actions().actions"><div class="sp_task-cell"><div class="sp_task-cell__icon {{ action_data(action).class }}"></div><div class="sp_task-cell__info"><div class="sp_task-cell__txt"><div class="sp_task-cell__txt-inn">{{ action_data(action).name }} <span class="sp_task-cell__count" data-ng-bind="(action.points | number) + \' \' + (action.points | sailplay_pluralize:\'гармония,гармонии,гармоний\')"></span></div></div></div><div class="sp_task-cell__over"><div class="sp_task-cell__btn sp_cmn-btn" data-sailplay-action="" data-styles="{{ action_styles(action_data(action)) }}" data-action="action" data-text="Получить"></div></div></div></div><div class="sp_task-sec__col" data-ng-repeat="action in actions_custom()"><div class="sp_task-cell"><div class="sp_task-cell__icon" data-ng-style="{\'background-image\': \'url({{ action.icon | sailplay_pic }})\'}"></div><div class="sp_task-cell__info"><div class="sp_task-cell__txt"><div class="sp_task-cell__txt-inn">{{ action.name }} <span class="sp_task-cell__count" data-ng-bind="(action.points | number) + \' \' + (action.points | sailplay_pluralize:\'гармония,гармонии,гармоний\')"></span></div></div></div><div class="sp_task-cell__over"><div class="sp_task-cell__btn sp_cmn-btn" data-ng-click="$parent.custom_action=action;body_lock(true);" data-ng-bind="action.button_text"></div></div></div></div><div class="bns_overlay" data-ng-style="{ display: (custom_action ? \'block\' : \'none\')}"><div class="bns_overlay_inner sp_custom_action-popup js-about-popup"><div class="bns_overlay__close" data-ng-click="update_custom_actions();custom_action = null;body_lock(false);"></div><div class="sp_custom_action-popup__inner" data-sailplay-action-custom="" data-action="custom_action"></div></div></div></section><section class="sp_l-centered sp_gift-sec" data-sailplay-gifts="" data-ng-switch-when="gifts"><div class="sp_gifts-slider js-sp-slider js-slick-slider" data-ng-show="gifts && gifts()"><div data-ng-repeat="gift in gifts()" data-slack-slider=""><div class="sp_gifts-slider__slide"><div class="sp_gifts-slider__slide-img" style="background-image: url({{ gift.thumbs.url_250x250 | sailplay_pic }});"></div><div class="sp_gifts-slider__slide-info"><div class="sp_gifts-slider__slide-ttl" data-ng-bind="gift.name" title="{{ gift.name }}"></div><div class="sp_gifts-slider__slide-val" data-ng-bind="(gift.points | number) + \' \' + (gift.points | sailplay_pluralize:\'гармония,гармонии,гармоний\')"></div><div class="sp_gifts-slider__slide-over"><div class="sp_cmn-btn sp_gifts-slider__btn" data-ng-click="$event.preventDefault();gift_get(gift);body_lock(true);">Получить</div></div></div></div></div></div><div class="bns_overlay" data-ng-style="{ display: (gift_success && gift_success_show ? \'block\' : \'none\')}"><div class="bns_overlay__close" data-ng-click="gift_success = null;gift_success_show = null;body_lock(false);"></div><div class="bns_overlay_inner sp_gift-popup"><div class="sp_gift-popup__img" style="background-image: url({{ gift_success.thumbs.url_250x250 | sailplay_pic }});"></div><div class="sp_gift-popup__ttl">Подарок добавлен в корзину! {{ gift_success.points }} {{ gift_success.points | sailplay_pluralize:\'гармония,гармонии,гармоний\' }} будет списано с Вашего бонусного счета при оплате заказа</div><div class="sp_gift-popup__btn sp_cmn-btn js-close-popup" data-ng-click="gift_success = null;gift_success_show = null;body_lock(false);">Хорошо</div></div></div><div class="bns_overlay" data-ng-style="{ display: (gift_error ? \'block\' : \'none\')}"><div class="bns_overlay__close" data-ng-click="gift_error = null;body_lock(false);"></div><div class="bns_overlay_inner sp_gift-popup"><div class="sp_gift-popup__img" style="background-image: url({{ gift_error.thumbs.url_250x250 | sailplay_pic }});"></div><div class="sp_gift-popup__ttl">Не хватает {{ gift_error.points - user().user_points.confirmed }} {{ (gift_error.points - user().user_points.confirmed) | sailplay_pluralize:\'гармония,гармонии,гармоний\' }}</div></div></div></section><section class="sp_l-centered sp_collect-sec" data-ng-switch-when="collections" data-sailplay-badges=""><div class="sp_collect-slider js-sp-slider js-slick-slider" data-ng-show="badges && badges()"><div data-ng-repeat="badge in badges().one_level_badges | filter:only_collections track by $index" data-slack-slider=""><div class="sp_collect-slider__slide" data-ng-class="{\'this-active\': badge.is_received, \'this-disabled\': !badge.is_received}"><div class="sp_collect-slider__img"><div class="sp_collect-slider__img-inner this-active" style="background-image: url({{ badge.is_received ? badge.thumbs.url_250x250 : badge.thumbs.url_gs }});"></div><div class="sp_collect-slider__img-inner this-disabled" style="background-image: url({{ badge.thumbs.url_gs }});"></div><div class="sp_cmn-hint sp_collect-slider__hint"><div class="sp_cmn-hint__head" data-ng-bind="badge.name"></div>{{ badge.is_received ? (badge | spBadgeDesc).after : (badge | spBadgeDesc).before }}</div></div></div></div></div></section><section class="sp_l-centered sp_achiev-sec" data-ng-switch-when="achievements" data-sailplay-badges=""><div class="sp_achiev-sec__itm" data-ng-repeat="badge in badges().one_level_badges | filter:only_achievements track by $index" data-ng-class="{\'this-active\': badge.is_received, \'this-disabled\': !badge.is_received}"><div class="sp_achiev-sec__itm-inner this-active" style="background-image: url({{ badge.thumbs.url_250x250 }});"></div><div class="sp_achiev-sec__itm-inner this-disabled" style="background-image: url({{ badge.thumbs.url_gs }});"></div><div class="sp_cmn-hint sp_achiev-sec__hint"><div class="sp_cmn-hint__head" data-ng-bind="badge.name"></div>{{ badge.is_received ? (badge | spBadgeDesc).after : (badge | spBadgeDesc).before }}</div></div></section></div><div class="bns_overlay" data-ng-style="{ display: (show_badges ? \'block\' : \'none\')}"><div class="sp_hist-popup__close js-close-popup" data-ng-click="show_badges = null;body_lock(false);"></div><div class="bns_overlay_inner sp_status-popup js-status-popup" data-sailplay-status=""><div class="sp_status-popup__inner"><div class="sp_status-popup__col" data-ng-repeat="badge in badges().multilevel_badges[0] track by $index"><div class="sp_status-itm" data-ng-class="{\'this-active\': badge.is_received}"><div class="sp_status-itm__img"><img data-ng-src="{{ badge.thumbs.url_250x250 }}" alt="{{ badge.name }}"></div><div class="sp_status-itm__hd" data-ng-bind="badge.name"></div><div class="sp_status-itm__ttl" data-ng-bind="(badge | spBadgeDesc).before"></div></div></div></div></div></div><div class="bns_overlay" data-sailplay-history="" data-ng-style="{ display: (show ? \'block\' : \'none\')}"><div class="sp_hist-popup__close js-close-popup" data-ng-click="show = null;body_lock(false);"></div><div class="bns_overlay_inner sp_hist-popup js-hist-popup"><div class="sp_hist-popup__inner"><div class="sp_hist-popup__hd">История</div><div class="sp_hist-popup__ttl">Здесь отображается история покупок, накопления баллов, а так же полученные вами подарки</div><div class="sp_hist-popup-itm" data-dir-paginate="item in history() | filter:hasPoints | itemsPerPage:5" data-pagination-id="history_pages"><div class="sp_hist-popup-itm__count" data-ng-class="{ hist_point_not_completed: !item.is_completed, hist_point_minus: item.points_delta < 0}" data-ng-bind="(item.points_delta < 0 ? \'\' : \'+ \') + (item.points_delta | number) + \' \' + (item.points_delta | sailplay_pluralize:\'гармония,гармонии,гармоний\')"></div><div class="sp_hist-popup-itm__date" data-ng-bind="item.action_date | date:\'dd.MM.yyyy HH:mm\'"></div><div class="sp_hist-popup-itm__info" data-ng-bind="item | history_item"></div></div><dir-pagination-controls data-max-size="5" data-pagination-id="history_pages" data-template-url="/html/ui/ui.pagination.controls.html" data-auto-hide="true"></dir-pagination-controls></div></div></div><div class="bns_overlay" data-ng-style="{ display: (show_about ? \'block\' : \'none\')}"><div class="bns_overlay_inner sp_about-popup js-about-popup"><div class="bns_overlay__close" data-ng-click="show_about = null;body_lock(false);"></div><div class="sp_about-popup__inner js-close-popup"><div class="sp_about-popup__head">Любите получать подарки?<br>А мы любим их дарить!</div><div class="sp_about-popup__txt">Принимайте участие в бонусной программе Amorem, которая позволяет нашим постоянным клиентам получать бонусные баллы и обменивать их на подарки от Amorem. Как работает данная программа? Вы регистрируетесь, совершаете покупки, выполняете интересные задания и получаете Гармонии (бонусные баллы). Чем больше покупок и выполненных заданий, тем больше Гармоний. Накапливаете необходимое количество Гармоний и обмениваете их на подарки.</div></div></div></div><notify-popup></notify-popup></div>');
 }]);
 })();
 
@@ -2492,7 +2492,7 @@ module.run(['$templateCache', function($templateCache) {
     'templates'
   ])
 
-    .directive('sailplayAmorem', ["$rootScope", "$locale", function ($rootScope, $locale) {
+    .directive('sailplayAmorem', function ($rootScope, $locale) {
 
       return {
         restrict: 'E',
@@ -2520,7 +2520,7 @@ module.run(['$templateCache', function($templateCache) {
         }
       }
 
-    }]);
+    });
 
 
   setTimeout(function () {
@@ -2540,7 +2540,7 @@ module.run(['$templateCache', function($templateCache) {
     'ipCookie'
   ])
 
-    .run(["sp", "ipCookie", "sp_api", "$rootScope", "actions_data", function (sp, ipCookie, sp_api, $rootScope, actions_data) {
+    .run(function (sp, ipCookie, sp_api, $rootScope, actions_data) {
 
       $rootScope.config = window.sailplay_config || {};
 
@@ -2685,7 +2685,7 @@ module.run(['$templateCache', function($templateCache) {
 
       }
 
-    }]);
+    });
 
 }());
 
@@ -2970,7 +2970,7 @@ module.run(['$templateCache', function($templateCache) {
       }
     })
 
-    .service('spAction', ["actions_data", function (actions_data) {
+    .service('spAction', function (actions_data) {
 
       var self = this;
 
@@ -3022,9 +3022,9 @@ module.run(['$templateCache', function($templateCache) {
 
       return self;
 
-    }])
+    })
 
-    .directive('sailplayAction', ["sp", "$rootScope", "$compile", "$timeout", function (sp, $rootScope, $compile, $timeout) {
+    .directive('sailplayAction', function (sp, $rootScope, $compile, $timeout) {
 
       var init_state;
 
@@ -3062,7 +3062,7 @@ module.run(['$templateCache', function($templateCache) {
 
       };
 
-    }])
+    })
 
     /**
      * @ngdoc directive
@@ -3076,7 +3076,7 @@ module.run(['$templateCache', function($templateCache) {
      * @param {object}  action   A SailPlay custom action object, received from api.
      *
      */
-    .directive('sailplayActionCustom', ["sp", "$document", function (sp, $document) {
+    .directive('sailplayActionCustom', function (sp, $document) {
 
       var init_state;
 
@@ -3118,9 +3118,9 @@ module.run(['$templateCache', function($templateCache) {
 
       };
 
-    }])
+    })
 
-    .directive('sailplayActions', ["sp_api", "sp", "spAction", "tagHelper", "$rootScope", "$filter", function (sp_api, sp, spAction, tagHelper, $rootScope, $filter) {
+    .directive('sailplayActions', function (sp_api, sp, spAction, tagHelper, $rootScope, $filter) {
 
       return {
 
@@ -3144,6 +3144,13 @@ module.run(['$templateCache', function($templateCache) {
            */
           scope.check_in_list = function (action) {
             return scope.action_data(action) && Object.keys(scope.action_data(action)).length && (!scope.action_data(action).tag || scope.action_data(action).tag && scope.exist && scope.exist() && scope.check_tag(scope.action_data(action).tag, scope.exist()) ) || false
+          };
+
+          /**
+           * Load custom actions
+           */
+          scope.update_custom_actions = function() {
+            sp_api.call('load.actions.custom.list');
           };
 
           /**
@@ -3213,7 +3220,7 @@ module.run(['$templateCache', function($templateCache) {
 
       };
 
-    }]);
+    });
 
 }());
 
@@ -3221,7 +3228,7 @@ module.run(['$templateCache', function($templateCache) {
 
   angular.module('sp.badges', [])
 
-    .directive('sailplayBadges', ["sp", "sp_api", "$filter", function (sp, sp_api, $filter) {
+    .directive('sailplayBadges', function (sp, sp_api, $filter) {
 
       return {
 
@@ -3246,7 +3253,7 @@ module.run(['$templateCache', function($templateCache) {
 
       };
 
-    }]);
+    });
 
 }());
 
@@ -3254,7 +3261,7 @@ module.run(['$templateCache', function($templateCache) {
 
   angular.module('sp.gifts', [])
 
-    .directive('sailplayGifts', ["sp", "sp_api", "$rootScope", function (sp, sp_api, $rootScope) {
+    .directive('sailplayGifts', function (sp, sp_api, $rootScope) {
 
       return {
 
@@ -3304,7 +3311,7 @@ module.run(['$templateCache', function($templateCache) {
 
       };
 
-    }]);
+    });
 
 }());
 
@@ -3313,7 +3320,7 @@ module.run(['$templateCache', function($templateCache) {
   angular.module('sp.history', [])
 
 
-    .directive('sailplayHistory', ["sp_api", "$rootScope", function (sp_api, $rootScope) {
+    .directive('sailplayHistory', function (sp_api, $rootScope) {
 
       return {
 
@@ -3350,7 +3357,7 @@ module.run(['$templateCache', function($templateCache) {
 
       };
 
-    }])
+    })
 
     .constant('history_texts', {
       "purchase": "Покупка",
@@ -3376,7 +3383,7 @@ module.run(['$templateCache', function($templateCache) {
       "fb": "Facebook"
     })
 
-    .filter('history_item', ["history_texts", "socialList", function (history_texts, socialList) {
+    .filter('history_item', function (history_texts, socialList) {
 
       return function (historyItem) {
         switch (historyItem.action) {
@@ -3404,7 +3411,7 @@ module.run(['$templateCache', function($templateCache) {
         }
         return history_texts[historyItem.action];
       }
-    }]);
+    });
 
 }());
 
@@ -3421,13 +3428,13 @@ module.run(['$templateCache', function($templateCache) {
 
   ])
 
-    .service('sp', ["$window", function ($window) {
+    .service('sp', function ($window) {
 
       return $window.SAILPLAY || {};
 
-    }])
+    })
 
-    .service('sp_api', ["$q", "sp", "$rootScope", function ($q, sp, $rootScope) {
+    .service('sp_api', function ($q, sp, $rootScope) {
 
       var self = this;
 
@@ -3501,7 +3508,7 @@ module.run(['$templateCache', function($templateCache) {
 
       }
 
-    }])
+    })
 
     .service('tagHelper', function () {
 
@@ -3571,7 +3578,7 @@ module.run(['$templateCache', function($templateCache) {
 
     })
 
-    .filter('sailplay_pic', ["sp", function (sp) {
+    .filter('sailplay_pic', function (sp) {
 
       function repair_pic_url(url) {
         if (/^((http|https|ftp):\/\/)/.test(url)) {
@@ -3593,7 +3600,7 @@ module.run(['$templateCache', function($templateCache) {
 
       };
 
-    }]);
+    });
 
 }());
 
@@ -3601,7 +3608,7 @@ module.run(['$templateCache', function($templateCache) {
 
   angular.module('sp.profile', [])
 
-    .directive('sailplayProfile', ["sp", "sp_api", function (sp, sp_api) {
+    .directive('sailplayProfile', function (sp, sp_api) {
 
       return {
 
@@ -3624,7 +3631,7 @@ module.run(['$templateCache', function($templateCache) {
 
       };
 
-    }]);
+    });
 
 }());
 
@@ -3641,7 +3648,7 @@ module.run(['$templateCache', function($templateCache) {
       }
     })
 
-    .directive('sailplayStatus', ["sp", "sp_api", "spPurchaseTag", function (sp, sp_api, spPurchaseTag) {
+    .directive('sailplayStatus', function (sp, sp_api, spPurchaseTag) {
 
       return {
 
@@ -3709,7 +3716,7 @@ module.run(['$templateCache', function($templateCache) {
 
       };
 
-    }]);
+    });
 
 }());
 
@@ -3779,7 +3786,7 @@ module.run(['$templateCache', function($templateCache) {
 
     })
 
-    .directive('datePicker', ["dateService", function (dateService) {
+    .directive('datePicker', function (dateService) {
       return {
         restrict: 'E',
         replace: true,
@@ -3806,7 +3813,7 @@ module.run(['$templateCache', function($templateCache) {
         }
       }
 
-    }]);
+    });
 
 
 }());
@@ -3877,7 +3884,7 @@ module.run(['$templateCache', function($templateCache) {
       }
     })
 
-    .directive('spAuth', ["$rootScope", "sp", function ($rootScope, sp) {
+    .directive('spAuth', function ($rootScope, sp) {
       return {
         restrict: 'A',
         replace: false,
@@ -3902,9 +3909,9 @@ module.run(['$templateCache', function($templateCache) {
 
         }
       }
-    }])
+    })
 
-    .directive('slackSlider', ["$compile", "$timeout", function ($compile, $timeout) {
+    .directive('slackSlider', function ($compile, $timeout) {
       return {
         restrict: 'A',
         replace: false,
@@ -3960,7 +3967,7 @@ module.run(['$templateCache', function($templateCache) {
         }
 
       };
-    }]);
+    });
 
 }());
 
@@ -3987,7 +3994,7 @@ module.run(['$templateCache', function($templateCache) {
       }
     ])
 
-    .directive('spTabMenu', ["menu_items", function (menu_items) {
+    .directive('spTabMenu', function (menu_items) {
       return {
         restrict: 'A',
         scope: false,
@@ -3995,7 +4002,7 @@ module.run(['$templateCache', function($templateCache) {
           scope.menu = angular.copy(menu_items);
         }
       }
-    }]);
+    });
 
 
 }());
