@@ -798,7 +798,7 @@
       }
     });
 
-    sp.on('tags.delete', function (data) {
+    sp.on('tags.delete', function (data, callback) {
       if (_config == {}) {
         initError();
         return;
@@ -816,6 +816,7 @@
           tagsObj.auth_hash = _config.auth_hash;
         }
         JSONP.get(_config.DOMAIN + _config.urls.tags.delete, tagsObj, function (res) {
+          callback && callback(res);
           if (res.status == 'ok') {
             sp.send('tags.delete.success', res);
           } else {

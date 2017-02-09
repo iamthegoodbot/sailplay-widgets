@@ -1,6 +1,6 @@
 {
   "name": "sailplay-hub",
-  "version": "2.0.20",
+  "version": "2.0.21",
   "description": "Event-based tool for SailPlay Widgets development",
   "main": "sailplay.hub.js",
   "contributors": [
