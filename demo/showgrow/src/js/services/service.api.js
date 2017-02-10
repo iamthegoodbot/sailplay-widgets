@@ -54,6 +54,16 @@
         });
       };
 
+      self.actions.custom = function () {
+        return $q(function (resolve, reject) {
+          sp.on('load.actions.custom.list.success', function (res) {
+            self.data('actions.custom', res);
+            resolve(res);
+          });
+          sp.send('load.actions.custom.list');
+        });
+      };
+
       self.badges = {};
 
       self.badges.list = function () {

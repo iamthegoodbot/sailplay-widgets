@@ -8,8 +8,8 @@ Paste this code to the page in < head > section to load the script:
         window.PARTNER_ID = ** PARTNER_ID **;
 
         var _links = {
-            js: 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/867ede14eb8294ba38ea4ec09365fde0.js',
-            css: 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/a91e95549722fff3637f4d225e3b9540.css'
+            js: 'https://sailplays3.cdnvideo.ru/media/assets/assetfile/4d961ef65424bc6b0029d7e8be47bb4f.js',
+            css: 'https://sailplays3.cdnvideo.ru/media/assets/assetfile/e3b10e731739c208847eef5de30e4e04.css'
         };
 
         document.addEventListener('DOMContentLoaded', function () {
@@ -37,7 +37,7 @@ Paste this code to < body > to render the content loaded via above mentioned scr
 
 ## Example
 
-Link: [DEMO](http://test.dev4you.info/sg/ "Demo")
+Link: [DEMO](http://78.46.209.148/test/sg "Demo")
 
 ## Development
 
