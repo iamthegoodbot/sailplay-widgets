@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Iframe Testing</title>
+
+  <style>
+
+    .iframe_url_input {
+      position: fixed;
+      top: 0;
+      height: 30px;
+      left: 0;
+      width: 100%;
+    }
+
+    .iframe_wrapper {
+      position: fixed;
+      top: 30px;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+    }
+
+    .iframe_wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+  </style>
+
+</head>
+<body>
+
+  <div class="iframe_url_input">
+    <label for="iframe_url"></label>
+    <input id="iframe_url" type="text" placeholder="Enter url">
+  </div>
+
+  <div class="iframe_wrapper">
+    <iframe id="testing_iframe" src="" frameborder="0"></iframe>
+  </div>
+
+  <script>
+
+    (function () {
+
+
+      var iframe_url_input = document.querySelector('#iframe_url');
+
+      var iframe = document.querySelector('#testing_iframe');
+
+      iframe_url_input.addEventListener('change', function (e) {
+
+        console.log(e);
+        iframe.src = e.target.value;
+
+      });
+
+
+    }());
+
+  </script>
+
+</body>
+</html>
