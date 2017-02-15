@@ -673,7 +673,8 @@
         return;
       }
       var params = {
-        auth_hash: _config.auth_hash
+        auth_hash: _config.auth_hash,
+        lang: p && p.lang || _config.lang || 'ru'
       };
       if(p){
         if(p.include_rules) {
