@@ -226,6 +226,12 @@
       params.dep_id = _config.dep_id || '';
       params.background = opts.background || '';
       params.partner_info = opts.partner_info || 0;
+      if(opts.reg_match_email_oid) {
+        params.reg_match_email_oid = opts.reg_match_email_oid;
+      }
+      if(opts.css_link) {
+        params.css_link = opts.css_link;
+      }
       if (opts.lang) {
         params.lang = opts.lang;
       }
