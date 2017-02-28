@@ -212,12 +212,9 @@
 
       function cancelLogin() {
         if (frame.created) {
-          try {
-            document.body.removeChild(frame)
-          }
-          catch (e) {
-
-          }
+          document.body.removeChild(frame);
+          window.removeEventListener("message", onMessage, false);
+          _remote_login_init = false;
         }
       }
 
