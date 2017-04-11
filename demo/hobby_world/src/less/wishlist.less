@@ -1,0 +1,107 @@
+.bns_wish_main {
+  float: left;
+  width: 100%;
+  text-align: center;
+  padding-top: 30px;
+  padding-bottom: 10px;
+  .bns_wish_item {
+    display: inline-block;
+    width: 170px;
+    text-align: center;
+    position: relative;
+    .bns_linck_all {
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+    }
+    .bns_wish_item_img {
+      float: left;
+      width: 100%;
+      text-align: center;
+      height: 150px;
+      position: relative;
+      img {
+        margin-top: 10px;
+      }
+      .bns_wish_item_label {
+        position: absolute;
+        line-height: 12px;
+        padding: 6px 0px;
+        width: 115px;
+        background-color: rgba(252,161,11,0.8);
+        color: #fff;
+        font-size: 11px;
+        font-weight: bold;
+        text-align: center;
+        left: 50%;
+        margin-left: -57px;
+        border-radius: 24px;
+      }
+    }
+    .bns_wish_item_name{
+      float: left;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 0px 10px;
+      text-align: center;
+      color: #000000;
+      font-size: 13px;
+      height: 42px;
+    }
+    .bns_wish_item_name + a {
+      display: inline-block;
+      line-height: 21px;
+      padding: 0px 11px 0px 27px;
+      background-color: #ef6747;
+      font-size: 15px;
+      font-weight: bold;
+      color: #fff;
+      border-radius: 21px;
+      position: relative;
+      text-decoration: none;
+      margin-top: 10px;
+      margin-bottom: 25px;
+      &:before {
+        content: '';
+        width:13px;
+        height: 100%;
+        background-image: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/0512a0f28e2cbf973bf958d1b98d82e4.png");
+        background-position: center center;
+        background-repeat: no-repeat;
+        left: 10px;
+        top:0px;
+        display: block;
+        position: absolute;
+      }
+      .bns_old_price {
+        border-radius:21px;
+        background-color: #68a5b7;
+        white-space: nowrap;
+        top:0px;
+        padding: 0px 10px;
+        display: inline-block;
+        margin-right: -11px;
+        position: relative;
+        &:before {
+          width: 80%;
+          height: 2px;
+          background-color: #ef6747;
+          content: '';
+          left: 10%;
+          top:50%;
+          -moz-transform: rotate(-6deg);
+          -webkit-transform: rotate(-6deg);
+          -o-transform: rotate(-6deg);
+          -ms-transform: rotate(-6deg);
+          transform: rotate(-6deg);
+          display: block;
+          z-index:1;
+          position: absolute;
+        }
+      }
+    }
+  }
+}
