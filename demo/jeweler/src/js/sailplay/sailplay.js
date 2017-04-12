@@ -162,6 +162,7 @@
         'load.gifts.list',
         'load.user.history',
         'load.actions.list',
+        'load.actions.custom.list',
         'load.badges.list',
         'tags.exist',
         'tags.add'

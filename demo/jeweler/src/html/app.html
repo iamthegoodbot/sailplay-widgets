@@ -194,6 +194,23 @@
                         </div>
                     </div>
 
+                    <div data-ng-repeat="action in $parent.actions_custom()" data-slick-slide>
+                        <div class="sp_task-slider__slide">
+                            <div class="sp_task-slider__ico"
+                                 style="background-image: url({{ action_data(action).pic }});"></div>
+                            <div class="sp_task-slider__hd">{{ action_data(action).name }}</div>
+                            <div class="sp_task-slider__price">{{ action.points }} {{ action.points |
+                                sailplay_pluralize:'балл,балла,баллов' }}
+                            </div>
+
+                            <div class="sp_task-slider__cover">
+                                <span class="sp_cmn-btn-sm sp_task-slider__btn" data-sailplay-action
+                                      data-action="action" data-text="Выполнить"
+                                      data-styles="{{ config.social_styles || 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/e8f73ebedc5f336aa857674149750d3b.css' }}">Выполнить</span>
+                            </div>
+                        </div>
+                    </div>                    
+
                 </div>
             </div>
         </section>
