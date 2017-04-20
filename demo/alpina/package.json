@@ -1,14 +1,28 @@
 {
-  "name": "alpine",
-  "version": "1.0.0",
+  "name": "sailplay.alpina",
+  "version": "0.0.1",
   "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
+  "author": "awesome",
   "license": "ISC",
   "dependencies": {
-    "angular2": "^2.0.0-beta.1",
+    "angular": "latest",
+    "angular-cookie": "latest",
+    "angular-touch": "^1.5.9",
+    "angular-ui-mask": "^1.8.7",
+    "angular-utils-pagination": "^0.11.1",
+    "jquery": "^2.2.3",
+    "sailplay-hub": "latest",
+    "sailplay-hub-actions": "latest"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "browser-sync": "latest",
+    "gulp-imagemin": "^3.0.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-less": "^3.0.5",
+    "gulp-minify-html": "^1.0.6",
+    "gulp-ng-annotate": "^2.0.0",
+    "gulp-ng-html2js": "^0.2.2",
+    "gulp-ngdocs": "^0.2.13"
   }
 }

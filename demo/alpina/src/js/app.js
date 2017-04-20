@@ -18,7 +18,7 @@
 
     var PARTNER_ID = 1199;
 
-    function startApp(auth_hash) {
+    window.startLoyaltyApp = function(auth_hash) {
         sp.send('init', {partner_id: PARTNER_ID, lang: 'ru', domain: '//sailplay.ru'});
         if (auth_hash) {
             sp.on('init.success', function () {
@@ -32,7 +32,7 @@
                 bootstrap();
             });
         }
-    }
+    };
 
     function bootstrap() {
         document.createElement('app');
@@ -41,10 +41,5 @@
             angular.bootstrap(elems[i], ['alpina']);
         }
     }
-    startApp(ah);
 
-
-    //});
-
-
-}(window.angular, window.SAILPLAY, window.AUTH_HASH));
+}(window.angular, window.SAILPLAY));

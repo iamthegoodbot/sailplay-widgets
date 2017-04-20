@@ -3,9 +3,6 @@
     <meta charset="utf-8">
     <title>Альпина паблишер</title>
 
-    <script src="js/jquery-1.10.1.min.js"></script>
-    <script src="js/prettyCheckable.min.js"></script>
-    <script src="js/selectize.min.js"></script>
 </head>
 <body>
 
@@ -64,45 +61,40 @@
 
 <app></app>
 
+
+<script src="dist/js/sailplay.alpina.js"></script>
+<link rel="stylesheet" href="dist/css/sailplay.alpina.css">
 <script>
-    $(document).ready(function () {
-        // selects
-        $('.js-create-select').selectize({});
+  $(document).ready(function () {
+    // selects
+    $('.js-create-select').selectize({});
 
-        // radio and labels
-        $('.js-create-radio').prettyCheckable({
-            customClass: 'common-radio-wrap'
-        });
-        $('.js-label-satellite').on('click', function () {
-            $(this).siblings('.prettyradio').find('label').click();
-        });
-
-        // account form open-close
-        var accForm = $('.js-acc-edit');
-        $('.js-open-acc-edit').click(function () {
-            accForm.slideToggle(300);
-        });
-        $('.js-close-acc-edit').click(function () {
-            accForm.slideUp(300);
-        });
+    // radio and labels
+    $('.js-create-radio').prettyCheckable({
+      customClass: 'common-radio-wrap'
     });
+    $('.js-label-satellite').on('click', function () {
+      $(this).siblings('.prettyradio').find('label').click();
+    });
+
+    // account form open-close
+    var accForm = $('.js-acc-edit');
+    $('.js-open-acc-edit').click(function () {
+      accForm.slideToggle(300);
+    });
+    $('.js-close-acc-edit').click(function () {
+      accForm.slideUp(300);
+    });
+
+    var AUTH_HASH = '12930ebbda16122a478ec3697dae4bab4e51d50b';
+
+    var EMAIL = 'test2@alpinabook.ru';
+
+    startLoyaltyApp(AUTH_HASH);
+
+  });
 </script>
 
-<script type="text/javascript">
-    var AUTH_HASH = '12930ebbda16122a478ec3697dae4bab4e51d50b',
-            EMAIL = 'test2@alpinabook.ru';
-    document.addEventListener('DOMContentLoaded', function () {
-        var s = document.createElement("script");
-        s.type = "text/javascript";
-        s.src = "js/main.min.js";
-        document.getElementsByTagName("head")[0].appendChild(s);
-        var ss = document.createElement("link");
-        ss.type = "text/css";
-        ss.rel = "stylesheet";
-        ss.href = "css/main.css";
-        document.getElementsByTagName("head")[0].appendChild(ss);
-    });
-</script>
 
 </body>
 </html>
