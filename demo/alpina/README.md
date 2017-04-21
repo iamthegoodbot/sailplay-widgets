@@ -4,11 +4,15 @@
 
 Добавьте на страницу следующий код:
 
-   <script src="dist/js/sailplay.alpina.js"></script>
+Подключить скрипты
 
+   <script src="dist/js/sailplay.alpina.js"></script>
    <link rel="stylesheet" href="dist/css/sailplay.alpina.css">
 
+Инициализация личного кабинета
+
    <script>
+
      $(document).ready(function () {
 
        var AUTH_HASH = 'AUTH_HASH';
@@ -18,6 +22,7 @@
        startLoyaltyApp(AUTH_HASH);
 
      });
+     
    </script>
 
 

@@ -77,10 +77,10 @@
                         return gift.thumbs.url_100x100;
                     };
                     scope.getGift = function(gift){
-                        if (scope.user.user_points.confirmed < gift.points) {
+                      if (scope.user.user_points.confirmed < gift.points) {
                             return;
                         }
-                        sp.send('gifts.purchase', gift);
+                        sp.send('gifts.purchase', {gift: gift});
                     };
                     scope.getPrice = giftService.getPrice;
                     update();
