@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+
+<head>
+
+    <title>Print Bar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" href="./dist/css/sailplay.pb.css"/>
+    <script src="./dist/js/sailplay.pb.js"></script>
+    <script type="text/javascript">
+
+      document.addEventListener('DOMContentLoaded', function () {
+
+        var params = SAILPLAY.url_params() || {};
+
+        window.sailplay_config = {
+          auth_hash: params.auth_hash || 'a48783e5160c28a9adfac8556a330b4fe5f7bcd9',
+          partner_id: params.partner_id || 1655,
+          domain: params.domain || 'http://sailplay.ru',
+          lang: 'ru',
+          data: {
+            edit_profile_link: "http://google.com",
+            delivery_address: 1,
+            share_url: 'http://google.com'
+          }
+        };
+
+      });
+
+
+
+    </script>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<sailplay-pb></sailplay-pb>
+
+</body>
+</html>
