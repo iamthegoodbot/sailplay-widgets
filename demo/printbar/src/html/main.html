@@ -55,7 +55,7 @@
                               data-ng-bind="user().user_status && user().user_status.name ? user().user_status.name : 'Нет статуса'"></span>
                         <span class="bns_info_bal_ne">
                             <span class="bns_info_bal_num"
-                                  data-ng-bind="toNextStatus(user().purchases.sum) ? ((toNextStatus(user().purchases.sum) | number) + ' ' + (( toNextStatus(user().purchases.sum) | sailplay_pluralize:'рубль,рубля,рублей'))) : '0'"></span>
+                                  data-ng-bind="toNextStatus(getPurchasesSum()) ? ((toNextStatus(getPurchasesSum()) | number) + ' ' + (( toNextStatus(getPurchasesSum()) | sailplay_pluralize:'рубль,рубля,рублей'))) : '0'"></span>
                             <span class="bns_info_bal_text">до перехода на следующий статус</span>
                         </span>
                         <a href="#" data-ng-click="$event.preventDefault();show_status();body_lock(true)">Все
@@ -103,14 +103,14 @@
 
                             <div class="bns_line_fill" data-ng-style="getStatusPercents()">
                                 <div class="bns_line_fill_til" data-ng-if="(badges().multilevel_badges[0] | filter:is_received:false).length">
-                                    <strong data-ng-bind="user().purchases.sum | number"></strong>
-                                    {{ user().purchases.sum | sailplay_pluralize:'рубль,рубля,рублей' }}
+                                    <strong data-ng-bind="getPurchasesSum() | number"></strong>
+                                    {{ getPurchasesSum() | sailplay_pluralize:'рубль,рубля,рублей' }}
                                 </div>
                             </div>
 
                             <div class="bns_line_nepod" data-ng-style="getNextStatusPercents()">
                                 <div class="bns_line_nepod_bal"
-                                     data-ng-bind="(toNextStatus(user().purchases.sum) | number) + ' ' + (toNextStatus(user().purchases.sum) | sailplay_pluralize:'рубль,рубля,рублей')"></div>
+                                     data-ng-bind="(toNextStatus(getPurchasesSum()) | number) + ' ' + (toNextStatus(getPurchasesSum()) | sailplay_pluralize:'рубль,рубля,рублей')"></div>
                             </div>
 
                         </div>
@@ -174,7 +174,7 @@
 
                             <div class="bns_bottom_right">
                                 <div class="bns_overlay_right_img">
-                                    <img data-ng-src="{{ $parent.gift_get.thumbs.url_250x250 | sailplay_pic }}">
+                                    <img src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/1d17a0b88fd0930cd95438ccf3c2df47.png">
                                 </div>
                                 <a href="#"
                                    data-ng-class="{bns_nact: user().user_points.confirmed < $parent.gift_get.points}"
@@ -241,16 +241,23 @@
 
                         <div class="bns_overlay_bottom">
 
+                            <div class="bns_overaly_bottom_left">
+                                <span class="bns_text">Вам будет начисленно</span>
+                                <span class="bns_bal" data-ng-bind="($parent.show.points | number) + ' ' + ($parent.show.points | sailplay_pluralize:'балл,балла,баллов')"></span>
+                            </div>
+
                             <div class="bns_bottom_right">
+
                                 <div class="bns_overlay_right_img">
                                     <img data-ng-src="{{ $parent.show._actionId ? action_data($parent.show).image : ($parent.show.icon | sailplay_pic) }}">
                                 </div>
-                            </div>
 
-                            <a href="#" data-ng-if="$parent.show._actionId"
-                               class="bns_overlay_actionbtn"
-                               data-sailplay-action data-action="$parent.show" data-text="Выполнить"
-                               data-styles="{{ action_styles(action_data($parent.show)) }}">Выполнить</a>
+                                <a href="#" data-ng-if="$parent.show._actionId"
+                                   class="bns_overlay_actionbtn"
+                                   data-sailplay-action data-action="$parent.show" data-text="Выполнить"
+                                   data-styles="{{ action_styles(action_data($parent.show)) }}">Выполнить</a>
+
+                            </div>
 
                             <div data-ng-if="!$parent.show._actionId" class="bns_overlay_actionbtn_custom"
                                data-sailplay-action-custom

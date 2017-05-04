@@ -22,7 +22,19 @@ angular.module('sp.status', [])
 
         scope.user = sp_api.data('load.user.info');
 
+        scope.history = sp_api.data('load.user.history');
+
         scope.showBadgesInfo = scope.badges && scope.badges() && scope.badges().one_level_badges[0];
+
+        scope.getPurchasesSum = function () {
+          if (!scope.history || !scope.history()) return 0;
+          var sum = scope.history().filter(function (item) {
+            return item.is_completed && item.action == 'purchase'
+          }).reduce(function (previousValue, currentValue) {
+            return previousValue + currentValue.price;
+          }, 0);
+          return sum;
+        };
 
         /**
          * Get sum from next status
@@ -120,7 +132,7 @@ angular.module('sp.status', [])
          * Get current status
          */
         scope.getCurrentStatus = function () {
-          if (!scope.badges && !scope.badges()) return null;
+          if (!scope.badges || !scope.badges()) return null;
           var received_statuses = scope.badges().multilevel_badges[0].filter(function (badge) {
             return badge.is_received
           });

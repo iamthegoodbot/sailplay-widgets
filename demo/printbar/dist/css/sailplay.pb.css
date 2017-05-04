@@ -60,8 +60,13 @@ body.no_scrol .bns_inner_block_wrap {
   font-size: 12px;
 }
 .bns_overlay.bns_overlay_quest .bns_overlay_bottom .bns_bottom_right {
-  height: 50px;
+  min-height: 35px;
   width: 127px;
+}
+.bns_overlay.bns_overlay_quest .bns_overlay_bottom .bns_bottom_right a {
+  position: relative;
+  background-color: transparent !important;
+  bottom: auto;
 }
 .bns_overlay .bns_overlay_inner {
   width: 620px;
@@ -627,7 +632,7 @@ body.no_scrol .bns_inner_block_wrap {
   margin: auto;
 }
 .bns_overlay .bns_overlay_actionbtn_custom {
-  float: none;
+  float: left;
   position: relative;
   background: none;
   margin-top: 10px;
@@ -3058,7 +3063,7 @@ yx-axis
     width: 100%;
   }
   .bns_info .bns_info_line .bns_info_line_stat .bns_info_line_stat_item {
-    font-size: 10px;
+    font-size: 8px;
   }
   .bns_qust .bns_qust_main .bns_qust_item {
     width: 22.5%;
@@ -3126,15 +3131,11 @@ yx-axis
   .bns_overlay .bns_overlay_inner {
     width: 90%;
   }
-  .bns_info .bns_info_line .bns_info_line_stat .bns_info_line_stat_item {
+  .bns_info .bns_info_line .bns_line_fill_til {
     display: none;
-    width: 50%;
   }
-  .bns_info .bns_info_line .bns_info_line_stat .bns_info_line_stat_item:first-child {
-    display: block;
-  }
-  .bns_info .bns_info_line .bns_info_line_stat .bns_info_line_stat_item:last-child {
-    display: block;
+  .bns_info .bns_info_line .bns_line_nepod {
+    display: none;
   }
   .bns_overlay .bns_overlay_inner .bns_overlay_hist_main td:nth-child(1) {
     display: none;
@@ -3232,6 +3233,9 @@ yx-axis
   }
   .bns_info .bns_info_right {
     width: 100%;
+  }
+  .bns_info .bns_info_line .bns_info_line_stat .bns_info_line_stat_item {
+    font-size: 0;
   }
   .bns_info .bns_info_ava .bns_info_img {
     width: 50%;

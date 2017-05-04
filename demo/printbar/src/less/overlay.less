@@ -59,8 +59,13 @@
   &.bns_overlay_quest {
     .bns_overlay_bottom {
       .bns_bottom_right {
-        height: 50px;
+        min-height: 35px;
         width: 127px;
+        a {
+          position: relative;
+          background-color: transparent !important;
+          bottom: auto;
+        }
       }
     }
   }
@@ -658,7 +663,7 @@
   }
 
   .bns_overlay_actionbtn_custom {
-    float: none;
+    float: left;
     position: relative;
     background: none;
     margin-top: 10px;
