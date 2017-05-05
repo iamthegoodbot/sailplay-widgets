@@ -1,0 +1,63 @@
+.bns_achiv_line {
+  float: left;
+  width: 100%;
+  margin-bottom: 30px;
+  .bns_achiv_item {
+    float: left;
+    width: 182px;
+    background-color: #fff;
+    padding: 13px;
+    position: relative;
+    margin-right:80px;
+    box-sizing: border-box;
+    &:not(.act) img {
+      -webkit-filter: grayscale(100%);
+      -moz-filter: grayscale(100%);
+      -ms-filter: grayscale(100%);
+      -o-filter: grayscale(100%);
+      filter: grayscale(100%);
+      filter: grayscale(1);
+      filter: gray;
+      opacity: 0.4;
+    }
+    &:nth-child(5n) {
+      margin-right: 0;
+      &:after {
+        display: none;
+      }
+    }
+    &:after {
+      position: absolute;
+      top:88px;
+      left: 100%;
+      height: 5px;
+      background-image: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/7a74028bb7379626e6109a373590fe8f.png");
+      width: 100%;
+      display: block;
+      content: '';
+    }
+    img {
+      width: 100%;
+      height: auto;
+    }
+    span {
+      float: left;
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid #cccccc;
+      text-align: center;
+      color: #5e5e5e;
+      font-size: 16px;
+      margin-top: 12px;
+      padding-top: 8px;
+      padding-bottom: 3px;
+      strong {
+        float: left;
+        width: 100%;
+        color: #000000;
+        font-size: 18px;
+        font-weight: bold;
+      }
+    }
+  }
+}

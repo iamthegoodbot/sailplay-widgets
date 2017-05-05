@@ -1,0 +1,41 @@
+body {
+  margin: 0;
+  font-family: Myriad Pro, Arial, Helvetica, sans-serif;
+  &.no_scrol {
+    overflow: hidden;
+  }
+}
+.bns_inner_block {
+  max-width: 1230px;
+  width: 100%;
+  margin:auto;
+}
+.bns_tab {
+  float: left;
+  width: 100%;
+  padding-top:65px;
+  padding-bottom:40px;
+  a {
+    float: left;
+    color: #e6e6e6;
+    font-size: 42px;
+    font-weight: bold;
+    margin-right:37px;
+    position: relative;
+    text-decoration: none;
+    &.act {
+      color: #000;
+      &:before {
+        content: '';
+        display: block;
+        height: 2px;
+        width: 100%;
+        background-color: #e6e6e6;
+        position: absolute;
+        left: 0;
+        bottom: 10px;
+        z-index: -1;
+      }
+    }
+  }
+}

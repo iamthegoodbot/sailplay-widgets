@@ -1,0 +1,101 @@
+.bns_qust_item {
+  float: left;
+  width: 290px;
+  height: 130px;
+  margin-right:22px;
+  margin-bottom: 22px;
+  box-sizing: border-box;
+  border: 1px solid #d4d3d1;
+  -webkit-transition: all 300ms ease;
+  -moz-transition: all 300ms ease;
+  -ms-transition: all 300ms ease;
+  -o-transition: all 300ms ease;
+  transition: all 300ms ease;
+  &:nth-child(4n) {
+    margin-right: 0;
+  }
+  &:hover {
+    background-color: #ad0f14;
+    cursor: pointer;
+    .bns_qust_left {
+      img {
+        display: none;
+        &.bns_qust_left_h {
+          display: inline-block;
+          -webkit-box-shadow: 0 0 15px 0 rgba(0,0,0,0.2);
+          box-shadow: 0 0 15px 0 rgba(0,0,0,0.2);
+        }
+      }
+    }
+    .bns_qust_right {
+      .bns_qust_right_name {
+        opacity: 0;
+      }
+      .bns_qust_right_bal {
+        opacity: 0;
+      }
+      a {
+        display: block;
+      }
+    }
+  }
+  .bns_qust_left {
+    float: left;
+    width: 130px;
+    height: 130px;
+    text-align: center;
+    &:before {
+      content: '';
+      display: inline-block;
+      vertical-align: middle;
+      height: 100%;
+    }
+    img {
+      vertical-align: middle;
+      border-radius: 10px;
+    }
+    .bns_qust_left_h {
+      display: none;
+    }
+  }
+  .bns_qust_right {
+    float: left;
+    width: 158px;
+    height: 130px;
+    position: relative;
+    padding-right: 20px;
+    box-sizing: border-box;
+    .bns_qust_right_name {
+      float: left;
+      width:100%;
+      color: #5e5e5e;
+      font-size: 16px;
+      line-height: 19px;
+      margin-top: 34px;
+      margin-bottom: 8px;
+    }
+    .bns_qust_right_bal {
+      float: left;
+      width: 100%;
+      color: #000000;
+      font-size: 18px;
+      font-weight: bold;
+      letter-spacing: -1px;
+    }
+    a {
+      width: 100%;
+      position: absolute;
+      left: 0;
+      text-align: center;
+      color: #ffffff;
+      font-size: 18px;
+      font-weight: bold;
+      letter-spacing: -1px;
+      text-decoration: none;
+      line-height: 20px;
+      margin-top: -10px;
+      top:50%;
+      display: none;
+    }
+  }
+}

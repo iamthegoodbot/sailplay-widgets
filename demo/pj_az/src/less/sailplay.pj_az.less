@@ -1,0 +1,61 @@
+@import "main.less";
+
+.sp_wrapper {
+  overflow: hidden;
+
+  .pizzameter_wrapper {
+    margin: 30px;
+    font-size: 14px;
+    width: 300px;
+    height: 300px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-position: top left;
+    background-color: transparent;
+    background-size: 100% 100%;
+    position: relative;
+
+    .pizzameter_counter {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-repeat: no-repeat;
+      background-position: top left;
+      background-color: transparent;
+      background-size: 100% 100%;
+      top: 0;
+      left: 0;
+      .counter_inner {
+        position: absolute;
+        top: 43.2%;
+        left: 32.2%;
+        width: 38.1%;
+        height: 13%;
+        img {
+          vertical-align: top;
+          display: inline-block;
+          width: 24%;
+          height: 100%;
+          margin-right: 1%;
+        }
+        img:last-child {
+          margin-right: 0 !important;
+        }
+      }
+
+    }
+
+    .pizza_pieces {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-repeat: no-repeat;
+      background-position: top left;
+      background-color: transparent;
+      background-size: 100% 100%;
+    }
+  }
+
+}

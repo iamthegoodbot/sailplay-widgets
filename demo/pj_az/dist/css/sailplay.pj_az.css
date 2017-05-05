@@ -1,0 +1,929 @@
+@font-face {
+  font-family: 'HeliosCondC';
+  src: url('../font/HeliosCondC-Bold.eot');
+  src: url('../font/HeliosCondC-Bold.eot?#iefix') format('embedded-opentype'), url('../font/HeliosCondC-Bold.woff2') format('woff2'), url('../font/HeliosCondC-Bold.woff') format('woff'), url('../font/HeliosCondC-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+body {
+  margin: 0;
+  font-family: Myriad Pro, Arial, Helvetica, sans-serif;
+}
+body.no_scrol {
+  overflow: hidden;
+}
+.bns_inner_block {
+  max-width: 1230px;
+  width: 100%;
+  margin: auto;
+}
+.bns_tab {
+  float: left;
+  width: 100%;
+  padding-top: 65px;
+  padding-bottom: 40px;
+}
+.bns_tab a {
+  float: left;
+  color: #e6e6e6;
+  font-size: 42px;
+  font-weight: bold;
+  margin-right: 37px;
+  position: relative;
+  text-decoration: none;
+}
+.bns_tab a.act {
+  color: #000;
+}
+.bns_tab a.act:before {
+  content: '';
+  display: block;
+  height: 2px;
+  width: 100%;
+  background-color: #e6e6e6;
+  position: absolute;
+  left: 0;
+  bottom: 10px;
+  z-index: -1;
+}
+.bns_top {
+  float: left;
+  width: 100%;
+  -webkit-background-size: cover;
+  background-size: cover;
+  margin-top: 30px;
+}
+.bns_top .bns_top_info {
+  float: left;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 45px 64px;
+  position: relative;
+  min-height: 330px;
+}
+.bns_top .bns_top_info:before {
+  height: 100%;
+  min-height: 330px;
+  display: inline-block;
+  vertical-align: middle;
+  content: '';
+}
+.bns_top .bns_top_info .bns_top_popup {
+  width: 90%;
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 10px;
+  -webkit-box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.3);
+  padding: 30px 35px;
+  box-sizing: border-box;
+}
+.bns_top .bns_top_info .bns_top_popup h2 {
+  float: left;
+  width: 100%;
+  color: #000000;
+  font-size: 42px;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+.bns_top .bns_top_info .bns_top_popup span.bns_top_popup_text {
+  float: left;
+  width: 100%;
+  color: #000000;
+  font-size: 16px;
+}
+.bns_top .bns_top_info .bns_top_popup .close {
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  background-color: #fff;
+  position: absolute;
+  left: -21px;
+  top: -21px;
+  display: block;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-image: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/10f8ff372ad96ebc4df4285a88d58613.png");
+}
+.bns_top .bns_top_info .bns_top_popup.bns_top_popup_hist {
+  float: left;
+  width: 100%;
+  height: 333px;
+}
+.bns_top .bns_top_info .bns_top_popup.bns_top_popup_hist .bns_top_popup_hist_item {
+  float: left;
+  width: 600px;
+  margin-bottom: 10px;
+}
+.bns_top .bns_top_info .bns_top_popup.bns_top_popup_hist .bns_top_popup_hist_item .date {
+  float: left;
+  color: #878787;
+  font-size: 16px;
+  margin-right: 38px;
+}
+.bns_top .bns_top_info .bns_top_popup.bns_top_popup_hist .bns_top_popup_hist_item .name {
+  float: left;
+  width: 356px;
+  color: #000000;
+  font-size: 16px;
+}
+.bns_top .bns_top_info .bns_top_popup.bns_top_popup_hist .bns_top_popup_hist_item .bal {
+  float: right;
+  color: #048a65;
+  font-size: 16px;
+  font-weight: bold;
+}
+.bns_top .bns_top_info .bns_top_popup.bns_top_popup_hist .bns_hist_page {
+  float: left;
+  width: 100%;
+}
+.bns_top .bns_top_info .bns_top_popup.bns_top_popup_hist .bns_hist_page span {
+  color: #000000;
+  float: left;
+  width: 105px;
+  font-size: 16px;
+}
+.bns_top .bns_top_info .bns_top_popup.bns_top_popup_hist .bns_hist_page a {
+  float: left;
+  margin-right: 10px;
+  font-size: 16px;
+  text-decoration: none;
+  color: #000000;
+}
+.bns_top .bns_top_info .bns_top_popup.bns_top_popup_hist .bns_hist_page a.act {
+  color: #048a65;
+  font-weight: bold;
+}
+.bns_top .bns_top_info .bns_top_slide {
+  width: 100%;
+  float: left;
+  text-align: center;
+}
+.bns_top .bns_top_info .bns_top_slide img {
+  margin-left: 50px;
+}
+.bns_top .bns_top_info .bns_top_slide .bns_slide_text {
+  color: #000000;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 22px;
+  width: 100%;
+  float: left;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+.bns_top .bns_top_info .bns_top_slide .bns_top_slide_linck {
+  width: 100%;
+}
+.bns_top .bns_top_info .bns_top_slide .bns_top_slide_linck a {
+  display: inline-block;
+  width: 120px;
+  line-height: 45px;
+  border-radius: 10px;
+  background-color: #0a9876;
+  text-align: center;
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 16px;
+}
+.bns_top .bns_top_info .bns_top_info_left {
+  float: left;
+  width: 80%;
+}
+.bns_top .bns_top_info .bns_top_info_left .bns_ava_block {
+  float: left;
+  width: 100%;
+}
+.bns_top .bns_top_info .bns_top_info_left .bns_ava_block img {
+  float: left;
+  border-radius: 100%;
+  width: 163px;
+  height: auto;
+}
+.bns_top .bns_top_info .bns_top_info_left .bns_ava_block .bns_ava_block_right {
+  float: left;
+  width: 550px;
+  box-sizing: border-box;
+  padding-left: 30px;
+}
+.bns_top .bns_top_info .bns_top_info_left .bns_ava_block .bns_ava_block_right .bns_name {
+  float: left;
+  width: 100%;
+  font-size: 50px;
+  font-weight: bold;
+  font-family: 'HeliosCondC';
+  color: #000000;
+  margin-top: 33px;
+  margin-bottom: 13px;
+}
+.bns_top .bns_top_info .bns_top_info_left .bns_ava_block .bns_ava_block_right a {
+  float: left;
+  width: 100%;
+  color: #048a65;
+  font-size: 16px;
+}
+.bns_top .bns_top_info .bns_top_info_left .bns_top_info_stat {
+  float: left;
+  width: 100%;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.7);
+  margin-top: 30px;
+}
+.bns_top .bns_top_info .bns_top_info_left .bns_top_info_stat .bns_ne_pod_bal_block {
+  float: left;
+  width: 45%;
+  box-sizing: border-box;
+}
+.bns_top .bns_top_info .bns_top_info_left .bns_top_info_stat .bns_ne_pod_bal_block .bns_ne_pod_bal {
+  float: left;
+  display: inline-block;
+  line-height: 100px;
+  width: 100px;
+  border-radius: 100px;
+  background-color: #fff;
+  -webkit-box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.3);
+  text-align: center;
+  font-size: 38px;
+  font-weight: bold;
+  color: #0a9876;
+  font-family: 'HeliosCondC';
+  margin-left: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-right: 20px;
+}
+.bns_top .bns_top_info .bns_top_info_left .bns_top_info_stat .bns_ne_pod_bal_block .bns_ne_pod_bal_name {
+  float: left;
+  width: 244px;
+  color: #000000;
+  font-size: 18px;
+  margin-top: 45px;
+  margin-bottom: 8px;
+}
+.bns_top .bns_top_info .bns_top_info_left .bns_top_info_stat .bns_ne_pod_bal_block a {
+  float: left;
+  color: #0a9876;
+  font-size: 16px;
+  position: relative;
+}
+.bns_top .bns_top_info .bns_top_info_left .bns_top_info_stat .bns_ne_pod_bal_block a:hover .bns_tile {
+  display: block;
+}
+.bns_top .bns_top_info .bns_top_info_left .bns_top_info_stat .bns_ne_pod_bal_block a .bns_tile {
+  position: absolute;
+  display: inline-block;
+  width: 240px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  background-color: #fff;
+  -webkit-box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.3);
+  bottom: 30px;
+  line-height: 16px;
+  color: #5e5e5e;
+  font-size: 14px;
+  left: 50%;
+  margin-left: -120px;
+  padding: 15px 20px;
+  text-align: center;
+  display: none;
+}
+.bns_top .bns_top_info .bns_top_info_left .bns_top_info_stat .bns_ne_pod_bal_block a .bns_tile:after {
+  position: absolute;
+  left: 50%;
+  content: '';
+  display: block;
+  width: 20px;
+  height: 12px;
+  background-image: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/2ebe1084f94d6642f5584f860b411729.png");
+  margin-left: -10px;
+  bottom: -12px;
+}
+.bns_top .bns_top_info .bns_top_info_left .bns_top_info_stat .bns_stat_now {
+  float: left;
+  width: 50%;
+  box-sizing: border-box;
+}
+.bns_top .bns_top_info .bns_top_info_left .bns_top_info_stat .bns_stat_now img {
+  min-height: 100px;
+  width: 100px;
+  height: auto;
+  float: left;
+  border-radius: 100px;
+  -webkit-box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.3);
+  margin-top: 20px;
+  margin-right: 30px;
+  margin-bottom: 20px;
+}
+.bns_top .bns_top_info .bns_top_info_left .bns_top_info_stat .bns_stat_now .bns_stat_name {
+  float: left;
+  width: 300px;
+  font-size: 18px;
+  color: #000000;
+  margin-top: 45px;
+  margin-bottom: 8px;
+}
+.bns_top .bns_top_info .bns_top_info_left .bns_top_info_stat .bns_stat_now a {
+  float: left;
+  width: 300px;
+  color: #0a9876;
+  font-size: 16px;
+}
+.bns_top .bns_top_info .bns_top_info_right {
+  position: absolute;
+  right: 90px;
+  bottom: 0px;
+  width: 402px;
+  height: 382px;
+}
+.bns_popup_layout {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 2000;
+  width: 100%;
+  height: 100%;
+}
+.bns_popup_wrapper {
+  text-align: center;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 3000;
+}
+.bns_popup_wrapper:before {
+  content: '';
+  width: 0;
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+}
+.bns_popup {
+  position: relative;
+  text-align: left;
+  z-index: 2001;
+  width: 90%;
+  display: inline-block;
+  vertical-align: middle;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  -webkit-box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.3);
+  padding: 30px 35px;
+  box-sizing: border-box;
+}
+.bns_popup h2 {
+  float: left;
+  width: 100%;
+  color: #000000;
+  font-size: 42px;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+.bns_popup span.bns_popup_text {
+  float: left;
+  width: 100%;
+  color: #000000;
+  font-size: 16px;
+}
+.bns_popup .close {
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  background-color: #fff;
+  position: absolute;
+  left: -21px;
+  top: -21px;
+  display: block;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-image: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/10f8ff372ad96ebc4df4285a88d58613.png");
+}
+.bns_tab_block {
+  float: left;
+}
+.bns_tab_block .bns_gift_item {
+  float: left;
+  width: 285px;
+  height: auto;
+  margin-right: 26px;
+}
+.bns_tab_block .bns_gift_item:nth-child(4n) {
+  margin-right: 0;
+}
+.bns_tab_block .bns_gift_item img {
+  width: 100%;
+  height: auto;
+  float: left;
+}
+.bns_tab_block .bns_gift_item .bns_gift_item_bottom {
+  float: left;
+  width: 185px;
+}
+.bns_tab_block .bns_gift_item .bns_gift_item_bottom .bns_gift_name {
+  float: left;
+  color: #000000;
+  font-size: 18px;
+  font-weight: bold;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+.bns_tab_block .bns_gift_item .bns_gift_item_bottom .bns_gift_desc {
+  float: left;
+  color: #5e5e5e;
+  font-size: 14px;
+  width: 100%;
+}
+.bns_tab_block .bns_gift_item a {
+  cursor: default;
+  margin-top: 20px;
+  float: right;
+  width: 100px;
+  line-height: 45px;
+  border-radius: 8px;
+  background-color: #ad0f14;
+  position: relative;
+  text-align: center;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+  letter-spacing: -1px;
+}
+.bns_tab_block .bns_gift_item a.act {
+  cursor: pointer;
+}
+.bns_tab_block .bns_gift_item a:hover .bns_til {
+  display: block;
+}
+.bns_tab_block .bns_gift_item a .bns_til {
+  position: absolute;
+  display: inline-block;
+  width: 180px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  background-color: #fff;
+  -webkit-box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.3);
+  bottom: 57px;
+  line-height: 16px;
+  color: #5e5e5e;
+  font-size: 14px;
+  left: 50%;
+  margin-left: -90px;
+  padding: 15px 20px;
+  text-align: center;
+  display: none;
+}
+.bns_tab_block .bns_gift_item a .bns_til:after {
+  position: absolute;
+  left: 50%;
+  content: '';
+  display: block;
+  width: 20px;
+  height: 12px;
+  background-image: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/2ebe1084f94d6642f5584f860b411729.png");
+  margin-left: -10px;
+  bottom: -12px;
+}
+.bns_qust_item {
+  float: left;
+  width: 290px;
+  height: 130px;
+  margin-right: 22px;
+  margin-bottom: 22px;
+  box-sizing: border-box;
+  border: 1px solid #d4d3d1;
+  -webkit-transition: all 300ms ease;
+  -moz-transition: all 300ms ease;
+  -ms-transition: all 300ms ease;
+  -o-transition: all 300ms ease;
+  transition: all 300ms ease;
+}
+.bns_qust_item:nth-child(4n) {
+  margin-right: 0;
+}
+.bns_qust_item:hover {
+  background-color: #ad0f14;
+  cursor: pointer;
+}
+.bns_qust_item:hover .bns_qust_left img {
+  display: none;
+}
+.bns_qust_item:hover .bns_qust_left img.bns_qust_left_h {
+  display: inline-block;
+  -webkit-box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
+}
+.bns_qust_item:hover .bns_qust_right .bns_qust_right_name {
+  opacity: 0;
+}
+.bns_qust_item:hover .bns_qust_right .bns_qust_right_bal {
+  opacity: 0;
+}
+.bns_qust_item:hover .bns_qust_right a {
+  display: block;
+}
+.bns_qust_item .bns_qust_left {
+  float: left;
+  width: 130px;
+  height: 130px;
+  text-align: center;
+}
+.bns_qust_item .bns_qust_left:before {
+  content: '';
+  display: inline-block;
+  vertical-align: middle;
+  height: 100%;
+}
+.bns_qust_item .bns_qust_left img {
+  vertical-align: middle;
+  border-radius: 10px;
+}
+.bns_qust_item .bns_qust_left .bns_qust_left_h {
+  display: none;
+}
+.bns_qust_item .bns_qust_right {
+  float: left;
+  width: 158px;
+  height: 130px;
+  position: relative;
+  padding-right: 20px;
+  box-sizing: border-box;
+}
+.bns_qust_item .bns_qust_right .bns_qust_right_name {
+  float: left;
+  width: 100%;
+  color: #5e5e5e;
+  font-size: 16px;
+  line-height: 19px;
+  margin-top: 34px;
+  margin-bottom: 8px;
+}
+.bns_qust_item .bns_qust_right .bns_qust_right_bal {
+  float: left;
+  width: 100%;
+  color: #000000;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: -1px;
+}
+.bns_qust_item .bns_qust_right a {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  text-align: center;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: -1px;
+  text-decoration: none;
+  line-height: 20px;
+  margin-top: -10px;
+  top: 50%;
+  display: none;
+}
+.bns_achiv_line {
+  float: left;
+  width: 100%;
+  margin-bottom: 30px;
+}
+.bns_achiv_line .bns_achiv_item {
+  float: left;
+  width: 182px;
+  background-color: #fff;
+  padding: 13px;
+  position: relative;
+  margin-right: 80px;
+  box-sizing: border-box;
+}
+.bns_achiv_line .bns_achiv_item:not(.act) img {
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  -ms-filter: grayscale(100%);
+  -o-filter: grayscale(100%);
+  filter: grayscale(100%);
+  filter: grayscale(1);
+  filter: gray;
+  opacity: 0.4;
+}
+.bns_achiv_line .bns_achiv_item:nth-child(5n) {
+  margin-right: 0;
+}
+.bns_achiv_line .bns_achiv_item:nth-child(5n):after {
+  display: none;
+}
+.bns_achiv_line .bns_achiv_item:after {
+  position: absolute;
+  top: 88px;
+  left: 100%;
+  height: 5px;
+  background-image: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/7a74028bb7379626e6109a373590fe8f.png");
+  width: 100%;
+  display: block;
+  content: '';
+}
+.bns_achiv_line .bns_achiv_item img {
+  width: 100%;
+  height: auto;
+}
+.bns_achiv_line .bns_achiv_item span {
+  float: left;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #cccccc;
+  text-align: center;
+  color: #5e5e5e;
+  font-size: 16px;
+  margin-top: 12px;
+  padding-top: 8px;
+  padding-bottom: 3px;
+}
+.bns_achiv_line .bns_achiv_item span strong {
+  float: left;
+  width: 100%;
+  color: #000000;
+  font-size: 18px;
+  font-weight: bold;
+}
+@media screen and (max-width: 1230px) {
+  .bns_inner_block {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0px 20px;
+  }
+  .bns_top .bns_top_info .bns_top_popup .bns_top_popup_hist .bns_top_popup_hist_item {
+    width: 100%;
+  }
+  .bns_top .bns_top_info .bns_top_info_left {
+    width: 100%;
+  }
+  .bns_top .bns_top_info .bns_top_info_left .bns_top_info_stat {
+    text-align: center;
+  }
+  .bns_top .bns_top_info .bns_top_info_left .bns_top_info_stat .bns_ne_pod_bal_block {
+    width: 300px;
+    float: none;
+    display: inline-block;
+    margin: 0px 210px;
+    text-align: left;
+  }
+  .bns_top .bns_top_info .bns_top_info_left .bns_top_info_stat .bns_ne_pod_bal_block .bns_ne_pod_bal {
+    width: 100px;
+    margin-right: 20px;
+    margin-left: 0;
+  }
+  .bns_top .bns_top_info .bns_top_info_left .bns_top_info_stat .bns_ne_pod_bal_block .bns_ne_pod_bal_name {
+    width: 180px;
+  }
+  .bns_top .bns_top_info .bns_top_info_left .bns_top_info_stat .bns_stat_now {
+    width: 300px;
+    float: none;
+    display: inline-block;
+    text-align: left;
+  }
+  .bns_top .bns_top_info .bns_top_info_left .bns_top_info_stat .bns_stat_now img {
+    width: 100px;
+    margin-right: 20px;
+    margin-left: 0;
+  }
+  .bns_top .bns_top_info .bns_top_info_left .bns_top_info_stat .bns_stat_now .bns_stat_name {
+    width: 180px;
+  }
+  .bns_top .bns_top_info .bns_top_info_left .bns_top_info_stat .bns_stat_now a {
+    width: auto;
+  }
+  .bns_top .bns_top_info .bns_top_info_right {
+    float: right;
+    position: relative;
+    right: 0;
+    margin-top: 30px;
+    margin-bottom: -45px;
+  }
+  .bns_tab_block {
+    text-align: center;
+  }
+  .bns_tab_block .bns_gift_item {
+    margin: 13px;
+    text-align: left;
+    display: inline-block;
+    float: none;
+  }
+  .bns_tab_block .bns_gift_item:nth-child(4n) {
+    margin: 13px;
+  }
+  .bns_tab_block .bns_qust_item {
+    margin: 13px;
+    text-align: left;
+    display: inline-block;
+    float: none;
+  }
+  .bns_tab_block .bns_qust_item:nth-child(4n) {
+    margin: 13px;
+  }
+  .bns_tab_block .bns_achiv_line .bns_achiv_item {
+    float: non;
+  }
+  .bns_tab_block .bns_achiv_line .bns_achiv_item {
+    margin: 13px;
+    text-align: left;
+    display: inline-block;
+    float: none;
+  }
+  .bns_tab_block .bns_achiv_line .bns_achiv_item:nth-child(5n) {
+    margin: 13px;
+  }
+  .bns_tab_block .bns_achiv_line .bns_achiv_item:after {
+    display: none;
+  }
+}
+@media screen and (max-width: 900px) {
+  .bns_tab {
+    width: 100%;
+    text-align: center;
+  }
+  .bns_tab a {
+    float: none;
+    display: inline-block;
+    margin-right: 0;
+  }
+  .bns_top .bns_top_info {
+    min-height: 0px;
+    text-align: center;
+  }
+  .bns_top .bns_top_info:before {
+    min-height: 0px;
+  }
+  .bns_top .bns_top_info .bns_top_popup {
+    width: 100%;
+  }
+  .bns_top .bns_top_info .bns_top_popup .bns_top_popup_hist .bns_top_popup_hist_item {
+    text-align: left;
+    position: relative;
+  }
+  .bns_top .bns_top_info .bns_top_popup .bns_top_popup_hist .bns_top_popup_hist_item .bal {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+  }
+  .bns_top .bns_top_info .bns_top_info_left .bns_ava_block {
+    float: left;
+    width: 100%;
+    text-align: center;
+  }
+  .bns_top .bns_top_info .bns_top_info_left .bns_ava_block img {
+    float: none;
+  }
+  .bns_top .bns_top_info .bns_top_info_left .bns_ava_block .bns_ava_block_right {
+    padding-left: 0;
+    width: 100%;
+  }
+  .bns_top .bns_top_info .bns_top_info_left .bns_top_info_stat .bns_ne_pod_bal_block {
+    margin: 0px 70px;
+  }
+  .bns_top .bns_top_info .bns_top_info_right {
+    float: none;
+    display: inline-block;
+  }
+}
+@media screen and (max-width: 650px) {
+  .bns_top .bns_top_info {
+    padding: 30px 10px;
+  }
+  .bns_top .bns_top_info .bns_top_info_left .bns_top_info_stat .bns_ne_pod_bal_block {
+    margin: 0px;
+  }
+  .bns_top .bns_top_info .bns_top_info_right {
+    width: 100%;
+    background-repeat: no-repeat;
+  }
+  .bns_top .bns_top_info .bns_top_slide img {
+    max-width: 100%;
+    height: auto;
+    margin-left: 0;
+  }
+}
+@media screen and (max-width: 450px) {
+  .bns_tab a {
+    font-size: 30px;
+  }
+  .bns_top .bns_top_info .bns_top_popup h2 {
+    font-size: 30px;
+  }
+  .bns_top .bns_top_info .bns_top_popup .close {
+    left: 0;
+  }
+  .bns_top .bns_top_info .bns_top_popup .bns_top_popup_hist .bns_top_popup_hist_item .name {
+    width: 100%;
+  }
+  .bns_tab_block .bns_gift_item {
+    margin-left: 0 !important;
+    margin-right: 0  !important;
+    width: 100%;
+  }
+}
+@media screen and (max-width: 400px) {
+  .bns_top .bns_top_info .bns_top_info_left .bns_top_info_stat .bns_ne_pod_bal_block {
+    text-align: center;
+  }
+  .bns_top .bns_top_info .bns_top_info_left .bns_top_info_stat .bns_ne_pod_bal_block .bns_ne_pod_bal {
+    display: inline-block;
+    float: none;
+    margin-right: 0;
+  }
+  .bns_top .bns_top_info .bns_top_info_left .bns_top_info_stat .bns_ne_pod_bal_block .bns_ne_pod_bal_name {
+    display: inline-block;
+    width: 100%;
+    float: none;
+    margin-top: 0;
+  }
+  .bns_top .bns_top_info .bns_top_info_left .bns_top_info_stat .bns_ne_pod_bal_block a {
+    display: inline-block;
+    float: none;
+    margin-top: 0;
+  }
+  .bns_top .bns_top_info .bns_top_info_left .bns_top_info_stat .bns_stat_now {
+    text-align: center;
+  }
+  .bns_top .bns_top_info .bns_top_info_left .bns_top_info_stat .bns_stat_now img {
+    display: inline-block;
+    float: none;
+    margin-right: 0;
+  }
+  .bns_top .bns_top_info .bns_top_info_left .bns_top_info_stat .bns_stat_now .bns_stat_name {
+    display: inline-block;
+    width: 100%;
+    float: none;
+    margin-top: 0;
+  }
+  .bns_top .bns_top_info .bns_top_info_left .bns_top_info_stat .bns_stat_now a {
+    display: inline-block;
+    float: none;
+    margin-top: 0;
+    margin-bottom: 30px;
+  }
+}
+.sp_wrapper {
+  overflow: hidden;
+}
+.sp_wrapper .pizzameter_wrapper {
+  margin: 30px;
+  font-size: 14px;
+  width: 300px;
+  height: 300px;
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-position: top left;
+  background-color: transparent;
+  background-size: 100% 100%;
+  position: relative;
+}
+.sp_wrapper .pizzameter_wrapper .pizzameter_counter {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: top left;
+  background-color: transparent;
+  background-size: 100% 100%;
+  top: 0;
+  left: 0;
+}
+.sp_wrapper .pizzameter_wrapper .pizzameter_counter .counter_inner {
+  position: absolute;
+  top: 43.2%;
+  left: 32.2%;
+  width: 38.1%;
+  height: 13%;
+}
+.sp_wrapper .pizzameter_wrapper .pizzameter_counter .counter_inner img {
+  vertical-align: top;
+  display: inline-block;
+  width: 24%;
+  height: 100%;
+  margin-right: 1%;
+}
+.sp_wrapper .pizzameter_wrapper .pizzameter_counter .counter_inner img:last-child {
+  margin-right: 0 !important;
+}
+.sp_wrapper .pizzameter_wrapper .pizza_pieces {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-repeat: no-repeat;
+  background-position: top left;
+  background-color: transparent;
+  background-size: 100% 100%;
+}

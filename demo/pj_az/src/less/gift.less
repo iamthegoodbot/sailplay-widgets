@@ -1,0 +1,90 @@
+.bns_tab_block {
+  float: left;
+  .bns_gift_item {
+    float: left;
+    width: 285px;
+    height: auto;
+    margin-right:26px;
+    &:nth-child(4n) {
+      margin-right: 0;
+    }
+    img {
+      width: 100%;
+      height: auto;
+      float: left;
+    }
+    .bns_gift_item_bottom {
+      float: left;
+      width: 185px;
+      .bns_gift_name {
+        float: left;
+        color: #000000;
+        font-size: 18px;
+        font-weight: bold;
+        width: 100%;
+        margin-top: 20px;
+        margin-bottom: 5px;
+      }
+      .bns_gift_desc {
+        float: left;
+        color: #5e5e5e;
+        font-size: 14px;
+        width: 100%;
+      }
+    }
+    a {
+      cursor: default;
+      margin-top: 20px;
+      float: right;
+      width: 100px;
+      line-height: 45px;
+      border-radius: 8px;
+      background-color: #ad0f14;
+      position: relative;
+      text-align: center;
+      color: #ffffff;
+      font-size: 18px;
+      font-weight: bold;
+      text-decoration: none;
+      letter-spacing: -1px;
+      &.act {
+        cursor: pointer;
+      }
+      &:hover {
+        .bns_til {
+          display: block;
+        }
+      }
+      .bns_til {
+        position: absolute;
+        display: inline-block;
+        width: 180px;
+        box-sizing: border-box;
+        border-radius: 10px;
+        background-color: #fff;
+        -webkit-box-shadow: 0 0 25px 0 rgba(0,0,0,0.3);
+        box-shadow: 0 0 25px 0 rgba(0,0,0,0.3);
+        bottom: 57px;
+        line-height: 16px;
+        color: #5e5e5e;
+        font-size: 14px;
+        left: 50%;
+        margin-left: -90px;
+        padding: 15px 20px;
+        text-align: center;
+        display: none;
+        &:after {
+          position: absolute;
+          left: 50%;
+          content: '';
+          display: block;
+          width: 20px;
+          height: 12px;
+          background-image: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/2ebe1084f94d6642f5584f860b411729.png");
+          margin-left: -10px;
+          bottom: -12px;
+        }
+      }
+    }
+  }
+}

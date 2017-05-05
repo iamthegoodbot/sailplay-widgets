@@ -1,0 +1,8 @@
+<div class="bns_popup_wrapper" data-ng-if="data">
+    <div class="bns_popup_layout"></div>
+    <div class="bns_popup">
+        <a href="#" class="close" data-ng-click="$event.preventDefault();$parent.data = null;body_lock(false);"></a>
+        <h2 data-ng-bind="$parent.data.title"></h2>
+        <span class="bns_popup_text" data-ng-bind-html="$parent.data.text | to_trusted"></span>
+    </div>
+</div>

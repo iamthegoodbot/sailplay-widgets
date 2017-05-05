@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+
+<head>
+
+    <title>Papa Johns AZ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" href="./dist/css/sailplay.pj_az.css"/>
+    <script src="./dist/js/sailplay.pj_az.js"></script>
+    <script type="text/javascript">
+
+      document.addEventListener('DOMContentLoaded', function () {
+
+        var params = SAILPLAY.url_params() || {};
+
+        window.sailplay_config = {
+          auth_hash: params.auth_hash || 'c766d8466be8b26d6d7718c3c468f33c13f99cb9',
+          partner_id: params.partner_id || 1652,
+          domain: params.domain || 'http://sailplay.ru',
+          lang: 'ru',
+          data: {
+            pizzameter_cost: 379,
+            login_link: "login.html",
+            status_link: "status.html"
+          }
+        };
+
+      });
+
+
+
+    </script>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<sailplay-pj-az></sailplay-pj-az>
+
+</body>
+</html>
