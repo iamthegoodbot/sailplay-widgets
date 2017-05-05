@@ -3,18 +3,24 @@
 ## Install
 Paste this code to the page in < head > section to load the script:
 
-    <link rel="stylesheet" href="./dist/css/sailplay.pb.css"/>
+    <link rel="stylesheet" href="https://sailplays3.cdnvideo.ru/media/assets/assetfile/d2a1565d1c525ed7059bc841b3afd6ce.css"/>
 
-    <script src="./dist/js/sailplay.pb.js"></script>
+    <script src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/3c7317f3df7f50c71feb0704467d1270.js"></script>
 
     <script type="text/javascript">
-
-        window.sailplay_config = {
-            auth_hash: 'AUTH_HASH',
-            partner_id: 1655,
-            domain: 'http://sailplay.ru',
-            lang: 'ru',
-        };
+        document.addEventListener('DOMContentLoaded', function () {
+            window.sailplay_config = {
+                auth_hash: 'AUTH_HASH',
+                partner_id: 1655,
+                domain: 'http://sailplay.ru',
+                lang: 'ru',
+                data: {
+                  edit_profile_link: "http://sailplay.ru",
+                  delivery_address: 1,
+                  share_url: 'http://sailplay.ru'
+                }
+            };
+        });
 
     </script>
 

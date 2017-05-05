@@ -34,7 +34,7 @@ angular.module('sp.gifts', [])
         scope.user = sp_api.data('load.user.info');
 
         scope.get = function (gift) {
-          if(!gift) return;
+          if(!gift || scope.user().user_points.confirmed < gift.points) return;
           sp.send('gifts.purchase', {gift: gift});
         };
 

@@ -102,7 +102,7 @@ angular.module('core', [
 
     sp.on('gift.purchase.force_complete.success', function (res) {
 
-      // $rootScope.$apply(loadData);
+      $rootScope.$apply(loadData);
 
     });
 

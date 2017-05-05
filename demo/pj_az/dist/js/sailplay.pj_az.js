@@ -2556,7 +2556,7 @@ angular.module('sp_pj_az', [
     'https://sailplays3.cdnvideo.ru/media/assets/assetfile/c425ff894ab6d0efe5a58a3b4e6ac092.png'
   ])
 
-  .directive('sailplayPjAz', ["$rootScope", "$locale", "headerBg", function ($rootScope, $locale, headerBg) {
+  .directive('sailplayPjAz', function ($rootScope, $locale, headerBg) {
     return {
       restrict: 'E',
       replace: true,
@@ -2632,7 +2632,7 @@ angular.module('sp_pj_az', [
 
       }
     }
-  }]);
+  });
 
 setTimeout(function () {
 
@@ -2647,7 +2647,7 @@ angular.module('core', [
   'ipCookie'
 ])
 
-  .run(["sp", "ipCookie", "sp_api", "$rootScope", "actions_data", function (sp, ipCookie, sp_api, $rootScope, actions_data) {
+  .run(function (sp, ipCookie, sp_api, $rootScope, actions_data) {
 
     $rootScope.config = window.sailplay_config || {};
 
@@ -2747,7 +2747,7 @@ angular.module('core', [
 
     sp.on('gift.purchase.force_complete.success', function (res) {
 
-      // $rootScope.$apply(loadData);
+      $rootScope.$apply(loadData);
 
     });
 
@@ -2799,7 +2799,7 @@ angular.module('core', [
 
     }
 
-  }]);
+  });
 (function () {
 
   angular.module('sp.actions', [])
@@ -2887,7 +2887,7 @@ angular.module('core', [
       }
     })
 
-    .service('spAction', ["actions_data", function (actions_data) {
+    .service('spAction', function (actions_data) {
 
       var self = this;
 
@@ -2939,9 +2939,9 @@ angular.module('core', [
 
       return self;
 
-    }])
+    })
 
-    .directive('sailplayAction', ["sp", "$rootScope", "$compile", "$timeout", function (sp, $rootScope, $compile, $timeout) {
+    .directive('sailplayAction', function (sp, $rootScope, $compile, $timeout) {
 
       var init_state;
 
@@ -2979,7 +2979,7 @@ angular.module('core', [
 
       };
 
-    }])
+    })
 
     /**
      * @ngdoc directive
@@ -2993,7 +2993,7 @@ angular.module('core', [
      * @param {object}  action   A SailPlay custom action object, received from api.
      *
      */
-    .directive('sailplayActionCustom', ["sp", "$document", function (sp, $document) {
+    .directive('sailplayActionCustom', function (sp, $document) {
 
       var init_state;
 
@@ -3035,9 +3035,9 @@ angular.module('core', [
 
       };
 
-    }])
+    })
 
-    .directive('sailplayActions', ["sp_api", "sp", "spAction", "tagHelper", "$rootScope", "$filter", "$timeout", function (sp_api, sp, spAction, tagHelper, $rootScope, $filter, $timeout) {
+    .directive('sailplayActions', function (sp_api, sp, spAction, tagHelper, $rootScope, $filter, $timeout) {
 
       return {
 
@@ -3122,7 +3122,7 @@ angular.module('core', [
 
       };
 
-    }]);
+    });
 
 }());
 
@@ -3130,7 +3130,7 @@ angular.module('core', [
 
   angular.module('sp.badges', [])
 
-    .directive('sailplayBadges', ["sp", "sp_api", function (sp, sp_api) {
+    .directive('sailplayBadges', function (sp, sp_api) {
 
       return {
 
@@ -3170,13 +3170,13 @@ angular.module('core', [
 
       };
 
-    }]);
+    });
 
 }());
 
 angular.module('sp.gifts', [])
 
-  .directive('mCustomScrollbar', ["$timeout", function ($timeout) {
+  .directive('mCustomScrollbar', function ($timeout) {
     return {
       restrict: 'A',
       replace: false,
@@ -3194,9 +3194,9 @@ angular.module('sp.gifts', [])
       }
 
     };
-  }])
+  })
 
-  .directive('sailplayGifts', ["sp", "sp_api", "$rootScope", function (sp, sp_api, $rootScope) {
+  .directive('sailplayGifts', function (sp, sp_api, $rootScope) {
 
     return {
 
@@ -3210,7 +3210,7 @@ angular.module('sp.gifts', [])
         scope.user = sp_api.data('load.user.info');
 
         scope.get = function (gift) {
-          if(!gift) return;
+          if(!gift || scope.user().user_points.confirmed < gift.points) return;
           sp.send('gifts.purchase', {gift: gift});
         };
 
@@ -3242,7 +3242,7 @@ angular.module('sp.gifts', [])
 
     };
 
-  }]);
+  });
 
 angular.module('sp.history', [])
 
@@ -3279,7 +3279,7 @@ angular.module('sp.history', [])
   })
 
 
-  .filter('history_icon', ["history_icon", function (history_icon) {
+  .filter('history_icon', function (history_icon) {
     return function (historyItem) {
 
       switch (historyItem.action) {
@@ -3291,9 +3291,9 @@ angular.module('sp.history', [])
       }
 
     }
-  }])
+  })
 
-  .filter('history_item', ["history_texts", "social_list", function (history_texts, social_list) {
+  .filter('history_item', function (history_texts, social_list) {
     return function (historyItem) {
 
       switch (historyItem.action) {
@@ -3324,9 +3324,9 @@ angular.module('sp.history', [])
       return history_texts[historyItem.action];
 
     }
-  }])
+  })
 
-  .directive('sailplayHistory', ["sp", "sp_api", function (sp, sp_api) {
+  .directive('sailplayHistory', function (sp, sp_api) {
     return {
 
       restrict: 'A',
@@ -3339,7 +3339,7 @@ angular.module('sp.history', [])
       }
 
     };
-  }]);
+  });
 
 
 angular.module('sp', [
@@ -3354,17 +3354,17 @@ angular.module('sp', [
 
 ])
 
-  .service('sp', ["$window", function ($window) {
+  .service('sp', function ($window) {
 
     return $window.SAILPLAY || {};
 
-  }])
+  })
 
-  .service('config', ["sp", function (sp) {
+  .service('config', function (sp) {
     return sp.config() || {};
-  }])
+  })
 
-  .service('sp_api', ["$q", "sp", "$rootScope", function ($q, sp, $rootScope) {
+  .service('sp_api', function ($q, sp, $rootScope) {
 
     var self = this;
 
@@ -3436,9 +3436,9 @@ angular.module('sp', [
 
     }
 
-  }])
+  })
 
-  .factory('SailPlayShare', ["$window", function ($window) {
+  .factory('SailPlayShare', function ($window) {
     return function (network, url, title, description, image) {
 
       var share_url = '';
@@ -3474,7 +3474,7 @@ angular.module('sp', [
       $window.open(share_url, '_blank', 'toolbar=0,status=0,width=626,height=436,location=no');
 
     }
-  }])
+  })
 
   .service('tagHelper', function () {
 
@@ -3533,7 +3533,7 @@ angular.module('sp', [
     };
   })
 
-  .filter('str_limit', ["$filter", function ($filter) {
+  .filter('str_limit', function ($filter) {
     return function (input, limit) {
       if (!input) return;
       if (input.length <= limit) {
@@ -3541,7 +3541,7 @@ angular.module('sp', [
       }
       return $filter('limitTo')(input, limit) + '...';
     };
-  }])
+  })
 
   .filter('is_default', function () {
 
@@ -3560,7 +3560,7 @@ angular.module('sp', [
 
   })
 
-  .filter('sailplay_pic', ["sp", function (sp) {
+  .filter('sailplay_pic', function (sp) {
 
     function repair_pic_url(url) {
       if (/^((http|https|ftp):\/\/)/.test(url)) {
@@ -3582,7 +3582,7 @@ angular.module('sp', [
 
     };
 
-  }]);
+  });
 angular.module('sp.pizzameter', [])
 
   .filter('static', [ 'config', function(config){
@@ -3595,7 +3595,7 @@ angular.module('sp.pizzameter', [])
 
   }])
 
-  .directive('sailplayPizzameter', ["$rootScope", "config", "$filter", function ($rootScope, config, $filter) {
+  .directive('sailplayPizzameter', function ($rootScope, config, $filter) {
     return {
       restrict: 'E',
       replace: true,
@@ -3656,12 +3656,12 @@ angular.module('sp.pizzameter', [])
 
       }
     };
-  }]);
+  });
 
 
 angular.module('sp.profile', [])
 
-  .directive('sailplayProfile', ["sp", "sp_api", function (sp, sp_api) {
+  .directive('sailplayProfile', function (sp, sp_api) {
 
     return {
 
@@ -3680,7 +3680,7 @@ angular.module('sp.profile', [])
 
     };
 
-  }]);
+  });
 
 
 angular.module('sp.status', [])
@@ -3694,7 +3694,7 @@ angular.module('sp.status', [])
     }
   })
 
-  .directive('sailplayStatus', ["sp", "sp_api", "spPurchaseTag", "SailPlayShare", "$window", "$rootScope", function (sp, sp_api, spPurchaseTag, SailPlayShare, $window, $rootScope) {
+  .directive('sailplayStatus', function (sp, sp_api, spPurchaseTag, SailPlayShare, $window, $rootScope) {
 
     return {
 
@@ -3822,7 +3822,7 @@ angular.module('sp.status', [])
 
     };
 
-  }]);
+  });
 (function () {
 
   angular.module('ui', [
@@ -3888,7 +3888,7 @@ angular.module('sp.status', [])
       }
     })
 
-    .directive('spAuth', ["$rootScope", "sp", function ($rootScope, sp) {
+    .directive('spAuth', function ($rootScope, sp) {
       return {
         restrict: 'A',
         replace: false,
@@ -3913,6 +3913,6 @@ angular.module('sp.status', [])
 
         }
       }
-    }]);
+    });
 
 }());

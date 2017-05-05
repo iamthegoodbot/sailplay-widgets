@@ -88,7 +88,7 @@ angular.module('sp.status', [])
           var len = scope.badges().multilevel_badges[0].length;
           var step = 100 / len;
           var percents = 0;
-          var current_sum = scope.user().purchases.sum;
+          var current_sum = scope.getPurchasesSum();
           var styles = {};
 
           if (received_statuses.length) {

@@ -1,36 +1,41 @@
 # SailPlay widget for Papa Johns AZ
 
-## Install
-Paste this code to the page in < head > section to load the script:
+## Установка
+Вставить этот код в < head > для загрузки скриптов и стилей:
 
-    <link rel="stylesheet" href="./dist/css/sailplay.pj_az.css"/>
+    <link rel="stylesheet" href="https://sailplays3.cdnvideo.ru/media/assets/assetfile/3eacbe23ecf0c080e9f488e563119909.css"/>
 
-    <script src="./dist/js/sailplay.pj_az.js"></script>
+    <script src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/484d22356655b30340ff922d9872e01c.js"></script>
 
     <script type="text/javascript">
+     document.addEventListener('DOMContentLoaded', function () {
 
         window.sailplay_config = {
             auth_hash: 'AUTH_HASH',
-            partner_id: 1655,
+            partner_id: 1652,
             domain: 'http://sailplay.ru',
             lang: 'ru',
+            data: {
+                pizzameter_cost: 379,
+                login_link: "login.html",
+                status_link: "status.html"
+            }
         };
 
+    });
     </script>
 
 
-## Placement
-Paste this code to < body > to render the content loaded via above mentioned script:
+## Расположение
+Вставить этот код в < body >, скрипт преобразует его в "личный кабинет":
 
     <sailplay-pj_az></sailplay-pj_az>
 
-## Example
+## Пример
+Для примера, аузхеш берем из GET параметров
 
-Link: [DEMO](http://78.46.209.148/test/pj_az/ "Demo")
+### Неавторизованный
+http://78.46.209.148/test/pj_az/
 
-## Development
-
-"npm install" - for install node_modules
-
-"gulp" - for dev
-"gulp build" - for build project
+### Авторизованный
+http://78.46.209.148/test/pj_az/?auth_hash={{ AUTH_HASH }}

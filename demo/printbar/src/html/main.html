@@ -150,6 +150,15 @@
 
                     </div>
 
+                    <div class="bns_gift_item"
+                         data-ng-if="gifts && gifts() && gifts().length >= 6"
+                         data-ng-click="$event.preventDefault();show_gifts();body_lock(true);">
+                        <div class="bns_gift_item_img bns_gift_item_img_show_all">
+                            <img src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/2c6c0c722055cdb07332f677060a1fea.png">
+                            <span>Смотреть <br>все подарки</span>
+                        </div>
+                    </div>
+
                 </div>
 
                 <a href="#" class="bns_mob bns_show_all_mob bns_show_all_mob_gift"
@@ -352,7 +361,8 @@
 
                     <span class="bns_overlay_right_name" data-ng-bind="$parent.showBadgesInfo.name"></span>
 
-                    <span class="bns_overlay_right_desc" data-ng-bind="($parent.showBadgesInfo | spBadgeDesc).description"></span>
+                    <span class="bns_overlay_right_desc"
+                          data-ng-bind="($parent.showBadgesInfo | spBadgeDesc).description"></span>
 
                     <div class="bns_right_soc">
                         <a href="#" data-ng-click="$event.preventDefault();share('fb', $parent.showBadgesInfo);">
@@ -504,7 +514,7 @@
                 <span class="bns_overlay_hist_empty" data-ng-if="history && history() && !history().length">Тут будет отображатся история ваших действий</span>
                 <table class="bns_overlay_hist_main">
 
-                    <tr data-dir-paginate="item in history() | itemsPerPage:5"
+                    <tr data-dir-paginate="item in history() | filter:{points_delta:'!!'} | itemsPerPage:5"
                         data-pagination-id="history_pages">
 
                         <td data-ng-bind="item.action_date | date:'dd.MM.yyyy'"></td>
