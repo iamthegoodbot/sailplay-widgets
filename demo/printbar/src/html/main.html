@@ -51,15 +51,15 @@
                     <div class="bns_info_status" data-sailplay-status>
                         <span class="bns_info_head">Ваш статус</span>
                         <span class="bns_info_status_name"
-                              title="{{ user().user_status && user().user_status.name ? user().user_status.name : 'Нет статуса' }}"
-                              data-ng-bind="user().user_status && user().user_status.name ? user().user_status.name : 'Нет статуса'"></span>
+                              title="{{ getCurrentStatus() ? getCurrentStatus().name : 'Нет статуса' }}"
+                              data-ng-bind="getCurrentStatus() ? getCurrentStatus().name : 'Нет статуса'"></span>
                         <span class="bns_info_bal_ne">
                             <span class="bns_info_bal_num"
                                   data-ng-bind="toNextStatus(getPurchasesSum()) ? ((toNextStatus(getPurchasesSum()) | number) + ' ' + (( toNextStatus(getPurchasesSum()) | sailplay_pluralize:'рубль,рубля,рублей'))) : '0'"></span>
                             <span class="bns_info_bal_text">до перехода на следующий статус</span>
                         </span>
-                        <a href="#" data-ng-click="$event.preventDefault();show_status();body_lock(true)">Все
-                            статусы</a>
+                        <a href="#"
+                           data-ng-click="$event.preventDefault();show_status();body_lock(true)">Все статусы</a>
                     </div>
 
                     <div class="bns_info_badge" data-sailplay-status>
@@ -71,7 +71,7 @@
                             <div class="bns_badge_item"
                                  data-ng-repeat="badge in badges().one_level_badges | filter:{is_received:true} | limitTo:4">
                                 <div class="bns_badge_item_img">
-                                    <img data-ng-src="{{ badge.thumbs.url_250x250 | sailplay_pic }}">
+                                    <img data-ng-src="{{ (badge | spBadgeDesc).pic }}">
                                 </div>
                                 <span data-ng-bind="badge.name"></span>
                             </div>
@@ -85,7 +85,8 @@
                 <div class="bns_info_line" data-sailplay-profile data-sailplay-status>
 
                     <div class="bns_info_line_stat">
-                        <span class="bns_info_line_stat_item" data-ng-repeat="badge in badges().multilevel_badges[0]">
+                        <span class="bns_info_line_stat_item"
+                              data-ng-style="getBadgeStyle()" data-ng-repeat="badge in badges().multilevel_badges[0]">
                             {{ badge.name }}
                             <ul>
                                 <li></li>
@@ -102,7 +103,8 @@
                         <div class="bns_line_main">
 
                             <div class="bns_line_fill" data-ng-style="getStatusPercents()">
-                                <div class="bns_line_fill_til" data-ng-if="(badges().multilevel_badges[0] | filter:is_received:false).length">
+                                <div class="bns_line_fill_til"
+                                     data-ng-if="(badges().multilevel_badges[0] | filter:is_received:false).length">
                                     <strong data-ng-bind="getPurchasesSum() | number"></strong>
                                     {{ getPurchasesSum() | sailplay_pluralize:'рубль,рубля,рублей' }}
                                 </div>
@@ -243,7 +245,8 @@
 
                             <div class="bns_overaly_bottom_left">
                                 <span class="bns_text">Вам будет начисленно</span>
-                                <span class="bns_bal" data-ng-bind="($parent.show.points | number) + ' ' + ($parent.show.points | sailplay_pluralize:'балл,балла,баллов')"></span>
+                                <span class="bns_bal"
+                                      data-ng-bind="($parent.show.points | number) + ' ' + ($parent.show.points | sailplay_pluralize:'балл,балла,баллов')"></span>
                             </div>
 
                             <div class="bns_bottom_right">
@@ -260,8 +263,9 @@
                             </div>
 
                             <div data-ng-if="!$parent.show._actionId" class="bns_overlay_actionbtn_custom"
-                               data-sailplay-action-custom
-                               data-action="$parent.show">Выполнить</div>
+                                 data-sailplay-action-custom
+                                 data-action="$parent.show">Выполнить
+                            </div>
 
                         </div>
 
@@ -324,7 +328,7 @@
                     <a href="#" class="bns_overlay_badge_item" data-ng-repeat="badge in badges().one_level_badges"
                        data-ng-class="{act: badge.is_received}"
                        data-ng-click="$event.preventDefault();$parent.showBadgesInfo=badge;">
-                        <img data-ng-src="{{ (badge.is_received ? badge.thumbs.url_250x250 : badge.thumbs.url_gs) | sailplay_pic }}"
+                        <img data-ng-src="{{ (badge | spBadgeDesc).pic }}"
                              alt="{{ badge.name }}">
                     </a>
 
@@ -343,12 +347,12 @@
                 <div data-ng-if="showBadgesInfo">
 
                     <div class="bns_overlay_right_img">
-                        <img data-ng-src="{{ ($parent.showBadgesInfo.is_received ? $parent.showBadgesInfo.thumbs.url_250x250 : $parent.showBadgesInfo.thumbs.url_gs) | sailplay_pic }}">
+                        <img data-ng-src="{{ ($parent.showBadgesInfo | spBadgeDesc).pic }}">
                     </div>
 
-                    <span class="bns_overlay_right_name" data-ng-bind="$parent.showBadgesInfo.name">Первопроходец</span>
+                    <span class="bns_overlay_right_name" data-ng-bind="$parent.showBadgesInfo.name"></span>
 
-                    <span class="bns_overlay_right_desc" data-ng-bind="$parent.showBadgesInfo.descr"></span>
+                    <span class="bns_overlay_right_desc" data-ng-bind="($parent.showBadgesInfo | spBadgeDesc).description"></span>
 
                     <div class="bns_right_soc">
                         <a href="#" data-ng-click="$event.preventDefault();share('fb', $parent.showBadgesInfo);">
@@ -384,7 +388,7 @@
                          data-ng-class="{act: badge.is_received,last: user().user_status.name && user().user_status.name == badge.name, sel: $parent.selected_status && (badge.name == $parent.selected_status.name)}">
 
                         <div class="bns_overlay_stat_item_img">
-                            <img data-ng-src="{{ (badge.is_received ? badge.thumbs.url_250x250 : badge.thumbs.url_gs) | sailplay_pic }}"
+                            <img data-ng-src="{{ (badge | spBadgeDesc).pic }}"
                                  alt="{{ badge.name }}">
                         </div>
 
@@ -407,26 +411,31 @@
                 <div data-ng-show="selected_status || getCurrentStatus()">
 
                     <div class="bns_overlay_right_img">
-                        <img data-ng-src="{{ (selected_status || getCurrentStatus()).thumbs.url_250x250 | sailplay_pic }}">
+                        <img data-ng-src="{{ ((selected_status || getCurrentStatus()) | spBadgeDesc).pic }}">
                     </div>
 
                     <!--<span class="bns_overlay_right_bal" data-ng-if="user().user_status">+200 Баллов</span>-->
-                    <span class="bns_overlay_right_name" data-ng-bind="(selected_status || getCurrentStatus()).name"></span>
-                    <span class="bns_overlay_right_date" data-ng-bind="(selected_status || getCurrentStatus()).received_date ? 'Получено ' + ((selected_status || getCurrentStatus()).received_date | date:'dd.MM.yyyy') : 'Не получен'"></span>
+                    <span class="bns_overlay_right_name"
+                          data-ng-bind="(selected_status || getCurrentStatus()).name"></span>
+                    <span class="bns_overlay_right_date"
+                          data-ng-bind="(selected_status || getCurrentStatus()).received_date ? 'Получено ' + ((selected_status || getCurrentStatus()).received_date | date:'dd.MM.yyyy') : 'Не получен'"></span>
 
                     <span class="bns_overlay_right_desc"
-                          data-ng-bind-html="((selected_status || getCurrentStatus()).descr || '&nbsp;') | to_trusted "></span>
+                          data-ng-bind-html="(((selected_status || getCurrentStatus()) | spBadgeDesc).description || '&nbsp;') | to_trusted "></span>
 
                     <div class="bns_right_soc">
-                        <a href="#" data-ng-click="$event.preventDefault();share('fb', (selected_status || getCurrentStatus()));">
+                        <a href="#"
+                           data-ng-click="$event.preventDefault();share('fb', (selected_status || getCurrentStatus()));">
                             <img src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/2c54f65cafa62ebc0475d4b468f96ed1.png"
                                  alt="Facebook">
                         </a>
-                        <a href="#" data-ng-click="$event.preventDefault();share('vk', (selected_status || getCurrentStatus()));">
+                        <a href="#"
+                           data-ng-click="$event.preventDefault();share('vk', (selected_status || getCurrentStatus()));">
                             <img src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/047349b7ca545a369ae92a1430177323.png"
                                  alt="Vkontakte">
                         </a>
-                        <a href="#" data-ng-click="$event.preventDefault();share('tw', (selected_status || getCurrentStatus()));">
+                        <a href="#"
+                           data-ng-click="$event.preventDefault();share('tw', (selected_status || getCurrentStatus()));">
                             <img src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/04aad3116cdf8af0fb0324beb7565df9.png"
                                  alt="Twitter">
                         </a>

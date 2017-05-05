@@ -36,6 +36,12 @@ angular.module('sp.status', [])
           return sum;
         };
 
+        scope.getBadgeStyle = function(){
+          return {
+            width: (100 /scope.badges().multilevel_badges[0].length) + '%'
+          }
+        };
+
         /**
          * Get sum from next status
          * @param sum

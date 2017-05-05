@@ -2515,7 +2515,7 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/html/main.html',
-    '<div class="sp_wrapper" data-ng-show="auth"><div class="bns_inner_block_wrap"><div class="bns_inner_block"><div class="bns_info" data-sailplay-profile=""><div class="bns_info_ava"><div class="bns_info_img"><img data-ng-src="{{ user().user.pic }}" alt="Аватар"></div><span class="bns_info_name" data-ng-bind="user().user.first_name || user().user.last_name ? user().user.first_name + \' \' + user().user.last_name : \'Имя не указано\'"></span> <span class="bns_info_phone" data-ng-bind="user().user.phone && (user().user.phone | tel) || \'Телефон не указан\'"></span> <span class="bns_info_email" data-ng-bind="user().user.email || \'E-mail не указан\'"></span> <span class="bns_info_adr" data-ng-bind="config.data && config.data.delivery_address ? (config.data.delivery_address + \' \' + (config.data.delivery_address | sailplay_pluralize:\'адрес,адреса,адресов\') + \' доставки\') : \'Адрес доставки не указан\'"></span> <a data-ng-href="{{ config.data && config.data.edit_profile_link }}" class="bns_edit" target="_blank">Редактировать</a></div><div class="bns_info_right"><div class="bns_info_bal"><span class="bns_info_head">У Вас</span> <span class="bns_info_bal_block"><span class="bns_info_bal_num" data-ng-bind="user().user_points.confirmed | number"></span> <span class="bns_info_bal_text" data-ng-bind="user().user_points.confirmed | sailplay_pluralize:\'балл,балла,баллов\'"></span></span> <span class="bns_info_bal_ne" data-ng-class="{type_visible: user().user_points.unconfirmed}"><span class="bns_info_bal_num" data-ng-bind="\'+\' + user().user_points.unconfirmed | number"></span> <span class="bns_info_bal_text">не подтвержденных баллов</span></span> <a href="#" class="bns_desc" data-ng-click="$event.preventDefault();show_history();body_lock(true)">История начислений</a> <a href="#" class="bns_mob" data-ng-click="$event.preventDefault();show_history();body_lock(true)">Начисления</a></div><div class="bns_info_status" data-sailplay-status=""><span class="bns_info_head">Ваш статус</span> <span class="bns_info_status_name" title="{{ user().user_status && user().user_status.name ? user().user_status.name : \'Нет статуса\' }}" data-ng-bind="user().user_status && user().user_status.name ? user().user_status.name : \'Нет статуса\'"></span> <span class="bns_info_bal_ne"><span class="bns_info_bal_num" data-ng-bind="toNextStatus(getPurchasesSum()) ? ((toNextStatus(getPurchasesSum()) | number) + \' \' + (( toNextStatus(getPurchasesSum()) | sailplay_pluralize:\'рубль,рубля,рублей\'))) : \'0\'"></span> <span class="bns_info_bal_text">до перехода на следующий статус</span></span> <a href="#" data-ng-click="$event.preventDefault();show_status();body_lock(true)">Все статусы</a></div><div class="bns_info_badge" data-sailplay-status=""><span class="bns_info_head">Ваши бейджи</span> <span class="bns_info_badge_empty" data-ng-if="!(badges().one_level_badges | filter:{is_received:true}).length">У вас пока нет бейджей</span><div class="bns_info_badge_main"><div class="bns_badge_item" data-ng-repeat="badge in badges().one_level_badges | filter:{is_received:true} | limitTo:4"><div class="bns_badge_item_img"><img data-ng-src="{{ badge.thumbs.url_250x250 | sailplay_pic }}"></div><span data-ng-bind="badge.name"></span></div></div><a href="#" data-ng-click="$event.preventDefault();show_badges();body_lock(true)">Все бейджи</a></div></div><div class="bns_info_line" data-sailplay-profile="" data-sailplay-status=""><div class="bns_info_line_stat"><span class="bns_info_line_stat_item" data-ng-repeat="badge in badges().multilevel_badges[0]">{{ badge.name }}<ul><li></li><li></li><li></li><li></li><li></li><li></li></ul></span></div><div class="bns_line_main_wrap" data-ng-if="badges && badges() && user && user()"><div class="bns_line_main"><div class="bns_line_fill" data-ng-style="getStatusPercents()"><div class="bns_line_fill_til" data-ng-if="(badges().multilevel_badges[0] | filter:is_received:false).length"><strong data-ng-bind="getPurchasesSum() | number"></strong> {{ getPurchasesSum() | sailplay_pluralize:\'рубль,рубля,рублей\' }}</div></div><div class="bns_line_nepod" data-ng-style="getNextStatusPercents()"><div class="bns_line_nepod_bal" data-ng-bind="(toNextStatus(getPurchasesSum()) | number) + \' \' + (toNextStatus(getPurchasesSum()) | sailplay_pluralize:\'рубль,рубля,рублей\')"></div></div></div></div></div></div><div class="bns_gift" data-sailplay-gifts=""><div class="bns_head"><h2>Подарки</h2><span class="bns_sub_head">Вы можете менять свои баллы на эти подарки</span> <a href="#" class="bns_desc" data-ng-show="gifts && gifts() && gifts().length" data-ng-click="$event.preventDefault();show_gifts();body_lock(true);">Смотреть все подарки</a></div><div class="bns_gift_main"><div class="bns_gift_item" data-ng-repeat="gift in gifts()" data-slack-slider="" data-ng-click="$event.preventDefault();$parent.gift_get=gift;body_lock(true);" data-slack-config="gifts_config"><span class="bns_gift_item_name" title="{{ gift.name }}" data-ng-bind="gift.name"></span><div class="bns_gift_item_img"><img data-ng-src="{{ gift.thumbs.url_250x250 | sailplay_pic }}"></div><span class="bns_gift_item_linck" data-ng-bind="\'Получить за \' + (gift.points | number) + \' \' + (gift.points | sailplay_pluralize:\'балл,балла,баллов\')"></span></div></div><a href="#" class="bns_mob bns_show_all_mob bns_show_all_mob_gift" data-ng-click="$event.preventDefault();show_gifts();body_lock(true);">Смотреть все подарки</a><div class="bns_overlay bns_overlay_get_gift" data-ng-if="gift_get"><div class="bns_overlay_inner"><div class="bns_overlay_top"><a href="#" class="bns_close" data-ng-click="$event.preventDefault();body_lock(false);$parent.gift_get = null;">Закрыть</a> <span class="bns_overlay_top_name" data-ng-bind="$parent.gift_get.name"></span> <span class="bns_overlay_top_desc" data-ng-bind-html="$parent.gift_get.descr | to_trusted"></span></div><div class="bns_overlay_bottom"><div class="bns_overaly_bottom_left"><span class="bns_text">Стоимость:</span> <span class="bns_bal" data-ng-bind="($parent.gift_get.points | number) + \' \' + ($parent.gift_get.points | sailplay_pluralize:\'балл,балла,баллов\')"></span></div><div class="bns_bottom_right"><div class="bns_overlay_right_img"><img src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/1d17a0b88fd0930cd95438ccf3c2df47.png"></div><a href="#" data-ng-class="{bns_nact: user().user_points.confirmed < $parent.gift_get.points}" data-ng-bind="user().user_points.confirmed >= $parent.gift_get.points ? \'Получить\' : \'Не хватает баллов\'" data-ng-click="$event.preventDefault();get($parent.gift_get);"></a></div></div></div></div></div><div class="bns_qust" data-sailplay-actions=""><div class="bns_head"><h2>Задания</h2><span class="bns_sub_head">Выполняй задания и получай дополнительные баллы</span> <a href="#" data-ng-show="actions && actions.length" class="bns_desc" data-ng-click="$event.preventDefault();show_actions();body_lock(true)">Смотреть все задания</a></div><span class="bns_qust_empty" data-ng-if="actions && !actions.length">Вы выполнили все задания!</span><div class="bns_qust_main"><div class="bns_qust_item" data-ng-repeat="action in actions | limitTo:6 track by $index"><div class="bns_qust_img"><img data-ng-src="{{ action._actionId ? action_data(action).image : (action.icon | sailplay_pic) }}"></div><span class="bns_qust_name"><span class="bns_qust_name_center" data-ng-bind="action._actionId ? action_data(action).name : action.name"></span></span> <span class="bns_qust_bal" data-ng-bind="(action.points | number) + \' \' + (action.points | sailplay_pluralize:\'балл,балла,баллов\')"></span> <span class="bns_linck" data-ng-click="$parent.show = action;">Выполнить</span></div><a href="#" class="bns_mob bns_show_all_mob bns_show_all_mob_qust" data-ng-click="$event.preventDefault();show_actions();body_lock(true)">Смотреть все задания</a></div><div class="bns_overlay bns_overlay_quest" data-ng-if="show"><div class="bns_overlay_inner"><div class="bns_overlay_top"><a href="#" class="bns_close" data-ng-click="$event.preventDefault();$parent.show = null;body_lock(false);">Закрыть</a> <span class="bns_overlay_top_name">Выполнение задания</span> <span class="bns_overlay_top_desc" data-ng-bind="$parent.show._actionId ? action_data($parent.show).name : $parent.show.name"></span></div><div class="bns_overlay_bottom"><div class="bns_overaly_bottom_left"><span class="bns_text">Вам будет начисленно</span> <span class="bns_bal" data-ng-bind="($parent.show.points | number) + \' \' + ($parent.show.points | sailplay_pluralize:\'балл,балла,баллов\')"></span></div><div class="bns_bottom_right"><div class="bns_overlay_right_img"><img data-ng-src="{{ $parent.show._actionId ? action_data($parent.show).image : ($parent.show.icon | sailplay_pic) }}"></div><a href="#" data-ng-if="$parent.show._actionId" class="bns_overlay_actionbtn" data-sailplay-action="" data-action="$parent.show" data-text="Выполнить" data-styles="{{ action_styles(action_data($parent.show)) }}">Выполнить</a></div><div data-ng-if="!$parent.show._actionId" class="bns_overlay_actionbtn_custom" data-sailplay-action-custom="" data-action="$parent.show">Выполнить</div></div></div></div></div></div></div><div class="bns_overlay bns_overlay_all_quest" data-sailplay-actions="" data-ng-if="showActions"><div class="bns_overlay_inner"><div class="bns_overlay_left"><span class="bns_overlay_head">Все задания</span> <span class="bns_quest_main_empty" data-ng-if="actions && !actions.length">Вы выполнили все задания!</span><div class="bns_overlay_gift_main"><div class="bns_overlay_gift_item" data-ng-repeat="action in actions track by $index" data-m-custom-scrollbar="" data-selector=".bns_overlay_gift_main"><div class="bns_overlay_gift_item_img"><img data-ng-src="{{ action._actionId ? action_data(action).image : (action.icon | sailplay_pic) }}"></div><div class="bns_overlay_gift_item_right"><span class="bns_overlay_gift_item_name" data-ng-bind="action._actionId ? action_data(action).name : action.name"></span> <span class="bns_overlay_gift_item_bal" data-ng-bind="(action.points | number) + \' \' + (action.points | sailplay_pluralize:\'балл,балла,баллов\')"></span> <a href="#" data-ng-click="$event.preventDefault();get_action(action);body_lock(true);">Выполнить</a></div></div></div></div><div class="bns_overlay_right bns_overlay_right_sm"><a href="#" class="bns_close" data-ng-click="$event.preventDefault();clear_show(\'showActions\');body_lock(false);">Закрыть</a></div></div></div><div class="bns_overlay bns_overlay_badge" data-sailplay-status="" data-sailplay-profile="" data-ng-if="showBadges"><div class="bns_overlay_inner"><div class="bns_overlay_left"><span class="bns_overlay_head">Бейджи</span><div class="bns_overlay_badge_main"><a href="#" class="bns_overlay_badge_item" data-ng-repeat="badge in badges().one_level_badges" data-ng-class="{act: badge.is_received}" data-ng-click="$event.preventDefault();$parent.showBadgesInfo=badge;"><img data-ng-src="{{ (badge.is_received ? badge.thumbs.url_250x250 : badge.thumbs.url_gs) | sailplay_pic }}" alt="{{ badge.name }}"></a></div></div><div class="bns_overlay_right"><a href="#" class="bns_close" data-ng-click="$event.preventDefault();clear_show(\'showBadges\');body_lock(false);">Закрыть</a><div data-ng-if="showBadgesInfo"><div class="bns_overlay_right_img"><img data-ng-src="{{ ($parent.showBadgesInfo.is_received ? $parent.showBadgesInfo.thumbs.url_250x250 : $parent.showBadgesInfo.thumbs.url_gs) | sailplay_pic }}"></div><span class="bns_overlay_right_name" data-ng-bind="$parent.showBadgesInfo.name">Первопроходец</span> <span class="bns_overlay_right_desc" data-ng-bind="$parent.showBadgesInfo.descr"></span><div class="bns_right_soc"><a href="#" data-ng-click="$event.preventDefault();share(\'fb\', $parent.showBadgesInfo);"><img src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/2c54f65cafa62ebc0475d4b468f96ed1.png" alt="Facebook"></a> <a href="#" data-ng-click="$event.preventDefault();share(\'vk\', $parent.showBadgesInfo);"><img src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/047349b7ca545a369ae92a1430177323.png" alt="Vkontakte"></a> <a href="#" data-ng-click="$event.preventDefault();share(\'tw\', $parent.showBadgesInfo);"><img src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/04aad3116cdf8af0fb0324beb7565df9.png" alt="Twitter"></a></div></div></div></div></div><div class="bns_overlay bns_overlay_stst" data-sailplay-status="" data-sailplay-profile="" data-ng-if="showStatus"><div class="bns_overlay_inner" data-ng-if="user && user() && badges && badges()"><div class="bns_overlay_left"><span class="bns_overlay_head">Статусы</span><div class="bns_overlay_stat_main"><div class="bns_overlay_stat_item" data-ng-repeat="badge in badges().multilevel_badges[0]" data-ng-click="$parent.selected_status = badge;" data-ng-class="{act: badge.is_received,last: user().user_status.name && user().user_status.name == badge.name, sel: $parent.selected_status && (badge.name == $parent.selected_status.name)}"><div class="bns_overlay_stat_item_img"><img data-ng-src="{{ (badge.is_received ? badge.thumbs.url_250x250 : badge.thumbs.url_gs) | sailplay_pic }}" alt="{{ badge.name }}"></div><div class="bns_overlay_stat_item_text"><span data-ng-bind="badge.name"></span> <strong data-ng-bind="badge.is_received ? user().user_status.name && user().user_status.name == badge.name ? \'Текущий\' : \'Получен\' : ((getSumForStatus(badge) | number) + \' \' + (getSumForStatus(badge) | sailplay_pluralize:\'рубль,рубля,рублей\'))"></strong></div></div></div></div><div class="bns_overlay_right"><a href="#" class="bns_close" data-ng-click="$event.preventDefault();clear_show(\'showStatus\');body_lock(false);">Закрыть</a><div data-ng-show="selected_status || getCurrentStatus()"><div class="bns_overlay_right_img"><img data-ng-src="{{ (selected_status || getCurrentStatus()).thumbs.url_250x250 | sailplay_pic }}"></div><span class="bns_overlay_right_name" data-ng-bind="(selected_status || getCurrentStatus()).name"></span> <span class="bns_overlay_right_date" data-ng-bind="(selected_status || getCurrentStatus()).received_date ? \'Получено \' + ((selected_status || getCurrentStatus()).received_date | date:\'dd.MM.yyyy\') : \'Не получен\'"></span> <span class="bns_overlay_right_desc" data-ng-bind-html="((selected_status || getCurrentStatus()).descr || \'&nbsp;\') | to_trusted"></span><div class="bns_right_soc"><a href="#" data-ng-click="$event.preventDefault();share(\'fb\', (selected_status || getCurrentStatus()));"><img src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/2c54f65cafa62ebc0475d4b468f96ed1.png" alt="Facebook"></a> <a href="#" data-ng-click="$event.preventDefault();share(\'vk\', (selected_status || getCurrentStatus()));"><img src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/047349b7ca545a369ae92a1430177323.png" alt="Vkontakte"></a> <a href="#" data-ng-click="$event.preventDefault();share(\'tw\', (selected_status || getCurrentStatus()));"><img src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/04aad3116cdf8af0fb0324beb7565df9.png" alt="Twitter"></a></div></div></div></div></div><div class="bns_overlay bns_overlay_gift" data-sailplay-gifts="" data-ng-if="showGifts"><div class="bns_overlay_inner"><div class="bns_overlay_left"><span class="bns_overlay_head">Подарки <strong class="bns_overlay_head_bal" data-ng-bind="\'Баланс: \' + (user().user_points.confirmed | number) + \' \' + (user().user_points.confirmed | sailplay_pluralize:\'балл,балла,баллов\')"></strong></span><div class="bns_overlay_gift_main"><div class="bns_overlay_gift_item" data-ng-repeat="gift in gifts()" data-m-custom-scrollbar="" data-selector=".bns_overlay_gift_main"><div class="bns_overlay_gift_item_img"><img data-ng-src="{{ gift.thumbs.url_250x250 | sailplay_pic }}"></div><div class="bns_overlay_gift_item_right"><span class="bns_overlay_gift_item_name" data-ng-bind="gift.name"></span> <span class="bns_overlay_gift_item_bal">{{ (gift.points | number) + \' \' + (gift.points | sailplay_pluralize:\'балл,балла,баллов\') }} <span class="bns_overlay_gift_item_nebal" data-ng-if="gift.points > user().user_points.confirmed">Не хватает баллов</span></span> <a href="#" data-ng-class="{bns_nact : gift.points > user().user_points.confirmed}" data-ng-click="$event.preventDefault();get_gift(gift);body_lock(true);">Получить</a></div></div></div></div><div class="bns_overlay_right bns_overlay_right_sm"><a href="#" class="bns_close" data-ng-click="$event.preventDefault();clear_show(\'showGifts\');body_lock(false);">Закрыть</a></div></div></div><div class="bns_overlay bns_overlay_hist" data-sailplay-history="" data-ng-if="showHistory"><div class="bns_overlay_inner"><div class="bns_overlay_left"><span class="bns_overlay_head">История начислений</span> <span class="bns_overlay_hist_empty" data-ng-if="history && history() && !history().length">Тут будет отображатся история ваших действий</span><table class="bns_overlay_hist_main"><tr data-dir-paginate="item in history() | itemsPerPage:5" data-pagination-id="history_pages"><td data-ng-bind="item.action_date | date:\'dd.MM.yyyy\'"></td><td><span class="bns_name" data-ng-bind="item | history_item"></span></td><td data-ng-class="{bns_min: item.points_delta < 0, bns_plus: item.points_delta >= 0}" data-ng-bind="item.points_delta && ((item.points_delta > 0 ? \'+\' : \'\') + (item.points_delta | number)) + \' \' + (item.points_delta |sailplay_pluralize:\'балл,балла,баллов\')"></td></tr></table><dir-pagination-controls data-max-size="5" data-pagination-id="history_pages" data-template-url="/html/ui/ui.pagination.controls.html" data-auto-hide="true"></dir-pagination-controls></div><div class="bns_overlay_right bns_overlay_right_sm"><a href="#" class="bns_close" data-ng-click="$event.preventDefault();clear_show(\'showHistory\');body_lock(false);">Закрыть</a></div></div></div><notify-popup></notify-popup></div>');
+    '<div class="sp_wrapper" data-ng-show="auth"><div class="bns_inner_block_wrap"><div class="bns_inner_block"><div class="bns_info" data-sailplay-profile=""><div class="bns_info_ava"><div class="bns_info_img"><img data-ng-src="{{ user().user.pic }}" alt="Аватар"></div><span class="bns_info_name" data-ng-bind="user().user.first_name || user().user.last_name ? user().user.first_name + \' \' + user().user.last_name : \'Имя не указано\'"></span> <span class="bns_info_phone" data-ng-bind="user().user.phone && (user().user.phone | tel) || \'Телефон не указан\'"></span> <span class="bns_info_email" data-ng-bind="user().user.email || \'E-mail не указан\'"></span> <span class="bns_info_adr" data-ng-bind="config.data && config.data.delivery_address ? (config.data.delivery_address + \' \' + (config.data.delivery_address | sailplay_pluralize:\'адрес,адреса,адресов\') + \' доставки\') : \'Адрес доставки не указан\'"></span> <a data-ng-href="{{ config.data && config.data.edit_profile_link }}" class="bns_edit" target="_blank">Редактировать</a></div><div class="bns_info_right"><div class="bns_info_bal"><span class="bns_info_head">У Вас</span> <span class="bns_info_bal_block"><span class="bns_info_bal_num" data-ng-bind="user().user_points.confirmed | number"></span> <span class="bns_info_bal_text" data-ng-bind="user().user_points.confirmed | sailplay_pluralize:\'балл,балла,баллов\'"></span></span> <span class="bns_info_bal_ne" data-ng-class="{type_visible: user().user_points.unconfirmed}"><span class="bns_info_bal_num" data-ng-bind="\'+\' + user().user_points.unconfirmed | number"></span> <span class="bns_info_bal_text">не подтвержденных баллов</span></span> <a href="#" class="bns_desc" data-ng-click="$event.preventDefault();show_history();body_lock(true)">История начислений</a> <a href="#" class="bns_mob" data-ng-click="$event.preventDefault();show_history();body_lock(true)">Начисления</a></div><div class="bns_info_status" data-sailplay-status=""><span class="bns_info_head">Ваш статус</span> <span class="bns_info_status_name" title="{{ getCurrentStatus() ? getCurrentStatus().name : \'Нет статуса\' }}" data-ng-bind="getCurrentStatus() ? getCurrentStatus().name : \'Нет статуса\'"></span> <span class="bns_info_bal_ne"><span class="bns_info_bal_num" data-ng-bind="toNextStatus(getPurchasesSum()) ? ((toNextStatus(getPurchasesSum()) | number) + \' \' + (( toNextStatus(getPurchasesSum()) | sailplay_pluralize:\'рубль,рубля,рублей\'))) : \'0\'"></span> <span class="bns_info_bal_text">до перехода на следующий статус</span></span> <a href="#" data-ng-click="$event.preventDefault();show_status();body_lock(true)">Все статусы</a></div><div class="bns_info_badge" data-sailplay-status=""><span class="bns_info_head">Ваши бейджи</span> <span class="bns_info_badge_empty" data-ng-if="!(badges().one_level_badges | filter:{is_received:true}).length">У вас пока нет бейджей</span><div class="bns_info_badge_main"><div class="bns_badge_item" data-ng-repeat="badge in badges().one_level_badges | filter:{is_received:true} | limitTo:4"><div class="bns_badge_item_img"><img data-ng-src="{{ (badge | spBadgeDesc).pic }}"></div><span data-ng-bind="badge.name"></span></div></div><a href="#" data-ng-click="$event.preventDefault();show_badges();body_lock(true)">Все бейджи</a></div></div><div class="bns_info_line" data-sailplay-profile="" data-sailplay-status=""><div class="bns_info_line_stat"><span class="bns_info_line_stat_item" data-ng-style="getBadgeStyle()" data-ng-repeat="badge in badges().multilevel_badges[0]">{{ badge.name }}<ul><li></li><li></li><li></li><li></li><li></li><li></li></ul></span></div><div class="bns_line_main_wrap" data-ng-if="badges && badges() && user && user()"><div class="bns_line_main"><div class="bns_line_fill" data-ng-style="getStatusPercents()"><div class="bns_line_fill_til" data-ng-if="(badges().multilevel_badges[0] | filter:is_received:false).length"><strong data-ng-bind="getPurchasesSum() | number"></strong> {{ getPurchasesSum() | sailplay_pluralize:\'рубль,рубля,рублей\' }}</div></div><div class="bns_line_nepod" data-ng-style="getNextStatusPercents()"><div class="bns_line_nepod_bal" data-ng-bind="(toNextStatus(getPurchasesSum()) | number) + \' \' + (toNextStatus(getPurchasesSum()) | sailplay_pluralize:\'рубль,рубля,рублей\')"></div></div></div></div></div></div><div class="bns_gift" data-sailplay-gifts=""><div class="bns_head"><h2>Подарки</h2><span class="bns_sub_head">Вы можете менять свои баллы на эти подарки</span> <a href="#" class="bns_desc" data-ng-show="gifts && gifts() && gifts().length" data-ng-click="$event.preventDefault();show_gifts();body_lock(true);">Смотреть все подарки</a></div><div class="bns_gift_main"><div class="bns_gift_item" data-ng-repeat="gift in gifts()" data-slack-slider="" data-ng-click="$event.preventDefault();$parent.gift_get=gift;body_lock(true);" data-slack-config="gifts_config"><span class="bns_gift_item_name" title="{{ gift.name }}" data-ng-bind="gift.name"></span><div class="bns_gift_item_img"><img data-ng-src="{{ gift.thumbs.url_250x250 | sailplay_pic }}"></div><span class="bns_gift_item_linck" data-ng-bind="\'Получить за \' + (gift.points | number) + \' \' + (gift.points | sailplay_pluralize:\'балл,балла,баллов\')"></span></div></div><a href="#" class="bns_mob bns_show_all_mob bns_show_all_mob_gift" data-ng-click="$event.preventDefault();show_gifts();body_lock(true);">Смотреть все подарки</a><div class="bns_overlay bns_overlay_get_gift" data-ng-if="gift_get"><div class="bns_overlay_inner"><div class="bns_overlay_top"><a href="#" class="bns_close" data-ng-click="$event.preventDefault();body_lock(false);$parent.gift_get = null;">Закрыть</a> <span class="bns_overlay_top_name" data-ng-bind="$parent.gift_get.name"></span> <span class="bns_overlay_top_desc" data-ng-bind-html="$parent.gift_get.descr | to_trusted"></span></div><div class="bns_overlay_bottom"><div class="bns_overaly_bottom_left"><span class="bns_text">Стоимость:</span> <span class="bns_bal" data-ng-bind="($parent.gift_get.points | number) + \' \' + ($parent.gift_get.points | sailplay_pluralize:\'балл,балла,баллов\')"></span></div><div class="bns_bottom_right"><div class="bns_overlay_right_img"><img src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/1d17a0b88fd0930cd95438ccf3c2df47.png"></div><a href="#" data-ng-class="{bns_nact: user().user_points.confirmed < $parent.gift_get.points}" data-ng-bind="user().user_points.confirmed >= $parent.gift_get.points ? \'Получить\' : \'Не хватает баллов\'" data-ng-click="$event.preventDefault();get($parent.gift_get);"></a></div></div></div></div></div><div class="bns_qust" data-sailplay-actions=""><div class="bns_head"><h2>Задания</h2><span class="bns_sub_head">Выполняй задания и получай дополнительные баллы</span> <a href="#" data-ng-show="actions && actions.length" class="bns_desc" data-ng-click="$event.preventDefault();show_actions();body_lock(true)">Смотреть все задания</a></div><span class="bns_qust_empty" data-ng-if="actions && !actions.length">Вы выполнили все задания!</span><div class="bns_qust_main"><div class="bns_qust_item" data-ng-repeat="action in actions | limitTo:6 track by $index"><div class="bns_qust_img"><img data-ng-src="{{ action._actionId ? action_data(action).image : (action.icon | sailplay_pic) }}"></div><span class="bns_qust_name"><span class="bns_qust_name_center" data-ng-bind="action._actionId ? action_data(action).name : action.name"></span></span> <span class="bns_qust_bal" data-ng-bind="(action.points | number) + \' \' + (action.points | sailplay_pluralize:\'балл,балла,баллов\')"></span> <span class="bns_linck" data-ng-click="$parent.show = action;">Выполнить</span></div><a href="#" class="bns_mob bns_show_all_mob bns_show_all_mob_qust" data-ng-click="$event.preventDefault();show_actions();body_lock(true)">Смотреть все задания</a></div><div class="bns_overlay bns_overlay_quest" data-ng-if="show"><div class="bns_overlay_inner"><div class="bns_overlay_top"><a href="#" class="bns_close" data-ng-click="$event.preventDefault();$parent.show = null;body_lock(false);">Закрыть</a> <span class="bns_overlay_top_name">Выполнение задания</span> <span class="bns_overlay_top_desc" data-ng-bind="$parent.show._actionId ? action_data($parent.show).name : $parent.show.name"></span></div><div class="bns_overlay_bottom"><div class="bns_overaly_bottom_left"><span class="bns_text">Вам будет начисленно</span> <span class="bns_bal" data-ng-bind="($parent.show.points | number) + \' \' + ($parent.show.points | sailplay_pluralize:\'балл,балла,баллов\')"></span></div><div class="bns_bottom_right"><div class="bns_overlay_right_img"><img data-ng-src="{{ $parent.show._actionId ? action_data($parent.show).image : ($parent.show.icon | sailplay_pic) }}"></div><a href="#" data-ng-if="$parent.show._actionId" class="bns_overlay_actionbtn" data-sailplay-action="" data-action="$parent.show" data-text="Выполнить" data-styles="{{ action_styles(action_data($parent.show)) }}">Выполнить</a></div><div data-ng-if="!$parent.show._actionId" class="bns_overlay_actionbtn_custom" data-sailplay-action-custom="" data-action="$parent.show">Выполнить</div></div></div></div></div></div></div><div class="bns_overlay bns_overlay_all_quest" data-sailplay-actions="" data-ng-if="showActions"><div class="bns_overlay_inner"><div class="bns_overlay_left"><span class="bns_overlay_head">Все задания</span> <span class="bns_quest_main_empty" data-ng-if="actions && !actions.length">Вы выполнили все задания!</span><div class="bns_overlay_gift_main"><div class="bns_overlay_gift_item" data-ng-repeat="action in actions track by $index" data-m-custom-scrollbar="" data-selector=".bns_overlay_gift_main"><div class="bns_overlay_gift_item_img"><img data-ng-src="{{ action._actionId ? action_data(action).image : (action.icon | sailplay_pic) }}"></div><div class="bns_overlay_gift_item_right"><span class="bns_overlay_gift_item_name" data-ng-bind="action._actionId ? action_data(action).name : action.name"></span> <span class="bns_overlay_gift_item_bal" data-ng-bind="(action.points | number) + \' \' + (action.points | sailplay_pluralize:\'балл,балла,баллов\')"></span> <a href="#" data-ng-click="$event.preventDefault();get_action(action);body_lock(true);">Выполнить</a></div></div></div></div><div class="bns_overlay_right bns_overlay_right_sm"><a href="#" class="bns_close" data-ng-click="$event.preventDefault();clear_show(\'showActions\');body_lock(false);">Закрыть</a></div></div></div><div class="bns_overlay bns_overlay_badge" data-sailplay-status="" data-sailplay-profile="" data-ng-if="showBadges"><div class="bns_overlay_inner"><div class="bns_overlay_left"><span class="bns_overlay_head">Бейджи</span><div class="bns_overlay_badge_main"><a href="#" class="bns_overlay_badge_item" data-ng-repeat="badge in badges().one_level_badges" data-ng-class="{act: badge.is_received}" data-ng-click="$event.preventDefault();$parent.showBadgesInfo=badge;"><img data-ng-src="{{ (badge | spBadgeDesc).pic }}" alt="{{ badge.name }}"></a></div></div><div class="bns_overlay_right"><a href="#" class="bns_close" data-ng-click="$event.preventDefault();clear_show(\'showBadges\');body_lock(false);">Закрыть</a><div data-ng-if="showBadgesInfo"><div class="bns_overlay_right_img"><img data-ng-src="{{ ($parent.showBadgesInfo | spBadgeDesc).pic }}"></div><span class="bns_overlay_right_name" data-ng-bind="$parent.showBadgesInfo.name"></span> <span class="bns_overlay_right_desc" data-ng-bind="($parent.showBadgesInfo | spBadgeDesc).description"></span><div class="bns_right_soc"><a href="#" data-ng-click="$event.preventDefault();share(\'fb\', $parent.showBadgesInfo);"><img src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/2c54f65cafa62ebc0475d4b468f96ed1.png" alt="Facebook"></a> <a href="#" data-ng-click="$event.preventDefault();share(\'vk\', $parent.showBadgesInfo);"><img src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/047349b7ca545a369ae92a1430177323.png" alt="Vkontakte"></a> <a href="#" data-ng-click="$event.preventDefault();share(\'tw\', $parent.showBadgesInfo);"><img src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/04aad3116cdf8af0fb0324beb7565df9.png" alt="Twitter"></a></div></div></div></div></div><div class="bns_overlay bns_overlay_stst" data-sailplay-status="" data-sailplay-profile="" data-ng-if="showStatus"><div class="bns_overlay_inner" data-ng-if="user && user() && badges && badges()"><div class="bns_overlay_left"><span class="bns_overlay_head">Статусы</span><div class="bns_overlay_stat_main"><div class="bns_overlay_stat_item" data-ng-repeat="badge in badges().multilevel_badges[0]" data-ng-click="$parent.selected_status = badge;" data-ng-class="{act: badge.is_received,last: user().user_status.name && user().user_status.name == badge.name, sel: $parent.selected_status && (badge.name == $parent.selected_status.name)}"><div class="bns_overlay_stat_item_img"><img data-ng-src="{{ (badge | spBadgeDesc).pic }}" alt="{{ badge.name }}"></div><div class="bns_overlay_stat_item_text"><span data-ng-bind="badge.name"></span> <strong data-ng-bind="badge.is_received ? user().user_status.name && user().user_status.name == badge.name ? \'Текущий\' : \'Получен\' : ((getSumForStatus(badge) | number) + \' \' + (getSumForStatus(badge) | sailplay_pluralize:\'рубль,рубля,рублей\'))"></strong></div></div></div></div><div class="bns_overlay_right"><a href="#" class="bns_close" data-ng-click="$event.preventDefault();clear_show(\'showStatus\');body_lock(false);">Закрыть</a><div data-ng-show="selected_status || getCurrentStatus()"><div class="bns_overlay_right_img"><img data-ng-src="{{ ((selected_status || getCurrentStatus()) | spBadgeDesc).pic }}"></div><span class="bns_overlay_right_name" data-ng-bind="(selected_status || getCurrentStatus()).name"></span> <span class="bns_overlay_right_date" data-ng-bind="(selected_status || getCurrentStatus()).received_date ? \'Получено \' + ((selected_status || getCurrentStatus()).received_date | date:\'dd.MM.yyyy\') : \'Не получен\'"></span> <span class="bns_overlay_right_desc" data-ng-bind-html="(((selected_status || getCurrentStatus()) | spBadgeDesc).description || \'&nbsp;\') | to_trusted"></span><div class="bns_right_soc"><a href="#" data-ng-click="$event.preventDefault();share(\'fb\', (selected_status || getCurrentStatus()));"><img src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/2c54f65cafa62ebc0475d4b468f96ed1.png" alt="Facebook"></a> <a href="#" data-ng-click="$event.preventDefault();share(\'vk\', (selected_status || getCurrentStatus()));"><img src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/047349b7ca545a369ae92a1430177323.png" alt="Vkontakte"></a> <a href="#" data-ng-click="$event.preventDefault();share(\'tw\', (selected_status || getCurrentStatus()));"><img src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/04aad3116cdf8af0fb0324beb7565df9.png" alt="Twitter"></a></div></div></div></div></div><div class="bns_overlay bns_overlay_gift" data-sailplay-gifts="" data-ng-if="showGifts"><div class="bns_overlay_inner"><div class="bns_overlay_left"><span class="bns_overlay_head">Подарки <strong class="bns_overlay_head_bal" data-ng-bind="\'Баланс: \' + (user().user_points.confirmed | number) + \' \' + (user().user_points.confirmed | sailplay_pluralize:\'балл,балла,баллов\')"></strong></span><div class="bns_overlay_gift_main"><div class="bns_overlay_gift_item" data-ng-repeat="gift in gifts()" data-m-custom-scrollbar="" data-selector=".bns_overlay_gift_main"><div class="bns_overlay_gift_item_img"><img data-ng-src="{{ gift.thumbs.url_250x250 | sailplay_pic }}"></div><div class="bns_overlay_gift_item_right"><span class="bns_overlay_gift_item_name" data-ng-bind="gift.name"></span> <span class="bns_overlay_gift_item_bal">{{ (gift.points | number) + \' \' + (gift.points | sailplay_pluralize:\'балл,балла,баллов\') }} <span class="bns_overlay_gift_item_nebal" data-ng-if="gift.points > user().user_points.confirmed">Не хватает баллов</span></span> <a href="#" data-ng-class="{bns_nact : gift.points > user().user_points.confirmed}" data-ng-click="$event.preventDefault();get_gift(gift);body_lock(true);">Получить</a></div></div></div></div><div class="bns_overlay_right bns_overlay_right_sm"><a href="#" class="bns_close" data-ng-click="$event.preventDefault();clear_show(\'showGifts\');body_lock(false);">Закрыть</a></div></div></div><div class="bns_overlay bns_overlay_hist" data-sailplay-history="" data-ng-if="showHistory"><div class="bns_overlay_inner"><div class="bns_overlay_left"><span class="bns_overlay_head">История начислений</span> <span class="bns_overlay_hist_empty" data-ng-if="history && history() && !history().length">Тут будет отображатся история ваших действий</span><table class="bns_overlay_hist_main"><tr data-dir-paginate="item in history() | itemsPerPage:5" data-pagination-id="history_pages"><td data-ng-bind="item.action_date | date:\'dd.MM.yyyy\'"></td><td><span class="bns_name" data-ng-bind="item | history_item"></span></td><td data-ng-class="{bns_min: item.points_delta < 0, bns_plus: item.points_delta >= 0}" data-ng-bind="item.points_delta && ((item.points_delta > 0 ? \'+\' : \'\') + (item.points_delta | number)) + \' \' + (item.points_delta |sailplay_pluralize:\'балл,балла,баллов\')"></td></tr></table><dir-pagination-controls data-max-size="5" data-pagination-id="history_pages" data-template-url="/html/ui/ui.pagination.controls.html" data-auto-hide="true"></dir-pagination-controls></div><div class="bns_overlay_right bns_overlay_right_sm"><a href="#" class="bns_close" data-ng-click="$event.preventDefault();clear_show(\'showHistory\');body_lock(false);">Закрыть</a></div></div></div><notify-popup></notify-popup></div>');
 }]);
 })();
 
@@ -2562,7 +2562,7 @@ angular.module('sp_print_bar', [
   'templates'
 ])
 
-  .directive('sailplayPb', ["$rootScope", "$locale", function ($rootScope, $locale) {
+  .directive('sailplayPb', function ($rootScope, $locale) {
     return {
       restrict: 'E',
       replace: true,
@@ -2639,7 +2639,7 @@ angular.module('sp_print_bar', [
 
       }
     }
-  }]);
+  });
 
 setTimeout(function () {
 
@@ -2656,7 +2656,7 @@ setTimeout(function () {
     'ipCookie'
   ])
 
-    .run(["sp", "ipCookie", "sp_api", "$rootScope", "actions_data", function (sp, ipCookie, sp_api, $rootScope, actions_data) {
+    .run(function (sp, ipCookie, sp_api, $rootScope, actions_data) {
 
       $rootScope.config = window.sailplay_config || {};
 
@@ -2808,7 +2808,7 @@ setTimeout(function () {
 
       }
 
-    }]);
+    });
 
 }());
 
@@ -8901,7 +8901,7 @@ and dependencies (minified).
       }
     })
 
-    .service('spAction', ["actions_data", function (actions_data) {
+    .service('spAction', function (actions_data) {
 
       var self = this;
 
@@ -8953,9 +8953,9 @@ and dependencies (minified).
 
       return self;
 
-    }])
+    })
 
-    .directive('sailplayAction', ["sp", "$rootScope", "$compile", "$timeout", function (sp, $rootScope, $compile, $timeout) {
+    .directive('sailplayAction', function (sp, $rootScope, $compile, $timeout) {
 
       var init_state;
 
@@ -8993,7 +8993,7 @@ and dependencies (minified).
 
       };
 
-    }])
+    })
 
     /**
      * @ngdoc directive
@@ -9007,7 +9007,7 @@ and dependencies (minified).
      * @param {object}  action   A SailPlay custom action object, received from api.
      *
      */
-    .directive('sailplayActionCustom', ["sp", "$document", function (sp, $document) {
+    .directive('sailplayActionCustom', function (sp, $document) {
 
       var init_state;
 
@@ -9049,9 +9049,9 @@ and dependencies (minified).
 
       };
 
-    }])
+    })
 
-    .directive('sailplayActions', ["sp_api", "sp", "spAction", "tagHelper", "$rootScope", "$filter", "$timeout", function (sp_api, sp, spAction, tagHelper, $rootScope, $filter, $timeout) {
+    .directive('sailplayActions', function (sp_api, sp, spAction, tagHelper, $rootScope, $filter, $timeout) {
 
       return {
 
@@ -9136,7 +9136,7 @@ and dependencies (minified).
 
       };
 
-    }]);
+    });
 
 }());
 
@@ -9144,7 +9144,7 @@ and dependencies (minified).
 
   angular.module('sp.badges', [])
 
-    .directive('sailplayBadges', ["sp", "sp_api", function (sp, sp_api) {
+    .directive('sailplayBadges', function (sp, sp_api) {
 
       return {
 
@@ -9184,13 +9184,13 @@ and dependencies (minified).
 
       };
 
-    }]);
+    });
 
 }());
 
 angular.module('sp.gifts', [])
 
-  .directive('mCustomScrollbar', ["$timeout", function ($timeout) {
+  .directive('mCustomScrollbar', function ($timeout) {
     return {
       restrict: 'A',
       replace: false,
@@ -9208,9 +9208,9 @@ angular.module('sp.gifts', [])
       }
 
     };
-  }])
+  })
 
-  .directive('sailplayGifts', ["sp", "sp_api", "$rootScope", function (sp, sp_api, $rootScope) {
+  .directive('sailplayGifts', function (sp, sp_api, $rootScope) {
 
     return {
 
@@ -9286,7 +9286,7 @@ angular.module('sp.gifts', [])
 
     };
 
-  }]);
+  });
 
 angular.module('sp.history', [])
 
@@ -9323,7 +9323,7 @@ angular.module('sp.history', [])
   })
 
 
-  .filter('history_icon', ["history_icon", function (history_icon) {
+  .filter('history_icon', function (history_icon) {
     return function (historyItem) {
 
       switch (historyItem.action) {
@@ -9335,9 +9335,9 @@ angular.module('sp.history', [])
       }
 
     }
-  }])
+  })
 
-  .filter('history_item', ["history_texts", "social_list", function (history_texts, social_list) {
+  .filter('history_item', function (history_texts, social_list) {
     return function (historyItem) {
 
       switch (historyItem.action) {
@@ -9368,9 +9368,9 @@ angular.module('sp.history', [])
       return history_texts[historyItem.action];
 
     }
-  }])
+  })
 
-  .directive('sailplayHistory', ["sp", "sp_api", function (sp, sp_api) {
+  .directive('sailplayHistory', function (sp, sp_api) {
     return {
 
       restrict: 'A',
@@ -9383,7 +9383,7 @@ angular.module('sp.history', [])
       }
 
     };
-  }]);
+  });
 
 
 angular.module('sp', [
@@ -9397,13 +9397,13 @@ angular.module('sp', [
 
 ])
 
-  .service('sp', ["$window", function ($window) {
+  .service('sp', function ($window) {
 
     return $window.SAILPLAY || {};
 
-  }])
+  })
 
-  .service('sp_api', ["$q", "sp", "$rootScope", function ($q, sp, $rootScope) {
+  .service('sp_api', function ($q, sp, $rootScope) {
 
     var self = this;
 
@@ -9477,9 +9477,9 @@ angular.module('sp', [
 
     }
 
-  }])
+  })
 
-  .factory('SailPlayShare', ["$window", function ($window) {
+  .factory('SailPlayShare', function ($window) {
     return function (network, url, title, description, image) {
 
       var share_url = '';
@@ -9515,7 +9515,7 @@ angular.module('sp', [
       $window.open(share_url, '_blank', 'toolbar=0,status=0,width=626,height=436,location=no');
 
     }
-  }])
+  })
 
   .service('tagHelper', function () {
 
@@ -9574,7 +9574,7 @@ angular.module('sp', [
     };
   })
 
-  .filter('str_limit', ["$filter", function ($filter) {
+  .filter('str_limit', function ($filter) {
     return function (input, limit) {
       if (!input) return;
       if (input.length <= limit) {
@@ -9582,7 +9582,7 @@ angular.module('sp', [
       }
       return $filter('limitTo')(input, limit) + '...';
     };
-  }])
+  })
 
   .filter('is_default', function () {
 
@@ -9601,7 +9601,7 @@ angular.module('sp', [
 
   })
 
-  .filter('sailplay_pic', ["sp", function (sp) {
+  .filter('sailplay_pic', function (sp) {
 
     function repair_pic_url(url) {
       if (/^((http|https|ftp):\/\/)/.test(url)) {
@@ -9623,10 +9623,10 @@ angular.module('sp', [
 
     };
 
-  }]);
+  });
 angular.module('sp.profile', [])
 
-  .directive('sailplayProfile', ["sp", "sp_api", function (sp, sp_api) {
+  .directive('sailplayProfile', function (sp, sp_api) {
 
     return {
 
@@ -9645,7 +9645,7 @@ angular.module('sp.profile', [])
 
     };
 
-  }]);
+  });
 
 
 angular.module('sp.status', [])
@@ -9659,7 +9659,7 @@ angular.module('sp.status', [])
     }
   })
 
-  .directive('sailplayStatus', ["sp", "sp_api", "spPurchaseTag", "SailPlayShare", "$window", "$rootScope", function (sp, sp_api, spPurchaseTag, SailPlayShare, $window, $rootScope) {
+  .directive('sailplayStatus', function (sp, sp_api, spPurchaseTag, SailPlayShare, $window, $rootScope) {
 
     return {
 
@@ -9684,6 +9684,12 @@ angular.module('sp.status', [])
             return previousValue + currentValue.price;
           }, 0);
           return sum;
+        };
+
+        scope.getBadgeStyle = function(){
+          return {
+            width: (100 /scope.badges().multilevel_badges[0].length) + '%'
+          }
         };
 
         /**
@@ -9799,7 +9805,7 @@ angular.module('sp.status', [])
 
     };
 
-  }]);
+  });
 angular.module('ui.datepicker', [])
 
   .service('dateService', function () {
@@ -9848,7 +9854,7 @@ angular.module('ui.datepicker', [])
 
   })
 
-  .directive('datePicker', ["dateService", function (dateService) {
+  .directive('datePicker', function (dateService) {
     return {
       restrict: 'E',
       replace: true,
@@ -9893,7 +9899,7 @@ angular.module('ui.datepicker', [])
       }
     }
 
-  }]);
+  });
 
 (function () {
 
@@ -9961,7 +9967,7 @@ angular.module('ui.datepicker', [])
       }
     })
 
-    .directive('spAuth', ["$rootScope", "sp", function ($rootScope, sp) {
+    .directive('spAuth', function ($rootScope, sp) {
       return {
         restrict: 'A',
         replace: false,
@@ -9986,9 +9992,9 @@ angular.module('ui.datepicker', [])
 
         }
       }
-    }])
+    })
 
-    .directive('slackSlider', ["$timeout", function ($timeout) {
+    .directive('slackSlider', function ($timeout) {
       return {
         restrict: 'A',
         replace: false,
@@ -10006,6 +10012,6 @@ angular.module('ui.datepicker', [])
         }
 
       };
-    }]);
+    });
 
 }());

@@ -526,8 +526,8 @@ body.no_scrol .bns_inner_block_wrap {
 }
 .bns_overlay .bns_overlay_inner .bns_overlay_right .bns_overlay_right_img img {
   vertical-align: middle;
-  max-width: 90%;
-  max-height: 90%;
+  max-width: 70%;
+  max-height: 70%;
 }
 .bns_overlay .bns_overlay_inner .bns_overlay_right .bns_overlay_right_img svg {
   vertical-align: middle;
