@@ -113,7 +113,7 @@
                 return new Date(date);
             };
 
-            self.historyDateFormat = function(date){
+            self.historyDateFormat = function(date, without_time){
 
                 var monthNames = [
                     "января", "февраля", "марта",
@@ -129,7 +129,8 @@
                 var hours = date.getHours();
                 var minutes = date.getMinutes();
 
-                return day + ' ' + monthNames[monthIndex] + ' ' + hours + ':' + minutes;
+                var result = without_time ? day + ' ' + monthNames[monthIndex] : day + ' ' + monthNames[monthIndex] + ' ' + hours + ':' + minutes;
+                return result
             };
 
         });

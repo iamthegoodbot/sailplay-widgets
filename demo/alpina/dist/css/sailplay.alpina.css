@@ -2572,6 +2572,9 @@ ol {
   margin-bottom: 2px;
   color: #00ABB8;
 }
+.popup-history-item__expired {
+  font-size: 12px;
+}
 .popup-history-item__discount {
   font-size: 12px;
   line-height: 22px;
