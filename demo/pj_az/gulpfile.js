@@ -41,6 +41,7 @@
       __dirname + '/node_modules/angular/angular.min.js',
       __dirname + '/node_modules/angular-ui-mask/dist/mask.min.js',
       __dirname + '/node_modules/angular-touch/angular-touch.min.js',
+      __dirname + '/node_modules/angular-translate/dist/angular-translate.min.js',
       __dirname + '/node_modules/angular-cookie/angular-cookie.min.js',
       __dirname + '/node_modules/angular-utils-pagination/dirPagination.js',
       __dirname + '/src/js/**/**/*.js'

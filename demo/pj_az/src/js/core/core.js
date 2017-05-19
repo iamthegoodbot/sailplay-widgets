@@ -1,22 +1,31 @@
 angular.module('core', [
-  'ipCookie'
+  'ipCookie',
+  'pascalprecht.translate'
 ])
 
-  .run(function (sp, ipCookie, sp_api, $rootScope, actions_data) {
+  .config(function ($translateProvider) {
+
+    $translateProvider.translations('default', window._SP_LOCALE || {});
+
+    $translateProvider.preferredLanguage('default');
+
+  })
+
+  .run(function (sp, ipCookie, sp_api, $rootScope) {
 
     $rootScope.config = window.sailplay_config || {};
 
+    $rootScope.locale = window._SP_LOCALE || {};
+
     sp.send('init', {
-
-      partner_id: $rootScope.config.partner_id || 1,
+      partner_id: $rootScope.config.partner_id || 1652,
       domain: $rootScope.config.domain || '//sailplay.ru',
-      lang: 'ru'
-
+      lang: $rootScope.config.lang && ($rootScope.config.lang == 'az' ? 'en' : $rootScope.config.lang) || 'ru'
     });
 
     $rootScope.remote_login_options = {
       background: 'rgba(0, 0, 0, 0.5)',
-      lang: 'ru',
+      lang: $rootScope.config.lang && ($rootScope.config.lang == 'az' ? 'en' : $rootScope.config.lang) || 'ru',
       disabled_options: ['socials', 'agreement']
     };
 

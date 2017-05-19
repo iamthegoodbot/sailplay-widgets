@@ -1,5 +1,5 @@
 <div class="bns_hist_page"  data-ng-if="1 < pages.length || !autoHide">
-    <span>Страницы:</span>
+    <span data-ng-bind="'pages' | translate"></span>
     <a href="#"
        data-ng-repeat="pageNumber in pages track by tracker(pageNumber, $index)"
        data-ng-class="{ 'act' : pagination.current == pageNumber }"

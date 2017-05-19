@@ -1,27 +1,6 @@
 angular.module('sp.gifts', [])
 
-  .directive('mCustomScrollbar', function ($timeout) {
-    return {
-      restrict: 'A',
-      replace: false,
-      scope: false,
-      link: function (scope, el, attrs) {
-
-        scope.selector = attrs.selector;
-
-        if (scope.$last && scope.selector && $(scope.selector).length) { // all are rendered
-          $timeout(function () {
-            $(scope.selector).mCustomScrollbar();
-          }, 0)
-        }
-
-      }
-
-    };
-  })
-
-  .directive('sailplayGifts', function (sp, sp_api, $rootScope) {
-
+  .directive('sailplayGifts', function (sp, sp_api, $rootScope, $filter) {
     return {
 
       restrict: 'A',
@@ -34,7 +13,7 @@ angular.module('sp.gifts', [])
         scope.user = sp_api.data('load.user.info');
 
         scope.get = function (gift) {
-          if(!gift || scope.user().user_points.confirmed < gift.points) return;
+          if (!gift || scope.user().user_points.confirmed < gift.points) return;
           sp.send('gifts.purchase', {gift: gift});
         };
 
@@ -46,8 +25,8 @@ angular.module('sp.gifts', [])
           $rootScope.$apply(function () {
             scope.gift_get = null;
             $rootScope.$broadcast('notify:show', {
-              title: 'Поздравляем',
-              text: 'Вы получили подарок.'
+              title: $filter('translate')('gifts_messages.success.title'),
+              text: $filter('translate')('gifts_messages.success.text')
             });
           });
         });
@@ -56,8 +35,8 @@ angular.module('sp.gifts', [])
           $rootScope.$apply(function () {
             scope.gift_get = null;
             $rootScope.$broadcast('notify:show', {
-              title: 'Ошибка',
-              text: res.message
+              title: $filter('translate')('gifts_messages.error.title'),
+              text: res.message || $filter('translate')('gifts_messages.error.text')
             });
           });
         });
@@ -65,5 +44,4 @@ angular.module('sp.gifts', [])
       }
 
     };
-
   });

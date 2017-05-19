@@ -9,13 +9,10 @@
             <div class="bns_top_info">
                 <div class="bns_top_slide">
                     <img src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/6c38af1c9d8e9d24bd226201c02e0459.png">
-                    <span class="bns_slide_text">
-                        У нас есть потрясающая бонусная программа для вас, благодаря которой вы можете<br>
-                        получать баллы за покупки товаров на нашем сайте. За эти баллы вы сможете получать<br>
-                        подарки из нашего ассортимента!
-                    </span>
+                    <span class="bns_slide_text"
+                          data-ng-bind-html="'header_text' | translate | to_trusted"></span>
                     <div class="bns_top_slide_linck">
-                        <a data-ng-href="{{ config.data && config.data.login_link }}">Войти</a>
+                        <a data-ng-href="{{ config.data && config.data.login_link }}" data-ng-bind="'login' | translate"></a>
                     </div>
                 </div>
             </div>
@@ -35,9 +32,8 @@
                             <img data-ng-src="{{ user().user.pic }}" class="bns_ava">
                             <div class="bns_ava_block_right">
                                 <span class="bns_name"
-                                      data-ng-bind="user().user.first_name || user().user.last_name ? user().user.first_name + ' ' + user().user.last_name : 'Имя не указано'"></span>
-                                <a href="#" data-ng-click="$event.preventDefault();show_history();">История
-                                    начислений</a>
+                                      data-ng-bind="user().user.first_name || user().user.last_name ? user().user.first_name + ' ' + user().user.last_name : ('empty_name' | translate)"></span>
+                                <a href="#" data-ng-click="$event.preventDefault();show_history();" data-ng-bind="'history_button' | translate"></a>
                             </div>
                         </div>
 
@@ -46,19 +42,19 @@
                             <div class="bns_ne_pod_bal_block">
                                 <div class="bns_ne_pod_bal"
                                      data-ng-bind="user().user_points.unconfirmed | number"></div>
-                                <span class="bns_ne_pod_bal_name">Неподтвержденные баллы</span>
+                                <span class="bns_ne_pod_bal_name" data-ng-bind="'unconfirmed_points' | translate"></span>
                                 <a href="javascript:void(0);">
-                                    Что это?
-                                    <span class="bns_tile">Ваши неподтвержденные баллы, которые станут подтверждены после факта оплаты заказа</span>
+                                    {{ 'unconfirmed_points_hint.title' | translate }}
+                                    <span class="bns_tile" data-ng-bind="'unconfirmed_points_hint.text' | translate "></span>
                                 </a>
                             </div>
 
                             <div class="bns_stat_now">
                                 <img data-ng-src="{{ user().last_badge && user().last_badge.pic }}">
                                 <span class="bns_stat_name"
-                                      data-ng-bind="user().last_badge && user().last_badge.name ? 'Вы — ' + user().last_badge.name : 'Нет статуса'"></span>
+                                      data-ng-bind="user().last_badge && user().last_badge.name ? ('you_have' | translate) + user().last_badge.name : ('empty_status' | translate)"></span>
                                 <a data-ng-href="{{ config.data && config.data.status_link }}"
-                                   target="_blank">Список статусов</a>
+                                   target="_blank" data-ng-bind="'status_button' | translate"></a>
                             </div>
 
                         </div>
@@ -72,17 +68,17 @@
 
                         <div class="bns_top_popup_hist">
 
-                            <h2>История начислений</h2>
+                            <h2 data-ng-bind="'history_title' | translate"></h2>
 
                             <div class="bns_top_popup_hist_item"
                                  data-dir-paginate="item in history() | itemsPerPage:5"
                                  data-pagination-id="history_pages">
 
-                                <span class="date" data-ng-bind="item.action_date | date:'dd.MM.yyyy'"></span>
+                                <span class="date" data-ng-bind="item.action_date | date:('history_date_format' | translate)"></span>
                                 <span class="name" data-ng-bind="item | history_item"></span>
                                 <span class="bal"
                                       data-ng-class="{bal_min: item.points_delta < 0, bal_plus: item.points_delta >= 0}"
-                                      data-ng-bind="item.points_delta && ((item.points_delta > 0 ? '+' : '') + (item.points_delta | number)) + ' ' + (item.points_delta |sailplay_pluralize:'балл,балла,баллов')"></span>
+                                      data-ng-bind="item.points_delta && ((item.points_delta > 0 ? '+' : '') + (item.points_delta | number)) + ' ' + (item.points_delta |sailplay_pluralize:('pluralize.points' | translate))"></span>
 
                             </div>
 
@@ -124,10 +120,10 @@
                         <a href="#"
                            data-ng-class="{act: user().user_points.confirmed >= gift.points}"
                            data-ng-click="$event.preventDefault();get(gift);">
-                            {{ (gift.points | number) + ' ' + (gift.points | sailplay_pluralize:'балл,балла,баллов') }}
+                            {{ (gift.points | number) + ' ' + (gift.points | sailplay_pluralize:('pluralize.points' | translate)) }}
                             <span class="bns_til"
                                   data-ng-if="user().user_points.confirmed < gift.points"
-                                  data-ng-bind="'Нужно накопить еще ' + ((gift.points - user().user_points.confirmed) | number) + ' ' + ((gift.points - user().user_points.confirmed) | sailplay_pluralize:'балл,балла,баллов')"></span>
+                                  data-ng-bind="('need_earn_more' | translate) + ((gift.points - user().user_points.confirmed) | number) + ' ' + ((gift.points - user().user_points.confirmed) | sailplay_pluralize:('pluralize.points' | translate))"></span>
                         </a>
                     </div>
 
@@ -145,10 +141,11 @@
                             <span class="bns_qust_right_name"
                                   data-ng-bind-html="action_data(action).name | to_trusted"></span>
                             <span class="bns_qust_right_bal"
-                                  data-ng-bind="(action.points | number) + ' ' + (action.points | sailplay_pluralize:'балл,балла,баллов')"></span>
+                                  data-ng-bind="(action.points | number) + ' ' + (action.points | sailplay_pluralize:('pluralize.points' | translate))"></span>
                             <a href="#"
-                               data-sailplay-action data-action="action" data-text="Выполнить"
-                               data-styles="{{ action_styles(action_data(action)) }}">Выполнить</a>
+                               data-sailplay-action data-action="action" data-text="{{ ('make_action' | translate) }}"
+                               data-ng-bind="'make_action' | translate"
+                               data-styles="{{ action_styles(action_data(action)) }}"></a>
                         </div>
                     </div>
 
@@ -164,7 +161,7 @@
                             <span>
                                 {{ badge.name }}
                                 <strong data-ng-show="badge.points"
-                                        data-ng-bind="(badge.points | number) + ' ' + (badge.points |sailplay_pluralize:'балл,балла,баллов')"></strong>
+                                        data-ng-bind="(badge.points | number) + ' ' + (badge.points |sailplay_pluralize:('pluralize.points' | translate))"></strong>
                             </span>
                         </div>
 

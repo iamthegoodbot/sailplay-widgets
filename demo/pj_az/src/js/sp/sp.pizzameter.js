@@ -48,11 +48,11 @@ angular.module('sp.pizzameter', [])
         });
 
         scope.wrapperBG = function () {
-          return 'url(' + $filter('static')('') + 'partners/pj/img/pizzameter/deck_' + config.lang + '.png)';
+          return 'url(' + $filter('translate')('pizzameter.wrapper_bg') + ')';
         };
 
         scope.counterBG = function () {
-          return 'url(' + $filter('static')('') + 'partners/pj/img/pizzameter/counter_' + config.lang + '.png)';
+          return 'url(' + $filter('translate')('pizzameter.counter_bg') + ')';
         };
 
         scope.pizzaBG = function () {

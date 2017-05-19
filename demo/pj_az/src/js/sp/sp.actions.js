@@ -2,66 +2,12 @@
 
   angular.module('sp.actions', [])
 
-    .constant('actions_data', {
-      "system": {
-        "inviteFriend": {
-          "name": 'Пригласить друга',
-          "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/64e9e256af12573ae97a7e9dc22297a4.png",
-          "image_h": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/e78e9f5ba99b40b3ccb0555ee00c983e.png"
-        }
-      },
-      "social": {
-        "fb": {
-          "like": {
-            "name": "Вступить <br>в группу",
-            "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/bddfada95d885611c8dbcfd3d8b4c6a0.png",
-            "image_h": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/3c12fd472b45e6d0ecee244d4d9d2216.png",
-            "styles": {
-              "fb_share_btn": {
-                "font-family": "Arial",
-                "box-sizing": "border-box",
-                "width": "100%",
-                "height": "100%",
-                "text-decoration": "none",
-                "color": "white",
-                "font-weight": "bold",
-                "position": "absolute",
-                "left": "0",
-                "top": "0",
-                "font-size": "18px",
-                "line-height": "20px",
-                "cursor": "pointer",
-                "display": "inline-block"
-              }
-            }
-          },
-          "partner_page": {
-            "name": "Рассказать<br> о нас в",
-            "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/bddfada95d885611c8dbcfd3d8b4c6a0.png",
-            "image_h": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/3c12fd472b45e6d0ecee244d4d9d2216.png",
-            "styles": {
-              "fb_share_btn": {
-                "font-family": "Arial",
-                "box-sizing": "border-box",
-                "width": "100%",
-                "height": "100%",
-                "text-decoration": "none",
-                "color": "white",
-                "font-weight": "bold",
-                "position": "absolute",
-                "left": "0",
-                "top": "0",
-                "font-size": "18px",
-                "line-height": "20px",
-                "cursor": "pointer",
-                "display": "inline-block"
-              }
-            }
-          },
-          "purchase": {
-            "name": "Рассказать о<br>своей покупке",
-            "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/bddfada95d885611c8dbcfd3d8b4c6a0.png",
-            "image_h": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/3c12fd472b45e6d0ecee244d4d9d2216.png",
+    .service('actions_data', function ($rootScope) {
+      var default_data = {
+        "system": {
+          "inviteFriend": {
+            "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/64e9e256af12573ae97a7e9dc22297a4.png",
+            "image_h": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/e78e9f5ba99b40b3ccb0555ee00c983e.png",
             "styles": {
               "fb_share_btn": {
                 "font-family": "Arial",
@@ -81,8 +27,82 @@
               }
             }
           }
+        },
+        "social": {
+          "fb": {
+            "like": {
+              "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/bddfada95d885611c8dbcfd3d8b4c6a0.png",
+              "image_h": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/3c12fd472b45e6d0ecee244d4d9d2216.png",
+              "styles": {
+                "fb_share_btn": {
+                  "font-family": "Arial",
+                  "box-sizing": "border-box",
+                  "width": "100%",
+                  "height": "100%",
+                  "text-decoration": "none",
+                  "color": "white",
+                  "font-weight": "bold",
+                  "position": "absolute",
+                  "left": "0",
+                  "top": "0",
+                  "font-size": "18px",
+                  "line-height": "20px",
+                  "cursor": "pointer",
+                  "display": "inline-block"
+                }
+              }
+            },
+            "partner_page": {
+              "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/bddfada95d885611c8dbcfd3d8b4c6a0.png",
+              "image_h": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/3c12fd472b45e6d0ecee244d4d9d2216.png",
+              "styles": {
+                "fb_share_btn": {
+                  "font-family": "Arial",
+                  "box-sizing": "border-box",
+                  "width": "100%",
+                  "height": "100%",
+                  "text-decoration": "none",
+                  "color": "white",
+                  "font-weight": "bold",
+                  "position": "absolute",
+                  "left": "0",
+                  "top": "0",
+                  "font-size": "18px",
+                  "line-height": "20px",
+                  "cursor": "pointer",
+                  "display": "inline-block"
+                }
+              }
+            },
+            "purchase": {
+              "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/bddfada95d885611c8dbcfd3d8b4c6a0.png",
+              "image_h": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/3c12fd472b45e6d0ecee244d4d9d2216.png",
+              "styles": {
+                "fb_share_btn": {
+                  "font-family": "Arial",
+                  "box-sizing": "border-box",
+                  "width": "100%",
+                  "height": "100%",
+                  "text-decoration": "none",
+                  "color": "white",
+                  "font-weight": "bold",
+                  "position": "absolute",
+                  "left": "0",
+                  "top": "0",
+                  "font-size": "18px",
+                  "line-height": "20px",
+                  "cursor": "pointer",
+                  "display": "inline-block"
+                }
+              }
+            }
+          }
         }
+      };
+      if($rootScope.locale.actions){
+        angular.merge(default_data, $rootScope.locale.actions);
       }
+      return default_data;
     })
 
     .service('spAction', function (actions_data) {
@@ -288,19 +308,21 @@
 
               scope.show = null;
 
-              var msg = '', header = '';
+              var msg;
+
               if (res.data.response.status == 'ok') {
-                header = 'Поздравляем, задание выполнено!';
-                msg = 'Вам начиcленно: ' + res.data.response.points + ' ' + $filter('sailplay_pluralize')(res.data.response.points, 'балл,балла,баллов') + '</span>'
+                msg = {
+                  title: $filter('translate')('actions_messages.success.title'),
+                  text: $filter('translate')('actions_messages.success.text') + res.data.response.points + ' ' + $filter('sailplay_pluralize')(res.data.response.points, $filter(translate)('pluralize.points'))
+                };
               } else {
-                header = 'Ошибка';
-                msg = res.data.response.message;
+                msg = {
+                  title: $filter('translate')('actions_messages.error.title'),
+                  text: res.data.response.message || $filter('translate')('actions_messages.error.text')
+                };
               }
 
-              $rootScope.$broadcast('notify:show', {
-                title: header,
-                text: msg
-              });
+              $rootScope.$broadcast('notify:show', msg);
 
             });
           });

@@ -5,13 +5,18 @@ angular.module('sp_pj_az', [
   'templates'
 ])
 
+
+  // .filter('translate', function(){
+  //
+  // })
+
   .constant('headerBg', [
     'https://sailplays3.cdnvideo.ru/media/assets/assetfile/86c4a3bb2ad1a46927ab5a5b6610d938.png',
     'https://sailplays3.cdnvideo.ru/media/assets/assetfile/1e07a33e1efba4cd5debe2d875439618.png',
     'https://sailplays3.cdnvideo.ru/media/assets/assetfile/c425ff894ab6d0efe5a58a3b4e6ac092.png'
   ])
 
-  .directive('sailplayPjAz', function ($rootScope, $locale, headerBg) {
+  .directive('sailplayPjAz', function ($rootScope, $locale, headerBg, $filter) {
     return {
       restrict: 'E',
       replace: true,
@@ -19,7 +24,7 @@ angular.module('sp_pj_az', [
       templateUrl: '/html/main.html',
       link: function (scope, element) {
 
-        scope.headerBg = headerBg[Math.floor(Math.random() * ((headerBg.length-1) - 0 + 1) + 0)];
+        scope.headerBg = headerBg[Math.floor(Math.random() * ((headerBg.length - 1) - 0 + 1) + 0)];
         // $rootScope.debug = true;
 
         scope.show_history = function () {
@@ -31,19 +36,19 @@ angular.module('sp_pj_az', [
         scope.tabs = [
           {
             alias: 'gifts',
-            name: 'Список подарков'
+            name: $filter('translate')('tabs.gifts')
           },
           {
             alias: 'actions',
-            name: 'Список заданий'
+            name: $filter('translate')('tabs.actions')
           },
           {
             alias: 'badges',
-            name: 'Список бейджей'
+            name: $filter('translate')('tabs.badges')
           }
         ];
 
-        scope.clear_all_show = function(){
+        scope.clear_all_show = function () {
 
           var array = [
             'showGifts',
@@ -54,7 +59,7 @@ angular.module('sp_pj_az', [
             'showStatus'
           ];
 
-          array.forEach(function(item){
+          array.forEach(function (item) {
             scope.clear_show(item);
           });
 
@@ -67,11 +72,11 @@ angular.module('sp_pj_az', [
           scope.body_lock(false);
         };
 
-        scope.get_gift = function(gift){
+        scope.get_gift = function (gift) {
           scope.$emit('gift:get', gift);
         };
 
-        scope.get_action = function(gift){
+        scope.get_action = function (gift) {
           scope.$emit('action:get', gift);
         };
 
