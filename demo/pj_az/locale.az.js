@@ -1,20 +1,4 @@
 window._SP_LOCALE = {
-  "badges": {
-    697: {
-      "name": "Оратор",
-      "descr": "Описание статуса"
-    }
-  },
-  "gifts": {
-    5598: {
-      "name": "Чизкейк",
-      "descr": "Описание кизкейка"
-    },
-    5597: {
-      "name": "Пицца Пепперони",
-      "descr": "Описание пиццы"
-    }
-  },
   "pizzameter": {
     "counter_bg": "http://sailplay.cdnvideo.ru/static/partners/pj/img/pizzameter/counter_ru.png",
     "wrapper_bg": "http://sailplay.cdnvideo.ru/static/partners/pj/img/pizzameter/deck_ru.png"

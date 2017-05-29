@@ -2,6 +2,12 @@
 
   angular.module('sp.badges', [])
 
+    .filter('badgeLocale', function($rootScope){
+      return function(badge){
+        return $rootScope.locale.badges && $rootScope.locale.badges[badge && badge.id] || {}
+      }
+    })
+
     .directive('sailplayBadges', function (sp, sp_api) {
 
       return {

@@ -114,8 +114,8 @@
                     <div class="bns_gift_item" data-ng-repeat="gift in gifts()">
                         <img data-ng-src="{{ gift.thumbs.url_250x250 | sailplay_pic }}">
                         <div class="bns_gift_item_bottom">
-                            <span class="bns_gift_name" data-ng-bind="gift.name"></span>
-                            <span class="bns_gift_desc" data-ng-bind="gift.descr"></span>
+                            <span class="bns_gift_name" data-ng-bind="(gift | giftLocale).name"></span>
+                            <span class="bns_gift_desc" data-ng-bind="(gift | giftLocale).descr"></span>
                         </div>
                         <a href="#"
                            data-ng-class="{act: user().user_points.confirmed >= gift.points}"

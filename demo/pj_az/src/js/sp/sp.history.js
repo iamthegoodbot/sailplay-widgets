@@ -8,11 +8,18 @@ angular.module('sp.history', [])
     return $rootScope.locale.social_list || {};
   })
 
-  .filter('history_item', function (history_texts, social_list) {
+  .filter('history_item', function ($rootScope, history_texts, social_list, $filter) {
     return function (historyItem) {
+
+      function ifAz(){
+        return $rootScope.config && $rootScope.config.lang == 'az'
+      }
 
       switch (historyItem.action) {
         case 'gift_purchase':
+          if(ifAz()){
+            return history_texts.gift_purchase;
+          }
           return history_texts.gift_purchase + ': ' + historyItem.name;
         case 'event':
           return historyItem.name || history_texts.custom_action;
@@ -21,6 +28,9 @@ angular.module('sp.history', [])
         case 'custom_action':
           return historyItem.name || history_texts.custom_action;
         case 'badge':
+          if(ifAz()){
+            return history_texts.badge;
+          }
           return history_texts.badge + ': ' + historyItem.name;
         case 'purchase':
           return historyItem.name || history_texts.purchase;

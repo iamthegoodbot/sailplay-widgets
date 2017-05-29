@@ -1,5 +1,11 @@
 angular.module('sp.gifts', [])
 
+  .filter('giftLocale', function($rootScope){
+    return function(gift){
+      return $rootScope.locale.gifts && $rootScope.locale.gifts[gift && gift.id] || {}
+    }
+  })
+
   .directive('sailplayGifts', function (sp, sp_api, $rootScope, $filter) {
     return {
 

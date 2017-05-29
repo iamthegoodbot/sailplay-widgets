@@ -1,4 +1,20 @@
 window._SP_LOCALE = {
+  "badges": {
+    697: {
+      "name": "Speaker",
+      "descr": "Description of status"
+    }
+  },
+  "gifts": {
+    5598: {
+      "name": "Cheesecake",
+      "descr": "Description of the kitscake"
+    },
+    5597: {
+      "name": "Pepperoni's Pizza",
+      "descr": "Description of pizza"
+    }
+  },
   "pizzameter": {
     "counter_bg": "http://sailplay.cdnvideo.ru/static/partners/pj/img/pizzameter/counter_en.png",
     "wrapper_bg": "http://sailplay.cdnvideo.ru/static/partners/pj/img/pizzameter/deck_en.png"
@@ -50,7 +66,7 @@ window._SP_LOCALE = {
     "social_share": "Shared our website on ",
     "share_badge": "Shared a badge on ",
     "earn_badge": 'Earn badge ',
-    "custom_action" : "Custom action"
+    "custom_action": "Custom action"
   },
   "social_list": {"vk": "Vk", "ok": "Ok", "tw": "Twitter", "fb": "Facebook"},
   "actions": {
