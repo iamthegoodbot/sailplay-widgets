@@ -20,11 +20,11 @@
                     <span class="bns_info_email" data-ng-bind="user().user.email || 'E-mail не указан'"></span>
 
                     <span class="bns_info_adr"
-                          data-ng-bind="config.data && config.data.delivery_address ? (config.data.delivery_address + ' ' + (config.data.delivery_address | sailplay_pluralize:'адрес,адреса,адресов') + ' доставки') : 'Адрес доставки не указан'">
+                          data-ng-bind="config.data && (config.data.delivery_address | number) > 0 ? (config.data.delivery_address + ' ' + (config.data.delivery_address | sailplay_pluralize:'адрес,адреса,адресов') + ' доставки') : 'Нет адресов доставки'">
                     </span>
 
                     <a data-ng-href="{{ config.data && config.data.edit_profile_link }}"
-                       class="bns_edit" target="_blank">Редактировать</a>
+                       class="bns_edit">Редактировать</a>
 
                 </div>
 

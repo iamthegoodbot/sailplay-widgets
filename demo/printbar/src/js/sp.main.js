@@ -53,7 +53,20 @@ angular.module('sp_print_bar', [
             scope.clear_show(item);
           });
 
+          scope.body_lock(false);
+
         };
+
+        $(document).keyup(function(e) {
+          if(event.which === 27) { // 27 = esc key
+            event.preventDefault();
+            scope.$apply(function (){
+              scope.clear_all_show();
+              scope.$emit('gift:get', null);
+              scope.$emit('action:get', null);
+            });
+          }
+        });
 
         scope.$on('clear_all_show', scope.clear_all_show);
 

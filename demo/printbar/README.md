@@ -3,9 +3,9 @@
 ## Install
 Paste this code to the page in < head > section to load the script:
 
-    <link rel="stylesheet" href="https://sailplays3.cdnvideo.ru/media/assets/assetfile/d2a1565d1c525ed7059bc841b3afd6ce.css"/>
+    <link rel="stylesheet" href="https://sailplays3.cdnvideo.ru/media/assets/assetfile/1ee790d8858cbecaffc0ff506dd3b448.css"/>
 
-    <script src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/3c7317f3df7f50c71feb0704467d1270.js"></script>
+    <script src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/36b06d58215fc204b26c0c2a765d9024.js"></script>
 
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function () {

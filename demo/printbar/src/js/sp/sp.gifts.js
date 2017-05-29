@@ -63,7 +63,6 @@ angular.module('sp.gifts', [])
         };
 
         scope.get = function (gift) {
-          console.log('gift', gift);
           if(!gift) return;
           sp.send('gifts.purchase', {gift: gift});
         };
