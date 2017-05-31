@@ -15,6 +15,14 @@
       height: 100%;
       vertical-align: middle;
     }
+    &_close {
+      position: absolute;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+    }
     &.bns_overlay_hist {
       .bns_overlay_inner {
         .bns_overlay_left {
@@ -72,7 +80,7 @@
     }
 
     .bns_overlay_inner {
-      width: 620px;
+      width: 780px;
       background-color: #ffffff;
       box-sizing: border-box;
       display: inline-block;
@@ -80,6 +88,7 @@
       text-align: left;
       position: relative;
       overflow: hidden;
+      z-index: 2;
       .bns_overlay_top {
         float: left;
         width: 100%;
@@ -577,6 +586,8 @@
           font-weight: bold;
           color: #333333;
           margin-top: 27px;
+          padding: 0 10px;
+          box-sizing: border-box;
         }
         .bns_overlay_right_date {
           float: left;
@@ -590,7 +601,7 @@
           width: 100%;
           color: #4F4F4F;
           font-size: 12px;
-          margin-top: 28px;
+          margin-top: 10px;
           box-sizing: border-box;
           padding: 0px 10px;
         }
@@ -598,10 +609,11 @@
           float: left;
           width: 100%;
           text-align: center;
-          margin-top: 40px;
+          //margin-top: 40px;
           position: absolute;
           left: 0;
-          bottom: 24px;
+          //bottom: 24px;
+          bottom: 0;
           a {
             display: inline-block;
             height: 30px;

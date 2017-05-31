@@ -33,6 +33,14 @@
   height: 100%;
   vertical-align: middle;
 }
+.sp_wrapper .bns_overlay_close {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
 .sp_wrapper .bns_overlay.bns_overlay_hist .bns_overlay_inner .bns_overlay_left {
   width: 80%;
 }
@@ -65,7 +73,7 @@
   bottom: auto;
 }
 .sp_wrapper .bns_overlay .bns_overlay_inner {
-  width: 620px;
+  width: 780px;
   background-color: #ffffff;
   box-sizing: border-box;
   display: inline-block;
@@ -73,6 +81,7 @@
   text-align: left;
   position: relative;
   overflow: hidden;
+  z-index: 2;
 }
 .sp_wrapper .bns_overlay .bns_overlay_inner .bns_overlay_top {
   float: left;
@@ -547,6 +556,8 @@
   font-weight: bold;
   color: #333333;
   margin-top: 27px;
+  padding: 0 10px;
+  box-sizing: border-box;
 }
 .sp_wrapper .bns_overlay .bns_overlay_inner .bns_overlay_right .bns_overlay_right_date {
   float: left;
@@ -560,7 +571,7 @@
   width: 100%;
   color: #4F4F4F;
   font-size: 12px;
-  margin-top: 28px;
+  margin-top: 10px;
   box-sizing: border-box;
   padding: 0px 10px;
 }
@@ -568,10 +579,9 @@
   float: left;
   width: 100%;
   text-align: center;
-  margin-top: 40px;
   position: absolute;
   left: 0;
-  bottom: 24px;
+  bottom: 0;
 }
 .sp_wrapper .bns_overlay .bns_overlay_inner .bns_overlay_right .bns_right_soc a {
   display: inline-block;
@@ -730,7 +740,7 @@
   box-sizing: border-box;
   border-radius: 3px;
   border: 1px solid #EEEEEE;
-  padding: 10px;
+  padding: 18px;
   -webkit-transition: box-shadow 300ms ease;
   -moz-transition: box-shadow 300ms ease;
   -ms-transition: box-shadow 300ms ease;
@@ -798,7 +808,7 @@
   box-sizing: border-box;
   border-radius: 3px;
   border: 1px solid #EEEEEE;
-  padding: 10px;
+  padding: 16px;
   -webkit-transition: box-shadow 300ms ease;
   -moz-transition: box-shadow 300ms ease;
   -ms-transition: box-shadow 300ms ease;
@@ -933,7 +943,7 @@
 .sp_wrapper .bns_info .bns_info_line {
   float: right;
   width: 83%;
-  margin-top: 45px;
+  margin-top: 42px;
 }
 .sp_wrapper .bns_info .bns_info_line .bns_info_line_stat {
   float: left;
@@ -1063,7 +1073,7 @@
   border-radius: 3px;
   height: 30px;
   background: linear-gradient(-45deg, rgba(0, 0, 0, 0) 49.9%, #b8b8b8 49.9%, #b8b8b8 60%, rgba(0, 0, 0, 0) 60%), linear-gradient(-45deg, #b8b8b8 10%, rgba(0, 0, 0, 0) 10%);
-  background-size: 0.4em 0.4em;
+  background-size: 0.3em 0.3em;
   z-index: 1;
 }
 .sp_wrapper .bns_info .bns_info_line .bns_line_main_wrap .bns_line_nepod .bns_line_nepod_bal {
@@ -3073,6 +3083,9 @@ Plugin URI: http://manos.malihu.gr/jquery-custom-content-scroller
   }
 }
 @media screen and (max-width: 780px) {
+  .sp_wrapper .bns_overlay .bns_overlay_inner {
+    width: 90%;
+  }
   .sp_wrapper .bns_info .bns_info_ava {
     width: 33%;
   }
@@ -3128,9 +3141,6 @@ Plugin URI: http://manos.malihu.gr/jquery-custom-content-scroller
   }
 }
 @media screen and (max-width: 650px) {
-  .sp_wrapper .bns_overlay .bns_overlay_inner {
-    width: 90%;
-  }
   .sp_wrapper .bns_info .bns_info_line .bns_line_fill_til {
     display: none;
   }
@@ -3332,6 +3342,9 @@ Plugin URI: http://manos.malihu.gr/jquery-custom-content-scroller
   margin: 0;
   padding: 0;
   font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  line-height: 1;
+  font-weight: normal;
 }
 .sp_wrapper .sp_logout {
   display: inline-block;

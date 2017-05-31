@@ -165,6 +165,7 @@
                    data-ng-click="$event.preventDefault();show_gifts();body_lock(true);">Смотреть все подарки</a>
 
                 <div class="bns_overlay bns_overlay_get_gift" data-ng-if="gift_get">
+                    <div class="bns_overlay_close" data-ng-click="$event.preventDefault();body_lock(false);$parent.gift_get = null;"></div>
                     <div class="bns_overlay_inner">
 
                         <div class="bns_overlay_top">
@@ -236,6 +237,7 @@
                 </div>
 
                 <div class="bns_overlay bns_overlay_quest" data-ng-if="show">
+                    <div class="bns_overlay_close" data-ng-click="$event.preventDefault();body_lock(false);$parent.show = null;"></div>
                     <div class="bns_overlay_inner">
 
                         <div class="bns_overlay_top">
@@ -287,6 +289,7 @@
     </div>
 
     <div class="bns_overlay bns_overlay_all_quest" data-sailplay-actions data-ng-if="showActions">
+        <div class="bns_overlay_close" data-ng-click="$event.preventDefault();clear_show('showActions');body_lock(false);"></div>
         <div class="bns_overlay_inner">
 
             <div class="bns_overlay_left">
@@ -328,6 +331,7 @@
     </div>
 
     <div class="bns_overlay bns_overlay_badge" data-sailplay-status data-sailplay-profile data-ng-if="showBadges">
+        <div class="bns_overlay_close" data-ng-click="$event.preventDefault();clear_show('showBadges');body_lock(false);"></div>
         <div class="bns_overlay_inner">
 
             <div class="bns_overlay_left">
@@ -362,7 +366,7 @@
                     <span class="bns_overlay_right_name" data-ng-bind="$parent.showBadgesInfo.name"></span>
 
                     <span class="bns_overlay_right_desc"
-                          data-ng-bind="($parent.showBadgesInfo | spBadgeDesc).description"></span>
+                          data-ng-bind="($parent.showBadgesInfo | spBadgeDesc)[$parent.showBadgesInfo.is_received ? 'after' : 'before']"></span>
 
                     <div class="bns_right_soc">
                         <a href="#" data-ng-click="$event.preventDefault();share('fb', $parent.showBadgesInfo);">
@@ -387,6 +391,7 @@
     </div>
 
     <div class="bns_overlay bns_overlay_stst" data-sailplay-status data-sailplay-profile data-ng-if="showStatus">
+        <div class="bns_overlay_close" data-ng-click="$event.preventDefault();clear_show('showStatus');body_lock(false);"></div>
         <div class="bns_overlay_inner" data-ng-if="user && user() && badges && badges()">
 
             <div class="bns_overlay_left">
@@ -431,7 +436,7 @@
                           data-ng-bind="(selected_status || getCurrentStatus()).received_date ? 'Получено ' + ((selected_status || getCurrentStatus()).received_date | date:'dd.MM.yyyy') : 'Не получен'"></span>
 
                     <span class="bns_overlay_right_desc"
-                          data-ng-bind-html="(((selected_status || getCurrentStatus()) | spBadgeDesc).description || '&nbsp;') | to_trusted "></span>
+                          data-ng-bind-html="(((selected_status || getCurrentStatus()) | spBadgeDesc)[(selected_status || getCurrentStatus()).is_received ? 'after' : 'before'] || '&nbsp;') | to_trusted "></span>
 
                     <div class="bns_right_soc">
                         <a href="#"
@@ -459,6 +464,7 @@
     </div>
 
     <div class="bns_overlay bns_overlay_gift" data-sailplay-gifts data-ng-if="showGifts">
+        <div class="bns_overlay_close" data-ng-click="$event.preventDefault();clear_show('showGifts');body_lock(false);"></div>
         <div class="bns_overlay_inner">
 
             <div class="bns_overlay_left">
@@ -507,6 +513,7 @@
     </div>
 
     <div class="bns_overlay bns_overlay_hist" data-sailplay-history data-ng-if="showHistory">
+        <div class="bns_overlay_close" data-ng-click="$event.preventDefault();clear_show('showHistory');body_lock(false);"></div>
         <div class="bns_overlay_inner">
 
             <div class="bns_overlay_left">

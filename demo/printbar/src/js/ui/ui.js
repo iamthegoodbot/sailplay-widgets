@@ -100,8 +100,11 @@
 
           scope.slackConfig = scope.$eval(attrs.slackConfig);
 
+          $(el).parent().hide();
+
           if (scope.$last) { // all are rendered
             $timeout(function () {
+              $(el).parent().show();
               $(scope.slackConfig.selector).not('.slick-initialized').slick(scope.slackConfig.data);
             }, 0);
           }

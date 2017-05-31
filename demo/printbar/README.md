@@ -3,10 +3,11 @@
 ## Install
 Paste this code to the page in < head > section to load the script:
 
-    <link rel="stylesheet" href="https://sailplays3.cdnvideo.ru/media/assets/assetfile/1ee790d8858cbecaffc0ff506dd3b448.css"/>
-
-    <script src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/36b06d58215fc204b26c0c2a765d9024.js"></script>
-
+    
+    <link rel="stylesheet" href="https://sailplays3.cdnvideo.ru/media/assets/assetfile/efc23b2c4080c09be7236add7b870d68.css"/>
+    
+    <script src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/ec2534ed21ac295a5d8b134e203da082.js"></script>
+    
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function () {
             window.sailplay_config = {
