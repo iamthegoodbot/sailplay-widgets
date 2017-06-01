@@ -338,12 +338,18 @@
                 <span class="bns_overlay_head">Бейджи</span>
                 <div class="bns_overlay_badge_main">
 
-                    <a href="#" class="bns_overlay_badge_item" data-ng-repeat="badge in badges().one_level_badges"
+                    <a href="#" class="bns_overlay_badge_item"
+                       data-dir-paginate="badge in badges().one_level_badges | itemsPerPage:16"
+                       data-pagination-id="badge_pages"
                        data-ng-class="{act: badge.is_received}"
                        data-ng-click="$event.preventDefault();$parent.showBadgesInfo=badge;">
                         <img data-ng-src="{{ (badge | spBadgeDesc).pic }}"
                              alt="{{ badge.name }}">
                     </a>
+
+                    <dir-pagination-controls data-max-size="5" data-pagination-id="badge_pages"
+                                             data-template-url="/html/ui/ui.pagination.controls.html"
+                                             data-auto-hide="true"></dir-pagination-controls>
 
                 </div>
                 <!--<div class="bns_overlay_badge_page">-->

@@ -11,8 +11,8 @@ angular.module('sp.gifts', [])
 
         if (scope.$last && scope.selector && $(scope.selector).length) { // all are rendered
           $timeout(function () {
-            $(scope.selector).mCustomScrollbar();
-          }, 0)
+            $(scope.selector).mCustomScrollbar && $(scope.selector).mCustomScrollbar();
+          }, 10);
         }
 
       }

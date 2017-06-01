@@ -4,9 +4,9 @@
 Paste this code to the page in < head > section to load the script:
 
     
-    <link rel="stylesheet" href="https://sailplays3.cdnvideo.ru/media/assets/assetfile/efc23b2c4080c09be7236add7b870d68.css"/>
+    <link rel="stylesheet" href="https://sailplays3.cdnvideo.ru/media/assets/assetfile/fe5b1131fc8d81bb277b0db239faedb4.css"/>
     
-    <script src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/ec2534ed21ac295a5d8b134e203da082.js"></script>
+    <script src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/28bfe7be5ef087484875cac284141484.js"></script>
     
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function () {
