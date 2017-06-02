@@ -241,6 +241,7 @@
 }
 .sp_wrapper .bns_overlay .bns_overlay_inner .bns_overlay_left .bns_overlay_gift_main .bns_overlay_gift_item .bns_overlay_gift_item_img img {
   max-width: 90%;
+  max-height: 100%;
   vertical-align: middle;
 }
 .sp_wrapper .bns_overlay .bns_overlay_inner .bns_overlay_left .bns_overlay_gift_main .bns_overlay_gift_item .bns_overlay_gift_item_right {
@@ -450,6 +451,7 @@
   padding-right: 15px;
   margin-top: 20px;
   margin-bottom: 10px;
+  border-collapse: separate;
 }
 .sp_wrapper .bns_overlay .bns_overlay_inner .bns_overlay_hist_main td {
   vertical-align: middle;
@@ -740,7 +742,7 @@
   box-sizing: border-box;
   border-radius: 3px;
   border: 1px solid #EEEEEE;
-  padding: 18px;
+  padding: 18px 18px 16px 18px;
   -webkit-transition: box-shadow 300ms ease;
   -moz-transition: box-shadow 300ms ease;
   -ms-transition: box-shadow 300ms ease;
@@ -798,7 +800,7 @@
   text-decoration: none;
   line-height: 20px;
   padding-top: 8px;
-  margin-top: 13px;
+  margin-top: 15px;
   text-align: center;
 }
 .sp_wrapper .bns_info .bns_info_right .bns_info_status {
@@ -936,8 +938,9 @@
   border-top: 1px solid #EEEEEE;
   text-decoration: none;
   line-height: 20px;
-  padding-top: 8px;
-  margin-top: 13px;
+  padding-top: 7px;
+  padding-bottom: 8px;
+  margin-top: 6px;
   text-align: center;
 }
 .sp_wrapper .bns_info .bns_info_line {
