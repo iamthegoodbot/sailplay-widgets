@@ -8,11 +8,12 @@
 
             <div class="bns_top_info">
                 <div class="bns_top_slide">
-                    <img src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/6c38af1c9d8e9d24bd226201c02e0459.png">
+                    <img data-ng-src="{{ 'logo' | translate }}">
                     <span class="bns_slide_text"
                           data-ng-bind-html="'header_text' | translate | to_trusted"></span>
                     <div class="bns_top_slide_linck">
-                        <a data-ng-href="{{ config.data && config.data.login_link }}" data-ng-bind="'login' | translate"></a>
+                        <a data-ng-href="{{ config.data && config.data.login_link }}"
+                           data-ng-bind="'login' | translate"></a>
                     </div>
                 </div>
             </div>
@@ -32,8 +33,9 @@
                             <img data-ng-src="{{ user().user.pic }}" class="bns_ava">
                             <div class="bns_ava_block_right">
                                 <span class="bns_name"
-                                      data-ng-bind="user().user.first_name || user().user.last_name ? user().user.first_name + ' ' + user().user.last_name : ('empty_name' | translate)"></span>
-                                <a href="#" data-ng-click="$event.preventDefault();show_history();" data-ng-bind="'history_button' | translate"></a>
+                                      data-ng-bind="user().user.name ? user().user.name : ('empty_name' | translate)"></span>
+                                <a href="#" data-ng-click="$event.preventDefault();show_history();"
+                                   data-ng-bind="'history_button' | translate"></a>
                             </div>
                         </div>
 
@@ -42,10 +44,12 @@
                             <div class="bns_ne_pod_bal_block">
                                 <div class="bns_ne_pod_bal"
                                      data-ng-bind="user().user_points.unconfirmed | number"></div>
-                                <span class="bns_ne_pod_bal_name" data-ng-bind="'unconfirmed_points' | translate"></span>
+                                <span class="bns_ne_pod_bal_name"
+                                      data-ng-bind="'unconfirmed_points' | translate"></span>
                                 <a href="javascript:void(0);">
                                     {{ 'unconfirmed_points_hint.title' | translate }}
-                                    <span class="bns_tile" data-ng-bind="'unconfirmed_points_hint.text' | translate "></span>
+                                    <span class="bns_tile"
+                                          data-ng-bind="'unconfirmed_points_hint.text' | translate "></span>
                                 </a>
                             </div>
 
@@ -53,8 +57,10 @@
                                 <img data-ng-src="{{ user().last_badge && user().last_badge.pic }}">
                                 <span class="bns_stat_name"
                                       data-ng-bind="user().last_badge && user().last_badge.name ? ('you_have' | translate) + user().last_badge.name : ('empty_status' | translate)"></span>
-                                <a data-ng-href="{{ config.data && config.data.status_link }}"
-                                   target="_blank" data-ng-bind="'status_button' | translate"></a>
+                                <a href="#"
+                                   data-scroll-to=".bns_tab_block"
+                                   data-ng-click="$event.preventDefault();open_badge(user().last_badge)"
+                                   data-ng-bind="'status_button' | translate"></a>
                             </div>
 
                         </div>
@@ -74,7 +80,8 @@
                                  data-dir-paginate="item in history() | itemsPerPage:5"
                                  data-pagination-id="history_pages">
 
-                                <span class="date" data-ng-bind="item.action_date | date:('history_date_format' | translate)"></span>
+                                <span class="date"
+                                      data-ng-bind="item.action_date | date:('history_date_format' | translate)"></span>
                                 <span class="name" data-ng-bind="item | history_item"></span>
                                 <span class="bal"
                                       data-ng-class="{bal_min: item.points_delta < 0, bal_plus: item.points_delta >= 0}"
@@ -120,7 +127,8 @@
                         <a href="#"
                            data-ng-class="{act: user().user_points.confirmed >= gift.points}"
                            data-ng-click="$event.preventDefault();get(gift);">
-                            {{ (gift.points | number) + ' ' + (gift.points | sailplay_pluralize:('pluralize.points' | translate)) }}
+                            {{ (gift.points | number) + ' ' + (gift.points | sailplay_pluralize:('pluralize.points' |
+                            translate)) }}
                             <span class="bns_til"
                                   data-ng-if="user().user_points.confirmed < gift.points"
                                   data-ng-bind="('need_earn_more' | translate) + ((gift.points - user().user_points.confirmed) | number) + ' ' + ((gift.points - user().user_points.confirmed) | sailplay_pluralize:('pluralize.points' | translate))"></span>
@@ -156,7 +164,8 @@
                     <div class="bns_achiv_line" data-ng-repeat="line in badges().multilevel_badges">
 
                         <div class="bns_achiv_item" data-ng-repeat="badge in line"
-                             data-ng-class="{act: badge.is_received}">
+                             data-ng-click="open(badge)"
+                             data-ng-class="{act: badge.is_received, open: badge.id == $parent.$parent.opened}">
                             <img data-ng-src="{{ (badge.is_received ? badge.thumbs.url_250x250 : badge.thumbs.url_gs) | sailplay_pic }}">
                             <span>
                                 {{ badge.name }}
@@ -164,6 +173,8 @@
                                         data-ng-bind="(badge.points | number) + ' ' + (badge.points |sailplay_pluralize:('pluralize.points' | translate))"></strong>
                             </span>
                         </div>
+
+                        <data-badge-info data-badges="line"></data-badge-info>
 
                     </div>
 

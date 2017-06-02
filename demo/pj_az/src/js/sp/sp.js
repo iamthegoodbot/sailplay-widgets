@@ -102,11 +102,11 @@ angular.module('sp', [
       switch (network) {
 
         case 'vk':
-          share_url = 'https://vkontakte.ru/share.php?';
-          share_url += 'url=' + encodeURIComponent(url);
-          share_url += '&title=' + encodeURIComponent(title);
+          share_url  = 'https://vkontakte.ru/share.php?';
+          share_url += 'url='          + encodeURIComponent(url);
+          share_url += '&title='       + encodeURIComponent(title);
           share_url += '&description=' + encodeURIComponent(description);
-          share_url += '&image=' + encodeURIComponent(image);
+          share_url += '&image='       + encodeURIComponent(image);
           share_url += '&noparse=true';
           break;
 

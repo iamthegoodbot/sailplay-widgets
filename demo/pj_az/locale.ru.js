@@ -51,9 +51,10 @@ window._SP_LOCALE = {
       "descr": "Описание пиццы"
     }
   },
+  "logo": "//sailplays3.cdnvideo.ru/media/assets/assetfile/6c38af1c9d8e9d24bd226201c02e0459.png",
   "pizzameter": {
-    "counter_bg": "http://sailplay.cdnvideo.ru/static/partners/pj/img/pizzameter/counter_ru.png",
-    "wrapper_bg": "http://sailplay.cdnvideo.ru/static/partners/pj/img/pizzameter/deck_ru.png"
+    "counter_bg": "//sailplay.cdnvideo.ru/static/partners/pj/img/pizzameter/counter_ru.png",
+    "wrapper_bg": "//sailplay.cdnvideo.ru/static/partners/pj/img/pizzameter/deck_ru.png"
   },
   "tabs": {
     "gifts": "Список подарков",

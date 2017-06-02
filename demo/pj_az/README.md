@@ -3,9 +3,9 @@
 ## Установка
 Вставить этот код в < head > для загрузки скриптов и стилей:
 
-    <link rel="stylesheet" href="https://sailplays3.cdnvideo.ru/media/assets/assetfile/3eacbe23ecf0c080e9f488e563119909.css"/>
+    <link rel="stylesheet" href="./dist/css/sailplay.pj_az.css"/>
 
-    <script src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/484d22356655b30340ff922d9872e01c.js"></script>
+    <script src="./dist/js/sailplay.pj_az.js"></script>
     
     <script src="locale.ru.js"></script>
 
@@ -17,8 +17,7 @@
             lang: 'ru',
             data: {
                 pizzameter_cost: 379,
-                login_link: "login.html",
-                status_link: "status.html"
+                login_link: "login.html"
             }
         };
 

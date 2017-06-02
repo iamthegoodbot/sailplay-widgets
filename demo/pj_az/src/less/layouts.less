@@ -17,12 +17,15 @@ body {
   padding-bottom:40px;
   a {
     float: left;
+    line-height: 1;
     color: #e6e6e6;
     font-size: 42px;
     font-weight: bold;
-    margin-right:37px;
     position: relative;
     text-decoration: none;
+    &:not(:last-child) {
+      margin-right:37px;
+    }
     &.act {
       color: #000;
       &:before {
@@ -33,7 +36,7 @@ body {
         background-color: #e6e6e6;
         position: absolute;
         left: 0;
-        bottom: 10px;
+        bottom: 5px;
         z-index: -1;
       }
     }

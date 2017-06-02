@@ -10,6 +10,11 @@
     position: relative;
     margin-right:80px;
     box-sizing: border-box;
+    &.open {
+      span {
+        background: rgba(128, 128, 128, 0.23);
+      }
+    }
     &:not(.act) img {
       -webkit-filter: grayscale(100%);
       -moz-filter: grayscale(100%);
@@ -58,6 +63,38 @@
         font-size: 18px;
         font-weight: bold;
       }
+    }
+    &_info {
+      float: left;
+      width: 100%;
+      color: #5e5e5e;
+      background: rgba(128, 128, 128, 0.23);
+      border-radius: 5px;
+      border: 1px solid #cccccc;
+      padding: 20px;
+      box-sizing: border-box;
+
+      &_text {
+
+      }
+
+      &_socials {
+        margin-top: 10px;
+
+        img {
+          display: inline-block;
+          margin-right: 4px;
+          cursor: pointer;
+          transition: opacity 1s ease;
+
+          &:hover {
+            opacity: .7;
+          }
+
+        }
+
+      }
+
     }
   }
 }

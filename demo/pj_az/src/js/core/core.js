@@ -1,5 +1,4 @@
 angular.module('core', [
-  'ipCookie',
   'pascalprecht.translate'
 ])
 
@@ -9,9 +8,11 @@ angular.module('core', [
 
     $translateProvider.preferredLanguage('default');
 
+    $translateProvider.useSanitizeValueStrategy(null);
+
   })
 
-  .run(function (sp, ipCookie, sp_api, $rootScope) {
+  .run(function (sp, sp_api, $rootScope) {
 
     $rootScope.config = window.sailplay_config || {};
 

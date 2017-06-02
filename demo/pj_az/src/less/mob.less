@@ -112,7 +112,7 @@
     a {
       float: none;
       display: inline-block;
-      margin-right: 0;
+      //margin-right: 0;
     }
   }
   .bns_top {
@@ -165,6 +165,11 @@
 }
 
 @media screen and (max-width: 650px){
+  .bns_tab {
+    a:not(:last-child) {
+      margin-right: 0;
+    }
+  }
   .bns_top {
     .bns_top_info {
       padding: 30px 10px;

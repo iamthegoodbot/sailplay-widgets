@@ -2,7 +2,6 @@
 
   angular.module('ui', [
     'angularUtils.directives.dirPagination',
-    'ui.mask',
     'ngTouch'
   ])
 
@@ -44,9 +43,11 @@
 
           $(el).on('click', function () {
 
+            to = $(attr.scrollTo);
+
             if (!to.length) return;
 
-            var offset = to.offset().top + $(window).height() > $('body').height() ? $('body').height() - $(window).height() : to.offset().top;
+            var offset = (to.offset().top + $(window).height()) > $('body').height() ? $('body').height() - $(window).height() : to.offset().top;
 
             $("html, body").delay(100).animate({
               scrollTop: offset

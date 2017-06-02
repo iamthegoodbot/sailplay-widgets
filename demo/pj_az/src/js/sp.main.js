@@ -6,17 +6,17 @@ angular.module('sp_pj_az', [
 ])
 
 
-  // .filter('translate', function(){
-  //
-  // })
+// .filter('translate', function(){
+//
+// })
 
   .constant('headerBg', [
-    'https://sailplays3.cdnvideo.ru/media/assets/assetfile/86c4a3bb2ad1a46927ab5a5b6610d938.png',
-    'https://sailplays3.cdnvideo.ru/media/assets/assetfile/1e07a33e1efba4cd5debe2d875439618.png',
-    'https://sailplays3.cdnvideo.ru/media/assets/assetfile/c425ff894ab6d0efe5a58a3b4e6ac092.png'
+    '//sailplays3.cdnvideo.ru/media/assets/assetfile/86c4a3bb2ad1a46927ab5a5b6610d938.png',
+    '//sailplays3.cdnvideo.ru/media/assets/assetfile/1e07a33e1efba4cd5debe2d875439618.png',
+    '//sailplays3.cdnvideo.ru/media/assets/assetfile/c425ff894ab6d0efe5a58a3b4e6ac092.png'
   ])
 
-  .directive('sailplayPjAz', function ($rootScope, $locale, headerBg, $filter) {
+  .directive('sailplayPjAz', function ($rootScope, $locale, headerBg, $filter, $timeout) {
     return {
       restrict: 'E',
       replace: true,
@@ -74,6 +74,13 @@ angular.module('sp_pj_az', [
 
         scope.get_gift = function (gift) {
           scope.$emit('gift:get', gift);
+        };
+
+        scope.open_badge = function (badge) {
+          scope.activeTab = 'badges';
+          $timeout(function () {
+            scope.$emit('badge:open', badge);
+          }, 100);
         };
 
         scope.get_action = function (gift) {
