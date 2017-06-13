@@ -52,6 +52,8 @@ body.no_scrol {
 .bns_top {
   float: left;
   width: 100%;
+  background-repeat: no-repeat;
+  background-position: center top;
   -webkit-background-size: cover;
   background-size: cover;
   margin-top: 30px;
@@ -499,6 +501,40 @@ body.no_scrol {
   margin-left: -10px;
   bottom: -12px;
 }
+.bns_tab_block_popup {
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.bns_tab_block_popup-layout {
+  position: relative;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+.bns_tab_block_popup-content {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  width: 80%;
+  height: 70%;
+  background: white;
+}
+.bns_tab_block_popup-content iframe {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
 .bns_qust_item {
   float: left;
   width: 290px;
@@ -539,7 +575,7 @@ body.no_scrol {
 }
 .bns_qust_item .bns_qust_left {
   float: left;
-  width: 130px;
+  width: 40%;
   height: 130px;
   text-align: center;
 }
@@ -552,13 +588,15 @@ body.no_scrol {
 .bns_qust_item .bns_qust_left img {
   vertical-align: middle;
   border-radius: 10px;
+  max-height: 60%;
+  max-width: 60%;
 }
 .bns_qust_item .bns_qust_left .bns_qust_left_h {
   display: none;
 }
 .bns_qust_item .bns_qust_right {
   float: left;
-  width: 158px;
+  width: 60%;
   height: 130px;
   position: relative;
   padding-right: 20px;

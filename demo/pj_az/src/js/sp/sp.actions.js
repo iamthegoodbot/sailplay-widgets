@@ -270,6 +270,8 @@
 
           scope.action_data = spAction.get_action_data;
 
+
+
           $rootScope.$on('action:get', function (e, action) {
             scope.show = action;
           });
