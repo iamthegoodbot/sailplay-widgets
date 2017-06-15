@@ -13,7 +13,7 @@ body.no_scrol {
   overflow: hidden;
 }
 .bns_inner_block {
-  max-width: 1230px;
+  max-width: 1370px;
   width: 100%;
   margin: auto;
 }
@@ -22,32 +22,24 @@ body.no_scrol {
   width: 100%;
   padding-top: 65px;
   padding-bottom: 40px;
+  text-align: center;
 }
 .bns_tab a {
-  float: left;
   line-height: 1;
   color: #e6e6e6;
-  font-size: 42px;
+  width: 30%;
+  font-size: 32px;
+  display: inline-block;
   font-weight: bold;
   position: relative;
   text-decoration: none;
 }
 .bns_tab a:not(:last-child) {
-  margin-right: 37px;
+  margin-right: 5%;
 }
-.bns_tab a.act {
+.bns_tab a.act,
+.bns_tab a:hover {
   color: #000;
-}
-.bns_tab a.act:before {
-  content: '';
-  display: block;
-  height: 2px;
-  width: 100%;
-  background-color: #e6e6e6;
-  position: absolute;
-  left: 0;
-  bottom: 5px;
-  z-index: -1;
 }
 .bns_top {
   float: left;
@@ -56,7 +48,6 @@ body.no_scrol {
   background-position: center top;
   -webkit-background-size: cover;
   background-size: cover;
-  margin-top: 30px;
 }
 .bns_top .bns_top_info {
   float: left;
@@ -183,6 +174,7 @@ body.no_scrol {
   width: 100%;
 }
 .bns_top .bns_top_info .bns_top_slide .bns_top_slide_linck a {
+  cursor: pointer;
   display: inline-block;
   width: 120px;
   line-height: 45px;
@@ -642,6 +634,7 @@ body.no_scrol {
 .bns_achiv_line .bns_achiv_item {
   float: left;
   width: 182px;
+  cursor: pointer;
   background-color: #fff;
   padding: 13px;
   position: relative;
@@ -770,11 +763,9 @@ body.no_scrol {
     width: auto;
   }
   .bns_top .bns_top_info .bns_top_info_right {
-    float: right;
+    margin: 0 auto 165px;
     position: relative;
-    right: 0;
-    margin-top: 30px;
-    margin-bottom: -45px;
+    right: auto;
   }
   .bns_tab_block {
     text-align: center;
@@ -859,11 +850,16 @@ body.no_scrol {
   .bns_top .bns_top_info .bns_top_info_right {
     float: none;
     display: inline-block;
+    margin: 0 auto 25px;
   }
 }
 @media screen and (max-width: 650px) {
   .bns_tab a:not(:last-child) {
+    margin-bottom: 10px;
     margin-right: 0;
+  }
+  .bns_tab a {
+    width: 100%;
   }
   .bns_top .bns_top_info {
     padding: 30px 10px;
@@ -946,7 +942,7 @@ body.no_scrol {
   line-height: 1;
 }
 .sp_wrapper .pizzameter_wrapper {
-  margin: 30px;
+  margin-top: 30px;
   font-size: 14px;
   width: 300px;
   height: 300px;

@@ -56,12 +56,9 @@
         }
       }
       .bns_top_info_right {
-        float: right;
+        margin: 0 auto 165px;
         position: relative;
-        right: 0;
-        margin-top: 30px;
-        margin-bottom:-45px;
-
+        right: auto;
       }
     }
   }
@@ -159,6 +156,7 @@
       .bns_top_info_right {
         float: none;
         display: inline-block;
+        margin: 0 auto 25px;
       }
     }
   }
@@ -167,7 +165,11 @@
 @media screen and (max-width: 650px){
   .bns_tab {
     a:not(:last-child) {
+      margin-bottom: 10px;
       margin-right: 0;
+    }
+    a {
+      width: 100%;
     }
   }
   .bns_top {

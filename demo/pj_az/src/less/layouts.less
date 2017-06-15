@@ -6,7 +6,7 @@ body {
   }
 }
 .bns_inner_block {
-  max-width: 1230px;
+  max-width: 1370px;
   width: 100%;
   margin:auto;
 }
@@ -15,30 +15,32 @@ body {
   width: 100%;
   padding-top:65px;
   padding-bottom:40px;
+  text-align: center;
   a {
-    float: left;
     line-height: 1;
     color: #e6e6e6;
-    font-size: 42px;
+    width: 30%;
+    font-size: 32px;
+    display: inline-block;
     font-weight: bold;
     position: relative;
     text-decoration: none;
     &:not(:last-child) {
-      margin-right:37px;
+      margin-right:5%;
     }
-    &.act {
+    &.act, &:hover {
       color: #000;
-      &:before {
-        content: '';
-        display: block;
-        height: 2px;
-        width: 100%;
-        background-color: #e6e6e6;
-        position: absolute;
-        left: 0;
-        bottom: 5px;
-        z-index: -1;
-      }
+      //&:before {
+      //  content: '';
+      //  display: block;
+      //  height: 2px;
+      //  width: 100%;
+      //  background-color: #e6e6e6;
+      //  position: absolute;
+      //  left: 0;
+      //  bottom: 5px;
+      //  z-index: -1;
+      //}
     }
   }
 }
