@@ -25,11 +25,11 @@ angular.module('sp.history', [])
   })
 
   .constant('history_icon', {
-    "hist1": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/54375f98bdda3752d71f61375b7a5513.png",
-    "hist2": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/16f75927885e8764f722c983fcf1f55d.png",
-    "hist3": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/13533c803a8241a840344fb1e048af0b.png",
-    "hist4": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/b05745e76c9b1c0a80bb3ff690f2661f.png",
-    "hist5": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/fe8a83246d1c8875aa93fde7b23a078f.png"
+    "hist1": "//sailplays3.cdnvideo.ru/media/assets/assetfile/54375f98bdda3752d71f61375b7a5513.png",
+    "hist2": "//sailplays3.cdnvideo.ru/media/assets/assetfile/16f75927885e8764f722c983fcf1f55d.png",
+    "hist3": "//sailplays3.cdnvideo.ru/media/assets/assetfile/13533c803a8241a840344fb1e048af0b.png",
+    "hist4": "//sailplays3.cdnvideo.ru/media/assets/assetfile/b05745e76c9b1c0a80bb3ff690f2661f.png",
+    "hist5": "//sailplays3.cdnvideo.ru/media/assets/assetfile/fe8a83246d1c8875aa93fde7b23a078f.png"
   })
 
 

@@ -2,11 +2,11 @@
 
 ## Install
 Paste this code to the page in < head > section to load the script:
-
+(jquery required)
     
-    <link rel="stylesheet" href="https://sailplays3.cdnvideo.ru/media/assets/assetfile/ee43efd1dc604a7b12fd87f0d9a5d48d.css"/>
+    <link rel="stylesheet" href="dist/css/sailplay.pb.css"/>
     
-    <script src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/9a516771a9eeda7ab6e835c5d34bbbb3.js"></script>
+    <script src="dist/js/sailplay.pb.js"></script>
     
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function () {
@@ -16,6 +16,7 @@ Paste this code to the page in < head > section to load the script:
                 domain: 'http://sailplay.ru',
                 lang: 'ru',
                 data: {
+                  user_pic: "",
                   edit_profile_link: "http://sailplay.ru",
                   delivery_address: 1,
                   share_url: 'http://sailplay.ru'
@@ -33,7 +34,7 @@ Paste this code to < body > to render the content loaded via above mentioned scr
 
 ## Example
 
-Link: [DEMO](http://78.46.209.148/test/pb/ "Demo")
+Link: [DEMO](http://cabinets.sailplay.ru/printbar/ "Demo")
 
 ## Development
 

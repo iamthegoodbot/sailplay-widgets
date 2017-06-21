@@ -357,7 +357,14 @@
           float: left;
           width: 100%;
           text-align: center;
-          margin-bottom: 20px;
+
+          position: absolute;
+          z-index: 1;
+          bottom: 10px;
+          left: 0;
+          right: 0;
+          margin: auto;
+
           a {
             color: #828282;
             font-size: 14px;
@@ -481,7 +488,7 @@
         box-sizing: border-box;
         padding-right: 15px;
         margin-top: 20px;
-        margin-bottom: 10px;
+        margin-bottom: 50px;
         border-collapse: separate;
         td {
           vertical-align: middle;
@@ -525,6 +532,11 @@
             }
           }
         }
+      }
+      .bns_overlay_hist_empty {
+        text-align: left;
+        display: block;
+        margin: 100px 0 50px;
       }
       .bns_overlay_right {
         float: right;

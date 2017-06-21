@@ -8,6 +8,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <link rel="stylesheet" href="dist/css/sailplay.pb.css"/>
+    <!--For local use-->
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+
     <script src="dist/js/sailplay.pb.js"></script>
     <script type="text/javascript">
 
@@ -16,11 +19,12 @@
         var params = SAILPLAY.url_params() || {};
 
         window.sailplay_config = {
-          auth_hash: params.auth_hash || '5caf27aecff8714bbb2468ef935bef35317e67ba',
+          auth_hash: params.auth_hash || '0859ef052ab0848d83e7f2ee6c9d383da7a5d948',
           partner_id: params.partner_id || 1655,
           domain: params.domain || 'http://sailplay.ru',
           lang: 'ru',
           data: {
+            user_pic: "http://sailplays3.cdnvideo.ru/media/gifts/gift/4dc1fce85e79817c3de41d9b29608b40.250x250.png",
             edit_profile_link: "http://sailplay.ru",
             delivery_address: 10,
             share_url: 'http://sailplay.ru'

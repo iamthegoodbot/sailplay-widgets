@@ -13,7 +13,7 @@
         "fb": {
           "like": {
             "name": "Вступить в группу",
-            "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/fdb5bdd5f14dba7c41d8e9fa1fcba191.png",
+            "image": "//sailplays3.cdnvideo.ru/media/assets/assetfile/fdb5bdd5f14dba7c41d8e9fa1fcba191.png",
             "styles": {
               "fb_share_btn": {
                 "font-family": "Arial",
@@ -36,7 +36,7 @@
           },
           "partner_page": {
             "name": "Поделиться мнением о магазине",
-            "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/fdb5bdd5f14dba7c41d8e9fa1fcba191.png",
+            "image": "//sailplays3.cdnvideo.ru/media/assets/assetfile/fdb5bdd5f14dba7c41d8e9fa1fcba191.png",
             "styles": {
               "fb_share_btn": {
                 "font-family": "Arial",
@@ -59,7 +59,7 @@
           },
           "purchase": {
             "name": "Рассказать о покупке",
-            "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/fdb5bdd5f14dba7c41d8e9fa1fcba191.png",
+            "image": "//sailplays3.cdnvideo.ru/media/assets/assetfile/fdb5bdd5f14dba7c41d8e9fa1fcba191.png",
             "styles": {
               "fb_share_btn": {
                 "font-family": "Arial",
@@ -84,7 +84,7 @@
         "vk": {
           "like": {
             "name": "Вступить в группу",
-            "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/473e8b46c2c014e7da9cda5ac60807a0.png",
+            "image": "//sailplays3.cdnvideo.ru/media/assets/assetfile/473e8b46c2c014e7da9cda5ac60807a0.png",
             "styles": {
               "vk_share_btn": {
                 "font-family": "Arial",
@@ -107,7 +107,7 @@
           },
           "partner_page": {
             "name": "Поделиться мнением о магазине",
-            "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/473e8b46c2c014e7da9cda5ac60807a0.png",
+            "image": "//sailplays3.cdnvideo.ru/media/assets/assetfile/473e8b46c2c014e7da9cda5ac60807a0.png",
             "styles": {
               "vk_share_btn": {
                 "font-family": "Arial",
@@ -130,7 +130,7 @@
           },
           "purchase": {
             "name": "Рассказать о покупке",
-            "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/473e8b46c2c014e7da9cda5ac60807a0.png",
+            "image": "//sailplays3.cdnvideo.ru/media/assets/assetfile/473e8b46c2c014e7da9cda5ac60807a0.png",
             "styles": {
               "vk_share_btn": {
                 "font-family": "Arial",
@@ -155,7 +155,7 @@
         "tw": {
           "partner_page": {
             "name": "Поделиться мнением о магазине",
-            "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/9ff98aace20ecc079879c677a96725d0.png",
+            "image": "//sailplays3.cdnvideo.ru/media/assets/assetfile/9ff98aace20ecc079879c677a96725d0.png",
             "styles": {
               "tw_share_btn": {
                 "font-family": "Arial",
@@ -345,6 +345,8 @@
 
           scope.action_data = spAction.get_action_data;
 
+          var share_action = null;
+
           $rootScope.$on('action:get', function (e, action) {
             scope.show = action;
           });
@@ -378,6 +380,14 @@
             sp_api.call('load.actions.list');
 
             sp_api.call('load.actions.custom.list');
+
+            share_action = res && res.data && res.data.action;
+
+            if(share_action && share_action.socialType){
+              var tag = scope.action_data(share_action).name + ' в ' + share_action.socialType;
+              sp_api.call('tags.add', {tags: [tag]});
+              share_action = null;
+            }
 
             $rootScope.$apply(function () {
 

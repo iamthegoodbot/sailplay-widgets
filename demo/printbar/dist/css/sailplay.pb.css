@@ -341,7 +341,12 @@
   float: left;
   width: 100%;
   text-align: center;
-  margin-bottom: 20px;
+  position: absolute;
+  z-index: 1;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  margin: auto;
 }
 .sp_wrapper .bns_overlay .bns_overlay_inner .bns_overlay_left .bns_overlay_badge_page a {
   color: #828282;
@@ -450,7 +455,7 @@
   box-sizing: border-box;
   padding-right: 15px;
   margin-top: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 50px;
   border-collapse: separate;
 }
 .sp_wrapper .bns_overlay .bns_overlay_inner .bns_overlay_hist_main td {
@@ -494,6 +499,11 @@
 }
 .sp_wrapper .bns_overlay .bns_overlay_inner .bns_overlay_hist_main td:nth-child(3).bns_min {
   background-image: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/3db5a25d5312c030e7f377c00be4cedd.png");
+}
+.sp_wrapper .bns_overlay .bns_overlay_inner .bns_overlay_hist_empty {
+  text-align: left;
+  display: block;
+  margin: 100px 0 50px;
 }
 .sp_wrapper .bns_overlay .bns_overlay_inner .bns_overlay_right {
   float: right;
@@ -685,8 +695,10 @@
 }
 .sp_wrapper .bns_info .bns_info_ava .bns_info_img img {
   width: 150px;
-  max-width: 100%;
   height: auto;
+  min-height: 100px;
+  max-height: 150px;
+  max-width: 100%;
   border-radius: 100%;
   border: 1px solid #ECECEC;
 }
@@ -1076,7 +1088,7 @@
   border-radius: 3px;
   height: 30px;
   background: linear-gradient(-45deg, rgba(0, 0, 0, 0) 49.9%, #b8b8b8 49.9%, #b8b8b8 60%, rgba(0, 0, 0, 0) 60%), linear-gradient(-45deg, #b8b8b8 10%, rgba(0, 0, 0, 0) 10%);
-  background-size: 0.3em 0.3em;
+  background-size: 16px 16px;
   z-index: 1;
 }
 .sp_wrapper .bns_info .bns_info_line .bns_line_main_wrap .bns_line_nepod .bns_line_nepod_bal {

@@ -99,7 +99,7 @@ angular.module('sp', [
       switch (network) {
 
         case 'vk':
-          share_url  = 'https://vkontakte.ru/share.php?';
+          share_url  = 'https://vk.com/share.php?';
           share_url += 'url='          + encodeURIComponent(url);
           share_url += '&title='       + encodeURIComponent(title);
           share_url += '&description=' + encodeURIComponent(description);
@@ -110,7 +110,9 @@ angular.module('sp', [
         case 'fb':
 
           share_url = 'https://www.facebook.com/sharer.php?s=100';
-          share_url += '&t=' + encodeURIComponent(title);
+          share_url += '&title=' + encodeURIComponent(title);
+          share_url += '&picture=' + encodeURIComponent(image);
+          share_url += '&description=' + encodeURIComponent(description);
           share_url += '&u=' + encodeURIComponent(url);
           break;
 

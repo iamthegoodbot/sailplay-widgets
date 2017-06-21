@@ -148,7 +148,7 @@ angular.module('sp.status', [])
         scope.selected_status = scope.getCurrentStatus();
 
         scope.share = function (network, badge) {
-          SailPlayShare(network, $rootScope.config.data.share_url || $window.location.href, badge.name, badge.share_msg, badge.thumbs.url_250x250);
+          SailPlayShare(network, $rootScope.config.data.share_url || $window.location.href, badge.name, badge.share_msg, window.location.protocol + badge.thumbs.url_250x250);
         };
 
       }
