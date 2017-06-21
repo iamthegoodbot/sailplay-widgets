@@ -149,7 +149,7 @@
       }
     })
 
-    .constant('custom_data', [])
+    // .constant('custom_data', [])
 
     .service('spAction', function (actions_data) {
 
@@ -245,7 +245,64 @@
 
     })
 
-    .directive('sailplayActions', function (sp_api, sp, spAction, custom_data, tagHelper) {
+    /**
+     * @ngdoc directive
+     * @name sailplay.actions.directive:sailplayActionCustom
+     * @scope
+     * @restrict A
+     *
+     * @description
+     * Renders SailPlay custom action in element.
+     *
+     * @param {object}  action   A SailPlay custom action object, received from api.
+     *
+     */
+    .directive('sailplayActionCustom', function (sp, $document) {
+
+      var init_state;
+
+      return {
+
+        restrict: 'A',
+        replace: false,
+        scope: {
+          action: '='
+        },
+        link: function (scope, elm, attrs) {
+
+          var iframe = $document[0].createElement('iframe');
+          var name = 'default';
+
+          iframe.style.backgroundColor = "transparent";
+          iframe.frameBorder = "0";
+          iframe.allowTransparency = "true";
+
+          elm.append(iframe);
+
+          scope.$watch('action', function (action) {
+
+            if (action) {
+
+              var config = sp.config();
+
+              iframe.src = (config && ((config.DOMAIN + config.urls.actions.custom.render.replace(':action_id', action.id) + '?auth_hash=' + config.auth_hash + '&lang=' + config.lang + '&config=' + name))) || '';
+
+              iframe.className = ['sailplay_action_custom_frame', action.type].join(' ');
+
+            }
+            else {
+              iframe.src = '';
+            }
+
+          });
+
+        }
+
+      };
+
+    })
+
+    .directive('sailplayActions', function (sp_api, sp, spAction, tagHelper) {
 
       return {
 
@@ -256,11 +313,13 @@
 
           scope.actions = sp_api.data('load.actions.list');
 
+          scope.custom_actions = sp_api.data('load.actions.custom.list');
+
           scope.exist = sp_api.data('tags.exist');
 
           scope.open_custom = null;
 
-          scope.customs = custom_data;
+          // scope.customs = custom_data;
 
           scope.check_tag = tagHelper.checkTag;
 
@@ -271,33 +330,6 @@
           scope.perform_action = function (action) {
 
             sp.send('actions.perform', action);
-
-          };
-
-          scope.link = function (button) {
-
-            if (button && button.add_tag && button.tag) {
-
-              sp_api.call('tags.add', {tags: [button.tag]});
-            }
-
-            scope.open_custom = false;
-
-            window.open(button.link)
-
-          };
-
-          scope.check_custom = function (tag, array) {
-
-            if (!tag || !array) return false;
-
-            var _tags = tag.buttons.map(function (item) {
-              return item.tag
-            });
-
-            return _tags.every(function (tag) {
-              return scope.check_tag(tag, array);
-            });
 
           };
 

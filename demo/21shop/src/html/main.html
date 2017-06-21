@@ -280,43 +280,37 @@
                        data-styles="{{ action_styles(action_data(action)) }}" data-action="action" data-text="Получить">Получить</a>
                 </div>
 
-                <div class="bns_earn_item" data-ng-repeat="custom in customs"
-                     data-ng-show="!custom.check_tag || ( custom.check_tag && !check_custom(custom, exist()) )">
+                <div class="bns_earn_item" data-ng-repeat="action in custom_actions()">
                     <div class="bns_earn_item_left">
-                        <img data-ng-src="{{ custom.pic }}"
-                             alt="{{ custom.name }}">
+                        <img data-ng-src="{{ action.icon | sailplay_pic }}"
+                             alt="{{ action.name }}">
                     </div>
                     <div class="bns_earn_item_right">
-                        <span class="bns_earn_name" data-ng-bind="custom.name"></span>
+                        <span class="bns_earn_name" data-ng-bind="action.name"></span>
                         <span class="bns_earn_point">
-                             <strong data-ng-bind="(custom.points | number) + ' '"></strong>
-                            {{ custom.points | sailplay_pluralize:'балл,балла,баллов' }}
+                             <strong data-ng-bind="(action.points | number) + ' '"></strong>
+                            {{ action.points | sailplay_pluralize:'балл,балла,баллов' }}
                         </span>
                     </div>
                     <a href="#" class="bns_btn bns_earn_btn"
-                       data-ng-click="$event.preventDefault();$parent.$parent.open_custom = custom;">
+                       data-ng-click="$event.preventDefault();$parent.open_custom = action;">
                         Получить
                     </a>
                 </div>
 
             </div>
 
-            <div class="bns_overlay" data-ng-if="open_custom"
+            <div class="bns_overlay custom" data-ng-if="open_custom"
                  data-ng-style="{ display:  ($parent.open_custom ? 'block' : 'none')}">
-                <div class="bns_overlay_inner review">
+                <div class="bns_overlay_inner ">
                     <div class="oi_top">
                         <span class="oi_top__name" data-ng-bind="$parent.open_custom.name"></span>
                     </div>
-                    <div class="sure_main">
-                        <span class="oi_top__desc" data-ng-bind="$parent.open_custom.desc"></span>
-                        <a href="#" class="bns_btn bns_review"
-                           data-ng-repeat="button in $parent.open_custom.buttons"
-                           data-ng-click="$event.preventDefault();link(button);" data-ng-bind="button.name"></a>
-
-                    </div>
+                    <div class="bns_overlay_action_custom" data-sailplay-action-custom
+                             data-action="$parent.open_custom"></div>
                     <div class="bns_input_block">
-                        <a href="#" class="bns_btn"
-                           data-ng-click="$event.preventDefault();$parent.$parent.open_custom = null;">Закрыть</a>
+                        <a href="#" class="bns_btn bns_btn_center"
+                           data-ng-click="$parent.open_custom = null;$event.preventDefault();body_lock(false);">Закрыть</a>
                     </div>
                 </div>
             </div>
