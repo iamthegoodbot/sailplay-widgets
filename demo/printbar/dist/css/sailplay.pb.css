@@ -1088,7 +1088,7 @@
   border-radius: 3px;
   height: 30px;
   background: linear-gradient(-45deg, rgba(0, 0, 0, 0) 49.9%, #b8b8b8 49.9%, #b8b8b8 60%, rgba(0, 0, 0, 0) 60%), linear-gradient(-45deg, #b8b8b8 10%, rgba(0, 0, 0, 0) 10%);
-  background-size: 16px 16px;
+  background-size: 6px 6px;
   z-index: 1;
 }
 .sp_wrapper .bns_info .bns_info_line .bns_line_main_wrap .bns_line_nepod .bns_line_nepod_bal {
