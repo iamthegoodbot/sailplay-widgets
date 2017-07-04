@@ -102,8 +102,8 @@
 
           if (scope.$last) { // all are rendered
             $timeout(function () {
-              $(scope.slackConfig.selector).not('.slick-initialized').slick(scope.slackConfig.data);
-            });
+              $(scope.slackConfig.selector).not('.slick-initialized').slick && $(scope.slackConfig.selector).not('.slick-initialized').slick(scope.slackConfig.data);
+            }, 50);
           }
 
         }
