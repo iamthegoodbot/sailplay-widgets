@@ -86,11 +86,13 @@
       accForm.slideUp(300);
     });
 
-    var AUTH_HASH = '12930ebbda16122a478ec3697dae4bab4e51d50b';
+    var params = SAILPLAY.url_params();
 
-    var EMAIL = 'test2@alpinabook.ru';
+    var AUTH_HASH = params.auth_hash;
 
-    startLoyaltyApp(AUTH_HASH);
+    var EMAIL = params.email;
+
+    startLoyaltyApp(AUTH_HASH, EMAIL);
 
   });
 </script>
