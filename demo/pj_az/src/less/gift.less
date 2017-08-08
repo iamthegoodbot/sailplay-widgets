@@ -1,13 +1,14 @@
 .bns_tab_block {
   float: left;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   .bns_gift_item {
     float: left;
     width: 285px;
     height: auto;
-    margin-right:26px;
-    &:nth-child(4n) {
-      margin-right: 0;
-    }
+    flex-basis: auto;
+    margin-bottom: 20px;
     img {
       width: 100%;
       height: auto;
@@ -34,7 +35,7 @@
     }
     a {
       cursor: default;
-      margin-top: 20px;
+      margin-top: 5px;
       float: right;
       width: 100px;
       line-height: 45px;

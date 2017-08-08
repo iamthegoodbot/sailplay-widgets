@@ -1,101 +1,101 @@
 window._SP_LOCALE = {
   "badges": {
-    697: {
-      "name": "Оратор",
-      "descr": "Пусть все знают какая вкусная пицца у вас сегодня на обед! Расскажите о своем заказе в любой из социальных сетей и получите бонусные баллы. А также первое звание - бейджик «Оратор»."
+    "697": {
+      "name": "Natiq",
+      "descr": "Bu gün nahara necə dadlı pizza yediyinizi qoy hamı bilsin! Öz fb səhifənizdə öz sifarişinizi paylaşın və bonus balarını qazanın, və həmçinin  \"Natiq\" beydjik - ilk rütbəsini alın. Bu xəbəri öz fb səhifənizdə paylaşın və əlavə ballar qazanın.."
     },
-    693: {
-      "name": "Любитель пиццы",
-      "descr": "Первые три заказа, и это только начало! Вы уже по достоинству оценили оригинальные вкусы нашей фирменной пиццы. И мы готовы радовать вас дальше. Еще 15 бонусных баллов добавляются к вашему бонусному счету, и вы получаете новый бейджик в подарок!"
+    "693": {
+      "name": "Pizza həvəskarı",
+      "descr": "İlk üç sifariş və bu hələ başlanğıcdır! Siz  bizim pizzamızın xüsusi dadını qiymətləndirdiniz. Biz  gələcəkdə də Sizi sevindirməyə hazırıq. Sizin bonus hesabınıza daha 15 bonus balı əlavə edilir, və Siz yeni beydjiki hədiyyə olaraq əldə edirsiniz. Bu xəbəri öz fb səhifənizdə paylaşın və əlavə ballar qazanın."
     },
-    695: {
-      "name": "Пиццаман",
-      "descr": "Ура! Вы совершили 10 заказов и теперь вы почетный участник клуба «Настоящих ценителей пиццы». У вас потрясающий вкус! А новый бейджик - тому подтверждение. Ну и, конечно же, вы получаете дополнительные 15 баллов на ваш бонусный счет."
+    "695": {
+      "name": "Pizzamen",
+      "descr": "Əla! Siz 10 sifariş etmisiniz və indi Siz \"Pizzaya əsl dəyər verənlər\" klubunun hörmətli iştirakçısı oldunuz. Sizin əla zövqünüz var! Yeni beydjik isə  buna təsdiqdir. Əlbəttə ki, Siz bonus hesabınıza əlavə olaraq 15 bal əldə edirsiniz. Bu xəbəri öz fb səhifənizdə paylaşın və əlavə ballar qazanın."
     },
-    696: {
-      "name": "Друг Папы",
-      "descr": "20 заказов – это уже настоящая дружба на все времена! Теперь вы лучший, любимый клиент Папы. Подарок от нас – бейджик, который достается только самым избранным и 15 бонусных баллов на счет."
+    "696": {
+      "name": "\"Papa\"-nın dostu",
+      "descr": "20 sifariş - ömürlük əsl dostluq! İndi siz \"Papa\"-nın sevimlisi, ən yaxşı müştərisiniz. Bizdən hədiyyə olaraq  yalnız seçilmiş şəxslər üçün verilən beydjik və hesaba 15 bonus bal əldə edirsiniz. Bu xəbəri öz fb səhifənizdə paylaşın və əlavə ballar qazanın."
     },
-    694: {
-      "name": "Пицца Эксперт",
-      "descr": "У вас уже пять заказов, а значит вы с закрытыми глазами отличаете «Сырную пиццу» от пиццы «Четыре сыра». А вкус «Мясной пиццы» ни за что не спутаете со вкусом «Мясного удовольствия». Вы стали настоящим экспертом! Ваши 15 баллов и новый бейджик в знак нашего искреннего уважения."
+    "694": {
+      "name": "Pizza üzrə Ekspert",
+      "descr": "Sizin daha beş sifariş etmisiniz. Bu o deməkdir ki, Siz \"Marqaritanı\" gözüyumulu \"Tuskan\" pizzasından  ayırd edirsiniz. Siz heç vaxt \"Super papa\" pizzasının dadını  \"Kiçik İtalya\" pizzasının dadı ilə  səhv salmazsınız. Siz əsl ekspert olmusunuz!  Səmimi hörmət əlaməti olaraq Sizə 15 bal və yeni beydjik hədiyyə olunur. Bu xəbəri öz fb səhifənizdə paylaşın və əlavə ballar qazanın."
     },
-    692: {
-      "name": "Новичок",
-      "descr": "Поздравляем с первым заказом! Мы рады, что вы с нами. Наслаждайтесь вкуснейшей пиццей от «Папа Джонс», а в качестве приветствия мы дарим 15 бонусных баллов и ваш первый бейджик."
+    "692": {
+      "name": "Yeni istifadəçi",
+      "descr": "İlk sifarişinizlə Sizi təbrik edirik! Sizin bizimlə birgə olduğunuza görə çox şadıq. \"Papa John's\"un ən dadlı pizzasından ləzzət alın və təbrik olaraq  biz Sizə 15  bonus  balı və bizim ilk beydjikimizi hədiyyə edirik. Bu xəbəri öz fb səhifənizdə paylaşın və əlavə ballar qazanın."
     },
-    698: {
-      "name": "Комментатор",
-      "descr": "«Папа Джонс» – это не только очень вкусно, но и интересно! Подпишитесь на одну из наших групп в соцсетях и расскажите об этом друзьям. Вам в подарок – бонусные баллы и оригинальный бейдж «Комментатор»."
+    "698": {
+      "name": "Şərhçi",
+      "descr": "\"Papa John's\" - bu  çox dadlı və maraqlıdır! Fb bizim qrupumuza  daxil olun və bununla dostlarınızla paylaşın. Hədiyyə olaraq  Sizə bonus balları və \"Şərhçi\" original beydjiki verilir . Bu xəbəri öz fb səhifənizdə paylaşın və əlavə ballar qazanın."
     },
-    699: {
-      "name": "Социальный человек",
-      "descr": "Общение ваше все? Получайте от этого не только удовольствие, но и дополнительные баллы! Подпишитесь на одну из групп «Папа Джонс», сделайте три перепоста в социальных сетях (в одной или нескольких) и получите классный бейджик в свою коллекцию."
+    "699": {
+      "name": "Sosial insan ",
+      "descr": "Sizin ünsiyyət hər şey deməkdir?  Bundan həm zövq, həm də əlavə ballar əldə edin! Fb-da\"Papa John's\" adlı  qrupa daxil olun, öz səhifənizdə üç repost edin və öz kolleksiyaniza  əla beydjik və əlavə 15 bal əldə edin. Bu xəbəri öz fb səhifənizdə paylaşın və əlavə ballar qazanın."
     },
-    700: {
-      "name": "Душа компании",
-      "descr": "Пусть любимая пицца радует вас каждый день! Подпишитесь на две любые группы «Папа Джонс» в fb, vk и Одноклассниках и три раза поделитесь новостями любимого бренда с вашими друзьями. Мы уверены, они оценят вашу страсть к нашей пицце, а вы получите новое звание и, конечно же, дополнительные бонусные баллы на ваш счет."
+    "700": {
+      "name": "Kompaniyanın ürəyi",
+      "descr": "Qoy sevimli pizza hər gün sizi sevindirsin! Fb \"Papa John's\" adlı  qrupa daxil olun və sizin 3 dostunuz hissəsində sevimli brend postunu paylaşın. Onların sizin pizzaya olan ehtirasınızı qiymətləndirəcəyinə biz inanırıq, siz isə yeni rütbə alacaqsınız, və əlbəttə ki, sizin hesabınıza əlavə bonus balları əlavə ediləcək. Bu xəbəri öz fb səhifənizdə paylaşın və əlavə ballar qazanın. "
     },
-    701: {
-      "name": "Король общения",
-      "descr": "Теперь и ваши друзья разделяют ваше пристрастие к вкуснейшей пицце от «Папа Джонс». Так пусть вступают в наше сообщество. Для них – интереснейшие новости, информация об акциях и новинках, а для вас – приятные бонусы за каждого приглашенного и высшая награда – бейджик «Король общения». Выше вас только горы!"
+    "701": {
+      "name": "Ünsiyyətin şahı",
+      "descr": "İndi sizin dostlarınız da ən dadlı  \"Papa John's\"  pizzasının dadına şərikdir. Bizim qrupa daxil olmalarını məsləhət görürük. Onlara - ən maraqlı xəbərlər, aksiya və yeniliklər haqqında məlumata aid maraqlı söhbətlər, sizin üçün isə hər bir dəvət edilmiş şəxsə görə xoş bonuslar və \"Ünsiyyətin şahı\" beydjiki kimi yüksək mükafat . Sizdən yüksəkdə yalnız dağlardır! Bu xəbəri öz fb səhifənizdə paylaşın və əlavə ballar qazanın.   "
     }
   },
   "gifts": {
-    5598: {
+    "5598": {
       "name": "Чизкейк",
       "descr": "Описание кизкейка"
     },
-    5597: {
+    "5597": {
       "name": "Пицца Пепперони",
       "descr": "Описание пиццы"
     }
   },
   "logo": "//sailplays3.cdnvideo.ru/media/assets/assetfile/16e09290ab5a642bcaacaa75b1841c8c.png",
   "pizzameter": {
-    "counter_bg": "//sailplay.cdnvideo.ru/static/partners/pj/img/pizzameter/counter_ru.png",
-    "wrapper_bg": "//sailplay.cdnvideo.ru/static/partners/pj/img/pizzameter/deck_ru.png"
+    "counter_bg": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/2a6ad32865c25bbf9f9ab926723f49bb.png",
+    "wrapper_bg": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/acea674428c416c48eb1fdfd3b095e7e.png"
   },
   "tabs": {
-    "gifts": "Список подарков",
-    "actions": "Список заданий",
-    "badges": "Список бейджей"
+    "gifts": "Hədiyyələrin siyahısı",
+    "actions": "Əlavə balları qazanmaq",
+    "badges": "Beydjiklərin siyahısı"
   },
   "pluralize": {
     "points": "балл,балла,баллов"
   },
-  "login": "Войти",
-  "unconfirmed_points": "Неподтвержденные баллы",
+  "login": "Daxil olmaq",
+  "unconfirmed_points": "Təsdiq olunmayan ballar",
   "unconfirmed_points_hint": {
-    "title": "Что это?",
-    "text": "Ваши неподтвержденные баллы, которые станут подтверждены после факта оплаты заказа"
+    "title": "Bu nədir??",
+    "text": "Sifariş ödənildikdən sonra Sizin təsdiqlənəcək  təsdiq olunmayan ballarınız"
   },
-  "you_have": "Вы — ",
-  "need_earn_more": "Нужно накопить еще ",
-  "empty_name": "Имя не указано",
-  "empty_status": "Нет статуса",
-  "history_button": "История начислений",
-  "status_button": "Список статусов",
-  "header_text": "У нас есть потрясающая бонусная программа для вас, благодаря которой вы можете<br>\nполучать баллы за покупки товаров на нашем сайте. За эти баллы вы сможете получать<br>\nподарки из нашего ассортимента!",
-  "history_title": "История начислений",
-  "pages": "Страницы:",
+  "you_have": "Siz — ",
+  "need_earn_more": "Daha çox bal toplamaq lazımdır ",
+  "empty_name": "Ad qeyd olunmayıb",
+  "empty_status": "Status yoxdur",
+  "history_button": "Əlavə edilmişlərin tarixi",
+  "status_button": "Statusların siyahısı",
+  "header_text": "Biz sizə gözəl bonus programı hazırlamışıq hansı ki,<br>\nəlavə bonus balları əldə etmək üçün kömək edəcək. Bu balları ilə siz<br>\nçeşimizdən müxtəlif hədiyyələr əldə edə bilərsiniz.",
+  "history_title": "Əlavə edilmişlərin tarixi",
+  "pages": "Səhifələr:",
   "history_date_format": "dd.MM.yyyy",
-  "make_action": "Выполнить",
+  "make_action": "Yerinə yetirmək",
   "gifts_messages": {
-    "success": {"title": "Поздравляем", "text": "Вы получили подарок."},
-    "error": {"title": "Ошибка", "text": "Пожалуйста, попробуйте еще раз."}
+    "success": {"title": "Təbrik edirik", "text": "Siz hədiyyə əldə etmisiniz"},
+    "error": {"title": "Yanlış", "text": "Zəhmət olmasa, təkrarlıyın."}
   },
   "actions_messages": {
-    "success": {"title": "Поздравляем, задание выполнено!", "text": "Вам начиcленно: "},
-    "error": {"title": "Ошибка", "text": "Пожалуйста, попробуйте еще раз."}
+    "success": {"title": "Təbrik edirik, tapşırıq yerinə yetirildi!", "text": "Topladığınız baı: "},
+    "error": {"title": "Yanlış", "text": "Zəhmət olmasa, təkrarlıyın."}
   },
   "history_texts": {
-    "purchase": "Покупка",
-    "gift_purchase": "Подарок",
-    "badge": "Бейджик",
-    "registration": "Регистрация",
-    "referral": "Регистрация друга",
-    "referred": "Регистрация по приглашению",
+    "purchase": "Alış-veriş",
+    "gift_purchase": "Hədiyyə",
+    "badge": "Beydjik",
+    "registration": "Qeydiyyat",
+    "referral": "Dostunun qeydiyyatı",
+    "referred": "Dəvətnamə ilə qeydiyyat",
     "referred_purchase": "Покупка приглашенного пользователя",
     "promocode": "За ввод промокода",
     "enter_group": "Вступление в группу ",
@@ -103,25 +103,25 @@ window._SP_LOCALE = {
     "social_share": "Рассказал в ",
     "share_badge": "Рассказал о бейджике в ",
     "earn_badge": "Получен бейджик ",
-    "extra": "Экстра "
+    "extra": "Ekstra "
   },
-  "social_list": {"vk": "Вконтакте", "ok": "Одноклассиниках", "tw": "Twitter", "fb": "Facebook"},
+  "social_list": {"fb": "Facebook"},
   "actions": {
     "system": {
       "inviteFriend": {
-        "name": "Пригласить друга"
+        "name": "Dostunu dəvət etmək"
       }
     },
     "social": {
       "fb": {
         "like": {
-          "name": "Вступить <br>в группу Facebook"
+          "name": "Bizi <br>izləyin"
         },
         "partner_page": {
-          "name": "Рассказать<br> о нас в Facebook"
+          "name": "Haqqımızda<br> paylaşın"
         },
         "purchase": {
-          "name": "Рассказать о<br>своей покупке в Facebook"
+          "name": "Alış-verişiniz haqqında<br>paylaşın"
         }
       }
     }

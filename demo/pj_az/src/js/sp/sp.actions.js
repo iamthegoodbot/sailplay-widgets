@@ -4,6 +4,13 @@
 
     .service('actions_data', function ($rootScope) {
       var default_data = {
+        "static_page": {
+          "styles": {
+            "body": {
+              backgroundColor: 'red'
+            }
+          }
+        },
         "system": {
           "inviteFriend": {
             "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/64e9e256af12573ae97a7e9dc22297a4.png",
@@ -145,9 +152,13 @@
 
         var data = {};
 
+        console.log(action)
+
         if (!action) return data;
 
         if (action.socialType) data = actions_data.social[action.socialType] && actions_data.social[action.socialType][action.action];
+
+        if (action.type == "static_page") data = actions_data.static_page
 
         if (actions_data.system[action.type]) data = actions_data.system[action.type];
 
@@ -238,7 +249,7 @@
 
               var config = sp.config();
 
-              iframe.src = (config && ((config.DOMAIN + config.urls.actions.custom.render.replace(':action_id', action.id) + '?auth_hash=' + config.auth_hash + '&lang=' + config.lang))) || '';
+              iframe.src = (config && ((config.DOMAIN + config.urls.actions.custom.render.replace(':action_id', action.id) + '?auth_hash=' + config.auth_hash + '&lang=' + config.lang + '&config=' + 'pjamodals'))) || '';
 
               iframe.className = ['sailplay_action_custom_frame', action.type].join(' ');
 

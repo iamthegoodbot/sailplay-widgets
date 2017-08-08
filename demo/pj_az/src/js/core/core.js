@@ -33,6 +33,12 @@ angular.module('core', [
 
     $rootScope.loaded = false;
 
+    if(window.sessionStorage && window.sessionStorage.getItem('splogged')) {
+      $rootScope.isLogged = !!window.sessionStorage.getItem('splogged')
+    } else {
+      $rootScope.isLogged = false
+    }
+
     $rootScope.auth = false;
 
     sp.on('init.success', function () {
@@ -59,11 +65,15 @@ angular.module('core', [
 
     sp.on('login.success', function () {
 
+      window.sessionStorage && window.sessionStorage.setItem('splogged', true)
+
       sp_api.reset();
 
       $rootScope.$apply(function () {
 
         $rootScope.auth = true;
+
+        $rootScope.isLogged = true
 
         loadData();
 
@@ -72,6 +82,8 @@ angular.module('core', [
     });
 
     sp.on('logout.success', function () {
+
+      window.sessionStorage && window.sessionStorage.removeItem('splogged')
 
       sp_api.reset();
       //
@@ -82,6 +94,8 @@ angular.module('core', [
       $rootScope.$apply(function () {
 
         $rootScope.auth = false;
+
+        $rootScope.isLogged = false
 
       });
 

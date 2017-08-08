@@ -17,6 +17,7 @@
     browserSync.init({
       server: "./",
       host: '0.0.0.0',
+      port: '1488',
       open: false
     });
 
