@@ -51,7 +51,7 @@ window._SP_LOCALE = {
       "descr": "Описание пиццы"
     }
   },
-  "logo": "//sailplays3.cdnvideo.ru/media/assets/assetfile/16e09290ab5a642bcaacaa75b1841c8c.png",
+  "logo": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/6b68620de101330665aec49c9ec90931.png",
   "pizzameter": {
     "counter_bg": "//sailplay.cdnvideo.ru/static/partners/pj/img/pizzameter/counter_ru.png",
     "wrapper_bg": "//sailplay.cdnvideo.ru/static/partners/pj/img/pizzameter/deck_ru.png"
@@ -76,7 +76,7 @@ window._SP_LOCALE = {
   "empty_status": "Нет статуса",
   "history_button": "История начислений",
   "status_button": "Список статусов",
-  "header_text": "У нас есть потрясающая бонусная программа для вас, благодаря которой вы можете<br>\nполучать баллы за покупки товаров на нашем сайте. За эти баллы вы сможете получать<br>\nподарки из нашего ассортимента!",
+  "header_text": "У нас есть потрясающая бонусная программа для вас, благодаря которой вы можете получать баллы за покупки товаров на нашем сайте. За эти баллы вы сможете получать подарки из нашего ассортимента!",
   "history_title": "История начислений",
   "pages": "Страницы:",
   "history_date_format": "dd.MM.yyyy",

@@ -21,14 +21,14 @@ body {
     padding-bottom: 10px;
     line-height: 1;
     color: #148f6a;
-    width: 30%;
-    font-size: 32px;
+    width: 33%;
+    font-size: 26px;
     display: inline-block;
     font-weight: bold;
     position: relative;
     text-decoration: none;
-    &:not(:last-child) {
-      margin-right:5%;
+    &:not(:last-child):not(:hover):not(.act) {
+      border-right: 1px solid #eaeaea;
     }
     &.act, &:hover {
       background-color: #0F9675;
@@ -49,4 +49,8 @@ body {
 }
 div[data-sailplay-action-custom] {
   max-width: 800px;
+}
+
+.sp_wrapper{
+  font-family: "Open Sans Condensed";
 }

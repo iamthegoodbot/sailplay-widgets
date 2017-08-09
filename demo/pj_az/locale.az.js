@@ -51,7 +51,7 @@ window._SP_LOCALE = {
       "descr": "Описание пиццы"
     }
   },
-  "logo": "//sailplays3.cdnvideo.ru/media/assets/assetfile/16e09290ab5a642bcaacaa75b1841c8c.png",
+  "logo": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/25834cc415872d6658db9a57be67a103.png",
   "pizzameter": {
     "counter_bg": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/2a6ad32865c25bbf9f9ab926723f49bb.png",
     "wrapper_bg": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/acea674428c416c48eb1fdfd3b095e7e.png"
@@ -62,7 +62,7 @@ window._SP_LOCALE = {
     "badges": "Beydjiklərin siyahısı"
   },
   "pluralize": {
-    "points": "балл,балла,баллов"
+    "points": "Ball,Ballar,Ballar"
   },
   "login": "Daxil olmaq",
   "unconfirmed_points": "Təsdiq olunmayan ballar",
@@ -76,7 +76,7 @@ window._SP_LOCALE = {
   "empty_status": "Status yoxdur",
   "history_button": "Əlavə edilmişlərin tarixi",
   "status_button": "Statusların siyahısı",
-  "header_text": "Biz sizə gözəl bonus programı hazırlamışıq hansı ki,<br>\nəlavə bonus balları əldə etmək üçün kömək edəcək. Bu balları ilə siz<br>\nçeşimizdən müxtəlif hədiyyələr əldə edə bilərsiniz.",
+  "header_text": "Sizin üçün möhtəşəm bonus proqramımız var. Bu proqram sayəsində Siz saytımızdan əldə etdiyiniz məhsullara görə ballar alacaq və bu ballarla bizdən hədiyyə ala biləcəksiniz.",
   "history_title": "Əlavə edilmişlərin tarixi",
   "pages": "Səhifələr:",
   "history_date_format": "dd.MM.yyyy",

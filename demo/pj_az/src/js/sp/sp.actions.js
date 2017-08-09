@@ -4,13 +4,6 @@
 
     .service('actions_data', function ($rootScope) {
       var default_data = {
-        "static_page": {
-          "styles": {
-            "body": {
-              backgroundColor: 'red'
-            }
-          }
-        },
         "system": {
           "inviteFriend": {
             "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/64e9e256af12573ae97a7e9dc22297a4.png",

@@ -9,8 +9,10 @@
             <div class="bns_top_info">
                 <div class="bns_top_slide">
                     <img data-ng-src="{{ 'logo' | translate }}">
-                    <span class="bns_slide_text"
+                    <div class="bns_slide_text_container">
+                      <span class="bns_slide_text"
                           data-ng-bind-html="'header_text' | translate | to_trusted"></span>
+                    </div>
                     <div class="bns_top_slide_linck">
                         <a data-ng-href="{{ config.data && config.data.login_link }}"
                            data-ng-bind="'login' | translate"></a>
@@ -119,7 +121,9 @@
                 <div class="bns_tab_block" id="gift" data-ng-switch-when="gifts" data-sailplay-gifts>
 
                     <div class="bns_gift_item" data-ng-repeat="gift in gifts()">
-                        <img data-ng-src="{{ gift.thumbs.url_250x250 | sailplay_pic }}">
+                      <div class="img-container" data-ng-style="{'background-image': 'url('+(gift.thumbs.url_250x250 | sailplay_pic)+')'}">
+                        
+                      </div>
                         <div class="bns_gift_item_bottom">
                             <span class="bns_gift_name" data-ng-bind="(gift | giftLocale).name"></span>
                             <span class="bns_gift_desc" data-ng-bind="(gift | giftLocale).descr"></span>
@@ -196,18 +200,19 @@
                 <div class="bns_tab_block" id="achiv" data-ng-switch-when="badges" data-sailplay-badges>
 
                     <div class="bns_achiv_line" data-ng-repeat="line in badges().multilevel_badges">
-
-                        <div class="bns_achiv_item" data-ng-repeat="badge in line"
-                             data-ng-click="open(badge)"
-                             data-ng-class="{act: badge.is_received, open: badge.id == $parent.$parent.opened}">
-                            <img data-ng-src="{{ (badge.is_received ? badge.thumbs.url_250x250 : badge.thumbs.url_gs) | sailplay_pic }}">
-                            <span>
-                                {{ badge.name }}
-                                <strong data-ng-show="badge.points"
-                                        data-ng-bind="(badge.points | number) + ' ' + (badge.points |sailplay_pluralize:('pluralize.points' | translate))"></strong>
-                            </span>
+                        
+                        <div class="bns_achiv_item_container">
+                          <div class="bns_achiv_item" data-ng-repeat="badge in line"
+                               data-ng-click="open(badge)"
+                               data-ng-class="{act: badge.is_received, open: badge.id == $parent.$parent.opened}">
+                              <img data-ng-src="{{ (badge.is_received ? badge.thumbs.url_250x250 : badge.thumbs.url_gs) | sailplay_pic }}">
+                              <span>
+                                  {{ badge.name }}
+                                  <strong data-ng-show="badge.points"
+                                          data-ng-bind="(badge.points | number) + ' ' + (badge.points |sailplay_pluralize:('pluralize.points' | translate))"></strong>
+                              </span>
+                          </div>
                         </div>
-
                         <data-badge-info data-badges="line"></data-badge-info>
 
                     </div>

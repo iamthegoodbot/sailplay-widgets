@@ -11,6 +11,7 @@
   var minifyHtml = require("gulp-minify-html");
   var imagemin = require('gulp-imagemin');
   var browserSync = require('browser-sync').create();
+  var sourcemaps = require('gulp-sourcemaps');
 
   gulp.task('connect', function () {
 
@@ -78,9 +79,11 @@
 
   gulp.task('build.less', function () {
     return gulp.src(__dirname + '/src/less/sailplay.pj_az.less')
+      .pipe(sourcemaps.init())
       .pipe(less({
         paths: [path.join(__dirname, 'less', 'includes')]
       }))
+      .pipe(sourcemaps.write())
       .pipe(gulp.dest(__dirname + '/dist/css/'));
   });
 
