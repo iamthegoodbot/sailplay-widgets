@@ -17,17 +17,8 @@
   &:hover {
     background-color: #ad0f14;
     cursor: pointer;
-    .bns_qust_left {
-      img {
-        display: none;
-        &.bns_qust_left_h {
-          display: inline-block;
-          -webkit-box-shadow: 0 0 15px 0 rgba(0,0,0,0.2);
-          box-shadow: 0 0 15px 0 rgba(0,0,0,0.2);
-        }
-      }
-    }
     .bns_qust_right {
+      transform: translateX(-40px);
       .bns_qust_right_name {
         opacity: 0;
       }
@@ -35,7 +26,9 @@
         opacity: 0;
       }
       a {
+        font-family: Arial, sans-serif;
         display: block;
+        font-size: 18px;
       }
     }
   }
@@ -57,9 +50,6 @@
       max-height: 60%;
       max-width: 60%;
 
-    }
-    .bns_qust_left_h {
-      display: none;
     }
   }
   .bns_qust_right {
@@ -98,7 +88,7 @@
       color: #ffffff;
       font-size: 26px;
       font-weight: bold;
-      letter-spacing: -1px;
+      //letter-spacing: -1px;
       text-decoration: none;
       line-height: 20px;
       margin-top: -10px;
