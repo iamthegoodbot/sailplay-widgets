@@ -136,7 +136,76 @@ angular.module('sp.profile', [])
 
   })
 
-  .directive('sailplayProfileEdit', function (sp, sp_api, $rootScope, spProfile, spProfileErrors, countries, interests, varsProfile) {
+  .directive('file', () => {
+    return {
+      require: "ngModel",
+      restrict: 'A',
+      link: ($scope, el, attrs, ngModel) => {
+        el.bind('change', (event) => {
+          let files = event.target.files;
+          let file = files[0];
+
+          ngModel.$setViewValue(file);
+          $scope.$apply();
+        });
+      }
+    };
+  })
+
+  .factory('hwUploadAvatar', function(sp, $rootScope, $http, $timeout, sp_api){
+    var obj = {
+      img: false
+    }
+    var url = $rootScope.config.data.urls.upload_avatar
+    obj.uploadAvatar = function(){
+      $timeout(function(){
+
+        if (!obj.img) {
+          return;
+        }
+
+        if (obj.img.size>2*1024*1024) {
+          $rootScope.$broadcast('notify:show', {
+            title: 'Ошибка загрузки аватара',
+            text: 'Файл должен быть меньше 2 мегабайт'
+          });
+        }
+
+        var user = sp_api.data('load.user.info')
+
+        let fd = new FormData();
+
+        fd.append('avatar', obj.img);
+
+        fd.append('oid', user().user.origin_user_id)
+
+
+        function cb(res){
+          if (res.status == 'ok') {
+            $rootScope.$broadcast('notify:show', {
+              title: 'Успех',
+              text: res.message
+            });
+            SailPlayApi.call('load.user.info', {all: 1, purchases: 1});
+          } else {
+            $rootScope.$broadcast('notify:show', {
+              title: 'Ошибка',
+              text: res.message
+            });
+          }
+        }
+
+        return $http.post(url, fd, {
+          transformRequest: angular.identity,
+          headers: {'Content-Type': undefined}
+        }).then(cb,cb)
+
+      }, 50)
+    }
+    return obj
+  })
+
+  .directive('sailplayProfileEdit', function (sp, sp_api, $rootScope, hwUploadAvatar, spProfile, spProfileErrors, countries, interests, varsProfile) {
     return {
       restrict: 'A',
       replace: false,
@@ -174,6 +243,15 @@ angular.module('sp.profile', [])
             scope.$digest();
           }
         });
+
+        scope.uploadAvatar = hwUploadAvatar.uploadAvatar
+        scope.avatarImg = hwUploadAvatar.avatarImg
+        scope.$watch('avatarImg', function(newVal) {
+          if(newVal){
+            hwUploadAvatar.img = newVal
+          }
+        })
+        
 
         scope.save = function (form, success) {
 

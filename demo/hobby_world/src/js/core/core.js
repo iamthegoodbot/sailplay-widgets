@@ -7,7 +7,7 @@
     .run(function (sp, ipCookie, sp_api, $rootScope, actions_data) {
 
       $rootScope.config = window.sailplay_config || {};
-
+      
       sp.send('init', {
 
         partner_id: $rootScope.config.partner_id || 1616,

@@ -375,13 +375,19 @@
 
             <span class="bns_over_head">Редактировать профиль</span>
 
+            <div></div>
+
             <form name="profile_edit" data-ng-submit="save(profile_edit, clear_show('show_prof'))">
 
+                <div class="bns_edit_ava">
+                <img data-ng-src="{{user().user.pic}}" alt="">
+                    <a href="#" class="bns_over_edit_ava" onclick="document.getElementById('sailplay_upload_avatar').click()">Редактировать аватар</a>
+                    <input data-ng-hide="true" accept=".jpg,.jpeg,.png,.gif" data-file type="file" name="avatar" id="sailplay_upload_avatar"
+                               data-ng-model="avatarImg"
+                               data-ng-change="uploadAvatar()">
+                </div>
+                
                 <div class="bns_edit_col">
-                    <!--<div class="bns_edit_ava">-->
-                    <!--<img src="img/ava_def.png" alt="">-->
-                    <!--<a href="#" class="bns_over_edit_ava">Редактировать аватар</a>-->
-                    <!--</div>-->
                     <div class="bns_input_block"
                          data-ng-class="{ bns_err: !form.lastName && profile_edit.last_name.$touched }">
                         <label>Фамилия <span class="bns_err_text">Ошибка</span></label>
