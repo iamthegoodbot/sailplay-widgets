@@ -2534,7 +2534,7 @@ angular.module("ivpusic.cookie",["ipCookie"]),angular.module("ipCookie",["ng"]).
 
     window.startLoyaltyApp = function(auth_hash, email) {
         angular.module('alpina').constant('USER_EMAIL', email);
-        sp.send('init', {partner_id: PARTNER_ID, lang: 'ru', domain: 'http://sailplay.ru'});
+        sp.send('init', {partner_id: PARTNER_ID, lang: 'ru', domain: window.location.protocol + '//sailplay.ru'});
         if (auth_hash) {
             sp.on('init.success', function () {
                 sp.send('login', auth_hash);
