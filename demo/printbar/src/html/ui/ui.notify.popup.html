@@ -23,7 +23,7 @@
 
             <div class="bns_overaly_bottom_left" data-ng-bind-html="($parent.$parent.data.text + ' ' + $parent.$parent.data.gift_help_text) | to_trusted" style="float: none; width: 70%;"></div>
             <br>
-            <div class="bns_overaly_bottom_left" data-ng-bind-html="('Ваш промо-код: ' + $parent.$parent.data.coupon_number) | to_trusted"></div>
+            <div class="bns_overaly_bottom_left"><span>{{'Ваш промо-код: '}}</span><span style="font-size: 20px;">{{$parent.$parent.data.coupon_number}}</span></div>
 
         </div>
 

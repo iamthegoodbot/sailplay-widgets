@@ -531,7 +531,7 @@
             <div class="bns_overlay_left">
                 <span class="bns_overlay_head">История начислений</span>
 
-                <span class="bns_overlay_hist_empty" data-ng-if="history && history() && !history().length !== 0">Начислений еще не было</span>
+                <span class="bns_overlay_hist_empty" data-ng-if="history && history() && history().length === 0">Начислений еще не было</span>
 
                 <table class="bns_overlay_hist_main">
 
