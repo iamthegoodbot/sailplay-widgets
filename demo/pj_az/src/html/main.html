@@ -125,8 +125,8 @@
                         
                       </div>
                         <div class="bns_gift_item_bottom">
-                            <span class="bns_gift_name" data-ng-bind="(gift | giftLocale).name"></span>
-                            <span class="bns_gift_desc" data-ng-bind="(gift | giftLocale).descr"></span>
+                            <span class="bns_gift_name" data-ng-bind="gift | giftName"></span>
+                            <span class="bns_gift_desc" data-ng-bind="gift | giftDesc"></span>
                         </div>
                         <a href="#"
                            data-ng-class="{act: user().user_points.confirmed >= gift.points}"

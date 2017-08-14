@@ -1,8 +1,29 @@
 angular.module('sp.gifts', [])
 
-  .filter('giftLocale', function($rootScope){
+  .filter('giftName', function($rootScope){
     return function(gift){
-      return $rootScope.locale.gifts && $rootScope.locale.gifts[gift && gift.id] || {}
+      var lang = $rootScope.config.lang
+      if(lang == 'en') {
+        return gift.name
+      } else {
+        var nameParsed = JSON.parse(gift.name)
+        if(nameParsed[lang]){
+          return nameParsed[lang]
+        }
+      }
+    }
+  })
+  .filter('giftDesc', function($rootScope){
+    return function(gift){
+      var lang = $rootScope.config.lang
+      if(lang == 'en') {
+        return gift.name
+      } else {
+        var descrParsed = JSON.parse(gift.descr)
+        if(descrParsed[lang]){
+          return descrParsed[lang]
+        }
+      }
     }
   })
 

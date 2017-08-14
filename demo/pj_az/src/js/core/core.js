@@ -21,12 +21,12 @@ angular.module('core', [
     sp.send('init', {
       partner_id: $rootScope.config.partner_id || 1652,
       domain: $rootScope.config.domain || '//sailplay.ru',
-      lang: $rootScope.config.lang && ($rootScope.config.lang == 'az' ? 'en' : $rootScope.config.lang) || 'ru'
+      lang: $rootScope.config.lang && ($rootScope.config.lang == 'az' ? 'ru' : $rootScope.config.lang) || 'ru'
     });
 
     $rootScope.remote_login_options = {
       background: 'rgba(0, 0, 0, 0.5)',
-      lang: $rootScope.config.lang && ($rootScope.config.lang == 'az' ? 'en' : $rootScope.config.lang) || 'ru',
+      lang: $rootScope.config.lang && ($rootScope.config.lang == 'az' ? 'ru' : $rootScope.config.lang) || 'ru',
       disabled_options: ['socials', 'agreement']
     };
 
