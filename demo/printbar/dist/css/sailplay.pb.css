@@ -377,6 +377,7 @@
   padding-left: 15px;
   padding-right: 15px;
   cursor: pointer;
+  border-bottom: 1px solid #F2F2F2;
 }
 .sp_wrapper .bns_overlay .bns_overlay_inner .bns_overlay_stat_main .bns_overlay_stat_item:hover {
   background-color: #f6f6f6;
@@ -391,7 +392,7 @@
   display: block;
   background-image: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/8a7b8d0f44bc6747d4f53b76f71a8550.png");
   position: absolute;
-  right: -28px;
+  right: -19px;
   top: 50%;
   margin-top: -17px;
 }
@@ -443,7 +444,6 @@
 .sp_wrapper .bns_overlay .bns_overlay_inner .bns_overlay_stat_main .bns_overlay_stat_item .bns_overlay_stat_item_text {
   float: right;
   width: 80%;
-  border-bottom: 1px solid #F2F2F2;
   padding-top: 25px;
   padding-bottom: 25px;
 }
@@ -476,6 +476,7 @@
   color: #BDBDBD;
   font-size: 14px;
   padding-right: 10px;
+  border-bottom: 1px solid #F2F2F2;
 }
 .sp_wrapper .bns_overlay .bns_overlay_inner .bns_overlay_hist_main td:nth-child(2) {
   border-bottom: 1px solid #F2F2F2;
