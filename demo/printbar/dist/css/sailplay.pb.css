@@ -54,7 +54,7 @@
   width: 20%;
 }
 .sp_wrapper .bns_overlay.bns_overlay_stst .bns_overlay_inner .bns_overlay_left {
-  width: 62%;
+  width: 60%;
 }
 .sp_wrapper .bns_overlay.bns_overlay_stst .bns_overlay_inner .bns_overlay_right {
   width: 37%;
@@ -268,6 +268,7 @@
 .sp_wrapper .bns_overlay .bns_overlay_inner .bns_overlay_left .bns_overlay_gift_main .bns_overlay_gift_item .bns_overlay_gift_item_right a.bns_nact {
   background-color: #F2F2F2;
   color: #BDBDBD;
+  pointer-events: none;
 }
 .sp_wrapper .bns_overlay .bns_overlay_inner .bns_overlay_left .bns_overlay_gift_main .bns_overlay_gift_item .bns_overlay_gift_item_right .bns_overlay_gift_item_name {
   float: left;
@@ -366,11 +367,19 @@
   width: 100%;
   box-sizing: border-box;
   padding-right: 18px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 .sp_wrapper .bns_overlay .bns_overlay_inner .bns_overlay_stat_main .bns_overlay_stat_item {
   float: left;
   width: 100%;
   position: relative;
+  padding-left: 15px;
+  padding-right: 15px;
+  cursor: pointer;
+}
+.sp_wrapper .bns_overlay .bns_overlay_inner .bns_overlay_stat_main .bns_overlay_stat_item:hover {
+  box-shadow: 0px 0px 5px gray;
 }
 .sp_wrapper .bns_overlay .bns_overlay_inner .bns_overlay_stat_main .bns_overlay_stat_item:last-child .bns_overlay_stat_item_text {
   border-bottom: 0;
@@ -408,7 +417,7 @@
   float: left;
   width: 20%;
   position: absolute;
-  left: 0;
+  left: 15px;
   top: 0;
   height: 100%;
 }
@@ -693,11 +702,12 @@
   text-align: center;
   margin-top: 10px;
 }
-.sp_wrapper .bns_info .bns_info_ava .bns_info_img img {
+.sp_wrapper .bns_info .bns_info_ava .bns_info_img .img-container {
   width: 150px;
-  height: auto;
-  min-height: 100px;
-  max-height: 150px;
+  height: 150px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   max-width: 100%;
   border-radius: 100%;
   border: 1px solid #ECECEC;
@@ -774,9 +784,9 @@
   float: left;
   width: 100%;
   color: #000;
-  font-size: 36px;
+  margin-top: -3px;
+  font-size: 33px;
   font-weight: 800;
-  margin-bottom: -7px;
 }
 .sp_wrapper .bns_info .bns_info_right .bns_info_bal .bns_info_bal_block .bns_info_bal_text {
   float: left;
@@ -840,9 +850,15 @@
   font-size: 30px;
   font-weight: 800;
   text-align: center;
-  margin-bottom: 21px;
+  margin-bottom: 3px;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.sp_wrapper .bns_info .bns_info_right .bns_info_status .bns_info_bal_text {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 2px;
+  display: inline-block;
 }
 .sp_wrapper .bns_info .bns_info_right .bns_info_status .bns_info_bal_ne {
   float: left;
@@ -1046,6 +1062,7 @@
   z-index: 2;
 }
 .sp_wrapper .bns_info .bns_info_line .bns_line_main_wrap .bns_line_fill .bns_line_fill_til {
+  line-height: 1.2;
   position: absolute;
   right: 0px;
   width: 120px;

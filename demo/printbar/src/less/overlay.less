@@ -46,7 +46,7 @@
     &.bns_overlay_stst {
       .bns_overlay_inner {
         .bns_overlay_left {
-          width: 62%;
+          width: 60%;
         }
         .bns_overlay_right {
           width: 37%;
@@ -269,6 +269,7 @@
                 &.bns_nact {
                   background-color: #F2F2F2;
                   color: #BDBDBD;
+                  pointer-events: none;
                 }
               }
               .bns_overlay_gift_item_name {
@@ -385,10 +386,18 @@
         width: 100%;
         box-sizing: border-box;
         padding-right: 18px;
+        padding-top: 10px;
+        padding-bottom: 10px;
         .bns_overlay_stat_item {
           float: left;
           width: 100%;
           position: relative;
+          padding-left: 15px;
+          padding-right: 15px;
+          cursor: pointer;
+          &:hover {
+            box-shadow: 0px 0px 5px gray;
+          }
           &:last-child {
             .bns_overlay_stat_item_text {
               border-bottom: 0;
@@ -439,7 +448,7 @@
             float: left;
             width: 20%;
             position: absolute;
-            left: 0;
+            left: 15px;
             top: 0;
             height: 100%;
             &:before {

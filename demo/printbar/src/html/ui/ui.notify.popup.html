@@ -13,9 +13,17 @@
 
         </div>
 
-        <div class="bns_overlay_bottom">
+        <div class="bns_overlay_bottom" data-ng-if="!$parent.data.isCoupon">
 
-            <div class="bns_overaly_bottom_left" data-ng-bind-html="$parent.data.text | to_trusted"></div>
+            <div class="bns_overaly_bottom_left" data-ng-bind-html="$parent.$parent.data.text | to_trusted"></div>
+
+        </div>
+
+        <div class="bns_overlay_bottom" data-ng-if="$parent.data.isCoupon">
+
+            <div class="bns_overaly_bottom_left" data-ng-bind-html="($parent.$parent.data.text + ' ' + $parent.$parent.data.gift_help_text) | to_trusted" style="float: none; width: 70%;"></div>
+            <br>
+            <div class="bns_overaly_bottom_left" data-ng-bind-html="('Ваш промо-код: ' + $parent.$parent.data.coupon_number) | to_trusted"></div>
 
         </div>
 

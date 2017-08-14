@@ -88,7 +88,18 @@ angular.module('sp.history', [])
       scope: true,
       link: function (scope) {
 
-        scope.history = sp_api.data('load.user.history');
+        var historyFn = sp_api.data('load.user.history')
+
+        scope.history = function(){
+          return historyFn()
+            .filter(function(item){
+              if(item.hasOwnProperty('is_completed')){
+                return item.is_completed
+              } else {
+                return true
+              }
+            })
+        }
 
       }
 

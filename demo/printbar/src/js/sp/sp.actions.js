@@ -330,7 +330,7 @@
 
     })
 
-    .directive('sailplayActions', function (sp_api, sp, spAction, tagHelper, $rootScope, $filter, $timeout) {
+    .directive('sailplayActions', function (sp_api, sp, spAction, tagHelper, $rootScope, $filter, $timeout, $q) {
 
       return {
 
@@ -340,6 +340,8 @@
         link: function (scope) {
 
           scope.actions = [];
+
+          scope.actionsWithCompleted = [];
 
           scope.show = null;
 
@@ -351,9 +353,32 @@
             scope.show = action;
           });
 
-          scope.createActions = function (new_val, old_val) {
+          function getAllActions() {
 
+            return $q(function(resOuter){
+              $q(function(res){
+                SAILPLAY.jsonp.get('//sailplay.ru/js-api/1655/actions/custom/list/', {}, function(data){
+                  res(data.actions)
+                })
+              }).then(function(res){
+                SAILPLAY.jsonp.get('//sailplay.ru/js-api/1655/actions/load/', {}, function(data){
+                  resOuter({
+                    custom: res,
+                    basic: data.data.actions
+                  })
+                })
+              })
+            })
+          
+          }
+
+          scope.createActions = function (new_val, old_val) {
+            
             var actions = [];
+
+            var allActionsArray = []
+
+            var allActions = getAllActions()
 
             if (sp_api.data('load.actions.list')() && sp_api.data('load.actions.list')().actions) {
               actions = actions.concat(sp_api.data('load.actions.list')().actions);
@@ -363,7 +388,42 @@
               actions = actions.concat(sp_api.data('load.actions.custom.list')());
             }
 
+            console.log(actions)
+
             scope.actions = angular.copy(actions);
+
+            allActions.then(function(allActionsObj){
+              if (sp_api.data('load.actions.list')() && sp_api.data('load.actions.list')().actions) {
+                var basicActions = sp_api.data('load.actions.list')().actions
+                allActionsArray = allActionsArray.concat(
+                  allActionsObj.basic.reduce(function(acc, action){
+                    var isNotCompleted = basicActions.some(function(item){
+                      return item._actionId == action._actionId
+                    })
+                    action.isCompleted = !isNotCompleted
+                    return acc.concat(action)
+                  }, [])
+                )
+              }
+              if (sp_api.data('load.actions.custom.list')() && sp_api.data('load.actions.custom.list')()) {
+                var customActions = sp_api.data('load.actions.custom.list')()
+                allActionsArray = allActionsArray.concat(
+                  allActionsObj.custom.reduce(function(acc, action){
+                    var isNotCompleted = customActions.some(function(item){
+                      return item.id == action.id
+                    })
+                    action.isCompleted = !isNotCompleted
+                    return acc.concat(action)
+                  }, [])
+                )
+              }
+
+              scope.actionsWithCompleted = allActionsArray
+              console.info(allActionsArray)
+
+            })
+
+
 
           };
 
