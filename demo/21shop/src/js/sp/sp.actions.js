@@ -302,6 +302,17 @@
 
     })
 
+    .filter('tryExtractPointsFromDescr', function(){
+      return function(points, description){
+        try {
+            var parsedDecription = JSON.parse(description).points;
+            return parsedDecription
+        } catch(e) {
+            return points
+        }
+      }
+    })
+
     .directive('sailplayActions', function (sp_api, sp, spAction, tagHelper) {
 
       return {

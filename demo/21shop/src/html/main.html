@@ -288,8 +288,8 @@
                     <div class="bns_earn_item_right">
                         <span class="bns_earn_name" data-ng-bind="action.name"></span>
                         <span class="bns_earn_point">
-                             <strong data-ng-bind="(action.points | number) + ' '"></strong>
-                            {{ action.points | sailplay_pluralize:'балл,балла,баллов' }}
+                             <strong data-ng-bind="(action.points | tryExtractPointsFromDescr:action.description | number) + ' '"></strong>
+                            {{ action.points | tryExtractPointsFromDescr:action.description | sailplay_pluralize:'балл,балла,баллов' }}
                         </span>
                     </div>
                     <a href="#" class="bns_btn bns_earn_btn"
