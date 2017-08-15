@@ -306,6 +306,9 @@
       return function(points, description){
         try {
             var parsedDecription = JSON.parse(description).points;
+            if(parsedDecription === void 0) {
+              throw "Undefined"
+            }
             return parsedDecription
         } catch(e) {
             return points
