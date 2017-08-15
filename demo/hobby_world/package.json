@@ -12,7 +12,8 @@
     "angular-utils-pagination": "^0.11.1",
     "jquery": "^2.2.3",
     "sailplay-hub": "latest",
-    "sailplay-hub-actions": "latest"
+    "sailplay-hub-actions": "latest",
+    "slick-carousel": "^1.6.0"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
