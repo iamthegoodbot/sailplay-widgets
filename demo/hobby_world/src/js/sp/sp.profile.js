@@ -203,7 +203,7 @@ angular.module('sp.profile', [])
 
         scope.actions = sp_api.data('load.actions.list');
 
-        scope.user = sp_api.data('load.user.info');
+        scope.user = sp_api.data('load.user.info');z
 
         scope.form = spProfile.getForm();
 
