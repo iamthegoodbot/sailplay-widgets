@@ -478,7 +478,7 @@
 
                     <div class="bns_input_block bns_input_block_int"
                          data-ng-class="{ bns_err: !(tags | selectedInterests) && profile_edit.$valid }">
-                        <label>Мои интересы <span class="bns_err_text">Ошибка</span></label>
+                        <label>Мои интересы <!--span class="bns_err_text">Ошибка</span--></label>
 
                         <span class="bns_input_block_int_item" data-ng-repeat="interest in interests track by $index">
                             <input type="checkbox" data-ng-model="tags[interest]" id="bns_int_{{ $index }}">
@@ -493,8 +493,12 @@
                     </div>
                     <div class="nms_overlay_bottom">
                         <input type="submit" class="bns_btn bns_btn_l"
-                               data-ng-disabled="!(tags | selectedInterests) || profile_edit.$invalid"
+                               data-ng-disabled="profile_edit.$invalid"
                                value="Сохранить">
+
+                        <!--input type="submit" class="bns_btn bns_btn_l"
+                               data-ng-disabled="!(tags | selectedInterests) || profile_edit.$invalid"
+                               value="Сохранить"-->
 
                         <a href="#" class="bns_btn bns_btn_r js_close"
                            data-ng-click="$event.preventDefault();clear_show('show_prof');">Закрыть</a>
