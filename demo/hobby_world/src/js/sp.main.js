@@ -81,13 +81,37 @@ angular.module('hobby_world', [
     }
   })
 
-  .directive('sailplayHw', function ($rootScope, $locale) {
+  .factory('connectedAccounts', function (sp, sp_api, $timeout, $rootScope){
+    
+    var obj = {
+      fb: false,
+      gp: false,
+      ok: false,
+      tw: false,
+      vk: false
+    }
+
+    sp.on('load.actions.list.success', function(data){
+      obj.fb = data.connectedAccounts.fb
+      obj.gp = data.connectedAccounts.gp
+      obj.ok = data.connectedAccounts.ok
+      obj.tw = data.connectedAccounts.tw
+      obj.vk = data.connectedAccounts.vk
+      $rootScope.$apply()
+    })
+
+    return obj
+  })
+
+  .directive('sailplayHw', function ($rootScope, $locale, connectedAccounts) {
     return {
       restrict: 'E',
       replace: true,
       scope: true,
       templateUrl: '/html/main.html',
       link: function (scope, element) {
+
+        scope.connectedAccounts = connectedAccounts
 
         scope.global = $rootScope;
 
