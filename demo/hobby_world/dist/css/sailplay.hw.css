@@ -99,7 +99,7 @@ body.no_scrol {
   width: 760px;
 }
 .bns_overlay.bns_overlay_edit .bns_overlay_inner {
-  width: 967px;
+  width: 532px;
 }
 .bns_overlay.bns_overlay_action .bns_btn {
   width: 255px;
@@ -476,7 +476,7 @@ body.no_scrol {
 }
 .bns_overlay .bns_overlay_inner .bns_edit_col {
   float: left;
-  width: 45%;
+  width: 100%;
 }
 .bns_overlay .bns_overlay_inner .bns_edit_col:last-child {
   float: right;
@@ -484,7 +484,9 @@ body.no_scrol {
 .bns_overlay .bns_overlay_inner .bns_edit_ava {
   float: left;
   width: 100%;
-  margin-bottom: 28px;
+  padding-bottom: 16px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #b2b2b2;
 }
 .bns_overlay .bns_overlay_inner .bns_edit_ava img {
   float: left;
@@ -501,7 +503,11 @@ body.no_scrol {
 .bns_overlay .bns_overlay_inner .bns_input_block {
   float: left;
   width: 100%;
-  margin-bottom: 28px;
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+}
+.bns_overlay .bns_overlay_inner .bns_input_block.sex {
+  border-bottom: 1px solid #e5e5e5;
 }
 .bns_overlay .bns_overlay_inner .bns_input_block.bns_input_block_pol {
   margin-bottom: 8px;
@@ -531,12 +537,16 @@ body.no_scrol {
   float: left;
   width: 100%;
   background-color: #fff;
-  border: 2px solid #64a7b5;
+  border: 1px solid #c6c8c0;
   line-height: 31px;
   height: 31px;
   box-sizing: border-box;
-  padding: 0px 15px;
+  padding: 10px 15px;
   outline: none;
+  border-radius: 6px;
+}
+.bns_overlay .bns_overlay_inner .bns_input_block input[type="text"]:focus {
+  border: 3px solid #bce0fc;
 }
 .bns_overlay .bns_overlay_inner .bns_input_block input[type="checkbox"],
 .bns_overlay .bns_overlay_inner .bns_input_block input[type="radio"] {
@@ -617,7 +627,7 @@ body.no_scrol {
   width: 100%;
   box-sizing: border-box;
   background-color: #fff;
-  border: 2px solid #64a7b5;
+  border: 1px solid #c6c8c0;
   line-height: 31px;
   padding: 0px 13px;
   cursor: pointer;
@@ -625,6 +635,10 @@ body.no_scrol {
   color: #000000;
   font-size: 12px;
   font-weight: 300;
+  border-radius: 6px;
+}
+.bns_overlay .bns_overlay_inner .bns_input_block .bns_select span:focus {
+  border: 3px solid #bce0fc;
 }
 .bns_overlay .bns_overlay_inner .bns_input_block .bns_select span:after {
   width: 9px;
@@ -641,13 +655,16 @@ body.no_scrol {
   position: absolute;
   left: 0;
   top: 30px;
-  border: 2px solid #64a7b5;
+  border: 1px solid #c6c8c0;
   box-sizing: border-box;
   width: 100%;
   background-color: #fff;
   display: none;
   max-height: 130px;
   overflow-y: auto;
+}
+.bns_overlay .bns_overlay_inner .bns_input_block .bns_select .bns_select_popup:focus {
+  border: 3px solid #bce0fc;
 }
 .bns_overlay .bns_overlay_inner .bns_input_block .bns_select .bns_select_popup a {
   width: 100%;
@@ -917,6 +934,15 @@ body.no_scrol {
 }
 .bns_btn.type_blue {
   background-color: #6eb1ba !important;
+}
+.bns_btn_next.disabled,
+.bns_btn_l.disabled {
+  background-color: red;
+  pointer-events: none;
+}
+.bns_btn_next:not(.disabled),
+.bns_btn_l:not(.disabled) {
+  cursor: pointer;
 }
 .bns_top {
   float: left;
