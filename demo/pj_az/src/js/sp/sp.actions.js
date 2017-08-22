@@ -105,7 +105,7 @@
       return default_data;
     })
 
-    .service('spAction', function (actions_data) {
+    .service('spAction', function (actions_data, $rootScope) {
 
       var self = this;
 
@@ -144,8 +144,6 @@
       self.get_action_data = function (action) {
 
         var data = {};
-
-        console.log(action)
 
         if (!action) return data;
 
@@ -249,6 +247,111 @@
             }
             else {
               iframe.src = '';
+            }
+
+          });
+
+        }
+
+      };
+
+    })
+
+    // lang filter for static_page no iframe kostyl
+
+    .filter('sailplayActionCustomTranslateJson', function($rootScope){
+      return function(json){
+        var lang = $rootScope.config.lang
+        try {
+          var parsed = JSON.parse(json)
+          var translatedString = parsed[lang]
+          if(translatedString === void 0){
+            return parsed.en
+          } else {
+            return translatedString
+          }
+        } catch (err) {
+          return json
+        }
+      }
+    })
+
+    // static_page no iframe kostyl
+    .directive('sailplayActionCustomNoiframeStaticPage', function (sp, sp_api, $document, $http, $rootScope, getTimeZone, $timeout) {
+
+      var init_state;
+
+      return {
+
+        template: `
+        <div class="action static_page">
+
+          <div class="container">
+            <div class="row">
+              <div>
+                <h1 class="content header">
+                  {{ action.content.header | sailplayActionCustomTranslateJson }}
+                </h1>
+              </div>
+            </div>
+
+            <div class="row">
+              <p class="content message">
+              <img class="content image" data-ng-src="{{ action.content.image }}"/> 
+                <span data-ng-bind="action.content.message | sailplayActionCustomTranslateJson"></span>
+                
+              </p>
+            </div>
+
+            <div class="row">
+              <div>
+                <p>
+                  <a class="content button" href="{{ action.content.url }}" data-ng-click="complete()" target="_blank" >{{ action.content.button_text | sailplayActionCustomTranslateJson }}</a>
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        `,
+        restrict: 'A',
+        scope: {
+          action: '='
+        },
+        link: function (scope, elm, attrs) {
+
+          //elm.append();
+
+          scope.complete = angular.noop
+
+          scope.$watch('action', function (action) {
+
+            if (action) {
+
+              scope.complete = function(){
+                var domain = !!$rootScope.config.domain ? $rootScope.config.domain : '//sailplay.ru'
+                var partner_id = $rootScope.config.partner_id
+                var auth_hash = $rootScope.config.auth_hash
+
+                var completeUrl = domain + '/js-api/' + partner_id + '/actions/custom/complete/'
+
+                return sp.jsonp.get(completeUrl, {auth_hash: auth_hash, action_id: action.id}, function (res) {
+                    if(res.status === 'error'){
+                      //reject(data);
+                    } else {
+                      $timeout(function(){
+                        sp_api.call('load.actions.custom.list');
+                        sp_api.call('load.user.info', {all: 1, purchases: 1});
+                        sp_api.call('load.user.history', {tz: getTimeZone()});
+                      }, 600)
+                      //resolve(data);
+                    }
+                  })
+              }
+
+            }
+            else {
+              scope.complete = angular.noop
             }
 
           });

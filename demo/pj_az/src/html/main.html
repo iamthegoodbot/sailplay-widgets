@@ -173,23 +173,30 @@
 
                             <div class="bns_qust_right">
                             <span class="bns_qust_right_name"
-                                  data-ng-bind-html="action.name | to_trusted"></span>
+                                  data-ng-bind="action.description | sailplayActionCustomTranslateJson"></span>
                                 <span class="bns_qust_right_bal"
                                       data-ng-bind="(action.points | number) + ' ' + (action.points | sailplay_pluralize:('pluralize.points' | translate))"></span>
                                 <a href="#"
                                    class="bns_qust_right_button"
                                    data-ng-click="$event.preventDefault();$parent.$parent.open_custom_action = action;body_lock(true);"
-                                   data-ng-bind="action.button_text"></a>
+                                   data-ng-bind="action.button_text | sailplayActionCustomTranslateJson"></a>
                             </div>
 
                         </div>
 
                     </div>
 
-                    <div class="bns_tab_block_popup" data-ng-if="open_custom_action">
+                    <div class="bns_tab_block_popup" data-ng-if="open_custom_action && open_custom_action.type != 'static_page'">
                         <div class="bns_tab_block_popup-layout" data-ng-click="$parent.open_custom_action=null;body_lock(false);"></div>
                         <div data-sailplay-action-custom
                              class="bns_tab_block_popup-content"
+                             data-action="$parent.open_custom_action"></div>
+                    </div>
+
+                    <div class="bns_tab_block_popup" data-ng-if="open_custom_action && open_custom_action.type == 'static_page'">
+                        <div class="bns_tab_block_popup-layout" data-ng-click="$parent.open_custom_action=null;body_lock(false);"></div>
+                        <div data-sailplay-action-custom-noiframe-static-page 
+                             class="bns_tab_block_popup-content noiframe-custom-action"
                              data-action="$parent.open_custom_action"></div>
                     </div>
 

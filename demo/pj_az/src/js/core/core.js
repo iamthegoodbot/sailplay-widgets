@@ -12,15 +12,22 @@ angular.module('core', [
 
   })
 
-  .run(function (sp, sp_api, $rootScope) {
+  .factory('getTimeZone', function(){
+    return function() {
+      var offset = new Date().getTimezoneOffset(), o = Math.abs(offset);
+      return (offset < 0 ? "+" : "-") + ("00" + Math.floor(o / 60)).slice(-2) + ":" + ("00" + (o % 60)).slice(-2);
+    }
+  })
+
+  .run(function (sp, sp_api, $rootScope, getTimeZone) {
 
     $rootScope.config = window.sailplay_config || {};
 
     $rootScope.locale = window._SP_LOCALE || {};
 
     sp.send('init', {
-      partner_id: $rootScope.config.partner_id || 1652,
-      domain: $rootScope.config.domain || '//sailplay.ru',
+      partner_id: $rootScope.config.partner_id || 4, //1652,
+      domain: $rootScope.config.domain || '//docker.sailplay.ru', //'//sailplay.ru',
       lang: $rootScope.config.lang && ($rootScope.config.lang == 'az' ? 'ru' : $rootScope.config.lang) || 'ru'
     });
 
@@ -149,11 +156,6 @@ angular.module('core', [
     $rootScope.$on('update', function () {
       loadData();
     });
-
-    function getTimeZone() {
-      var offset = new Date().getTimezoneOffset(), o = Math.abs(offset);
-      return (offset < 0 ? "+" : "-") + ("00" + Math.floor(o / 60)).slice(-2) + ":" + ("00" + (o % 60)).slice(-2);
-    }
 
     function loadData() {
 
