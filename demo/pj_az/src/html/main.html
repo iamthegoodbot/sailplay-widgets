@@ -165,7 +165,7 @@
 
                         </div>
 
-                        <div data-ng-if="!action._actionId">
+                        <div data-ng-if="!action._actionId" data-ng-click="$event.preventDefault();$parent.$parent.open_custom_action = action;body_lock(true);">
 
                             <div class="bns_qust_left">
                                 <img data-ng-src="{{ action.icon | sailplay_pic }}">
