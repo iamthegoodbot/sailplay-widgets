@@ -67,6 +67,8 @@
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
+(function () {
+
 var SAILPLAY = __webpack_require__(1);
 
 var PJILeadform = function (options) {
@@ -235,7 +237,7 @@ PJILeadform.prototype.bindings = function () {
   }.bind(this);
 
   var closeFunction = function () {
-    if(this.onCloseHidePopup) {
+    if (this.onCloseHidePopup) {
       this.hide();
     } else {
       this.showContent('main');
@@ -292,7 +294,7 @@ PJILeadform.prototype.makeNotify = function (data) {
   this.el.notify_template = this.el.template.appendChild(template.content.firstChild);
 
   var closeFunction = function () {
-    if(this.onCloseHidePopup) {
+    if (this.onCloseHidePopup) {
       this.hide();
     } else {
       this.showContent('main');
@@ -374,8 +376,11 @@ PJILeadform.prototype.destroy = function () {
   this.el.template.remove();
 };
 
+if (typeof window !== 'undefined') window.PJILeadform = PJILeadform;
+if (true) module.exports = PJILeadform;
+if (true) exports = PJILeadform;
 
-
+}());
 
 /***/ }),
 /* 1 */

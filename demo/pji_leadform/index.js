@@ -1,3 +1,5 @@
+(function () {
+
 var SAILPLAY = require('./node_modules/sailplay-hub/sailplay.hub.js');
 
 var PJILeadform = function (options) {
@@ -166,7 +168,7 @@ PJILeadform.prototype.bindings = function () {
   }.bind(this);
 
   var closeFunction = function () {
-    if(this.onCloseHidePopup) {
+    if (this.onCloseHidePopup) {
       this.hide();
     } else {
       this.showContent('main');
@@ -223,7 +225,7 @@ PJILeadform.prototype.makeNotify = function (data) {
   this.el.notify_template = this.el.template.appendChild(template.content.firstChild);
 
   var closeFunction = function () {
-    if(this.onCloseHidePopup) {
+    if (this.onCloseHidePopup) {
       this.hide();
     } else {
       this.showContent('main');
@@ -305,4 +307,8 @@ PJILeadform.prototype.destroy = function () {
   this.el.template.remove();
 };
 
+if (typeof window !== 'undefined') window.PJILeadform = PJILeadform;
+if (typeof module !== 'undefined') module.exports = PJILeadform;
+if (typeof exports !== 'undefined') exports = PJILeadform;
 
+}());
