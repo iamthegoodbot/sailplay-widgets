@@ -2686,8 +2686,8 @@ angular.module('core', [
     $rootScope.locale = window._SP_LOCALE || {};
 
     sp.send('init', {
-      partner_id: $rootScope.config.partner_id || 4, //1652,
-      domain: $rootScope.config.domain || '//docker.sailplay.ru', //'//sailplay.ru',
+      partner_id: $rootScope.config.partner_id || 1652,
+      domain: $rootScope.config.domain || '//sailplay.ru',
       lang: $rootScope.config.lang && ($rootScope.config.lang == 'az' ? 'ru' : $rootScope.config.lang) || 'ru'
     });
 
@@ -3304,7 +3304,6 @@ angular.module('core', [
 
     .filter('badgeLocale', ["$rootScope", function ($rootScope) {
       return function (badgeDescr) {
-        console.log(badgeDescr)
         var localeName = $rootScope.config.lang
         var parsedDescr = JSON.parse(badgeDescr)
         if (parsedDescr[localeName]){

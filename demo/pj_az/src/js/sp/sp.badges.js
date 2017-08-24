@@ -4,7 +4,6 @@
 
     .filter('badgeLocale', function ($rootScope) {
       return function (badgeDescr) {
-        console.log(badgeDescr)
         var localeName = $rootScope.config.lang
         var parsedDescr = JSON.parse(badgeDescr)
         if (parsedDescr[localeName]){
