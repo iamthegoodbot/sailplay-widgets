@@ -75,6 +75,35 @@ body.no_scrol {
   background-repeat: no-repeat;
   background-position: center center;
 }
+.bns_tooltip {
+  padding: 10px 25px;
+  top: 15px;
+  display: inline-block;
+  position: relative;
+  background: white;
+  z-index: 10;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity .2s, transform .2s;
+  font-size: 13px;
+  border-radius: 25px;
+  box-shadow: 1px 1px 20px 0px rgba(0, 0, 0, 0.21);
+}
+.bns_tooltip:after {
+  content: '';
+  width: 0;
+  height: 0;
+  border-radius: 0;
+  border-style: solid;
+  border-width: 0 5px 8.7px 5px;
+  border-color: transparent transparent #ffffff transparent;
+  display: block;
+  position: absolute;
+  top: -8px;
+  z-index: 100;
+  left: 50%;
+  margin-left: -5px;
+}
 .bns_overlay {
   width: 100%;
   height: 100%;
@@ -1050,6 +1079,10 @@ body.no_scrol {
   font-size: 13px;
   line-height: 18px;
 }
+.bns_top .bns_top_center .bns_top_bal_np:hover + .bns_tooltip {
+  opacity: 1;
+  transform: translate(0);
+}
 .bns_top .bns_top_center .bns_top_bal_np:after {
   content: '';
   display: inline-block;
@@ -1693,6 +1726,18 @@ body.no_scrol {
   top: 2px;
   margin-left: 3px;
 }
+.bns_quest_main .bns_quest_item .bns_quest_item_text {
+  line-height: 27px;
+  display: inline-block;
+  background-color: #f1f1f1;
+  border-radius: 27px;
+  float: left;
+  width: 60%;
+  margin-left: 20%;
+  font-size: 18px;
+  color: #000000;
+  font-weight: bold;
+}
 /* Slider */
 .slick-slider {
   position: relative;
@@ -1780,6 +1825,24 @@ body.no_scrol {
 }
 .slick-arrow.slick-hidden {
   display: none;
+}
+.bns_json_wish_empty {
+  position: relative;
+  width: 100%;
+  line-height: 536px;
+  text-align: center;
+}
+.bns_json_recommend_empty {
+  position: relative;
+  width: 100%;
+  line-height: 258px;
+  text-align: center;
+}
+.bns_json_game_empty {
+  position: relative;
+  width: 100%;
+  line-height: 236px;
+  text-align: center;
 }
 .bns_wish_main {
   float: left;

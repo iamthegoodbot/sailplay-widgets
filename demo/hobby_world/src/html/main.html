@@ -15,8 +15,8 @@
                     <span class="bns_top_prof_info_phone"
                           data-ng-bind="user().user.phone && (user().user.phone | tel) || 'Телефон не указан'"></span>
                     <span class="bns_top_prof_info_email" data-ng-bind="user().user.email || 'E-mail не указан'"></span>
-                    <a target="_blank" data-ng-href="{{ config.data.page && config.data.page.logout }}"
-                       class="bns_log_out">Выйти</a>
+                    <!--<a target="_blank" data-ng-href="{{ config.data.page && config.data.page.logout }}"
+                       class="bns_log_out">Выйти</a>-->
                 </div>
                 <div class="bns_top_prof_info_soc">
 
@@ -45,6 +45,8 @@
                     </div>
 
                 </div>
+                <a href="#" class="bns_bot_linck js_logout" style="left: 35%"
+                   target="_blank" data-ng-href="{{ config.data.page && config.data.page.logout }}">Выйти</a>
                 <a href="#" class="bns_bot_linck js_open_edit"
                    data-ng-click="$event.preventDefault();edit_profile();body_lock(true);">Редактировать профиль</a>
             </div>
@@ -58,6 +60,7 @@
 
                 <span class="bns_top_bal_np"
                       data-ng-bind="'Неподтвержденных ' + (user().user_points.unconfirmed | number)"></span>
+                <div class="bns_tooltip">Это неподтвержденные баллы</div>
 
                 <a href="#" class="bns_bot_linck js_open_hist"
                    data-ng-click="$event.preventDefault();show_history();body_lock(true)">История заказов</a>
@@ -68,7 +71,7 @@
                 <span class="bns_top_head">Бейджи</span>
                 <p class="empty_badges"
                    data-ng-if="badges().multilevel_badges[0] && !(badges().multilevel_badges[0] | filter:{is_received:true}).length">
-                    У вас пока не бейджей
+                    У вас пока нет бейджей
                 </p>
                 <div class="bns_top_achiv js-slick-slider"
                      data-ng-show="badges().multilevel_badges[0] && (badges().multilevel_badges[0] | filter:{is_received:true}).length">
@@ -134,7 +137,8 @@
                                 <img data-ng-src="{{ action_data($parent.action).image }}">
                             </div>
                             <span class="bns_quest_item_name" data-ng-bind="action_data($parent.action).name"></span>
-                            <span class="bns_quest_item_bal" data-ng-bind="$parent.action.points | number"></span>
+                            <span class="bns_quest_item_bal" data-ng-if="action.points != 0" data-ng-bind="action.points | number"></span>
+                            <span class="bns_quest_item_text" data-ng-if="action.points == 0">Подробнее</span> 
                             <a href="#" data-ng-click="$event.preventDefault();$parent.$parent.show = $parent.action;">Получить</a>
                         </div>
 
@@ -143,7 +147,8 @@
                                 <img data-ng-src="{{ action.icon | sailplay_pic }}">
                             </div>
                             <span class="bns_quest_item_name" data-ng-bind="action.name"></span>
-                            <span class="bns_quest_item_bal" data-ng-bind="action.points | number"></span>
+                            <span class="bns_quest_item_bal" data-ng-if="action.points != 0" data-ng-bind="action.points | number"></span>
+                            <span class="bns_quest_item_text" data-ng-if="action.points == 0">Подробнее</span>                            
                             <a href="#" data-ng-click="$event.preventDefault();$parent.$parent.show = $parent.action;">Получить</a>
                         </div>
 
@@ -202,6 +207,10 @@
 
                 <span class="bns_top_head">Вишлист</span>
 
+                <div class="bns_json_wish_empty" data-ng-show="!wish_list().length">
+                    Пожеланий на данный момент нет
+                </div>
+
                 <div class="bns_wish_main" data-ng-show="wish_list()">
 
                     <div class="bns_wish_item" data-ng-repeat="item in wish_list() track by $index | limitTo:4">
@@ -226,7 +235,7 @@
 
                 </div>
                 <a data-ng-href="{{ $parent.config.data.page && $parent.config.data.page.wish_list }}"
-                   class="bns_bot_linck">Показать все</a>
+                   class="bns_bot_linck" data-ng-show="wish_list()">Показать все</a>
             </div>
         </div>
 
@@ -235,6 +244,10 @@
             <div class="bns_col_left">
 
                 <span class="bns_top_head">Рекомендованные товары</span>
+
+                <div class="bns_json_recommend_empty" data-ng-show="!recommend_list().length">
+                    Рекомендаций на данный момент нет
+                </div>
 
                 <div class="bns_recom" data-ng-show="recommend_list()">
 
@@ -251,6 +264,10 @@
             <div class="bns_col_right">
 
                 <span class="bns_top_head">Игра дня</span>
+
+                <div class="bns_json_game_empty" data-ng-show="!game_of_day().length">
+                    Игры дня на данный момент нет
+                </div>
 
                 <div class="bns_game_day" data-ng-show="game_of_day()[0]">
 
@@ -381,7 +398,7 @@
 
                 <div class="bns_edit_ava">
                 <img data-ng-src="{{user().user.pic}}" alt="">
-                    <a href="#" class="bns_over_edit_ava" onclick="document.getElementById('sailplay_upload_avatar').click()">Редактировать аватар</a>
+                    <a href="#" class="bns_over_edit_ava" onclick="document.getElementById('sailplay_upload_avatar').click()" data-ng-bind="no_avatar(user().user.pic) ? 'Загрузить аватар' : 'Загрузить новый аватар'"></a>
                     <input data-ng-hide="true" accept=".jpg,.jpeg,.png,.gif" data-file type="file" name="avatar" id="sailplay_upload_avatar"
                                data-ng-model="avatarImg"
                                data-ng-change="uploadAvatar()">

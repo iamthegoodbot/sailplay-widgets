@@ -127,6 +127,12 @@
       color: #000;
       font-size: 13px;
       line-height: 18px;
+      &:hover {
+        & + .bns_tooltip {
+          opacity: 1;
+          transform: translate(0)
+        }
+      }
       &:after {
         content: '';
         display: inline-block;
