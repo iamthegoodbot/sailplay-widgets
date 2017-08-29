@@ -12,7 +12,14 @@ angular.module('core', [
 
   })
 
-  .run(function (sp, sp_api, $rootScope) {
+  .factory('getTimeZone', function(){
+    return function() {
+      var offset = new Date().getTimezoneOffset(), o = Math.abs(offset);
+      return (offset < 0 ? "+" : "-") + ("00" + Math.floor(o / 60)).slice(-2) + ":" + ("00" + (o % 60)).slice(-2);
+    }
+  })
+
+  .run(function (sp, sp_api, $rootScope, getTimeZone) {
 
     $rootScope.config = window.sailplay_config || {};
 
@@ -149,11 +156,6 @@ angular.module('core', [
     $rootScope.$on('update', function () {
       loadData();
     });
-
-    function getTimeZone() {
-      var offset = new Date().getTimezoneOffset(), o = Math.abs(offset);
-      return (offset < 0 ? "+" : "-") + ("00" + Math.floor(o / 60)).slice(-2) + ":" + ("00" + (o % 60)).slice(-2);
-    }
 
     function loadData() {
 
