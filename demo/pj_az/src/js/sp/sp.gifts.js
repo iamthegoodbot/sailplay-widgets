@@ -1,29 +1,13 @@
 angular.module('sp.gifts', [])
 
-  .filter('giftName', function($rootScope){
+  .filter('giftName', function($rootScope, tryParseFieldFilter){
     return function(gift){
-      var lang = $rootScope.config.lang
-      if(lang == 'en') {
-        return gift.name
-      } else {
-        var nameParsed = JSON.parse(gift.name)
-        if(nameParsed[lang]){
-          return nameParsed[lang]
-        }
-      }
+      return tryParseFieldFilter(gift.name)
     }
   })
-  .filter('giftDesc', function($rootScope){
+  .filter('giftDesc', function($rootScope, tryParseFieldFilter){
     return function(gift){
-      var lang = $rootScope.config.lang
-      if(lang == 'en') {
-        return gift.name
-      } else {
-        var descrParsed = JSON.parse(gift.descr)
-        if(descrParsed[lang]){
-          return descrParsed[lang]
-        }
-      }
+      return tryParseFieldFilter(gift.descr)
     }
   })
 

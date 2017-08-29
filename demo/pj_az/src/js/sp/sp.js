@@ -10,6 +10,24 @@ angular.module('sp', [
 
 ])
 
+  .filter('tryParseField', function($rootScope){
+    return function(field){
+      var lang = $rootScope.config.lang
+      try {
+        var parsed = JSON.parse(field)
+        if(typeof parsed != "object"){
+          throw "not object"
+        } else if(parsed[lang]){
+          return parsed[lang]
+        } else {
+          return parsed.en
+        }
+      } catch (err) {
+        return field
+      }
+    }
+  })
+
   .service('sp', function ($window) {
 
     return $window.SAILPLAY || {};

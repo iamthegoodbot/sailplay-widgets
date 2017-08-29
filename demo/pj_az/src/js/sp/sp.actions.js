@@ -259,20 +259,9 @@
 
     // lang filter for static_page no iframe kostyl
 
-    .filter('sailplayActionCustomTranslateJson', function($rootScope){
+    .filter('sailplayActionCustomTranslateJson', function($rootScope, tryParseFieldFilter){
       return function(json){
-        var lang = $rootScope.config.lang
-        try {
-          var parsed = JSON.parse(json)
-          var translatedString = parsed[lang]
-          if(translatedString === void 0){
-            return parsed.en
-          } else {
-            return translatedString
-          }
-        } catch (err) {
-          return json
-        }
+        return tryParseFieldFilter(json)
       }
     })
 
@@ -289,15 +278,15 @@
           <div class="container">
             <div class="row">
               <div>
-                <h1 class="content header">
+                <h1 class="contentt header">
                   {{ action.content.header | sailplayActionCustomTranslateJson }}
                 </h1>
               </div>
             </div>
 
             <div class="row">
-              <p class="content message">
-              <img class="content image" data-ng-src="{{ action.content.image }}"/> 
+              <p class="contentt message">
+              <img class="contentt image" data-ng-src="{{ action.content.image }}"/> 
                 <span data-ng-bind="action.content.message | sailplayActionCustomTranslateJson"></span>
                 
               </p>
@@ -306,7 +295,7 @@
             <div class="row">
               <div>
                 <p>
-                  <a class="content button" href="{{ action.content.url }}" data-ng-click="complete()" target="_blank" >{{ action.content.button_text | sailplayActionCustomTranslateJson }}</a>
+                  <a class="contentt button" href="{{ action.content.url }}" data-ng-click="complete()" target="_blank" >{{ action.content.button_text | sailplayActionCustomTranslateJson }}</a>
                 </p>
               </div>
             </div>

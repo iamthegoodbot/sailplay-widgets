@@ -221,12 +221,14 @@
             margin-bottom: 8px;
           }
           a {
-            min-width: 150px;
             float: left;
             color: #0a9876;
             font-size: 20px;
             min-width: 100px;
             position: relative;
+            @media screen and (min-width: 1500px) {
+              min-width: 240px;
+            }
             &:hover {
               .bns_tile {
                 display: block;
