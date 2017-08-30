@@ -53,6 +53,9 @@
 .sp_wrapper .bns_overlay.bns_overlay_gift .bns_overlay_inner .bns_overlay_right {
   width: 20%;
 }
+.sp_wrapper .bns_overlay.bns_overlay_stst .bns_overlay_inner {
+  height: 410px;
+}
 .sp_wrapper .bns_overlay.bns_overlay_stst .bns_overlay_inner .bns_overlay_left {
   width: 62%;
 }
@@ -154,6 +157,7 @@
 }
 .sp_wrapper .bns_overlay .bns_overlay_inner .bns_overlay_bottom .bns_bottom_right a.bns_nact {
   background-color: #E0E0E0;
+  pointer-events: none;
   color: #828282;
 }
 .sp_wrapper .bns_overlay .bns_overlay_inner .bns_overlay_bottom .bns_bottom_right .bns_overlay_right_img {
@@ -267,6 +271,7 @@
 }
 .sp_wrapper .bns_overlay .bns_overlay_inner .bns_overlay_left .bns_overlay_gift_main .bns_overlay_gift_item .bns_overlay_gift_item_right a.bns_nact {
   background-color: #F2F2F2;
+  pointer-events: none;
   color: #BDBDBD;
 }
 .sp_wrapper .bns_overlay .bns_overlay_inner .bns_overlay_left .bns_overlay_gift_main .bns_overlay_gift_item .bns_overlay_gift_item_right .bns_overlay_gift_item_name {
@@ -581,6 +586,7 @@
 .sp_wrapper .bns_overlay .bns_overlay_inner .bns_overlay_right .bns_overlay_right_desc {
   float: left;
   width: 100%;
+  line-height: 1.2;
   color: #4F4F4F;
   font-size: 12px;
   margin-top: 10px;
@@ -3156,6 +3162,12 @@ Plugin URI: http://manos.malihu.gr/jquery-custom-content-scroller
   }
 }
 @media screen and (max-width: 650px) {
+  .sp_wrapper .bns_overlay_right_desc {
+    margin-bottom: 15px !important;
+  }
+  .sp_wrapper .bns_overlay_stst .bns_overlay_inner {
+    height: auto !important;
+  }
   .sp_wrapper .bns_info .bns_info_line .bns_line_fill_til {
     display: none;
   }

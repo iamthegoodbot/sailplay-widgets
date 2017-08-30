@@ -180,7 +180,7 @@ angular.module('sp', [
       //check if number length equals to 10
       if (tel.length >= 10) {
         //reformat and return phone number
-        return tel.replace(/(\d{1})(\d{3})(\d{3})(\d{2})(\d{2})/, "+$1 ($2) $3-$4-$5");
+        return tel.replace(/(\d{1})(\d{3})(\d{3})(\d{2})(\d{2})/, "$1 ($2) $3-$4-$5");
       }
 
       return null

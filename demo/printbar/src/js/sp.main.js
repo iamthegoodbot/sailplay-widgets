@@ -5,7 +5,7 @@ angular.module('sp_print_bar', [
   'templates'
 ])
 
-  .directive('sailplayPb', function ($rootScope, $locale) {
+  .directive('sailplayPb', function ($rootScope, $locale, sp_api) {
     return {
       restrict: 'E',
       replace: true,
@@ -36,6 +36,10 @@ angular.module('sp_print_bar', [
 
         scope.show_gifts = function () {
           scope.showGifts = true;
+        };
+
+        scope.update_info = function() {
+          location.reload();
         };
 
         scope.clear_all_show = function(){
