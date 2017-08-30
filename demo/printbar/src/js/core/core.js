@@ -110,7 +110,7 @@
 
       sp.on('gifts.purchase.success', function () {
 
-        // $rootScope.$apply(loadData);
+        $rootScope.$apply(loadData);
 
       });
 

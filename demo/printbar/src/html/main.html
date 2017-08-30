@@ -168,12 +168,12 @@
                    data-ng-click="$event.preventDefault();show_gifts();body_lock(true);">Смотреть все подарки</a>
 
                 <div class="bns_overlay bns_overlay_get_gift" data-ng-if="gift_get">
-                    <div class="bns_overlay_close" data-ng-click="$event.preventDefault();body_lock(false);$parent.gift_get = null;update_info()"></div>
+                    <div class="bns_overlay_close" data-ng-click="$event.preventDefault();body_lock(false);$parent.gift_get = null;"></div>
                     <div class="bns_overlay_inner">
 
                         <div class="bns_overlay_top">
                             <a href="#" class="bns_close"
-                               data-ng-click="$event.preventDefault();body_lock(false);$parent.gift_get = null;update_info()">Закрыть</a>
+                               data-ng-click="$event.preventDefault();body_lock(false);$parent.gift_get = null;">Закрыть</a>
                             <span class="bns_overlay_top_name" data-ng-bind="$parent.gift_get.name"></span>
                             <span class="bns_overlay_top_desc"
                                   data-ng-bind-html="$parent.gift_get.descr | to_trusted"></span>

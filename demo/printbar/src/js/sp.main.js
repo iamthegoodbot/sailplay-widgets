@@ -38,10 +38,6 @@ angular.module('sp_print_bar', [
           scope.showGifts = true;
         };
 
-        scope.update_info = function() {
-          location.reload();
-        };
-
         scope.clear_all_show = function(){
 
           var array = [
