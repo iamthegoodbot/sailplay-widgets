@@ -11,6 +11,7 @@
   var minifyHtml = require("gulp-minify-html");
   var imagemin = require('gulp-imagemin');
   var browserSync = require('browser-sync').create();
+  //var sourcemaps = require('gulp-sourcemaps');
 
   gulp.task('connect', function () {
 
@@ -45,7 +46,9 @@
       __dirname + '/node_modules/angular-utils-pagination/dirPagination.js',
       __dirname + '/src/js/**/**/*.js'
     ])
+//      .pipe(sourcemaps.init())
       .pipe(concat('sailplay.pb.js'))
+//      .pipe(sourcemaps.write())
       .pipe(gulp.dest(__dirname + '/dist/js/'));
   });
 

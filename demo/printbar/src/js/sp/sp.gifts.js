@@ -71,13 +71,21 @@ angular.module('sp.gifts', [])
           scope.gift_get = gift;
         });
 
-        sp.on('gifts.purchase.success', function () {
+        sp.on('gifts.purchase.success', function (res) {
           $rootScope.$apply(function () {
             scope.gift_get = null;
-            $rootScope.$broadcast('notify:show', {
+            var msgObj = {
               title: 'Поздравляем',
               text: 'Вы получили подарок.'
-            });
+            }
+
+            if(res.gift_type == 'coupon') {
+              msgObj.isCoupon = true
+              msgObj.gift_help_text = res.gift_help_text
+              msgObj.coupon_number = res.coupon_number
+            }
+
+            $rootScope.$broadcast('notify:show', msgObj);
           });
         });
 
