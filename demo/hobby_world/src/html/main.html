@@ -438,16 +438,6 @@
 
                     </div>
 
-                    <div class="bns_input_block bns_input_block_int"
-                         data-ng-class="{ bns_err: !(tags | selectedInterests) && profile_edit.$valid }">
-                        <label>Мои интересы <span class="bns_err_text">Ошибка</span></label>
-
-                        <span class="bns_input_block_int_item" data-ng-repeat="interest in interests track by $index">
-                            <input type="checkbox" data-ng-model="tags[interest]" id="bns_int_{{ $index }}">
-                            <label for="bns_int_{{ $index }}" data-ng-bind="interest"></label>
-                        </span>
-
-                    </div>
                 </div>
 
                 <div class="bns_edit_col">
@@ -478,7 +468,18 @@
 
                     </div>
 
-                    <div class="bns_input_block"
+                    <div class="bns_input_block bns_input_block_int"
+                         data-ng-class="{ bns_err: !(tags | selectedInterests) && profile_edit.$valid }">
+                        <label>Мои интересы <span class="bns_err_text">Ошибка</span></label>
+
+                        <span class="bns_input_block_int_item" data-ng-repeat="interest in interests track by $index">
+                            <input type="checkbox" data-ng-model="tags[interest]" id="bns_int_{{ $index }}">
+                            <label for="bns_int_{{ $index }}" data-ng-bind="interest"></label>
+                        </span>
+
+                    </div>
+                    
+                    <!--<div class="bns_input_block"
                          data-ng-class="{ bns_err: !vars['Страна'] && profile_edit.country.$touched }">
                         <label>Страна <span class="bns_err_text">Ошибка</span></label>
                         <div class="bns_select">
@@ -502,7 +503,7 @@
                         <label>Адрес <span class="bns_err_text">Ошибка</span></label>
                         <input type="text" name="address" data-ng-model="vars['Адрес']" required>
 
-                    </div>
+                    </div>-->
 
                     <div class="bns_input_block"
                          data-ng-class="{ bns_err: !vars['Запомнить адрес доставки'] && profile_edit.remember.$touched }">
