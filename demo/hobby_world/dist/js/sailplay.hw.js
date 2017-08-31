@@ -2864,216 +2864,6 @@ setTimeout(function () {
 
 }());
 
-angular.module('ui.datepicker', [])
-
-  .service('dateService', function () {
-
-    var self = this;
-
-    self.months = {
-      "1": "Январь",
-      "2": "Февраль",
-      "3": "Март",
-      "4": "Апрель",
-      "5": "Май",
-      "6": "Июнь",
-      "7": "Июль",
-      "8": "Август",
-      "9": "Сентябрь",
-      "10": "Октябрь",
-      "11": "Ноябрь",
-      "12": "Декабрь"
-    };
-
-    self.days = {
-      1: 31,
-      2: 29,
-      3: 31,
-      4: 30,
-      5: 31,
-      6: 30,
-      7: 31,
-      8: 31,
-      9: 30,
-      10: 31,
-      11: 30,
-      12: 31
-    };
-
-    var current_year = new Date().getFullYear();
-    var arr = [];
-    for (var i = 90; i > 0; i--) {
-      arr.push(current_year - i);
-    }
-
-    self.years = arr.reverse();
-
-    return this;
-
-  })
-
-  .directive('datePicker', ["dateService", function (dateService) {
-    return {
-      restrict: 'E',
-      replace: true,
-      templateUrl: '/html/ui/ui.datepicker.html',
-      scope: true,
-      require: 'ngModel',
-      link: function (scope, elm, attrs, NgModel) {
-
-        scope.model = [null, null, null];
-
-        scope.months = dateService.months;
-        scope.days = dateService.days;
-        scope.years = dateService.years;
-
-
-        NgModel.$render = function () {
-          if (NgModel.$modelValue) {
-            var value = NgModel.$modelValue.split('-').reverse().map(function (x) {
-              return parseInt(x, 10);
-            });
-            scope.model = value;
-          }
-        };
-
-        scope.$watchCollection('model', function () {
-          var check = scope.model.every(function (item) {
-            return item;
-          });
-          if (!check) return;
-          var new_value = angular.copy(scope.model);
-          NgModel.$setViewValue(new_value.reverse().join('-'));
-        });
-
-        scope.range = function (start, end) {
-          var result = [];
-          for (var i = start; i <= end; i++) {
-            result.push(i);
-          }
-          return result;
-        };
-
-      }
-    }
-
-  }]);
-
-(function () {
-
-  angular.module('ui', [
-    'angularUtils.directives.dirPagination',
-    'ui.datepicker',
-    'ui.mask',
-    'ngTouch'
-  ])
-
-    .directive('notifyPopup', function () {
-
-      return {
-
-        restrict: 'E',
-        replace: false,
-        templateUrl: '/html/ui/ui.notify.popup.html',
-        scope: true,
-        link: function (scope) {
-
-          scope.data = null;
-
-          scope.$on('notify:show', function (e, info) {
-            scope.data = info;
-          });
-
-          scope.$on('notify:hide', function () {
-            scope.data = null;
-          });
-
-        }
-
-      }
-
-    })
-
-    .directive('scrollTo', function () {
-      return {
-        restrict: 'A',
-        replace: false,
-        scope: false,
-        link: function (scope, el, attr) {
-
-          var to = $(attr.scrollTo);
-          var time = attr.scrollTime;
-
-          $(el).on('click', function () {
-
-            if (!to.length) return;
-
-            var offset = to.offset().top + $(window).height() > $('body').height() ? $('body').height() - $(window).height() : to.offset().top;
-
-            $("html, body").delay(100).animate({
-              scrollTop: offset
-            }, time || 500, function () {
-              to.addClass('scrolled');
-              setTimeout(function () {
-                to.removeClass('scrolled')
-              }, 1000)
-            });
-
-          })
-
-        }
-      }
-    })
-
-    .directive('spAuth', ["$rootScope", "sp", function ($rootScope, sp) {
-      return {
-        restrict: 'A',
-        replace: false,
-        scope: false,
-        link: function (scope, el, attrs) {
-
-          var opts = scope.$eval(attrs.spAuth);
-
-          var options = {
-            node: el[0]
-          };
-
-          angular.merge(options, opts);
-
-          $rootScope.$on('login.remote', function () {
-
-            sp.send('login.remote', options);
-
-          });
-
-          sp.config() && sp.config().partner && sp.send('login.remote', options);
-
-        }
-      }
-    }])
-
-    .directive('slackSlider', ["$timeout", function ($timeout) {
-      return {
-        restrict: 'A',
-        replace: false,
-        scope: false,
-        link: function (scope, el, attrs) {
-
-          scope.slackConfig = scope.$eval(attrs.slackConfig);
-
-          if (scope.$last) { // all are rendered
-            $timeout(function () {
-              $(scope.slackConfig.selector).not('.slick-initialized').slick && $(scope.slackConfig.selector).not('.slick-initialized').slick(scope.slackConfig.data);
-            }, 50);
-          }
-
-        }
-
-      };
-    }]);
-
-}());
-
 (function () {
 
   angular.module('sp.actions', [])
@@ -4506,3 +4296,212 @@ angular.module('sp.status', [])
     };
 
   }]);
+angular.module('ui.datepicker', [])
+
+  .service('dateService', function () {
+
+    var self = this;
+
+    self.months = {
+      "1": "Январь",
+      "2": "Февраль",
+      "3": "Март",
+      "4": "Апрель",
+      "5": "Май",
+      "6": "Июнь",
+      "7": "Июль",
+      "8": "Август",
+      "9": "Сентябрь",
+      "10": "Октябрь",
+      "11": "Ноябрь",
+      "12": "Декабрь"
+    };
+
+    self.days = {
+      1: 31,
+      2: 29,
+      3: 31,
+      4: 30,
+      5: 31,
+      6: 30,
+      7: 31,
+      8: 31,
+      9: 30,
+      10: 31,
+      11: 30,
+      12: 31
+    };
+
+    var current_year = new Date().getFullYear();
+    var arr = [];
+    for (var i = 90; i > 0; i--) {
+      arr.push(current_year - i);
+    }
+
+    self.years = arr.reverse();
+
+    return this;
+
+  })
+
+  .directive('datePicker', ["dateService", function (dateService) {
+    return {
+      restrict: 'E',
+      replace: true,
+      templateUrl: '/html/ui/ui.datepicker.html',
+      scope: true,
+      require: 'ngModel',
+      link: function (scope, elm, attrs, NgModel) {
+
+        scope.model = [null, null, null];
+
+        scope.months = dateService.months;
+        scope.days = dateService.days;
+        scope.years = dateService.years;
+
+
+        NgModel.$render = function () {
+          if (NgModel.$modelValue) {
+            var value = NgModel.$modelValue.split('-').reverse().map(function (x) {
+              return parseInt(x, 10);
+            });
+            scope.model = value;
+          }
+        };
+
+        scope.$watchCollection('model', function () {
+          var check = scope.model.every(function (item) {
+            return item;
+          });
+          if (!check) return;
+          var new_value = angular.copy(scope.model);
+          NgModel.$setViewValue(new_value.reverse().join('-'));
+        });
+
+        scope.range = function (start, end) {
+          var result = [];
+          for (var i = start; i <= end; i++) {
+            result.push(i);
+          }
+          return result;
+        };
+
+      }
+    }
+
+  }]);
+
+(function () {
+
+  angular.module('ui', [
+    'angularUtils.directives.dirPagination',
+    'ui.datepicker',
+    'ui.mask',
+    'ngTouch'
+  ])
+
+    .directive('notifyPopup', function () {
+
+      return {
+
+        restrict: 'E',
+        replace: false,
+        templateUrl: '/html/ui/ui.notify.popup.html',
+        scope: true,
+        link: function (scope) {
+
+          scope.data = null;
+
+          scope.$on('notify:show', function (e, info) {
+            scope.data = info;
+          });
+
+          scope.$on('notify:hide', function () {
+            scope.data = null;
+          });
+
+        }
+
+      }
+
+    })
+
+    .directive('scrollTo', function () {
+      return {
+        restrict: 'A',
+        replace: false,
+        scope: false,
+        link: function (scope, el, attr) {
+
+          var to = $(attr.scrollTo);
+          var time = attr.scrollTime;
+
+          $(el).on('click', function () {
+
+            if (!to.length) return;
+
+            var offset = to.offset().top + $(window).height() > $('body').height() ? $('body').height() - $(window).height() : to.offset().top;
+
+            $("html, body").delay(100).animate({
+              scrollTop: offset
+            }, time || 500, function () {
+              to.addClass('scrolled');
+              setTimeout(function () {
+                to.removeClass('scrolled')
+              }, 1000)
+            });
+
+          })
+
+        }
+      }
+    })
+
+    .directive('spAuth', ["$rootScope", "sp", function ($rootScope, sp) {
+      return {
+        restrict: 'A',
+        replace: false,
+        scope: false,
+        link: function (scope, el, attrs) {
+
+          var opts = scope.$eval(attrs.spAuth);
+
+          var options = {
+            node: el[0]
+          };
+
+          angular.merge(options, opts);
+
+          $rootScope.$on('login.remote', function () {
+
+            sp.send('login.remote', options);
+
+          });
+
+          sp.config() && sp.config().partner && sp.send('login.remote', options);
+
+        }
+      }
+    }])
+
+    .directive('slackSlider', ["$timeout", function ($timeout) {
+      return {
+        restrict: 'A',
+        replace: false,
+        scope: false,
+        link: function (scope, el, attrs) {
+
+          scope.slackConfig = scope.$eval(attrs.slackConfig);
+
+          if (scope.$last) { // all are rendered
+            $timeout(function () {
+              $(scope.slackConfig.selector).not('.slick-initialized').slick && $(scope.slackConfig.selector).not('.slick-initialized').slick(scope.slackConfig.data);
+            }, 50);
+          }
+
+        }
+
+      };
+    }]);
+
+}());

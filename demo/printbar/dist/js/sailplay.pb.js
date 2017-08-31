@@ -2560,7 +2560,7 @@ angular.module('sp_print_bar', [
   'templates'
 ])
 
-  .directive('sailplayPb', ["$rootScope", "$locale", "sp_api", function ($rootScope, $locale, sp_api) {
+  .directive('sailplayPb', function ($rootScope, $locale, sp_api) {
     return {
       restrict: 'E',
       replace: true,
@@ -2650,7 +2650,7 @@ angular.module('sp_print_bar', [
 
       }
     }
-  }]);
+  });
 
 setTimeout(function () {
 
@@ -2667,7 +2667,7 @@ setTimeout(function () {
     'ipCookie'
   ])
 
-    .run(["sp", "ipCookie", "sp_api", "$rootScope", "actions_data", function (sp, ipCookie, sp_api, $rootScope, actions_data) {
+    .run(function (sp, ipCookie, sp_api, $rootScope, actions_data) {
 
       $rootScope.config = window.sailplay_config || {};
 
@@ -2819,7 +2819,7 @@ setTimeout(function () {
 
       }
 
-    }]);
+    });
 
 }());
 
@@ -8912,7 +8912,7 @@ and dependencies (minified).
       }
     })
 
-    .service('spAction', ["actions_data", function (actions_data) {
+    .service('spAction', function (actions_data) {
 
       var self = this;
 
@@ -8964,9 +8964,9 @@ and dependencies (minified).
 
       return self;
 
-    }])
+    })
 
-    .directive('sailplayAction', ["sp", "$rootScope", "$compile", "$timeout", function (sp, $rootScope, $compile, $timeout) {
+    .directive('sailplayAction', function (sp, $rootScope, $compile, $timeout) {
 
       var init_state;
 
@@ -9004,7 +9004,7 @@ and dependencies (minified).
 
       };
 
-    }])
+    })
 
     /**
      * @ngdoc directive
@@ -9018,7 +9018,7 @@ and dependencies (minified).
      * @param {object}  action   A SailPlay custom action object, received from api.
      *
      */
-    .directive('sailplayActionCustom', ["sp", "$document", function (sp, $document) {
+    .directive('sailplayActionCustom', function (sp, $document) {
 
       var init_state;
 
@@ -9060,9 +9060,9 @@ and dependencies (minified).
 
       };
 
-    }])
+    })
 
-    .directive('sailplayActions', ["sp_api", "sp", "spAction", "tagHelper", "$rootScope", "$filter", "$timeout", "$q", function (sp_api, sp, spAction, tagHelper, $rootScope, $filter, $timeout, $q) {
+    .directive('sailplayActions', function (sp_api, sp, spAction, tagHelper, $rootScope, $filter, $timeout, $q) {
 
       return {
 
@@ -9217,7 +9217,7 @@ and dependencies (minified).
 
       };
 
-    }]);
+    });
 
 }());
 
@@ -9225,7 +9225,7 @@ and dependencies (minified).
 
   angular.module('sp.badges', [])
 
-    .directive('sailplayBadges', ["sp", "sp_api", function (sp, sp_api) {
+    .directive('sailplayBadges', function (sp, sp_api) {
 
       return {
 
@@ -9265,13 +9265,13 @@ and dependencies (minified).
 
       };
 
-    }]);
+    });
 
 }());
 
 angular.module('sp.gifts', [])
 
-  .directive('mCustomScrollbar', ["$timeout", function ($timeout) {
+  .directive('mCustomScrollbar', function ($timeout) {
     return {
       restrict: 'A',
       replace: false,
@@ -9289,9 +9289,9 @@ angular.module('sp.gifts', [])
       }
 
     };
-  }])
+  })
 
-  .directive('sailplayGifts', ["sp", "sp_api", "$rootScope", function (sp, sp_api, $rootScope) {
+  .directive('sailplayGifts', function (sp, sp_api, $rootScope) {
 
     return {
 
@@ -9374,7 +9374,7 @@ angular.module('sp.gifts', [])
 
     };
 
-  }]);
+  });
 
 angular.module('sp.history', [])
 
@@ -9411,7 +9411,7 @@ angular.module('sp.history', [])
   })
 
 
-  .filter('history_icon', ["history_icon", function (history_icon) {
+  .filter('history_icon', function (history_icon) {
     return function (historyItem) {
 
       switch (historyItem.action) {
@@ -9423,9 +9423,9 @@ angular.module('sp.history', [])
       }
 
     }
-  }])
+  })
 
-  .filter('history_item', ["history_texts", "social_list", function (history_texts, social_list) {
+  .filter('history_item', function (history_texts, social_list) {
     return function (historyItem) {
 
       switch (historyItem.action) {
@@ -9456,9 +9456,9 @@ angular.module('sp.history', [])
       return history_texts[historyItem.action];
 
     }
-  }])
+  })
 
-  .directive('sailplayHistory', ["sp", "sp_api", function (sp, sp_api) {
+  .directive('sailplayHistory', function (sp, sp_api) {
     return {
 
       restrict: 'A',
@@ -9482,7 +9482,7 @@ angular.module('sp.history', [])
       }
 
     };
-  }]);
+  });
 
 
 angular.module('sp', [
@@ -9496,13 +9496,13 @@ angular.module('sp', [
 
 ])
 
-  .service('sp', ["$window", function ($window) {
+  .service('sp', function ($window) {
 
     return $window.SAILPLAY || {};
 
-  }])
+  })
 
-  .service('sp_api', ["$q", "sp", "$rootScope", function ($q, sp, $rootScope) {
+  .service('sp_api', function ($q, sp, $rootScope) {
 
     var self = this;
 
@@ -9576,9 +9576,9 @@ angular.module('sp', [
 
     }
 
-  }])
+  })
 
-  .factory('SailPlayShare', ["$window", function ($window) {
+  .factory('SailPlayShare', function ($window) {
     return function (network, url, title, description, image) {
 
       var share_url = '';
@@ -9616,7 +9616,7 @@ angular.module('sp', [
       $window.open(share_url, '_blank', 'toolbar=0,status=0,width=626,height=436,location=no');
 
     }
-  }])
+  })
 
   .service('tagHelper', function () {
 
@@ -9675,7 +9675,7 @@ angular.module('sp', [
     };
   })
 
-  .filter('str_limit', ["$filter", function ($filter) {
+  .filter('str_limit', function ($filter) {
     return function (input, limit) {
       if (!input) return;
       if (input.length <= limit) {
@@ -9683,7 +9683,7 @@ angular.module('sp', [
       }
       return $filter('limitTo')(input, limit) + '...';
     };
-  }])
+  })
 
   .filter('is_default', function () {
 
@@ -9702,7 +9702,7 @@ angular.module('sp', [
 
   })
 
-  .filter('sailplay_pic', ["sp", function (sp) {
+  .filter('sailplay_pic', function (sp) {
 
     function repair_pic_url(url) {
       if (/^((http|https|ftp):\/\/)/.test(url)) {
@@ -9724,10 +9724,10 @@ angular.module('sp', [
 
     };
 
-  }]);
+  });
 angular.module('sp.profile', [])
 
-  .directive('sailplayProfile', ["sp", "sp_api", function (sp, sp_api) {
+  .directive('sailplayProfile', function (sp, sp_api) {
 
     return {
 
@@ -9746,7 +9746,7 @@ angular.module('sp.profile', [])
 
     };
 
-  }]);
+  });
 
 
 angular.module('sp.status', [])
@@ -9760,7 +9760,7 @@ angular.module('sp.status', [])
     }
   })
 
-  .directive('sailplayStatus', ["sp", "sp_api", "spPurchaseTag", "SailPlayShare", "$window", "$rootScope", function (sp, sp_api, spPurchaseTag, SailPlayShare, $window, $rootScope) {
+  .directive('sailplayStatus', function (sp, sp_api, spPurchaseTag, SailPlayShare, $window, $rootScope) {
 
     return {
 
@@ -9906,7 +9906,7 @@ angular.module('sp.status', [])
 
     };
 
-  }]);
+  });
 angular.module('ui.datepicker', [])
 
   .service('dateService', function () {
@@ -9955,7 +9955,7 @@ angular.module('ui.datepicker', [])
 
   })
 
-  .directive('datePicker', ["dateService", function (dateService) {
+  .directive('datePicker', function (dateService) {
     return {
       restrict: 'E',
       replace: true,
@@ -10000,7 +10000,7 @@ angular.module('ui.datepicker', [])
       }
     }
 
-  }]);
+  });
 
 (function () {
 
@@ -10072,7 +10072,7 @@ angular.module('ui.datepicker', [])
       }
     })
 
-    .directive('spAuth', ["$rootScope", "sp", function ($rootScope, sp) {
+    .directive('spAuth', function ($rootScope, sp) {
       return {
         restrict: 'A',
         replace: false,
@@ -10097,9 +10097,9 @@ angular.module('ui.datepicker', [])
 
         }
       }
-    }])
+    })
 
-    .directive('slackSlider', ["$timeout", function ($timeout) {
+    .directive('slackSlider', function ($timeout) {
       return {
         restrict: 'A',
         replace: false,
@@ -10120,6 +10120,6 @@ angular.module('ui.datepicker', [])
         }
 
       };
-    }]);
+    });
 
 }());
