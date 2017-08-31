@@ -357,6 +357,10 @@ angular.module('sp.profile', [])
 
         scope.user = sp_api.data('load.user.info');
 
+        scope.social_connected = function(soc) {
+          return (new RegExp(soc)).test(window.sailplay_config.data.social)
+        }
+
         scope.logout = function () {
           sp.send('logout');
         };

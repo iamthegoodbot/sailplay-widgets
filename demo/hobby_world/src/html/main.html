@@ -1,6 +1,6 @@
 <div class="sp_wrapper" data-ng-show="global.auth">
 
-    <div class="bns_inner_block">
+    <div class="bns_inner_block clearfix">
 
         <div class="bns_top">
 
@@ -21,25 +21,25 @@
                 <div class="bns_top_prof_info_soc">
 
                     <div class="bns_top_prof_info_soc_item"
-                         data-ng-class="{act: actions && actions() && actions().connectedAccounts.vk}">
+                         data-ng-class="{act: social_connected('vk')}">
                         <img src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/cff30fc71680eb10f1abb116e820f093.png"
                              alt="Vkontakte">
                     </div>
 
                     <div class="bns_top_prof_info_soc_item"
-                         data-ng-class="{act: actions && actions() && actions().connectedAccounts.fb}">
+                         data-ng-class="{act: social_connected('fb')}">
                         <img src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/4d7501c88d3fb199f2c63a491a48c586.png"
                              alt="Facebook">
                     </div>
 
                     <div class="bns_top_prof_info_soc_item"
-                         data-ng-class="{act: actions && actions() && actions().connectedAccounts.gp}">
+                         data-ng-class="{act: social_connected('gp')}">
                         <img src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/e1f24e51b4be3db620fb8c5b15c78c20.png"
                              alt="Google Plus">
                     </div>
 
                     <div class="bns_top_prof_info_soc_item"
-                         data-ng-class="{act: actions && actions() && actions().connectedAccounts.ok}">
+                         data-ng-class="{act: social_connected('mr')}">
                         <img src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/78b8d9be7fe3e8e0f82a92b518937e8b.png"
                              alt="Odnoklassniki">
                     </div>
@@ -60,7 +60,7 @@
 
                 <span class="bns_top_bal_np"
                       data-ng-bind="'Неподтвержденных ' + (user().user_points.unconfirmed | number)"></span>
-                <div class="bns_tooltip">Это неподтвержденные баллы</div>
+                <div class="bns_tooltip">Баллы будут доступны после подтверждения факта оплаты</div>
 
                 <a href="#" class="bns_bot_linck js_open_hist"
                    data-ng-click="$event.preventDefault();show_history();body_lock(true)">История заказов</a>
