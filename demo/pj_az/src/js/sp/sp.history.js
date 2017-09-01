@@ -11,10 +11,6 @@ angular.module('sp.history', [])
   .filter('history_item', function ($rootScope, history_texts, social_list, $filter, tryParseFieldFilter) {
     return function (historyItem) {
 
-      function ifAz(){
-        return $rootScope.config && $rootScope.config.lang == 'az'
-      }
-
       switch (historyItem.action) {
         case 'gift_purchase':
           return history_texts.gift_purchase + ': ' + tryParseFieldFilter(historyItem.name);
