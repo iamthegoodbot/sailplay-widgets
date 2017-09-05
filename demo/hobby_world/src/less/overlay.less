@@ -1,13 +1,15 @@
 .bns_tooltip {
-    padding: 10px 25px;
+    padding: 10px 0px;
     top: 15px;
     display: inline-block;
     position: relative;
     background: white;
     z-index: 10;
     opacity: 0;
+    visibility: hidden;
+    width: 75%;
     transform: translateY(-10px);
-    transition: opacity .2s, transform .2s;
+    transition: opacity .2s, transform .2s, .2s visibility 0s;
     font-size: 13px;
     border-radius: 25px;
     box-shadow: 1px 1px 20px 0px rgba(0, 0, 0, 0.21);
@@ -33,7 +35,7 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.4);
   position: fixed;
-  overflow-y: auto;
+  overflow-y: hidden;
   left: 0;
   top: 0;
   text-align: center;

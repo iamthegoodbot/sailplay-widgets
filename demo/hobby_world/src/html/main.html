@@ -109,7 +109,7 @@
                     <span class="bns_line_item_sckid" data-ng-bind="badge.descr"></span>
 
                     <span class="bns_line_item_til" data-ng-if="getSumForStatus(badge) > user().purchases.sum"
-                          data-ng-bind="((getSumForStatus(badge) - user().purchases.sum) | sailplay_pluralize:'Остался,Осталось,Осталось') + ' ' + (getSumForStatus(badge) - user().purchases.sum) + ' ' + ((getSumForStatus(badge) - user().purchases.sum) | sailplay_pluralize:'рубль,рубля,рублей')"></span>
+                          data-ng-bind="((getSumForStatus(badge) - user().purchases.sum) | sailplay_pluralize:'Остался,Осталось,Осталось') + ' ' + (getSumForStatus(badge) - user().purchases.sum) + ' ' + ((getSumForStatus(badge) - user().purchases.sum) | sailplay_pluralize:'рубль,рубля,рублей') + ' прогресс ' + (100 / user().purchases.sum * (getSumForStatus(badge) - user().purchases.sum)).toFixed() + '%'"></span>
 
                 </div>
 
@@ -239,7 +239,7 @@
             </div>
         </div>
 
-        <div class="bns_two_col" data-hw-block>
+        <div class="bns_two_col" data-hw-block data-recommend-block>
 
             <div class="bns_col_left">
 
@@ -251,17 +251,18 @@
 
                 <div class="bns_recom" data-ng-show="recommend_list()">
 
-                    <div class="bns_recom_item" data-ng-repeat="item in recommend_list() track by $index | limitTo:4">
+                    <div class="bns_recom_item" data-ng-repeat="item in recommend_list() track by $index" data-slack-slider
+                     data-slack-config="recommend_config" data-length="recommend_list().length">
                         <a data-ng-href="{{ item.link }}" target="_blank" class="bns_recom_item_img">
                             <img data-ng-src="{{ item.image }}">
-                            <span data-ng-bind="item.title"></span>
+                            <span data-ng-bind="item.title" data-ng-style="{ fontSize: gift.name.length >= 60 ? '13px' : '15px' }"></span>
                         </a>
                     </div>
 
                 </div>
             </div>
 
-            <div class="bns_col_right">
+            <div class="bns_col_right bns_game_day_main">
 
                 <span class="bns_top_head">Игра дня</span>
 
@@ -273,7 +274,7 @@
 
                     <div class="bns_game_day_left">
 
-                        <span class="bns_game_day_name" data-ng-bind="game_of_day()[0].title"></span>
+                        <span class="bns_game_day_name" data-ng-bind="game_of_day()[0].title"  data-ng-style="{ fontSize: gift.name.length >= 60 ? '22px' : '26px' }"></span>
 
                         <a data-ng-href="{{ game_of_day()[0].link }}" target="_blank">
                             {{ game_of_day()[0].price }}
@@ -298,13 +299,13 @@
             <div class="bns_gift_main" data-ng-show="gifts()">
 
                 <div class="bns_gift_item" data-ng-repeat="gift in gifts()" data-slack-slider
-                     data-slack-config="gifts_config">
+                     data-slack-config="gifts_config" data-length="gifts().length">
 
                     <div class="bns_gift_img">
                         <img data-ng-src="{{ gift.thumbs.url_250x250 | sailplay_pic }}">
                     </div>
 
-                    <span class="bns_gift_name" data-ng-bind="gift.name"></span>
+                    <span class="bns_gift_name" data-ng-bind="gift.name" data-ng-style="{ fontSize: gift.name.length >= 60 ? '11px' : '14px' }"></span>
 
                     <span class="bns_gift_point" data-ng-bind="gift.points | number"></span>
 

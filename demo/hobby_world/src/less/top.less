@@ -88,6 +88,8 @@
     position: relative;
     text-align: center;
     height: 173px;
+    vertical-align: top;
+    
     .bns_top_head_sm {
       color: #ef6747;
       font-size: 13px;
@@ -131,7 +133,9 @@
       &:hover {
         & + .bns_tooltip {
           opacity: 1;
-          transform: translate(0)
+          transform: translate(0);
+          visibility: visible;
+          transition: visibility 0s, opacity .2s, transform .2s;
         }
       }
       &:after {

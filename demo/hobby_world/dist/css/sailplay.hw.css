@@ -73,15 +73,17 @@
   background-position: center center;
 }
 .bns_tooltip {
-  padding: 10px 25px;
+  padding: 10px 0px;
   top: 15px;
   display: inline-block;
   position: relative;
   background: white;
   z-index: 10;
   opacity: 0;
+  visibility: hidden;
+  width: 75%;
   transform: translateY(-10px);
-  transition: opacity .2s, transform .2s;
+  transition: opacity .2s, transform .2s, .2s visibility 0s;
   font-size: 13px;
   border-radius: 25px;
   box-shadow: 1px 1px 20px 0px rgba(0, 0, 0, 0.21);
@@ -106,7 +108,7 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.4);
   position: fixed;
-  overflow-y: auto;
+  overflow-y: hidden;
   left: 0;
   top: 0;
   text-align: center;
@@ -1035,6 +1037,7 @@
   position: relative;
   text-align: center;
   height: 173px;
+  vertical-align: top;
 }
 .bns_top .bns_top_center .bns_top_head_sm {
   color: #ef6747;
@@ -1080,6 +1083,8 @@
 .bns_top .bns_top_center .bns_top_bal_np:hover + .bns_tooltip {
   opacity: 1;
   transform: translate(0);
+  visibility: visible;
+  transition: visibility 0s, opacity .2s, transform .2s;
 }
 .bns_top .bns_top_center .bns_top_bal_np:after {
   content: '';
@@ -1228,7 +1233,8 @@
   width: 175px;
   text-align: center;
   border-radius: 27px;
-  line-height: 27px;
+  line-height: 16px;
+  padding: 5px 0;
   background-color: #fff;
   left: 50%;
   margin-left: -89px;
@@ -1545,6 +1551,7 @@
   width: 100%;
   box-sizing: border-box;
   padding: 0px 21px;
+  margin-bottom: 14px;
   height: 56px;
   color: #000000;
   font-size: 13px;
@@ -1580,6 +1587,7 @@
   width: 100%;
   text-align: center;
   padding: 25px;
+  margin-bottom: 66px;
   box-sizing: border-box;
 }
 .bns_quest_main .bns_quest_wr {
@@ -1895,7 +1903,7 @@
   text-align: center;
   color: #000000;
   font-size: 13px;
-  height: 42px;
+  height: 75px;
 }
 .bns_wish_main .bns_wish_item .bns_wish_item_name + a {
   display: inline-block;
@@ -1953,6 +1961,8 @@
   float: left;
   width: 100%;
   padding-top: 32px;
+  padding-left: 30px;
+  padding-right: 30px;
   padding-bottom: 30px;
   text-align: center;
 }
@@ -1966,6 +1976,9 @@
   width: 100%;
   text-decoration: none;
 }
+.bns_recom .bns_recom_item .bns_recom_item_img img {
+  display: inline-block;
+}
 .bns_recom .bns_recom_item .bns_recom_item_img span {
   float: left;
   width: 100%;
@@ -1973,13 +1986,46 @@
   box-sizing: border-box;
   padding: 0px 30px;
   color: #000000;
-  font-size: 15px;
-  height: 51px;
+  font-size: 13px;
+  height: 130px;
+}
+.bns_recom .slick-prev {
+  border: 0px;
+  background-color: transparent;
+  text-indent: -99999px;
+  width: 15px;
+  height: 50px;
+  position: absolute;
+  background-image: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/8f8c516f2d7c0a07a0ec4e37dc88455c.png");
+  left: 10px;
+  top: 50%;
+  margin-top: -25px;
+  outline: none;
+  cursor: pointer;
+}
+.bns_recom .slick-next {
+  outline: none;
+  border: 0px;
+  background-color: transparent;
+  text-indent: -99999px;
+  width: 15px;
+  height: 50px;
+  position: absolute;
+  background-image: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/b46be7c91b2036afb8660b47ced7a1fe.png");
+  right: 10px;
+  top: 50%;
+  margin-top: -25px;
+  cursor: pointer;
+}
+.bns_game_day_main {
+  height: 334px;
 }
 .bns_game_day {
   float: left;
   width: 100%;
   position: relative;
+  top: 50%;
+  transform: translateY(-50%);
   padding: 17px 0 5px;
 }
 .bns_game_day .bns_linck_all {
@@ -1992,6 +2038,8 @@
 .bns_game_day .bns_game_day_left {
   float: left;
   width: 220px;
+  padding: 0 15px;
+  box-sizing: border-box;
   text-align: center;
 }
 .bns_game_day .bns_game_day_left .bns_game_day_name {
@@ -2000,7 +2048,6 @@
   text-align: center;
   color: #000000;
   font-size: 26px;
-  margin-top: 82px;
 }
 .bns_game_day .bns_game_day_left a {
   display: inline-block;
@@ -2058,7 +2105,6 @@
   float: right;
   width: 155px;
   text-align: center;
-  height: 236px;
 }
 .bns_game_day .bns_game_day_right:before {
   content: '';
@@ -2110,6 +2156,9 @@
     display: inline-block;
     margin-top: 40px;
   }
+  .bns_game_day .bns_game_day_left {
+    width: calc(100% - 155px);
+  }
   .bns_two_col .bns_col_left {
     width: 100%;
   }
@@ -2137,11 +2186,15 @@
   }
   .bns_top .bns_top_center {
     float: none;
-    margin-top: 40px;
     display: inline-block;
   }
   .bns_top .bns_top_right {
     width: 375px;
+  }
+}
+@media screen and (max-width: 794px) {
+  .bns_top_center {
+    margin-top: 40px;
   }
 }
 @media screen and (max-width: 700px) {

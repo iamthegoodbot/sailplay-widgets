@@ -1,7 +1,13 @@
+.bns_game_day_main {
+  height: 334px;
+}
+
 .bns_game_day {
   float: left;
   width: 100%;
   position: relative;
+  top: 50%;
+  transform: translateY(-50%);
   padding: 17px 0 5px;  
   .bns_linck_all {
     position: absolute;
@@ -13,6 +19,8 @@
   .bns_game_day_left {
     float: left;
     width: 220px;
+    padding: 0 15px;
+    box-sizing: border-box;
     text-align:  center;
     .bns_game_day_name {
       float: left;
@@ -20,7 +28,6 @@
       text-align: center;
       color: #000000;
       font-size: 26px;
-      margin-top:82px;
     }
     a {
       display: inline-block;
@@ -79,7 +86,7 @@
     float: right;
     width: 155px;
     text-align: center;
-    height: 236px;
+    // height: 236px;
     &:before {
       content: '';
       display: inline-block;
