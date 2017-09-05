@@ -105,7 +105,6 @@
             scope.$watch('dataLength', function(v) {
               if (v > 0)
                 setTimeout(function(){
-                  console.log('asd')
                   $(scope.slackConfig.selector).slick(scope.slackConfig.data);
                 }, 200)
             })
