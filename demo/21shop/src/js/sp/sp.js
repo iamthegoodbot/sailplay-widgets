@@ -98,8 +98,6 @@
 
       self.checkTag = function (tag, exist) {
 
-        console.log(exist)
-
         return exist.tags.filter(function (item) {
           return item.name == tag && item.exist
         }).length
