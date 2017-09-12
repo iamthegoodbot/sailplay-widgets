@@ -47,7 +47,7 @@
 
             if (!to.length) return;
 
-            var offset = (to.offset().top + $(window).height()) > $('body').height() ? $('body').height() - $(window).height() : to.offset().top;
+            var offset = to.offset().top;
 
             $("html, body").delay(100).animate({
               scrollTop: offset

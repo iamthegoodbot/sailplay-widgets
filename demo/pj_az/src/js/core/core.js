@@ -12,7 +12,14 @@ angular.module('core', [
 
   })
 
-  .run(function (sp, sp_api, $rootScope) {
+  .factory('getTimeZone', function(){
+    return function() {
+      var offset = new Date().getTimezoneOffset(), o = Math.abs(offset);
+      return (offset < 0 ? "+" : "-") + ("00" + Math.floor(o / 60)).slice(-2) + ":" + ("00" + (o % 60)).slice(-2);
+    }
+  })
+
+  .run(function (sp, sp_api, $rootScope, getTimeZone) {
 
     $rootScope.config = window.sailplay_config || {};
 
@@ -21,17 +28,23 @@ angular.module('core', [
     sp.send('init', {
       partner_id: $rootScope.config.partner_id || 1652,
       domain: $rootScope.config.domain || '//sailplay.ru',
-      lang: $rootScope.config.lang && ($rootScope.config.lang == 'az' ? 'en' : $rootScope.config.lang) || 'ru'
+      lang: $rootScope.config.lang || 'en'
     });
 
     $rootScope.remote_login_options = {
       background: 'rgba(0, 0, 0, 0.5)',
-      lang: $rootScope.config.lang && ($rootScope.config.lang == 'az' ? 'en' : $rootScope.config.lang) || 'ru',
+      lang: $rootScope.config.lang || 'en',
       disabled_options: ['socials', 'agreement']
     };
 
 
     $rootScope.loaded = false;
+
+    if(window.sessionStorage && window.sessionStorage.getItem('splogged')) {
+      $rootScope.isLogged = !!window.sessionStorage.getItem('splogged')
+    } else {
+      $rootScope.isLogged = false
+    }
 
     $rootScope.auth = false;
 
@@ -59,11 +72,15 @@ angular.module('core', [
 
     sp.on('login.success', function () {
 
+      window.sessionStorage && window.sessionStorage.setItem('splogged', true)
+
       sp_api.reset();
 
       $rootScope.$apply(function () {
 
         $rootScope.auth = true;
+
+        $rootScope.isLogged = true
 
         loadData();
 
@@ -72,6 +89,8 @@ angular.module('core', [
     });
 
     sp.on('logout.success', function () {
+
+      window.sessionStorage && window.sessionStorage.removeItem('splogged')
 
       sp_api.reset();
       //
@@ -82,6 +101,8 @@ angular.module('core', [
       $rootScope.$apply(function () {
 
         $rootScope.auth = false;
+
+        $rootScope.isLogged = false
 
       });
 
@@ -135,11 +156,6 @@ angular.module('core', [
     $rootScope.$on('update', function () {
       loadData();
     });
-
-    function getTimeZone() {
-      var offset = new Date().getTimezoneOffset(), o = Math.abs(offset);
-      return (offset < 0 ? "+" : "-") + ("00" + Math.floor(o / 60)).slice(-2) + ":" + ("00" + (o % 60)).slice(-2);
-    }
 
     function loadData() {
 

@@ -1,8 +1,13 @@
 angular.module('sp.gifts', [])
 
-  .filter('giftLocale', function($rootScope){
+  .filter('giftName', function($rootScope, tryParseFieldFilter){
     return function(gift){
-      return $rootScope.locale.gifts && $rootScope.locale.gifts[gift && gift.id] || {}
+      return tryParseFieldFilter(gift.name)
+    }
+  })
+  .filter('giftDesc', function($rootScope, tryParseFieldFilter){
+    return function(gift){
+      return tryParseFieldFilter(gift.descr)
     }
   })
 
