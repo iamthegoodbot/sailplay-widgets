@@ -12,7 +12,7 @@ angular.module('sp.recommend', [])
         scope.recommend_config = {
           selector: '.bns_recom',
           data: {
-            slidesToShow: 5,
+            slidesToShow: 3,
             slidesToScroll: 1,
             slide: '.bns_recom_item',
             responsive: [

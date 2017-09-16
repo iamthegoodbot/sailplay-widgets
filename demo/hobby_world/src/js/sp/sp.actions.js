@@ -12,8 +12,8 @@
       "social": {
         "fb": {
           "like": {
-            "name": "Вступить в группу в Facebook",
-            "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/09fa34945d5b09e70d7253786d647c96.png",
+            "name": "Вступить в группу",
+            "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/b5937fc2612788e203f83a55188594be.svg",
             "styles": {
               "fb_share_btn": {
                 "font-family": "Arial",
@@ -36,8 +36,8 @@
             }
           },
           "partner_page": {
-            "name": "Рассказать о компании в Facebook",
-            "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/09fa34945d5b09e70d7253786d647c96.png",
+            "name": "Рассказать о компании",
+            "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/b5937fc2612788e203f83a55188594be.svg",
             "styles": {
               "fb_share_btn": {
                 "font-family": "Arial",
@@ -60,8 +60,8 @@
             }
           },
           "purchase": {
-            "name": "Рассказать о покупке в Facebook",
-            "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/09fa34945d5b09e70d7253786d647c96.png",
+            "name": "Рассказать о покупке",
+            "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/b5937fc2612788e203f83a55188594be.svg",
             "styles": {
               "fb_share_btn": {
                 "font-family": "Arial",
@@ -86,8 +86,8 @@
         },
         "vk": {
           "like": {
-            "name": "Вступить в группу в Вконтакте",
-            "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/e0bbed923fe5841091133f2794d8277c.png",
+            "name": "Вступить в группу",
+            "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/aa74fd34380f7c4690844642f335df3b.svg",
             "styles": {
               "vk_share_btn": {
                 "font-family": "Arial",
@@ -110,8 +110,8 @@
             }
           },
           "partner_page": {
-            "name": "Рассказать о компании в Вконтакте",
-            "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/e0bbed923fe5841091133f2794d8277c.png",
+            "name": "Рассказать о компании",
+            "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/aa74fd34380f7c4690844642f335df3b.svg",
             "styles": {
               "vk_share_btn": {
                 "font-family": "Arial",
@@ -134,8 +134,8 @@
             }
           },
           "purchase": {
-            "name": "Рассказать о покупке в Вконтакте",
-            "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/e0bbed923fe5841091133f2794d8277c.png",
+            "name": "Рассказать о покупке",
+            "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/aa74fd34380f7c4690844642f335df3b.svg",
             "styles": {
               "vk_share_btn": {
                 "font-family": "Arial",
@@ -160,7 +160,7 @@
         },
         "ok": {
           "like": {
-            "name": "Вступить в группу в Одноклассниках",
+            "name": "Вступить в группу",
             "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/78b8d9be7fe3e8e0f82a92b518937e8b.png",
             "styles": {
               "ok_share_btn": {
@@ -184,7 +184,7 @@
             }
           },
           "partner_page": {
-            "name": "Рассказать в Одноклассниках",
+            "name": "Рассказать о компании",
             "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/78b8d9be7fe3e8e0f82a92b518937e8b.png",
             "styles": {
               "ok_share_btn": {
@@ -208,7 +208,7 @@
             }
           },
           "purchase": {
-            "name": "Рассказать о покупке в Одноклассниках",
+            "name": "Рассказать о покупке",
             "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/78b8d9be7fe3e8e0f82a92b518937e8b.png",
             "styles": {
               "ok_share_btn": {

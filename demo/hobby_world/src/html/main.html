@@ -5,8 +5,7 @@
         <div class="bns_top">
 
             <div class="bns_top_left" data-sailplay-profile>
-                <span class="bns_top_head">Профиль</span>
-                <div class="bns_top_ava">
+                <div class="bns_top_ava" data-ng-click="ava_menu_show = !ava_menu_show">
                     <img data-ng-src="{{ user().user.pic }}" alt="Аватар">
                 </div>
                 <div class="bns_top_prof_info ">
@@ -45,10 +44,13 @@
                     </div>
 
                 </div>
-                <a href="#" class="bns_bot_linck js_logout" style="left: 35%"
-                   target="_blank" data-ng-href="{{ config.data.page && config.data.page.logout }}">Выйти</a>
-                <a href="#" class="bns_bot_linck js_open_edit"
-                   data-ng-click="$event.preventDefault();edit_profile();body_lock(true);">Редактировать профиль</a>
+                <div class="avatar_menu" ng-class="{ show: ava_menu_show }">
+                    <a href="#" class="bns_bot_linck js_open_edit"
+                    data-ng-click="$event.preventDefault();edit_profile();body_lock(true);">Редактировать профиль</a>
+                    <br>
+                    <a href="#" class="bns_bot_linck js_logout"
+                    target="_blank" data-ng-href="{{ config.data.page && config.data.page.logout }}">Выйти</a>
+                </div>
             </div>
 
             <div class="bns_top_center" data-sailplay-profile>
@@ -62,8 +64,8 @@
                       data-ng-bind="'Неподтвержденных ' + (user().user_points.unconfirmed | number)"></span>
                 <div class="bns_tooltip">Баллы будут доступны после подтверждения факта оплаты</div>
 
-                <a href="#" class="bns_bot_linck js_open_hist"
-                   data-ng-click="$event.preventDefault();show_history();body_lock(true)">История заказов</a>
+                <a href="#" class="new_button history js_open_hist"
+                   data-ng-click="$event.preventDefault();show_history();body_lock(true)">История</a>
 
             </div>
 
@@ -106,10 +108,12 @@
                     </div>
 
                     <span class="bns_line_item_name" data-ng-bind="badge.name"></span>
+                    <span class="bns_line_item_progress" data-ng-if="getSumForStatus(badge) > user().purchases.sum"
+                        data-ng-bind="'Накопление&nbsp;' + (100 / user().purchases.sum * (getSumForStatus(badge) - user().purchases.sum)).toFixed() + '%'"></span>
                     <span class="bns_line_item_sckid" data-ng-bind="badge.descr"></span>
 
                     <span class="bns_line_item_til" data-ng-if="getSumForStatus(badge) > user().purchases.sum"
-                          data-ng-bind="((getSumForStatus(badge) - user().purchases.sum) | sailplay_pluralize:'Остался,Осталось,Осталось') + ' ' + (getSumForStatus(badge) - user().purchases.sum) + ' ' + ((getSumForStatus(badge) - user().purchases.sum) | sailplay_pluralize:'рубль,рубля,рублей') + ' прогресс ' + (100 / user().purchases.sum * (getSumForStatus(badge) - user().purchases.sum)).toFixed() + '%'"></span>
+                          data-ng-bind="((getSumForStatus(badge) - user().purchases.sum) | sailplay_pluralize:'Остался,Осталось,Осталось') + ' ' + (getSumForStatus(badge) - user().purchases.sum) + ' ' + ((getSumForStatus(badge) - user().purchases.sum) | sailplay_pluralize:'рубль,рубля,рублей')"></span>
 
                 </div>
 
@@ -128,9 +132,7 @@
 
                 <div class="bns_quest_main">
 
-                    <div class="prev" data-ng-show="page > 0" data-ng-click="page=page-1;"></div>
-
-                    <div class="bns_quest_wr" data-ng-repeat="action in getPage(actions)">
+                    <div class="bns_quest_wr" data-ng-repeat="action in actions">
 
                         <div class="bns_quest_item" data-ng-if="action._actionId">
                             <div class="bns_quest_item_img">
@@ -153,8 +155,6 @@
                         </div>
 
                     </div>
-
-                    <div class="next" data-ng-show="(page+1) < ((actions.length / size) | math_ceil)" data-ng-click="page=page+1;"></div>
 
                 </div>
 
@@ -221,7 +221,7 @@
                                   data-ng-bind="$parent.item | wish_state"></span>
                         </div>
 
-                        <span class="bns_wish_item_name" data-ng-bind="item.title"></span>
+                        <span class="bns_wish_item_name to_gradient" data-ng-bind="item.title"></span>
 
                         <a data-ng-if="!item.old_price" data-ng-href="{{ $parent.item.link }}"
                            data-ng-bind="$parent.item.price + ' руб.'" target="_blank"></a>
@@ -255,7 +255,17 @@
                      data-slack-config="recommend_config" data-length="recommend_list().length">
                         <a data-ng-href="{{ item.link }}" target="_blank" class="bns_recom_item_img">
                             <img data-ng-src="{{ item.image }}">
-                            <span data-ng-bind="item.title" data-ng-style="{ fontSize: gift.name.length >= 60 ? '13px' : '15px' }"></span>
+                            <span class="to_gradient bns_name" data-ng-bind="item.title" data-ng-style="{ fontSize: gift.name.length >= 60 ? '13px' : '15px' }"></span>
+
+                        <div class="bns_price_container">
+                            <span class="price" data-ng-if="!item.old_price" data-ng-href="{{ $parent.item.link }}"
+                            data-ng-bind="$parent.item.price + ' руб.'" target="_blank"></span>
+
+                            <span class="price" data-ng-if="item.old_price" data-ng-href="{{ $parent.item.link }}" target="_blank">
+                                {{ $parent.item.price }}
+                                <span class="bns_old_price" data-ng-bind="$parent.item.price + ' руб.'"></span>
+                            </span>
+                        </div>
                         </a>
                     </div>
 
@@ -272,29 +282,23 @@
 
                 <div class="bns_game_day" data-ng-show="game_of_day()[0]">
 
-                    <div class="bns_game_day_left">
+                        <img data-ng-src="{{ game_of_day()[0].image }}">
 
-                        <span class="bns_game_day_name" data-ng-bind="game_of_day()[0].title"  data-ng-style="{ fontSize: gift.name.length >= 60 ? '22px' : '26px' }"></span>
+                        <div class="bns_game_day_name to_gradient" data-ng-bind="game_of_day()[0].title"></div>
 
-                        <a data-ng-href="{{ game_of_day()[0].link }}" target="_blank">
+                        <a class="price " data-ng-href="{{ game_of_day()[0].link }}" target="_blank">
                             {{ game_of_day()[0].price }}
                             <span class="bns_old_price" data-ng-bind="game_of_day()[0].old_price + ' руб.'"></span>
                         </a>
-
-                    </div>
-
-                    <div class="bns_game_day_right">
-                        <img data-ng-src="{{ game_of_day()[0].image }}">
-                    </div>
 
                 </div>
 
             </div>
         </div>
 
-        <div class="bns_block" data-sailplay-gifts>
+        <div class="bns_block" data-sailplay-gifts style="background: none">
 
-            <span class="bns_top_head">Подарки</span>
+            <span class="bns_top_head big">Подарки</span>
 
             <div class="bns_gift_main" data-ng-show="gifts()">
 
@@ -305,7 +309,7 @@
                         <img data-ng-src="{{ gift.thumbs.url_250x250 | sailplay_pic }}">
                     </div>
 
-                    <span class="bns_gift_name" data-ng-bind="gift.name" data-ng-style="{ fontSize: gift.name.length >= 60 ? '11px' : '14px' }"></span>
+                    <span class="bns_gift_name to_gradient" data-ng-bind="gift.name"></span>
 
                     <span class="bns_gift_point" data-ng-bind="gift.points | number"></span>
 

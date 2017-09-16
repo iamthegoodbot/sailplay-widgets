@@ -43,7 +43,7 @@ angular.module('sp.status', [])
             return badge.is_received
           }).length;
           var len = scope.badges().multilevel_badges[1].length;
-          var percents = 100 / len * received_statuses;
+          var percents = (100 / len * received_statuses) + 1;
           percents = percents > 100 ? 100 : percents < 0 ? 0 : percents;
           return {
             'width': percents + '%'
