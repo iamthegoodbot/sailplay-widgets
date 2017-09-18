@@ -121,7 +121,7 @@
                 <div class="bns_tab_block" id="gift" data-ng-switch-when="gifts" data-sailplay-gifts>
 
                     <div class="bns_gift_item" data-ng-repeat="gift in gifts()">
-                      <div class="img-container" data-ng-style="{'background-image': 'url('+(gift.thumbs.url_250x250 | sailplay_pic)+')'}">
+                      <div class="img-container" data-ng-style="{'background-image': 'url('+(gift.pic_full | sailplay_pic)+')'}">
                         
                       </div>
                         <div class="bns_gift_item_bottom">
@@ -212,7 +212,7 @@
                                data-ng-class="{act: badge.is_received, open: badge.id == $parent.$parent.opened}">
                               <img data-ng-src="{{ (badge.is_received ? badge.thumbs.url_250x250 : badge.thumbs.url_gs) | sailplay_pic }}">
                               <span>
-                                  {{ badge.name }}
+                                  {{ badge.name | tryParseField }}
                                   <strong data-ng-show="badge.points"
                                           data-ng-bind="(badge.points | number) + ' ' + (badge.points |sailplay_pluralize:('pluralize.points' | translate))"></strong>
                               </span>

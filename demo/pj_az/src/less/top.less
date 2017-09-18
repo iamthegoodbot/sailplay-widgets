@@ -63,6 +63,7 @@
         width: 100%;
         height: 333px;
         .bns_top_popup_hist_item {
+          clear: both;
           float: left;
           width: 600px;
           margin-bottom: 10px;
@@ -225,6 +226,9 @@
             font-size: 20px;
             min-width: 100px;
             position: relative;
+            @media screen and (min-width: 1500px) {
+              min-width: 240px;
+            }
             &:hover {
               .bns_tile {
                 display: block;

@@ -6,7 +6,6 @@ body {
   }
 }
 .bns_inner_block {
-  max-width: 1370px;
   width: 100%;
   margin:auto;
 }
@@ -27,10 +26,13 @@ body {
     font-weight: bold;
     position: relative;
     text-decoration: none;
+    &:hover {
+      background-color: #f1f1f1;
+    }
     &:not(:last-child):not(:hover):not(.act) {
       border-right: 1px solid #eaeaea;
     }
-    &.act, &:hover {
+    &.act {
       background-color: #0F9675;
       color: #fff;
       //&:before {
@@ -71,7 +73,7 @@ div[data-sailplay-action-custom] {
     margin-bottom: 40px;
   }
 
-  .content {
+  .contentt {
 
     &.header {
       font-weight: 700;
@@ -140,7 +142,7 @@ div[data-sailplay-action-custom] {
 
   .action.static_page {
 
-    .content {
+    .contentt {
 
       &.header {
         font-size: 36px;
