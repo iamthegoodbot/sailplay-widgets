@@ -16,7 +16,7 @@ angular.module('sp_pj_az', [
     '//sailplays3.cdnvideo.ru/media/assets/assetfile/c425ff894ab6d0efe5a58a3b4e6ac092.png'
   ])
 
-  .directive('sailplayPjAz', function ($rootScope, $locale, headerBg, $filter, $timeout) {
+  .directive('sailplayPjAz', function ($rootScope, $locale, headerBg, $filter, $timeout, sp_api, getTimeZone) {
     return {
       restrict: 'E',
       replace: true,
@@ -70,6 +70,12 @@ angular.module('sp_pj_az', [
         scope.clear_show = function (name) {
           scope[name] = null;
           scope.body_lock(false);
+          $timeout(function(){
+            sp_api.call('load.actions.custom.list');
+            sp_api.call('load.user.info', {all: 1, purchases: 1});
+            sp_api.call('load.user.history', {tz: getTimeZone()});
+            sp_api.call('load.badges.list');
+          }, 1200)
         };
 
         scope.get_gift = function (gift) {

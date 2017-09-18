@@ -1,7 +1,7 @@
 window._SP_LOCALE = {
   "logo": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/25834cc415872d6658db9a57be67a103.png",
   "pizzameter": {
-    "counter_bg": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/2a6ad32865c25bbf9f9ab926723f49bb.png",
+    "counter_bg": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/a8b800950f84974fcfcb5cf34b5467db.png",
     "wrapper_bg": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/acea674428c416c48eb1fdfd3b095e7e.png"
   },
   "tabs": {
@@ -10,22 +10,22 @@ window._SP_LOCALE = {
     "badges": "Beydjiklərin siyahısı"
   },
   "pluralize": {
-    "points": "Ball,Ballar,Ballar"
+    "points": "Ball,Ball,Ball"
   },
   "login": "Daxil olmaq",
   "unconfirmed_points": "Təsdiq olunmayan ballar",
   "unconfirmed_points_hint": {
-    "title": "Bu nədir??",
+    "title": "Ətraflı",
     "text": "Sifariş ödənildikdən sonra Sizin təsdiqlənəcək  təsdiq olunmayan ballarınız"
   },
-  "you_have": "Siz — ",
+  "you_have": "Statusunuz: ",
   "need_earn_more": "Daha çox bal toplamaq lazımdır ",
   "empty_name": "Ad qeyd olunmayıb",
   "empty_status": "Status yoxdur",
-  "history_button": "Əlavə edilmişlərin tarixi",
-  "status_button": "Statusların siyahısı",
+  "history_button": "Balların tarixçəsi",
+  "status_button": "Statusların tam siyahısı",
   "header_text": "Sizin üçün möhtəşəm bonus proqramımız var. Bu proqram sayəsində Siz saytımızdan əldə etdiyiniz məhsullara görə ballar alacaq və bu ballarla bizdən hədiyyə ala biləcəksiniz.",
-  "history_title": "Əlavə edilmişlərin tarixi",
+  "history_title": "Balların tarixçəsi",
   "pages": "Səhifələr:",
   "history_date_format": "dd.MM.yyyy",
   "make_action": "Yerinə yetirmək",
@@ -44,13 +44,13 @@ window._SP_LOCALE = {
     "registration": "Qeydiyyat",
     "referral": "Dostunun qeydiyyatı",
     "referred": "Dəvətnamə ilə qeydiyyat",
-    "referred_purchase": "Покупка приглашенного пользователя",
-    "promocode": "За ввод промокода",
-    "enter_group": "Вступление в группу ",
-    "share_purchase": "Рассказал о покупке в ",
-    "social_share": "Рассказал в ",
-    "share_badge": "Рассказал о бейджике в ",
-    "earn_badge": "Получен бейджик ",
+    "referred_purchase": "Dəvət olunmuş istifadəçinin alış verişi",
+    "promocode": "Promokodu daxil etdiyinə görə",
+    "enter_group": "Facebookda səhifəni izlədiyinə görə",
+    "share_purchase": "Facebookda alış veriş haqqda paylaşıb",
+    "social_share": "Facebookda onlayn sifariş haqqda paylaşıb",
+    "share_badge": "Facebookda beydjik haqqında paylaşıb",
+    "earn_badge": "Beydjik alınıb",
     "extra": "Ekstra "
   },
   "social_list": {"fb": "Facebook"},
@@ -63,13 +63,13 @@ window._SP_LOCALE = {
     "social": {
       "fb": {
         "like": {
-          "name": "Bizi <br>izləyin"
+          "name": "Bizi izləyin"
         },
         "partner_page": {
-          "name": "Haqqımızda<br> paylaşın"
+          "name": "Haqqımızda paylaşın"
         },
         "purchase": {
-          "name": "Alış-verişiniz haqqında<br>paylaşın"
+          "name": "Alış-verişiniz haqqında paylaşın"
         }
       }
     }

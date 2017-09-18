@@ -149,7 +149,7 @@
 
         if (action.socialType) data = actions_data.social[action.socialType] && actions_data.social[action.socialType][action.action];
 
-        if (action.type == "static_page") data = actions_data.static_page
+        if (action.type == "static_page" || action.type == "collect_tags") data = actions_data.static_page
 
         if (actions_data.system[action.type]) data = actions_data.system[action.type];
 
@@ -332,7 +332,7 @@
                         sp_api.call('load.actions.custom.list');
                         sp_api.call('load.user.info', {all: 1, purchases: 1});
                         sp_api.call('load.user.history', {tz: getTimeZone()});
-                      }, 600)
+                      }, 1200)
                       //resolve(data);
                     }
                   })

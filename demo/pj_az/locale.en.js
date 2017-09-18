@@ -1,7 +1,7 @@
 window._SP_LOCALE = {
   "logo": "//sailplays3.cdnvideo.ru/media/assets/assetfile/16e09290ab5a642bcaacaa75b1841c8c.png",
   "pizzameter": {
-    "counter_bg": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/67ae977f540ff163b3f89b6f2927bd54.png",
+    "counter_bg": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/9fc1ec207336f5c0d9ed16f3d19838b9.png",
     "wrapper_bg": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/f95eac7509cad92558bf250b2cb357be.png"
   },
   "tabs": {
@@ -18,7 +18,7 @@ window._SP_LOCALE = {
     "title": "What is it?",
     "text": "Your unconfirmed points, which will be confirmed after the fact of payment of the order"
   },
-  "you_have": "You — ",
+  "you_have": "Status: ",
   "need_earn_more": "Need to collect more ",
   "empty_name": "No name",
   "empty_status": "No status",
@@ -46,7 +46,7 @@ window._SP_LOCALE = {
     "referred": "Registration by invitation",
     "referred_purchase": "The purchase of the invited user",
     "promocode": "For Promo-code",
-    "enter_group": "Subscribing to the group",
+    "enter_group": "Subscribing to the group: ",
     "share_purchase": "Shared the purchase news ",
     "social_share": "Shared in ",
     "share_badge": "Shared the news about the badge in ",
@@ -63,13 +63,13 @@ window._SP_LOCALE = {
     "social": {
       "fb": {
         "like": {
-          "name": "Subscribe <br> in "
+          "name": "Subscribe in "
         },
         "partner_page": {
-          "name": "Share<br> about us in"
+          "name": "Share about us in"
         },
         "purchase": {
-          "name": "share about<br>your purchase"
+          "name": "share about your purchase"
         }
       }
     }
