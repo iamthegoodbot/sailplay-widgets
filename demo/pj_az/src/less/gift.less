@@ -2,8 +2,11 @@
   float: left;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
   width: 100%;
+  @media screen and (min-width: 992px) {
+    justify-content: space-between;
+  }
   &#qust {
     justify-content: flex-start;
   }
@@ -20,6 +23,7 @@
     height: auto;
     flex-basis: auto;
     margin-bottom: 20px;
+    box-sizing: content-box;
     img {
       width: 100%;
       height: auto;
@@ -34,7 +38,7 @@
         font-size: 18px;
         font-weight: bold;
         width: 100%;
-        margin-top: 20px;
+        margin-top: 10px;
         margin-bottom: 5px;
       }
       .bns_gift_desc {
