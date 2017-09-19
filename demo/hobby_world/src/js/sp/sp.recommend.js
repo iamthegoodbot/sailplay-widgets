@@ -17,29 +17,16 @@ angular.module('sp.recommend', [])
             slide: '.bns_recom_item',
             responsive: [
               {
-                breakpoint: 1135,
-                settings: {
-                  slidesToShow: 4
-                }
-              },
-              {
-                breakpoint: 860,
-                settings: {
-                  slidesToShow: 3
-                }
-              },
-              {
-                breakpoint: 730,
+                breakpoint: 1318,
                 settings: {
                   slidesToShow: 2
                 }
               },
               {
-                breakpoint: 500,
-                settings: {
-                  slidesToShow: 1
-                }
-              }]
+                breakpoint: 730,
+                settings: 'unslick'
+              }
+            ]
           }
         };
 

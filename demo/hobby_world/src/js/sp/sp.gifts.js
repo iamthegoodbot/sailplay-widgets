@@ -21,29 +21,17 @@ angular.module('sp.gifts', [])
             slide: '.bns_gift_item',
             responsive: [
               {
-                breakpoint: 1135,
-                settings: {
-                  slidesToShow: 4
-                }
-              },
-              {
-                breakpoint: 860,
-                settings: {
-                  slidesToShow: 3
-                }
-              },
-              {
-                breakpoint: 730,
+                breakpoint: 1318,
                 settings: {
                   slidesToShow: 2
                 }
-              },
-              {
-                breakpoint: 500,
+              }, {
+                breakpoint: 560,
                 settings: {
                   slidesToShow: 1
                 }
-              }]
+              }
+            ]
           }
         };
 

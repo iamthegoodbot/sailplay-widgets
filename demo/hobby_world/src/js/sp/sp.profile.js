@@ -73,9 +73,14 @@ angular.module('sp.profile', [])
 
       if (!self.user || !self.user()) return _form;
 
-      _form.firstName = self.user().user.first_name;
-      _form.lastName = self.user().user.last_name;
-      _form.middleName = self.user().user.middle_name;
+      _form.fio = self.user().user.first_name
+      if (self.user().user.middle_name)
+        _form.fio += ' ' + self.user().user.middle_name
+
+      if (self.user().user.last_name)
+        _form.fio += ' ' + self.user().user.last_name
+
+      console.log(_form.fio)
       _form.sex = self.user().user.sex;
       _form.addEmail = self.user().user.email;
       _form.addPhone = format_phone(self.user().user.phone);
@@ -251,16 +256,20 @@ angular.module('sp.profile', [])
           // Подготовка данных к передаче
           var data = {};
 
-          if (scope.form.firstName !== scope.user().user.first_name) {
-            data.firstName = scope.form.firstName;
+          var firstName = scope.form.fio.split(' ')[0];
+          var secondName = scope.form.fio.split(' ')[1];
+          var lastName = scope.form.fio.split(' ')[2];         
+
+          if (firstName !== scope.user().user.first_name) {
+            data.firstName = firstName
           }
 
-          if (scope.form.lastName !== scope.user().user.last_name) {
-            data.lastName = scope.form.lastName;
+          if (lastName !== scope.user().user.last_name) {
+            data.lastName = lastName
           }
 
-          if (scope.form.middleName !== scope.user().user.middle_name) {
-            data.middleName = scope.form.middleName;
+          if (secondName !== scope.user().user.middle_name) {
+            data.middleName = secondName
           }
 
           if (scope.form.sex !== scope.user().user.sex) {

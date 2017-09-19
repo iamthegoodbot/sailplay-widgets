@@ -73,6 +73,10 @@
     }
 }
 
+.bns_top_head {
+    left: 48px;
+}
+
 .bns_top_head_sm {
     text-decoration: underline !important;
 }
@@ -141,6 +145,7 @@
     opacity: 0;
     transform: translateY(-10px);
     transition: .2s visibility 0s, opacity .2s, transform .2s;    
+    z-index: 30;
 
     &.show {
         transform: translateY(0);
@@ -364,4 +369,17 @@
     left: 0;
     padding: 0;
     top: 0;
+}
+
+.tablet {
+    display: none
+}
+
+.mobile {
+    display: none
+}
+
+.bns_edit_col {
+    background: #e5e5e5;
+    padding: 30px;
 }
