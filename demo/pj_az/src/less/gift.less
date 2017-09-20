@@ -1,14 +1,35 @@
 .bns_tab_block {
-  float: left;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
   width: 100%;
+  margin: auto;
   &#qust {
     justify-content: flex-start;
   }
+  &#gift {
+    @media screen and (max-width: 700px) {
+      max-width: auto;
+    }
+    @media screen and (min-width: 701px) and (max-width: 1005px) {
+      max-width: 610px;
+    }
+    @media screen and (min-width: 1006px) and (max-width: 1310px) {
+      max-width: 915px;
+    }
+    @media screen and (min-width: 1311px) and (max-width: 1615px) {
+      max-width: 1220px;
+    }
+    @media screen and (min-width: 1616px) and (max-width: 1920px) {
+      max-width: 1525px;
+    }
+    @media screen and (min-width: 1921px){
+//      max-width: 1830px;
+      max-width: 100%;
+    }
+  }
   .img-container{
-    height: 250px;
+    height: 220px;
     width: 100%;
     background-repeat: no-repeat;
     background-position: center;

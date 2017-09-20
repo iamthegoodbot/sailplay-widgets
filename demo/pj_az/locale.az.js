@@ -63,10 +63,10 @@ window._SP_LOCALE = {
     "social": {
       "fb": {
         "like": {
-          "name": "Bizi izləyin"
+          "name": "Facebook səhifəmizi izlə"
         },
         "partner_page": {
-          "name": "Haqqımızda paylaşın"
+          "name": "Facebookda bizim haqda paylaş"
         },
         "purchase": {
           "name": "Alış-verişiniz haqqında paylaşın"
