@@ -6,12 +6,15 @@
   margin: auto;
   &#qust {
     justify-content: flex-start;
+    @media screen and (max-width: 650px) {
+      justify-content: center;
+    }
   }
   &#gift {
-    @media screen and (max-width: 700px) {
-      max-width: auto;
+    @media screen and (max-width: 650px) {
+      justify-content: center;
     }
-    @media screen and (min-width: 701px) and (max-width: 1005px) {
+    @media screen and (min-width: 651px) and (max-width: 1005px) {
       max-width: 610px;
     }
     @media screen and (min-width: 1006px) and (max-width: 1310px) {
@@ -51,7 +54,8 @@
     }
     .bns_gift_item_bottom {
       float: left;
-      width: 185px;
+      width: 180px;
+      margin-right: 5px;
       .bns_gift_name {
         float: left;
         color: #000000;

@@ -1,6 +1,6 @@
 .bns_qust_item {
   float: left;
-  min-width: 23%;
+  min-width: 21%;
   width: 290px;
   height: 130px;
   margin-right:22px;
@@ -98,13 +98,26 @@
       margin-top: -10px;
       top:50%;
       display: none;
+      &:not(.bns_qust_right_button) {
+        margin-left: 30px;
+        & iframe {
+          transform: translate(-30px);
+        }
+        @media screen and (max-width: 650px) {
+          margin-left: 0px !important;
+          padding-left: 32px !important;
+          & iframe {
+            transform: translate(-26px) !important;
+          }
+        }
+      }
     }
   }
 }
 
 *[data-sailplay-action] {
   height: 73px;
-  padding-top: 35%;
+  padding-top: 90px;
   top: -25px !important;
   width: 270px !important;
   left: -85px !important;

@@ -274,6 +274,7 @@
 
         template: `
         <div class="action static_page">
+          <a class="close" data-ng-click="$parent.$parent.open_custom_action=null;body_lock(false);"></a>
 
           <div class="container">
             <div class="row">
@@ -332,6 +333,7 @@
                         sp_api.call('load.actions.custom.list');
                         sp_api.call('load.user.info', {all: 1, purchases: 1});
                         sp_api.call('load.user.history', {tz: getTimeZone()});
+                        sp_api.call('load.actions.list');
                       }, 1200)
                       //resolve(data);
                     }

@@ -68,9 +68,6 @@
       text-align: left;
       display: inline-block;
       float: none;
-      &:nth-child(4n) {
-        margin: 13px;
-      }
     }
     .bns_qust_item {
       margin: 13px;
@@ -92,9 +89,6 @@
         float: none;
         &:nth-child(5n) {
           margin: 13px;
-        }
-        &:after {
-          display: none;
         }
       }
     }
@@ -182,7 +176,9 @@
         }
       }
       .bns_top_info_right {
-        width: 100%;
+        float: none;
+        width: 300px;
+        height: 300px;
         background-repeat: no-repeat;
       }
       .bns_top_slide {
@@ -237,11 +233,15 @@
       .bns_top_info_left {
         .bns_top_info_stat {
           .bns_ne_pod_bal_block {
+            max-width: 100%;
             text-align: center;
             .bns_ne_pod_bal {
               display: inline-block;
               float: none;
               margin-right: 0;
+            }
+            .bns_ne_pod_bal_name_container {
+              width: 100%;
             }
             .bns_ne_pod_bal_name {
               display: inline-block;
@@ -279,4 +279,10 @@
       }
     }
   }
+}
+
+@media screen and (max-width: 650px){
+  .bns_achiv_item {
+    margin: 0 !important
+  } 
 }

@@ -64,21 +64,25 @@
         width: 62%;
         height: 333px;
         z-index: 3;
+        @media screen and (max-width: 1230px) {
+          width: 100%;
+        }
         .bns_top_popup_hist_item {
           clear: both;
           float: left;
-          width: 600px;
-          margin-bottom: 10px;
+          width: 100%;
+          display: flex;
           line-height: 1.4;
           .date {
             float: left;
             color: #878787;
             font-size: 22px;
             margin-right: 38px;
+            width: 90px
           }
           .name {
             float: left;
-            width: 356px;
+            flex-grow: 1;
             color: #000000;
             font-size: 22px;
           }
@@ -87,13 +91,13 @@
             color: #048a65;
             font-size: 22px;
             font-weight: bold;
+            width: 100px;
           }
         }
         .bns_hist_page {
           float: left;
           width: 100%;
-          position: absolute;
-          bottom: 20px;
+          margin-top: 10px;
           span {
             color: #000000;
             float: left;

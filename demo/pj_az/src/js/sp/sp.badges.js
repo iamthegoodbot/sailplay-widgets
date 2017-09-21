@@ -76,7 +76,7 @@
             scope.$emit('badge:open', badge);
           };
 
-          $rootScope.$on('badge:open', function (e, badge) {
+          scope.$parent.$on('badge:open', function (e, badge) {
             scope.opened = !badge || badge.id === scope.opened ? null : badge.id;
           });
 
