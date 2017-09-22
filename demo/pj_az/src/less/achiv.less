@@ -53,6 +53,11 @@
       &>span {
         width: 140px !important;
         left: 170px !important;
+        margin-top: 6px !important;
+      }
+      &>img {
+        width: 136px !important;
+        height: 136px !important;
       }
     }
     & .bns_achiv_item_info {
@@ -83,9 +88,12 @@
       right: 95%;
       height: 5px;
       background-image: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/7a74028bb7379626e6109a373590fe8f.png");
-      width: 100%;
+      width: 150%;
       display: block;
       content: '';
+      @media screen and (max-width: 1400px) and (min-width: 768px) {
+        width: 80%;
+      }
       @media screen and (max-width: 767px) {
         transform: rotate(90deg) translate(-110px, 140px);
         width: 60px;

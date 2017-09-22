@@ -21,17 +21,32 @@ angular.module('sp.history', [])
         case 'custom_action':
           return historyItem.name || history_texts.custom_action;
         case 'badge':
-          return history_texts.badge + ': ' + tryParseFieldFilter(historyItem.name);
+          return history_texts.badge + ': ' + historyItem.name;
         case 'purchase':
           return historyItem.name || history_texts.purchase;
         case 'sharing':
           switch (historyItem.social_action) {
-            case 'like':
-              return history_texts.enter_group + social_list[historyItem.social_type] || historyItem.social_type;
-            case 'purchase':
-              return history_texts.share_purchase + social_list[historyItem.social_type] || historyItem.social_type;
-            case 'partner_page':
-              return history_texts.social_share + social_list[historyItem.social_type] || historyItem.social_type;
+            case 'like': {
+              if($rootScope.config.lang == 'az') {
+                return (social_list[historyItem.social_type] || historyItem.social_type) + 'da ' + history_texts.enter_group
+              } else {
+                return history_texts.enter_group + social_list[historyItem.social_type] || historyItem.social_type;                
+              }
+            }
+            case 'purchase': {
+              if($rootScope.config.lang == 'az') {
+                return (social_list[historyItem.social_type] || historyItem.social_type) + 'da ' + history_texts.share_purchase
+              } else {
+                return history_texts.share_purchase + social_list[historyItem.social_type] || historyItem.social_type;                
+              }
+            }
+            case 'partner_page': {
+              if($rootScope.config.lang == 'az') {
+                return (social_list[historyItem.social_type] || historyItem.social_type) + 'da ' + history_texts.social_share
+              } else {
+                return history_texts.social_share + social_list[historyItem.social_type] || historyItem.social_type;                
+              }
+            }
             case 'badge':
               return history_texts.share_badge + social_list[historyItem.social_type] || historyItem.social_type;
           }

@@ -115,14 +115,24 @@
       }
       .bns_top_popup {
         width: 100% !important;
+        height: 100% !important;
         .bns_top_popup_hist {
+          height: auto !important;
           .bns_top_popup_hist_item {
-            text-align: left;
-            position: relative;
-            .bal {
-              position: absolute;
-              right: 0px;
-              top:0px;
+            width: 100%;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 16px;
+            & .date {
+              padding-left: 12px;
+            }
+            & .name {
+              padding-left: 16px;
+              text-align: left;
+              line-height: 1.1;
+            }
+            & .bal {
+
             }
           }
         }
@@ -211,7 +221,7 @@
         .bns_top_popup_hist {
           .bns_top_popup_hist_item {
             .name {
-              width: 100%;
+              //width: 100%;
             }
           }
         }
