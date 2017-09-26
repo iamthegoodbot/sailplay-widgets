@@ -13,7 +13,7 @@
         link: function (scope, el) {
           var auth = false;
           // preloader
-          $('#sp_status').fadeOut();
+          // $('#sp_status').fadeOut(); // why?
           $('#sp_preloader').delay(350).fadeOut('slow');
           $('body').delay(350).css({'overflow': 'visible'});
 
@@ -23,6 +23,14 @@
             if (!auth) {
               scope.show_auth = false;
             }
+
+            api.user.tags.exist({tags: ['Program v2']}).then(function (res) {
+              api.user.program = 'V1'              
+              if (res.tags[0].exist) {
+                api.user.program = 'V2'
+              }
+            })            
+
 
             if(!ipCookie(login_cookie)) {
               api.user.tags.add(['Logged into website']);
