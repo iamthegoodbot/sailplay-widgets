@@ -469,6 +469,9 @@
 .sp_widget .sp_person-block:after {
   clear: both;
 }
+.sp_widget .sp_person-block__param {
+  text-align: center;
+}
 .sp_widget .sp_person-block__photo {
   float: left;
   width: 110px;

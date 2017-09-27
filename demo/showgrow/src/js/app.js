@@ -1,48 +1,6 @@
 (function () {
 
-  var html = `<!-- Preloader -->
-    <div id="sp_preloader">
-      <div id="sp_status">&nbsp;</div>
-    </div>
-
-    <div class="sp_widget">
-      <div data-ng-if="isAuth() && api_user.program == 'V1'">
-          <section class="sp_l-section sp_top-sec">
-            <div class="sp_top-sec__title">welcome to</div>
-            <h1 class="sp_top-sec__head">ShowPoints Loyalty Program</h1>
-            <div class="sp_top-sec__list">
-                <div class="sp_top-sec__item this-icon-1">
-                  <div class="sp_top-sec__item-head">Order in-store</div>
-                  <div class="sp_top-sec__item-title">Get bonus points for your purchases</div>
-                </div>
-                <div class="sp_top-sec__item this-icon-2">
-                  <div class="sp_top-sec__item-head">Earn extra points</div>
-                  <div class="sp_top-sec__item-title">Join our Facebook group, tell your friends about us and get                        bonus points for free                    </div>
-                </div>
-                <div class="sp_top-sec__item this-icon-3">
-                  <div class="sp_top-sec__item-head">Get awesome gifts</div>
-                  <div class="sp_top-sec__item-title">You can redeem your points for our products</div>
-                </div>
-            </div>
-          </section>
-          <profile-d></profile-d>
-          <status-d></status-d>
-          <badges-d></badges-d>
-          <gifts-d></gifts-d>
-          <actions-d></actions-d>
-      </div>
-      <div data-ng-if="isAuth() && api_user.program == 'V2'">
-          <img src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/d5146641fdbff2daa65b9cb19d329955.jpg" class="v2">
-          <profile-d template="new"></profile-d>
-          <status-d></status-d>
-          <badges-d></badges-d>
-          <gifts-d></gifts-d>
-          <actions-d></actions-d>
-      </div>
-      <auth-d></auth-d>
-    </div>
-    <!-- /wrapper -->
-  `
+  var html = '<!-- Preloader -->\n    <div id="sp_preloader">\n      <div id="sp_status">&nbsp;</div>\n    </div>\n\n    <div class="sp_widget">\n      <div data-ng-if="isAuth() && api_user.program == \'V1\'">\n          <section class="sp_l-section sp_top-sec">\n            <div class="sp_top-sec__title">welcome to</div>\n            <h1 class="sp_top-sec__head">ShowPoints Loyalty Program</h1>\n            <div class="sp_top-sec__list">\n                <div class="sp_top-sec__item this-icon-1">\n                  <div class="sp_top-sec__item-head">Order in-store</div>\n                  <div class="sp_top-sec__item-title">Get bonus points for your purchases</div>\n                </div>\n                <div class="sp_top-sec__item this-icon-2">\n                  <div class="sp_top-sec__item-head">Earn extra points</div>\n                  <div class="sp_top-sec__item-title">Join our Facebook group, tell your friends about us and get     bonus points for free                    </div>\n                </div>\n                <div class="sp_top-sec__item this-icon-3">\n                  <div class="sp_top-sec__item-head">Get awesome gifts</div>\n                  <div class="sp_top-sec__item-title">You can redeem your points for our products</div>\n                </div>\n            </div>\n          </section>\n          <profile-d></profile-d>\n          <status-d></status-d>\n          <badges-d></badges-d>\n          <gifts-d></gifts-d>\n          <actions-d></actions-d>\n      </div>\n      <div data-ng-if="isAuth() && api_user.program == \'V2\'">\n          <img src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/d5146641fdbff2daa65b9cb19d329955.jpg" class="v2">\n          <profile-d template="new"></profile-d>\n          <status-d></status-d>\n          <badges-d></badges-d>\n          <gifts-d></gifts-d>\n          <actions-d></actions-d>\n      </div>\n<auth-d></auth-d>\n    </div>\n    <!-- /wrapper -->\n  '
 
   angular.module('sg', [
     'sg.services',
