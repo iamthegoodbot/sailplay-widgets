@@ -916,6 +916,8 @@ body {
 }
 .bns_earn .bns_earn_main .bns_earn_item .bns_earn_item_left img {
   vertical-align: middle;
+  width: 100%;
+  height: 100%;
 }
 .bns_earn .bns_earn_main .bns_earn_item .bns_earn_item_left:before {
   vertical-align: middle;
