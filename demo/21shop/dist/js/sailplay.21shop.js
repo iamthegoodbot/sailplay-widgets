@@ -5681,14 +5681,14 @@ module.run(['$templateCache', function($templateCache) {
       "system": {
         "inviteFriend": {
           "name": "Пригласи друга",
-          "pic": "https://d3sailplay.cdnvideo.ru/media/assets/assetfile/6aef4021b4c4369e309cb36535e1fd89.png"
+          "pic": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/a0273f8e9b78b5d75d627c58fb4b4d48.png"
         }
       },
       "social": {
         "fb": {
           "like": {
             "name": "Вступить в группу в Facebook",
-            "pic": 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/94e05666029fa2a8d0dccdd9651d62fb.png',
+            "pic": 'https://sailplays3.cdnvideo.ru/media/assets/assetfile/aa537e5d90bf69989a466b38a393284e.png',
             "styles": {
               "fb_share_btn": {
                 "font-family": "Arial",
@@ -5710,7 +5710,7 @@ module.run(['$templateCache', function($templateCache) {
           },
           "partner_page": {
             "name": "Рассказать о компании в Facebook",
-            "pic": 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/94e05666029fa2a8d0dccdd9651d62fb.png',
+            "pic": 'https://sailplays3.cdnvideo.ru/media/assets/assetfile/ee95efb204e9639d64daed60a436ac4e.png',
             "styles": {
               "fb_share_btn": {
                 "font-family": "Arial",
@@ -5732,7 +5732,7 @@ module.run(['$templateCache', function($templateCache) {
           },
           "purchases": {
             "name": "Рассказать о покупке в Facebook",
-            "pic": 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/94e05666029fa2a8d0dccdd9651d62fb.png',
+            "pic": 'https://sailplays3.cdnvideo.ru/media/assets/assetfile/ee95efb204e9639d64daed60a436ac4e.png',
             "styles": {
               "fb_share_btn": {
                 "font-family": "Arial",
@@ -5756,7 +5756,7 @@ module.run(['$templateCache', function($templateCache) {
         "vk": {
           "like": {
             "name": "Вступить в группу в Вконтакте",
-            "pic": 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/b64d65189731e44dcdfbf78ad5fb2b18.png',
+            "pic": 'https://sailplays3.cdnvideo.ru/media/assets/assetfile/f9a204c5581d35e6388b53352a373b96.png',
             "styles": {
               "vk_share_btn": {
                 "font-family": "Arial",
@@ -5778,7 +5778,7 @@ module.run(['$templateCache', function($templateCache) {
           },
           "partner_page": {
             "name": "Рассказать о компании в Вконтакте",
-            "pic": 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/b64d65189731e44dcdfbf78ad5fb2b18.png',
+            "pic": 'https://sailplays3.cdnvideo.ru/media/assets/assetfile/ab80c674a8e93026c1fb73a357e732e4.png',
             "styles": {
               "vk_share_btn": {
                 "font-family": "Arial",
@@ -5800,7 +5800,7 @@ module.run(['$templateCache', function($templateCache) {
           },
           "purchases": {
             "name": "Рассказать о покупке в Вконтакте",
-            "pic": 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/b64d65189731e44dcdfbf78ad5fb2b18.png',
+            "pic": 'https://sailplays3.cdnvideo.ru/media/assets/assetfile/ab80c674a8e93026c1fb73a357e732e4.png',
             "styles": {
               "vk_share_btn": {
                 "font-family": "Arial",
@@ -6290,8 +6290,6 @@ module.run(['$templateCache', function($templateCache) {
       var self = this;
 
       self.checkTag = function (tag, exist) {
-
-        console.log(exist)
 
         return exist.tags.filter(function (item) {
           return item.name == tag && item.exist
