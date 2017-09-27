@@ -256,6 +256,15 @@
       width: 356px;
       text-align: left;
       margin-top: 86px;
+      @media (min-width: 768px) {
+        width: 100%;
+        display: flex;
+        margin-top: 250px;
+        &>div {
+          width: 33%;
+          padding-right: 35px;
+        }
+      }
       @media (max-width: @screen-md-max) {
       }
       @media (max-width: @screen-sm-max) {
@@ -865,9 +874,15 @@
 
       .trans(250ms);
       &:hover {
-        background-color: #fff;
+        background-color: #169541;
         .box-shadow(0px 0px 10px rgba(0, 0, 0, .3));
         top: -12px;
+      }
+      &.not_enough_points {
+        filter: grayscale(1);
+        &:hover {
+          background-color: rgb(168, 168, 168);
+        }
       }
       @media (max-width: @screen-md-max) {
       }
@@ -890,12 +905,25 @@
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
+      top: 0;
+      position: relative;
+    }
+    &__slide:hover .sp_gifts-slider__slide-img {
+      opacity: 0;
+      top: -200px;
+      transition: ease-out all 500ms;
     }
     &__slide-name {
       font-size: 22px;
       line-height: 1;
       text-align: center;
       margin-bottom: 0px;
+      position: relative;
+      top:0;
+    }
+    &__slide:hover .sp_gifts-slider__slide-name {
+      transition: ease-out all 500ms;
+      top: -130px;
     }
     &__slide-desc{
       font-size: 16px;
@@ -909,14 +937,37 @@
       text-align: center;
       color: @green;
       margin-bottom: 14px;
+      position: relative;
+      top: 0;
     }
+    &__slide:hover:not(.this-disabled) .sp_gifts-slider__slide-bonus{
+        color: white;
+    }
+    &__slide:hover .sp_gifts-slider__slide-bonus {
+      top: -130px;
+      transition: ease-out all 500ms;
+    }
+
     &__slide-btn {
       max-width: 100%;
       width: 275px;
       margin: 0 auto;
       text-transform: uppercase;
-      color: #fff;
+      color: #019246;
       .alink(#fff);
+      position: relative;
+      top: 100px;
+      opacity: 0;
+      &:not(.this-disabled) {
+        background-color: white;
+        color: #169541;
+      }
+    }
+
+    &__slide:hover .sp_gifts-slider__slide-btn {
+      opacity: 1;
+      top: 0px;
+      transition: ease-out all 500ms;
     }
   }
   .sp_gifts-sec {
