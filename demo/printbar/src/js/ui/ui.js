@@ -19,6 +19,10 @@
 
           scope.data = null;
 
+          scope.reload = function(){
+            location.reload();
+          }
+
           scope.$on('notify:show', function (e, info) {
             scope.data = info;
           });

@@ -2,6 +2,8 @@
   float: left;
   width: 100%;
   padding-top: 32px;
+  padding-left: 30px;
+  padding-right: 30px;
   padding-bottom: 30px;
   text-align: center;
   .bns_recom_item {
@@ -12,16 +14,48 @@
       float: left;
       width: 100%;
       text-decoration: none;
-      span {
+      img {
+        display: inline-block;
+      }
+      .bns_name {
         float: left;
         width: 100%;
         text-align: center;
         box-sizing: border-box;
         padding: 0px 30px;
         color: #000000;
-        font-size: 15px;
-        height: 51px;
+        font-size: 13px;
+        height: 130px;
       }
     }
+  }
+
+  .slick-prev {
+    border: 0px;
+    background-color: transparent;
+    text-indent: -99999px;
+    width: 15px;
+    height: 50px;
+    position: absolute;
+    background-image: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/8f8c516f2d7c0a07a0ec4e37dc88455c.png");
+    left: 10px;
+    top:50%;
+    margin-top:-25px;
+    outline: none;
+    cursor: pointer;
+  }
+  .slick-next {
+    outline: none;
+    border: 0px;
+    background-color: transparent;
+    text-indent: -99999px;
+    width: 15px;
+    height: 50px;
+    position: absolute;
+    background-image: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/b46be7c91b2036afb8660b47ced7a1fe.png");
+    right: 10px;
+    top:50%;
+    margin-top:-25px;
+    cursor: pointer;
   }
 }

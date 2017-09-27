@@ -33,11 +33,15 @@
 }
 .bns_gift_item {
   float: left;
+  max-height: 434px;
   text-align: center;
   position: relative;
-  margin-top: 30px;
+  overflow: hidden;
+  margin-top: 50px;
   margin-bottom: 30px;
   margin-left: 10px;
+  border: 1px solid #E0E0E0;
+  background: white;
   margin-right: 10px;
   -webkit-transition: all 300ms ease;
   -moz-transition: all 300ms ease;
@@ -46,19 +50,15 @@
   transition: all 300ms ease;
   cursor: pointer;
   &:hover {
-
+    min-height: 500px;
     -webkit-box-shadow: 0 0 10px 0 #8C8C8C;
     box-shadow: 0 0 10px 0 #8C8C8C;
-    a {
-      opacity: 1;
-    }
   }
   a {
-    position: absolute;
     left: 10%;
     width: 80%;
     bottom: 26px;
-    line-height: 27px;
+    line-height: 41px;
     border-radius: 27px;
     background-color: #ef6747;
     display: inline-block;
@@ -67,7 +67,6 @@
     text-align: center;
     font-size: 15px;
     font-weight: bold;
-    opacity: 0;
 
     -webkit-transition: all 300ms ease;
     -moz-transition: all 300ms ease;
@@ -79,6 +78,7 @@
     float: left;
     width: 100%;
     height: 230px;
+    margin-top: 24px;
     &:before {
       content:'';
       display: inline-block;
@@ -96,19 +96,20 @@
     width: 100%;
     box-sizing: border-box;
     padding: 0px 21px;
-    height: 56px;
+    margin-bottom: 14px;
+    height: 67px;
+    margin-top: 36px;
     color: #000000;
-    font-size: 13px;
+    font-size: 17px;
   }
   .bns_gift_point {
-    line-height: 27px;
+    line-height: 32px;
     display: inline-block;
-    background-color: #f1f1f1;
     border-radius: 27px;
     float: left;
     width: 60%;
     margin-left: 20%;
-    font-size: 18px;
+    font-size: 25px;
     color: #000000;
     font-weight: bold;
     margin-bottom: 24px;

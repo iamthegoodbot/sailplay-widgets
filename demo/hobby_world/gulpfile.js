@@ -7,6 +7,7 @@
   var ngAnnotate = require('gulp-ng-annotate');
   var less = require('gulp-less');
   var path = require('path');
+  var babel = require('gulp-babel');
   var ngHtml2Js = require("gulp-ng-html2js");
   var minifyHtml = require("gulp-minify-html");
   var imagemin = require('gulp-imagemin');
@@ -35,7 +36,8 @@
 
   gulp.task('javascript.concat', ['build.templates'], function () {
     return gulp.src([
-      __dirname + '/node_modules/jquery/dist/jquery.min.js',
+      // __dirname + '/node_modules/jquery/dist/jquery.min.js',
+      __dirname + '/node_modules/slick-carousel/slick/slick.min.js',
       __dirname + '/node_modules/sailplay-hub/sailplay.hub.js',
       __dirname + '/node_modules/sailplay-hub-actions/sailplay.hub.actions.js',
       __dirname + '/node_modules/angular/angular.min.js',
@@ -45,6 +47,9 @@
       __dirname + '/node_modules/angular-utils-pagination/dirPagination.js',
       __dirname + '/src/js/**/**/*.js'
     ])
+      .pipe(babel({
+        presets: ['es2015']
+      }))
       .pipe(concat('sailplay.hw.js'))
       .pipe(gulp.dest(__dirname + '/dist/js/'));
   });

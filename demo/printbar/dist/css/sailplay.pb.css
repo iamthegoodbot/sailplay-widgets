@@ -53,8 +53,11 @@
 .sp_wrapper .bns_overlay.bns_overlay_gift .bns_overlay_inner .bns_overlay_right {
   width: 20%;
 }
+.sp_wrapper .bns_overlay.bns_overlay_stst .bns_overlay_inner {
+  height: 410px;
+}
 .sp_wrapper .bns_overlay.bns_overlay_stst .bns_overlay_inner .bns_overlay_left {
-  width: 62%;
+  width: 60%;
 }
 .sp_wrapper .bns_overlay.bns_overlay_stst .bns_overlay_inner .bns_overlay_right {
   width: 37%;
@@ -144,7 +147,7 @@
 }
 .sp_wrapper .bns_overlay .bns_overlay_inner .bns_overlay_bottom .bns_bottom_right a {
   float: right;
-  width: 143px;
+  width: 223px;
   line-height: 30px;
   border-radius: 2px;
   background-color: #FF0037;
@@ -154,6 +157,7 @@
 }
 .sp_wrapper .bns_overlay .bns_overlay_inner .bns_overlay_bottom .bns_bottom_right a.bns_nact {
   background-color: #E0E0E0;
+  pointer-events: none;
   color: #828282;
 }
 .sp_wrapper .bns_overlay .bns_overlay_inner .bns_overlay_bottom .bns_bottom_right .bns_overlay_right_img {
@@ -268,6 +272,7 @@
 .sp_wrapper .bns_overlay .bns_overlay_inner .bns_overlay_left .bns_overlay_gift_main .bns_overlay_gift_item .bns_overlay_gift_item_right a.bns_nact {
   background-color: #F2F2F2;
   color: #BDBDBD;
+  pointer-events: none;
 }
 .sp_wrapper .bns_overlay .bns_overlay_inner .bns_overlay_left .bns_overlay_gift_main .bns_overlay_gift_item .bns_overlay_gift_item_right .bns_overlay_gift_item_name {
   float: left;
@@ -366,11 +371,20 @@
   width: 100%;
   box-sizing: border-box;
   padding-right: 18px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 .sp_wrapper .bns_overlay .bns_overlay_inner .bns_overlay_stat_main .bns_overlay_stat_item {
   float: left;
   width: 100%;
   position: relative;
+  padding-left: 15px;
+  padding-right: 15px;
+  cursor: pointer;
+  border-bottom: 1px solid #F2F2F2;
+}
+.sp_wrapper .bns_overlay .bns_overlay_inner .bns_overlay_stat_main .bns_overlay_stat_item:hover {
+  background-color: #f6f6f6;
 }
 .sp_wrapper .bns_overlay .bns_overlay_inner .bns_overlay_stat_main .bns_overlay_stat_item:last-child .bns_overlay_stat_item_text {
   border-bottom: 0;
@@ -382,7 +396,7 @@
   display: block;
   background-image: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/8a7b8d0f44bc6747d4f53b76f71a8550.png");
   position: absolute;
-  right: -34px;
+  right: -19px;
   top: 50%;
   margin-top: -17px;
 }
@@ -408,7 +422,7 @@
   float: left;
   width: 20%;
   position: absolute;
-  left: 0;
+  left: 15px;
   top: 0;
   height: 100%;
 }
@@ -434,7 +448,6 @@
 .sp_wrapper .bns_overlay .bns_overlay_inner .bns_overlay_stat_main .bns_overlay_stat_item .bns_overlay_stat_item_text {
   float: right;
   width: 80%;
-  border-bottom: 1px solid #F2F2F2;
   padding-top: 25px;
   padding-bottom: 25px;
 }
@@ -467,6 +480,7 @@
   color: #BDBDBD;
   font-size: 14px;
   padding-right: 10px;
+  border-bottom: 1px solid #F2F2F2;
 }
 .sp_wrapper .bns_overlay .bns_overlay_inner .bns_overlay_hist_main td:nth-child(2) {
   border-bottom: 1px solid #F2F2F2;
@@ -581,6 +595,7 @@
 .sp_wrapper .bns_overlay .bns_overlay_inner .bns_overlay_right .bns_overlay_right_desc {
   float: left;
   width: 100%;
+  line-height: 1.2;
   color: #4F4F4F;
   font-size: 12px;
   margin-top: 10px;
@@ -693,11 +708,13 @@
   text-align: center;
   margin-top: 10px;
 }
-.sp_wrapper .bns_info .bns_info_ava .bns_info_img img {
+.sp_wrapper .bns_info .bns_info_ava .bns_info_img .img-container {
+  margin: 0 auto;
   width: 150px;
-  height: auto;
-  min-height: 100px;
-  max-height: 150px;
+  height: 150px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   max-width: 100%;
   border-radius: 100%;
   border: 1px solid #ECECEC;
@@ -774,9 +791,9 @@
   float: left;
   width: 100%;
   color: #000;
-  font-size: 36px;
+  margin-top: -3px;
+  font-size: 33px;
   font-weight: 800;
-  margin-bottom: -7px;
 }
 .sp_wrapper .bns_info .bns_info_right .bns_info_bal .bns_info_bal_block .bns_info_bal_text {
   float: left;
@@ -840,9 +857,15 @@
   font-size: 30px;
   font-weight: 800;
   text-align: center;
-  margin-bottom: 21px;
+  margin-bottom: 3px;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.sp_wrapper .bns_info .bns_info_right .bns_info_status .bns_info_bal_text {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 2px;
+  display: inline-block;
 }
 .sp_wrapper .bns_info .bns_info_right .bns_info_status .bns_info_bal_ne {
   float: left;
@@ -1046,6 +1069,7 @@
   z-index: 2;
 }
 .sp_wrapper .bns_info .bns_info_line .bns_line_main_wrap .bns_line_fill .bns_line_fill_til {
+  line-height: 1.2;
   position: absolute;
   right: 0px;
   width: 120px;
@@ -3156,6 +3180,12 @@ Plugin URI: http://manos.malihu.gr/jquery-custom-content-scroller
   }
 }
 @media screen and (max-width: 650px) {
+  .sp_wrapper .bns_overlay_right_desc {
+    margin-bottom: 15px !important;
+  }
+  .sp_wrapper .bns_overlay_stst .bns_overlay_inner {
+    height: auto !important;
+  }
   .sp_wrapper .bns_info .bns_info_line .bns_line_fill_til {
     display: none;
   }

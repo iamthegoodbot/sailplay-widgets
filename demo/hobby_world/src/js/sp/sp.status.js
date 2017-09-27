@@ -22,6 +22,12 @@ angular.module('sp.status', [])
 
         scope.user = sp_api.data('load.user.info');
 
+        scope.getActiveBadge = function() {
+          if (!scope.badges().multilevel_badges[1][0].is_received) return 0
+          if (scope.badges().multilevel_badges[1][2].is_received) return 3
+          if (scope.badges().multilevel_badges[1][1].is_received) return 2
+          if (scope.badges().multilevel_badges[1][0].is_received) return 1          
+        }
         /**
          * Get purchases sum for status from rules
          * @param status
@@ -43,7 +49,7 @@ angular.module('sp.status', [])
             return badge.is_received
           }).length;
           var len = scope.badges().multilevel_badges[1].length;
-          var percents = 100 / len * received_statuses;
+          var percents = (100 / len * received_statuses) + 1;
           percents = percents > 100 ? 100 : percents < 0 ? 0 : percents;
           return {
             'width': percents + '%'

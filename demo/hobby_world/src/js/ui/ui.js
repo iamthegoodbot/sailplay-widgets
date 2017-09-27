@@ -99,11 +99,15 @@
         link: function (scope, el, attrs) {
 
           scope.slackConfig = scope.$eval(attrs.slackConfig);
+          scope.dataLength = scope.$eval(attrs.length)
 
           if (scope.$last) { // all are rendered
-            $timeout(function () {
-              $(scope.slackConfig.selector).not('.slick-initialized').slick(scope.slackConfig.data);
-            });
+            scope.$watch('dataLength', function(v) {
+              if (v > 0)
+                setTimeout(function(){
+                  $(scope.slackConfig.selector).slick(scope.slackConfig.data);
+                }, 200)
+            })
           }
 
         }

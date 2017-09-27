@@ -1,29 +1,28 @@
+.bns_game_day_main {
+  height: 334px;
+}
+
 .bns_game_day {
   float: left;
   width: 100%;
   position: relative;
-  .bns_linck_all {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-  }
-  .bns_game_day_left {
-    float: left;
-    width: 220px;
-    text-align:  center;
+  text-align: center;
+  top: 18px;
+  padding: 17px 0 5px;  
+
     .bns_game_day_name {
-      float: left;
       width: 100%;
+      height: 74px;
       text-align: center;
       color: #000000;
-      font-size: 26px;
-      margin-top:82px;
+      font-size: 19px;
+      padding: 0 24px;
+      box-sizing: border-box;
     }
-    a {
+
+    .price {
       display: inline-block;
-      line-height: 21px;
+      line-height: 36px;
       padding: 0px 11px 0px 27px;
       background-color: #ef6747;
       font-size: 15px;
@@ -73,12 +72,27 @@
         }
       }
     }
+
+  .bns_linck_all {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .bns_game_day_left {
+    float: left;
+    width: 220px;
+    padding: 0 15px;
+    box-sizing: border-box;
+    text-align:  center;
+
   }
   .bns_game_day_right {
     float: right;
     width: 155px;
     text-align: center;
-    height: 236px;
+    // height: 236px;
     &:before {
       content: '';
       display: inline-block;

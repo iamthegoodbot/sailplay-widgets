@@ -18,22 +18,7 @@ angular.module('sp.profile', [])
     'Берсерк'
   ])
 
-  .constant('countries', [
-    'Азербайджан',
-    'Армения',
-    'Беларусь',
-    'Казахстан',
-    'Киргизия',
-    'Латвия',
-    'Литва',
-    'Молдова',
-    'Россия',
-    'Таджикистан',
-    'Туркменистан',
-    'Узбекистан',
-    'Украина',
-    'Эстония'
-  ])
+  .constant('countries', ["Afghanistan", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla", "Antarctica", "Antigua and Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Bouvet Island", "Brazil", "British Indian Ocean Territory", "Brunei Darussalam", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central African Republic", "Chad", "Chile", "China", "Christmas Island", "Cocos (Keeling) Islands", "Colombia", "Comoros", "Congo", "Cook Islands", "Costa Rica", "Cote D\'Ivoire", "Croatia", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "France, Metropolitan", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Falkland Islands (Malvinas)", "Faroe Islands", "Fiji", "Finland", "France", "France", "French Guiana", "French Polynesia", "French Southern Territories", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Heard and Mc Donald Islands", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran (Islamic Republic of)", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "North Korea", "Republic of Korea", "Kuwait", "Kyrgyzstan", "Lao People\'s Democratic Republic", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libyan Arab Jamahiriya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "FYROM", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Martinique", "Mauritania", "Mauritius", "Mayotte", "Mexico", "FSM", "Moldova", "Monaco", "Mongolia", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Norfolk Island", "Northern Mariana Islands", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcairn", "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romania", "Российская Федерация", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Seychelles", "Sierra Leone", "Singapore", "Slovak Republic", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Georgia &amp; South Sandwich Islands", "Spain", "Sri Lanka", "St. Helena", "St. Pierre and Miquelon", "Sudan", "Suriname", "Svalbard and Jan Mayen Islands", "Swaziland", "Sweden", "Switzerland", "Syrian Arab Republic", "Taiwan", "Tajikistan", "TZA", "Thailand", "Togo", "Tokelau", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks and Caicos Islands", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "United States Minor Outlying Islands", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City State (Holy See)", "Venezuela", "Viet Nam", "Virgin Islands (British)", "Virgin Islands (U.S.)", "Wallis and Futuna Islands", "Western Sahara", "Yemen", "Seychelles", "ZAR", "Zambia", "Zimbabwe", "Serbia", "Montenegro"])
 
   .constant('varsProfile', [
     'Никнейм',
@@ -88,9 +73,14 @@ angular.module('sp.profile', [])
 
       if (!self.user || !self.user()) return _form;
 
-      _form.firstName = self.user().user.first_name;
-      _form.lastName = self.user().user.last_name;
-      _form.middleName = self.user().user.middle_name;
+      _form.fio = self.user().user.first_name
+      if (self.user().user.middle_name)
+        _form.fio += ' ' + self.user().user.middle_name
+
+      if (self.user().user.last_name)
+        _form.fio += ' ' + self.user().user.last_name
+
+      console.log(_form.fio)
       _form.sex = self.user().user.sex;
       _form.addEmail = self.user().user.email;
       _form.addPhone = format_phone(self.user().user.phone);
@@ -129,14 +119,83 @@ angular.module('sp.profile', [])
         headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
         responseType: "json"
       });
-      
+
     };
 
     return self;
 
   })
 
-  .directive('sailplayProfileEdit', function (sp, sp_api, $rootScope, spProfile, spProfileErrors, countries, interests, varsProfile) {
+  .directive('file', () => {
+    return {
+      require: "ngModel",
+      restrict: 'A',
+      link: ($scope, el, attrs, ngModel) => {
+        el.bind('change', (event) => {
+          let files = event.target.files;
+          let file = files[0];
+
+          ngModel.$setViewValue(file);
+          $scope.$apply();
+        });
+      }
+    };
+  })
+
+  .factory('hwUploadAvatar', function(sp, $rootScope, $http, $timeout, sp_api){
+    var obj = {
+      img: false
+    }
+    var url = $rootScope.config.data.urls.upload_avatar
+    obj.uploadAvatar = function(){
+      $timeout(function(){
+
+        if (!obj.img) {
+          return;
+        }
+
+        if (obj.img.size>2*1024*1024) {
+          $rootScope.$broadcast('notify:show', {
+            title: 'Ошибка загрузки аватара',
+            text: 'Файл должен быть меньше 2 мегабайт'
+          });
+        }
+
+        var user = sp_api.data('load.user.info')
+
+        let fd = new FormData();
+
+        fd.append('avatar', obj.img);
+
+        fd.append('oid', user().user.origin_user_id)
+
+
+        function cb(res){
+          if (res.status == 'ok') {
+            $rootScope.$broadcast('notify:show', {
+              title: 'Успех',
+              text: res.message
+            });
+            SailPlayApi.call('load.user.info', {all: 1, purchases: 1});
+          } else {
+            $rootScope.$broadcast('notify:show', {
+              title: 'Ошибка',
+              text: res.message
+            });
+          }
+        }
+
+        return $http.post(url, fd, {
+          transformRequest: angular.identity,
+          headers: {'Content-Type': undefined}
+        }).then(cb,cb)
+
+      }, 50)
+    }
+    return obj
+  })
+
+  .directive('sailplayProfileEdit', function (sp, sp_api, $rootScope, hwUploadAvatar, spProfile, spProfileErrors, countries, interests, varsProfile) {
     return {
       restrict: 'A',
       replace: false,
@@ -175,6 +234,15 @@ angular.module('sp.profile', [])
           }
         });
 
+        scope.uploadAvatar = hwUploadAvatar.uploadAvatar
+        scope.avatarImg = hwUploadAvatar.avatarImg
+        scope.$watch('avatarImg', function(newVal) {
+          if(newVal){
+            hwUploadAvatar.img = newVal
+          }
+        })
+        
+
         scope.save = function (form, success) {
 
           if (!form || !form.$valid) return;
@@ -188,16 +256,20 @@ angular.module('sp.profile', [])
           // Подготовка данных к передаче
           var data = {};
 
-          if (scope.form.firstName !== scope.user().user.first_name) {
-            data.firstName = scope.form.firstName;
+          var firstName = scope.form.fio.split(' ')[0];
+          var secondName = scope.form.fio.split(' ')[1];
+          var lastName = scope.form.fio.split(' ')[2];         
+
+          if (firstName !== scope.user().user.first_name) {
+            data.firstName = firstName
           }
 
-          if (scope.form.lastName !== scope.user().user.last_name) {
-            data.lastName = scope.form.lastName;
+          if (lastName !== scope.user().user.last_name) {
+            data.lastName = lastName
           }
 
-          if (scope.form.middleName !== scope.user().user.middle_name) {
-            data.middleName = scope.form.middleName;
+          if (secondName !== scope.user().user.middle_name) {
+            data.middleName = secondName
           }
 
           if (scope.form.sex !== scope.user().user.sex) {
@@ -293,6 +365,10 @@ angular.module('sp.profile', [])
       link: function (scope) {
 
         scope.user = sp_api.data('load.user.info');
+
+        scope.social_connected = function(soc) {
+          return (new RegExp(soc)).test(window.sailplay_config.data.social)
+        }
 
         scope.logout = function () {
           sp.send('logout');

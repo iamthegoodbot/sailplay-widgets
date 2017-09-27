@@ -8,11 +8,11 @@
                 <div class="bns_info_ava">
 
                     <div class="bns_info_img" data-ng-if="config.data.user_pic">
-                        <img data-ng-src="{{ config.data.user_pic }}">
+                        <div class="img-container" data-ng-style="{'background-image': 'url('+config.data.user_pic+')'}" ></div>
                     </div>
 
                     <span class="bns_info_name"
-                          data-ng-bind="user().user.first_name || user().user.last_name ? user().user.first_name + ' ' + user().user.last_name : 'Имя не указано'"></span>
+                          data-ng-bind="user().user.first_name || user().user.last_name ? (user().user.first_name || '') + ' ' + (user().user.last_name || '') : 'Имя не указано'"></span>
 
                     <span class="bns_info_phone"
                           data-ng-bind="user().user.phone && (user().user.phone | tel) || 'Телефон не указан'"></span>
@@ -53,6 +53,9 @@
                         <span class="bns_info_status_name"
                               title="{{ getCurrentStatus() ? getCurrentStatus().name : 'Нет статуса' }}"
                               data-ng-bind="getCurrentStatus() ? getCurrentStatus().name : 'Нет статуса'"></span>
+                              <span class="bns_info_bal_text">
+                                  вернём баллами
+                              </span>
                         <span class="bns_info_bal_ne">
                             <span class="bns_info_bal_num"
                                   data-ng-bind="toNextStatus(getPurchasesSum()) ? ((toNextStatus(getPurchasesSum()) | number) + ' ' + (( toNextStatus(getPurchasesSum()) | sailplay_pluralize:'рубль,рубля,рублей'))) : '0'"></span>
@@ -134,7 +137,7 @@
 
                 <div class="bns_gift_main">
 
-                    <div class="bns_gift_item" data-ng-repeat="gift in gifts()" data-slack-slider
+                    <div class="bns_gift_item" data-ng-repeat="gift in gifts() | filter: { is_over_quantity_per_user: false } " data-slack-slider
                          data-ng-click="$event.preventDefault();$parent.gift_get=gift;body_lock(true);"
                          data-slack-config="gifts_config">
 
@@ -301,7 +304,7 @@
 
                 <div class="bns_overlay_gift_main">
 
-                    <div class="bns_overlay_gift_item" data-ng-repeat="action in actions track by $index"
+                    <div class="bns_overlay_gift_item" data-ng-repeat="action in actionsWithCompleted track by $index"
                          data-m-custom-scrollbar data-selector=".bns_overlay_gift_main">
 
                         <div class="bns_overlay_gift_item_img">
@@ -313,7 +316,7 @@
                                   data-ng-bind="action._actionId ? action_data(action).name : action.name"></span>
                             <span class="bns_overlay_gift_item_bal"
                                   data-ng-bind="(action.points | number) + ' ' + (action.points | sailplay_pluralize:'балл,балла,баллов')"></span>
-                            <a href="#" data-ng-click="$event.preventDefault();get_action(action);body_lock(true);">Выполнить</a>
+                            <a href="#" data-ng-class="{'bns_nact': action.isCompleted}" data-ng-click="$event.preventDefault();get_action(action);body_lock(true);">{{action.isCompleted ? 'Выполнено' : 'Выполнить'}}</a>
                         </div>
 
                     </div>
@@ -377,7 +380,7 @@
                     <span class="bns_overlay_right_desc"
                           data-ng-bind="($parent.showBadgesInfo | spBadgeDesc)[$parent.showBadgesInfo.is_received ? 'after' : 'before']"></span>
 
-                    <div class="bns_right_soc">
+                    <div class="bns_right_soc" data-ng-show="showBadgesInfo.is_received">
                         <a href="#" data-ng-click="$event.preventDefault();share('fb', $parent.showBadgesInfo);">
                             <img src="//sailplays3.cdnvideo.ru/media/assets/assetfile/2c54f65cafa62ebc0475d4b468f96ed1.png"
                                  alt="Facebook">
@@ -447,7 +450,7 @@
                     <span class="bns_overlay_right_desc"
                           data-ng-bind-html="(((selected_status || getCurrentStatus()) | spBadgeDesc)[(selected_status || getCurrentStatus()).is_received ? 'after' : 'before'] || '&nbsp;') | to_trusted "></span>
 
-                    <div class="bns_right_soc">
+                    <div class="bns_right_soc" data-ng-show="selected_status.is_received">
                         <a href="#"
                            data-ng-click="$event.preventDefault();share('fb', (selected_status || getCurrentStatus()));">
                             <img src="//sailplays3.cdnvideo.ru/media/assets/assetfile/2c54f65cafa62ebc0475d4b468f96ed1.png"
@@ -485,7 +488,7 @@
 
                 <div class="bns_overlay_gift_main">
 
-                    <div class="bns_overlay_gift_item" data-ng-repeat="gift in gifts()"
+                    <div class="bns_overlay_gift_item" data-ng-repeat="gift in gifts() | filter: { is_over_quantity_per_user: false }"
                          data-m-custom-scrollbar data-selector=".bns_overlay_gift_main">
 
                         <div class="bns_overlay_gift_item_img">
@@ -528,7 +531,7 @@
             <div class="bns_overlay_left">
                 <span class="bns_overlay_head">История начислений</span>
 
-                <span class="bns_overlay_hist_empty" data-ng-if="history && history() && !history().length">Начислений еще не было</span>
+                <span class="bns_overlay_hist_empty" data-ng-if="history && history() && history().length === 0">Начислений еще не было</span>
 
                 <table class="bns_overlay_hist_main">
 

@@ -5,7 +5,7 @@ angular.module('sp_print_bar', [
   'templates'
 ])
 
-  .directive('sailplayPb', function ($rootScope, $locale) {
+  .directive('sailplayPb', function ($rootScope, $locale, sp_api) {
     return {
       restrict: 'E',
       replace: true,

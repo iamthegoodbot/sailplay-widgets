@@ -2,9 +2,15 @@
 
   angular.module('sp.badges', [])
 
-    .filter('badgeLocale', function ($rootScope) {
-      return function (badge) {
-        return $rootScope.locale.badges && $rootScope.locale.badges[badge && badge.id] || {}
+    .filter('badgeName', function ($rootScope, tryParseFieldFilter) {
+      return function (badgeName) {
+        tryParseFieldFilter(badgeName)
+      }
+    })
+
+    .filter('badgeDescr', function ($rootScope, tryParseFieldFilter) {
+      return function (badgeDescr) {
+        tryParseFieldFilter(badgeDescr)
       }
     })
 
@@ -13,7 +19,7 @@
 
         restrict: 'E',
         replace: true,
-        template: '<div class="bns_achiv_item_info" data-ng-if="badge">\n\n    <div class="bns_achiv_item_info_text" data-ng-bind="$parent.badge.descr"></div>\n\n    <div class="bns_achiv_item_info_socials">\n\n        <img width="40px" data-ng-click="$parent.share_badge($parent.badge, \'fb\')"\n             src="//sailplay.cdnvideo.ru/static/partners/pj/img/icons/share/fb.png" alt="FB">\n\n        <!--<img width="40px" data-ng-click="$parent.share_badge($parent.badge, \'vk\')"-->\n             <!--src="//sailplay.cdnvideo.ru/static/partners/pj/img/icons/share/vk.png" alt="VK">-->\n\n    </div>\n\n</div>',
+        template: '<div class="bns_achiv_item_info" data-ng-if="badge">\n\n    <div class="bns_achiv_item_info_text" data-ng-bind="$parent.badge.descr | tryParseField"></div>\n\n    <div class="bns_achiv_item_info_socials">\n\n        <img width="40px" data-ng-click="$parent.share_badge($parent.badge, \'fb\')"\n             src="//sailplay.cdnvideo.ru/static/partners/pj/img/icons/share/fb.png" alt="FB">\n\n        <!--<img width="40px" data-ng-click="$parent.share_badge($parent.badge, \'vk\')"-->\n             <!--src="//sailplay.cdnvideo.ru/static/partners/pj/img/icons/share/vk.png" alt="VK">-->\n\n    </div>\n\n</div>',
         scope: {
           badges: '='
         },

@@ -5,7 +5,8 @@ angular.module('sp', [
   'sp.profile',
   'sp.status',
   'sp.badges',
-  'sp.history'
+  'sp.history',
+  'sp.recommend'
 
 ])
 

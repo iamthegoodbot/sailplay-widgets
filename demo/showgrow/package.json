@@ -7,10 +7,12 @@
     "angular": "latest",
     "angular-cookie": "latest",
     "angular-utils-pagination": "^0.11.1",
+    "gulp-connect": "^5.0.0",
     "gulp-imagemin": "^3.0.1",
     "jquery": "^2.2.3",
     "sailplay-hub": "latest",
-    "sailplay-hub-actions": "latest"
+    "sailplay-hub-actions": "latest",
+    "streamqueue": "^1.1.1"
   },
   "devDependencies": {
     "browser-sync": "latest",

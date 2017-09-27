@@ -110,12 +110,24 @@ angular.module('hobby_world', [
           scope.body_lock(false);
         };
 
+        scope.no_avatar = function(pic) {
+          return /no_avatar/.test(pic)
+        }
+
         scope.body_lock = function (state) {
-          if (state) {
-            $('body').css('overflow', 'hidden');
-          } else {
-            $('body').css('overflow', '');
-          }
+          // if (state) {
+          //   $('body').css({
+          //     overflow: 'hidden',
+          //     position: 'relative',
+          //     right: 9
+          //   });
+          // } else {
+          //   $('body').css({
+          //     overflow: '',
+          //     position: '',
+          //     right: 'auto'
+          //   });
+          // }
         };
 
         $locale.NUMBER_FORMATS.GROUP_SEP = ' ';

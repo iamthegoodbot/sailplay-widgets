@@ -45,8 +45,10 @@
     }
     &.bns_overlay_stst {
       .bns_overlay_inner {
+        height: 410px;
+
         .bns_overlay_left {
-          width: 62%;
+          width: 60%;
         }
         .bns_overlay_right {
           width: 37%;
@@ -148,7 +150,7 @@
           position: relative;
           a {
             float: right;
-            width: 143px;
+            width: 223px;
             line-height: 30px;
             border-radius: 2px;
             background-color: #FF0037;
@@ -157,6 +159,7 @@
             text-align: center;
             &.bns_nact {
               background-color: #E0E0E0;
+              pointer-events: none;              
               color: #828282;
             }
           }
@@ -235,12 +238,12 @@
               width: 30%;
               text-align: center;
               height: 110px;
-              &:before {
-                content: '';
-                display: inline-block;
-                height: 100%;
-                vertical-align: middle;
-              }
+              // &:before {
+              //   content: '';
+              //   display: inline-block;
+              //   height: 100%;
+              //   vertical-align: middle;
+              // }
               img {
                 max-width: 90%;
                 max-height: 100%;
@@ -268,7 +271,9 @@
                 bottom: 0px;
                 &.bns_nact {
                   background-color: #F2F2F2;
+                  pointer-events: none;
                   color: #BDBDBD;
+                  pointer-events: none;
                 }
               }
               .bns_overlay_gift_item_name {
@@ -385,10 +390,19 @@
         width: 100%;
         box-sizing: border-box;
         padding-right: 18px;
+        padding-top: 10px;
+        padding-bottom: 10px;
         .bns_overlay_stat_item {
           float: left;
           width: 100%;
           position: relative;
+          padding-left: 15px;
+          padding-right: 15px;
+          cursor: pointer;
+          border-bottom: 1px solid #F2F2F2;
+          &:hover {
+            background-color: #f6f6f6;
+          }
           &:last-child {
             .bns_overlay_stat_item_text {
               border-bottom: 0;
@@ -402,7 +416,7 @@
               display: block;
               background-image: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/8a7b8d0f44bc6747d4f53b76f71a8550.png");
               position: absolute;
-              right: -34px;
+              right: -19px;
               top: 50%;
               margin-top: -17px;
             }
@@ -439,7 +453,7 @@
             float: left;
             width: 20%;
             position: absolute;
-            left: 0;
+            left: 15px;
             top: 0;
             height: 100%;
             &:before {
@@ -465,7 +479,6 @@
           .bns_overlay_stat_item_text {
             float: right;
             width: 80%;
-            border-bottom: 1px solid #F2F2F2;
             padding-top: 25px;
             padding-bottom: 25px;
             span {
@@ -498,6 +511,7 @@
             color: #BDBDBD;
             font-size: 14px;
             padding-right: 10px;
+            border-bottom: 1px solid #F2F2F2;
           }
           &:nth-child(2) {
             border-bottom: 1px solid #F2F2F2;
@@ -546,7 +560,6 @@
         position: absolute;
         right: 0;
         top: 0;
-        height: 100%;
         .bns_close {
           width: 100%;
           float: left;
@@ -613,6 +626,7 @@
         .bns_overlay_right_desc {
           float: left;
           width: 100%;
+          line-height: 1.2;
           color: #4F4F4F;
           font-size: 12px;
           margin-top: 10px;
