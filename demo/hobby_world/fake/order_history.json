@@ -2,7 +2,7 @@
   "status": "ok",
   "orders_list": [
     {
-      "order_num": "kly0798879",
+      "order_num": "test-2017-09-27-03",
       "state": "Отменён",
       "link": "Ссылка на страницу заказа 1"
     },

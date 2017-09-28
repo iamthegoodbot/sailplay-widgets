@@ -73,9 +73,9 @@ angular.module('hobby_world', [
       scope: true,
       link: function (scope) {
 
-        scope.wish_list = hwDataService.getData('wish_list');
-        scope.game_of_day = hwDataService.getData('game_of_day');
-        scope.recommend_list = hwDataService.getData('recommend_list');
+        scope.wish_list = angular.copy(hwDataService.getData('wish_list'));
+        scope.game_of_day = angular.copy(hwDataService.getData('game_of_day'));
+        scope.recommend_list = angular.copy(hwDataService.getData('recommend_list'));
 
       }
     }
@@ -115,19 +115,19 @@ angular.module('hobby_world', [
         }
 
         scope.body_lock = function (state) {
-          // if (state) {
-          //   $('body').css({
-          //     overflow: 'hidden',
-          //     position: 'relative',
-          //     right: 9
-          //   });
-          // } else {
-          //   $('body').css({
-          //     overflow: '',
-          //     position: '',
-          //     right: 'auto'
-          //   });
-          // }
+          if (state) {
+            $('body').css({
+              overflow: 'hidden',
+              // position: 'relative',
+              // right: 9
+            });
+          } else {
+            $('body').css({
+              overflow: '',
+              // position: '',
+              // right: 'auto'
+            });
+          }
         };
 
         $locale.NUMBER_FORMATS.GROUP_SEP = ' ';

@@ -80,7 +80,6 @@ angular.module('sp.profile', [])
       if (self.user().user.last_name)
         _form.fio += ' ' + self.user().user.last_name
 
-      console.log(_form.fio)
       _form.sex = self.user().user.sex;
       _form.addEmail = self.user().user.email;
       _form.addPhone = format_phone(self.user().user.phone);
@@ -126,14 +125,14 @@ angular.module('sp.profile', [])
 
   })
 
-  .directive('file', () => {
+  .directive('file', function() {
     return {
       require: "ngModel",
       restrict: 'A',
-      link: ($scope, el, attrs, ngModel) => {
-        el.bind('change', (event) => {
-          let files = event.target.files;
-          let file = files[0];
+      link: function($scope, el, attrs, ngModel) {
+        el.bind('change', function(event) {
+          var files = event.target.files;
+          var file = files[0];
 
           ngModel.$setViewValue(file);
           $scope.$apply();
@@ -163,7 +162,7 @@ angular.module('sp.profile', [])
 
         var user = sp_api.data('load.user.info')
 
-        let fd = new FormData();
+        var fd = new FormData();
 
         fd.append('avatar', obj.img);
 
@@ -260,15 +259,15 @@ angular.module('sp.profile', [])
           var secondName = scope.form.fio.split(' ')[1];
           var lastName = scope.form.fio.split(' ')[2];         
 
-          if (firstName !== scope.user().user.first_name) {
+          if (firstName && firstName !== scope.user().user.first_name) {
             data.firstName = firstName
           }
 
-          if (lastName !== scope.user().user.last_name) {
+          if (secondName && lastName !== scope.user().user.last_name) {
             data.lastName = lastName
           }
 
-          if (secondName !== scope.user().user.middle_name) {
+          if (secondName && secondName !== scope.user().user.middle_name) {
             data.middleName = secondName
           }
 
@@ -368,11 +367,26 @@ angular.module('sp.profile', [])
 
         scope.social_connected = function(soc) {
           return (new RegExp(soc)).test(window.sailplay_config.data.social)
-        }
+        };
+
+        scope.ava_menu_show = false;
+
+        scope.close_menu = function(){
+          if(scope.ava_menu_show) {
+            scope.ava_menu_show = false;
+            scope.$digest();
+          }
+        };
+
+        $('body').on('click', scope.close_menu);
 
         scope.logout = function () {
           sp.send('logout');
         };
+
+        scope.$on('$destroy', function(){
+          $('body').off('click', scope.close_menu)
+        })
 
       }
 

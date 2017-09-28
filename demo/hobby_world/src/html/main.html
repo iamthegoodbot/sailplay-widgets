@@ -5,7 +5,7 @@
         <div class="bns_top">
 
             <div class="bns_top_left" data-sailplay-profile>
-                <div class="bns_top_ava" data-ng-click="ava_menu_show = !ava_menu_show">
+                <div class="bns_top_ava" data-ng-click="$event.preventDefault();$event.stopPropagation();ava_menu_show = !ava_menu_show;">
                     <img data-ng-src="{{ user().user.pic }}" alt="Аватар">
                 </div>
                 <div class="bns_top_prof_info ">
@@ -35,10 +35,10 @@
 
                 </div>
                 <div class="avatar_menu" ng-class="{ show: ava_menu_show }">
-                    <a href="#" class="bns_bot_linck js_open_edit" data-ng-click="$event.preventDefault();edit_profile();body_lock(true);">Редактировать профиль</a>
-                    <br>
                     <a href="#" class="bns_bot_linck js_logout" target="_blank" data-ng-href="{{ config.data.page && config.data.page.logout }}">Выйти</a>
                 </div>
+                <a href="#" class="bns_bot_linck js_open_edit"
+                   data-ng-click="$event.preventDefault();edit_profile();body_lock(true);">Редактировать профиль</a>
             </div>
 
             <div class="bns_top_center" data-sailplay-profile>
@@ -56,11 +56,11 @@
 
             <div class="bns_top_right" data-sailplay-badges>
                 <span class="bns_top_head">Бейджи</span>
-                <p class="empty_badges" data-ng-if="badges().multilevel_badges[0] && !(badges().multilevel_badges[0] | filter:{is_received:true}).length">
+                <p class="empty_badges" data-ng-if="badges().multilevel_badges[1] && !(badges().multilevel_badges[1] | filter:{is_received:true}).length">
                     У вас пока нет бейджей
                 </p>
-                <div class="bns_top_achiv js-slick-slider" data-ng-show="badges().multilevel_badges[0] && (badges().multilevel_badges[0] | filter:{is_received:true}).length">
-                    <div class="bns_top_achiv_item" data-slack-slider data-slack-config="{{ badge_config }}" data-ng-repeat="badge in badges().multilevel_badges[0] | filter:{is_received:true} track by $index">
+                <div class="bns_top_achiv js-slick-slider" data-ng-show="badges().multilevel_badges[1] && (badges().multilevel_badges[1] | filter:{is_received:true}).length">
+                    <div class="bns_top_achiv_item" data-slack-slider data-slack-config="{{ badge_config }}" data-ng-repeat="badge in badges().multilevel_badges[1] | filter:{is_received:true} track by $index" data-length="badges().multilevel_badges[1].length">
                         <img data-ng-src="{{ badge.thumbs.url_250x250 }}" alt="{{ badge.name }}">
                     </div>
                 </div>
@@ -81,19 +81,23 @@
                 <img class="bns_line_mask second mobile" ng-show="$parent.getActiveBadge() == 2" alt="" src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/030799f81231aca8f35cc8ecfdff99e1.png">
                 <img class="bns_line_mask third mobile" ng-show="$parent.getActiveBadge() == 3" alt="" src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/a56290248a627acc9be28469dd3221b7.png">
 
-                <div class="bns_line_fil" data-ng-style="{{ getStatusPercents() }}"></div>
+                <div class="bns_line_fil" data-ng-style="{ width: horizontal ? '100%' : getStatusPercents(), height: horizontal ? getStatusPercents() : '100%' }"></div>
 
-                <div data-ng-repeat="badge in $parent.badges().multilevel_badges[1] track by $index">
+                <div data-ng-repeat="badge in $parent.badges().multilevel_badges[0] track by $index">
                     <div class="bns_line_item_text bns_line_item{{ $index+1 }}">
                         <span class="bns_line_item_name" data-ng-bind="badge.name"></span>
-                        <span class="bns_line_item_progress" data-ng-if="getSumForStatus(badge) > user().purchases.sum" data-ng-bind="'Накопление&nbsp;' + (100 / user().purchases.sum * (getSumForStatus(badge) - user().purchases.sum)).toFixed() + '%'"></span>
-                        <span class="bns_line_item_sckid" data-ng-bind="badge.descr"></span>
+                        <!--<span class="bns_line_item_progress" data-ng-if="getSumForStatus(badge) > user().purchases.sum" data-ng-bind="'Накопление&nbsp;' + (100 / user().purchases.sum * (getSumForStatus(badge) - user().purchases.sum)).toFixed() + '%'"></span>-->
+                        <!--<span class="bns_line_item_sckid" data-ng-bind="badge.descr"></span>-->
+                        <span class="bns_line_item_progress" data-ng-bind="badge.descr"></span>
 
-                        <span class="bns_line_item_til" data-ng-if="getSumForStatus(badge) > user().purchases.sum" data-ng-bind="((getSumForStatus(badge) - user().purchases.sum) | sailplay_pluralize:'Остался,Осталось,Осталось') + ' ' + (getSumForStatus(badge) - user().purchases.sum) + ' ' + ((getSumForStatus(badge) - user().purchases.sum) | sailplay_pluralize:'рубль,рубля,рублей')"></span>
+                        <span class="bns_line_item_til" data-ng-if="getSumForStatus(badge) > user().purchases.sum">
+                            {{ ((getSumForStatus(badge) - user().purchases.sum) | sailplay_pluralize:'Остался,Осталось,Осталось') + ' '  }}
+                            <strong data-ng-bind="(getSumForStatus(badge) - user().purchases.sum) + ' ' + ((getSumForStatus(badge) - user().purchases.sum) | sailplay_pluralize:'рубль,рубля,рублей')"></strong>
+                        </span>
                     </div>
                 </div>
 
-                <div class="bns_line_item bns_line_item{{ $index+1 }}" data-ng-repeat="badge in $parent.badges().multilevel_badges[1] track by $index | limitTo:3"
+                <div class="bns_line_item bns_line_item{{ $index+1 }}" data-ng-repeat="badge in $parent.badges().multilevel_badges[0] track by $index | limitTo:3"
                     data-ng-class="{act: badge.is_received}">
 
                     <div class="b-polygon b-polygon_hexagon b-polygon_hexagon2">
@@ -105,10 +109,14 @@
                     </div>
 
                     <span class="bns_line_item_name" data-ng-bind="badge.name"></span>
-                    <span class="bns_line_item_progress" data-ng-if="getSumForStatus(badge) > user().purchases.sum" data-ng-bind="'Накопление&nbsp;' + (100 / user().purchases.sum * (getSumForStatus(badge) - user().purchases.sum)).toFixed() + '%'"></span>
-                    <span class="bns_line_item_sckid" data-ng-bind="badge.descr"></span>
+                    <!--<span class="bns_line_item_progress" data-ng-if="getSumForStatus(badge) > user().purchases.sum" data-ng-bind="'Накопление&nbsp;' + (100 / user().purchases.sum * (getSumForStatus(badge) - user().purchases.sum)).toFixed() + '%'"></span>-->
+                    <!--<span class="bns_line_item_sckid" data-ng-bind="badge.descr"></span>-->
+                    <span class="bns_line_item_progress" data-ng-bind="badge.descr"></span>
 
-                    <span class="bns_line_item_til" data-ng-if="getSumForStatus(badge) > user().purchases.sum" data-ng-bind="((getSumForStatus(badge) - user().purchases.sum) | sailplay_pluralize:'Остался,Осталось,Осталось') + ' ' + (getSumForStatus(badge) - user().purchases.sum) + ' ' + ((getSumForStatus(badge) - user().purchases.sum) | sailplay_pluralize:'рубль,рубля,рублей')"></span>
+                    <span class="bns_line_item_til" data-ng-if="getSumForStatus(badge) > user().purchases.sum">
+                        {{ ((getSumForStatus(badge) - user().purchases.sum) | sailplay_pluralize:'Остался,Осталось,Осталось') + ' ' }}
+                        <strong data-ng-bind="(getSumForStatus(badge) - user().purchases.sum) + ' ' + ((getSumForStatus(badge) - user().purchases.sum) | sailplay_pluralize:'рубль,рубля,рублей')"></strong>
+                    </span>
 
                 </div>
 
@@ -117,7 +125,7 @@
 
         <div class="bns_two_col" data-sailplay-actions>
 
-            <div class="bns_col_left">
+            <div class="bns_col_left type_big">
 
                 <span class="bns_top_head">Задания</span>
 
@@ -127,27 +135,33 @@
 
                 <div class="bns_quest_main">
 
-                    <div class="bns_quest_wr" data-ng-repeat="action in actions">
+                    <div class="bns_quest_wr" data-slack-slider data-slack-config="{{ actions_config }}"
+                         data-length="actions.length" data-ng-repeat="action in actions">
 
-                        <div class="bns_quest_item" data-ng-if="action._actionId">
-                            <div class="bns_quest_item_img">
-                                <img data-ng-src="{{ action_data($parent.action).image }}">
+                            <div class="bns_quest_item" data-ng-if="action._actionId">
+                                <div class="bns_quest_item_img">
+                                    <img data-ng-src="{{ action_data($parent.action).image }}">
+                                </div>
+                                <span class="bns_quest_item_name"
+                                      data-ng-bind="action_data($parent.action).name"></span>
+                                <span class="bns_quest_item_bal" data-ng-if="action.points != 0"
+                                      data-ng-bind="action.points | number"></span>
+                                <span class="bns_quest_item_text" data-ng-if="action.points == 0">Подробнее</span>
+                                <a href="#"
+                                   data-ng-click="$event.preventDefault();$parent.$parent.show = $parent.action;body_lock(true);">Выполнить</a>
                             </div>
-                            <span class="bns_quest_item_name" data-ng-bind="action_data($parent.action).name"></span>
-                            <span class="bns_quest_item_bal" data-ng-if="action.points != 0" data-ng-bind="action.points | number"></span>
-                            <span class="bns_quest_item_text" data-ng-if="action.points == 0">Подробнее</span>
-                            <a href="#" data-ng-click="$event.preventDefault();$parent.$parent.show = $parent.action;">Получить</a>
-                        </div>
 
-                        <div class="bns_quest_item" data-ng-if="!action._actionId">
-                            <div class="bns_quest_item_img">
-                                <img data-ng-src="{{ action.icon | sailplay_pic }}">
+                            <div class="bns_quest_item" data-ng-if="!action._actionId">
+                                <div class="bns_quest_item_img">
+                                    <img data-ng-src="{{ action.icon | sailplay_pic }}">
+                                </div>
+                                <span class="bns_quest_item_name" data-ng-bind="action.name"></span>
+                                <span class="bns_quest_item_bal" data-ng-if="action.points != 0"
+                                      data-ng-bind="action.points | number"></span>
+                                <span class="bns_quest_item_text" data-ng-if="action.points == 0">Подробнее</span>
+                                <a href="#"
+                                   data-ng-click="$event.preventDefault();$parent.$parent.show = $parent.action;body_lock(true);">Выполнить</a>
                             </div>
-                            <span class="bns_quest_item_name" data-ng-bind="action.name"></span>
-                            <span class="bns_quest_item_bal" data-ng-if="action.points != 0" data-ng-bind="action.points | number"></span>
-                            <span class="bns_quest_item_text" data-ng-if="action.points == 0">Подробнее</span>
-                            <a href="#" data-ng-click="$event.preventDefault();$parent.$parent.show = $parent.action;">Получить</a>
-                        </div>
 
                     </div>
 
@@ -165,7 +179,7 @@
                             <div class="bns_overlay_action_main">
 
                                 <div class="bns_overlay_action_btn" data-ng-class="{bns_btn: $parent.$parent.show.path}" data-sailplay-action data-action="$parent.$parent.show"
-                                    data-text="Получить" data-styles="{{ action_styles(action_data($parent.$parent.show)) }}">Получить
+                                    data-text="Выполнить" data-styles="{{ action_styles(action_data($parent.$parent.show)) }}">Выполнить
                                 </div>
 
                             </div>
@@ -184,7 +198,7 @@
 
                         <div class="nms_overlay_bottom">
 
-                            <a href="#" class="bns_btn js_close" data-ng-click="$event.preventDefault();$parent.show = null;body_lock(false);">Закрыть</a>
+                            <a href="#" class="new_button type_filled" data-ng-click="$event.preventDefault();$parent.show = null;body_lock(false);">Закрыть</a>
 
                         </div>
 
@@ -193,7 +207,7 @@
 
             </div>
 
-            <div class="bns_col_right" data-hw-block>
+            <div class="bns_col_right type_big" data-hw-block>
 
                 <span class="bns_top_head">Вишлист</span>
 
@@ -203,14 +217,16 @@
 
                 <div class="bns_wish_main" data-ng-show="wish_list()">
 
-                    <div class="bns_wish_item" data-ng-repeat="item in wish_list() track by $index | limitTo:4">
+                    <div class="bns_wish_item" data-ng-repeat="item in wish_list() | limitTo:1">
 
                         <div class="bns_wish_item_img">
                             <img data-ng-src="{{ item.image }}">
                             <span class="bns_wish_item_label" data-ng-if="item | wish_state" data-ng-bind="$parent.item | wish_state"></span>
                         </div>
 
-                        <span class="bns_wish_item_name to_gradient" data-ng-bind="item.title"></span>
+                        <span class="bns_wish_item_name to_gradient" title="{{ item.title }}">
+                            <span data-ng-bind="item.title"></span>
+                        </span>
 
                         <a data-ng-if="!item.old_price" data-ng-href="{{ $parent.item.link }}" data-ng-bind="$parent.item.price + ' руб.'" target="_blank"></a>
 
@@ -228,7 +244,7 @@
 
         <div class="bns_two_col recommend" data-hw-block data-recommend-block>
 
-            <div class="bns_col_left">
+            <div class="bns_col_left type_small">
 
                 <span class="bns_top_head">Рекомендованные товары</span>
 
@@ -236,30 +252,34 @@
                     Рекомендаций на данный момент нет
                 </div>
 
-                <div class="bns_recom" data-ng-show="recommend_list()">
+                <div class="bns_recom">
 
                     <div class="bns_recom_item" data-ng-repeat="item in recommend_list() track by $index" data-slack-slider data-slack-config="recommend_config"
                         data-length="recommend_list().length">
-                        <a data-ng-href="{{ item.link }}" target="_blank" class="bns_recom_item_img">
+                        <div class="bns_recom_item_img">
                             <img data-ng-src="{{ item.image }}">
-                            <span class="to_gradient bns_name" data-ng-bind="item.title"></span>
+                            <span class="bns_name to_gradient" title="{{ item.title }}">
+                                <span data-ng-bind="item.title"></span>
+                            </span>
 
                         <div class="bns_price_container">
-                            <span class="price" data-ng-if="!item.old_price" data-ng-href="{{ $parent.item.link }}"
-                            data-ng-bind="$parent.item.price + ' руб.'" target="_blank"></span>
 
-                            <span class="price" data-ng-if="item.old_price" data-ng-href="{{ $parent.item.link }}" target="_blank">
+                            <a class="price" data-ng-if="item.price && !item.old_price" data-ng-href="{{ $parent.item.link }}"
+                            data-ng-bind="$parent.item.price + ' руб.'" target="_blank"></a>
+
+                            <a class="price" data-ng-if="item.old_price" data-ng-href="{{ $parent.item.link }}" target="_blank">
                                 {{ $parent.item.price }}
                                 <span class="bns_old_price" data-ng-bind="$parent.item.price + ' руб.'"></span>
-                            </span>
+                            </a>
+
                         </div>
-                        </a>
+                        </div>
                     </div>
 
                 </div>
             </div>
 
-            <div class="bns_col_right bns_game_day_main">
+            <div class="bns_col_right bns_game_day_main type_small">
 
                 <span class="bns_top_head">Игра дня</span>
 
@@ -271,7 +291,9 @@
 
                     <img data-ng-src="{{ game_of_day()[0].image }}">
 
-                    <div class="bns_game_day_name to_gradient" data-ng-bind="game_of_day()[0].title"></div>
+                    <div class="bns_game_day_name to_gradient" title="{{ game_of_day()[0].title }}">
+                        <span data-ng-bind="game_of_day()[0].title"></span>
+                    </div>
 
                     <a class="price " data-ng-href="{{ game_of_day()[0].link }}" target="_blank">
                             {{ game_of_day()[0].price }}
@@ -295,7 +317,9 @@
                         <img data-ng-src="{{ gift.thumbs.url_250x250 | sailplay_pic }}">
                     </div>
 
-                    <span class="bns_gift_name to_gradient" data-ng-bind="gift.name"></span>
+                    <span class="bns_gift_name to_gradient" title="{{ gift.name }}">
+                        <span data-ng-bind="gift.name"></span>
+                    </span>
 
                     <span class="bns_gift_point" data-ng-bind="gift.points | number"></span>
 
@@ -326,13 +350,15 @@
 
                     <div class="nms_overlay_bottom">
 
-                        <a href="#" class="bns_btn bns_btn_l js_open_get_fin type_blue" data-ng-if="user().user_points.confirmed > $parent.gift_get.points"
-                            data-ng-click="$event.preventDefault();get($parent.$parent.gift_get);">Далее</a>
+                        <a href="#" class="new_button bns_btn_l" data-ng-click="$event.preventDefault();$parent.gift_get = null;body_lock(false);">Отмена</a>
 
-                        <a href="#" class="bns_btn bns_btn_l js_open_get_fin disabled" data-ng-if="user().user_points.confirmed < $parent.gift_get.points"
+
+                        <a href="#" class="new_button bns_btn_r type_filled" data-ng-if="user().user_points.confirmed > $parent.gift_get.points"
+                            data-ng-click="$event.preventDefault();get($parent.$parent.gift_get);">Получить</a>
+
+                        <a href="#" class="new_button bns_btn_r type_filled disabled" data-ng-if="user().user_points.confirmed < $parent.gift_get.points"
                             data-ng-click="$event.preventDefault();" data-ng-bind="'Не хватает ' + ($parent.$parent.gift_get.points - user().user_points.confirmed)"></a>
 
-                        <a href="#" class="bns_btn bns_btn_r js_close" data-ng-click="$event.preventDefault();$parent.gift_get = null;body_lock(false);">Отмена</a>
 
                     </div>
 
@@ -356,7 +382,7 @@
                     </div>
 
                     <div class="nms_overlay_bottom">
-                        <a href="#" class="bns_btn js_close" data-ng-click="$event.preventDefault();$parent.gift_geted = null;body_lock(false);">Закрыть</a>
+                        <a href="#" class="new_button type_filled" style="margin-top: 30px;" data-ng-click="$event.preventDefault();$parent.gift_geted = null;body_lock(false);">Закрыть</a>
                     </div>
 
 
@@ -379,7 +405,7 @@
             <form name="profile_edit" data-ng-submit="save(profile_edit, clear_show('show_prof'))">
 
                 <div class="bns_edit_col">
-                    <div class="bns_input_block" data-ng-class="{ bns_err: !form.lastName && profile_edit.last_name.$touched }">
+                    <div class="bns_input_block" data-ng-class="{ bns_err: !form.fio && profile_edit.last_name.$touched }">
                         <label>ФИО <span class="bns_err_text">Ошибка</span></label>
                         <input type="text" name="last_name" data-ng-model="form.fio" required>
                     </div>
@@ -398,10 +424,10 @@
 
                     </div>
 
-                    <div class="bns_input_block" data-ng-class="{ bns_err: !vars['Запомнить адрес доставки'] && profile_edit.remember.$touched }">
-                        <input type="checkbox" id="bns_zap_adr" name="remember" data-ng-model="vars['Запомнить адрес доставки']">
-                        <label for="bns_zap_adr">Запомнить адрес доставки</label>
-                    </div>
+                    <!--<div class="bns_input_block" data-ng-class="{ bns_err: !vars['Запомнить адрес доставки'] && profile_edit.remember.$touched }">-->
+                        <!--<input type="checkbox" id="bns_zap_adr" name="remember" data-ng-model="vars['Запомнить адрес доставки']">-->
+                        <!--<label for="bns_zap_adr">Запомнить адрес доставки</label>-->
+                    <!--</div>-->
 
                     <div class="bns_input_block bns_input_block_pol">
                         <label>Редактирование подписки</label>
@@ -445,7 +471,7 @@
 
                     <div class="bns_edit_ava">
                         <img data-ng-src="{{user().user.pic}}" alt="">
-                        <a href="#" class="bns_over_edit_ava" onclick="document.getElementById('sailplay_upload_avatar').click()" data-ng-bind="no_avatar(user().user.pic) ? 'Загрузить аватар' : 'Загрузить новый аватар'"></a>
+                        <a href="#" class="bns_over_edit_ava" onclick="document.getElementById('sailplay_upload_avatar').click()" data-ng-bind="no_avatar(user().user.pic) ? 'Загрузить аватар' : 'Редактировать аватар'"></a>
                         <input data-ng-hide="true" accept=".jpg,.jpeg,.png,.gif" data-file type="file" name="avatar" id="sailplay_upload_avatar"
                             data-ng-model="avatarImg" data-ng-change="uploadAvatar()">
                     </div>    
@@ -489,10 +515,10 @@
                 </div>
 
                 <div class="nms_overlay_bottom">
-                    <input type="submit" class="bns_btn bns_btn_l type_blue" data-ng-disabled="!(tags | selectedInterests) || profile_edit.$invalid"
+                    <a href="#" class="new_button bns_btn_l" data-ng-click="$event.preventDefault();clear_show('show_prof');">Назад</a>
+                    <input type="submit" class="new_button bns_btn_r type_filled" data-ng-disabled="!(tags | selectedInterests) || profile_edit.$invalid"
                         value="Сохранить">
                     <!--<a href="#" class="bns_btn bns_btn_l js_close">Сохранить</a>-->
-                    <a href="#" class="bns_btn bns_btn_r js_close" data-ng-click="$event.preventDefault();clear_show('show_prof');">Назад</a>
                 </div>
 
             </form>
@@ -507,68 +533,82 @@
 
             <span class="bns_over_head">История заказов</span>
 
-            <table>
+            <span class="bns_over_caption">Здесь показана история всех ваших действий</span>
 
-                <tr>
-                    <td></td>
-                    <td><span>Дата</span></td>
-                    <td>
-                        <span>Номер заказа/действие</span>
-                    </td>
-                    <td>
+            <div class="bns_hist_wrapper">
+
+                <table>
+
+                    <tr>
+                        <td></td>
+                        <td><span>Дата</span></td>
+                        <td>
+                            <span>Номер заказа/действие</span>
+                        </td>
+                        <td>
                         <span>
                             Статус
                         </span>
-                    </td>
-                    <td>
+                        </td>
+                        <td>
                         <span>
                             Cтоимость
 заказа
                         </span>
-                    </td>
-                    <td>
-                        Баллы
-                    </td>
-                </tr>
+                        </td>
+                        <td>
+                            Баллы
+                        </td>
+                    </tr>
 
-                <tr data-dir-paginate="item in history() | filter:filter | itemsPerPage:10" data-pagination-id="history_pages">
+                    <tr data-dir-paginate="item in history() | filter:filter | itemsPerPage:5" data-pagination-id="history_pages">
 
-                    <td><img data-ng-src="{{ item | history_icon }}"></td>
+                        <td><img data-ng-src="{{ item | history_icon }}"></td>
 
-                    <td><span data-ng-bind="item.action_date | date:'dd.MM.yyyy HH:mm'"></span></td>
+                        <td>
+                            <span class="bns_tooltip_trigger">
+                                {{ item.action_date | date:'dd.MM.yyyy' }}
+                                <div class="bns_tooltip" data-ng-bind="item.action_date | date:'HH:mm'"></div>
+                            </span>
+                        </td>
 
-                    <td>
-                        <strong data-ng-bind="item | history_item"></strong>
-                        <a data-ng-if="item.order_num" target="_blank" data-ng-href="{{ $parent.item | order_link }}" data-ng-bind="'(' + $parent.item.order_num + ')'"></a>
-                    </td>
-                    <td>
-                        <span data-ng-if="item.order_num" data-ng-bind="$parent.item | order_status"></span>
-                    </td>
-                    <td>
-                        <span data-ng-show="item.price" data-ng-bind="(item.price | number) + ' руб.'"></span>
-                    </td>
-                    <td>
-                        <span class="bns_hist_bal" data-ng-if="item.points_delta" data-ng-bind="(item.points_delta < 0 ? '' : '+ ') + (item.points_delta | number)"></span>
-                    </td>
+                        <td>
+                            <strong data-ng-bind="item | history_item"></strong>
+                            <a data-ng-if="item.order_num" target="_blank" data-ng-href="{{ $parent.item | order_link }}" data-ng-bind="'(' + $parent.item.order_num + ')'"></a>
+                        </td>
+                        <td>
+                            <span data-ng-if="item.order_num" data-ng-bind="$parent.item | order_status"></span>
+                        </td>
+                        <td>
+                            <span data-ng-show="item.price" data-ng-bind="(item.price | number) + ' &#8381;'"></span>
+                        </td>
+                        <td>
+                            <span class="bns_hist_bal"
+                                  data-ng-class="{type_orange: item.points_delta < 0}"
+                                  data-ng-if="item.points_delta"
+                                  data-ng-bind="(item.points_delta < 0 ? '' : '+ ') + (item.points_delta | number)"></span>
+                        </td>
 
-                </tr>
+                    </tr>
 
-            </table>
+                </table>
+
+            </div>
 
             <div class="bns_hist_bottom">
 
-                <dir-pagination-controls data-max-size="5" data-pagination-id="history_pages" data-template-url="/html/ui/ui.pagination.controls.html"
-                    data-auto-hide="true"></dir-pagination-controls>
-
-                <div class="bns_input_block bns_input_block_ch">
+                <div class="bns_input_block bns_input_block_ch" data-ng-show="has_orders()">
                     <input type="checkbox" id="bns_hist" data-ng-model="only_orders">
                     <label for="bns_hist">Только заказы</label>
                 </div>
 
+                <dir-pagination-controls data-max-size="5" data-pagination-id="history_pages" data-template-url="/html/ui/ui.pagination.controls.html"
+                    data-auto-hide="true"></dir-pagination-controls>
+
             </div>
 
             <div class="nms_overlay_bottom">
-                <a href="#" class="bns_btn js_close" data-ng-click="$event.preventDefault();clear_show('show_hist');">Назад</a>
+                <a href="#" class="new_button type_filled" data-ng-click="$event.preventDefault();clear_show('show_hist');">Закрыть</a>
             </div>
 
         </div>
@@ -581,10 +621,12 @@
 
             <span class="bns_over_head">Бейджи</span>
 
+            <span class="bns_over_caption">Ваши достижения и награды</span>
+
             <div class="bns_over_achiv_main">
 
                 <a href="#" class="bns_over_achiv_item" data-ng-class="{act: badge.is_received, bns_ach_open: $parent.open_index == $index}"
-                    data-ng-click="$event.preventDefault();$parent.open_index=$index;$parent.open = badge;" data-ng-repeat="badge in badges().multilevel_badges[0] track by $index">
+                    data-ng-click="$event.preventDefault();$parent.open_index=$index;$parent.open = badge;scrollToBadge()" data-ng-repeat="badge in badges().multilevel_badges[1] track by $index">
 
                     <img data-ng-src="{{ badge.is_received ? badge.thumbs.url_250x250 : badge.thumbs.url_gs }}"
                          alt="{{ badge.name }}">
@@ -604,7 +646,7 @@
 
             <div class="nms_overlay_bottom">
 
-                <a href="#" class="bns_btn js_close" data-ng-click="$event.preventDefault();clear_show('show_ach');">Назад</a>
+                <a href="#" class="new_button type_filled" data-ng-click="$event.preventDefault();clear_show('show_ach');">Назад</a>
 
             </div>
 

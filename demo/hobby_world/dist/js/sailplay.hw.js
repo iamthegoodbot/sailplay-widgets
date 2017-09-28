@@ -1671,32 +1671,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     }
   });
 
-  // SOCIAL GOOGLE PLUS CHANGE HEIGHT
-  sp.on('actions.social.gp.like.mouseenter', function () {
-    var elms = document.querySelectorAll('iframe[iframe-action-gp-like], iframe.gp.like');
-    var originWidth,
-        w,
-        h = 500;
-    for (var i = 0, len = elms.length; i < len; i++) {
-      elms[i].removeAttribute("style");
-      originWidth = elms[i].parentNode.offsetWidth;
-      w = +originWidth + 70;
-      elms[i].style.cssText = 'width: ' + w + 'px !important;height: ' + h + 'px !important;margin-left: -35px !important;z-index: 10 !important;';
-      elms[i].parentNode.style.setProperty("overflow", "visible", "important");
-    }
-  });
-
-  sp.on('actions.social.gp.like.mouseleave', function () {
-    var elms = document.querySelectorAll('iframe[iframe-action-gp-like], iframe.gp.like');
-    var w = 150,
-        h = 27;
-    for (var i = 0, len = elms.length; i < len; i++) {
-      elms[i].removeAttribute("style");
-      elms[i].style.cssText = 'width: ' + w + 'px !important;height: ' + h + 'px !important;margin-left: auto !important;';
-      elms[i].parentNode.style.setProperty("overflow", "hidden", "important");
-    }
-  });
-
   var Actions = {};
 
   Actions.social_init = function (actions) {
@@ -7454,7 +7428,7 @@ angular.module("ivpusic.cookie", ["ipCookie"]), angular.module("ipCookie", ["ng"
     module = angular.module('templates', []);
   }
   module.run(['$templateCache', function ($templateCache) {
-    $templateCache.put('/html/main.html', '<div class="sp_wrapper" data-ng-show="global.auth"><div class="bns_inner_block clearfix"><div class="bns_top"><div class="bns_top_left" data-sailplay-profile=""><div class="bns_top_ava" data-ng-click="ava_menu_show = !ava_menu_show"><img data-ng-src="{{ user().user.pic }}" alt="Аватар"></div><div class="bns_top_prof_info"><span class="bns_top_prof_info_name" data-ng-bind="user().user.first_name || user().user.last_name ? user().user.first_name + \' \' + user().user.last_name : \'Имя не указано\'"></span> <span class="bns_top_prof_info_phone" data-ng-bind="user().user.phone && (user().user.phone | tel) || \'Телефон не указан\'"></span> <span class="bns_top_prof_info_email" data-ng-bind="user().user.email || \'E-mail не указан\'"></span></div><div class="bns_top_prof_info_soc"><div class="bns_top_prof_info_soc_item" data-ng-class="{act: social_connected(\'vk\')}"><img src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/cff30fc71680eb10f1abb116e820f093.png" alt="Vkontakte"></div><div class="bns_top_prof_info_soc_item" data-ng-class="{act: social_connected(\'fb\')}"><img src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/4d7501c88d3fb199f2c63a491a48c586.png" alt="Facebook"></div><div class="bns_top_prof_info_soc_item" data-ng-class="{act: social_connected(\'gp\')}"><img src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/e1f24e51b4be3db620fb8c5b15c78c20.png" alt="Google Plus"></div><div class="bns_top_prof_info_soc_item" data-ng-class="{act: social_connected(\'mr\')}"><img src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/78b8d9be7fe3e8e0f82a92b518937e8b.png" alt="Odnoklassniki"></div></div><div class="avatar_menu" ng-class="{ show: ava_menu_show }"><a href="#" class="bns_bot_linck js_open_edit" data-ng-click="$event.preventDefault();edit_profile();body_lock(true);">Редактировать профиль</a><br><a href="#" class="bns_bot_linck js_logout" target="_blank" data-ng-href="{{ config.data.page && config.data.page.logout }}">Выйти</a></div></div><div class="bns_top_center" data-sailplay-profile=""><a target="_blank" data-ng-href="{{ config.data.page && config.data.page.about_program }}" class="bns_top_head bns_top_head_sm js_open_about">О бонусной программе</a> <span class="bns_top_bal" data-ng-bind="user().user_points.confirmed | number"></span> <span class="bns_top_bal_np" data-ng-bind="\'Неподтвержденных \' + (user().user_points.unconfirmed | number)"></span><div class="bns_tooltip">Баллы будут доступны после подтверждения факта оплаты</div><a href="#" class="new_button history js_open_hist" data-ng-click="$event.preventDefault();show_history();body_lock(true)">История</a></div><div class="bns_top_right" data-sailplay-badges=""><span class="bns_top_head">Бейджи</span><p class="empty_badges" data-ng-if="badges().multilevel_badges[0] && !(badges().multilevel_badges[0] | filter:{is_received:true}).length">У вас пока нет бейджей</p><div class="bns_top_achiv js-slick-slider" data-ng-show="badges().multilevel_badges[0] && (badges().multilevel_badges[0] | filter:{is_received:true}).length"><div class="bns_top_achiv_item" data-slack-slider="" data-slack-config="{{ badge_config }}" data-ng-repeat="badge in badges().multilevel_badges[0] | filter:{is_received:true} track by $index"><img data-ng-src="{{ badge.thumbs.url_250x250 }}" alt="{{ badge.name }}"></div></div><a href="#" class="bns_bot_linck js_open_achiv" data-ng-click="$event.preventDefault();show_achievements();body_lock(true);">Все бейджи</a></div></div><div class="bns_line_wrap" data-sailplay-status=""><div class="bns_line" data-ng-if="badges()"><img class="bns_line_mask empty tablet" ng-show="$parent.getActiveBadge() == 0" alt="" src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/b06e61dcd1570beb17a7c8060909373e.png"> <img class="bns_line_mask first tablet" ng-show="$parent.getActiveBadge() == 1" alt="" src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/3abeddc3dcb8a200293defbe5c083fec.png"> <img class="bns_line_mask second tablet" ng-show="$parent.getActiveBadge() == 2" alt="" src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/7ffb0272d242b5017b97cbdc8f45b865.png"> <img class="bns_line_mask third tablet" ng-show="$parent.getActiveBadge() == 3" alt="" src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/16cd711005cff619f1d6eb55d71bae98.png"> <img class="bns_line_mask empty mobile" ng-show="$parent.getActiveBadge() == 0" alt="" src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/020955ac63bcf24718f2519dc12ef25b.png"> <img class="bns_line_mask first mobile" ng-show="$parent.getActiveBadge() == 1" alt="" src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/16a46f931cfa8d3670cff29bf63e7e69.png"> <img class="bns_line_mask second mobile" ng-show="$parent.getActiveBadge() == 2" alt="" src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/030799f81231aca8f35cc8ecfdff99e1.png"> <img class="bns_line_mask third mobile" ng-show="$parent.getActiveBadge() == 3" alt="" src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/a56290248a627acc9be28469dd3221b7.png"><div class="bns_line_fil" data-ng-style="{{ getStatusPercents() }}"></div><div data-ng-repeat="badge in $parent.badges().multilevel_badges[1] track by $index"><div class="bns_line_item_text bns_line_item{{ $index+1 }}"><span class="bns_line_item_name" data-ng-bind="badge.name"></span> <span class="bns_line_item_progress" data-ng-if="getSumForStatus(badge) > user().purchases.sum" data-ng-bind="\'Накопление&nbsp;\' + (100 / user().purchases.sum * (getSumForStatus(badge) - user().purchases.sum)).toFixed() + \'%\'"></span> <span class="bns_line_item_sckid" data-ng-bind="badge.descr"></span> <span class="bns_line_item_til" data-ng-if="getSumForStatus(badge) > user().purchases.sum" data-ng-bind="((getSumForStatus(badge) - user().purchases.sum) | sailplay_pluralize:\'Остался,Осталось,Осталось\') + \' \' + (getSumForStatus(badge) - user().purchases.sum) + \' \' + ((getSumForStatus(badge) - user().purchases.sum) | sailplay_pluralize:\'рубль,рубля,рублей\')"></span></div></div><div class="bns_line_item bns_line_item{{ $index+1 }}" data-ng-repeat="badge in $parent.badges().multilevel_badges[1] track by $index | limitTo:3" data-ng-class="{act: badge.is_received}"><div class="b-polygon b-polygon_hexagon b-polygon_hexagon2"><span class="b-polygon-part"><span class="b-polygon-part b-polygon-part_content"><img data-ng-src="{{ badge.thumbs.url_250x250 }}" class="bns_poly_img"></span></span></div><span class="bns_line_item_name" data-ng-bind="badge.name"></span> <span class="bns_line_item_progress" data-ng-if="getSumForStatus(badge) > user().purchases.sum" data-ng-bind="\'Накопление&nbsp;\' + (100 / user().purchases.sum * (getSumForStatus(badge) - user().purchases.sum)).toFixed() + \'%\'"></span> <span class="bns_line_item_sckid" data-ng-bind="badge.descr"></span> <span class="bns_line_item_til" data-ng-if="getSumForStatus(badge) > user().purchases.sum" data-ng-bind="((getSumForStatus(badge) - user().purchases.sum) | sailplay_pluralize:\'Остался,Осталось,Осталось\') + \' \' + (getSumForStatus(badge) - user().purchases.sum) + \' \' + ((getSumForStatus(badge) - user().purchases.sum) | sailplay_pluralize:\'рубль,рубля,рублей\')"></span></div></div></div><div class="bns_two_col" data-sailplay-actions=""><div class="bns_col_left"><span class="bns_top_head">Задания</span><p class="bns_quest_main_empty" data-ng-if="actions && !actions.length">Вы выполнили все задания!</p><div class="bns_quest_main"><div class="bns_quest_wr" data-ng-repeat="action in actions"><div class="bns_quest_item" data-ng-if="action._actionId"><div class="bns_quest_item_img"><img data-ng-src="{{ action_data($parent.action).image }}"></div><span class="bns_quest_item_name" data-ng-bind="action_data($parent.action).name"></span> <span class="bns_quest_item_bal" data-ng-if="action.points != 0" data-ng-bind="action.points | number"></span> <span class="bns_quest_item_text" data-ng-if="action.points == 0">Подробнее</span> <a href="#" data-ng-click="$event.preventDefault();$parent.$parent.show = $parent.action;">Получить</a></div><div class="bns_quest_item" data-ng-if="!action._actionId"><div class="bns_quest_item_img"><img data-ng-src="{{ action.icon | sailplay_pic }}"></div><span class="bns_quest_item_name" data-ng-bind="action.name"></span> <span class="bns_quest_item_bal" data-ng-if="action.points != 0" data-ng-bind="action.points | number"></span> <span class="bns_quest_item_text" data-ng-if="action.points == 0">Подробнее</span> <a href="#" data-ng-click="$event.preventDefault();$parent.$parent.show = $parent.action;">Получить</a></div></div></div><div class="bns_overlay bns_overlay_action" data-ng-if="show"><div class="bns_overlay_inner"><a href="#" class="bns_close" data-ng-click="$event.preventDefault();$parent.show = null;body_lock(false);"></a><div data-ng-if="$parent.show._actionId"><span class="bns_over_head" data-ng-bind="action_data($parent.$parent.show).name" style="text-align: center;"></span><div class="bns_overlay_action_main"><div class="bns_overlay_action_btn" data-ng-class="{bns_btn: $parent.$parent.show.path}" data-sailplay-action="" data-action="$parent.$parent.show" data-text="Получить" data-styles="{{ action_styles(action_data($parent.$parent.show)) }}">Получить</div></div></div><div data-ng-if="!$parent.show._actionId"><div class="bns_overlay_action_main"><div class="bns_overlay_action_custom" data-sailplay-action-custom="" data-action="$parent.$parent.show"></div></div></div><div class="nms_overlay_bottom"><a href="#" class="bns_btn js_close" data-ng-click="$event.preventDefault();$parent.show = null;body_lock(false);">Закрыть</a></div></div></div></div><div class="bns_col_right" data-hw-block=""><span class="bns_top_head">Вишлист</span><div class="bns_json_wish_empty" data-ng-show="!wish_list().length">Пожеланий на данный момент нет</div><div class="bns_wish_main" data-ng-show="wish_list()"><div class="bns_wish_item" data-ng-repeat="item in wish_list() track by $index | limitTo:4"><div class="bns_wish_item_img"><img data-ng-src="{{ item.image }}"> <span class="bns_wish_item_label" data-ng-if="item | wish_state" data-ng-bind="$parent.item | wish_state"></span></div><span class="bns_wish_item_name to_gradient" data-ng-bind="item.title"></span> <a data-ng-if="!item.old_price" data-ng-href="{{ $parent.item.link }}" data-ng-bind="$parent.item.price + \' руб.\'" target="_blank"></a> <a data-ng-if="item.old_price" data-ng-href="{{ $parent.item.link }}" target="_blank">{{ $parent.item.price }} <span class="bns_old_price" data-ng-bind="$parent.item.price + \' руб.\'"></span></a></div></div><a data-ng-href="{{ $parent.config.data.page && $parent.config.data.page.wish_list }}" class="bns_bot_linck" data-ng-show="wish_list()">Показать все</a></div></div><div class="bns_two_col recommend" data-hw-block="" data-recommend-block=""><div class="bns_col_left"><span class="bns_top_head">Рекомендованные товары</span><div class="bns_json_recommend_empty" data-ng-show="!recommend_list().length">Рекомендаций на данный момент нет</div><div class="bns_recom" data-ng-show="recommend_list()"><div class="bns_recom_item" data-ng-repeat="item in recommend_list() track by $index" data-slack-slider="" data-slack-config="recommend_config" data-length="recommend_list().length"><a data-ng-href="{{ item.link }}" target="_blank" class="bns_recom_item_img"><img data-ng-src="{{ item.image }}"> <span class="to_gradient bns_name" data-ng-bind="item.title"></span><div class="bns_price_container"><span class="price" data-ng-if="!item.old_price" data-ng-href="{{ $parent.item.link }}" data-ng-bind="$parent.item.price + \' руб.\'" target="_blank"></span> <span class="price" data-ng-if="item.old_price" data-ng-href="{{ $parent.item.link }}" target="_blank">{{ $parent.item.price }} <span class="bns_old_price" data-ng-bind="$parent.item.price + \' руб.\'"></span></span></div></a></div></div></div><div class="bns_col_right bns_game_day_main"><span class="bns_top_head">Игра дня</span><div class="bns_json_game_empty" data-ng-show="!game_of_day().length">Игры дня на данный момент нет</div><div class="bns_game_day" data-ng-show="game_of_day()[0]"><img data-ng-src="{{ game_of_day()[0].image }}"><div class="bns_game_day_name to_gradient" data-ng-bind="game_of_day()[0].title"></div><a class="price" data-ng-href="{{ game_of_day()[0].link }}" target="_blank">{{ game_of_day()[0].price }} <span class="bns_old_price" data-ng-bind="game_of_day()[0].old_price + \' руб.\'"></span></a></div></div></div><div class="bns_block" data-sailplay-gifts="" style="background: none"><span class="bns_top_head big">Подарки</span><div class="bns_gift_main" data-ng-show="gifts()"><div class="bns_gift_item" data-ng-repeat="gift in gifts()" data-slack-slider="" data-slack-config="gifts_config" data-length="gifts().length"><div class="bns_gift_img"><img data-ng-src="{{ gift.thumbs.url_250x250 | sailplay_pic }}"></div><span class="bns_gift_name to_gradient" data-ng-bind="gift.name"></span> <span class="bns_gift_point" data-ng-bind="gift.points | number"></span> <a href="#" data-ng-click="$event.preventDefault();$parent.gift_get = gift;body_lock(true);">Получить</a></div></div><div class="bns_overlay bns_overlay_get" data-ng-if="gift_get && !gift_geted"><div class="bns_overlay_inner"><a href="#" class="bns_close" data-ng-click="$event.preventDefault();body_lock(false);$parent.gift_get = null;"></a> <span class="bns_over_head">Получение подарка</span><div class="bns_get_gift_main"><div class="bns_get_gift_img"><img data-ng-src="{{ $parent.gift_get.thumbs.url_250x250 | sailplay_pic }}"></div><div class="bns_get_gift_info"><span class="bns_name" data-ng-bind="$parent.gift_get.name"></span> <span class="bns_point" data-ng-bind="$parent.gift_get.points | number"></span></div><div class="bns_gift_desc" data-ng-bind-html="$parent.gift_get.descr | to_trusted"></div></div><div class="nms_overlay_bottom"><a href="#" class="bns_btn bns_btn_l js_open_get_fin type_blue" data-ng-if="user().user_points.confirmed > $parent.gift_get.points" data-ng-click="$event.preventDefault();get($parent.$parent.gift_get);">Далее</a> <a href="#" class="bns_btn bns_btn_l js_open_get_fin disabled" data-ng-if="user().user_points.confirmed < $parent.gift_get.points" data-ng-click="$event.preventDefault();" data-ng-bind="\'Не хватает \' + ($parent.$parent.gift_get.points - user().user_points.confirmed)"></a> <a href="#" class="bns_btn bns_btn_r js_close" data-ng-click="$event.preventDefault();$parent.gift_get = null;body_lock(false);">Отмена</a></div></div></div><div class="bns_overlay bns_overlay_get_fin" data-ng-if="gift_geted && !gift_get"><div class="bns_overlay_inner"><a href="#" class="bns_close" data-ng-click="$event.preventDefault();$parent.gift_geted = null;body_lock(false);"></a> <span class="bns_over_head">Позравляем!<br>Подарок получен</span><div class="bns_get_gift_main_fin"><div class="bns_get_gift_img"><img data-ng-src="{{ $parent.gift_geted.thumbs.url_250x250 | sailplay_pic }}"></div><div class="bns_get_gift_info"><span class="bns_name" data-ng-bind="$parent.gift_geted.name"></span></div></div><div class="nms_overlay_bottom"><a href="#" class="bns_btn js_close" data-ng-click="$event.preventDefault();$parent.gift_geted = null;body_lock(false);">Закрыть</a></div></div></div></div></div><div class="bns_overlay bns_overlay_edit" data-sailplay-profile-edit="" data-ng-if="show_prof"><div class="bns_overlay_inner"><a href="#" class="bns_close" data-ng-click="$event.preventDefault();clear_show(\'show_prof\');"></a> <span class="bns_over_head">Редактировать профиль</span><div></div><form name="profile_edit" data-ng-submit="save(profile_edit, clear_show(\'show_prof\'))"><div class="bns_edit_col"><div class="bns_input_block" data-ng-class="{ bns_err: !form.lastName && profile_edit.last_name.$touched }"><label>ФИО <span class="bns_err_text">Ошибка</span></label> <input type="text" name="last_name" data-ng-model="form.fio" required=""></div><div class="bns_input_block" data-ng-class="{ bns_err: !form.addPhone && profile_edit.phone.$touched }"><label>Телефон <span class="bns_err_text">Ошибка</span></label> <input type="text" name="phone" data-ng-model="form.addPhone" data-model-view-value="true" data-ui-mask="7 (999) 999-99-99" required=""></div><div class="bns_input_block bns_input_block_date" data-ng-class="{ bns_err: !form.birthDate && profile_edit.birth_date.$touched }"><label>Дата рождения <span class="bns_err_text">Ошибка</span></label><date-picker name="birth_date" data-ng-model="form.birthDate"></date-picker></div><div class="bns_input_block" data-ng-class="{ bns_err: !vars[\'Запомнить адрес доставки\'] && profile_edit.remember.$touched }"><input type="checkbox" id="bns_zap_adr" name="remember" data-ng-model="vars[\'Запомнить адрес доставки\']"> <label for="bns_zap_adr">Запомнить адрес доставки</label></div><div class="bns_input_block bns_input_block_pol"><label>Редактирование подписки</label> <input type="checkbox" id="bns_podp" data-ng-model="form.subscriptions.sms" data-ng-true-value="1" data-ng-false-value="0"> <label for="bns_podp">SMS</label> <input type="checkbox" id="bns_podp2" data-ng-model="form.subscriptions.email" data-ng-true-value="1" data-ng-false-value="0"> <label for="bns_podp2">Email</label></div><div class="bns_input_block"><a data-ng-href="{{ $parent.config.data.page && $parent.config.data.page.change_password }}" class="bns_edit_pas" target="_blank">Изменить пароль</a></div></div><div class="bns_edit_col pl-30"><div class="bns_input_block" data-ng-class="{ bns_err: !form.addEmail && profile_edit.email.$touched }"><label>Email <span class="bns_err_text">Ошибка</span></label> <input type="text" name="email" data-ng-model="form.addEmail" required=""></div><div class="bns_input_block" data-ng-class="{ bns_err: !vars[\'Никнейм\'] && profile_edit.nickname.$touched }"><label>Никнейм <span class="bns_err_text">Ошибка</span></label> <input type="text" name="nickname" data-ng-model="vars[\'Никнейм\']" required=""></div><div class="bns_input_block" data-ng-class="{ bns_err: !form.sex && profile_edit.sex.$touched }"><label>Пол <span class="bns_err_text">Ошибка</span></label> <input type="radio" data-ng-value="1" name="sex" data-ng-model="form.sex" id="bns_pol" class="type_circle" required=""> <label for="bns_pol">Мужской</label> <input type="radio" data-ng-value="2" name="sex" data-ng-model="form.sex" id="bns_pol2" class="type_circle" required=""> <label for="bns_pol2">Женский</label></div><div class="bns_edit_ava"><img data-ng-src="{{user().user.pic}}" alt=""> <a href="#" class="bns_over_edit_ava" onclick="document.getElementById(\'sailplay_upload_avatar\').click()" data-ng-bind="no_avatar(user().user.pic) ? \'Загрузить аватар\' : \'Загрузить новый аватар\'"></a> <input data-ng-hide="true" accept=".jpg,.jpeg,.png,.gif" data-file="" type="file" name="avatar" id="sailplay_upload_avatar" data-ng-model="avatarImg" data-ng-change="uploadAvatar()"></div></div><div class="bns_input_block bns_input_block_int" data-ng-class="{ bns_err: !(tags | selectedInterests) && profile_edit.$valid }"><label>Мои интересы <span class="bns_err_text">Ошибка</span></label> <span class="bns_input_block_int_item" data-ng-repeat="interest in interests track by $index"><input type="checkbox" data-ng-model="tags[interest]" id="bns_int_{{ $index }}"> <label for="bns_int_{{ $index }}" data-ng-bind="interest"></label></span></div><div class="nms_overlay_bottom"><input type="submit" class="bns_btn bns_btn_l type_blue" data-ng-disabled="!(tags | selectedInterests) || profile_edit.$invalid" value="Сохранить"><a href="#" class="bns_btn bns_btn_r js_close" data-ng-click="$event.preventDefault();clear_show(\'show_prof\');">Назад</a></div></form></div></div><div class="bns_overlay bns_overlay_hist" data-sailplay-history="" data-ng-if="show_hist"><div class="bns_overlay_inner"><a href="#" class="bns_close" data-ng-click="$event.preventDefault();clear_show(\'show_hist\');"></a> <span class="bns_over_head">История заказов</span><table><tr><td></td><td><span>Дата</span></td><td><span>Номер заказа/действие</span></td><td><span>Статус</span></td><td><span>Cтоимость заказа</span></td><td>Баллы</td></tr><tr data-dir-paginate="item in history() | filter:filter | itemsPerPage:10" data-pagination-id="history_pages"><td><img data-ng-src="{{ item | history_icon }}"></td><td><span data-ng-bind="item.action_date | date:\'dd.MM.yyyy HH:mm\'"></span></td><td><strong data-ng-bind="item | history_item"></strong> <a data-ng-if="item.order_num" target="_blank" data-ng-href="{{ $parent.item | order_link }}" data-ng-bind="\'(\' + $parent.item.order_num + \')\'"></a></td><td><span data-ng-if="item.order_num" data-ng-bind="$parent.item | order_status"></span></td><td><span data-ng-show="item.price" data-ng-bind="(item.price | number) + \' руб.\'"></span></td><td><span class="bns_hist_bal" data-ng-if="item.points_delta" data-ng-bind="(item.points_delta < 0 ? \'\' : \'+ \') + (item.points_delta | number)"></span></td></tr></table><div class="bns_hist_bottom"><dir-pagination-controls data-max-size="5" data-pagination-id="history_pages" data-template-url="/html/ui/ui.pagination.controls.html" data-auto-hide="true"></dir-pagination-controls><div class="bns_input_block bns_input_block_ch"><input type="checkbox" id="bns_hist" data-ng-model="only_orders"> <label for="bns_hist">Только заказы</label></div></div><div class="nms_overlay_bottom"><a href="#" class="bns_btn js_close" data-ng-click="$event.preventDefault();clear_show(\'show_hist\');">Назад</a></div></div></div><div class="bns_overlay bns_overlay_ach" data-sailplay-badges="" data-ng-if="show_ach"><div class="bns_overlay_inner"><a href="#" class="bns_close" data-ng-click="$event.preventDefault();clear_show(\'show_ach\');"></a> <span class="bns_over_head">Бейджи</span><div class="bns_over_achiv_main"><a href="#" class="bns_over_achiv_item" data-ng-class="{act: badge.is_received, bns_ach_open: $parent.open_index == $index}" data-ng-click="$event.preventDefault();$parent.open_index=$index;$parent.open = badge;" data-ng-repeat="badge in badges().multilevel_badges[0] track by $index"><img data-ng-src="{{ badge.is_received ? badge.thumbs.url_250x250 : badge.thumbs.url_gs }}" alt="{{ badge.name }}"></a></div><div class="bns_over_achiv_text"><div class="bns_over_achiv_text_item act"><span class="bns_over_achiv_text_item_head" data-ng-bind="open.name"></span> <span class="bns_over_achiv_text_item_desc" data-ng-bind="open.descr"></span></div></div><div class="nms_overlay_bottom"><a href="#" class="bns_btn js_close" data-ng-click="$event.preventDefault();clear_show(\'show_ach\');">Назад</a></div></div></div><notify-popup></notify-popup></div>');
+    $templateCache.put('/html/main.html', '<div class="sp_wrapper" data-ng-show="global.auth"><div class="bns_inner_block clearfix"><div class="bns_top"><div class="bns_top_left" data-sailplay-profile=""><div class="bns_top_ava" data-ng-click="$event.preventDefault();$event.stopPropagation();ava_menu_show = !ava_menu_show;"><img data-ng-src="{{ user().user.pic }}" alt="Аватар"></div><div class="bns_top_prof_info"><span class="bns_top_prof_info_name" data-ng-bind="user().user.first_name || user().user.last_name ? user().user.first_name + \' \' + user().user.last_name : \'Имя не указано\'"></span> <span class="bns_top_prof_info_phone" data-ng-bind="user().user.phone && (user().user.phone | tel) || \'Телефон не указан\'"></span> <span class="bns_top_prof_info_email" data-ng-bind="user().user.email || \'E-mail не указан\'"></span></div><div class="bns_top_prof_info_soc"><div class="bns_top_prof_info_soc_item" data-ng-class="{act: social_connected(\'vk\')}"><img src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/cff30fc71680eb10f1abb116e820f093.png" alt="Vkontakte"></div><div class="bns_top_prof_info_soc_item" data-ng-class="{act: social_connected(\'fb\')}"><img src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/4d7501c88d3fb199f2c63a491a48c586.png" alt="Facebook"></div><div class="bns_top_prof_info_soc_item" data-ng-class="{act: social_connected(\'gp\')}"><img src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/e1f24e51b4be3db620fb8c5b15c78c20.png" alt="Google Plus"></div><div class="bns_top_prof_info_soc_item" data-ng-class="{act: social_connected(\'mr\')}"><img src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/78b8d9be7fe3e8e0f82a92b518937e8b.png" alt="Odnoklassniki"></div></div><div class="avatar_menu" ng-class="{ show: ava_menu_show }"><a href="#" class="bns_bot_linck js_logout" target="_blank" data-ng-href="{{ config.data.page && config.data.page.logout }}">Выйти</a></div><a href="#" class="bns_bot_linck js_open_edit" data-ng-click="$event.preventDefault();edit_profile();body_lock(true);">Редактировать профиль</a></div><div class="bns_top_center" data-sailplay-profile=""><a target="_blank" data-ng-href="{{ config.data.page && config.data.page.about_program }}" class="bns_top_head bns_top_head_sm js_open_about">О бонусной программе</a> <span class="bns_top_bal" data-ng-bind="user().user_points.confirmed | number"></span> <span class="bns_top_bal_np" data-ng-bind="\'Неподтвержденных \' + (user().user_points.unconfirmed | number)"></span><div class="bns_tooltip">Баллы будут доступны после подтверждения факта оплаты</div><a href="#" class="new_button history js_open_hist" data-ng-click="$event.preventDefault();show_history();body_lock(true)">История</a></div><div class="bns_top_right" data-sailplay-badges=""><span class="bns_top_head">Бейджи</span><p class="empty_badges" data-ng-if="badges().multilevel_badges[1] && !(badges().multilevel_badges[1] | filter:{is_received:true}).length">У вас пока нет бейджей</p><div class="bns_top_achiv js-slick-slider" data-ng-show="badges().multilevel_badges[1] && (badges().multilevel_badges[1] | filter:{is_received:true}).length"><div class="bns_top_achiv_item" data-slack-slider="" data-slack-config="{{ badge_config }}" data-ng-repeat="badge in badges().multilevel_badges[1] | filter:{is_received:true} track by $index" data-length="badges().multilevel_badges[1].length"><img data-ng-src="{{ badge.thumbs.url_250x250 }}" alt="{{ badge.name }}"></div></div><a href="#" class="bns_bot_linck js_open_achiv" data-ng-click="$event.preventDefault();show_achievements();body_lock(true);">Все бейджи</a></div></div><div class="bns_line_wrap" data-sailplay-status=""><div class="bns_line" data-ng-if="badges()"><img class="bns_line_mask empty tablet" ng-show="$parent.getActiveBadge() == 0" alt="" src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/b06e61dcd1570beb17a7c8060909373e.png"> <img class="bns_line_mask first tablet" ng-show="$parent.getActiveBadge() == 1" alt="" src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/3abeddc3dcb8a200293defbe5c083fec.png"> <img class="bns_line_mask second tablet" ng-show="$parent.getActiveBadge() == 2" alt="" src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/7ffb0272d242b5017b97cbdc8f45b865.png"> <img class="bns_line_mask third tablet" ng-show="$parent.getActiveBadge() == 3" alt="" src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/16cd711005cff619f1d6eb55d71bae98.png"> <img class="bns_line_mask empty mobile" ng-show="$parent.getActiveBadge() == 0" alt="" src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/020955ac63bcf24718f2519dc12ef25b.png"> <img class="bns_line_mask first mobile" ng-show="$parent.getActiveBadge() == 1" alt="" src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/16a46f931cfa8d3670cff29bf63e7e69.png"> <img class="bns_line_mask second mobile" ng-show="$parent.getActiveBadge() == 2" alt="" src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/030799f81231aca8f35cc8ecfdff99e1.png"> <img class="bns_line_mask third mobile" ng-show="$parent.getActiveBadge() == 3" alt="" src="https://sailplays3.cdnvideo.ru/media/assets/assetfile/a56290248a627acc9be28469dd3221b7.png"><div class="bns_line_fil" data-ng-style="{ width: horizontal ? \'100%\' : getStatusPercents(), height: horizontal ? getStatusPercents() : \'100%\' }"></div><div data-ng-repeat="badge in $parent.badges().multilevel_badges[0] track by $index"><div class="bns_line_item_text bns_line_item{{ $index+1 }}"><span class="bns_line_item_name" data-ng-bind="badge.name"></span><span class="bns_line_item_progress" data-ng-bind="badge.descr"></span> <span class="bns_line_item_til" data-ng-if="getSumForStatus(badge) > user().purchases.sum">{{ ((getSumForStatus(badge) - user().purchases.sum) | sailplay_pluralize:\'Остался,Осталось,Осталось\') + \' \' }} <strong data-ng-bind="(getSumForStatus(badge) - user().purchases.sum) + \' \' + ((getSumForStatus(badge) - user().purchases.sum) | sailplay_pluralize:\'рубль,рубля,рублей\')"></strong></span></div></div><div class="bns_line_item bns_line_item{{ $index+1 }}" data-ng-repeat="badge in $parent.badges().multilevel_badges[0] track by $index | limitTo:3" data-ng-class="{act: badge.is_received}"><div class="b-polygon b-polygon_hexagon b-polygon_hexagon2"><span class="b-polygon-part"><span class="b-polygon-part b-polygon-part_content"><img data-ng-src="{{ badge.thumbs.url_250x250 }}" class="bns_poly_img"></span></span></div><span class="bns_line_item_name" data-ng-bind="badge.name"></span><span class="bns_line_item_progress" data-ng-bind="badge.descr"></span> <span class="bns_line_item_til" data-ng-if="getSumForStatus(badge) > user().purchases.sum">{{ ((getSumForStatus(badge) - user().purchases.sum) | sailplay_pluralize:\'Остался,Осталось,Осталось\') + \' \' }} <strong data-ng-bind="(getSumForStatus(badge) - user().purchases.sum) + \' \' + ((getSumForStatus(badge) - user().purchases.sum) | sailplay_pluralize:\'рубль,рубля,рублей\')"></strong></span></div></div></div><div class="bns_two_col" data-sailplay-actions=""><div class="bns_col_left type_big"><span class="bns_top_head">Задания</span><p class="bns_quest_main_empty" data-ng-if="actions && !actions.length">Вы выполнили все задания!</p><div class="bns_quest_main"><div class="bns_quest_wr" data-slack-slider="" data-slack-config="{{ actions_config }}" data-length="actions.length" data-ng-repeat="action in actions"><div class="bns_quest_item" data-ng-if="action._actionId"><div class="bns_quest_item_img"><img data-ng-src="{{ action_data($parent.action).image }}"></div><span class="bns_quest_item_name" data-ng-bind="action_data($parent.action).name"></span> <span class="bns_quest_item_bal" data-ng-if="action.points != 0" data-ng-bind="action.points | number"></span> <span class="bns_quest_item_text" data-ng-if="action.points == 0">Подробнее</span> <a href="#" data-ng-click="$event.preventDefault();$parent.$parent.show = $parent.action;body_lock(true);">Выполнить</a></div><div class="bns_quest_item" data-ng-if="!action._actionId"><div class="bns_quest_item_img"><img data-ng-src="{{ action.icon | sailplay_pic }}"></div><span class="bns_quest_item_name" data-ng-bind="action.name"></span> <span class="bns_quest_item_bal" data-ng-if="action.points != 0" data-ng-bind="action.points | number"></span> <span class="bns_quest_item_text" data-ng-if="action.points == 0">Подробнее</span> <a href="#" data-ng-click="$event.preventDefault();$parent.$parent.show = $parent.action;body_lock(true);">Выполнить</a></div></div></div><div class="bns_overlay bns_overlay_action" data-ng-if="show"><div class="bns_overlay_inner"><a href="#" class="bns_close" data-ng-click="$event.preventDefault();$parent.show = null;body_lock(false);"></a><div data-ng-if="$parent.show._actionId"><span class="bns_over_head" data-ng-bind="action_data($parent.$parent.show).name" style="text-align: center;"></span><div class="bns_overlay_action_main"><div class="bns_overlay_action_btn" data-ng-class="{bns_btn: $parent.$parent.show.path}" data-sailplay-action="" data-action="$parent.$parent.show" data-text="Выполнить" data-styles="{{ action_styles(action_data($parent.$parent.show)) }}">Выполнить</div></div></div><div data-ng-if="!$parent.show._actionId"><div class="bns_overlay_action_main"><div class="bns_overlay_action_custom" data-sailplay-action-custom="" data-action="$parent.$parent.show"></div></div></div><div class="nms_overlay_bottom"><a href="#" class="new_button type_filled" data-ng-click="$event.preventDefault();$parent.show = null;body_lock(false);">Закрыть</a></div></div></div></div><div class="bns_col_right type_big" data-hw-block=""><span class="bns_top_head">Вишлист</span><div class="bns_json_wish_empty" data-ng-show="!wish_list().length">Пожеланий на данный момент нет</div><div class="bns_wish_main" data-ng-show="wish_list()"><div class="bns_wish_item" data-ng-repeat="item in wish_list() | limitTo:1"><div class="bns_wish_item_img"><img data-ng-src="{{ item.image }}"> <span class="bns_wish_item_label" data-ng-if="item | wish_state" data-ng-bind="$parent.item | wish_state"></span></div><span class="bns_wish_item_name to_gradient" title="{{ item.title }}"><span data-ng-bind="item.title"></span></span> <a data-ng-if="!item.old_price" data-ng-href="{{ $parent.item.link }}" data-ng-bind="$parent.item.price + \' руб.\'" target="_blank"></a> <a data-ng-if="item.old_price" data-ng-href="{{ $parent.item.link }}" target="_blank">{{ $parent.item.price }} <span class="bns_old_price" data-ng-bind="$parent.item.price + \' руб.\'"></span></a></div></div><a data-ng-href="{{ $parent.config.data.page && $parent.config.data.page.wish_list }}" class="bns_bot_linck" data-ng-show="wish_list()">Показать все</a></div></div><div class="bns_two_col recommend" data-hw-block="" data-recommend-block=""><div class="bns_col_left type_small"><span class="bns_top_head">Рекомендованные товары</span><div class="bns_json_recommend_empty" data-ng-show="!recommend_list().length">Рекомендаций на данный момент нет</div><div class="bns_recom"><div class="bns_recom_item" data-ng-repeat="item in recommend_list() track by $index" data-slack-slider="" data-slack-config="recommend_config" data-length="recommend_list().length"><div class="bns_recom_item_img"><img data-ng-src="{{ item.image }}"> <span class="bns_name to_gradient" title="{{ item.title }}"><span data-ng-bind="item.title"></span></span><div class="bns_price_container"><a class="price" data-ng-if="item.price && !item.old_price" data-ng-href="{{ $parent.item.link }}" data-ng-bind="$parent.item.price + \' руб.\'" target="_blank"></a> <a class="price" data-ng-if="item.old_price" data-ng-href="{{ $parent.item.link }}" target="_blank">{{ $parent.item.price }} <span class="bns_old_price" data-ng-bind="$parent.item.price + \' руб.\'"></span></a></div></div></div></div></div><div class="bns_col_right bns_game_day_main type_small"><span class="bns_top_head">Игра дня</span><div class="bns_json_game_empty" data-ng-show="!game_of_day().length">Игры дня на данный момент нет</div><div class="bns_game_day" data-ng-show="game_of_day()[0]"><img data-ng-src="{{ game_of_day()[0].image }}"><div class="bns_game_day_name to_gradient" title="{{ game_of_day()[0].title }}"><span data-ng-bind="game_of_day()[0].title"></span></div><a class="price" data-ng-href="{{ game_of_day()[0].link }}" target="_blank">{{ game_of_day()[0].price }} <span class="bns_old_price" data-ng-bind="game_of_day()[0].old_price + \' руб.\'"></span></a></div></div></div><div class="bns_block" data-sailplay-gifts="" style="background: none"><span class="bns_top_head big">Подарки</span><div class="bns_gift_main" data-ng-show="gifts()"><div class="bns_gift_item" data-ng-repeat="gift in gifts()" data-slack-slider="" data-slack-config="gifts_config" data-length="gifts().length"><div class="bns_gift_img"><img data-ng-src="{{ gift.thumbs.url_250x250 | sailplay_pic }}"></div><span class="bns_gift_name to_gradient" title="{{ gift.name }}"><span data-ng-bind="gift.name"></span></span> <span class="bns_gift_point" data-ng-bind="gift.points | number"></span> <a href="#" data-ng-click="$event.preventDefault();$parent.gift_get = gift;body_lock(true);">Получить</a></div></div><div class="bns_overlay bns_overlay_get" data-ng-if="gift_get && !gift_geted"><div class="bns_overlay_inner"><a href="#" class="bns_close" data-ng-click="$event.preventDefault();body_lock(false);$parent.gift_get = null;"></a> <span class="bns_over_head">Получение подарка</span><div class="bns_get_gift_main"><div class="bns_get_gift_img"><img data-ng-src="{{ $parent.gift_get.thumbs.url_250x250 | sailplay_pic }}"></div><div class="bns_get_gift_info"><span class="bns_name" data-ng-bind="$parent.gift_get.name"></span> <span class="bns_point" data-ng-bind="$parent.gift_get.points | number"></span></div><div class="bns_gift_desc" data-ng-bind-html="$parent.gift_get.descr | to_trusted"></div></div><div class="nms_overlay_bottom"><a href="#" class="new_button bns_btn_l" data-ng-click="$event.preventDefault();$parent.gift_get = null;body_lock(false);">Отмена</a> <a href="#" class="new_button bns_btn_r type_filled" data-ng-if="user().user_points.confirmed > $parent.gift_get.points" data-ng-click="$event.preventDefault();get($parent.$parent.gift_get);">Получить</a> <a href="#" class="new_button bns_btn_r type_filled disabled" data-ng-if="user().user_points.confirmed < $parent.gift_get.points" data-ng-click="$event.preventDefault();" data-ng-bind="\'Не хватает \' + ($parent.$parent.gift_get.points - user().user_points.confirmed)"></a></div></div></div><div class="bns_overlay bns_overlay_get_fin" data-ng-if="gift_geted && !gift_get"><div class="bns_overlay_inner"><a href="#" class="bns_close" data-ng-click="$event.preventDefault();$parent.gift_geted = null;body_lock(false);"></a> <span class="bns_over_head">Позравляем!<br>Подарок получен</span><div class="bns_get_gift_main_fin"><div class="bns_get_gift_img"><img data-ng-src="{{ $parent.gift_geted.thumbs.url_250x250 | sailplay_pic }}"></div><div class="bns_get_gift_info"><span class="bns_name" data-ng-bind="$parent.gift_geted.name"></span></div></div><div class="nms_overlay_bottom"><a href="#" class="new_button type_filled" style="margin-top: 30px;" data-ng-click="$event.preventDefault();$parent.gift_geted = null;body_lock(false);">Закрыть</a></div></div></div></div></div><div class="bns_overlay bns_overlay_edit" data-sailplay-profile-edit="" data-ng-if="show_prof"><div class="bns_overlay_inner"><a href="#" class="bns_close" data-ng-click="$event.preventDefault();clear_show(\'show_prof\');"></a> <span class="bns_over_head">Редактировать профиль</span><div></div><form name="profile_edit" data-ng-submit="save(profile_edit, clear_show(\'show_prof\'))"><div class="bns_edit_col"><div class="bns_input_block" data-ng-class="{ bns_err: !form.fio && profile_edit.last_name.$touched }"><label>ФИО <span class="bns_err_text">Ошибка</span></label> <input type="text" name="last_name" data-ng-model="form.fio" required=""></div><div class="bns_input_block" data-ng-class="{ bns_err: !form.addPhone && profile_edit.phone.$touched }"><label>Телефон <span class="bns_err_text">Ошибка</span></label> <input type="text" name="phone" data-ng-model="form.addPhone" data-model-view-value="true" data-ui-mask="7 (999) 999-99-99" required=""></div><div class="bns_input_block bns_input_block_date" data-ng-class="{ bns_err: !form.birthDate && profile_edit.birth_date.$touched }"><label>Дата рождения <span class="bns_err_text">Ошибка</span></label><date-picker name="birth_date" data-ng-model="form.birthDate"></date-picker></div><div class="bns_input_block bns_input_block_pol"><label>Редактирование подписки</label> <input type="checkbox" id="bns_podp" data-ng-model="form.subscriptions.sms" data-ng-true-value="1" data-ng-false-value="0"> <label for="bns_podp">SMS</label> <input type="checkbox" id="bns_podp2" data-ng-model="form.subscriptions.email" data-ng-true-value="1" data-ng-false-value="0"> <label for="bns_podp2">Email</label></div><div class="bns_input_block"><a data-ng-href="{{ $parent.config.data.page && $parent.config.data.page.change_password }}" class="bns_edit_pas" target="_blank">Изменить пароль</a></div></div><div class="bns_edit_col pl-30"><div class="bns_input_block" data-ng-class="{ bns_err: !form.addEmail && profile_edit.email.$touched }"><label>Email <span class="bns_err_text">Ошибка</span></label> <input type="text" name="email" data-ng-model="form.addEmail" required=""></div><div class="bns_input_block" data-ng-class="{ bns_err: !vars[\'Никнейм\'] && profile_edit.nickname.$touched }"><label>Никнейм <span class="bns_err_text">Ошибка</span></label> <input type="text" name="nickname" data-ng-model="vars[\'Никнейм\']" required=""></div><div class="bns_input_block" data-ng-class="{ bns_err: !form.sex && profile_edit.sex.$touched }"><label>Пол <span class="bns_err_text">Ошибка</span></label> <input type="radio" data-ng-value="1" name="sex" data-ng-model="form.sex" id="bns_pol" class="type_circle" required=""> <label for="bns_pol">Мужской</label> <input type="radio" data-ng-value="2" name="sex" data-ng-model="form.sex" id="bns_pol2" class="type_circle" required=""> <label for="bns_pol2">Женский</label></div><div class="bns_edit_ava"><img data-ng-src="{{user().user.pic}}" alt=""> <a href="#" class="bns_over_edit_ava" onclick="document.getElementById(\'sailplay_upload_avatar\').click()" data-ng-bind="no_avatar(user().user.pic) ? \'Загрузить аватар\' : \'Редактировать аватар\'"></a> <input data-ng-hide="true" accept=".jpg,.jpeg,.png,.gif" data-file="" type="file" name="avatar" id="sailplay_upload_avatar" data-ng-model="avatarImg" data-ng-change="uploadAvatar()"></div></div><div class="bns_input_block bns_input_block_int" data-ng-class="{ bns_err: !(tags | selectedInterests) && profile_edit.$valid }"><label>Мои интересы <span class="bns_err_text">Ошибка</span></label> <span class="bns_input_block_int_item" data-ng-repeat="interest in interests track by $index"><input type="checkbox" data-ng-model="tags[interest]" id="bns_int_{{ $index }}"> <label for="bns_int_{{ $index }}" data-ng-bind="interest"></label></span></div><div class="nms_overlay_bottom"><a href="#" class="new_button bns_btn_l" data-ng-click="$event.preventDefault();clear_show(\'show_prof\');">Назад</a> <input type="submit" class="new_button bns_btn_r type_filled" data-ng-disabled="!(tags | selectedInterests) || profile_edit.$invalid" value="Сохранить"></div></form></div></div><div class="bns_overlay bns_overlay_hist" data-sailplay-history="" data-ng-if="show_hist"><div class="bns_overlay_inner"><a href="#" class="bns_close" data-ng-click="$event.preventDefault();clear_show(\'show_hist\');"></a> <span class="bns_over_head">История заказов</span> <span class="bns_over_caption">Здесь показана история всех ваших действий</span><div class="bns_hist_wrapper"><table><tr><td></td><td><span>Дата</span></td><td><span>Номер заказа/действие</span></td><td><span>Статус</span></td><td><span>Cтоимость заказа</span></td><td>Баллы</td></tr><tr data-dir-paginate="item in history() | filter:filter | itemsPerPage:5" data-pagination-id="history_pages"><td><img data-ng-src="{{ item | history_icon }}"></td><td><span class="bns_tooltip_trigger">{{ item.action_date | date:\'dd.MM.yyyy\' }}<div class="bns_tooltip" data-ng-bind="item.action_date | date:\'HH:mm\'"></div></span></td><td><strong data-ng-bind="item | history_item"></strong> <a data-ng-if="item.order_num" target="_blank" data-ng-href="{{ $parent.item | order_link }}" data-ng-bind="\'(\' + $parent.item.order_num + \')\'"></a></td><td><span data-ng-if="item.order_num" data-ng-bind="$parent.item | order_status"></span></td><td><span data-ng-show="item.price" data-ng-bind="(item.price | number) + \' &#8381;\'"></span></td><td><span class="bns_hist_bal" data-ng-class="{type_orange: item.points_delta < 0}" data-ng-if="item.points_delta" data-ng-bind="(item.points_delta < 0 ? \'\' : \'+ \') + (item.points_delta | number)"></span></td></tr></table></div><div class="bns_hist_bottom"><div class="bns_input_block bns_input_block_ch" data-ng-show="has_orders()"><input type="checkbox" id="bns_hist" data-ng-model="only_orders"> <label for="bns_hist">Только заказы</label></div><dir-pagination-controls data-max-size="5" data-pagination-id="history_pages" data-template-url="/html/ui/ui.pagination.controls.html" data-auto-hide="true"></dir-pagination-controls></div><div class="nms_overlay_bottom"><a href="#" class="new_button type_filled" data-ng-click="$event.preventDefault();clear_show(\'show_hist\');">Закрыть</a></div></div></div><div class="bns_overlay bns_overlay_ach" data-sailplay-badges="" data-ng-if="show_ach"><div class="bns_overlay_inner"><a href="#" class="bns_close" data-ng-click="$event.preventDefault();clear_show(\'show_ach\');"></a> <span class="bns_over_head">Бейджи</span> <span class="bns_over_caption">Ваши достижения и награды</span><div class="bns_over_achiv_main"><a href="#" class="bns_over_achiv_item" data-ng-class="{act: badge.is_received, bns_ach_open: $parent.open_index == $index}" data-ng-click="$event.preventDefault();$parent.open_index=$index;$parent.open = badge;scrollToBadge()" data-ng-repeat="badge in badges().multilevel_badges[1] track by $index"><img data-ng-src="{{ badge.is_received ? badge.thumbs.url_250x250 : badge.thumbs.url_gs }}" alt="{{ badge.name }}"></a></div><div class="bns_over_achiv_text"><div class="bns_over_achiv_text_item act"><span class="bns_over_achiv_text_item_head" data-ng-bind="open.name"></span> <span class="bns_over_achiv_text_item_desc" data-ng-bind="open.descr"></span></div></div><div class="nms_overlay_bottom"><a href="#" class="new_button type_filled" data-ng-click="$event.preventDefault();clear_show(\'show_ach\');">Назад</a></div></div></div><notify-popup></notify-popup></div>');
   }]);
 })();
 
@@ -7476,7 +7450,7 @@ angular.module("ivpusic.cookie", ["ipCookie"]), angular.module("ipCookie", ["ng"
     module = angular.module('templates', []);
   }
   module.run(['$templateCache', function ($templateCache) {
-    $templateCache.put('/html/ui/ui.notify.popup.html', '<div class="bns_overlay" data-ng-if="data"><div class="bns_overlay_inner" style="text-align: center"><a href="#" class="bns_close" data-ng-click="$event.preventDefault();$parent.data = null;body_lock(false);"></a><div class="bns_over_head" data-ng-bind="$parent.data.title"></div><p data-ng-bind-html="$parent.data.text | to_trusted"></p></div></div>');
+    $templateCache.put('/html/ui/ui.notify.popup.html', '<div class="bns_overlay" data-ng-if="data"><div class="bns_overlay_inner" style="text-align: center"><a href="#" class="bns_close" data-ng-click="$event.preventDefault();$parent.data = null;body_lock(false);"></a><div class="bns_over_head" data-ng-bind="$parent.data.title"></div><p class="bns_over_notify" data-ng-bind-html="$parent.data.text | to_trusted"></p></div></div>');
   }]);
 })();
 
@@ -7550,9 +7524,9 @@ angular.module('hobby_world', ['core', 'ui', 'sp', 'templates']).run(["hwDataSer
     scope: true,
     link: function link(scope) {
 
-      scope.wish_list = hwDataService.getData('wish_list');
-      scope.game_of_day = hwDataService.getData('game_of_day');
-      scope.recommend_list = hwDataService.getData('recommend_list');
+      scope.wish_list = angular.copy(hwDataService.getData('wish_list'));
+      scope.game_of_day = angular.copy(hwDataService.getData('game_of_day'));
+      scope.recommend_list = angular.copy(hwDataService.getData('recommend_list'));
     }
   };
 }]).directive('sailplayHw', ["$rootScope", "$locale", function ($rootScope, $locale) {
@@ -7590,19 +7564,19 @@ angular.module('hobby_world', ['core', 'ui', 'sp', 'templates']).run(["hwDataSer
       };
 
       scope.body_lock = function (state) {
-        // if (state) {
-        //   $('body').css({
-        //     overflow: 'hidden',
-        //     position: 'relative',
-        //     right: 9
-        //   });
-        // } else {
-        //   $('body').css({
-        //     overflow: '',
-        //     position: '',
-        //     right: 'auto'
-        //   });
-        // }
+        if (state) {
+          $('body').css({
+            overflow: 'hidden'
+            // position: 'relative',
+            // right: 9
+          });
+        } else {
+          $('body').css({
+            overflow: ''
+            // position: '',
+            // right: 'auto'
+          });
+        }
       };
 
       $locale.NUMBER_FORMATS.GROUP_SEP = ' ';
@@ -7670,10 +7644,6 @@ setTimeout(function () {
 
         $rootScope.auth = true;
 
-        sp_api.call('load.actions.list');
-
-        sp_api.call('load.actions.custom.list');
-
         loadData();
       });
     });
@@ -7707,7 +7677,8 @@ setTimeout(function () {
 
     sp.on('actions.perform.success', function (res) {
 
-      $rootScope.$apply(loadData);
+      // $rootScope.$apply(loadData);
+
     });
 
     sp.on('gift.purchase.force_complete.success', function (res) {
@@ -7743,25 +7714,28 @@ setTimeout(function () {
 
     function loadData() {
 
-      if ($(".js-slick-slider.slick-initialized").length) {
-        $(".js-slick-slider.slick-initialized").slick('unslick');
-      }
+      // if ($(".js-slick-slider.slick-initialized").length) {
+      //   $(".js-slick-slider.slick-initialized").slick('unslick');
+      // }
+      //
+      // if ($(".slick-initialized").not('.bns_recom').length) {
+      //   $(".slick-initialized").not('.bns_recom').slick('destroy');
+      // }
 
-      if ($(".slick-initialized").length) {
-        $(".slick-initialized").slick('unslick');
-      }
+      setTimeout(function () {
 
-      // sp_api.call('load.actions.list');
+        sp_api.call('load.actions.list');
 
-      // sp_api.call('load.actions.custom.list');
+        sp_api.call('load.actions.custom.list');
 
-      sp_api.call('load.badges.list', { include_rules: 1 });
+        sp_api.call('load.badges.list', { include_rules: 1 });
 
-      sp_api.call('load.user.info', { all: 1, purchases: 1 });
+        sp_api.call('load.user.info', { all: 1, purchases: 1 });
 
-      sp_api.call('load.gifts.list', { verbose: 1 });
+        sp_api.call('load.gifts.list', { verbose: 1 });
 
-      sp_api.call('load.user.history', { tz: getTimeZone() });
+        sp_api.call('load.user.history', { tz: getTimeZone() });
+      }, 200);
     }
   }]);
 })();
@@ -7773,7 +7747,7 @@ setTimeout(function () {
     "system": {
       "inviteFriend": {
         "name": 'Пригласить друга',
-        "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/e58337730cbddd5f67843ed9dd5cb9f0.png"
+        "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/0b10e751214b35a8a3f6d02174e9aa46.svg"
       }
     },
     "social": {
@@ -7788,15 +7762,15 @@ setTimeout(function () {
               "width": "100%",
               "height": "100%",
               "text-decoration": "none",
-              "color": "white",
+              "color": "#EF6747",
               "font-weight": "normal",
               "position": "absolute",
               "left": "0",
               "top": "0",
               "border-radius": "35px",
-              "font-size": "15px",
-              "line-height": "34px",
-              "background-color": "#6eb1ba",
+              "font-size": "18px",
+              "line-height": "55px",
+              "background-color": "white",
               "cursor": "pointer",
               "display": "inline-block"
             }
@@ -7812,15 +7786,15 @@ setTimeout(function () {
               "width": "100%",
               "height": "100%",
               "text-decoration": "none",
-              "color": "white",
+              "color": "#EF6747",
               "font-weight": "normal",
               "position": "absolute",
               "left": "0",
               "top": "0",
               "border-radius": "35px",
-              "font-size": "15px",
-              "line-height": "34px",
-              "background-color": "#6eb1ba",
+              "font-size": "18px",
+              "line-height": "55px",
+              "background-color": "white",
               "cursor": "pointer",
               "display": "inline-block"
             }
@@ -7836,15 +7810,15 @@ setTimeout(function () {
               "width": "100%",
               "height": "100%",
               "text-decoration": "none",
-              "color": "white",
+              "color": "#EF6747",
               "font-weight": "normal",
               "position": "absolute",
               "left": "0",
               "top": "0",
               "border-radius": "35px",
-              "font-size": "15px",
-              "line-height": "34px",
-              "background-color": "#6eb1ba",
+              "font-size": "18px",
+              "line-height": "55px",
+              "background-color": "white",
               "cursor": "pointer",
               "display": "inline-block"
             }
@@ -7862,15 +7836,15 @@ setTimeout(function () {
               "width": "100%",
               "height": "100%",
               "text-decoration": "none",
-              "color": "white",
+              "color": "#EF6747",
               "font-weight": "normal",
               "position": "absolute",
               "left": "0",
               "top": "0",
               "border-radius": "35px",
-              "font-size": "15px",
-              "line-height": "34px",
-              "background-color": "#6eb1ba",
+              "font-size": "18px",
+              "line-height": "55px",
+              "background-color": "white",
               "cursor": "pointer",
               "display": "inline-block"
             }
@@ -7886,15 +7860,15 @@ setTimeout(function () {
               "width": "100%",
               "height": "100%",
               "text-decoration": "none",
-              "color": "white",
+              "color": "#EF6747",
               "font-weight": "normal",
               "position": "absolute",
               "left": "0",
               "top": "0",
               "border-radius": "35px",
-              "font-size": "15px",
-              "line-height": "34px",
-              "background-color": "#6eb1ba",
+              "font-size": "18px",
+              "line-height": "55px",
+              "background-color": "white",
               "cursor": "pointer",
               "display": "inline-block"
             }
@@ -7910,15 +7884,15 @@ setTimeout(function () {
               "width": "100%",
               "height": "100%",
               "text-decoration": "none",
-              "color": "white",
+              "color": "#EF6747",
               "font-weight": "normal",
               "position": "absolute",
               "left": "0",
               "top": "0",
               "border-radius": "35px",
-              "font-size": "15px",
-              "line-height": "34px",
-              "background-color": "#6eb1ba",
+              "font-size": "18px",
+              "line-height": "55px",
+              "background-color": "white",
               "cursor": "pointer",
               "display": "inline-block"
             }
@@ -7928,7 +7902,7 @@ setTimeout(function () {
       "ok": {
         "like": {
           "name": "Вступить в группу",
-          "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/78b8d9be7fe3e8e0f82a92b518937e8b.png",
+          "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/b7d40fde4b0a8def42dcffae1d6d5850.svg",
           "styles": {
             "ok_share_btn": {
               "font-family": "Arial",
@@ -7936,15 +7910,15 @@ setTimeout(function () {
               "width": "100%",
               "height": "100%",
               "text-decoration": "none",
-              "color": "white",
+              "color": "#EF6747",
               "font-weight": "normal",
               "position": "absolute",
               "left": "0",
               "top": "0",
               "border-radius": "35px",
-              "font-size": "15px",
-              "line-height": "34px",
-              "background-color": "#6eb1ba",
+              "font-size": "18px",
+              "line-height": "55px",
+              "background-color": "white",
               "cursor": "pointer",
               "display": "inline-block"
             }
@@ -7952,7 +7926,7 @@ setTimeout(function () {
         },
         "partner_page": {
           "name": "Рассказать о компании",
-          "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/78b8d9be7fe3e8e0f82a92b518937e8b.png",
+          "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/b7d40fde4b0a8def42dcffae1d6d5850.svg",
           "styles": {
             "ok_share_btn": {
               "font-family": "Arial",
@@ -7960,15 +7934,15 @@ setTimeout(function () {
               "width": "100%",
               "height": "100%",
               "text-decoration": "none",
-              "color": "white",
+              "color": "#EF6747",
               "font-weight": "normal",
               "position": "absolute",
               "left": "0",
               "top": "0",
               "border-radius": "35px",
-              "font-size": "15px",
-              "line-height": "34px",
-              "background-color": "#6eb1ba",
+              "font-size": "18px",
+              "line-height": "55px",
+              "background-color": "white",
               "cursor": "pointer",
               "display": "inline-block"
             }
@@ -7976,7 +7950,7 @@ setTimeout(function () {
         },
         "purchase": {
           "name": "Рассказать о покупке",
-          "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/78b8d9be7fe3e8e0f82a92b518937e8b.png",
+          "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/b7d40fde4b0a8def42dcffae1d6d5850.svg",
           "styles": {
             "ok_share_btn": {
               "font-family": "Arial",
@@ -7984,15 +7958,15 @@ setTimeout(function () {
               "width": "100%",
               "height": "100%",
               "text-decoration": "none",
-              "color": "white",
+              "color": "#EF6747",
               "font-weight": "normal",
               "position": "absolute",
               "left": "0",
               "top": "0",
               "border-radius": "35px",
-              "font-size": "15px",
-              "line-height": "34px",
-              "background-color": "#6eb1ba",
+              "font-size": "18px",
+              "line-height": "55px",
+              "background-color": "white",
               "cursor": "pointer",
               "display": "inline-block"
             }
@@ -8009,15 +7983,15 @@ setTimeout(function () {
               "width": "100%",
               "height": "100%",
               "text-decoration": "none",
-              "color": "white",
+              "color": "#EF6747",
               "font-weight": "normal",
               "position": "absolute",
               "left": "0",
               "top": "0",
               "border-radius": "35px",
-              "font-size": "15px",
-              "line-height": "34px",
-              "background-color": "#6eb1ba",
+              "font-size": "18px",
+              "line-height": "55px",
+              "background-color": "white",
               "cursor": "pointer",
               "display": "inline-block"
             }
@@ -8176,6 +8150,21 @@ setTimeout(function () {
         //   }
         // };
 
+
+        scope.actions_config = {
+          selector: '.bns_quest_main',
+          data: {
+            slidesToShow: 2,
+            slide: '.bns_quest_wr',
+            responsive: [{
+              breakpoint: 800,
+              settings: {
+                slidesToShow: 1
+              }
+            }]
+          }
+        };
+
         scope.size = 8;
 
         scope.page = 0;
@@ -8194,17 +8183,26 @@ setTimeout(function () {
 
         scope.createActions = function (new_val, old_val) {
 
+          if ($(".bns_quest_main.slick-initialized").length) {
+            $(".bns_quest_main.slick-initialized").slick('destroy');
+          }
+
           var actions = [];
+          var load_flag = [];
 
           if (sp_api.data('load.actions.list')() && sp_api.data('load.actions.list')().actions) {
             actions = actions.concat(sp_api.data('load.actions.list')().actions);
+            load_flag.push(true);
           }
 
           if (sp_api.data('load.actions.custom.list')() && sp_api.data('load.actions.custom.list')()) {
             actions = actions.concat(sp_api.data('load.actions.custom.list')());
+            load_flag.push(true);
           }
 
-          scope.actions = angular.copy(actions);
+          if (load_flag.length == 2) {
+            scope.actions = angular.copy(actions);
+          }
         };
 
         /**
@@ -8216,12 +8214,13 @@ setTimeout(function () {
         };
 
         sp.on('actions.perform.success', function (res) {
-
-          sp_api.call('load.actions.list');
-
-          sp_api.call('load.actions.custom.list');
-
           $rootScope.$apply(function () {
+
+            sp_api.call('load.actions.list');
+
+            sp_api.call('load.actions.custom.list');
+
+            sp_api.call('load.user.info', { all: 1, purchases: 1 });
 
             scope.show = null;
             var msg = '',
@@ -8269,22 +8268,27 @@ setTimeout(function () {
 
         scope.user = sp_api.data('load.user.info');
 
+        scope.scrollToBadge = function () {
+          $('.bns_overlay_ach').scrollTop($('.bns_overlay_ach .bns_overlay_inner').height() + $('.bns_overlay_ach .bns_overlay_inner').offset().top);
+        };
+
         scope.badge_config = {
           selector: '.bns_top_achiv',
           data: {
             // infinite: false,
-            slidesToShow: 5,
+            centerMode: true,
+            slidesToShow: 3,
             slidesToScroll: 1,
             slide: '.bns_top_achiv_item',
             responsive: [{
               breakpoint: 930,
               settings: {
-                slidesToShow: 4
+                slidesToShow: 2
               }
             }, {
-              breakpoint: 400,
+              breakpoint: 550,
               settings: {
-                slidesToShow: 3
+                slidesToShow: 1
               }
             }]
           }
@@ -8313,7 +8317,6 @@ angular.module('sp.gifts', []).directive('sailplayGifts', ["sp", "sp_api", "$roo
         selector: '.bns_gift_main',
         data: {
           slidesToShow: 4,
-          slidesToScroll: 1,
           slide: '.bns_gift_item',
           responsive: [{
             breakpoint: 1318,
@@ -8337,6 +8340,11 @@ angular.module('sp.gifts', []).directive('sailplayGifts', ["sp", "sp_api", "$roo
       sp.on('gifts.purchase.success', function () {
         $rootScope.$apply(function () {
           scope.gift_get = null;
+          if ($(scope.gifts_config.selector).hasClass('slick-initialized')) {
+            $(scope.gifts_config.selector).slick('unslick');
+          }
+          sp_api.call('load.user.info', { all: 1, purchases: 1 });
+          sp_api.call('load.gifts.list', { verbose: 1 });
         });
       });
 
@@ -8475,6 +8483,12 @@ angular.module('sp.history', []).service('hwOrderService', ["$rootScope", "$http
         } else if (!scope.only_orders) {
           return true;
         }
+      };
+
+      scope.has_orders = function () {
+        return scope.history && scope.history() && scope.history().filter(function (item) {
+          return item.order_num;
+        }).length;
       };
 
       scope.user = sp_api.data('load.user.info');
@@ -8690,7 +8704,6 @@ angular.module('sp.profile', []).constant('spProfileErrors', {
 
     if (self.user().user.last_name) _form.fio += ' ' + self.user().user.last_name;
 
-    console.log(_form.fio);
     _form.sex = self.user().user.sex;
     _form.addEmail = self.user().user.email;
     _form.addPhone = format_phone(self.user().user.phone);
@@ -8858,15 +8871,15 @@ angular.module('sp.profile', []).constant('spProfileErrors', {
         var secondName = scope.form.fio.split(' ')[1];
         var lastName = scope.form.fio.split(' ')[2];
 
-        if (firstName !== scope.user().user.first_name) {
+        if (firstName && firstName !== scope.user().user.first_name) {
           data.firstName = firstName;
         }
 
-        if (lastName !== scope.user().user.last_name) {
+        if (secondName && lastName !== scope.user().user.last_name) {
           data.lastName = lastName;
         }
 
-        if (secondName !== scope.user().user.middle_name) {
+        if (secondName && secondName !== scope.user().user.middle_name) {
           data.middleName = secondName;
         }
 
@@ -8953,9 +8966,24 @@ angular.module('sp.profile', []).constant('spProfileErrors', {
         return new RegExp(soc).test(window.sailplay_config.data.social);
       };
 
+      scope.ava_menu_show = false;
+
+      scope.close_menu = function () {
+        if (scope.ava_menu_show) {
+          scope.ava_menu_show = false;
+          scope.$digest();
+        }
+      };
+
+      $('body').on('click', scope.close_menu);
+
       scope.logout = function () {
         sp.send('logout');
       };
+
+      scope.$on('$destroy', function () {
+        $('body').off('click', scope.close_menu);
+      });
     }
 
   };
@@ -8978,13 +9006,15 @@ angular.module('sp.recommend', []).directive('recommendBlock', ["sp", "sp_api", 
           slidesToScroll: 1,
           slide: '.bns_recom_item',
           responsive: [{
-            breakpoint: 1318,
+            breakpoint: 900,
             settings: {
               slidesToShow: 2
             }
           }, {
             breakpoint: 730,
-            settings: 'unslick'
+            settings: {
+              slidesToShow: 1
+            }
           }]
         }
       };
@@ -9013,10 +9043,10 @@ angular.module('sp.status', []).constant('spPurchaseTag', 10000017).filter('spBa
       scope.user = sp_api.data('load.user.info');
 
       scope.getActiveBadge = function () {
-        if (!scope.badges().multilevel_badges[1][0].is_received) return 0;
-        if (scope.badges().multilevel_badges[1][2].is_received) return 3;
-        if (scope.badges().multilevel_badges[1][1].is_received) return 2;
-        if (scope.badges().multilevel_badges[1][0].is_received) return 1;
+        if (!scope.badges().multilevel_badges[0][0].is_received) return 0;
+        if (scope.badges().multilevel_badges[0][2].is_received) return 3;
+        if (scope.badges().multilevel_badges[0][1].is_received) return 2;
+        if (scope.badges().multilevel_badges[0][0].is_received) return 1;
       };
       /**
        * Get purchases sum for status from rules
@@ -9024,7 +9054,7 @@ angular.module('sp.status', []).constant('spPurchaseTag', 10000017).filter('spBa
        * @returns {*}
        */
       scope.getSumForStatus = function (status) {
-        var purchase_rule = status.rules.filter(function (rule) {
+        var purchase_rule = status && status.rules && status.rules.filter(function (rule) {
           return rule.event_id == spPurchaseTag;
         })[0];
         return purchase_rule && purchase_rule.value_to_success;
@@ -9035,16 +9065,34 @@ angular.module('sp.status', []).constant('spPurchaseTag', 10000017).filter('spBa
        * @returns {string}
        */
       scope.getStatusPercents = function () {
-        var received_statuses = scope.badges().multilevel_badges[1].filter(function (badge) {
+        if (!scope.badges || !scope.badges() || !scope.badges().multilevel_badges[0]) return 0;
+        var received_statuses = scope.badges().multilevel_badges[0].filter(function (badge) {
           return badge.is_received;
         }).length;
-        var len = scope.badges().multilevel_badges[1].length;
+        var len = scope.badges().multilevel_badges[0].length;
         var percents = 100 / len * received_statuses + 1;
         percents = percents > 100 ? 100 : percents < 0 ? 0 : percents;
-        return {
-          'width': percents + '%'
-        };
+        return percents + '%';
       };
+
+      var horizontal_width = 730;
+
+      scope.horizontal = $(window).width() <= horizontal_width ? true : false;
+
+      $(window).resize(function () {
+        var ww = $(window).width();
+        if (ww <= horizontal_width) {
+          if (scope.horizontal) return;
+          console.log('resize');
+          scope.horizontal = true;
+          scope.$digest();
+        } else {
+          if (!scope.horizontal) return;
+          console.log('resize');
+          scope.horizontal = false;
+          scope.$digest();
+        }
+      });
     }
 
   };
@@ -9223,12 +9271,22 @@ angular.module('ui.datepicker', []).service('dateService', function () {
         scope.slackConfig = scope.$eval(attrs.slackConfig);
         scope.dataLength = scope.$eval(attrs.length);
 
+        if ($(scope.slackConfig.selector).length) {
+          $(scope.slackConfig.selector).css('visibility', 'hidden');
+          //   if ($(scope.slackConfig.selector).hasClass('slick-initialized')) {
+          //     $(scope.slackConfig.selector).slick('unslick');
+          //   }
+        }
+
         if (scope.$last) {
           // all are rendered
           scope.$watch('dataLength', function (v) {
-            if (v > 0) setTimeout(function () {
-              $(scope.slackConfig.selector).slick(scope.slackConfig.data);
-            }, 200);
+            if (v && v > 0) {
+              setTimeout(function () {
+                $(scope.slackConfig.selector).slick(scope.slackConfig.data);
+                $(scope.slackConfig.selector).css('visibility', '');
+              }, 800);
+            }
           });
         }
       }
