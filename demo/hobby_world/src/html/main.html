@@ -586,7 +586,7 @@
                             <span class="bns_hist_bal"
                                   data-ng-class="{type_orange: item.points_delta < 0}"
                                   data-ng-if="item.points_delta"
-                                  data-ng-bind="(item.points_delta < 0 ? '' : '+ ') + (item.points_delta | number)"></span>
+                                  data-ng-bind="item.points_delta | number"></span>
                         </td>
 
                     </tr>
