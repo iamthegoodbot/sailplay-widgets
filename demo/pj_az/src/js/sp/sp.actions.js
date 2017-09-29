@@ -23,7 +23,8 @@
                 "font-size": "18px",
                 "line-height": "20px",
                 "cursor": "pointer",
-                "display": "inline-block"
+                "display": "inline-block",
+                "padding-right": "10px"
               }
             }
           }
@@ -34,6 +35,9 @@
               "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/bddfada95d885611c8dbcfd3d8b4c6a0.png",
               "image_h": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/3c12fd472b45e6d0ecee244d4d9d2216.png",
               "styles": {
+                "span": {
+                  "position": "relative"
+                },
                 "fb_share_btn": {
                   "font-family": "Arial",
                   "box-sizing": "border-box",
@@ -43,8 +47,8 @@
                   "color": "white",
                   "font-weight": "bold",
                   "position": "absolute",
-                  "left": "0",
-                  "top": "0",
+                  "bottom": "-38px",
+                  "left": 0,
                   "font-size": "18px",
                   "line-height": "20px",
                   "cursor": "pointer",
@@ -56,6 +60,9 @@
               "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/bddfada95d885611c8dbcfd3d8b4c6a0.png",
               "image_h": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/3c12fd472b45e6d0ecee244d4d9d2216.png",
               "styles": {
+                "span": {
+                  "position": "relative"
+                },
                 "fb_share_btn": {
                   "font-family": "Arial",
                   "box-sizing": "border-box",
@@ -65,12 +72,13 @@
                   "color": "white",
                   "font-weight": "bold",
                   "position": "absolute",
-                  "left": "0",
-                  "top": "0",
+                  "bottom": "-38px",
+                  "left": 0,
                   "font-size": "18px",
                   "line-height": "20px",
                   "cursor": "pointer",
-                  "display": "inline-block"
+                  "display": "inline-block",
+                  "padding-right": "10px"
                 }
               }
             },
@@ -78,6 +86,9 @@
               "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/bddfada95d885611c8dbcfd3d8b4c6a0.png",
               "image_h": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/3c12fd472b45e6d0ecee244d4d9d2216.png",
               "styles": {
+                "span": {
+                  "position": "relative"
+                },
                 "fb_share_btn": {
                   "font-family": "Arial",
                   "box-sizing": "border-box",
@@ -87,12 +98,13 @@
                   "color": "white",
                   "font-weight": "bold",
                   "position": "absolute",
-                  "left": "0",
-                  "top": "0",
+                  "bottom": "-38px",
+                  "left": 0,
                   "font-size": "18px",
                   "line-height": "20px",
                   "cursor": "pointer",
-                  "display": "inline-block"
+                  "display": "inline-block",
+                  "padding-right": "10px"
                 }
               }
             }
@@ -274,7 +286,7 @@
 
         template: `
         <div class="action static_page">
-          <a class="close" data-ng-click="$parent.$parent.open_custom_action=null;body_lock(false);"></a>
+          <a class="close" data-ng-click="$parent.$parent.open_custom_action=null;$parent.$parent.body_lock(false);"></a>
 
           <div class="container">
             <div class="row">

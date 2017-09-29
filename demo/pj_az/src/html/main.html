@@ -59,12 +59,14 @@
 
                             <div class="bns_stat_now">
                                 <img data-ng-src="{{ user().last_badge && user().last_badge.pic }}">
-                                <span class="bns_stat_name"
-                                      data-ng-bind="user().last_badge && user().last_badge.name ? ('you_have' | translate) + (user().last_badge.name | tryParseField) : ('empty_status' | translate)"></span>
-                                <a href="#"
-                                   data-scroll-to=".bns_tab_block"
-                                   data-ng-click="$event.preventDefault();open_badge(user().last_badge)"
-                                   data-ng-bind="'status_button' | translate"></a>
+                                <div class="bns_stat_name_container">
+                                  <div class="bns_stat_name"
+                                        data-ng-bind="user().last_badge && user().last_badge.name ? ('you_have' | translate) + (user().last_badge.name | tryParseField) : ('empty_status' | translate)"></div>
+                                  <a href="#"
+                                     data-scroll-to=".bns_tab_block"
+                                     data-ng-click="$event.preventDefault();open_badge(user().last_badge)"
+                                     data-ng-bind="'status_button' | translate"></a>
+                                </div>
                             </div>
 
                         </div>
