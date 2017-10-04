@@ -1333,6 +1333,7 @@
   display: block;
   background-image: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/5a94884b26d2d80e5f872936af30b981.png");
   position: absolute;
+  background-position: -10px center;
   left: 0;
   top: 0;
   z-index: 2;
@@ -1407,16 +1408,16 @@
   background-size: 100%;
 }
 .bns_line .bns_line_item.bns_line_item1 {
-  left: 19.4%;
-  top: 7%;
+  left: 18.4%;
+  top: 12%;
 }
 .bns_line .bns_line_item.bns_line_item2 {
-  left: 54.6%;
-  top: 6%;
+  left: 53.8%;
+  top: 12%;
 }
 .bns_line .bns_line_item.bns_line_item3 {
-  left: 82.7%;
-  top: 7%;
+  left: 81.7%;
+  top: 12%;
 }
 .bns_line .bns_line_item.act .bns_poly_img {
   -webkit-filter: grayscale(0%);
