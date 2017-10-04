@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SAILPLAY HUB</title>
+  <script type="text/javascript" src="https://rawgit.com/iamthegoodbot/sailplay-widgets/feature/enter-email-referral/hub/sailplay.hub.js"></script>
+  <script type="text/javascript" src="./jpcrefer.js"></script>
+  <link type="text/css" href="./jpcrefer.css" rel="stylesheet"></link>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+</head>
+<body>
+
+<section class="refer">
+	<form name="refer_form" id="referral_form" role="form" action="//example.com" target="_blank">
+    <label class="refer_label">
+      Refer a friend!
+    </label>
+    <input class="refer_input" placeholder="Input friend email" type="email" name="email">
+    <button type="submit" class="refer_submit" data-barley="footer.signup.button" data-barley-editor="simple">
+      Send email
+    </button>
+    <p class="refer_message" data-barley="footer.signup.detail" data-barley-editor="simple">
+      Enter your email to be notified of contests, giveaways &amp; promotions.
+    </p>
+  </form>
+</section>
+
+<script type="text/javascript">
+
+  var params = SAILPLAY.url_params();
+
+  window.sp_share({
+    partner_id: params.partner_id || 232,
+    domain: params.domain || 'http://dev2.sailplay.ru',
+    auth_hash: params.auth_hash || 'bf06dfe9737b48c11db9aada340f97159ed89703'
+  })
+</script>
+
+</body>
+
+</html>
