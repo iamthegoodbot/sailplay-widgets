@@ -18,7 +18,8 @@ window.sp_share = function(params){
   SAILPLAY.on('login.success', function(data){
     referralName = data.name
     SAILPLAY.send('user.referral', {}, function(data){
-      referralLink = data.referral_link
+      referralLink = (params.base_referral_link ? params.base_referral_link : params.domain).replace(/\/$/, '') + data.referral_link
+      console.log(referralLink)
     })
   })
 
@@ -38,9 +39,12 @@ window.sp_share = function(params){
   
   document.addEventListener('DOMContentLoaded', function(){
 
-    document.getElementById('referral_form').addEventListener('submit', function(ev){
+    document.getElementById(params.form_id).addEventListener('submit', function(ev){
       createByEmail(ev.target[0].value, function(){'callback'})
       ev.target[0].value = ''
+      if(params.prevent_form_send){
+        ev.preventDefault()
+      }
     })
 
   })
