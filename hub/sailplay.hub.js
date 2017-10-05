@@ -1039,6 +1039,24 @@
       });
     });
 
+    sp.on('user.referral', function (data, callback) {
+      if (_config == {}) {
+        initError();
+        return;
+      }
+      var req_data = {
+        auth_hash: _config.auth_hash
+      };
+      JSONP.get(_config.DOMAIN + _config.urls.users.referral, req_data, function (res) {
+        if (res.status == 'ok') {
+          sp.send('purchases.info.success', res);
+        } else {
+          sp.send('purchases.info.error', res);
+        }
+        callback && callback(res);
+      });
+    });
+
     sp.on('magic.config', function (name) {
       if (_config == {}) {
         initError();
