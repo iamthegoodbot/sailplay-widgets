@@ -11,6 +11,17 @@ angular.module('sp.gifts', [])
     }
   })
 
+  .filter('giftTillNext', function($rootScope, translateFilter, numberFilter, sailplay_pluralizeFilter){
+    return function (points){
+      var lang = $rootScope.config.lang
+      if(lang == 'az'){
+        return (numberFilter(points)) + ' ' + (sailplay_pluralizeFilter(points, translateFilter('pluralize.points'))) + ' ' + translateFilter('need_earn_more')
+      } else {
+        return translateFilter('need_earn_more') + (numberFilter(points)) + ' ' + (sailplay_pluralizeFilter(points, translateFilter('pluralize.points')))        
+      }
+    }
+  })
+
   .directive('sailplayGifts', function (sp, sp_api, $rootScope, $filter) {
     return {
 

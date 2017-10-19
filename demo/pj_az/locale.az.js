@@ -1,7 +1,7 @@
 window._SP_LOCALE = {
   "logo": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/25834cc415872d6658db9a57be67a103.png",
   "pizzameter": {
-    "counter_bg": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/a8b800950f84974fcfcb5cf34b5467db.png",
+    "counter_bg": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/33e34449ae126125615cfe3481c4a48a.png",
     "wrapper_bg": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/acea674428c416c48eb1fdfd3b095e7e.png"
   },
   "tabs": {
@@ -13,13 +13,13 @@ window._SP_LOCALE = {
     "points": "Ball,Ball,Ball"
   },
   "login": "Daxil olmaq",
-  "unconfirmed_points": "Təsdiq olunmayan ballar",
+  "unconfirmed_points": "Təsdiq olunmamış ballar",
   "unconfirmed_points_hint": {
     "title": "Ətraflı",
-    "text": "Sifariş ödənildikdən sonra Sizin təsdiqlənəcək  təsdiq olunmayan ballarınız"
+    "text": "Sifariş ödənildikdən sonra Sizin təsdiqlənəcək  təsdiq olunmamış ballarınız"
   },
   "you_have": "Statusunuz: ",
-  "need_earn_more": "Daha çox bal toplamaq lazımdır ",
+  "need_earn_more": "ballınız çatmır",
   "empty_name": "Ad qeyd olunmayıb",
   "empty_status": "Status yoxdur",
   "history_button": "Balların tarixçəsi",
@@ -38,11 +38,11 @@ window._SP_LOCALE = {
     "error": {"title": "Yanlış", "text": "Zəhmət olmasa, təkrarlıyın."}
   },
   "history_texts": {
-    "purchase": "Alış-veriş",
+    "purchase": "Sifarişə görə qazanılmış ballar",
     "gift_purchase": "Hədiyyə",
     "badge": "Beydjik",
     "registration": "Qeydiyyat",
-    "referral": "Dostunun qeydiyyatı",
+    "referral": "Dostunuzu saytımıza dəvət etdiyinizə görə",
     "referred": "Dəvətnamə ilə qeydiyyat",
     "referred_purchase": "Dəvət olunmuş istifadəçinin alış verişi",
     "promocode": "Promokodu daxil etdiyinə görə",
@@ -57,7 +57,7 @@ window._SP_LOCALE = {
   "actions": {
     "system": {
       "inviteFriend": {
-        "name": "Dostunu dəvət etmək"
+        "name": "Dostunu dəvət et"
       }
     },
     "social": {

@@ -1,7 +1,7 @@
 window._SP_LOCALE = {
   "logo": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/6b68620de101330665aec49c9ec90931.png",
   "pizzameter": {
-    "counter_bg": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/14af8d165ec8300e8e9eeffeeeb108d4.png",
+    "counter_bg": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/6ec364eccd4f11046eab0d027a9054e7.png",
     "wrapper_bg": "//sailplay.cdnvideo.ru/static/partners/pj/img/pizzameter/deck_ru.png"
   },
   "tabs": {

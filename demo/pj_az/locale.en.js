@@ -1,7 +1,7 @@
 window._SP_LOCALE = {
-  "logo": "//sailplays3.cdnvideo.ru/media/assets/assetfile/16e09290ab5a642bcaacaa75b1841c8c.png",
+  "logo": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/30c01bd2f11fa4ce4c824775751e7679.png",
   "pizzameter": {
-    "counter_bg": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/9fc1ec207336f5c0d9ed16f3d19838b9.png",
+    "counter_bg": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/0cfe9a3b02425ae4bfa81938945805c6.png",
     "wrapper_bg": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/f95eac7509cad92558bf250b2cb357be.png"
   },
   "tabs": {
@@ -19,7 +19,7 @@ window._SP_LOCALE = {
     "text": "Your unconfirmed points, which will be confirmed after the fact of payment of the order"
   },
   "you_have": "Status: ",
-  "need_earn_more": "Need to collect more ",
+  "need_earn_more": "Need to collect additional ",
   "empty_name": "No name",
   "empty_status": "No status",
   "history_button": "Point's history",

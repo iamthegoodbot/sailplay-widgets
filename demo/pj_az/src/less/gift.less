@@ -14,17 +14,25 @@
     @media screen and (max-width: 650px) {
       justify-content: center;
     }
-    @media screen and (min-width: 651px) and (max-width: 1005px) {
-      max-width: 610px;
+    @media screen and (min-width: 651px) and (max-width: 1050px) {
+      &>div {
+        width: 50%;
+      }
     }
-    @media screen and (min-width: 1006px) and (max-width: 1310px) {
-      max-width: 915px;
+    @media screen and (min-width: 1051px) and (max-width: 1310px) {
+      &>div {
+        width: 33.3%;
+      }
     }
-    @media screen and (min-width: 1311px) and (max-width: 1615px) {
-      max-width: 1220px;
+    @media screen and (min-width: 1311px) and (max-width: 1630px) {
+      &>div {
+        width: 25%;
+      }
     }
-    @media screen and (min-width: 1616px) and (max-width: 1920px) {
-      max-width: 1525px;
+    @media screen and (min-width: 1631px) and (max-width: 1920px) {
+      &>div {
+        width: 20%
+      }
     }
     @media screen and (min-width: 1921px){
 //      max-width: 1830px;
@@ -42,11 +50,11 @@
     padding-right: 10px;
     padding-left: 10px;
     float: left;
-    width: 285px;
+    width: 305px;
     height: auto;
     flex-basis: auto;
     margin-bottom: 20px;
-    box-sizing: content-box;
+    box-sizing: border-box;
     img {
       width: 100%;
       height: auto;
@@ -56,6 +64,9 @@
       float: left;
       width: 180px;
       margin-right: 5px;
+      @media screen and (min-width: 651px) and (max-width: 730px) {
+        width: 170px;
+      }
       .bns_gift_name {
         float: left;
         color: #000000;
@@ -88,6 +99,9 @@
       font-weight: bold;
       text-decoration: none;
       letter-spacing: -1px;
+      @media screen and (min-width: 651px) and (max-width: 730px) {
+        width: 72px;
+      }
       &.act {
         cursor: pointer;
       }
@@ -157,7 +171,6 @@
     bottom: 0;
     margin: auto;
     width: 80%;
-    height: 70%;
     background: white;
 
     iframe {

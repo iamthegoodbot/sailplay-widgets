@@ -285,7 +285,6 @@
       return {
 
         template: `
-        <div class="action static_page">
           <a class="close" data-ng-click="$parent.$parent.open_custom_action=null;$parent.$parent.body_lock(false);"></a>
 
           <div class="container">
@@ -299,7 +298,7 @@
 
             <div class="row">
               <p class="contentt message">
-              <img class="contentt image" data-ng-src="{{ action.content.image }}"/> 
+              <img ng-hide="!action.content.image" class="contentt image" data-ng-src="{{ action.content.image }}"/> 
                 <span data-ng-bind="action.content.message | sailplayActionCustomTranslateJson"></span>
                 
               </p>
@@ -312,9 +311,8 @@
                 </p>
               </div>
             </div>
-          </div>
 
-        </div>
+          </div>
         `,
         restrict: 'A',
         scope: {

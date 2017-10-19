@@ -17,13 +17,13 @@ angular.module('sp.history', [])
         case 'event':
           return historyItem.name || history_texts.custom_action;
         case 'extra':
-          return historyItem.name || history_texts.custom_action;
+          return history_texts.extra || historyItem.name;
         case 'custom_action':
           return historyItem.name || history_texts.custom_action;
         case 'badge':
           return history_texts.badge + ': ' + tryParseFieldFilter(historyItem.name);
         case 'purchase':
-          return historyItem.name || history_texts.purchase;
+          return history_texts.purchase || historyItem.name;
         case 'sharing':
           switch (historyItem.social_action) {
             case 'like': {
