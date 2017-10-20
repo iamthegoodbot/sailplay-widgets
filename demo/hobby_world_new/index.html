@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hobby World</title>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,700&amp;subset=cyrillic" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Ubuntu', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #F1F1F1;
+        }
+        #wrapper {
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 22px;
+            padding-right: 22px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+
+<div id="wrapper">
+    <div id="sailplay-magic">Загрузка...</div>
+</div>
+
+<script src="./build/sailplay.magic.min.js"></script>
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function () {
+
+    var magic = new window.SpMagic({
+      auth_hash: '99056c975815852f85202a627b220640a162e4dd',
+      partner_id: 1639,
+      domain: 'http://sailplay.ru',
+      lang: 'ru',
+      data: {
+        social: 'vk,fb',
+        page: {
+          about_program: 'about_program.html',
+          forgot_password: 'forgot_password.html',
+          logout: 'page_logout.html'
+        },
+        urls: {
+          get_wish_list: 'fake/wish_list.json',
+          get_recommend_list: 'fake/recommend_list.json',
+          get_game_of_the_day: 'fake/game_of_the_day.json',
+          update_profile: 'fake/update_profile.json',
+          get_order_history: 'fake/order_history.json',
+          change_password: 'fake/change_password.json',
+          upload_avatar: 'http://hobbygames2.dev.hobbygames.ru/?route=account/sailplay/avatar'
+//            upload_avatar: 'fake/avatarupload.json'
+        }
+      }
+    });
+
+  });
+</script>
+</body>
+</html>
