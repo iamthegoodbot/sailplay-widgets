@@ -3,14 +3,16 @@
         <div class="sp-status-container">
 
             <div class="sp-status-progress sp-m-mobile sp-m-block" :style="{ width: '100%', height: getStatusHeight }"></div>
-            <div class="sp-status-progress sp-m-tablet sp-m-block" :style="{ width: getStatusWidth, top: '1%', left: '1%', height: '98%' }"></div>
-            <img class="sp-status-bg sp-m-mobile sp-m-inline-block" src="~/img/bg-status-mobile.svg"/>
-            <img class="sp-status-bg sp-m-table sp-m-inline-block" src="~/img/bg-status-tablet.svg"/>
-            <img class="sp-status-bg sp-m-desktop sp-m-inline-block" src="~/img/bg-status-desktop.svg"/>
+            <div class="sp-status-progress sp-m-tablet sp-m-block" :style="{ width: getStatusWidth, height: '100%' }"></div>
+            <img class="sp-status-bg sp-m-mobile sp-m-block" src="~/img/bg-status-mobile.svg"/>
+            <img class="sp-status-bg sp-m-tablet sp-m-block" src="~/img/bg-status-tablet.svg"/>
+            <img class="sp-status-bg sp-m-desktop sp-m-block" src="~/img/bg-status-desktop.svg"/>
             <div class="sp-status-list">
 
                 <div class="sp-status-item" v-for="(status, index) in $parent.badges.multilevel_badges[0]" :key="index">
-                    <div v-if="!status.is_received && getPurchaseOffset(status)" class="sp-status-offset sp-m-desktop sp-m-block">Осталось&nbsp;{{ getPurchaseOffset(status) }}&nbsp;рублей</div>
+                    <div v-if="!status.is_received && getPurchaseOffset(status)"
+                         :class="{'sp-m-left': index == ($parent.badges.multilevel_badges[0].length - 1)}"
+                         class="sp-status-offset sp-m-desktop sp-m-block">Осталось&nbsp;{{ getPurchaseOffset(status) }}&nbsp;рублей</div>
                     <img :src="status.is_received ? status.thumbs.url_250x250 : status.thumbs.url_gs">
                     <div class="sp-status-info">
                         <div class="sp-status-name">{{ status.name }}</div>
@@ -55,7 +57,7 @@
         let received_statuses = badges.filter(function (badge) {
           return badge.is_received
         }).length
-        let map = [0, 37.3, 67, 98];
+        let map = [0, 38.1, 69, 100];
         return map[received_statuses] ? map[received_statuses] + '%' : 0
       },
 
@@ -65,7 +67,7 @@
         let received_statuses = badges.filter(function (badge) {
           return badge.is_received
         }).length
-        let map = [0, 40, 68, 98];
+        let map = [0, 40, 68, 98]
         return map[received_statuses] ? map[received_statuses] + '%' : 0
       },
 
@@ -79,55 +81,40 @@
     #sp-loyalty-status
         position relative
         box-sizing border-box
-        overflow hidden
         width 100%
         @media screen and (min-width: 1050px)
             overflow visible
 
     .sp-status-container
         text-align center
-        background #C4CCCC
-        width 290px
-        height 715px
+        background #c4cccc
+        max-width 275px
+        width 100%
+        height auto
         position relative
         margin 0 auto
         @media screen and (min-width: 780px)
-            width 100%
-            height 100%
-            background transparent
-            &:before
-                content ''
-                display block
-                width: 98%
-                height 98%
-                top 0
-                left 0
-                right 0
-                bottom 0
-                margin auto
-                background #C4CCCC
-                position absolute
-                @media screen and (min-width: 1050px)
-                    width 96.5%
-                    height 96%
+            max-width none
+
+    #sp-loyalty-status
+        .sp-status-bg.sp-m-tablet.sp-m-block
+            @media screen and (min-width: 1050px)
+                display none !important
 
     .sp-status-bg
-        width calc(100% + 2px)
-        height calc(100% + 2px)
+        width 100%
+        height auto
         position relative
-        left -1px
-        top -1px
+        left 0
+        top 0
         z-index 2
+        transform scale(1.05)
         display block
+        padding-bottom 2%
         @media screen and (min-width: 780px)
-            top auto
-            left auto
-            width 100%
-            height auto
+            padding 0
         @media screen and (min-width: 1050px)
-            width: 97%;
-            &.sp-m-table
-                display none !important
+            transform scale(1.01)
 
     .sp-status-progress
         z-index 1
@@ -148,79 +135,86 @@
             @media screen and (min-width: 780px)
                 flex-direction column
             &:nth-child(1)
-                top 165px
-                left 56.5px
+                top 22.8%
+                left 20%
+                width 100%
+                height 17%
                 @media screen and (min-width: 780px)
-                    top 15.5%
+                    top 22.5%
                     left 23.55%
-                    width 16.4%
+                    width 15.4%
+                    height 60%
                     @-moz-document url-prefix()
                         &
-                            top 18.2% !important
+                            top 22.8% !important
                 @media screen and (min-width: 1050px)
-                    top 12%
-                    left 19.95%
-                    width 14.2%
+                    top 21%
+                    left 19.54%
+                    width 13.5%
                     @-moz-document url-prefix()
                         &
-                            top 14.5% !important
+                            top 21.2% !important
                 img
-                    width 113px
-                    max-height 113px
+                    max-width 50%
+                    max-height 90%
                     @media screen and (min-width: 780px)
+                        max-width 90%
                         max-height none
-                        width 89.4%
-                        margin-top 5.1%
             &:nth-child(2)
-                top 368px
-                left 58px
+                top 53.1%
+                left 20.4%
+                width 100%
+                height 17%
                 @media screen and (min-width: 780px)
-                    top 15.3%
-                    left 53.2%
-                    width 16.4%
+                    top 22.5%
+                    left 54.4%
+                    width 15.4%
+                    height 60%
                     @-moz-document url-prefix()
                         &
-                            top 17.5% !important
+                            top 22.5% !important
                 @media screen and (min-width: 1050px)
-                    top 11.1%
-                    left 52.6%
-                    width 14.5%
+                    top 21%
+                    left 53.44%
+                    width 13.5%
                     @-moz-document url-prefix()
                         &
-                            top 13.5% !important
+                            top 21% !important
+                            left 53.35% !important
                 img
-                    width 116px
-                    max-height 116px
+                    max-width 50%
+                    max-height 90%
                     @media screen and (min-width: 780px)
-                        max-height none
-                        width 91%
-                        margin-top 4.2%
+                        max-width: 90%
+                        max-height: none
             &:nth-child(3)
-                top 576px
-                left 58px
+                top 82.6%
+                left 20.4%
+                width 100%
+                height 17%
                 @media screen and (min-width: 780px)
-                    top 15.3%
-                    left 82.3%
-                    width 16.4%
+                    top 22.5%
+                    left 85%
+                    width 15.4%
+                    height 66%
                     @-moz-document url-prefix()
                         &
-                            top 17% !important
-                            left 82.2% !important
+                            top 22.5% !important
+                            left 84.9% !important
                 @media screen and (min-width: 1050px)
-                    top 11.4%
-                    left 85.2%
-                    width 14.3%
+                    top 21%
+                    left 87.15%
+                    width 13.5%
                     @-moz-document url-prefix()
                         &
-                            top 13.4% !important
-                            left 85.1% !important
+                            top 21% !important
+                            left 87.1% !important
                 img
-                    width 116px
-                    max-height 116px
+                    max-width 50%
+                    max-height 90%
                     @media screen and (min-width: 780px)
-                        max-height none
-                        width 91.6%
-                        margin-top 3.5%
+                        max-width: 90%
+                        max-height: none
             img
                 display inline-block
             .sp-status-offset
@@ -229,30 +223,53 @@
                 font-size 13px
                 position absolute
                 color rgba(0, 0, 0, 0.3)
-                line-height 44px
-                height 55px
+                height auto
                 text-align center
                 display block
+                width: 200px
                 top 0
-                left 0
-                right 0
-                margin auto
-                transition .3s ease;
-                background url('../../img/bg-status-hint.svg') no-repeat center center / 200px auto
+                left 50%
+                transform translateX(-50%)
+                transition .3s ease
+                line-height 14px
+                padding 13px 0
+                background white
+                box-shadow 0px 0px 6px 0px rgba(63, 40, 19, 0.1)
+                border-radius 18px
+                &:after
+                    content ''
+                    position absolute
+                    left 0
+                    right 0
+                    bottom - 5px
+                    margin auto
+                    display block
+                    width 0
+                    height 0
+                    border-left 5px solid transparent
+                    border-right 5px solid transparent
+                    border-top 5px solid white
+                &.sp-m-left
+                    left 30%
+                    &:after
+                        left 62%
+                        margin 0
+                        right auto
+
             &:hover
                 .sp-status-offset
                     opacity 1
-                    top -45px
+                    top -55px
                     visibility visible
                     @-moz-document url-prefix()
                         &
-                            top -53px !important
+                            top -56px !important
             .sp-status-info
                 padding-left 20px
                 box-sizing border-box
                 @media screen and (min-width: 780px)
                     padding-left 0
-                    padding-top 5px
+                    padding-top 15px
                     text-align center
                     @media screen and (min-width: 1050px)
                         padding-top 10px

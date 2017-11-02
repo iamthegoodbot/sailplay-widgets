@@ -47,6 +47,8 @@
           slidesToShow: 1,
           slidesPerRow: 1,
           mobileFirst: true,
+          arrows:true,
+          accessibility: false,
           prevArrow: '#sp-loyalty-recommended .slick-prev',
           nextArrow: '#sp-loyalty-recommended .slick-next',
           responsive: [

@@ -10,8 +10,10 @@
   "author": "Misha L",
   "license": "ISC",
   "dependencies": {
+    "compression-webpack-plugin": "^1.0.1",
     "jquery": "^3.2.1",
     "moment": "^2.19.1",
+    "nib": "^1.1.2",
     "rxjs": "^5.4.2",
     "sailplay-hub": "^2.0.28",
     "sailplay-hub-actions": "^1.0.9",

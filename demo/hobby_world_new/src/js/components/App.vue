@@ -177,20 +177,11 @@
       },
 
       bodyLock: function(state){
+        let lockClass = 'sp-lock-scroll'
          if (state) {
-           $('html, body').css({
-             overflow: 'hidden',
-             position: 'fixed',
-             width: '100%',
-             height: '100%',
-           })
+           $('html').addClass(lockClass)
          } else {
-           $('html, body').css({
-             overflow: '',
-             position: '',
-             width: '',
-             height: ''
-           })
+           $('html').removeClass(lockClass)
          }
       }
     }
@@ -201,12 +192,22 @@
 /* global styles */
 <style lang="stylus">
 
+    .sp-lock-scroll
+        overflow hidden
+        body
+            -webkit-overflow-scrolling touch
+            overflow hidden
+            position relative
+            height 100%
+
 </style>
 
 /* local styles */
 <style scoped lang="stylus">
 
-    @import '~slick-carousel/slick/slick.css';
+    @import '~nib/lib/nib/reset'
+
+    @import '~slick-carousel/slick/slick.css'
 
     #sp-loyalty
         /*padding 60px 50px;*/
@@ -421,6 +422,7 @@
             border none
             border-radius 0
         &__profile
+            justify-content space-between
             @media screen and (min-width: 1050px)
                 width 65%
         &__quests
@@ -451,9 +453,9 @@
         box-sizing border-box
         z-index 999999
         overflow auto
-        /*align-items flex-start*/
-        align-items center
+        align-items flex-start
         justify-content center
+        /*align-items center*/
 
         @media screen and (min-width: 780px)
             padding 0
@@ -482,6 +484,7 @@
             @media screen and (min-width: 780px)
                 padding-top 0
                 height auto
+                margin-top 50px
             .sp-container
                 flex-direction column
             .sp-popup-buttons-wrapper
@@ -523,6 +526,7 @@
                 outline none
                 max-width 250px
                 -webkit-appearance none
+                -moz-appearance none
                 vertical-align middle
                 @media screen and (min-width: 780px)
                     width auto
@@ -630,6 +634,8 @@
             margin-top 4px
             color black
             background-color transparent
+            -webkit-appearance: none
+            -moz-appearance none
             @media screen and (min-width: 780px)
                 font-size 13px
                 line-height 34px
@@ -640,6 +646,7 @@
         select
             flex-basis 30%
             -webkit-appearance: none
+            -moz-appearance none
             background-image url('../../img/icon-select.svg')
             background-repeat no-repeat
             background-position right 7px top 12px
@@ -836,5 +843,12 @@
     #sp-loyalty >>> *
         min-height 0
         min-width 0
+        box-sizing border-box
+
+    #sp-loyalty >>> ::before
+        box-sizing border-box
+
+    #sp-loyalty >>> ::after
+        box-sizing border-box
 
 </style>

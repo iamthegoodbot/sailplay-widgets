@@ -1,13 +1,13 @@
 <template>
     <div id="sp-loyalty-profile">
         <div class="sp-m-text-center sp-link-top">
-            <a :href="$parent.$parent.config.page.logout" class="sp-link">О бонусной программе</a>
+            <a :href="$parent.$parent.config.page.about" class="sp-link">О бонусной программе</a>
         </div>
         <div class="sp-profile-container">
             <div class="sp-user-avatar">
                 <i v-on:click.stop.prevent="showLogout = true"></i>
                 <img :src="getAvatar">
-                <a v-show="showLogout" :href="$parent.$parent.config.page.about_program" class="sp-user-avatar-logout">Выйти</a>
+                <a v-show="showLogout" :href="$parent.$parent.config.page.logout" class="sp-user-avatar-logout">Выйти</a>
             </div>
             <div class="sp-user-info">
                 <div class="sp-user-name">{{ $parent.user.user.name || 'Имя не указано' }}</div>
@@ -131,7 +131,7 @@
                                     <span>{{ item.label }}</span>
                                 </label>
 
-                                <div class="sp-form-element-error">Выберите, хотя бы один вариант ответа</div>
+                                <div class="sp-form-element-error">Выберите хотя бы один вариант ответа</div>
 
                             </div>
 
@@ -142,7 +142,8 @@
                     <div class="sp-popup-buttons-wrapper">
 
                         <a href="#" class="sp-popup_button sp-m-tablet sp-m-inline-block"
-                           v-on:click.prevent="showProfile = false;$parent.bodyLock(false)">Закрыть</a>
+                           :class="{'sp-m-disabled': updating}"
+                           v-on:click.prevent="!updating && (showProfile = false && $parent.bodyLock(false))">Закрыть</a>
 
                         <input type="submit" class="sp-popup_button"
                            :class="{'sp-m-disabled': updating}"
@@ -170,7 +171,7 @@
                             <label class="sp-form-element sp-form-input">
                                 <span class="sp-form-element-label">Старый пароль</span>
                                 <input type="password" name="old_password" v-model="passwords.old">
-                                <a :href="$parent.$parent.config.page.forgot_password" class="sp-popup-forgot-password">Забыли пароль?</a>
+                                <a href="#" class="sp-popup-forgot-password">Забыли пароль?</a>
                             </label>
 
                             <label class="sp-form-element sp-form-input">
@@ -188,6 +189,7 @@
 
                         <div class="sp-popup-buttons-wrapper">
                             <input type="submit" class="sp-popup_button"
+                                   :class="{'sp-m-disabled': updating}"
                                    :value="'Сохранить'"
                                    v-on:click.prevent="changePassword"/>
                         </div>
@@ -207,7 +209,7 @@
   import $ from 'jquery'
   import Vue from 'vue'
   import SAILPLAY from 'sailplay-hub'
-  import VeeValidate from 'vee-validate';
+  import VeeValidate from 'vee-validate'
   import MaskedInput from 'vue-masked-input'
   import VueUploadComponent from 'vue-upload-component'
 
@@ -272,6 +274,7 @@
     interests: INTERESTS.map(item => {return {label: item, model: false}})
   }
 
+  const RACE_CONDITION_TIME = 3000
 
   let current_year = new Date().getFullYear()
   let arr = []
@@ -292,6 +295,7 @@
         passwords: {},
         updating: false,
         user: Vue.util.extend({}, DEFAULT_PROFILE),
+        interests: [],
         showLogout: false,
         showProfile: false,
         showChangePassword: false,
@@ -367,31 +371,38 @@
         form.addEmail = user.email
         form.addPhone = user.phone
         form.birthDate = user.birth_date && user.birth_date.split('-').reverse().map((x) => {
-          return parseInt(x, 10);
+          return parseInt(x, 10)
         }) || []
-        form.sex = user.sex;
+        form.sex = user.sex
         form.subscriptions = {
           email: user.is_email_notifications || 0,
           sms: user.is_sms_notifications || 0
         }
 
-        SAILPLAY.send('vars.batch', {names: ['Никнейм']}, function (res) {
-          this.$nextTick(function(){
-            res.vars.forEach(function (variable) {
-              this.user.nickname = variable.value;
-            }.bind(this));
-          })
-        }.bind(this));
+        // Race condition fix
+        setTimeout(function(){
 
-        SAILPLAY.send('tags.exist', {tags: INTERESTS}, function (res) {
-          if (res && res.tags) {
+          SAILPLAY.send('vars.batch', {names: ['Никнейм']}, function (res) {
             this.$nextTick(function(){
-              this.user.interests = res.tags.map(tag => ({label: tag.name,model: tag.exist}))
+              res.vars.forEach(function (variable) {
+                this.user.nickname = variable.value
+              }.bind(this))
             })
-          }
-        }.bind(this));
+          }.bind(this))
 
-        this.user = form
+          SAILPLAY.send('tags.exist', {tags: INTERESTS}, function (res) {
+            if (res && res.tags) {
+              this.$nextTick(function(){
+                this.user.interests = res.tags.map(tag => ({label: tag.name,model: tag.exist}))
+                this.interests = JSON.parse(JSON.stringify(this.user.interests))
+              })
+            }
+          }.bind(this))
+
+          this.user = form
+
+        }.bind(this), RACE_CONDITION_TIME)
+
       },
 
       hideExit() {
@@ -408,57 +419,63 @@
       save(e) {
 
         this.$validator.validateAll().then((result) => {
+
           if (result) {
 
             if(this.updating) return
             this.updating = true
 
-            let local_user = Vue.util.extend([], this.user)
-            let origin_user = Vue.util.extend([], this.$parent.user.user)
+            let local_user = JSON.parse(JSON.stringify(this.user))
+            let origin_user = JSON.parse(JSON.stringify(this.$parent.user.user))
 
             let vars = {
               'Никнейм': local_user.nickname
             }
 
-            let tags_add = local_user.interests
+            let interests = local_user.interests.filter(function(interest) {
+              let coincidence = this.interests.filter(coincidence_interest => coincidence_interest.label == interest.label)[0]
+              return coincidence && coincidence.model != interest.model
+            }.bind(this))
+
+            let tags_add = interests
               .filter(field => field.model)
-              .map(item => item.label);
+              .map(item => item.label)
 
-            let tags_delete = local_user.interests
+            let tags_delete = interests
               .filter(field => !field.model)
-              .map(item => item.label);
+              .map(item => item.label)
 
-            let user_data = {};
+            let user_data = {}
 
-            let firstName = local_user.fio.split(' ')[1] || null;
-            let secondName = local_user.fio.split(' ')[2] || null;
-            let lastName = local_user.fio.split(' ')[0] || null;
+            let lastName = local_user.fio.split(' ')[0] || null
+            let firstName = local_user.fio.split(' ')[1] || null
+            let middleName = local_user.fio.split(' ')[2] || null
 
             if (firstName !== origin_user.first_name) {
-              user_data.firstName = firstName
+              user_data.firstName = firstName || ''
             }
 
             if (lastName !== origin_user.last_name) {
-              user_data.lastName = lastName
+              user_data.lastName = lastName || ''
             }
 
-            if (secondName !== origin_user.middle_name) {
-              user_data.middleName = secondName
+            if (middleName !== origin_user.middle_name) {
+              user_data.middleName = middleName || ''
             }
 
             if (local_user.sex !== origin_user.sex) {
-              user_data.sex = local_user.sex;
+              user_data.sex = local_user.sex
             }
 
             if (local_user.birthDate && local_user.birthDate[0] && local_user.birthDate[1] && local_user.birthDate[2]) {
               let bd = local_user.birthDate.reverse().map(item => item < 10 ? '0' + item : item ).join('-')
               if (bd !== origin_user.birth_date) {
-                user_data.birthDate = bd;
+                user_data.birthDate = bd
               }
             }
 
             if (local_user.addEmail !== origin_user.email) {
-              user_data.addEmail = local_user.addEmail;
+              user_data.addEmail = local_user.addEmail
             }
 
             let phone = local_user.addPhone
@@ -466,17 +483,17 @@
               .replace(/\s/g, '')
               .replace(/\(/g, '')
               .replace(/\)/g, '')
-              .replace(/\+/g, '');
+              .replace(/\+/g, '')
 
             if (phone !== origin_user.phone) {
-              user_data.addPhone = phone;
+              user_data.addPhone = phone
             }
 
             if(JSON.stringify(origin_user.subscriptions) != JSON.stringify(local_user.subscriptions)) {
-              user_data.subscriptions = JSON.stringify(local_user.subscriptions);
+              user_data.subscriptions = JSON.stringify(local_user.subscriptions)
             }
 
-            user_data.auth_hash = SAILPLAY.config().auth_hash;
+            user_data.auth_hash = SAILPLAY.config().auth_hash
 
             SAILPLAY.send('users.update', user_data, function (res_user_update) {
 
@@ -533,27 +550,26 @@
 
             return
           }
-        });
+        })
 
       },
 
       updatetAvatar(value) {
-        this.updating = true
-        let file = value[0]
-        let data = new FormData()
-        data.append('avatar', file);
-        data.append('oid', this.$parent.user.user.origin_user_id)
-        this.$http.post(this.$parent.$parent.config.urls.upload_avatar, data).then(response => {
-          this.$nextTick(function () {
+        this.$nextTick(function () {
+          this.updating = true
+          let file = value[0].file
+          let data = new FormData()
+          data.append('avatar', file)
+          data.append('oid', this.$parent.user.user.origin_user_id)
+          this.$http.post(this.$parent.$parent.config.urls.upload_avatar, data).then(response => {
             this.updating = false
+            this.showProfile = false
             this.$parent.showMessage = {
               title: 'Готово',
               text: 'Аватар обновлен'
             }
-            this.$parent.getInfo();
-          })
-        }, response => {
-          this.$nextTick(function () {
+            this.$parent.getUser()
+          }, response => {
             this.updating = false
             this.showProfile = false
             this.$parent.showMessage = {

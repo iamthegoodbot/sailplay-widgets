@@ -1,21 +1,11 @@
 import Vue from 'vue'
 import App from './components/App'
-import VueRx from 'vue-rx'
-import { Observable } from 'rxjs/Observable'
-import { Subscription } from 'rxjs/Subscription'
-import { Subject } from 'rxjs/Subject'
 import VueResource from 'vue-resource'
 import VeeValidate from 'vee-validate';
 import SAILPLAY from 'sailplay-hub'
 
 Vue.use(VeeValidate)
 Vue.use(VueResource)
-Vue.use(VueRx, {
-  Observable,
-  Subscription,
-  Subject
-})
-
 
 let auth_hash = null
 let data = null

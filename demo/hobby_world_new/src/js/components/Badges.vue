@@ -85,6 +85,7 @@
           slidesToShow: 1,
           slidesPerRow: 4,
           mobileFirst: true,
+          accessibility: false,
           responsive: [
             {
               breakpoint: 780,

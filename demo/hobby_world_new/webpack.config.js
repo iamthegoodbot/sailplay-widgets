@@ -48,7 +48,7 @@ module.exports = {
         loader: 'url-loader',
         query: {
           // Inline images smaller than 10kb as data URIs
-          // limit: 20000
+          limit: 10000
         }
       }
 
@@ -62,10 +62,21 @@ module.exports = {
         NODE_ENV: '"production"'
       }
     }),
-
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/), // Ignore all optional deps of moment.js
     new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true
-    }),
+      mangle: true,
+      compress: {
+        warnings: false, // Suppress uglification warnings
+        pure_getters: true,
+        unsafe: true,
+        unsafe_comps: true,
+        screw_ie8: true
+      },
+      output: {
+        comments: false,
+      },
+      exclude: [/\.min\.js$/gi] // skip pre-minified libs
+    })
 
   ]
 

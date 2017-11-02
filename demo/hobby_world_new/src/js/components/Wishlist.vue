@@ -51,7 +51,6 @@
                     <img src="~/img/icon-wishlist-empty.svg">
                     <span>Ваш вишлист пока пуст</span>
                 </div>
-                <a href="#">Добавить товары</a>
             </div>
 
         </div>
@@ -118,15 +117,14 @@
 
                     <div class="sp-popup-buttons-wrapper">
 
-                        <div v-show="totalPages > 1">
-                            <paginate
-                                    ref="paginate"
-                                    :page-count="totalPages"
-                                    :page-range="4"
-                                    :click-handler="setPage"
-                                    :container-class="'sp-history-pagination sp-m-tablet sp-m-block'">
-                            </paginate>
-                        </div>
+                        <paginate
+                                v-show="totalPages > 1"
+                                ref="paginate"
+                                :page-count="totalPages"
+                                :page-range="4"
+                                :click-handler="setPage"
+                                :container-class="'sp-wishlist-pagination sp-m-tablet sp-m-block'">
+                        </paginate>
 
                         <a href="#" class="sp-popup_button"
                            v-on:click.prevent="showWishlist = false;$parent.bodyLock(false)">Закрыть</a>
@@ -160,6 +158,8 @@
           slidesToShow: 1,
           slidesPerRow: 1,
           mobileFirst: true,
+          arrows:true,
+          accessibility: false,
           prevArrow: '#sp-loyalty-wishlist .slick-prev',
           nextArrow: '#sp-loyalty-wishlist .slick-next',
           responsive: [
@@ -424,18 +424,17 @@
             &:last-child
                 margin-bottom 30px
 
-    #sp-loyalty-wishlist >>> .sp-history-pagination
-        position absolute
+// TODO: Make common styles for pagination component
+    #sp-loyalty-wishlist >>> .sp-wishlist-pagination
+        position relative
         font-size 16px
         line-height 20px
         list-style none
         padding 0
-        margin 0
-        margin-top 7px
+        margin 0px 0 30px
         a
             width 32px
             height 32px
-            margin-right 14px
             border-radius 50%
             border 1px solid #68A5B7
             color #68A5B7
@@ -445,6 +444,7 @@
             text-align center
         li
             display inline-block
+            padding: 0 7px;
             &:first-child, &:last-child
                 display none
             &.active

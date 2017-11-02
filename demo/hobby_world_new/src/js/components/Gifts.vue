@@ -37,10 +37,10 @@
 
                     <div class="sp-popup-gift-content">
                         <img class="sp-popup-gift-img"
-                             :src="getSuccessGift && getSuccessGift.thumbs && getSuccessGift.thumbs.url_250x250">
-                        <div class="sp-popup-gift-name">{{ getSuccessGift && getSuccessGift.name }}</div>
+                             :src="getSuccess && getSuccess.thumbs && getSuccess.thumbs.url_250x250">
+                        <div class="sp-popup-gift-name">{{ getSuccess && getSuccess.name }}</div>
                         <div class="sp-popup-gift-points">
-                            <span>{{ getSuccessGift && getSuccessGift.points }}</span>
+                            <span>{{ getSuccess && getSuccess.points }}</span>
                         </div>
                     </div>
 
@@ -56,6 +56,7 @@
 <script>
 
   import Slick from 'vue-slick'
+  import Vue from 'vue'
   import SAILPLAY from 'sailplay-hub'
 
   export default {
@@ -66,10 +67,13 @@
     data() {
       return {
         getSuccess: false,
+        getting: null,
         slickOptions: {
           slidesToShow: 1,
           slidesPerRow: 1,
           mobileFirst: true,
+          arrows:true,
+          accessibility: false,
           prevArrow: '#sp-loyalty-gifts .slick-prev',
           nextArrow: '#sp-loyalty-gifts .slick-next',
           responsive: [
@@ -96,20 +100,26 @@
       }
     },
     computed: {
-      getSuccessGift() {
+      getSuccess() {
         return this.$parent.gifts.filter(gift => gift.id == this.getSuccess)[0]
       }
     },
     mounted() {
 
       SAILPLAY.on('gifts.purchase.success', function (res) {
-        this.getUser()
-        this.getHistory()
-        this.getGifts()
-      }.bind(this.$parent))
+        this.$nextTick(function () {
+          this.$parent.getUser()
+          this.$parent.getHistory()
+          this.$parent.getGifts()
+          if (this.getting)
+            this.getSuccess = Vue.util.extend({}, this.getting)
+          this.getting = false
+        })
+      }.bind(this))
 
       SAILPLAY.on('gift.purchase.error', function (res) {
         this.$nextTick(function () {
+          this.getSuccess = this.getting = false
           this.$parent.showMessage = {
             title: 'Ошибка',
             text: res.status_code == '-2000' ? 'У вас недостаточно баллов' : res.message
@@ -121,7 +131,9 @@
     methods: {
 
       get(gift) {
-        SAILPLAY.send('gifts.purchase', {gift: gift});
+        if(this.getting) return
+        this.getting = gift
+        SAILPLAY.send('gifts.purchase', {gift: gift})
       },
 
       next() {
@@ -133,7 +145,6 @@
       },
 
       reInit() {
-        console.log('reInit');
         // Helpful if you have to deal with v-for to update dynamic lists
         this.$nextTick(() => {
           this.$refs.gifts.reSlick();

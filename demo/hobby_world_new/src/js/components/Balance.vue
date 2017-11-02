@@ -124,7 +124,7 @@
                             <paginate
                                     ref="paginate"
                                     :page-count="totalPages"
-                                    :page-range="4"
+                                    :page-range="3"
                                     :click-handler="setPage"
                                     :container-class="'sp-history-pagination sp-m-tablet sp-m-block'">
                             </paginate>
@@ -141,7 +141,8 @@
 </template>
 
 <script>
-  import moment from 'moment'
+  import moment from 'moment';
+  import 'moment/locale/ru';
   import Paginate from 'vuejs-paginate'
 
   const historyTexts = {
@@ -209,6 +210,7 @@
         return this.$parent.history.filter(item => item.action == 'purchase').length
       },
       totalPages() {
+        console.log('total', Math.ceil(this.filteredItems.length / pageSize));
         return Math.ceil(this.filteredItems.length/pageSize)
       }
     },
@@ -253,6 +255,7 @@
     #sp-loyalty-balance
         position relative
         padding 15px 25px 40px
+        box-sizing content-box
         @media screen and (min-width: 780px)
             padding 50px 40px 30px
             min-width 170px
@@ -271,7 +274,7 @@
         .sp-popup-buttons-wrapper
             @media screen and (min-width: 780px)
                 margin-top 20px
-                text-align right
+                text-align right !important
         .sp-container
             padding 35px 25px 25px
         .sp-history-orders
@@ -331,16 +334,31 @@
                                 visibility hidden
                                 position absolute
                                 color rgba(0, 0, 0, 0.3)
-                                line-height 35px
-                                height 40px
+                                line-height 20px
+                                height 20px
                                 text-align center
                                 display block
                                 top 0
                                 left 0
                                 right 0
                                 margin auto
-                                transition .3s ease;
-                                background url('../../img/bg-history-hint.svg') no-repeat center center / 105px auto
+                                transition .3s ease
+                                box-shadow 0px 0px 6px 0px rgba(63, 40, 19, 0.1)
+                                background white
+                                border-radius 18px
+                                &:after
+                                    content ''
+                                    position absolute
+                                    left 0
+                                    right 0
+                                    bottom - 5px
+                                    margin auto
+                                    display block
+                                    width 0
+                                    height 0
+                                    border-left 5px solid transparent
+                                    border-right 5px solid transparent
+                                    border-top 5px solid white
                             &:hover
                                 span
                                     opacity 1
@@ -470,7 +488,6 @@
     .sp-balance-container
         text-align center
         @media screen and (min-width: 780px)
-            text-align left
             position relative
             &:after
                 content ''
@@ -527,8 +544,13 @@
                     font-size 12px
                     position absolute
                     color rgba(0, 0, 0, 0.3)
-                    line-height 50px
-                    height 55px
+                    line-height 14px
+                    padding 13px 0
+                    height auto
+                    box-shadow 0px 0px 6px 0px rgba(63, 40, 19, 0.1)
+                    background white
+                    border-radius 18px
+                    transition .3s ease
                     text-align center
                     display block
                     top 0
@@ -536,8 +558,20 @@
                     left 50%
                     transform translateX(-50%)
                     z-index 1
-                    transition .3s ease
-                    background url('../../img/bg-balance-hint.svg') no-repeat center center / contain
+                    &:after
+                        content ''
+                        position absolute
+                        left 0
+                        right 0
+                        bottom - 5px
+                        margin auto
+                        display block
+                        width 0
+                        height 0
+                        border-left 5px solid transparent
+                        border-right 5px solid transparent
+                        border-top 5px solid white
+
                 &:hover
                     .sp-balance-unconfirmed-hint
                         opacity 1
@@ -561,32 +595,40 @@
                     width 10px
                     height 10px
 
+    // TODO: Make common styles for pagination component
     #sp-loyalty-balance >>> .sp-history-pagination
-        position absolute
-        font-size 16px
-        line-height 20px
-        list-style none
-        padding 0
-        margin 0
-        margin-top 7px
-        a
-            width 32px
-            height 32px
-            margin-right 14px
-            border-radius 50%
-            border 1px solid #68A5B7
-            color #68A5B7
-            box-sizing border-box
-            display inline-block
-            line-height 30px
-            text-align center
-        li
-            display inline-block
-            &:first-child, &:last-child
-                display none
-            &.active
-                a
-                    color white
-                    background #68A5B7
+         font-size 16px
+         line-height 20px
+         list-style none
+         padding 0
+         margin 10px 0 30px
+         position relative
+         @media screen and (min-width: 780px)
+             position absolute
+             margin 7px 0 0
+         a
+             width 32px
+             height 32px
+             border-radius 50%
+             border 1px solid #68A5B7
+             color #68A5B7
+             box-sizing border-box
+             display inline-block
+             line-height 30px
+             text-align center
+             @media screen and (min-width: 780px)
+                 margin-right 14px
+         li
+             display inline-block
+             padding 0 7px
+             @media screen and (min-width: 780px)
+                 padding 0
+             &:first-child, &:last-child
+                 display none
+             &.active
+                 a
+                     color white
+                     background #68A5B7
+
 
 </style>

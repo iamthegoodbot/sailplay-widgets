@@ -433,6 +433,8 @@
           slidesPerRow: 3,
           slidesToShow: 1,
           rows: 2,
+          arrows:true,
+          accessibility: false,
           prevArrow: '#sp-loyalty-quests .slick-prev',
           nextArrow: '#sp-loyalty-quests .slick-next',
         },
@@ -647,7 +649,7 @@
                 justify-content space-between
                 height 100%
                 .sp-quests-item-info
-                    width calc(100% - 75px)
+                    width calc(100% - 60px)
                     text-align left
                     span
                         font-size 10px

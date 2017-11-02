@@ -34,16 +34,15 @@
   document.addEventListener('DOMContentLoaded', function () {
 
     var magic = new window.SpMagic({
-      auth_hash: '99056c975815852f85202a627b220640a162e4dd',
+      auth_hash: '34cc39422cf9153cf3be7443483a58ae16e66d30',
       partner_id: 1639,
       domain: 'http://sailplay.ru',
       lang: 'ru',
       data: {
         social: 'vk,fb',
         page: {
-          about_program: 'about_program.html',
-          forgot_password: 'forgot_password.html',
-          logout: 'page_logout.html'
+          about: '/bonus',
+          logout: '/page_logout'
         },
         urls: {
           get_wish_list: 'fake/wish_list.json',
@@ -52,8 +51,7 @@
           update_profile: 'fake/update_profile.json',
           get_order_history: 'fake/order_history.json',
           change_password: 'fake/change_password.json',
-          upload_avatar: 'http://hobbygames2.dev.hobbygames.ru/?route=account/sailplay/avatar'
-//            upload_avatar: 'fake/avatarupload.json'
+          upload_avatar: 'fake/avatarupload.json'
         }
       }
     });
