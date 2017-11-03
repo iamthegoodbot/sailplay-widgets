@@ -35,7 +35,7 @@
 
   gulp.task('javascript.concat', ['build.templates'], function () {
     return gulp.src([
-      __dirname + '/node_modules/jquery/dist/jquery.min.js',
+//      __dirname + '/node_modules/jquery/dist/jquery.min.js',
       __dirname + '/node_modules/sailplay-hub/sailplay.hub.js',
       __dirname + '/node_modules/sailplay-hub-actions/sailplay.hub.actions.js',
       __dirname + '/node_modules/angular/angular.min.js',

@@ -17,6 +17,7 @@
 
             <div class="oi_top">
                 <span class="bns_over_head">Редактирование профиля</span>
+                <span class="bns_close" data-ng-click="$event.preventDefault();close();body_lock(false);"></span>
             </div>
 
             <form novalidate name="profile">
@@ -76,6 +77,7 @@
         <div class="bns_overlay_inner oi_hist">
             <div class="oi_top">
                 <span class="bns_over_head">История</span>
+                <span class="bns_close" data-ng-click="$event.preventDefault();show = null;"></span>
             </div>
             <span class="empty_history" data-ng-show="history && history() && !history().length">Пусто</span>
             <div class="hist_main" data-ng-if="history && history()">
@@ -208,6 +210,7 @@
                 <div class="bns_overlay_inner oi_login">
                     <div class="oi_top">
                         <span class="bns_over_head">Вы уверены?</span>
+                        <span class="bns_close" data-ng-click="$event.preventDefault();$parent.gift_open = null;body_lock(false);"></span>
                     </div>
                     <div class="sure_main">
                         <div class="bns_gift_item">
@@ -237,6 +240,7 @@
                 <div class="bns_overlay_inner oi_login">
                     <div class="oi_top">
                         <span class="bns_over_head">Готово</span>
+                        <span class="bns_close" data-ng-click="$parent.gift_open = null;$event.preventDefault();$parent.gift_success = null;body_lock(false);"></span>
                     </div>
                     <div class="sure_main">
                         <div class="bns_gift_item">
@@ -305,6 +309,7 @@
                 <div class="bns_overlay_inner ">
                     <div class="oi_top">
                         <span class="oi_top__name" data-ng-bind="$parent.open_custom.name"></span>
+                        <span class="bns_close" data-ng-click="$parent.open_custom = null;$event.preventDefault();body_lock(false);"></span>
                     </div>
                     <div class="bns_overlay_action_custom" data-sailplay-action-custom
                              data-action="$parent.open_custom"></div>
