@@ -10,9 +10,14 @@
             <div class="sp-status-list">
 
                 <div class="sp-status-item" v-for="(status, index) in $parent.badges.multilevel_badges[0]" :key="index">
-                    <div v-if="!status.is_received && getPurchaseOffset(status)"
+
+                    <div v-if="index != 0 && !status.is_received && getPurchaseOffset(status)"
                          :class="{'sp-m-left': index == ($parent.badges.multilevel_badges[0].length - 1)}"
                          class="sp-status-offset sp-m-desktop sp-m-block">Осталось&nbsp;{{ getPurchaseOffset(status) }}&nbsp;рублей</div>
+
+                    <div v-if="index == 0 && !status.is_received"
+                        class="sp-status-offset sp-m-desktop sp-m-block">Сделайте первую покупку</div>
+
                     <img :src="status.is_received ? status.thumbs.url_250x250 : status.thumbs.url_gs">
                     <div class="sp-status-info">
                         <div class="sp-status-name">{{ status.name }}</div>

@@ -28,7 +28,7 @@
                     <img :src="getSocials.tw" alt="Twitter">
                 </div>
             </div>
-            <div class="sp-m-text-center sp-profile-edit-link">
+            <div class="sp-m-text-center sp-profile-edit-link" v-if="$parent.user.user.register_date">
                 <a href="#" class="sp-link"
                    v-on:click.prevent="showProfile = true;$parent.bodyLock(true)">Редактировать профиль</a>
             </div>
@@ -60,12 +60,12 @@
                             <label class="sp-form-element sp-form-input" :class="{'sp-m-error': errors.has('phone')}">
                                 <span class="sp-form-element-error">неверный телефон</span>
                                 <span class="sp-form-element-label">Телефон</span>
-                                <masked-input type="text" mask="\+1 (111) 111-11-11" v-validate="'required'" name="phone" v-model="user.addPhone" />
+                                <masked-input type="tel" mask="\+1 (111) 111-11-11" v-validate="'required'" name="phone" v-model="user.addPhone" />
                             </label>
 
-                            <label class="sp-form-element sp-form-input" :class="{'sp-m-error': errors.has('nickname')}">
+                            <label class="sp-form-element sp-form-input">
                                 <span class="sp-form-element-label">Никнейм</span>
-                                <input type="text" name="nickname" v-model="user.nickname" v-validate="'required'">
+                                <input type="text" name="nickname" v-model="user.nickname">
                             </label>
 
                             <label class="sp-form-element sp-form-date">
@@ -143,7 +143,7 @@
 
                         <a href="#" class="sp-popup_button sp-m-tablet sp-m-inline-block"
                            :class="{'sp-m-disabled': updating}"
-                           v-on:click.prevent="!updating && (showProfile = false && $parent.bodyLock(false))">Закрыть</a>
+                           v-on:click.prevent="closeProfile">Закрыть</a>
 
                         <input type="submit" class="sp-popup_button"
                            :class="{'sp-m-disabled': updating}"
@@ -199,7 +199,6 @@
                 </div>
             </div>
         </div>
-
 
     </div>
 </template>
@@ -368,8 +367,8 @@
         if (user.middle_name)
           form.fio += ' ' + user.middle_name
         form.sex = user.sex || 1
-        form.addEmail = user.email
-        form.addPhone = user.phone
+        form.addEmail = user.email || ''
+        form.addPhone = user.phone && this.$options.filters.phone(user.phone) || ''
         form.birthDate = user.birth_date && user.birth_date.split('-').reverse().map((x) => {
           return parseInt(x, 10)
         }) || []
@@ -382,24 +381,29 @@
         // Race condition fix
         setTimeout(function(){
 
-          SAILPLAY.send('vars.batch', {names: ['Никнейм']}, function (res) {
-            this.$nextTick(function(){
-              res.vars.forEach(function (variable) {
-                this.user.nickname = variable.value
-              }.bind(this))
-            })
-          }.bind(this))
-
           SAILPLAY.send('tags.exist', {tags: INTERESTS}, function (res) {
             if (res && res.tags) {
               this.$nextTick(function(){
-                this.user.interests = res.tags.map(tag => ({label: tag.name,model: tag.exist}))
                 this.interests = JSON.parse(JSON.stringify(this.user.interests))
+                this.user.fio = form.fio;
+                this.user.sex = form.sex;
+                this.user.addEmail = form.addEmail;
+                this.user.addPhone = form.addPhone;
+                this.user.birthDate = form.birthDate;
+                this.user.subscriptions = form.subscriptions;
+                this.user.interests = res.tags.map(tag => ({label: tag.name,model: tag.exist}))
               })
+
+              SAILPLAY.send('vars.batch', {names: ['Никнейм']}, function (res) {
+                this.$nextTick(function(){
+                  res.vars.forEach(function (variable) {
+                    this.user.nickname = variable.value || ''
+                  }.bind(this))
+                })
+              }.bind(this))
+
             }
           }.bind(this))
-
-          this.user = form
 
         }.bind(this), RACE_CONDITION_TIME)
 
@@ -407,6 +411,13 @@
 
       hideExit() {
         this.showLogout = false
+      },
+
+      closeProfile() {
+        if(!this.updating){
+          this.showProfile = false
+          this.$parent.bodyLock(false)
+        }
       },
 
       getDays(months) {
@@ -429,7 +440,7 @@
             let origin_user = JSON.parse(JSON.stringify(this.$parent.user.user))
 
             let vars = {
-              'Никнейм': local_user.nickname
+              'Никнейм': local_user.nickname || ''
             }
 
             let interests = local_user.interests.filter(function(interest) {
@@ -583,17 +594,13 @@
       changePassword(e) {
         if(this.updating) return
         this.updating = true
-        let params = {
-          old: this.password.old_password,
-          new: this.password.password_1,
-        }
-        this.$http.get(this.$parent.$parent.config.urls.change_password, params).then(response => {
+        this.$http.get(this.$parent.$parent.config.urls.change_password, this.passwords).then(response => {
           this.$nextTick(function () {
             this.updating = false
             this.showChangePassword = false
             this.$parent.showMessage = {
               title: 'Готово',
-              text: 'Профиль обновлен'
+              text: 'Пароль обновлен'
             }
           })
         }, response => {

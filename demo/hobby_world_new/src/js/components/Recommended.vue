@@ -110,6 +110,10 @@
 
     .sp-recommended-list
         overflow hidden
+
+        & >>> .slick-slide
+            text-align left
+
         .sp-recommended-list-item
             display flex
             justify-content space-between
@@ -170,6 +174,7 @@
                 border-radius 12px
                 background: #68A5B7
                 white-space nowrap
+                text-align center
                 @media screen and (min-width: 780px)
                     max-width 180px
                     margin 12px auto 0

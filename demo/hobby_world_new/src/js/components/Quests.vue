@@ -588,6 +588,8 @@
             align-items flex-start
         @media screen and (min-width: 780px)
             justify-content space-around
+            & >>> .slick-slide
+                      text-align left
         .sp-quests-list-item
             width 100%
             padding 18px
@@ -606,7 +608,7 @@
                 padding 25px
                 width 30% !important
                 height auto
-                margin 1% !important
+                margin 1.6% !important
                 vertical-align middle
             .sp-quests-item-button
                 @media screen and (min-width: 1050px)

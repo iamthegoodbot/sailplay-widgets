@@ -100,9 +100,6 @@
       }
     },
     computed: {
-      getSuccess() {
-        return this.$parent.gifts.filter(gift => gift.id == this.getSuccess)[0]
-      }
     },
     mounted() {
 
