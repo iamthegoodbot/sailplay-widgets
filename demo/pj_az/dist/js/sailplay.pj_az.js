@@ -3881,9 +3881,6 @@ angular.module('sp.pizzameter', [])
       '</div>',
       link: function (scope) {
 
-        console.log(magicConfig.get(), 'keck22')
-        window.setTimeout(()=>{console.log(magicConfig.get(), 'keck23')}, 1000)
-
         scope.target_points = magicConfig.get().pizzameter.cost || 0;
         scope.user_points = 0;
         scope.visible_points = '000000'.split('');
