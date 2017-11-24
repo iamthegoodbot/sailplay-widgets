@@ -36,15 +36,15 @@ angular.module('sp_pj_az', [
         scope.tabs = [
           {
             alias: 'gifts',
-            name: $filter('translate')('tabs.gifts')
+            name: 'tabs.gifts'
           },
           {
             alias: 'actions',
-            name: $filter('translate')('tabs.actions')
+            name: 'tabs.actions'
           },
           {
             alias: 'badges',
-            name: $filter('translate')('tabs.badges')
+            name: 'tabs.badges'
           }
         ];
 

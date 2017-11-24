@@ -2,7 +2,7 @@
 
   angular.module('sp.actions', [])
 
-    .service('actions_data', function ($rootScope) {
+    .service('actions_data', function ($rootScope, magicConfig) {
       var default_data = {
         "system": {
           "inviteFriend": {
@@ -111,8 +111,9 @@
           }
         }
       };
-      if($rootScope.locale.actions){
-        angular.merge(default_data, $rootScope.locale.actions);
+      
+      if(magicConfig.get().lang[$rootScope.config.lang].actions){
+        angular.merge(default_data, magicConfig.get().lang[$rootScope.config.lang].actions);
       }
       return default_data;
     })

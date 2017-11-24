@@ -117,7 +117,7 @@
                    data-ng-repeat="tab in tabs track by $index"
                    data-ng-click="$event.preventDefault();$parent.$parent.activeTab = tab.alias;"
                    data-ng-class="{act: tab.alias == $parent.activeTab}"
-                   data-ng-bind="tab.name"></a>
+                   data-ng-bind="tab.name | translate"></a>
             </div>
 
             <div data-ng-switch="$parent.activeTab">
@@ -163,7 +163,7 @@
                                 <a href="#"
                                    data-sailplay-action data-action="action"
                                    data-text="{{ ('make_action' | translate) }}"
-                                   data-ng-bind="'make_action' | translate"
+                                   data-ng-bind=" (action_data(action).openButtonText || 'make_action') | translate"
                                    data-styles="{{ action_styles(action_data(action)) }}"></a>
                             </div>
 

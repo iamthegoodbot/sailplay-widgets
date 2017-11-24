@@ -10,7 +10,7 @@ angular.module('sp.pizzameter', [])
 
   }])
 
-  .directive('sailplayPizzameter', function ($rootScope, config, $filter) {
+  .directive('sailplayPizzameter', function ($rootScope, config, $filter, magicConfig) {
     return {
       restrict: 'E',
       replace: true,
@@ -27,7 +27,10 @@ angular.module('sp.pizzameter', [])
       '</div>',
       link: function (scope) {
 
-        scope.target_points = $rootScope.config && $rootScope.config.data && $rootScope.config.data.pizzameter_cost || 0;
+        console.log(magicConfig.get(), 'keck22')
+        window.setTimeout(()=>{console.log(magicConfig.get(), 'keck23')}, 1000)
+
+        scope.target_points = magicConfig.get().pizzameter.cost || 0;
         scope.user_points = 0;
         scope.visible_points = '000000'.split('');
 

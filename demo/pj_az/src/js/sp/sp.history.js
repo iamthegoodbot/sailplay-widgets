@@ -1,11 +1,13 @@
 angular.module('sp.history', [])
 
-  .service('history_texts', function ($rootScope) {
-    return $rootScope.locale.history_texts || {};
+  .service('history_texts', function ($rootScope, magicConfig) {
+    var lang = $rootScope.config.lang
+    return magicConfig.get().lang[lang].history_texts || {};
   })
 
-  .service('social_list', function ($rootScope) {
-    return $rootScope.locale.social_list || {};
+  .service('social_list', function ($rootScope, magicConfig) {
+    var lang = $rootScope.config.lang
+    return magicConfig.get().lang[lang].social_list || {};
   })
 
   .filter('history_item', function ($rootScope, history_texts, social_list, $filter, tryParseFieldFilter) {
