@@ -2519,7 +2519,7 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/html/main.html',
-    '<div class="sp_wrapper" data-ng-show="loaded"><div class="bns_inner_block clearfix"><div class="bns_top" data-ng-if="!auth && !isLogged" data-ng-style="{\'background-image\': \'url(\' + headerBg + \')\'}"><div class="bns_top_info"><div class="bns_top_slide"><img data-ng-src="{{ \'logo\' | translate }}"><div class="bns_slide_text_container"><span class="bns_slide_text" data-ng-bind-html="\'header_text\' | translate | to_trusted"></span></div><div class="bns_top_slide_linck"><a data-ng-href="{{ config.data && config.data.login_link }}" data-ng-bind="\'login\' | translate"></a></div></div></div></div><div data-ng-if="auth"><div class="bns_top" data-ng-style="{\'background-image\': \'url(\' + $parent.headerBg + \')\'}"><div class="bns_top_info clearfix" data-sailplay-profile=""><div class="bns_top_info_left" data-ng-if="!showHistory"><div class="bns_ava_block"><img data-ng-src="{{ user().user.pic }}" class="bns_ava"><div class="bns_ava_block_right"><span class="bns_name" data-ng-bind="user().user.name ? user().user.name : (\'empty_name\' | translate)"></span> <a href="#" data-ng-click="$event.preventDefault();show_history();" data-ng-bind="\'history_button\' | translate"></a></div></div><div class="bns_top_info_stat"><div class="bns_ne_pod_bal_block"><div class="bns_ne_pod_bal" data-ng-bind="user().user_points.unconfirmed | number"></div><div class="bns_ne_pod_bal_name_container"><span class="bns_ne_pod_bal_name" data-ng-bind="\'unconfirmed_points\' | translate"></span> <a href="javascript:void(0);">{{ \'unconfirmed_points_hint.title\' | translate }} <span class="bns_tile" data-ng-bind="\'unconfirmed_points_hint.text\' | translate"></span></a></div></div><div class="bns_stat_now"><img data-ng-src="{{ user().last_badge && user().last_badge.pic }}"><div class="bns_stat_name_container"><div class="bns_stat_name" data-ng-bind="user().last_badge && user().last_badge.name ? (\'you_have\' | translate) + (user().last_badge.name | tryParseField) : (\'empty_status\' | translate)"></div><a href="#" data-scroll-to=".bns_tab_block" data-ng-click="$event.preventDefault();open_badge(user().last_badge)" data-ng-bind="\'status_button\' | translate"></a></div></div></div></div><div class="bns_top_popup bns_top_popup_hist" data-sailplay-history="" data-ng-if="showHistory"><a href="#" class="close" data-ng-click="$event.preventDefault();clear_show(\'showHistory\');"></a><div class="bns_top_popup_hist"><h2 data-ng-bind="\'history_title\' | translate"></h2><div class="bns_top_popup_hist_item" data-dir-paginate="item in history() | itemsPerPage:5" data-pagination-id="history_pages"><span class="date" data-ng-bind="item.action_date | date:(\'history_date_format\' | translate)"></span> <span class="name" data-ng-bind="item | history_item"></span> <span class="bal" data-ng-class="{bal_min: item.points_delta < 0, bal_plus: item.points_delta >= 0}" data-ng-bind="item.points_delta && ((item.points_delta > 0 ? \'+\' : \'\') + (item.points_delta | number)) + \' \' + (item.points_delta |sailplay_pluralize:(\'pluralize.points\' | translate))"></span></div><dir-pagination-controls data-max-size="5" data-pagination-id="history_pages" data-template-url="/html/ui/ui.pagination.controls.html" data-auto-hide="true"></dir-pagination-controls></div></div><div class="bns_top_info_right" data-ng-show="true || !showHistory"><sailplay-pizzameter data-model="user().user_points.confirmed" style="width:100%; height: 100%;"></sailplay-pizzameter></div></div></div><div class="bns_tab"><a href="#" data-ng-repeat="tab in tabs track by $index" data-ng-click="$event.preventDefault();$parent.$parent.activeTab = tab.alias;" data-ng-class="{act: tab.alias == $parent.activeTab}" data-ng-bind="tab.name | translate"></a></div><div data-ng-switch="$parent.activeTab"><div class="bns_tab_block" id="gift" data-ng-switch-when="gifts" data-sailplay-gifts=""><div class="bns_gift_item" data-ng-repeat="gift in gifts()"><div class="img-container" data-ng-style="{\'background-image\': \'url(\'+(gift.pic_full | sailplay_pic)+\')\'}"></div><div class="bns_gift_item_bottom"><span class="bns_gift_name" data-ng-bind="gift | giftName"></span> <span class="bns_gift_desc" data-ng-bind="gift | giftDesc"></span></div><a href="#" data-ng-class="{act: user().user_points.confirmed >= gift.points}" data-ng-click="$event.preventDefault();get(gift);">{{ (gift.points | number) + \' \' + (gift.points | sailplay_pluralize:(\'pluralize.points\' | translate)) }} <span class="bns_til" data-ng-if="user().user_points.confirmed < gift.points" data-ng-bind="(gift.points - user().user_points.confirmed) | giftTillNext"></span></a></div></div><div class="bns_tab_block" id="qust" data-ng-switch-when="actions" data-sailplay-actions=""><div class="bns_qust_item" data-ng-repeat="action in actions"><div data-ng-if="action._actionId"><div class="bns_qust_left"><img data-ng-src="{{ action_data(action).image }}"></div><div class="bns_qust_right"><span class="bns_qust_right_name" data-ng-bind-html="action_data(action).name | to_trusted"></span> <span class="bns_qust_right_bal" data-ng-bind="(action.points | number) + \' \' + (action.points | sailplay_pluralize:(\'pluralize.points\' | translate))"></span> <a href="#" data-sailplay-action="" data-action="action" data-text="{{ (\'make_action\' | translate) }}" data-ng-bind="(action_data(action).openButtonText || \'make_action\') | translate" data-styles="{{ action_styles(action_data(action)) }}"></a></div></div><div data-ng-if="!action._actionId" data-ng-click="$event.preventDefault();$parent.$parent.open_custom_action = action;body_lock(true);"><div class="bns_qust_left"><img data-ng-src="{{ action.icon | sailplay_pic }}"></div><div class="bns_qust_right"><span class="bns_qust_right_name" data-ng-bind="action.description | sailplayActionCustomTranslateJson"></span> <span class="bns_qust_right_bal" data-ng-bind="(action.points | number) + \' \' + (action.points | sailplay_pluralize:(\'pluralize.points\' | translate))"></span> <a href="#" class="bns_qust_right_button" data-ng-click="$event.preventDefault();$parent.$parent.open_custom_action = action;body_lock(true);" data-ng-bind="action.button_text | sailplayActionCustomTranslateJson"></a></div></div></div><div class="bns_tab_block_popup" data-ng-if="open_custom_action && open_custom_action.type != \'static_page\' && open_custom_action.type != \'collect_tags\'"><div class="bns_tab_block_popup-layout" data-ng-click="$parent.open_custom_action=null;body_lock(false);"></div><div data-sailplay-action-custom="" class="bns_tab_block_popup-content" data-action="$parent.open_custom_action"></div></div><div class="bns_tab_block_popup" data-ng-if="(open_custom_action) && (open_custom_action.type == \'static_page\' || open_custom_action.type == \'collect_tags\')"><div class="bns_tab_block_popup-layout" data-ng-click="$parent.open_custom_action=null;body_lock(false);"></div><div data-sailplay-action-custom-noiframe-static-page="" class="action static_page bns_tab_block_popup-content noiframe-custom-action" data-action="$parent.open_custom_action"></div></div></div><div class="bns_tab_block" id="achiv" data-ng-switch-when="badges" data-sailplay-badges=""><div class="bns_achiv_line" data-ng-repeat="line in badges().multilevel_badges"><div class="bns_achiv_item_container"><div class="bns_achiv_item" data-ng-repeat="badge in line" data-ng-click="open(badge)" data-ng-class="{act: badge.is_received, open: badge.id == $parent.$parent.opened}"><img data-ng-src="{{ (badge.is_received ? badge.thumbs.url_250x250 : badge.thumbs.url_gs) | sailplay_pic }}"> <span>{{ badge.name | tryParseField }} <strong data-ng-show="badge.points" data-ng-bind="(badge.points | number) + \' \' + (badge.points |sailplay_pluralize:(\'pluralize.points\' | translate))"></strong></span><data-badge-info data-badges="line"></data-badge-info></div></div><data-badge-info data-badges="line"></data-badge-info></div></div></div></div></div><notify-popup></notify-popup></div>');
+    '<div class="sp_wrapper" data-ng-show="loaded"><div class="bns_inner_block clearfix"><div class="bns_top" data-ng-if="!auth && !isLogged" data-ng-style="{\'background-image\': \'url(\' + headerBg + \')\'}"><div class="bns_top_info"><div class="bns_top_slide"><img data-ng-src="{{ \'logo\' | translate }}"><div class="bns_slide_text_container"><span class="bns_slide_text" data-ng-bind-html="\'header_text\' | translate | to_trusted"></span></div><div class="bns_top_slide_linck"><a data-ng-href="{{ config.data && config.data.login_link }}" data-ng-bind="\'login\' | translate"></a></div></div></div></div><div data-ng-if="auth"><div class="bns_top" data-ng-style="{\'background-image\': \'url(\' + $parent.headerBg + \')\'}"><div class="bns_top_info clearfix" data-sailplay-profile=""><div class="bns_top_info_left" data-ng-if="!showHistory"><div class="bns_ava_block"><img data-ng-src="{{ user().user.pic }}" class="bns_ava"><div class="bns_ava_block_right"><span class="bns_name" data-ng-bind="user().user.name ? user().user.name : (\'empty_name\' | translate)"></span> <a href="#" data-ng-click="$event.preventDefault();show_history();" data-ng-bind="\'history_button\' | translate"></a></div></div><div class="bns_top_info_stat"><div class="bns_ne_pod_bal_block"><div class="bns_ne_pod_bal" data-ng-bind="user().user_points.unconfirmed | number"></div><div class="bns_ne_pod_bal_name_container"><span class="bns_ne_pod_bal_name" data-ng-bind="\'unconfirmed_points\' | translate"></span> <a href="javascript:void(0);">{{ \'unconfirmed_points_hint.title\' | translate }} <span class="bns_tile" data-ng-bind="\'unconfirmed_points_hint.text\' | translate"></span></a></div></div><div class="bns_stat_now"><img data-ng-src="{{ user().last_badge && user().last_badge.pic }}"><div class="bns_stat_name_container"><div class="bns_stat_name" data-ng-bind="user().last_badge && user().last_badge.name ? (\'you_have\' | translate) + (user().last_badge.name | tryParseField) : (\'empty_status\' | translate)"></div><a href="#" data-scroll-to=".bns_tab_block" data-ng-click="$event.preventDefault();open_badge(user().last_badge)" data-ng-bind="\'status_button\' | translate"></a></div></div></div></div><div class="bns_top_popup bns_top_popup_hist" data-sailplay-history="" data-ng-if="showHistory"><a href="#" class="close" data-ng-click="$event.preventDefault();clear_show(\'showHistory\');"></a><div class="bns_top_popup_hist"><h2 data-ng-bind="\'history_title\' | translate"></h2><div class="bns_top_popup_hist_item" data-dir-paginate="item in history() | itemsPerPage:5" data-pagination-id="history_pages"><span class="date" data-ng-bind="item.action_date | date:(\'history_date_format\' | translate)"></span> <span class="name" data-ng-bind="item | history_item"></span> <span class="bal" data-ng-class="{bal_min: item.points_delta < 0, bal_plus: item.points_delta >= 0}" data-ng-bind="item.points_delta && ((item.points_delta > 0 ? \'+\' : \'\') + (item.points_delta | number)) + \' \' + (item.points_delta |sailplay_pluralize:(\'pluralize.points\' | translate))"></span></div><dir-pagination-controls data-max-size="5" data-pagination-id="history_pages" data-template-url="/html/ui/ui.pagination.controls.html" data-auto-hide="true"></dir-pagination-controls></div></div><div class="bns_top_info_right" data-ng-show="true || !showHistory"><sailplay-pizzameter data-model="user().user_points.confirmed" style="width:100%; height: 100%;"></sailplay-pizzameter></div></div></div><div class="bns_tab"><a href="#" data-ng-repeat="tab in tabs track by $index" data-ng-click="$event.preventDefault();$parent.$parent.activeTab = tab.alias;" data-ng-class="{act: tab.alias == $parent.activeTab}" data-ng-bind="tab.name | translate"></a></div><div data-ng-switch="$parent.activeTab"><div class="bns_tab_block" id="gift" data-ng-switch-when="gifts" data-sailplay-gifts=""><div class="bns_gift_item" data-ng-repeat="gift in gifts()"><div class="img-container" data-ng-style="{\'background-image\': \'url(\'+(gift.pic_full | sailplay_pic)+\')\'}"></div><div class="bns_gift_item_bottom"><span class="bns_gift_name" data-ng-bind="gift | giftName"></span> <span class="bns_gift_desc" data-ng-bind="gift | giftDesc"></span></div><a href="#" data-ng-class="{act: user().user_points.confirmed >= gift.points}" data-ng-click="$event.preventDefault();get(gift);">{{ (gift.points | number) + \' \' + (gift.points | sailplay_pluralize:(\'pluralize.points\' | translate)) }} <span class="bns_til" data-ng-if="user().user_points.confirmed < gift.points" data-ng-bind="(gift.points - user().user_points.confirmed) | giftTillNext"></span></a></div></div><div class="bns_tab_block" id="qust" data-ng-switch-when="actions" data-sailplay-actions=""><div class="bns_qust_item" data-ng-repeat="action in actions"><div data-ng-if="action._actionId"><div class="bns_qust_left"><img data-ng-src="{{ action_data(action).image }}"></div><div class="bns_qust_right"><span class="bns_qust_right_name" data-ng-bind-html="action_data(action).name | to_trusted"></span> <span class="bns_qust_right_bal" data-ng-bind="(action.points | number) + \' \' + (action.points | sailplay_pluralize:(\'pluralize.points\' | translate))"></span> <a href="#" data-sailplay-action="" data-action="action" data-text="{{ (action_data(action).openButtonText || \'make_action\') | translate }}" data-ng-bind="(action_data(action).openButtonText || \'make_action\') | translate" data-styles="{{ action_styles(action_data(action)) }}"></a></div></div><div data-ng-if="!action._actionId" data-ng-click="$event.preventDefault();$parent.$parent.open_custom_action = action;body_lock(true);"><div class="bns_qust_left"><img data-ng-src="{{ action.icon | sailplay_pic }}"></div><div class="bns_qust_right"><span class="bns_qust_right_name" data-ng-bind="action.description | sailplayActionCustomTranslateJson"></span> <span class="bns_qust_right_bal" data-ng-bind="(action.points | number) + \' \' + (action.points | sailplay_pluralize:(\'pluralize.points\' | translate))"></span> <a href="#" class="bns_qust_right_button" data-ng-click="$event.preventDefault();$parent.$parent.open_custom_action = action;body_lock(true);" data-ng-bind="action.button_text | sailplayActionCustomTranslateJson"></a></div></div></div><div class="bns_tab_block_popup" data-ng-if="open_custom_action && open_custom_action.type != \'static_page\' && open_custom_action.type != \'collect_tags\'"><div class="bns_tab_block_popup-layout" data-ng-click="$parent.open_custom_action=null;body_lock(false);"></div><div data-sailplay-action-custom="" class="bns_tab_block_popup-content" data-action="$parent.open_custom_action"></div></div><div class="bns_tab_block_popup" data-ng-if="(open_custom_action) && (open_custom_action.type == \'static_page\' || open_custom_action.type == \'collect_tags\')"><div class="bns_tab_block_popup-layout" data-ng-click="$parent.open_custom_action=null;body_lock(false);"></div><div data-sailplay-action-custom-noiframe-static-page="" class="action static_page bns_tab_block_popup-content noiframe-custom-action" data-action="$parent.open_custom_action"></div></div></div><div class="bns_tab_block" id="achiv" data-ng-switch-when="badges" data-sailplay-badges=""><div class="bns_achiv_line" data-ng-repeat="line in badges().multilevel_badges"><div class="bns_achiv_item_container"><div class="bns_achiv_item" data-ng-repeat="badge in line" data-ng-click="open(badge)" data-ng-class="{act: badge.is_received, open: badge.id == $parent.$parent.opened}"><img data-ng-src="{{ (badge.is_received ? badge.thumbs.url_250x250 : badge.thumbs.url_gs) | sailplay_pic }}"> <span>{{ badge.name | tryParseField }} <strong data-ng-show="badge.points" data-ng-bind="(badge.points | number) + \' \' + (badge.points |sailplay_pluralize:(\'pluralize.points\' | translate))"></strong></span><data-badge-info data-badges="line"></data-badge-info></div></div><data-badge-info data-badges="line"></data-badge-info></div></div></div></div></div><notify-popup></notify-popup></div>');
 }]);
 })();
 
@@ -2660,6 +2660,315 @@ window.spbootstrap = function(){
   var app_container = document.getElementsByTagName('sailplay-pj-az')[0];
   app_container && angular.bootstrap(app_container, ['sp_pj_az']);
 }
+angular.module('core', [
+  'pascalprecht.translate'
+])
+
+.config(["$translateProvider", function ($translateProvider) {
+
+  //$translateProvider.translations('default', window._SP_LOCALE || {});
+
+  $translateProvider.useLoader('magicTranslations');
+
+  $translateProvider.preferredLanguage(window.sailplay_config.lang);
+
+  $translateProvider.useSanitizeValueStrategy(null);
+
+}])
+
+.factory('magicTranslations', ["magicConfig", "$q", "sp", "$window", function(magicConfig, $q, sp, $window){
+  return function(){
+    var deferred = $q.defer()
+
+    sp.send('init', {
+      partner_id: $window.sailplay_config.partner_id || 1652,
+      domain: $window.sailplay_config.domain || '//sailplay.ru',
+      lang: $window.sailplay_config.lang || 'en'
+    });
+    sp.on('init.success', function () {
+
+      sp.send('magic.config', $window.sailplay_config.config || 'default')
+
+    });
+
+    sp.on('magic.config.success', function (res) {
+      
+      magicConfig.set(res.config.config)
+      deferred.resolve(res.config.config.lang[$window.sailplay_config.lang || 'en'])
+      //$translateProvider.translations('default', res.config.lang || {});
+
+    })
+    return deferred.promise
+  }
+}])
+
+.service('magicConfig', function(){
+  var config = {}
+  this.set = function(newConfig){
+    config = newConfig
+  }
+  this.get = function(){
+    return config
+  }
+})
+
+.factory('getTimeZone', function(){
+  return function() {
+    var offset = new Date().getTimezoneOffset(), o = Math.abs(offset);
+    return (offset < 0 ? "+" : "-") + ("00" + Math.floor(o / 60)).slice(-2) + ":" + ("00" + (o % 60)).slice(-2);
+  }
+})
+
+.run(["sp", "sp_api", "$rootScope", "getTimeZone", "magicConfig", function (sp, sp_api, $rootScope, getTimeZone, magicConfig) {
+
+  $rootScope.config = window.sailplay_config || {};
+
+  $rootScope.config.partner_id = window.sailplay_config.partner_id || 1652
+
+  $rootScope.remote_login_options = {
+    background: 'rgba(0, 0, 0, 0.5)',
+    lang: $rootScope.config.lang || 'en',
+    disabled_options: ['socials', 'agreement']
+  };
+
+
+  $rootScope.loaded = false;
+
+  if(window.sessionStorage && window.sessionStorage.getItem('splogged')) {
+    $rootScope.isLogged = !!window.sessionStorage.getItem('splogged')
+  } else {
+    $rootScope.isLogged = false
+  }
+
+  $rootScope.auth = false;
+
+  sp.on('magic.config.success', function (res) {
+      //$translateProvider.translations('default', res.config.lang || {});
+
+      $rootScope.$apply(function () {
+
+        $rootScope.loaded = true;
+
+        $rootScope.config.auth_hash && sp.send('login', $rootScope.config.auth_hash);
+
+      });
+  })    
+
+  sp.on('login.error', function () {
+
+    $rootScope.$apply(function () {
+
+      $rootScope.loaded = true;
+
+    });
+
+  });
+
+  sp.on('login.success', function () {
+
+    window.sessionStorage && window.sessionStorage.setItem('splogged', true)
+
+    sp_api.reset();
+
+    $rootScope.$apply(function () {
+
+      $rootScope.auth = true;
+
+      $rootScope.isLogged = true
+
+      loadData();
+
+    })
+
+  });
+
+  sp.on('logout.success', function () {
+
+    window.sessionStorage && window.sessionStorage.removeItem('splogged')
+
+    sp_api.reset();
+    //
+    // if ($(".js-slick-slider.slick-initialized").length) {
+    //   $(".js-slick-slider.slick-initialized").slick('unslick');
+    // }
+
+    $rootScope.$apply(function () {
+
+      $rootScope.auth = false;
+
+      $rootScope.isLogged = false
+
+    });
+
+  });
+
+  sp.on('tags.add.success', function () {
+
+    setTimeout(function () {
+
+      $rootScope.$apply(loadData);
+
+    }, 3000);
+
+  });
+
+
+  sp.on('users.update.success', function () {
+
+    $rootScope.$apply(loadData);
+
+  });
+
+  sp.on('actions.perform.success', function (res) {
+
+    $rootScope.$apply(loadData);
+
+  });
+
+  sp.on('gift.purchase.force_complete.success', function (res) {
+
+    $rootScope.$apply(loadData);
+
+  });
+
+  sp.on('gifts.purchase.success', function () {
+
+    // $rootScope.$apply(loadData);
+
+  });
+
+  sp.on('actions.perform.error', function (res) {
+
+    sp_api.call('load.actions.list');
+
+    sp_api.call('load.actions.custom.list');
+
+    $rootScope.$apply();
+
+  });
+
+  $rootScope.$on('update', function () {
+    loadData();
+  });
+
+  function loadData() {
+
+    $rootScope.$broadcast('clear_all_show');
+
+    var slick_selector = '.slick-initialized';
+    if ($(slick_selector).length) {
+      $(slick_selector).slick('unslick');
+    }
+
+    sp_api.call('load.actions.list');
+
+    sp_api.call('load.actions.custom.list');
+
+    sp_api.call('load.badges.list', {include_rules: 1});
+
+    sp_api.call('load.user.info', {all: 1, purchases: 1});
+
+    sp_api.call('load.gifts.list', {verbose: 1});
+
+    sp_api.call('load.user.history', {tz: getTimeZone()});
+
+  }
+}]);
+(function () {
+
+  angular.module('ui', [
+    'angularUtils.directives.dirPagination',
+    'ngTouch'
+  ])
+
+    .directive('notifyPopup', function () {
+
+      return {
+
+        restrict: 'E',
+        replace: false,
+        templateUrl: '/html/ui/ui.notify.popup.html',
+        scope: true,
+        link: function (scope) {
+
+          scope.data = null;
+
+          scope.$on('notify:show', function (e, info) {
+            scope.data = info;
+          });
+
+          scope.$on('notify:hide', function () {
+            scope.data = null;
+          });
+
+        }
+
+      }
+
+    })
+
+    .directive('scrollTo', function () {
+      return {
+        restrict: 'A',
+        replace: false,
+        scope: false,
+        link: function (scope, el, attr) {
+
+          var to = $(attr.scrollTo);
+          var time = attr.scrollTime;
+
+          $(el).on('click', function () {
+
+            to = $(attr.scrollTo);
+
+            if (!to.length) return;
+
+            var offset = to.offset().top;
+
+            $("html, body").delay(100).animate({
+              scrollTop: offset
+            }, time || 500, function () {
+              to.addClass('scrolled');
+              setTimeout(function () {
+                to.removeClass('scrolled')
+              }, 1000)
+            });
+
+          })
+
+        }
+      }
+    })
+
+    .directive('spAuth', ["$rootScope", "sp", function ($rootScope, sp) {
+      return {
+        restrict: 'A',
+        replace: false,
+        scope: false,
+        link: function (scope, el, attrs) {
+
+          var opts = scope.$eval(attrs.spAuth);
+
+          var options = {
+            node: el[0]
+          };
+
+          angular.merge(options, opts);
+
+          $rootScope.$on('login.remote', function () {
+
+            sp.send('login.remote', options);
+
+          });
+
+          sp.config() && sp.config().partner && sp.send('login.remote', options);
+
+        }
+      }
+    }]);
+
+}());
+
 (function () {
 
   angular.module('sp.actions', [])
@@ -2773,10 +3082,11 @@ window.spbootstrap = function(){
           }
         }
       };
-      
+
       if(magicConfig.get().lang[$rootScope.config.lang].actions){
         angular.merge(default_data, magicConfig.get().lang[$rootScope.config.lang].actions);
       }
+
       return default_data;
     }])
 
@@ -3007,7 +3317,7 @@ window.spbootstrap = function(){
                         sp_api.call('load.user.info', {all: 1, purchases: 1});
                         sp_api.call('load.user.history', {tz: getTimeZone()});
                         sp_api.call('load.actions.list');
-                      }, 1200)
+                      }, 2000)
                       //resolve(data);
                     }
                   })
@@ -3076,7 +3386,7 @@ window.spbootstrap = function(){
             sp_api.call('load.actions.list');
 
             sp_api.call('load.actions.custom.list');
-
+            
             $rootScope.$apply(function () {
 
               scope.show = null;
@@ -3873,311 +4183,3 @@ angular.module('sp.status', [])
     };
 
   }]);
-angular.module('core', [
-  'pascalprecht.translate'
-])
-
-.config(["$translateProvider", function ($translateProvider) {
-
-  //$translateProvider.translations('default', window._SP_LOCALE || {});
-
-  $translateProvider.useLoader('magicTranslations');
-
-  $translateProvider.preferredLanguage(window.sailplay_config.lang);
-
-  $translateProvider.useSanitizeValueStrategy(null);
-
-}])
-
-.factory('magicTranslations', ["magicConfig", "$q", "sp", "$window", function(magicConfig, $q, sp, $window){
-  return function(){
-    var deferred = $q.defer()
-
-    sp.send('init', {
-      partner_id: $window.sailplay_config.partner_id || 1652,
-      domain: $window.sailplay_config.domain || '//sailplay.ru',
-      lang: $window.sailplay_config.lang || 'en'
-    });
-    sp.on('init.success', function () {
-
-      sp.send('magic.config', $window.sailplay_config.config || 'default')
-
-    });
-
-    sp.on('magic.config.success', function (res) {
-      
-      magicConfig.set(res.config.config)
-      deferred.resolve(res.config.config.lang[$window.sailplay_config.lang || 'en'])
-      //$translateProvider.translations('default', res.config.lang || {});
-
-    })
-    return deferred.promise
-  }
-}])
-
-.service('magicConfig', function(){
-  var config = {}
-  this.set = function(newConfig){
-    config = newConfig
-  }
-  this.get = function(){
-    return config
-  }
-})
-
-.factory('getTimeZone', function(){
-  return function() {
-    var offset = new Date().getTimezoneOffset(), o = Math.abs(offset);
-    return (offset < 0 ? "+" : "-") + ("00" + Math.floor(o / 60)).slice(-2) + ":" + ("00" + (o % 60)).slice(-2);
-  }
-})
-
-.run(["sp", "sp_api", "$rootScope", "getTimeZone", "magicConfig", function (sp, sp_api, $rootScope, getTimeZone, magicConfig) {
-
-  $rootScope.config = window.sailplay_config || {};
-
-  $rootScope.config.partner_id = window.sailplay_config.partner_id || 1652
-
-  $rootScope.remote_login_options = {
-    background: 'rgba(0, 0, 0, 0.5)',
-    lang: $rootScope.config.lang || 'en',
-    disabled_options: ['socials', 'agreement']
-  };
-
-
-  $rootScope.loaded = false;
-
-  if(window.sessionStorage && window.sessionStorage.getItem('splogged')) {
-    $rootScope.isLogged = !!window.sessionStorage.getItem('splogged')
-  } else {
-    $rootScope.isLogged = false
-  }
-
-  $rootScope.auth = false;
-
-  sp.on('magic.config.success', function (res) {
-      //$translateProvider.translations('default', res.config.lang || {});
-
-      $rootScope.$apply(function () {
-
-        $rootScope.loaded = true;
-
-        $rootScope.config.auth_hash && sp.send('login', $rootScope.config.auth_hash);
-
-      });
-  })    
-
-  sp.on('login.error', function () {
-
-    $rootScope.$apply(function () {
-
-      $rootScope.loaded = true;
-
-    });
-
-  });
-
-  sp.on('login.success', function () {
-
-    window.sessionStorage && window.sessionStorage.setItem('splogged', true)
-
-    sp_api.reset();
-
-    $rootScope.$apply(function () {
-
-      $rootScope.auth = true;
-
-      $rootScope.isLogged = true
-
-      loadData();
-
-    })
-
-  });
-
-  sp.on('logout.success', function () {
-
-    window.sessionStorage && window.sessionStorage.removeItem('splogged')
-
-    sp_api.reset();
-    //
-    // if ($(".js-slick-slider.slick-initialized").length) {
-    //   $(".js-slick-slider.slick-initialized").slick('unslick');
-    // }
-
-    $rootScope.$apply(function () {
-
-      $rootScope.auth = false;
-
-      $rootScope.isLogged = false
-
-    });
-
-  });
-
-  sp.on('tags.add.success', function () {
-
-    setTimeout(function () {
-
-      $rootScope.$apply(loadData);
-
-    }, 3000);
-
-  });
-
-
-  sp.on('users.update.success', function () {
-
-    $rootScope.$apply(loadData);
-
-  });
-
-  sp.on('actions.perform.success', function (res) {
-
-    $rootScope.$apply(loadData);
-
-  });
-
-  sp.on('gift.purchase.force_complete.success', function (res) {
-
-    $rootScope.$apply(loadData);
-
-  });
-
-  sp.on('gifts.purchase.success', function () {
-
-    // $rootScope.$apply(loadData);
-
-  });
-
-  sp.on('actions.perform.error', function (res) {
-
-    sp_api.call('load.actions.list');
-
-    sp_api.call('load.actions.custom.list');
-
-    $rootScope.$apply();
-
-  });
-
-  $rootScope.$on('update', function () {
-    loadData();
-  });
-
-  function loadData() {
-
-    $rootScope.$broadcast('clear_all_show');
-
-    var slick_selector = '.slick-initialized';
-    if ($(slick_selector).length) {
-      $(slick_selector).slick('unslick');
-    }
-
-    sp_api.call('load.actions.list');
-
-    sp_api.call('load.actions.custom.list');
-
-    sp_api.call('load.badges.list', {include_rules: 1});
-
-    sp_api.call('load.user.info', {all: 1, purchases: 1});
-
-    sp_api.call('load.gifts.list', {verbose: 1});
-
-    sp_api.call('load.user.history', {tz: getTimeZone()});
-
-  }
-}]);
-(function () {
-
-  angular.module('ui', [
-    'angularUtils.directives.dirPagination',
-    'ngTouch'
-  ])
-
-    .directive('notifyPopup', function () {
-
-      return {
-
-        restrict: 'E',
-        replace: false,
-        templateUrl: '/html/ui/ui.notify.popup.html',
-        scope: true,
-        link: function (scope) {
-
-          scope.data = null;
-
-          scope.$on('notify:show', function (e, info) {
-            scope.data = info;
-          });
-
-          scope.$on('notify:hide', function () {
-            scope.data = null;
-          });
-
-        }
-
-      }
-
-    })
-
-    .directive('scrollTo', function () {
-      return {
-        restrict: 'A',
-        replace: false,
-        scope: false,
-        link: function (scope, el, attr) {
-
-          var to = $(attr.scrollTo);
-          var time = attr.scrollTime;
-
-          $(el).on('click', function () {
-
-            to = $(attr.scrollTo);
-
-            if (!to.length) return;
-
-            var offset = to.offset().top;
-
-            $("html, body").delay(100).animate({
-              scrollTop: offset
-            }, time || 500, function () {
-              to.addClass('scrolled');
-              setTimeout(function () {
-                to.removeClass('scrolled')
-              }, 1000)
-            });
-
-          })
-
-        }
-      }
-    })
-
-    .directive('spAuth', ["$rootScope", "sp", function ($rootScope, sp) {
-      return {
-        restrict: 'A',
-        replace: false,
-        scope: false,
-        link: function (scope, el, attrs) {
-
-          var opts = scope.$eval(attrs.spAuth);
-
-          var options = {
-            node: el[0]
-          };
-
-          angular.merge(options, opts);
-
-          $rootScope.$on('login.remote', function () {
-
-            sp.send('login.remote', options);
-
-          });
-
-          sp.config() && sp.config().partner && sp.send('login.remote', options);
-
-        }
-      }
-    }]);
-
-}());

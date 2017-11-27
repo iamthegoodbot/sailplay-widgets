@@ -162,7 +162,7 @@
                                       data-ng-bind="(action.points | number) + ' ' + (action.points | sailplay_pluralize:('pluralize.points' | translate))"></span>
                                 <a href="#"
                                    data-sailplay-action data-action="action"
-                                   data-text="{{ ('make_action' | translate) }}"
+                                   data-text="{{ (action_data(action).openButtonText || 'make_action') | translate }}"
                                    data-ng-bind=" (action_data(action).openButtonText || 'make_action') | translate"
                                    data-styles="{{ action_styles(action_data(action)) }}"></a>
                             </div>

@@ -111,10 +111,11 @@
           }
         }
       };
-      
+
       if(magicConfig.get().lang[$rootScope.config.lang].actions){
         angular.merge(default_data, magicConfig.get().lang[$rootScope.config.lang].actions);
       }
+
       return default_data;
     })
 
@@ -345,7 +346,7 @@
                         sp_api.call('load.user.info', {all: 1, purchases: 1});
                         sp_api.call('load.user.history', {tz: getTimeZone()});
                         sp_api.call('load.actions.list');
-                      }, 1200)
+                      }, 2000)
                       //resolve(data);
                     }
                   })
@@ -414,7 +415,7 @@
             sp_api.call('load.actions.list');
 
             sp_api.call('load.actions.custom.list');
-
+            
             $rootScope.$apply(function () {
 
               scope.show = null;
