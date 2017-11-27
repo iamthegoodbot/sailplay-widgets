@@ -289,22 +289,21 @@
     
     <script type="text/javascript">
 
-      document.addEventListener('DOMContentLoaded', function () {
 
-        var params = SAILPLAY.url_params() || {};
+      var params = SAILPLAY.url_params() || {};
 
-        window.sailplay_config = {
-          auth_hash: params.auth_hash || '02a98b3b016c2915a0ee9376812398dd4a0c312d',
-          lang: 'en',
-          config: 'lk',
-          data: {
-            pizzameter_cost: 800,
-            login_link: "login.html",
-            share_url: "https://new.pja.az"
-          }
-        };
+      window.sailplay_config = {
+        auth_hash: params.auth_hash || '02a98b3b016c2915a0ee9376812398dd4a0c312d',
+        lang: 'en',
+        config: 'lk',
+        data: {
+          pizzameter_cost: 800,
+          login_link: "login.html",
+          share_url: "https://new.pja.az"
+        }
+      };
 
-      });
+      document.addEventListener("DOMContentLoaded", window.spbootstrap);
 
 
 

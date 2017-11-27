@@ -107,11 +107,7 @@ angular.module('sp_pj_az', [
     }
   });
 
-setTimeout(function () {
-
+window.spbootstrap = function(){
   var app_container = document.getElementsByTagName('sailplay-pj-az')[0];
   app_container && angular.bootstrap(app_container, ['sp_pj_az']);
-
-}, 100);
-
-
+}
