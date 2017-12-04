@@ -2876,101 +2876,6 @@ angular.module('core', [
 }]);
 (function () {
 
-  angular.module('ui', [
-    'angularUtils.directives.dirPagination',
-    'ngTouch'
-  ])
-
-    .directive('notifyPopup', function () {
-
-      return {
-
-        restrict: 'E',
-        replace: false,
-        templateUrl: '/html/ui/ui.notify.popup.html',
-        scope: true,
-        link: function (scope) {
-
-          scope.data = null;
-
-          scope.$on('notify:show', function (e, info) {
-            scope.data = info;
-          });
-
-          scope.$on('notify:hide', function () {
-            scope.data = null;
-          });
-
-        }
-
-      }
-
-    })
-
-    .directive('scrollTo', function () {
-      return {
-        restrict: 'A',
-        replace: false,
-        scope: false,
-        link: function (scope, el, attr) {
-
-          var to = $(attr.scrollTo);
-          var time = attr.scrollTime;
-
-          $(el).on('click', function () {
-
-            to = $(attr.scrollTo);
-
-            if (!to.length) return;
-
-            var offset = to.offset().top;
-
-            $("html, body").delay(100).animate({
-              scrollTop: offset
-            }, time || 500, function () {
-              to.addClass('scrolled');
-              setTimeout(function () {
-                to.removeClass('scrolled')
-              }, 1000)
-            });
-
-          })
-
-        }
-      }
-    })
-
-    .directive('spAuth', ["$rootScope", "sp", function ($rootScope, sp) {
-      return {
-        restrict: 'A',
-        replace: false,
-        scope: false,
-        link: function (scope, el, attrs) {
-
-          var opts = scope.$eval(attrs.spAuth);
-
-          var options = {
-            node: el[0]
-          };
-
-          angular.merge(options, opts);
-
-          $rootScope.$on('login.remote', function () {
-
-            sp.send('login.remote', options);
-
-          });
-
-          sp.config() && sp.config().partner && sp.send('login.remote', options);
-
-        }
-      }
-    }]);
-
-}());
-
-(function () {
-
   angular.module('sp.actions', [])
 
     .service('actions_data', ["$rootScope", "magicConfig", function ($rootScope, magicConfig) {
@@ -3566,7 +3471,7 @@ angular.module('sp.gifts', [])
     }
   }])
 
-  .directive('sailplayGifts', ["sp", "sp_api", "$rootScope", "$filter", function (sp, sp_api, $rootScope, $filter) {
+  .directive('sailplayGifts', ["sp", "sp_api", "$rootScope", "$filter", "magicConfig", "$timeout", function (sp, sp_api, $rootScope, $filter, magicConfig, $timeout) {
     return {
 
       restrict: 'A',
@@ -3594,6 +3499,13 @@ angular.module('sp.gifts', [])
               title: $filter('translate')('gifts_messages.success.title'),
               text: $filter('translate')('gifts_messages.success.text')
             });
+            if(magicConfig.get() && magicConfig.get().gift_cb.name){
+              var fnName = magicConfig.get().gift_cb.name
+              var timeout = magicConfig.get().gift_cb.timeout
+              $timeout(()=>{
+                window[fnName]()
+              }, timeout || 0)
+            }
           });
         });
 
@@ -4183,3 +4095,97 @@ angular.module('sp.status', [])
     };
 
   }]);
+(function () {
+
+  angular.module('ui', [
+    'angularUtils.directives.dirPagination',
+    'ngTouch'
+  ])
+
+    .directive('notifyPopup', function () {
+
+      return {
+
+        restrict: 'E',
+        replace: false,
+        templateUrl: '/html/ui/ui.notify.popup.html',
+        scope: true,
+        link: function (scope) {
+
+          scope.data = null;
+
+          scope.$on('notify:show', function (e, info) {
+            scope.data = info;
+          });
+
+          scope.$on('notify:hide', function () {
+            scope.data = null;
+          });
+
+        }
+
+      }
+
+    })
+
+    .directive('scrollTo', function () {
+      return {
+        restrict: 'A',
+        replace: false,
+        scope: false,
+        link: function (scope, el, attr) {
+
+          var to = $(attr.scrollTo);
+          var time = attr.scrollTime;
+
+          $(el).on('click', function () {
+
+            to = $(attr.scrollTo);
+
+            if (!to.length) return;
+
+            var offset = to.offset().top;
+
+            $("html, body").delay(100).animate({
+              scrollTop: offset
+            }, time || 500, function () {
+              to.addClass('scrolled');
+              setTimeout(function () {
+                to.removeClass('scrolled')
+              }, 1000)
+            });
+
+          })
+
+        }
+      }
+    })
+
+    .directive('spAuth', ["$rootScope", "sp", function ($rootScope, sp) {
+      return {
+        restrict: 'A',
+        replace: false,
+        scope: false,
+        link: function (scope, el, attrs) {
+
+          var opts = scope.$eval(attrs.spAuth);
+
+          var options = {
+            node: el[0]
+          };
+
+          angular.merge(options, opts);
+
+          $rootScope.$on('login.remote', function () {
+
+            sp.send('login.remote', options);
+
+          });
+
+          sp.config() && sp.config().partner && sp.send('login.remote', options);
+
+        }
+      }
+    }]);
+
+}());
