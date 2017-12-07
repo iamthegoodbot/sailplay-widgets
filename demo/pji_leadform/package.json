@@ -9,7 +9,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "sailplay-hub": "^2.0.28"
+    "css-loader": "^0.28.7",
+    "file-loader": "^1.1.5",
+    "sailplay-hub": "^2.0.28",
+    "style-loader": "^0.19.0",
+    "url-loader": "^0.6.2"
   },
   "devDependencies": {
     "webpack": "^3.5.5"
