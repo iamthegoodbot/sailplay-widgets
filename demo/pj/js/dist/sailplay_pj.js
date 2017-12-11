@@ -954,11 +954,141 @@ angular.module('pj.services', [])
 
     var self = this;
 
-    self.lang = 'ru';
+    self.lang = 'pl';
 
     self.setLang = function (lang) {
       self.lang = lang;
       $rootScope.translate = self[self.lang];
+    };
+
+    self.pl = {
+      "badges": {
+        "intro": "Congratulations, you received a new badge!",
+        "bonus_points": "bonus points!",
+        "this_badge": "This badge gives you",
+        "share_this_news": "Share that:",
+        "title": "List of badges",
+        "descr": "You get 15 extra points for every badge received!"
+      },
+      "profile": {
+        "no_name": "Name is not specified",
+        "confirmed_points": "Active points",
+        "history_link": "Transactions history",
+        "unconfirmed_points": "Nieaktywne punkty.",
+        "what_is_it": "Co to jest?",
+        "what_is_unconfirmed_points": "Co to są<br> nieaktywne<br> punkty premiowe?",
+        "purchases": "Otrzymujesz punkty premiowe za zakupy oraz inne akcje.",
+        "confirm_points": "Punkty stają się aktywne po dokonaniu płatności za towje zamówienie.",
+        "points_to_gift": "Punkty premiowe mogą być zamienione na specjalne podarunki."
+      },
+      "purchase": {
+        bonus_for_sharing: 'za każde polecenie ',
+        purchase_points: 'Punkty zdobyte',
+        hello: 'Welcome<br/>to<br/>PapaBonus',
+        promo_text: "Zamów pizzę i zaproś znajomych, a otrzymasz punkty premii i darmową pizzę.",
+        link_text: 'Idż do Premii Papa',
+        papa_bonus: 'Papa Bonus'
+      },
+
+      "history": {
+        "title": "Transactions history",
+        "no_descr": "No description",
+        "items": {
+          "purchase": "Purchase",
+          "gift_purchase": "Gift",
+          "badge": "Badge",
+          "registration": "Sign up",
+          "referral": "Invite friend",
+          "referred": "Registration from friend's invite",
+          "referred_purchase": "Friend's purchase",
+          "promocode": "Promocode activation",
+          "enter_group": "Joined our group on ",
+          "share_purchase": "Shared a purchase on ",
+          "social_share": "Shared our website on ",
+          "share_badge": "Shared a badge on "
+        }
+      },
+      "gifts": {
+        "title": "List of gifts",
+        "descr": "Redeem your points for gifts",
+        "auth_request": "You need to be authorized to get our gifts",
+        "login": "Sign in",
+        "need_more_1": "Aby otrzymać ten dar trzeba kolejne",
+        "need_more_2": "punktów",
+        "get_points": "Zdobądź",
+        "enough_points": "You have enough bonus points to get this gift.",
+        "to_basket": "Dodaj do zamówienia",
+        "points": "points"
+      },
+      "actions": {
+        "title": "List of quests",
+        "descr": "Complete quests to get extra points",
+        "no_descr": "No description",
+        "earn_points": 'Earn points',
+        "share": 'Share',
+        "join": 'Join',
+        "ac_connected": 'Your account was successfully linked to your profile. Press "Share" to earn bonus points.',
+        "ac_connected_join": 'Your account was successfully linked to your profile. Press "Join" to earn bonus points.',
+        "system": {
+          "emailBinding": "Enter email",
+          "fillProfile": "Fill profile",
+          "inviteFriend": "Invite friend"
+        },
+        "social": {
+          "vk": {
+            "like": {
+              "name": "Join the group"
+            },
+            "partner_page": {
+              "name": "Share our website on VK"
+            },
+            "purchase": {
+              "name": "Share your purchase on VK"
+            }
+          },
+          "fb": {
+            "like": {
+              "name": "Like Facebook group"
+            },
+            "partner_page": {
+              "name": "Share our website on Facebook"
+            },
+            "purchase": {
+              "name": "Share your purchase on Facebook"
+            }
+          },
+          "gp": {
+            "like": {
+              "name": "Like G+ group"
+            },
+            "partner_page": {
+              "name": "Share our website on G+"
+            },
+            "purchase": {
+              "name": "Share your purchase on G+"
+            }
+          },
+          "ok": {
+            "like": {
+              "name": "Join the group"
+            },
+            "partner_page": {
+              "name": "Share our website on Odnoklassniki"
+            },
+            "purchase": {
+              "name": "Share you purchase on Odnoklassniki"
+            }
+          },
+          "tw": {
+            "partner_page": {
+              "name": "Share our website on twitter"
+            },
+            "purchase": {
+              "name": "Share your purchase on twitter"
+            }
+          }
+        }
+      }
     };
 
     self.ru = {
