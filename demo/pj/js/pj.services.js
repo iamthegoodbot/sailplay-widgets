@@ -35,7 +35,7 @@ angular.module('pj.services', [])
         purchase_points: 'Punkty zdobyte',
         hello: 'Welcome<br/>to<br/>PapaBonus',
         promo_text: "Zamów pizzę i zaproś znajomych, a otrzymasz punkty premii i darmową pizzę.",
-        link_text: 'Idż do Premii Papa',
+        link_text: 'Idż do Papa Bonus',
         papa_bonus: 'Papa Bonus'
       },
 
@@ -139,7 +139,7 @@ angular.module('pj.services', [])
         }
       }
     };
-
+    
     self.ru = {
       "badges": {
         "intro": "Поздравляем, вы получили новый бейдж!",
