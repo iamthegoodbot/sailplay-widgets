@@ -299,7 +299,8 @@ var SAILPLAY = (function () {
       return;
     }
     var params = {
-      auth_hash: _config.auth_hash
+      auth_hash: _config.auth_hash,
+      lang: _config.lang
     };
     JSONP.get(_config.DOMAIN + _config.urls.users.history, params, function (res) {
       //      console.dir(res);

@@ -299,7 +299,8 @@ var SAILPLAY = (function () {
       return;
     }
     var params = {
-      auth_hash: _config.auth_hash
+      auth_hash: _config.auth_hash,
+      lang: _config.lang
     };
     JSONP.get(_config.DOMAIN + _config.urls.users.history, params, function (res) {
       //      console.dir(res);
@@ -760,17 +761,17 @@ angular.module('pj.services', [])
 
     self.pl = {
       "badges": {
-        "intro": "Congratulations, you received a new badge!",
-        "bonus_points": "bonus points!",
-        "this_badge": "This badge gives you",
-        "share_this_news": "Share that:",
-        "title": "List of badges",
-        "descr": "You get 15 extra points for every badge received!"
+        "intro": "Gratulacje, otrzymałeś nowa odznakę!",
+        "bonus_points": "punkty premiowe!",
+        "this_badge": "Ta odznaka daje ci",
+        "share_this_news": "Udostępnij",
+        "title": "Lista odznak",
+        "descr": "Dostaniesz 15 dodatkowych punktów za każda otrzymana odznakę!"
       },
       "profile": {
-        "no_name": "Name is not specified",
-        "confirmed_points": "Active points",
-        "history_link": "Transactions history",
+        "no_name": "Nazwa nie jest określona",
+        "confirmed_points": "Aktywne punkty",
+        "history_link": "Historia transakcji",
         "unconfirmed_points": "Nieaktywne punkty.",
         "what_is_it": "Co to jest?",
         "what_is_unconfirmed_points": "Co to są<br> nieaktywne<br> punkty premiowe?",
@@ -788,100 +789,100 @@ angular.module('pj.services', [])
       },
 
       "history": {
-        "title": "Transactions history",
-        "no_descr": "No description",
+        "title": "Historia transakcji",
+        "no_descr": "Brak opisu",
         "items": {
-          "purchase": "Purchase",
-          "gift_purchase": "Gift",
-          "badge": "Badge",
-          "registration": "Sign up",
-          "referral": "Invite friend",
-          "referred": "Registration from friend's invite",
-          "referred_purchase": "Friend's purchase",
-          "promocode": "Promocode activation",
-          "enter_group": "Joined our group on ",
-          "share_purchase": "Shared a purchase on ",
-          "social_share": "Shared our website on ",
-          "share_badge": "Shared a badge on "
+          "purchase": "Zakup",
+          "gift_purchase": "Prezent",
+          "badge": "Odznaka",
+          "registration": "Zarejestruj się",
+          "referral": "Zaproś znajomego",
+          "referred": "Rejestracja z zaproszenia znajomego",
+          "referred_purchase": "Zakup znajomego",
+          "promocode": "Aktywacja kodu promocyjnego",
+          "enter_group": "Dołącz do naszej grupy ",
+          "share_purchase": "Udostępnij zakup ",
+          "social_share": "Udostępnij nasza stronę ",
+          "share_badge": "Udostępnij odznakę "
         }
       },
       "gifts": {
-        "title": "List of gifts",
-        "descr": "Redeem your points for gifts",
-        "auth_request": "You need to be authorized to get our gifts",
-        "login": "Sign in",
+        "title": "Lista prezentów",
+        "descr": "Wymień swoje punkty na prezenty",
+        "auth_request": "Musisz mieć upoważnienie aby otrzymać nasze prezenty",
+        "login": "Zaloguj się",
         "need_more_1": "Aby otrzymać ten dar trzeba kolejne",
         "need_more_2": "punktów",
         "get_points": "Zdobądź",
         "enough_points": "You have enough bonus points to get this gift.",
         "to_basket": "Dodaj do zamówienia",
-        "points": "points"
+        "points": "punkty"
       },
       "actions": {
-        "title": "List of quests",
-        "descr": "Complete quests to get extra points",
-        "no_descr": "No description",
-        "earn_points": 'Earn points',
-        "share": 'Share',
-        "join": 'Join',
-        "ac_connected": 'Your account was successfully linked to your profile. Press "Share" to earn bonus points.',
-        "ac_connected_join": 'Your account was successfully linked to your profile. Press "Join" to earn bonus points.',
+        "title": "Lista zadań",
+        "descr": "Wykonaj zadanie aby zdobyć dodatkowe punkty",
+        "no_descr": "Brak opisu",
+        "earn_points": 'Zdobywaj punkty',
+        "share": 'Udostępnij',
+        "join": 'Dołącz',
+        "ac_connected": 'Twoje konto zostało pomyślnie powiązane z Twoim profilem. Naciśnij „Udostępnij” aby zdobyć punkty premiowe.',
+        "ac_connected_join": 'Twoje konto zostało pomyślnie powiązane z Twoim profilem. Naciśnij „Przyłącz się” aby zdobyć punkty premiowe.',
         "system": {
-          "emailBinding": "Enter email",
-          "fillProfile": "Fill profile",
-          "inviteFriend": "Invite friend"
+          "emailBinding": "Wprowadź email",
+          "fillProfile": "Wypełnij profil",
+          "inviteFriend": "Zaproś znajomego"
         },
         "social": {
           "vk": {
             "like": {
-              "name": "Join the group"
+              "name": "Dołącz do grupy"
             },
             "partner_page": {
-              "name": "Share our website on VK"
+              "name": "Udostępnij nasza stonę na VK"
             },
             "purchase": {
-              "name": "Share your purchase on VK"
+              "name": "Udostępnij swój zakup na VK"
             }
           },
           "fb": {
             "like": {
-              "name": "Like Facebook group"
+              "name": "Polub grupę na Facebook"
             },
             "partner_page": {
-              "name": "Share our website on Facebook"
+              "name": "Udostępnij nasza stronę na Facebook"
             },
             "purchase": {
-              "name": "Share your purchase on Facebook"
+              "name": "Udostępnij swój zakup na Facebook"
             }
           },
           "gp": {
             "like": {
-              "name": "Like G+ group"
+              "name": "Polub na G+"
             },
             "partner_page": {
-              "name": "Share our website on G+"
+              "name": "Udostępnij nasza stronę na G+"
             },
             "purchase": {
-              "name": "Share your purchase on G+"
+              "name": "Udostępnij swój zakup na G+"
             }
           },
           "ok": {
             "like": {
-              "name": "Join the group"
+              "name": "Dołącz do grupy"
             },
             "partner_page": {
-              "name": "Share our website on Odnoklassniki"
+              "name": "Udostępnij nasza stronę na Odnoklassniki"
             },
             "purchase": {
-              "name": "Share you purchase on Odnoklassniki"
+              "name": "Udostępnij swój zakup na Odnoklassniki"
             }
           },
           "tw": {
             "partner_page": {
-              "name": "Share our website on twitter"
+              "name": "Udostępnij nasza stronę na twitter"
             },
             "purchase": {
-              "name": "Share your purchase on twitter"
+              "name": "Udostępnij swój zakup na twitter"
             }
           }
         }
@@ -1401,7 +1402,51 @@ angular.module('pj.services', [])
         SAILPLAY.on('load.user.history.success', function (res) {
           scope.$apply(function () {
             scope.loaded = true;
-            scope.history = res;
+            //translate everything
+            var texts = scope.$parent.translate.history.items
+            var translated = res.map(function(x){
+              switch (x.action) {
+                case 'badge':
+                  x.name = texts.badge
+                  break;
+                case 'purchase':
+                  x.name = texts.purchase
+                  break;
+                case 'sharing':
+                  switch (x.social_action) {
+                    case 'like': 
+                      x.name = texts.social_share
+                      break;
+                    case 'purchase': 
+                      x.name = texts.share_purchase
+                      break;
+                    case 'partner_page': 
+                      x.name = texts.enter_group
+                      break;
+                    case 'badge':
+                      x.name = texts.share_badge
+                      break;
+                  }
+                  break;
+                case 'registration':
+                  x.name = texts.registration
+                  break;
+                case 'promocode':
+                  x.name = texts.promocode
+                  break;
+                case 'referral':
+                  x.name = texts.referral
+                  break;
+                case 'referred':
+                  x.name = texts.referred
+                  break;
+                case 'referred_purchase':
+                  x.name = texts.referred_purchase
+                  break;
+              }
+              return x
+            })
+            scope.history = translated;
           });
         });
 

@@ -249,7 +249,51 @@
         SAILPLAY.on('load.user.history.success', function (res) {
           scope.$apply(function () {
             scope.loaded = true;
-            scope.history = res;
+            //translate everything
+            var texts = scope.$parent.translate.history.items
+            var translated = res.map(function(x){
+              switch (x.action) {
+                case 'badge':
+                  x.name = texts.badge
+                  break;
+                case 'purchase':
+                  x.name = texts.purchase
+                  break;
+                case 'sharing':
+                  switch (x.social_action) {
+                    case 'like': 
+                      x.name = texts.social_share
+                      break;
+                    case 'purchase': 
+                      x.name = texts.share_purchase
+                      break;
+                    case 'partner_page': 
+                      x.name = texts.enter_group
+                      break;
+                    case 'badge':
+                      x.name = texts.share_badge
+                      break;
+                  }
+                  break;
+                case 'registration':
+                  x.name = texts.registration
+                  break;
+                case 'promocode':
+                  x.name = texts.promocode
+                  break;
+                case 'referral':
+                  x.name = texts.referral
+                  break;
+                case 'referred':
+                  x.name = texts.referred
+                  break;
+                case 'referred_purchase':
+                  x.name = texts.referred_purchase
+                  break;
+              }
+              return x
+            })
+            scope.history = translated;
           });
         });
 
