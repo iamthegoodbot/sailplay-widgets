@@ -2,14 +2,9 @@
   "status": "ok",
   "orders_list": [
     {
-      "order_num": "kly0798879",
+      "order_num": "test-2017-09-27-02",
       "state": "Отменён",
-      "link": "Ссылка на страницу заказа 1"
-    },
-    {
-      "order_num": "rgw98787",
-      "state": "Сформирован",
-      "link": "Ссылка на страницу заказа 2"
+      "link": "https://github.com/"
     }
   ]
 }
