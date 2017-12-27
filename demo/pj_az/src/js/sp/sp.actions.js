@@ -36,7 +36,14 @@
               "image_h": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/3c12fd472b45e6d0ecee244d4d9d2216.png",
               "styles": {
                 "span": {
-                  "position": "relative"
+                  "position": "relative",
+                  display: "inline-block",
+                  width: "370px",
+                  height: "120px",
+                  "display": "flex",
+                  transform: "translate(0px, -40px)",
+                  "justify-content": "center",
+                  "align-items": "center"
                 },
                 "fb_share_btn": {
                   "font-family": "Arial",
@@ -47,12 +54,17 @@
                   "color": "white",
                   "font-weight": "bold",
                   "position": "absolute",
-                  "bottom": "-38px",
+                  "bottom": "-33px",
                   "left": 0,
                   "font-size": "18px",
                   "line-height": "20px",
                   "cursor": "pointer",
-                  "display": "inline-block"
+                  width: "370px",
+                  height: "120px",
+                  "display": "flex",
+                  transform: "translate(0px, -40px)",
+                  "justify-content": "center",
+                  "align-items": "center"
                 }
               }
             },
@@ -72,13 +84,19 @@
                   "color": "white",
                   "font-weight": "bold",
                   "position": "absolute",
-                  "bottom": "-38px",
+                  "bottom": "-33px",
                   "left": 0,
                   "font-size": "18px",
                   "line-height": "20px",
                   "cursor": "pointer",
-                  "display": "inline-block",
-                  "padding-right": "10px"
+                  "padding-right": "10px",
+                  display: "inline-block",
+                  width: "370px",
+                  height: "120px",
+                  "display": "flex",
+                  transform: "translate(0px, -40px)",
+                  "justify-content": "center",
+                  "align-items": "center"
                 }
               }
             },
@@ -98,13 +116,19 @@
                   "color": "white",
                   "font-weight": "bold",
                   "position": "absolute",
-                  "bottom": "-38px",
+                  "bottom": "-33px",
                   "left": 0,
                   "font-size": "18px",
                   "line-height": "20px",
                   "cursor": "pointer",
-                  "display": "inline-block",
-                  "padding-right": "10px"
+                  "padding-right": "10px",
+                  display: "inline-block",
+                  width: "370px",
+                  height: "120px",
+                  "display": "flex",
+                  transform: "translate(0px, -40px)",
+                  "justify-content": "center",
+                  "align-items": "center"
                 }
               }
             }
