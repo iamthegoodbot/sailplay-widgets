@@ -1,12 +1,20 @@
 .bns_achiv_item_container {
   display: flex;
   justify-content: space-between;
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+  }
 }
 
 .bns_achiv_line {
   float: left;
   width: 100%;
   margin-bottom: 30px;
+  @media screen and (max-width: 767px){
+    &>.bns_achiv_item_info {
+      display: none !important;
+    }
+  }
   .bns_achiv_item {
     float: left;
     width: 182px;
@@ -16,10 +24,55 @@
     position: relative;
     margin-right:80px;
     box-sizing: border-box;
-    &.open {
+    @media screen and (max-width: 767px){
+      height: 190px;
+      width: 100%;
       span {
-        background: rgba(128, 128, 128, 0.23);
+        width: 182px !important;
+        position: absolute;
+        left: 200px;
+        top: 48px;
       }
+      &>img {
+        width: 156px !important;
+        height: 156px !important;
+        display: inherit;
+      }
+      &.open {
+        span {
+          background: rgb(245, 245, 245);
+        }
+        height: auto;
+        & .bns_achiv_item_info {
+          margin-top: 10px;
+          display: block;
+        }
+      }
+    }
+    @media screen and (max-width: 450px) {
+      &>span {
+        width: 140px !important;
+        left: 170px !important;
+        margin-top: 6px !important;
+      }
+      &>img {
+        width: 136px !important;
+        height: 136px !important;
+      }
+    }
+    @media screen and (max-width: 370px) {
+      &>span {
+        width: 140px !important;
+        left: 130px !important;
+        margin-top: -8px !important;
+      }
+      &>img {
+        width: 106px !important;
+        height: 106px !important;
+      }
+    }
+    & .bns_achiv_item_info {
+      display: none;
     }
     &:not(.act) img {
       -webkit-filter: grayscale(100%);
@@ -31,21 +84,36 @@
       filter: gray;
       opacity: 0.4;
     }
-    &:nth-child(5n) {
-      margin-right: 0;
+    &:nth-child(1) {
       &:after {
         display: none;
       }
     }
+    &:nth-child(5) {
+      margin-right: 0;
+    }
     &:after {
       position: absolute;
+      z-index: -3;
       top:88px;
-      left: 100%;
+      right: 95%;
       height: 5px;
       background-image: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/7a74028bb7379626e6109a373590fe8f.png");
-      width: 100%;
+      width: 150%;
       display: block;
       content: '';
+      @media screen and (max-width: 1400px) and (min-width: 768px) {
+        width: 80%;
+      }
+      @media screen and (max-width: 767px) {
+        transform: rotate(90deg) translate(-110px, 140px);
+        width: 60px;
+        bottom: 0;
+        left: 200px;
+      }
+    }
+    &:not(.act):after {
+      filter: grayscale(1);
     }
     img {
       width: 100%;
@@ -60,8 +128,8 @@
       color: #5e5e5e;
       font-size: 20px;
       margin-top: 12px;
-      padding-top: 8px;
-      padding-bottom: 3px;
+      padding: 8px 0;
+      line-height: 1.2;
       strong {
         float: left;
         width: 100%;
@@ -72,26 +140,48 @@
     }
     &_info {
       float: left;
-      width: 100%;
       color: #5e5e5e;
-      background: rgba(128, 128, 128, 0.23);
+      background: rgb(245, 245, 245);
       border-radius: 5px;
       border: 1px solid #cccccc;
       padding: 20px;
       box-sizing: border-box;
+      font-size: 20px;
+      display: flex;
+      width: 100%;
+      @media screen and (max-width: 767px) {
+        flex-direction: column;
+        &_text {
+          border-right: 0 !important;
+        }
+        &_socials {
+          margin-top: 10px;
+        }
+      }
 
       &_text {
-
+        padding-left: 20px;
+        padding-right: 20px;
+        line-height: 1.4;
+        min-width: 80%;
+        flex-grow: 1;
+        //border-right: 1px solid #ccc;
       }
 
       &_socials {
-        margin-top: 10px;
+        display: none;
+//        display: flex;
+        justify-content: center;
+        min-width: 20%;
+        align-items: center;
 
         img {
           display: inline-block;
           margin-right: 4px;
           cursor: pointer;
           transition: opacity 1s ease;
+          width: 40px;
+          height: 40px;
 
           &:hover {
             opacity: .7;

@@ -1,11 +1,13 @@
 angular.module('sp.history', [])
 
-  .service('history_texts', function ($rootScope) {
-    return $rootScope.locale.history_texts || {};
+  .service('history_texts', function ($rootScope, magicConfig) {
+    var lang = $rootScope.config.lang
+    return magicConfig.get().lang[lang].history_texts || {};
   })
 
-  .service('social_list', function ($rootScope) {
-    return $rootScope.locale.social_list || {};
+  .service('social_list', function ($rootScope, magicConfig) {
+    var lang = $rootScope.config.lang
+    return magicConfig.get().lang[lang].social_list || {};
   })
 
   .filter('history_item', function ($rootScope, history_texts, social_list, $filter, tryParseFieldFilter) {
@@ -17,24 +19,36 @@ angular.module('sp.history', [])
         case 'event':
           return historyItem.name || history_texts.custom_action;
         case 'extra':
-          return historyItem.name || history_texts.custom_action;
+          return history_texts.extra || historyItem.name;
         case 'custom_action':
           return historyItem.name || history_texts.custom_action;
         case 'badge':
-          if(ifAz()){
-            return history_texts.badge;
-          }
-          return history_texts.badge + ': ' + historyItem.name;
+          return history_texts.badge + ': ' + tryParseFieldFilter(historyItem.name);
         case 'purchase':
-          return historyItem.name || history_texts.purchase;
+          return history_texts.purchase || historyItem.name;
         case 'sharing':
           switch (historyItem.social_action) {
-            case 'like':
-              return history_texts.enter_group + social_list[historyItem.social_type] || historyItem.social_type;
-            case 'purchase':
-              return history_texts.share_purchase + social_list[historyItem.social_type] || historyItem.social_type;
-            case 'partner_page':
-              return history_texts.social_share + social_list[historyItem.social_type] || historyItem.social_type;
+            case 'like': {
+              if($rootScope.config.lang == 'az') {
+                return (social_list[historyItem.social_type] || historyItem.social_type) + 'da ' + history_texts.enter_group
+              } else {
+                return history_texts.enter_group + social_list[historyItem.social_type] || historyItem.social_type;                
+              }
+            }
+            case 'purchase': {
+              if($rootScope.config.lang == 'az') {
+                return (social_list[historyItem.social_type] || historyItem.social_type) + 'da ' + history_texts.share_purchase
+              } else {
+                return history_texts.share_purchase + social_list[historyItem.social_type] || historyItem.social_type;                
+              }
+            }
+            case 'partner_page': {
+              if($rootScope.config.lang == 'az') {
+                return (social_list[historyItem.social_type] || historyItem.social_type) + 'da ' + history_texts.social_share
+              } else {
+                return history_texts.social_share + social_list[historyItem.social_type] || historyItem.social_type;                
+              }
+            }
             case 'badge':
               return history_texts.share_badge + social_list[historyItem.social_type] || historyItem.social_type;
           }

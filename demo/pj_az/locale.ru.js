@@ -1,7 +1,7 @@
 window._SP_LOCALE = {
   "logo": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/6b68620de101330665aec49c9ec90931.png",
   "pizzameter": {
-    "counter_bg": "//sailplay.cdnvideo.ru/static/partners/pj/img/pizzameter/counter_ru.png",
+    "counter_bg": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/6ec364eccd4f11046eab0d027a9054e7.png",
     "wrapper_bg": "//sailplay.cdnvideo.ru/static/partners/pj/img/pizzameter/deck_ru.png"
   },
   "tabs": {
@@ -63,13 +63,13 @@ window._SP_LOCALE = {
     "social": {
       "fb": {
         "like": {
-          "name": "Вступить <br>в группу"
+          "name": "Подпишитесь на нашу Facebook страничку"
         },
         "partner_page": {
-          "name": "Рассказать<br> о нас в"
+          "name": "Рассказать о нас в Facebook"
         },
         "purchase": {
-          "name": "Рассказать о<br>своей покупке"
+          "name": "Рассказать о своей покупке"
         }
       }
     }

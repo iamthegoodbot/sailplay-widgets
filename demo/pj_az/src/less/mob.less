@@ -22,15 +22,14 @@
             width: 300px;
             float: none;
             display: inline-block;
-            margin: 0px 210px;
             text-align: left;
             .bns_ne_pod_bal {
               width: 100px;
               margin-right: 20px;
               margin-left: 0;
             }
-            .bns_ne_pod_bal_name {
-             width: 180px;
+            .bns_ne_pod_bal_name_container {
+              width: 180px;
             }
             a {
 
@@ -46,8 +45,8 @@
               margin-right: 20px;
               margin-left: 0;
             }
-            .bns_stat_name {
-              width: 180px;
+            .bns_stat_name_container {
+              float: left;
             }
             a {
               width: auto;
@@ -63,16 +62,11 @@
     }
   }
   .bns_tab_block {
-    justify-content: space-around;
     text-align: center;
     .bns_gift_item {
-      margin: 13px;
       text-align: left;
       display: inline-block;
       float: none;
-      &:nth-child(4n) {
-        margin: 13px;
-      }
     }
     .bns_qust_item {
       margin: 13px;
@@ -94,9 +88,6 @@
         float: none;
         &:nth-child(5n) {
           margin: 13px;
-        }
-        &:after {
-          display: none;
         }
       }
     }
@@ -122,15 +113,25 @@
         min-height: 0px;
       }
       .bns_top_popup {
-        width: 100%;
+        width: 100% !important;
+        height: 100% !important;
         .bns_top_popup_hist {
+          height: auto !important;
           .bns_top_popup_hist_item {
-            text-align: left;
-            position: relative;
-            .bal {
-              position: absolute;
-              right: 0px;
-              top:0px;
+            width: 100%;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 16px;
+            & .date {
+              padding-left: 12px;
+            }
+            & .name {
+              padding-left: 16px;
+              text-align: left;
+              line-height: 1.1;
+            }
+            & .bal {
+
             }
           }
         }
@@ -184,7 +185,9 @@
         }
       }
       .bns_top_info_right {
-        width: 100%;
+        float: none;
+        width: 300px;
+        height: 300px;
         background-repeat: no-repeat;
       }
       .bns_top_slide {
@@ -217,7 +220,7 @@
         .bns_top_popup_hist {
           .bns_top_popup_hist_item {
             .name {
-              width: 100%;
+              //width: 100%;
             }
           }
         }
@@ -239,11 +242,15 @@
       .bns_top_info_left {
         .bns_top_info_stat {
           .bns_ne_pod_bal_block {
+            max-width: 100%;
             text-align: center;
             .bns_ne_pod_bal {
               display: inline-block;
               float: none;
               margin-right: 0;
+            }
+            .bns_ne_pod_bal_name_container {
+              width: 100%;
             }
             .bns_ne_pod_bal_name {
               display: inline-block;
@@ -259,12 +266,13 @@
           }
           .bns_stat_now {
             text-align: center;
+            width: auto;
             img {
               display: inline-block;
               float: none;
               margin-right: 0;
             }
-            .bns_stat_name {
+            .bns_stat_name_container {
               display: inline-block;
               width: 100%;
               float: none;
@@ -281,4 +289,20 @@
       }
     }
   }
+}
+
+@media screen and (max-width: 379px){
+  .bns_top_info_right {
+    width: 240px !important;
+    height: 240px !important;
+  }
+  .bns_gift_item_bottom {
+    width: 100% !important;
+  }
+}
+
+@media screen and (max-width: 650px){
+  .bns_achiv_item {
+    margin: 0 !important
+  } 
 }

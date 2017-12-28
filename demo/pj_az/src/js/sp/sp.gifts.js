@@ -11,7 +11,18 @@ angular.module('sp.gifts', [])
     }
   })
 
-  .directive('sailplayGifts', function (sp, sp_api, $rootScope, $filter) {
+  .filter('giftTillNext', function($rootScope, translateFilter, numberFilter, sailplay_pluralizeFilter){
+    return function (points){
+      var lang = $rootScope.config.lang
+      if(lang == 'az'){
+        return (numberFilter(points)) + ' ' + (sailplay_pluralizeFilter(points, translateFilter('pluralize.points'))) + ' ' + translateFilter('need_earn_more')
+      } else {
+        return translateFilter('need_earn_more') + (numberFilter(points)) + ' ' + (sailplay_pluralizeFilter(points, translateFilter('pluralize.points')))        
+      }
+    }
+  })
+
+  .directive('sailplayGifts', function (sp, sp_api, $rootScope, $filter, magicConfig, $timeout) {
     return {
 
       restrict: 'A',
@@ -39,6 +50,13 @@ angular.module('sp.gifts', [])
               title: $filter('translate')('gifts_messages.success.title'),
               text: $filter('translate')('gifts_messages.success.text')
             });
+            if(magicConfig.get() && magicConfig.get().gift_cb.name){
+              var fnName = magicConfig.get().gift_cb.name
+              var timeout = magicConfig.get().gift_cb.timeout
+              $timeout(()=>{
+                window[fnName]()
+              }, timeout || 0)
+            }
           });
         });
 

@@ -57,25 +57,32 @@
         background-repeat: no-repeat;
         background-position: center center;
         background-image: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/10f8ff372ad96ebc4df4285a88d58613.png");
+        box-shadow: 1px 1px 9px #333;
       }
       &.bns_top_popup_hist {
         float: left;
-        width: 100%;
+        width: 62%;
         height: 333px;
+        z-index: 3;
+        @media screen and (max-width: 1230px) {
+          width: 100%;
+        }
         .bns_top_popup_hist_item {
           clear: both;
           float: left;
-          width: 600px;
-          margin-bottom: 10px;
+          width: 100%;
+          display: flex;
+          line-height: 1.4;
           .date {
             float: left;
             color: #878787;
             font-size: 22px;
             margin-right: 38px;
+            width: 90px
           }
           .name {
             float: left;
-            width: 356px;
+            flex-grow: 1;
             color: #000000;
             font-size: 22px;
           }
@@ -84,11 +91,13 @@
             color: #048a65;
             font-size: 22px;
             font-weight: bold;
+            width: 120px;
           }
         }
         .bns_hist_page {
           float: left;
           width: 100%;
+          margin-top: 10px;
           span {
             color: #000000;
             float: left;
@@ -126,7 +135,7 @@
         display: block;
         font-size: 24px;
         font-weight: bold;
-        line-height: 22px;
+        line-height: 25px;
         width: 100%;
         max-width: 600px;
         margin-top: 25px;
@@ -212,23 +221,23 @@
             margin-bottom: 20px;
             margin-right: 20px;
           }
-          .bns_ne_pod_bal_name {
+          .bns_ne_pod_bal_name_container {
+            width: 218px;
             float: left;
-            width: 244px;
+          }
+          .bns_ne_pod_bal_name {
+            display: block;
+            width: 228px;
             color: #000000;
             font-size: 24px;
             margin-top: 45px;
             margin-bottom: 8px;
           }
           a {
-            float: left;
             color: #0a9876;
             font-size: 20px;
-            min-width: 100px;
+            width: auto;
             position: relative;
-            @media screen and (min-width: 1500px) {
-              min-width: 240px;
-            }
             &:hover {
               .bns_tile {
                 display: block;
@@ -282,17 +291,20 @@
             margin-right: 30px;
             margin-bottom: 20px;
           }
-          .bns_stat_name {
-            float: left;
+          .bns_stat_name_container {
             width: 300px;
+            margin-top: 45px;
+            width: 180px;
+            float: left;
+          }
+          .bns_stat_name {
+            width: auto;
             font-size: 24px;
             color: #000000;
-            margin-top: 45px;
             margin-bottom: 8px;
           }
           a {
-            float: left;
-            width: 300px;
+            width: auto;
             color: #0a9876;
             font-size: 20px;
           }

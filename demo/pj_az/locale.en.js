@@ -1,7 +1,7 @@
 window._SP_LOCALE = {
-  "logo": "//sailplays3.cdnvideo.ru/media/assets/assetfile/16e09290ab5a642bcaacaa75b1841c8c.png",
+  "logo": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/30c01bd2f11fa4ce4c824775751e7679.png",
   "pizzameter": {
-    "counter_bg": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/67ae977f540ff163b3f89b6f2927bd54.png",
+    "counter_bg": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/0cfe9a3b02425ae4bfa81938945805c6.png",
     "wrapper_bg": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/f95eac7509cad92558bf250b2cb357be.png"
   },
   "tabs": {
@@ -18,8 +18,8 @@ window._SP_LOCALE = {
     "title": "What is it?",
     "text": "Your unconfirmed points, which will be confirmed after the fact of payment of the order"
   },
-  "you_have": "You — ",
-  "need_earn_more": "Need to collect more ",
+  "you_have": "Status: ",
+  "need_earn_more": "Need to collect additional ",
   "empty_name": "No name",
   "empty_status": "No status",
   "history_button": "Point's history",
@@ -46,7 +46,7 @@ window._SP_LOCALE = {
     "referred": "Registration by invitation",
     "referred_purchase": "The purchase of the invited user",
     "promocode": "For Promo-code",
-    "enter_group": "Subscribing to the group",
+    "enter_group": "Subscribing to the group: ",
     "share_purchase": "Shared the purchase news ",
     "social_share": "Shared in ",
     "share_badge": "Shared the news about the badge in ",
@@ -63,13 +63,13 @@ window._SP_LOCALE = {
     "social": {
       "fb": {
         "like": {
-          "name": "Subscribe <br> in "
+          "name": "Follow us on Facebook"
         },
         "partner_page": {
-          "name": "Share<br> about us in"
+          "name": "Share about us in Facebook"
         },
         "purchase": {
-          "name": "share about<br>your purchase"
+          "name": "Share about your purchase"
         }
       }
     }

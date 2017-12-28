@@ -2518,7 +2518,7 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/html/main.html',
-    '<div class="sp_wrapper" data-ng-show="loaded"><div class="bns_inner_block clearfix"><div class="bns_top" data-ng-if="!auth && !isLogged" data-ng-style="{\'background-image\': \'url(\' + headerBg + \')\'}"><div class="bns_top_info"><div class="bns_top_slide"><img data-ng-src="{{ \'logo\' | translate }}"><div class="bns_slide_text_container"><span class="bns_slide_text" data-ng-bind-html="\'header_text\' | translate | to_trusted"></span></div><div class="bns_top_slide_linck"><a data-ng-href="{{ config.data && config.data.login_link }}" data-ng-bind="\'login\' | translate"></a></div></div></div></div><div data-ng-if="auth"><div class="bns_top" data-ng-style="{\'background-image\': \'url(\' + $parent.headerBg + \')\'}"><div class="bns_top_info clearfix" data-sailplay-profile=""><div class="bns_top_info_left" data-ng-if="!showHistory"><div class="bns_ava_block"><img data-ng-src="{{ user().user.pic }}" class="bns_ava"><div class="bns_ava_block_right"><span class="bns_name" data-ng-bind="user().user.name ? user().user.name : (\'empty_name\' | translate)"></span> <a href="#" data-ng-click="$event.preventDefault();show_history();" data-ng-bind="\'history_button\' | translate"></a></div></div><div class="bns_top_info_stat"><div class="bns_ne_pod_bal_block"><div class="bns_ne_pod_bal" data-ng-bind="user().user_points.unconfirmed | number"></div><span class="bns_ne_pod_bal_name" data-ng-bind="\'unconfirmed_points\' | translate"></span> <a href="javascript:void(0);">{{ \'unconfirmed_points_hint.title\' | translate }} <span class="bns_tile" data-ng-bind="\'unconfirmed_points_hint.text\' | translate"></span></a></div><div class="bns_stat_now"><img data-ng-src="{{ user().last_badge && user().last_badge.pic }}"> <span class="bns_stat_name" data-ng-bind="user().last_badge && user().last_badge.name ? (\'you_have\' | translate) + user().last_badge.name : (\'empty_status\' | translate)"></span> <a href="#" data-scroll-to=".bns_tab_block" data-ng-click="$event.preventDefault();open_badge(user().last_badge)" data-ng-bind="\'status_button\' | translate"></a></div></div></div><div class="bns_top_popup bns_top_popup_hist" data-sailplay-history="" data-ng-if="showHistory"><a href="#" class="close" data-ng-click="$event.preventDefault();clear_show(\'showHistory\');"></a><div class="bns_top_popup_hist"><h2 data-ng-bind="\'history_title\' | translate"></h2><div class="bns_top_popup_hist_item" data-dir-paginate="item in history() | itemsPerPage:5" data-pagination-id="history_pages"><span class="date" data-ng-bind="item.action_date | date:(\'history_date_format\' | translate)"></span> <span class="name" data-ng-bind="item | history_item"></span> <span class="bal" data-ng-class="{bal_min: item.points_delta < 0, bal_plus: item.points_delta >= 0}" data-ng-bind="item.points_delta && ((item.points_delta > 0 ? \'+\' : \'\') + (item.points_delta | number)) + \' \' + (item.points_delta |sailplay_pluralize:(\'pluralize.points\' | translate))"></span></div><dir-pagination-controls data-max-size="5" data-pagination-id="history_pages" data-template-url="/html/ui/ui.pagination.controls.html" data-auto-hide="true"></dir-pagination-controls></div></div><div class="bns_top_info_right" data-ng-show="!showHistory"><sailplay-pizzameter data-model="user().user_points.confirmed" style="width:100%; height: 100%;"></sailplay-pizzameter></div></div></div><div class="bns_tab"><a href="#" data-ng-repeat="tab in tabs track by $index" data-ng-click="$event.preventDefault();$parent.$parent.activeTab = tab.alias;" data-ng-class="{act: tab.alias == $parent.activeTab}" data-ng-bind="tab.name"></a></div><div data-ng-switch="$parent.activeTab"><div class="bns_tab_block" id="gift" data-ng-switch-when="gifts" data-sailplay-gifts=""><div class="bns_gift_item" data-ng-repeat="gift in gifts()"><div class="img-container" data-ng-style="{\'background-image\': \'url(\'+(gift.pic_full | sailplay_pic)+\')\'}"></div><div class="bns_gift_item_bottom"><span class="bns_gift_name" data-ng-bind="gift | giftName"></span> <span class="bns_gift_desc" data-ng-bind="gift | giftDesc"></span></div><a href="#" data-ng-class="{act: user().user_points.confirmed >= gift.points}" data-ng-click="$event.preventDefault();get(gift);">{{ (gift.points | number) + \' \' + (gift.points | sailplay_pluralize:(\'pluralize.points\' | translate)) }} <span class="bns_til" data-ng-if="user().user_points.confirmed < gift.points" data-ng-bind="(\'need_earn_more\' | translate) + ((gift.points - user().user_points.confirmed) | number) + \' \' + ((gift.points - user().user_points.confirmed) | sailplay_pluralize:(\'pluralize.points\' | translate))"></span></a></div></div><div class="bns_tab_block" id="qust" data-ng-switch-when="actions" data-sailplay-actions=""><div class="bns_qust_item" data-ng-repeat="action in actions"><div data-ng-if="action._actionId"><div class="bns_qust_left"><img data-ng-src="{{ action_data(action).image }}"></div><div class="bns_qust_right"><span class="bns_qust_right_name" data-ng-bind-html="action_data(action).name | to_trusted"></span> <span class="bns_qust_right_bal" data-ng-bind="(action.points | number) + \' \' + (action.points | sailplay_pluralize:(\'pluralize.points\' | translate))"></span> <a href="#" data-sailplay-action="" data-action="action" data-text="{{ (\'make_action\' | translate) }}" data-ng-bind="\'make_action\' | translate" data-styles="{{ action_styles(action_data(action)) }}"></a></div></div><div data-ng-if="!action._actionId" data-ng-click="$event.preventDefault();$parent.$parent.open_custom_action = action;body_lock(true);"><div class="bns_qust_left"><img data-ng-src="{{ action.icon | sailplay_pic }}"></div><div class="bns_qust_right"><span class="bns_qust_right_name" data-ng-bind="action.description | sailplayActionCustomTranslateJson"></span> <span class="bns_qust_right_bal" data-ng-bind="(action.points | number) + \' \' + (action.points | sailplay_pluralize:(\'pluralize.points\' | translate))"></span> <a href="#" class="bns_qust_right_button" data-ng-click="$event.preventDefault();$parent.$parent.open_custom_action = action;body_lock(true);" data-ng-bind="action.button_text | sailplayActionCustomTranslateJson"></a></div></div></div><div class="bns_tab_block_popup" data-ng-if="open_custom_action && open_custom_action.type != \'static_page\'"><div class="bns_tab_block_popup-layout" data-ng-click="$parent.open_custom_action=null;body_lock(false);"></div><div data-sailplay-action-custom="" class="bns_tab_block_popup-content" data-action="$parent.open_custom_action"></div></div><div class="bns_tab_block_popup" data-ng-if="open_custom_action && open_custom_action.type == \'static_page\'"><div class="bns_tab_block_popup-layout" data-ng-click="$parent.open_custom_action=null;body_lock(false);"></div><div data-sailplay-action-custom-noiframe-static-page="" class="bns_tab_block_popup-content noiframe-custom-action" data-action="$parent.open_custom_action"></div></div></div><div class="bns_tab_block" id="achiv" data-ng-switch-when="badges" data-sailplay-badges=""><div class="bns_achiv_line" data-ng-repeat="line in badges().multilevel_badges"><div class="bns_achiv_item_container"><div class="bns_achiv_item" data-ng-repeat="badge in line" data-ng-click="open(badge)" data-ng-class="{act: badge.is_received, open: badge.id == $parent.$parent.opened}"><img data-ng-src="{{ (badge.is_received ? badge.thumbs.url_250x250 : badge.thumbs.url_gs) | sailplay_pic }}"> <span>{{ badge.name | tryParseField }} <strong data-ng-show="badge.points" data-ng-bind="(badge.points | number) + \' \' + (badge.points |sailplay_pluralize:(\'pluralize.points\' | translate))"></strong></span></div></div><data-badge-info data-badges="line"></data-badge-info></div></div></div></div></div><notify-popup></notify-popup></div>');
+    '<div class="sp_wrapper" data-ng-show="loaded"><div class="bns_inner_block clearfix"><div class="bns_top" data-ng-if="!auth && !isLogged" data-ng-style="{\'background-image\': \'url(\' + headerBg + \')\'}"><div class="bns_top_info"><div class="bns_top_slide"><img data-ng-src="{{ \'logo\' | translate }}"><div class="bns_slide_text_container"><span class="bns_slide_text" data-ng-bind-html="\'header_text\' | translate | to_trusted"></span></div><div class="bns_top_slide_linck"><a data-ng-href="{{ config.data && config.data.login_link }}" data-ng-bind="\'login\' | translate"></a></div></div></div></div><div data-ng-if="auth"><div class="bns_top" data-ng-style="{\'background-image\': \'url(\' + $parent.headerBg + \')\'}"><div class="bns_top_info clearfix" data-sailplay-profile=""><div class="bns_top_info_left" data-ng-if="!showHistory"><div class="bns_ava_block"><img data-ng-src="{{ user().user.pic }}" class="bns_ava"><div class="bns_ava_block_right"><span class="bns_name" data-ng-bind="user().user.name ? user().user.name : (\'empty_name\' | translate)"></span> <a href="#" data-ng-click="$event.preventDefault();show_history();" data-ng-bind="\'history_button\' | translate"></a></div></div><div class="bns_top_info_stat"><div class="bns_ne_pod_bal_block"><div class="bns_ne_pod_bal" data-ng-bind="user().user_points.unconfirmed | number"></div><div class="bns_ne_pod_bal_name_container"><span class="bns_ne_pod_bal_name" data-ng-bind="\'unconfirmed_points\' | translate"></span> <a href="javascript:void(0);">{{ \'unconfirmed_points_hint.title\' | translate }} <span class="bns_tile" data-ng-bind="\'unconfirmed_points_hint.text\' | translate"></span></a></div></div><div class="bns_stat_now"><img data-ng-src="{{ user().last_badge && user().last_badge.pic }}"><div class="bns_stat_name_container"><div class="bns_stat_name" data-ng-bind="user().last_badge && user().last_badge.name ? (\'you_have\' | translate) + (user().last_badge.name | tryParseField) : (\'empty_status\' | translate)"></div><a href="#" data-scroll-to=".bns_tab_block" data-ng-click="$event.preventDefault();open_badge(user().last_badge)" data-ng-bind="\'status_button\' | translate"></a></div></div></div></div><div class="bns_top_popup bns_top_popup_hist" data-sailplay-history="" data-ng-if="showHistory"><a href="#" class="close" data-ng-click="$event.preventDefault();clear_show(\'showHistory\');"></a><div class="bns_top_popup_hist"><h2 data-ng-bind="\'history_title\' | translate"></h2><div class="bns_top_popup_hist_item" data-dir-paginate="item in history() | itemsPerPage:5" data-pagination-id="history_pages"><span class="date" data-ng-bind="item.action_date | date:(\'history_date_format\' | translate)"></span> <span class="name" data-ng-bind="item | history_item"></span> <span class="bal" data-ng-class="{bal_min: item.points_delta < 0, bal_plus: item.points_delta >= 0}" data-ng-bind="item.points_delta && ((item.points_delta > 0 ? \'+\' : \'\') + (item.points_delta | number)) + \' \' + (item.points_delta |sailplay_pluralize:(\'pluralize.points\' | translate))"></span></div><dir-pagination-controls data-max-size="5" data-pagination-id="history_pages" data-template-url="/html/ui/ui.pagination.controls.html" data-auto-hide="true"></dir-pagination-controls></div></div><div class="bns_top_info_right" data-ng-show="true || !showHistory"><sailplay-pizzameter data-model="user().user_points.confirmed" style="width:100%; height: 100%;"></sailplay-pizzameter></div></div></div><div class="bns_tab"><a href="#" data-ng-repeat="tab in tabs track by $index" data-ng-click="$event.preventDefault();$parent.$parent.activeTab = tab.alias;" data-ng-class="{act: tab.alias == $parent.activeTab}" data-ng-bind="tab.name | translate"></a></div><div data-ng-switch="$parent.activeTab"><div class="bns_tab_block" id="gift" data-ng-switch-when="gifts" data-sailplay-gifts=""><div class="bns_gift_item" data-ng-repeat="gift in gifts()"><div class="img-container" data-ng-style="{\'background-image\': \'url(\'+(gift.pic_full | sailplay_pic)+\')\'}"></div><div class="bns_gift_item_bottom"><span class="bns_gift_name" data-ng-bind="gift | giftName"></span> <span class="bns_gift_desc" data-ng-bind="gift | giftDesc"></span></div><a href="#" data-ng-class="{act: user().user_points.confirmed >= gift.points}" data-ng-click="$event.preventDefault();get(gift);">{{ (gift.points | number) + \' \' + (gift.points | sailplay_pluralize:(\'pluralize.points\' | translate)) }} <span class="bns_til" data-ng-if="user().user_points.confirmed < gift.points" data-ng-bind="(gift.points - user().user_points.confirmed) | giftTillNext"></span></a></div></div><div class="bns_tab_block" id="qust" data-ng-switch-when="actions" data-sailplay-actions=""><div class="bns_qust_item" data-ng-repeat="action in actions"><div data-ng-if="action._actionId"><div class="bns_qust_left"><img data-ng-src="{{ action_data(action).image }}"></div><div class="bns_qust_right"><span class="bns_qust_right_name" data-ng-bind-html="action_data(action).name | to_trusted"></span> <span class="bns_qust_right_bal" data-ng-bind="(action.points | number) + \' \' + (action.points | sailplay_pluralize:(\'pluralize.points\' | translate))"></span> <a href="#" data-sailplay-action="" data-action="action" data-text="{{ (action_data(action).openButtonText || \'make_action\') | translate }}" data-ng-bind="(action_data(action).openButtonText || \'make_action\') | translate" data-styles="{{ action_styles(action_data(action)) }}"></a></div></div><div data-ng-if="!action._actionId" data-ng-click="$event.preventDefault();$parent.$parent.open_custom_action = action;body_lock(true);"><div class="bns_qust_left"><img data-ng-src="{{ action.icon | sailplay_pic }}"></div><div class="bns_qust_right"><span class="bns_qust_right_name" data-ng-bind="action.description | sailplayActionCustomTranslateJson"></span> <span class="bns_qust_right_bal" data-ng-bind="(action.points | number) + \' \' + (action.points | sailplay_pluralize:(\'pluralize.points\' | translate))"></span> <a href="#" class="bns_qust_right_button" data-ng-click="$event.preventDefault();$parent.$parent.open_custom_action = action;body_lock(true);" data-ng-bind="action.button_text | sailplayActionCustomTranslateJson"></a></div></div></div><div class="bns_tab_block_popup" data-ng-if="open_custom_action && open_custom_action.type != \'static_page\' && open_custom_action.type != \'collect_tags\'"><div class="bns_tab_block_popup-layout" data-ng-click="$parent.open_custom_action=null;body_lock(false);"></div><div data-sailplay-action-custom="" class="bns_tab_block_popup-content" data-action="$parent.open_custom_action"></div></div><div class="bns_tab_block_popup" data-ng-if="(open_custom_action) && (open_custom_action.type == \'static_page\' || open_custom_action.type == \'collect_tags\')"><div class="bns_tab_block_popup-layout" data-ng-click="$parent.open_custom_action=null;body_lock(false);"></div><div data-sailplay-action-custom-noiframe-static-page="" class="action static_page bns_tab_block_popup-content noiframe-custom-action" data-action="$parent.open_custom_action"></div></div></div><div class="bns_tab_block" id="achiv" data-ng-switch-when="badges" data-sailplay-badges=""><div class="bns_achiv_line" data-ng-repeat="line in badges().multilevel_badges"><div class="bns_achiv_item_container"><div class="bns_achiv_item" data-ng-repeat="badge in line" data-ng-click="open(badge)" data-ng-class="{act: badge.is_received, open: badge.id == $parent.$parent.opened}"><img data-ng-src="{{ (badge.is_received ? badge.thumbs.url_250x250 : badge.thumbs.url_gs) | sailplay_pic }}"> <span>{{ badge.name | tryParseField }} <strong data-ng-show="badge.points" data-ng-bind="(badge.points | number) + \' \' + (badge.points |sailplay_pluralize:(\'pluralize.points\' | translate))"></strong></span><data-badge-info data-badges="line"></data-badge-info></div></div><data-badge-info data-badges="line"></data-badge-info></div></div></div></div></div><notify-popup></notify-popup></div>');
 }]);
 })();
 
@@ -2564,7 +2564,7 @@ angular.module('sp_pj_az', [
     '//sailplays3.cdnvideo.ru/media/assets/assetfile/c425ff894ab6d0efe5a58a3b4e6ac092.png'
   ])
 
-  .directive('sailplayPjAz', ["$rootScope", "$locale", "headerBg", "$filter", "$timeout", function ($rootScope, $locale, headerBg, $filter, $timeout) {
+  .directive('sailplayPjAz', ["$rootScope", "$locale", "headerBg", "$filter", "$timeout", "sp_api", "getTimeZone", function ($rootScope, $locale, headerBg, $filter, $timeout, sp_api, getTimeZone) {
     return {
       restrict: 'E',
       replace: true,
@@ -2584,15 +2584,15 @@ angular.module('sp_pj_az', [
         scope.tabs = [
           {
             alias: 'gifts',
-            name: $filter('translate')('tabs.gifts')
+            name: 'tabs.gifts'
           },
           {
             alias: 'actions',
-            name: $filter('translate')('tabs.actions')
+            name: 'tabs.actions'
           },
           {
             alias: 'badges',
-            name: $filter('translate')('tabs.badges')
+            name: 'tabs.badges'
           }
         ];
 
@@ -2618,6 +2618,12 @@ angular.module('sp_pj_az', [
         scope.clear_show = function (name) {
           scope[name] = null;
           scope.body_lock(false);
+          $timeout(function(){
+            sp_api.call('load.actions.custom.list');
+            sp_api.call('load.user.info', {all: 1, purchases: 1});
+            sp_api.call('load.user.history', {tz: getTimeZone()});
+            sp_api.call('load.badges.list');
+          }, 1200)
         };
 
         scope.get_gift = function (gift) {
@@ -2649,66 +2655,94 @@ angular.module('sp_pj_az', [
     }
   }]);
 
-setTimeout(function () {
-
+window.spbootstrap = function(){
   var app_container = document.getElementsByTagName('sailplay-pj-az')[0];
   app_container && angular.bootstrap(app_container, ['sp_pj_az']);
-
-}, 100);
-
-
-
+}
 angular.module('core', [
   'pascalprecht.translate'
 ])
 
-  .config(["$translateProvider", function ($translateProvider) {
+.config(["$translateProvider", function ($translateProvider) {
 
-    $translateProvider.translations('default', window._SP_LOCALE || {});
+  //$translateProvider.translations('default', window._SP_LOCALE || {});
 
-    $translateProvider.preferredLanguage('default');
+  $translateProvider.useLoader('magicTranslations');
 
-    $translateProvider.useSanitizeValueStrategy(null);
+  $translateProvider.preferredLanguage(window.sailplay_config.lang);
 
-  }])
+  $translateProvider.useSanitizeValueStrategy(null);
 
-  .factory('getTimeZone', function(){
-    return function() {
-      var offset = new Date().getTimezoneOffset(), o = Math.abs(offset);
-      return (offset < 0 ? "+" : "-") + ("00" + Math.floor(o / 60)).slice(-2) + ":" + ("00" + (o % 60)).slice(-2);
-    }
-  })
+}])
 
-  .run(["sp", "sp_api", "$rootScope", "getTimeZone", function (sp, sp_api, $rootScope, getTimeZone) {
-
-    $rootScope.config = window.sailplay_config || {};
-
-    $rootScope.locale = window._SP_LOCALE || {};
+.factory('magicTranslations', ["magicConfig", "$q", "sp", "$window", function(magicConfig, $q, sp, $window){
+  return function(){
+    var deferred = $q.defer()
 
     sp.send('init', {
-      partner_id: $rootScope.config.partner_id || 1652,
-      domain: $rootScope.config.domain || '//sailplay.ru',
-      lang: $rootScope.config.lang || 'en'
+      partner_id: $window.sailplay_config.partner_id || 1652,
+      domain: $window.sailplay_config.domain || '//sailplay.ru',
+      lang: $window.sailplay_config.lang || 'en'
+    });
+    sp.on('init.success', function () {
+
+      sp.send('magic.config', $window.sailplay_config.config || 'default')
+
     });
 
-    $rootScope.remote_login_options = {
-      background: 'rgba(0, 0, 0, 0.5)',
-      lang: $rootScope.config.lang || 'en',
-      disabled_options: ['socials', 'agreement']
-    };
+    sp.on('magic.config.success', function (res) {
+      
+      magicConfig.set(res.config.config)
+      deferred.resolve(res.config.config.lang[$window.sailplay_config.lang || 'en'])
+      //$translateProvider.translations('default', res.config.lang || {});
+
+    })
+    return deferred.promise
+  }
+}])
+
+.service('magicConfig', function(){
+  var config = {}
+  this.set = function(newConfig){
+    config = newConfig
+  }
+  this.get = function(){
+    return config
+  }
+})
+
+.factory('getTimeZone', function(){
+  return function() {
+    var offset = new Date().getTimezoneOffset(), o = Math.abs(offset);
+    return (offset < 0 ? "+" : "-") + ("00" + Math.floor(o / 60)).slice(-2) + ":" + ("00" + (o % 60)).slice(-2);
+  }
+})
+
+.run(["sp", "sp_api", "$rootScope", "getTimeZone", "magicConfig", function (sp, sp_api, $rootScope, getTimeZone, magicConfig) {
+
+  $rootScope.config = window.sailplay_config || {};
+
+  $rootScope.config.partner_id = window.sailplay_config.partner_id || 1652
+
+  $rootScope.remote_login_options = {
+    background: 'rgba(0, 0, 0, 0.5)',
+    lang: $rootScope.config.lang || 'en',
+    disabled_options: ['socials', 'agreement']
+  };
 
 
-    $rootScope.loaded = false;
+  $rootScope.loaded = false;
 
-    if(window.sessionStorage && window.sessionStorage.getItem('splogged')) {
-      $rootScope.isLogged = !!window.sessionStorage.getItem('splogged')
-    } else {
-      $rootScope.isLogged = false
-    }
+  if(window.sessionStorage && window.sessionStorage.getItem('splogged')) {
+    $rootScope.isLogged = !!window.sessionStorage.getItem('splogged')
+  } else {
+    $rootScope.isLogged = false
+  }
 
-    $rootScope.auth = false;
+  $rootScope.auth = false;
 
-    sp.on('init.success', function () {
+  sp.on('magic.config.success', function (res) {
+      //$translateProvider.translations('default', res.config.lang || {});
 
       $rootScope.$apply(function () {
 
@@ -2717,135 +2751,133 @@ angular.module('core', [
         $rootScope.config.auth_hash && sp.send('login', $rootScope.config.auth_hash);
 
       });
+  })    
+
+  sp.on('login.error', function () {
+
+    $rootScope.$apply(function () {
+
+      $rootScope.loaded = true;
 
     });
 
-    sp.on('login.error', function () {
+  });
 
-      $rootScope.$apply(function () {
+  sp.on('login.success', function () {
 
-        $rootScope.loaded = true;
+    window.sessionStorage && window.sessionStorage.setItem('splogged', true)
 
-      });
+    sp_api.reset();
 
-    });
+    $rootScope.$apply(function () {
 
-    sp.on('login.success', function () {
+      $rootScope.auth = true;
 
-      window.sessionStorage && window.sessionStorage.setItem('splogged', true)
+      $rootScope.isLogged = true
 
-      sp_api.reset();
-
-      $rootScope.$apply(function () {
-
-        $rootScope.auth = true;
-
-        $rootScope.isLogged = true
-
-        loadData();
-
-      })
-
-    });
-
-    sp.on('logout.success', function () {
-
-      window.sessionStorage && window.sessionStorage.removeItem('splogged')
-
-      sp_api.reset();
-      //
-      // if ($(".js-slick-slider.slick-initialized").length) {
-      //   $(".js-slick-slider.slick-initialized").slick('unslick');
-      // }
-
-      $rootScope.$apply(function () {
-
-        $rootScope.auth = false;
-
-        $rootScope.isLogged = false
-
-      });
-
-    });
-
-    sp.on('tags.add.success', function () {
-
-      setTimeout(function () {
-
-        $rootScope.$apply(loadData);
-
-      }, 3000);
-
-    });
-
-
-    sp.on('users.update.success', function () {
-
-      $rootScope.$apply(loadData);
-
-    });
-
-    sp.on('actions.perform.success', function (res) {
-
-      $rootScope.$apply(loadData);
-
-    });
-
-    sp.on('gift.purchase.force_complete.success', function (res) {
-
-      $rootScope.$apply(loadData);
-
-    });
-
-    sp.on('gifts.purchase.success', function () {
-
-      // $rootScope.$apply(loadData);
-
-    });
-
-    sp.on('actions.perform.error', function (res) {
-
-      sp_api.call('load.actions.list');
-
-      sp_api.call('load.actions.custom.list');
-
-      $rootScope.$apply();
-
-    });
-
-    $rootScope.$on('update', function () {
       loadData();
+
+    })
+
+  });
+
+  sp.on('logout.success', function () {
+
+    window.sessionStorage && window.sessionStorage.removeItem('splogged')
+
+    sp_api.reset();
+    //
+    // if ($(".js-slick-slider.slick-initialized").length) {
+    //   $(".js-slick-slider.slick-initialized").slick('unslick');
+    // }
+
+    $rootScope.$apply(function () {
+
+      $rootScope.auth = false;
+
+      $rootScope.isLogged = false
+
     });
 
-    function loadData() {
+  });
 
-      $rootScope.$broadcast('clear_all_show');
+  sp.on('tags.add.success', function () {
 
-      var slick_selector = '.slick-initialized';
-      if ($(slick_selector).length) {
-        $(slick_selector).slick('unslick');
-      }
+    setTimeout(function () {
 
-      sp_api.call('load.actions.list');
+      $rootScope.$apply(loadData);
 
-      sp_api.call('load.actions.custom.list');
+    }, 3000);
 
-      sp_api.call('load.badges.list', {include_rules: 1});
+  });
 
-      sp_api.call('load.user.info', {all: 1, purchases: 1});
 
-      sp_api.call('load.gifts.list', {verbose: 1});
+  sp.on('users.update.success', function () {
 
-      sp_api.call('load.user.history', {tz: getTimeZone()});
+    $rootScope.$apply(loadData);
 
+  });
+
+  sp.on('actions.perform.success', function (res) {
+
+    $rootScope.$apply(loadData);
+
+  });
+
+  sp.on('gift.purchase.force_complete.success', function (res) {
+
+    $rootScope.$apply(loadData);
+
+  });
+
+  sp.on('gifts.purchase.success', function () {
+
+    // $rootScope.$apply(loadData);
+
+  });
+
+  sp.on('actions.perform.error', function (res) {
+
+    sp_api.call('load.actions.list');
+
+    sp_api.call('load.actions.custom.list');
+
+    $rootScope.$apply();
+
+  });
+
+  $rootScope.$on('update', function () {
+    loadData();
+  });
+
+  function loadData() {
+
+    $rootScope.$broadcast('clear_all_show');
+
+    var slick_selector = '.slick-initialized';
+    if ($(slick_selector).length) {
+      $(slick_selector).slick('unslick');
     }
 
-  }]);
+    sp_api.call('load.actions.list');
+
+    sp_api.call('load.actions.custom.list');
+
+    sp_api.call('load.badges.list', {include_rules: 1});
+
+    sp_api.call('load.user.info', {all: 1, purchases: 1});
+
+    sp_api.call('load.gifts.list', {verbose: 1});
+
+    sp_api.call('load.user.history', {tz: getTimeZone()});
+
+  }
+}]);
 (function () {
 
   angular.module('sp.actions', [])
 
-    .service('actions_data', ["$rootScope", function ($rootScope) {
+    .service('actions_data', ["$rootScope", "magicConfig", function ($rootScope, magicConfig) {
       var default_data = {
         "system": {
           "inviteFriend": {
@@ -2866,7 +2898,8 @@ angular.module('core', [
                 "font-size": "18px",
                 "line-height": "20px",
                 "cursor": "pointer",
-                "display": "inline-block"
+                "display": "inline-block",
+                "padding-right": "10px"
               }
             }
           }
@@ -2877,6 +2910,16 @@ angular.module('core', [
               "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/bddfada95d885611c8dbcfd3d8b4c6a0.png",
               "image_h": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/3c12fd472b45e6d0ecee244d4d9d2216.png",
               "styles": {
+                "span": {
+                  "position": "relative",
+                  display: "inline-block",
+                  width: "370px",
+                  height: "120px",
+                  "display": "flex",
+                  transform: "translate(0px, -40px)",
+                  "justify-content": "center",
+                  "align-items": "center"
+                },
                 "fb_share_btn": {
                   "font-family": "Arial",
                   "box-sizing": "border-box",
@@ -2886,12 +2929,17 @@ angular.module('core', [
                   "color": "white",
                   "font-weight": "bold",
                   "position": "absolute",
-                  "left": "0",
-                  "top": "0",
+                  "bottom": "-33px",
+                  "left": 0,
                   "font-size": "18px",
                   "line-height": "20px",
                   "cursor": "pointer",
-                  "display": "inline-block"
+                  width: "370px",
+                  height: "120px",
+                  "display": "flex",
+                  transform: "translate(0px, -40px)",
+                  "justify-content": "center",
+                  "align-items": "center"
                 }
               }
             },
@@ -2899,6 +2947,9 @@ angular.module('core', [
               "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/bddfada95d885611c8dbcfd3d8b4c6a0.png",
               "image_h": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/3c12fd472b45e6d0ecee244d4d9d2216.png",
               "styles": {
+                "span": {
+                  "position": "relative"
+                },
                 "fb_share_btn": {
                   "font-family": "Arial",
                   "box-sizing": "border-box",
@@ -2908,12 +2959,19 @@ angular.module('core', [
                   "color": "white",
                   "font-weight": "bold",
                   "position": "absolute",
-                  "left": "0",
-                  "top": "0",
+                  "bottom": "-33px",
+                  "left": 0,
                   "font-size": "18px",
                   "line-height": "20px",
                   "cursor": "pointer",
-                  "display": "inline-block"
+                  "padding-right": "10px",
+                  display: "inline-block",
+                  width: "370px",
+                  height: "120px",
+                  "display": "flex",
+                  transform: "translate(0px, -40px)",
+                  "justify-content": "center",
+                  "align-items": "center"
                 }
               }
             },
@@ -2921,6 +2979,9 @@ angular.module('core', [
               "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/bddfada95d885611c8dbcfd3d8b4c6a0.png",
               "image_h": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/3c12fd472b45e6d0ecee244d4d9d2216.png",
               "styles": {
+                "span": {
+                  "position": "relative"
+                },
                 "fb_share_btn": {
                   "font-family": "Arial",
                   "box-sizing": "border-box",
@@ -2930,21 +2991,30 @@ angular.module('core', [
                   "color": "white",
                   "font-weight": "bold",
                   "position": "absolute",
-                  "left": "0",
-                  "top": "0",
+                  "bottom": "-33px",
+                  "left": 0,
                   "font-size": "18px",
                   "line-height": "20px",
                   "cursor": "pointer",
-                  "display": "inline-block"
+                  "padding-right": "10px",
+                  display: "inline-block",
+                  width: "370px",
+                  height: "120px",
+                  "display": "flex",
+                  transform: "translate(0px, -40px)",
+                  "justify-content": "center",
+                  "align-items": "center"
                 }
               }
             }
           }
         }
       };
-      if($rootScope.locale.actions){
-        angular.merge(default_data, $rootScope.locale.actions);
+
+      if(magicConfig.get().lang[$rootScope.config.lang].actions){
+        angular.merge(default_data, magicConfig.get().lang[$rootScope.config.lang].actions);
       }
+
       return default_data;
     }])
 
@@ -2992,7 +3062,7 @@ angular.module('core', [
 
         if (action.socialType) data = actions_data.social[action.socialType] && actions_data.social[action.socialType][action.action];
 
-        if (action.type == "static_page") data = actions_data.static_page
+        if (action.type == "static_page" || action.type == "collect_tags") data = actions_data.static_page
 
         if (actions_data.system[action.type]) data = actions_data.system[action.type];
 
@@ -3116,7 +3186,7 @@ angular.module('core', [
       return {
 
         template: `
-        <div class="action static_page">
+          <a class="close" data-ng-click="$parent.$parent.open_custom_action=null;$parent.$parent.body_lock(false);"></a>
 
           <div class="container">
             <div class="row">
@@ -3129,7 +3199,7 @@ angular.module('core', [
 
             <div class="row">
               <p class="contentt message">
-              <img class="contentt image" data-ng-src="{{ action.content.image }}"/> 
+              <img ng-hide="!action.content.image" class="contentt image" data-ng-src="{{ action.content.image }}"/> 
                 <span data-ng-bind="action.content.message | sailplayActionCustomTranslateJson"></span>
                 
               </p>
@@ -3142,9 +3212,8 @@ angular.module('core', [
                 </p>
               </div>
             </div>
-          </div>
 
-        </div>
+          </div>
         `,
         restrict: 'A',
         scope: {
@@ -3175,7 +3244,8 @@ angular.module('core', [
                         sp_api.call('load.actions.custom.list');
                         sp_api.call('load.user.info', {all: 1, purchases: 1});
                         sp_api.call('load.user.history', {tz: getTimeZone()});
-                      }, 600)
+                        sp_api.call('load.actions.list');
+                      }, 2000)
                       //resolve(data);
                     }
                   })
@@ -3244,7 +3314,7 @@ angular.module('core', [
             sp_api.call('load.actions.list');
 
             sp_api.call('load.actions.custom.list');
-
+            
             $rootScope.$apply(function () {
 
               scope.show = null;
@@ -3330,7 +3400,7 @@ angular.module('core', [
           });
 
           scope.share_badge = function (badge, network) {
-            SailPlayShare(network, $rootScope.config.data.share_url || $window.location.href, badge.name, badge.share_msg, badge.thumbs.url_250x250);
+            SailPlayShare(network, $rootScope.config.data && $rootScope.config.data.share_url || $window.location.href, badge.name, badge.share_msg, badge.thumbs.url_250x250);
           };
 
         }
@@ -3347,7 +3417,15 @@ angular.module('core', [
         scope: true,
         link: function (scope) {
 
-          scope.badges = sp_api.data('load.badges.list');
+          scope.badges = () => {
+            var data = sp_api.data('load.badges.list')()
+            if($rootScope.config.lang == 'az') {
+              return {multilevel_badges: [data.multilevel_badges[1], data.multilevel_badges[0]]}
+            } else {
+              return data
+            }
+            
+          }
 
           scope.user = sp_api.data('load.user.info');
 
@@ -3357,7 +3435,7 @@ angular.module('core', [
             scope.$emit('badge:open', badge);
           };
 
-          $rootScope.$on('badge:open', function (e, badge) {
+          scope.$parent.$on('badge:open', function (e, badge) {
             scope.opened = !badge || badge.id === scope.opened ? null : badge.id;
           });
 
@@ -3405,7 +3483,18 @@ angular.module('sp.gifts', [])
     }
   }])
 
-  .directive('sailplayGifts', ["sp", "sp_api", "$rootScope", "$filter", function (sp, sp_api, $rootScope, $filter) {
+  .filter('giftTillNext', ["$rootScope", "translateFilter", "numberFilter", "sailplay_pluralizeFilter", function($rootScope, translateFilter, numberFilter, sailplay_pluralizeFilter){
+    return function (points){
+      var lang = $rootScope.config.lang
+      if(lang == 'az'){
+        return (numberFilter(points)) + ' ' + (sailplay_pluralizeFilter(points, translateFilter('pluralize.points'))) + ' ' + translateFilter('need_earn_more')
+      } else {
+        return translateFilter('need_earn_more') + (numberFilter(points)) + ' ' + (sailplay_pluralizeFilter(points, translateFilter('pluralize.points')))        
+      }
+    }
+  }])
+
+  .directive('sailplayGifts', ["sp", "sp_api", "$rootScope", "$filter", "magicConfig", "$timeout", function (sp, sp_api, $rootScope, $filter, magicConfig, $timeout) {
     return {
 
       restrict: 'A',
@@ -3433,6 +3522,13 @@ angular.module('sp.gifts', [])
               title: $filter('translate')('gifts_messages.success.title'),
               text: $filter('translate')('gifts_messages.success.text')
             });
+            if(magicConfig.get() && magicConfig.get().gift_cb.name){
+              var fnName = magicConfig.get().gift_cb.name
+              var timeout = magicConfig.get().gift_cb.timeout
+              $timeout(()=>{
+                window[fnName]()
+              }, timeout || 0)
+            }
           });
         });
 
@@ -3453,12 +3549,14 @@ angular.module('sp.gifts', [])
 
 angular.module('sp.history', [])
 
-  .service('history_texts', ["$rootScope", function ($rootScope) {
-    return $rootScope.locale.history_texts || {};
+  .service('history_texts', ["$rootScope", "magicConfig", function ($rootScope, magicConfig) {
+    var lang = $rootScope.config.lang
+    return magicConfig.get().lang[lang].history_texts || {};
   }])
 
-  .service('social_list', ["$rootScope", function ($rootScope) {
-    return $rootScope.locale.social_list || {};
+  .service('social_list', ["$rootScope", "magicConfig", function ($rootScope, magicConfig) {
+    var lang = $rootScope.config.lang
+    return magicConfig.get().lang[lang].social_list || {};
   }])
 
   .filter('history_item', ["$rootScope", "history_texts", "social_list", "$filter", "tryParseFieldFilter", function ($rootScope, history_texts, social_list, $filter, tryParseFieldFilter) {
@@ -3470,24 +3568,36 @@ angular.module('sp.history', [])
         case 'event':
           return historyItem.name || history_texts.custom_action;
         case 'extra':
-          return historyItem.name || history_texts.custom_action;
+          return history_texts.extra || historyItem.name;
         case 'custom_action':
           return historyItem.name || history_texts.custom_action;
         case 'badge':
-          if(ifAz()){
-            return history_texts.badge;
-          }
-          return history_texts.badge + ': ' + historyItem.name;
+          return history_texts.badge + ': ' + tryParseFieldFilter(historyItem.name);
         case 'purchase':
-          return historyItem.name || history_texts.purchase;
+          return history_texts.purchase || historyItem.name;
         case 'sharing':
           switch (historyItem.social_action) {
-            case 'like':
-              return history_texts.enter_group + social_list[historyItem.social_type] || historyItem.social_type;
-            case 'purchase':
-              return history_texts.share_purchase + social_list[historyItem.social_type] || historyItem.social_type;
-            case 'partner_page':
-              return history_texts.social_share + social_list[historyItem.social_type] || historyItem.social_type;
+            case 'like': {
+              if($rootScope.config.lang == 'az') {
+                return (social_list[historyItem.social_type] || historyItem.social_type) + 'da ' + history_texts.enter_group
+              } else {
+                return history_texts.enter_group + social_list[historyItem.social_type] || historyItem.social_type;                
+              }
+            }
+            case 'purchase': {
+              if($rootScope.config.lang == 'az') {
+                return (social_list[historyItem.social_type] || historyItem.social_type) + 'da ' + history_texts.share_purchase
+              } else {
+                return history_texts.share_purchase + social_list[historyItem.social_type] || historyItem.social_type;                
+              }
+            }
+            case 'partner_page': {
+              if($rootScope.config.lang == 'az') {
+                return (social_list[historyItem.social_type] || historyItem.social_type) + 'da ' + history_texts.social_share
+              } else {
+                return history_texts.social_share + social_list[historyItem.social_type] || historyItem.social_type;                
+              }
+            }
             case 'badge':
               return history_texts.share_badge + social_list[historyItem.social_type] || historyItem.social_type;
           }
@@ -3780,7 +3890,7 @@ angular.module('sp.pizzameter', [])
 
   }])
 
-  .directive('sailplayPizzameter', ["$rootScope", "config", "$filter", function ($rootScope, config, $filter) {
+  .directive('sailplayPizzameter', ["$rootScope", "config", "$filter", "magicConfig", function ($rootScope, config, $filter, magicConfig) {
     return {
       restrict: 'E',
       replace: true,
@@ -3797,15 +3907,15 @@ angular.module('sp.pizzameter', [])
       '</div>',
       link: function (scope) {
 
-        scope.target_points = $rootScope.config && $rootScope.config.data && $rootScope.config.data.pizzameter_cost || 0;
+        scope.target_points = magicConfig.get().pizzameter.cost || 0;
         scope.user_points = 0;
-        scope.visible_points = '0000'.split('');
+        scope.visible_points = '000000'.split('');
 
         scope.$watch('model', function(){
           if(!scope.model) return;
           scope.user_points = scope.model;
           var points_arr = scope.model.toString().split('');
-          while (points_arr.length < 4) {
+          while (points_arr.length < 6) {
             points_arr.unshift('0');
           }
           scope.visible_points = points_arr;

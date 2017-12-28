@@ -46,23 +46,27 @@
                             <div class="bns_ne_pod_bal_block">
                                 <div class="bns_ne_pod_bal"
                                      data-ng-bind="user().user_points.unconfirmed | number"></div>
-                                <span class="bns_ne_pod_bal_name"
+                                <div class="bns_ne_pod_bal_name_container">
+                                  <span class="bns_ne_pod_bal_name"
                                       data-ng-bind="'unconfirmed_points' | translate"></span>
-                                <a href="javascript:void(0);">
+                                  <a href="javascript:void(0);">
                                     {{ 'unconfirmed_points_hint.title' | translate }}
                                     <span class="bns_tile"
                                           data-ng-bind="'unconfirmed_points_hint.text' | translate "></span>
                                 </a>
+                                </div>
                             </div>
 
                             <div class="bns_stat_now">
                                 <img data-ng-src="{{ user().last_badge && user().last_badge.pic }}">
-                                <span class="bns_stat_name"
-                                      data-ng-bind="user().last_badge && user().last_badge.name ? ('you_have' | translate) + user().last_badge.name : ('empty_status' | translate)"></span>
-                                <a href="#"
-                                   data-scroll-to=".bns_tab_block"
-                                   data-ng-click="$event.preventDefault();open_badge(user().last_badge)"
-                                   data-ng-bind="'status_button' | translate"></a>
+                                <div class="bns_stat_name_container">
+                                  <div class="bns_stat_name"
+                                        data-ng-bind="user().last_badge && user().last_badge.name ? ('you_have' | translate) + (user().last_badge.name | tryParseField) : ('empty_status' | translate)"></div>
+                                  <a href="#"
+                                     data-scroll-to=".bns_tab_block"
+                                     data-ng-click="$event.preventDefault();open_badge(user().last_badge)"
+                                     data-ng-bind="'status_button' | translate"></a>
+                                </div>
                             </div>
 
                         </div>
@@ -99,7 +103,7 @@
 
                     </div>
 
-                    <div class="bns_top_info_right" data-ng-show="!showHistory">
+                    <div class="bns_top_info_right" data-ng-show="true || !showHistory">
                         <sailplay-pizzameter data-model="user().user_points.confirmed"
                                              style="width:100%; height: 100%;"></sailplay-pizzameter>
                     </div>
@@ -113,7 +117,7 @@
                    data-ng-repeat="tab in tabs track by $index"
                    data-ng-click="$event.preventDefault();$parent.$parent.activeTab = tab.alias;"
                    data-ng-class="{act: tab.alias == $parent.activeTab}"
-                   data-ng-bind="tab.name"></a>
+                   data-ng-bind="tab.name | translate"></a>
             </div>
 
             <div data-ng-switch="$parent.activeTab">
@@ -135,7 +139,7 @@
                             translate)) }}
                             <span class="bns_til"
                                   data-ng-if="user().user_points.confirmed < gift.points"
-                                  data-ng-bind="('need_earn_more' | translate) + ((gift.points - user().user_points.confirmed) | number) + ' ' + ((gift.points - user().user_points.confirmed) | sailplay_pluralize:('pluralize.points' | translate))"></span>
+                                  data-ng-bind="(gift.points - user().user_points.confirmed) | giftTillNext"></span>
                         </a>
                     </div>
 
@@ -158,8 +162,8 @@
                                       data-ng-bind="(action.points | number) + ' ' + (action.points | sailplay_pluralize:('pluralize.points' | translate))"></span>
                                 <a href="#"
                                    data-sailplay-action data-action="action"
-                                   data-text="{{ ('make_action' | translate) }}"
-                                   data-ng-bind="'make_action' | translate"
+                                   data-text="{{ (action_data(action).openButtonText || 'make_action') | translate }}"
+                                   data-ng-bind=" (action_data(action).openButtonText || 'make_action') | translate"
                                    data-styles="{{ action_styles(action_data(action)) }}"></a>
                             </div>
 
@@ -186,17 +190,17 @@
 
                     </div>
 
-                    <div class="bns_tab_block_popup" data-ng-if="open_custom_action && open_custom_action.type != 'static_page'">
+                    <div class="bns_tab_block_popup" data-ng-if="open_custom_action && open_custom_action.type != 'static_page' && open_custom_action.type != 'collect_tags'">
                         <div class="bns_tab_block_popup-layout" data-ng-click="$parent.open_custom_action=null;body_lock(false);"></div>
                         <div data-sailplay-action-custom
                              class="bns_tab_block_popup-content"
                              data-action="$parent.open_custom_action"></div>
                     </div>
 
-                    <div class="bns_tab_block_popup" data-ng-if="open_custom_action && open_custom_action.type == 'static_page'">
+                    <div class="bns_tab_block_popup" data-ng-if="(open_custom_action) && (open_custom_action.type == 'static_page' || open_custom_action.type == 'collect_tags') ">
                         <div class="bns_tab_block_popup-layout" data-ng-click="$parent.open_custom_action=null;body_lock(false);"></div>
                         <div data-sailplay-action-custom-noiframe-static-page 
-                             class="bns_tab_block_popup-content noiframe-custom-action"
+                             class="action static_page bns_tab_block_popup-content noiframe-custom-action"
                              data-action="$parent.open_custom_action"></div>
                     </div>
 
@@ -216,6 +220,7 @@
                                   <strong data-ng-show="badge.points"
                                           data-ng-bind="(badge.points | number) + ' ' + (badge.points |sailplay_pluralize:('pluralize.points' | translate))"></strong>
                               </span>
+                              <data-badge-info data-badges="line"></data-badge-info>
                           </div>
                         </div>
                         <data-badge-info data-badges="line"></data-badge-info>

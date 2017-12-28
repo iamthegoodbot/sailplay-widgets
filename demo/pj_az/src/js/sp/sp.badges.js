@@ -41,7 +41,7 @@
           });
 
           scope.share_badge = function (badge, network) {
-            SailPlayShare(network, $rootScope.config.data.share_url || $window.location.href, badge.name, badge.share_msg, badge.thumbs.url_250x250);
+            SailPlayShare(network, $rootScope.config.data && $rootScope.config.data.share_url || $window.location.href, badge.name, badge.share_msg, badge.thumbs.url_250x250);
           };
 
         }
@@ -58,7 +58,15 @@
         scope: true,
         link: function (scope) {
 
-          scope.badges = sp_api.data('load.badges.list');
+          scope.badges = () => {
+            var data = sp_api.data('load.badges.list')()
+            if($rootScope.config.lang == 'az') {
+              return {multilevel_badges: [data.multilevel_badges[1], data.multilevel_badges[0]]}
+            } else {
+              return data
+            }
+            
+          }
 
           scope.user = sp_api.data('load.user.info');
 
@@ -68,7 +76,7 @@
             scope.$emit('badge:open', badge);
           };
 
-          $rootScope.$on('badge:open', function (e, badge) {
+          scope.$parent.$on('badge:open', function (e, badge) {
             scope.opened = !badge || badge.id === scope.opened ? null : badge.id;
           });
 

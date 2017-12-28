@@ -1,6 +1,6 @@
 .bns_qust_item {
   float: left;
-  min-width: 23%;
+  min-width: 21%;
   width: 290px;
   height: 130px;
   margin-right:22px;
@@ -59,19 +59,20 @@
     width: 60%;
     height: 130px;
     position: relative;
-    padding-right: 20px;
+    padding-right: 22px;
     box-sizing: border-box;
     .bns_qust_right_name {
       float: left;
       width:100%;
       color: #5e5e5e;
-      font-size: 22px;
+      font-size: 20px;
       line-height: 19px;
       margin-top: 34px;
       margin-bottom: 8px;
     }
     .bns_qust_right_button {
-
+      text-align: left !important;
+      padding-left: 60px !important;
     }
     .bns_qust_right_bal {
       float: left;
@@ -80,6 +81,9 @@
       font-size: 20px;
       font-weight: bold;
       letter-spacing: -1px;
+      position: absolute;
+      bottom: 30px;
+      left: 0;
     }
     a {
       width: 100%;
@@ -95,19 +99,35 @@
       margin-top: -10px;
       top:50%;
       display: none;
+      &:not(.bns_qust_right_button) {
+        margin-left: 16px;
+        & iframe {
+          transform: translate(13px);
+        }
+        @media screen and (max-width: 650px) {
+          margin-left: 0px !important;
+          padding-left: 32px !important;
+          & iframe {
+            transform: translate(-26px) !important;
+          }
+        }
+      }
     }
   }
 }
 
 *[data-sailplay-action] {
-  height: 73px;
-  padding-top: 35%;
-  top: 0 !important;
-  width: 270px !important;
-  left: -85px !important;
+  height: 130px;
+  padding-top: 55px;
+  top: 10px !important;
+  width: 375px !important;
+  left: -125px !important;
   padding-left: 35px !important;
   &>iframe {
-    width: 265px !important;
-    height: 75px !important;
+    left: -3%;
+    top: 1%;
+    width: 370px !important;
+    height: 130px !important;
+    position: absolute;
   }
 }
