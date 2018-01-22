@@ -866,6 +866,41 @@
       }
 
     });
+    
+    // USER TAGS LIST
+    sp.on("tags.list", function (data, callback) {
+      if (_config == {}) {
+        initError();
+        return;
+      }
+      if (_config.auth_hash || data.user) {
+        var obj = {};
+        if(data.params) {
+          for (var p in data.params) {
+            obj[p] = data.params[p];
+          }
+        }
+        if (data.user) {
+          for (var p in data.user) {
+            obj[p] = data.user[p];
+          }
+        } else {
+          obj.auth_hash = _config.auth_hash;
+        }
+        obj.lang = data.lang || _config.lang || 'ru';
+        JSONP.get(_config.DOMAIN + _config.urls.tags.list, obj, function (res) {
+          if (res.status == 'ok') {
+            sp.send('tags.list.success', res);
+          } else {
+            sp.send('tags.list.error', res);
+          }
+          callback && callback(res);
+        });
+      } else {
+        sp.send('tags.list.auth.error', data);
+      }
+
+    });
 
     /**
      * Add variables to user
