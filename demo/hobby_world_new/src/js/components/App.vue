@@ -83,6 +83,7 @@
     data: function () {
       return {
         showMessage: false,
+        config: null,
         user: {
           user: {},
           user_points: {},
@@ -139,6 +140,10 @@
         this.gifts = res
       }.bind(this))
 
+      SAILPLAY.on('magic.config.success', function (res) {
+        this.config = res.config.config
+      }.bind(this))
+
       SAILPLAY.on('load.user.history.success', function (res) {
         this.history = res
       }.bind(this))
@@ -146,6 +151,8 @@
       SAILPLAY.on('users.update.success', function (res) {
         this.getUser()
       }.bind(this))
+
+      SAILPLAY.send('magic.config')
 
       this.getUser()
       this.getBadges()
@@ -177,12 +184,12 @@
       },
 
       bodyLock: function(state){
-        let lockClass = 'sp-lock-scroll'
-         if (state) {
-           $('html').addClass(lockClass)
-         } else {
-           $('html').removeClass(lockClass)
-         }
+        // let lockClass = 'sp-lock-scroll'
+        //  if (state) {
+        //    $('html').addClass(lockClass)
+        //  } else {
+        //    $('html').removeClass(lockClass)
+        //  }
       }
     }
   }
@@ -604,7 +611,7 @@
             opacity 0
             visibility hidden
             position absolute
-            top 0
+            bottom -20px
             right 0
             font-size 9px
             line-height 10px

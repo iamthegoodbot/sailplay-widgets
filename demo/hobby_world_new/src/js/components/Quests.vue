@@ -18,7 +18,7 @@
                     <div class="sp-quests-item-container" v-if="!action._actionId">
                         <div class="sp-quests-item-info">
                             <span>{{ action.name }}</span>
-                            <strong>{{ action.points }}</strong>
+                            <strong>{{ getActionPoints(action) }}</strong>
                         </div>
                         <div class="sp-quests-item-image">
                             <img :src="action.icon">
@@ -42,7 +42,7 @@
                     <div class="sp-quests-item-container" v-else>
                         <div class="sp-quests-item-info">
                             <span>{{ action.name }}</span>
-                            <strong>{{ action.points }}</strong>
+                            <strong>{{ getActionPoints(action) }}</strong>
                         </div>
                         <div class="sp-quests-item-image">
                             <img :src="action.icon">
@@ -520,6 +520,12 @@
 
     },
     methods: {
+
+      getActionPoints(action) {
+        if(!action || !this.$parent.config) return;
+        return this.$parent.config.actions_points[action.id]
+      },
+
 
       getActionStyle: function (action_data) {
         return action_data.styles && stringify_widget_css('', action_data.styles);

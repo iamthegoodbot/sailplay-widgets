@@ -54,6 +54,10 @@ module.exports = {
 
     ]
   },
+  
+  devServer: {
+    contentBase: './'
+  },
 
   plugins: [
 

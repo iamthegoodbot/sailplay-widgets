@@ -35,9 +35,9 @@
         </div>
 
         <div class="sp-popup sp-popup-profile" v-if="showProfile">
-            <div class="sp-popup-layout" v-on:click.prevent="showProfile = false;$parent.bodyLock(false)"></div>
+            <div class="sp-popup-layout" v-on:click.prevent="closeProfile"></div>
             <div class="sp-popup-content">
-                <i class="sp-popup-close" v-on:click.prevent="showProfile = false;$parent.bodyLock(false)"></i>
+                <i class="sp-popup-close" v-on:click.prevent="closeProfile"></i>
                 <div class="sp-container">
                     <div class="sp-popup-title">Редактировать профиль</div>
 
@@ -60,7 +60,7 @@
                             <label class="sp-form-element sp-form-input" :class="{'sp-m-error': errors.has('phone')}">
                                 <span class="sp-form-element-error">неверный телефон</span>
                                 <span class="sp-form-element-label">Телефон</span>
-                                <masked-input type="tel" mask="\+1 (111) 111-11-11" v-validate="'required'" name="phone" v-model="user.addPhone" />
+                                <input type="tel" v-mask="'+# (###) ###-##-##'" placeholder="+7 (___) ___-__-__" autocomplete="on" v-validate="'required|min:18'" name="phone" v-model="user.addPhone" />
                             </label>
 
                             <label class="sp-form-element sp-form-input">
@@ -118,7 +118,7 @@
                             </div>
 
                             <div class="sp-form-element sp-form-change-password">
-                                <a href="" class="sp-form-link"  v-on:click.prevent="showProfile = false;showChangePassword = true;">Изменить пароль</a>
+                                <a href="" class="sp-form-link"  v-on:click.prevent="showChangePassword = true;">Изменить пароль</a>
                             </div>
 
                             <div class="sp-form-element sp-form-checkbox-group" :class="{'sp-m-error': !filledInterests}">
@@ -179,7 +179,7 @@
                                 <input type="password" name="new_password" v-model="passwords.password_1">
                             </label>
 
-                            <label class="sp-form-element sp-form-input" :class="{'sp-m-error': (passwords.password_1 && passwords.password_2 && passwords.password_1 != passwords.password_2) }">
+                            <label class="sp-form-element sp-form-input" :class="{'sp-m-error': passwords.password_1 && passwords.password_2 && passwords.password_1 != passwords.password_2 }">
                                 <span class="sp-form-element-error">Пароли не совпадают</span>
                                 <span class="sp-form-element-label">Повторить</span>
                                 <input type="password" name="repeat_new_password" v-model="passwords.password_2">
@@ -189,7 +189,8 @@
 
                         <div class="sp-popup-buttons-wrapper">
                             <input type="submit" class="sp-popup_button"
-                                   :class="{'sp-m-disabled': updating}"
+                                   :disabled="!passwords.old || !passwords.password_1 || !passwords.password_2 || passwords.password_1 != passwords.password_2"
+                                   :class="{'sp-m-disabled': updating || (!passwords.old || !passwords.password_1 || !passwords.password_2 || passwords.password_1 != passwords.password_2)}"
                                    :value="'Сохранить'"
                                    v-on:click.prevent="changePassword"/>
                         </div>
@@ -209,7 +210,7 @@
   import Vue from 'vue'
   import SAILPLAY from 'sailplay-hub'
   import VeeValidate from 'vee-validate'
-  import MaskedInput from 'vue-masked-input'
+  import { VueMask, VueMaskDirective } from 'v-mask'
   import VueUploadComponent from 'vue-upload-component'
 
   const DEFAULT_AVATAR = '//sailplay.cdnvideo.ru/static/no_avatar100x100.png'
@@ -273,7 +274,7 @@
     interests: INTERESTS.map(item => {return {label: item, model: false}})
   }
 
-  const RACE_CONDITION_TIME = 3000
+  const RACE_CONDITION_TIME = 2000
 
   let current_year = new Date().getFullYear()
   let arr = []
@@ -283,15 +284,21 @@
 
   export default {
     name: 'profile',
+    directives: {
+      mask: VueMaskDirective,
+    },
     components: {
       VeeValidate,
-      MaskedInput,
       FileUpload: VueUploadComponent
     },
     data() {
       return {
         avatar: [],
-        passwords: {},
+        passwords: {
+          old: null,
+          password_1: null,
+          password_2: null
+        },
         updating: false,
         user: Vue.util.extend({}, DEFAULT_PROFILE),
         interests: [],
@@ -415,6 +422,7 @@
 
       closeProfile() {
         if(!this.updating){
+          this.updateInfo()
           this.showProfile = false
           this.$parent.bodyLock(false)
         }
@@ -512,7 +520,6 @@
 
                 this.$nextTick(function () {
                   this.updating = false
-                  this.showProfile = false
                   this.$parent.showMessage = {
                     title: 'Ошибка',
                     text: UPDATE_PROFILE_ERRORS[res_user_update.status_code] || res_user_update.message || 'Не получилось обновления профиля.'
@@ -531,14 +538,18 @@
                     SAILPLAY.send('vars.add', {custom_vars: vars}, function (res_vars_add) {
 
                       this.$http.get(this.$parent.$parent.config.urls.update_profile, {
-                        last_name: user_data.lastName,
-                        middle_name: user_data.middleName,
-                        first_name: user_data.firstName,
-                        phone: user_data.addPhone,
-                        birth_date: user_data.birthDate,
-                        gender: user_data.sex,
-                        nickname: local_user.nickname,
-                        interests: tags_add
+                        params:{
+                          last_name: user_data.lastName,
+                          middle_name: user_data.middleName,
+                          first_name: user_data.firstName,
+                          phone: user_data.addPhone,
+                          email: user_data.addEmail,
+                          birth_date: user_data.birthDate,
+                          gender: user_data.sex,
+                          nickname: local_user.nickname,
+                          interests: tags_add,
+                          subscriptions: user_data.subscriptions
+                        }
                       }).then(response => {
                         this.$nextTick(function () {
                           this.updating = false
@@ -574,7 +585,7 @@
           data.append('oid', this.$parent.user.user.origin_user_id)
           this.$http.post(this.$parent.$parent.config.urls.upload_avatar, data).then(response => {
             this.updating = false
-            this.showProfile = false
+            // this.showProfile = false
             this.$parent.showMessage = {
               title: 'Готово',
               text: 'Аватар обновлен'
@@ -582,7 +593,7 @@
             this.$parent.getUser()
           }, response => {
             this.updating = false
-            this.showProfile = false
+            // this.showProfile = false
             this.$parent.showMessage = {
               title: 'Ошибка',
               text: response.data.message
@@ -594,7 +605,7 @@
       changePassword(e) {
         if(this.updating) return
         this.updating = true
-        this.$http.get(this.$parent.$parent.config.urls.change_password, this.passwords).then(response => {
+        this.$http.get(this.$parent.$parent.config.urls.change_password, {params: this.passwords}).then(response => {
           this.$nextTick(function () {
             this.updating = false
             this.showChangePassword = false
@@ -606,7 +617,7 @@
         }, response => {
           this.$nextTick(function () {
             this.updating = false
-            this.showProfile = false
+            // this.showProfile = false
             this.showChangePassword = false
             this.$parent.showMessage = {
               title: 'Ошибка',
