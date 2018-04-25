@@ -124,7 +124,7 @@
 
                 <div class="bns_tab_block" id="gift" data-ng-switch-when="gifts" data-sailplay-gifts>
 
-                    <div class="bns_gift_item" data-ng-repeat="gift in gifts()">
+                    <div class="bns_gift_item" data-ng-repeat="gift in gifts() | orderBy:'name'">
                       <div class="img-container" data-ng-style="{'background-image': 'url('+(gift.pic_full | sailplay_pic)+')'}">
                         
                       </div>
