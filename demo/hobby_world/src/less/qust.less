@@ -1,0 +1,166 @@
+.bns_quest_main {
+  float: left;
+  width: 100%;
+  text-align: center;
+  padding: 25px;
+  margin-bottom: 66px;
+  box-sizing: border-box;
+
+  .bns_quest_wr {
+    float: left;
+    width: 25%;
+  }
+
+  &_empty {
+    padding: 45px 0 0;
+    text-align: center;
+  }
+
+  .prev {
+    border: 0px;
+    background-color: transparent;
+    text-indent: -99999px;
+    width: 15px;
+    height: 50px;
+    position: absolute;
+    background-image: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/8f8c516f2d7c0a07a0ec4e37dc88455c.png");
+    left: 10px;
+    top: 50%;
+    margin-top: -25px;
+    outline: none;
+    z-index: 2;
+    cursor: pointer;
+  }
+  .next {
+    outline: none;
+    border: 0px;
+    z-index: 2;
+    background-color: transparent;
+    text-indent: -99999px;
+    width: 15px;
+    height: 50px;
+    position: absolute;
+    background-image: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/b46be7c91b2036afb8660b47ced7a1fe.png");
+    right: 10px;
+    top: 50%;
+    margin-top: -25px;
+    cursor: pointer;
+  }
+  .bns_quest_item {
+    display: inline-block;
+    width: 150px;
+    height: 198px;
+    border: 1px solid #64a7b5;
+    margin: 20px 10px;
+    overflow: hidden;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+    -webkit-transition: all 300ms ease;
+    -moz-transition: all 300ms ease;
+    -ms-transition: all 300ms ease;
+    -o-transition: all 300ms ease;
+    transition: all 300ms ease;
+    &:hover {
+      -moz-transform: scale(1.1);
+      -webkit-transform: scale(1.1);
+      -o-transform: scale(1.1);
+      -ms-transform: scale(1.1);
+      transform: scale(1.1);
+      -webkit-box-shadow: 0 0 10px 0 #8C8C8C;
+      box-shadow: 0 0 10px 0 #8C8C8C;
+      border: 1px solid transparent;
+      a {
+        opacity: 1;
+      }
+    }
+    a {
+      position: absolute;
+      left: 10%;
+      width: 80%;
+      bottom: 26px;
+      line-height: 27px;
+      border-radius: 27px;
+      background-color: #ef6747;
+      display: inline-block;
+      text-decoration: none;
+      color: #ffffff;
+      text-align: center;
+      font-size: 15px;
+      font-weight: bold;
+      opacity: 0;
+      -webkit-transition: all 300ms ease;
+      -moz-transition: all 300ms ease;
+      -ms-transition: all 300ms ease;
+      -o-transition: all 300ms ease;
+      transition: all 300ms ease;
+    }
+    .bns_quest_item_img {
+      width: 58px;
+      height: 58px;
+      border-radius: 58px;
+      background-color: #6eb1ba;
+      text-align: center;
+      display: inline-block;
+      margin-top: 15px;
+      margin-bottom: 20px;
+      &:before {
+        content: '';
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+      }
+      img {
+        vertical-align: middle;
+        display: inline-block;
+        max-width: 80%;
+        //margin-right: 4px;
+      }
+    }
+    .bns_quest_item_name {
+      float: left;
+      width: 76%;
+      margin-left: 12%;
+      color: #000000;
+      font-size: 14px;
+      margin-bottom: 20px;
+      height: 32px;
+    }
+    .bns_quest_item_bal {
+      line-height: 27px;
+      display: inline-block;
+      background-color: #f1f1f1;
+      border-radius: 27px;
+      float: left;
+      width: 60%;
+      margin-left: 20%;
+      font-size: 18px;
+      color: #000000;
+      font-weight: bold;
+      &:after {
+        content: '';
+        display: inline-block;
+        width: 16px;
+        height: 18px;
+        background-image: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/d22257c3e4296e5ae07b1b3baed38b8b.png");
+        background-repeat: no-repeat;
+        background-position: center center;
+        position: relative;
+        top: 2px;
+        margin-left: 3px;
+      }
+    }
+    .bns_quest_item_text {
+      line-height: 27px;
+      display: inline-block;
+      background-color: #f1f1f1;
+      border-radius: 27px;
+      float: left;
+      width: 60%;
+      margin-left: 20%;
+      font-size: 12px;
+      color: #000000;
+      font-weight: bold;
+    }
+  }
+}

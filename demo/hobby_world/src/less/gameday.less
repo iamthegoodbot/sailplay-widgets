@@ -1,0 +1,107 @@
+.bns_game_day_main {
+  height: 334px;
+}
+
+.bns_game_day {
+  float: left;
+  width: 100%;
+  position: relative;
+  text-align: center;
+  top: 18px;
+  padding: 17px 0 5px;  
+
+    .bns_game_day_name {
+      width: 100%;
+      height: 74px;
+      text-align: center;
+      color: #000000;
+      font-size: 19px;
+      padding: 0 24px;
+      box-sizing: border-box;
+    }
+
+    .price {
+      display: inline-block;
+      line-height: 36px;
+      padding: 0px 11px 0px 27px;
+      background-color: #ef6747;
+      font-size: 15px;
+      font-weight: bold;
+      color: #fff;
+      border-radius: 21px;
+      position: relative;
+      text-decoration: none;
+      margin-top: 10px;
+      margin-bottom: 25px;
+      &:before {
+        content: '';
+        width:13px;
+        height: 100%;
+        background-image: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/0512a0f28e2cbf973bf958d1b98d82e4.png");
+        background-position: center center;
+        background-repeat: no-repeat;
+        left: 10px;
+        top:0px;
+        display: block;
+        position: absolute;
+      }
+      .bns_old_price {
+        border-radius:21px;
+        background-color: #68a5b7;
+        white-space: nowrap;
+        top:0px;
+        padding: 0px 10px;
+        display: inline-block;
+        margin-right: -11px;
+        position: relative;
+        &:before {
+          width: 80%;
+          height: 2px;
+          background-color: #ef6747;
+          content: '';
+          left: 10%;
+          top:50%;
+          -moz-transform: rotate(-6deg);
+          -webkit-transform: rotate(-6deg);
+          -o-transform: rotate(-6deg);
+          -ms-transform: rotate(-6deg);
+          transform: rotate(-6deg);
+          display: block;
+          z-index:1;
+          position: absolute;
+        }
+      }
+    }
+
+  .bns_linck_all {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .bns_game_day_left {
+    float: left;
+    width: 220px;
+    padding: 0 15px;
+    box-sizing: border-box;
+    text-align:  center;
+
+  }
+  .bns_game_day_right {
+    float: right;
+    width: 155px;
+    text-align: center;
+    // height: 236px;
+    &:before {
+      content: '';
+      display: inline-block;
+      height: 100%;
+      vertical-align: middle;
+    }
+    img {
+      max-width: 95%;
+      vertical-align: middle;
+    }
+  }
+}

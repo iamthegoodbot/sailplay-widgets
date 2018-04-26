@@ -1,0 +1,31 @@
+{
+  "name": "sailplay.pj_az",
+  "version": "0.0.1",
+  "description": "",
+  "author": "awesome",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "latest",
+    "angular-cookie": "latest",
+    "angular-touch": "^1.5.9",
+    "angular-translate": "^2.15.1",
+    "angular-translate-loader-partial": "^2.16.0",
+    "angular-ui-mask": "^1.8.7",
+    "angular-utils-pagination": "^0.11.1",
+    "jquery": "^2.2.3",
+    "sailplay-hub": "latest",
+    "sailplay-hub-actions": "latest"
+  },
+  "devDependencies": {
+    "browser-sync": "latest",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-imagemin": "^3.0.1",
+    "gulp-less": "^3.0.5",
+    "gulp-minify-html": "^1.0.6",
+    "gulp-ng-annotate": "^2.0.0",
+    "gulp-ng-html2js": "^0.2.2",
+    "gulp-ngdocs": "^0.2.13",
+    "gulp-sourcemaps": "^2.6.0"
+  }
+}

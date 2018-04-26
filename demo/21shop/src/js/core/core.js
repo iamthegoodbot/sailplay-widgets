@@ -4,7 +4,7 @@
     'ipCookie'
   ])
 
-    .run(function (sp, ipCookie, sp_api, $rootScope, custom_data, spProfileTag, actions_data) {
+    .run(function (sp, ipCookie, sp_api, $rootScope, spProfileTag, actions_data) {
 
       $rootScope.config = window.sailplay_config || {};
 
@@ -23,21 +23,21 @@
       };
 
 
-      var TAGS = [];
+      // var TAGS = [];
 
-      // custom actions action tags
-      if (custom_data && custom_data.length) {
-        TAGS = custom_data.map(function (item) {
-          return item.buttons.map(function (button) {
-            return button.tag;
-          })
-        }).reduce(function (a, b) {
-          return a.concat(b);
-        });
-      }
+      // // custom actions action tags
+      // if (custom_data && custom_data.length) {
+      //   TAGS = custom_data.map(function (item) {
+      //     return item.buttons.map(function (button) {
+      //       return button.tag;
+      //     })
+      //   }).reduce(function (a, b) {
+      //     return a.concat(b);
+      //   });
+      // }
 
       // Tag for fill profile
-      TAGS.push(spProfileTag);
+      // TAGS.push(spProfileTag);
 
       $rootScope.loaded = false;
 
@@ -155,6 +155,8 @@
 
         sp_api.call('load.actions.list');
 
+        sp_api.call('load.actions.custom.list');
+
         sp_api.call('load.badges.list');
 
         sp_api.call('load.user.info', {all: 1, purchases: 1});
@@ -163,7 +165,7 @@
 
         sp_api.call('load.user.history', {tz: getTimeZone()});
 
-        if (TAGS) sp_api.call('tags.exist', {tags: TAGS});
+        // if (TAGS) sp_api.call('tags.exist', {tags: TAGS});
 
       }
 

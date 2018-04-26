@@ -1,0 +1,218 @@
+.sp_wrapper {
+  .bns_gift {
+    float: left;
+    width: 100%;
+    margin-top: 33px;
+    .bns_head {
+      float: left;
+      width: 100%;
+      position: relative;
+      h2 {
+        color: #333333;
+        margin-top: 0;
+        margin-bottom: 0;
+        font-size: 36px;
+        font-weight: 800;
+        background: #fff;
+        position: relative;
+        float: left;
+        padding-right: 13px;
+      }
+      .bns_sub_head {
+        float: left;
+        width: 100%;
+        color: #000000;
+        font-size: 14px;
+
+      }
+      &:before {
+        content: '';
+        width: 100%;
+        height: 1px;
+        background: #EEEEEE;
+        display: block;
+        position: absolute;
+        left: 0;
+        margin-top: 4px;
+        top: 50%;
+      }
+      a {
+        position: absolute;
+        width: 180px;
+        text-align: center;
+        text-decoration: none;
+        color: #0054A6;
+        font-size: 14px;
+        line-height: 38px;
+        border: 1px solid #D1D1D1;
+        background-color: #fff;
+        right: 0px;
+        top: 50%;
+        margin-top: -16px;
+        border-radius: 3px;
+        -webkit-transition: box-shadow 300ms ease;
+        -moz-transition: box-shadow 300ms ease;
+        -ms-transition: box-shadow 300ms ease;
+        -o-transition: box-shadow 300ms ease;
+        transition: box-shadow 300ms ease;
+        &:hover {
+          -webkit-box-shadow: 0 15px 15px 0 rgba(0, 0, 0, 0.07);
+          box-shadow: 0 15px 15px 0 rgba(0, 0, 0, 0.07);
+        }
+      }
+    }
+    .bns_gift_main {
+      float: left;
+      width: 101.3%;
+      margin: 0 -8px;
+      .slick-prev {
+        position: absolute;
+        left: -15px;
+        top: 50%;
+        width: 60px;
+        height: 60px;
+        background-color: #fff;
+        border: 1px solid #EDEDED;
+        border-radius: 23px;
+        margin-top: -30px;
+        background-image: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/fa388873a43d8846f1bec899d221a7c1.svg");
+        background-position: center center;
+        background-repeat: no-repeat;
+        display: block;
+        z-index: 111;
+        text-indent: -10000px;
+        cursor: pointer;
+        outline: none;
+        -webkit-transition: box-shadow 300ms ease;
+        -moz-transition: box-shadow 300ms ease;
+        -ms-transition: box-shadow 300ms ease;
+        -o-transition: box-shadow 300ms ease;
+        transition: box-shadow 300ms ease;
+        &.slick-disabled {
+          display: none !important;
+        }
+        &:hover {
+          -webkit-box-shadow: 0 15px 15px 0 rgba(0, 0, 0, 0.07);
+          box-shadow: 0 15px 15px 0 rgba(0, 0, 0, 0.07);
+        }
+      }
+      .slick-next {
+        position: absolute;
+        right: -15px;
+        top: 50%;
+        width: 60px;
+        height: 60px;
+        background-color: #fff;
+        border: 1px solid #EDEDED;
+        border-radius: 23px;
+        margin-top: -30px;
+        background-image: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/658acbd873c2cc3c7f4137b9120f0516.svg");
+        background-position: center center;
+        background-repeat: no-repeat;
+        display: block;
+        z-index: 111;
+        text-indent: -10000px;
+        cursor: pointer;
+        outline: none;
+        -webkit-transition: box-shadow 300ms ease;
+        -moz-transition: box-shadow 300ms ease;
+        -ms-transition: box-shadow 300ms ease;
+        -o-transition: box-shadow 300ms ease;
+        transition: box-shadow 300ms ease;
+        &.slick-disabled {
+          display: none !important;
+        }
+        &:hover {
+          -webkit-box-shadow: 0 15px 15px 0 rgba(0, 0, 0, 0.07);
+          box-shadow: 0 15px 15px 0 rgba(0, 0, 0, 0.07);
+        }
+      }
+      .bns_gift_item {
+        cursor: pointer;
+        height: 335px;
+        border: 1px solid #EEEEEE;
+        border-radius: 3px;
+        padding: 10px;
+        margin: 8px;
+        position: relative;
+        -webkit-transition: box-shadow 300ms ease;
+        -moz-transition: box-shadow 300ms ease;
+        -ms-transition: box-shadow 300ms ease;
+        -o-transition: box-shadow 300ms ease;
+        transition: box-shadow 300ms ease;
+        &:hover {
+          -webkit-box-shadow: 0 15px 15px 0 rgba(0, 0, 0, 0.15);
+          box-shadow: 0 15px 15px 0 rgba(0, 0, 0, 0.15);
+        }
+        .bns_gift_item_name {
+          float: left;
+          text-align: center;
+          color: #000000;
+          font-weight: 300;
+          width: 100%;
+          font-size: 18px;
+          margin-top: 10px;
+          white-space: nowrap;
+          height: 21px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        .bns_gift_item_img {
+          float: left;
+          width: 100%;
+          text-align: center;
+          height: 240px;
+          &.bns_gift_item_img_show_all {
+            height: 335px;
+            span {
+              font-size: 18px;
+              font-weight: 300;
+              color: #000000;
+              position: absolute;
+              left: 0;
+              width: 100%;
+              text-align: center;
+              top: 50%;
+              margin-top: -22px;
+            }
+          }
+          &:before {
+            content: '';
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+          }
+          img {
+            display: inline-block;
+            width: 95%;
+            vertical-align: middle;
+          }
+        }
+        .bns_gift_item_linck {
+          float: left;
+          width: 100%;
+          color: #0054A6;
+          font-size: 14px;
+          border-top: 1px solid #EEEEEE;
+          text-decoration: none;
+          line-height: 20px;
+          padding-top: 14px;
+          margin-top: 23px;
+          text-align: center;
+        }
+        a {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          display: block;
+          outline: none;
+        }
+      }
+    }
+    .bns_overlay_get_gift {
+      z-index: 11112;
+    }
+  }
+}

@@ -111,6 +111,7 @@
         link: function(scope){
 
           scope.actions = SailPlayApi.data('load.actions.list');
+          scope.actions_custom = SailPlayApi.data('load.actions.custom.list');
 
           scope.perform_action = function(action){
 

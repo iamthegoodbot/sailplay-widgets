@@ -1,0 +1,8 @@
+<div class="bns_overlay_badge_page" data-ng-if="1 < pages.length || !autoHide">
+
+    <a href="#"
+       data-ng-repeat="pageNumber in pages track by tracker(pageNumber, $index)"
+       data-ng-class="{ 'act' : pagination.current == pageNumber }"
+       data-ng-click="setCurrent(pageNumber);$event.preventDefault();" data-ng-bind="pageNumber"></a>
+
+</div>

@@ -1,23 +1,28 @@
-# SailPlay виджеты для Alpina
+# SailPlay виджеты для Alpina Publisher
 
 ## Установка
 
 Добавьте на страницу следующий код:
 
-   <script type="text/javascript">
-        var AUTH_HASH = 'AUTH HASH',
-        EMAIL = 'EMAIL';
-          document.addEventListener('DOMContentLoaded', function () {
-              var s = document.createElement("script");
-              s.type = "text/javascript";
-              s.src = "dist/js/main.min.js";
-              document.getElementsByTagName("head")[0].appendChild(s);
-              var ss = document.createElement("link");
-              ss.type = "text/css";
-              ss.rel = "stylesheet";
-              ss.href = "dist/css/main.css";
-              document.getElementsByTagName("head")[0].appendChild(ss);
-          });
+Подключить скрипты
+
+   <script src="dist/js/sailplay.alpina.js"></script>
+   <link rel="stylesheet" href="dist/css/sailplay.alpina.css">
+
+Инициализация личного кабинета
+
+   <script>
+
+     $(document).ready(function () {
+
+       var AUTH_HASH = 'AUTH_HASH';
+
+       var EMAIL = 'EMAIL';
+
+       startLoyaltyApp(AUTH_HASH);
+
+     });
+     
    </script>
 
 
@@ -32,7 +37,6 @@
 
 ## Разработка
 
-npm i gulp gulp-less gulp-filter gulp-jsmin gulp-connect gulp-uglifyjs del gulp-concat stream-series less-plugin-clean-css less-plugin-autoprefix
+npm i
 
-gulp - for dev
-gulp prod - for prod
+gulp

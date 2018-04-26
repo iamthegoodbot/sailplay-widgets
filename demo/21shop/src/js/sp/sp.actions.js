@@ -6,14 +6,14 @@
       "system": {
         "inviteFriend": {
           "name": "Пригласи друга",
-          "pic": "https://d3sailplay.cdnvideo.ru/media/assets/assetfile/6aef4021b4c4369e309cb36535e1fd89.png"
+          "pic": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/a0273f8e9b78b5d75d627c58fb4b4d48.png"
         }
       },
       "social": {
         "fb": {
           "like": {
             "name": "Вступить в группу в Facebook",
-            "pic": 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/94e05666029fa2a8d0dccdd9651d62fb.png',
+            "pic": 'https://sailplays3.cdnvideo.ru/media/assets/assetfile/aa537e5d90bf69989a466b38a393284e.png',
             "styles": {
               "fb_share_btn": {
                 "font-family": "Arial",
@@ -35,7 +35,7 @@
           },
           "partner_page": {
             "name": "Рассказать о компании в Facebook",
-            "pic": 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/94e05666029fa2a8d0dccdd9651d62fb.png',
+            "pic": 'https://sailplays3.cdnvideo.ru/media/assets/assetfile/ee95efb204e9639d64daed60a436ac4e.png',
             "styles": {
               "fb_share_btn": {
                 "font-family": "Arial",
@@ -57,7 +57,7 @@
           },
           "purchases": {
             "name": "Рассказать о покупке в Facebook",
-            "pic": 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/94e05666029fa2a8d0dccdd9651d62fb.png',
+            "pic": 'https://sailplays3.cdnvideo.ru/media/assets/assetfile/ee95efb204e9639d64daed60a436ac4e.png',
             "styles": {
               "fb_share_btn": {
                 "font-family": "Arial",
@@ -81,7 +81,7 @@
         "vk": {
           "like": {
             "name": "Вступить в группу в Вконтакте",
-            "pic": 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/b64d65189731e44dcdfbf78ad5fb2b18.png',
+            "pic": 'https://sailplays3.cdnvideo.ru/media/assets/assetfile/f9a204c5581d35e6388b53352a373b96.png',
             "styles": {
               "vk_share_btn": {
                 "font-family": "Arial",
@@ -103,7 +103,7 @@
           },
           "partner_page": {
             "name": "Рассказать о компании в Вконтакте",
-            "pic": 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/b64d65189731e44dcdfbf78ad5fb2b18.png',
+            "pic": 'https://sailplays3.cdnvideo.ru/media/assets/assetfile/ab80c674a8e93026c1fb73a357e732e4.png',
             "styles": {
               "vk_share_btn": {
                 "font-family": "Arial",
@@ -125,7 +125,7 @@
           },
           "purchases": {
             "name": "Рассказать о покупке в Вконтакте",
-            "pic": 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/b64d65189731e44dcdfbf78ad5fb2b18.png',
+            "pic": 'https://sailplays3.cdnvideo.ru/media/assets/assetfile/ab80c674a8e93026c1fb73a357e732e4.png',
             "styles": {
               "vk_share_btn": {
                 "font-family": "Arial",
@@ -149,7 +149,7 @@
       }
     })
 
-    .constant('custom_data', [])
+    // .constant('custom_data', [])
 
     .service('spAction', function (actions_data) {
 
@@ -245,7 +245,64 @@
 
     })
 
-    .directive('sailplayActions', function (sp_api, sp, spAction, custom_data, tagHelper) {
+    /**
+     * @ngdoc directive
+     * @name sailplay.actions.directive:sailplayActionCustom
+     * @scope
+     * @restrict A
+     *
+     * @description
+     * Renders SailPlay custom action in element.
+     *
+     * @param {object}  action   A SailPlay custom action object, received from api.
+     *
+     */
+    .directive('sailplayActionCustom', function (sp, $document) {
+
+      var init_state;
+
+      return {
+
+        restrict: 'A',
+        replace: false,
+        scope: {
+          action: '='
+        },
+        link: function (scope, elm, attrs) {
+
+          var iframe = $document[0].createElement('iframe');
+          var name = 'default';
+
+          iframe.style.backgroundColor = "transparent";
+          iframe.frameBorder = "0";
+          iframe.allowTransparency = "true";
+
+          elm.append(iframe);
+
+          scope.$watch('action', function (action) {
+
+            if (action) {
+
+              var config = sp.config();
+
+              iframe.src = (config && ((config.DOMAIN + config.urls.actions.custom.render.replace(':action_id', action.id) + '?auth_hash=' + config.auth_hash + '&lang=' + config.lang + '&config=' + name))) || '';
+
+              iframe.className = ['sailplay_action_custom_frame', action.type].join(' ');
+
+            }
+            else {
+              iframe.src = '';
+            }
+
+          });
+
+        }
+
+      };
+
+    })
+
+    .directive('sailplayActions', function (sp_api, sp, spAction, tagHelper) {
 
       return {
 
@@ -256,11 +313,13 @@
 
           scope.actions = sp_api.data('load.actions.list');
 
+          scope.custom_actions = sp_api.data('load.actions.custom.list');
+
           scope.exist = sp_api.data('tags.exist');
 
           scope.open_custom = null;
 
-          scope.customs = custom_data;
+          // scope.customs = custom_data;
 
           scope.check_tag = tagHelper.checkTag;
 
@@ -271,33 +330,6 @@
           scope.perform_action = function (action) {
 
             sp.send('actions.perform', action);
-
-          };
-
-          scope.link = function (button) {
-
-            if (button && button.add_tag && button.tag) {
-
-              sp_api.call('tags.add', {tags: [button.tag]});
-            }
-
-            scope.open_custom = false;
-
-            window.open(button.link)
-
-          };
-
-          scope.check_custom = function (tag, array) {
-
-            if (!tag || !array) return false;
-
-            var _tags = tag.buttons.map(function (item) {
-              return item.tag
-            });
-
-            return _tags.every(function (tag) {
-              return scope.check_tag(tag, array);
-            });
 
           };
 

@@ -1512,12 +1512,13 @@ label.error {
 }
 .sp_badge-slide {
   display: block;
-  width: 250px;
+  width: 200px;
   max-width: 100%;
   min-height: 349px;
   margin: 0 auto;
   border: 2px solid #DD3A1F;
   padding: 37px 10px 20px;
+  box-sizing: border-box;
   text-align: center;
 }
 .sp_badge-slide__img {
@@ -1532,7 +1533,7 @@ label.error {
 }
 .sp_badge-slide__hd {
   display: block;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 1.2;
   font-weight: 700;
   text-transform: uppercase;
@@ -1540,14 +1541,14 @@ label.error {
 }
 .sp_badge-slide__ttl {
   display: block;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 300;
   color: #000;
   line-height: 1.2;
 }
 .sp_badge-slide__more {
   display: block;
-  font-size: 20px;
+  font-size: 18px;
   color: #808080;
 }
 .sp_badge-slide__more:hover {

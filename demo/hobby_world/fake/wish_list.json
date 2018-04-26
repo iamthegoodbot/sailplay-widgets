@@ -1,0 +1,35 @@
+{
+  "status": "ok",
+  "wishlist": [
+    {
+      "state": "new",
+      "title": "Название товара 1",
+      "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/827e0e76ae76041c031fdadc4c7c00a6.png",
+      "price": 510,
+      "old_price": 520,
+      "link": "Ссылка на страницу товара 1"
+    },
+    {
+      "state": "available",
+      "title": "Название товара 2",
+      "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/827e0e76ae76041c031fdadc4c7c00a6.png",
+      "price": 610,
+      "old_price": 620,
+      "link": "Ссылка на страницу товара 2"
+    },
+    {
+      "state": "follow",
+      "title": "Название товара 3",
+      "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/827e0e76ae76041c031fdadc4c7c00a6.png",
+      "price": 610,
+      "link": "Ссылка"
+    },
+    {
+      "state": "new",
+      "title": "Название товара 4",
+      "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/827e0e76ae76041c031fdadc4c7c00a6.png",
+      "price": 10,
+      "link": "Ссылка"
+    }
+  ]
+}

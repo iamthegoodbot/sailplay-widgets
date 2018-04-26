@@ -1,0 +1,133 @@
+.bns_line_wrap {
+  float: left;
+  width: 100%;
+  overflow:hidden;
+  margin-bottom: 20px;
+}
+.bns_line {
+  float: left;
+  width: 100%;
+  min-width: 1155px;
+  height: 223px;
+  position: relative;
+  background-color: #c4cccc;
+  margin-top: 25px;
+
+  &:before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    display: block;
+    background-image: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/5a94884b26d2d80e5f872936af30b981.png");
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2;
+  }
+  .bns_line_fil {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 223px;
+    background-color: #f9a300;
+    z-index: 1;
+  }
+  .bns_line_item {
+    position: absolute;
+    z-index: 3;
+    width: 200px;
+    text-align: center;
+    .bns_line_item_name, .bns_line_item_sckid  {
+      float: left;
+      width: 100%;
+    }
+    .bns_line_item_name {
+      color: #000000;
+      font-size: 13px;
+      margin-bottom: 4px;
+      margin-top: -4px;
+    }
+    .bns_line_item_sckid {
+      color: #000000;
+      font-size: 12px;
+    }
+    &:hover {
+      .bns_line_item_til {
+        opacity: 1;
+      }
+    }
+    .bns_line_item_til {
+      position: absolute;
+      width: 175px;
+      text-align: center;
+      border-radius: 27px;
+      line-height: 16px;
+      padding: 5px 0;
+      background-color: #fff;
+      left: 50%;
+      margin-left: -89px;
+      top:-20px;
+      color: #000000;
+      font-size: 13px;
+      font-weight: bold;
+      -webkit-box-shadow: 0 0 10px 0 #8C8C8C;
+      box-shadow: 0 0 10px 0 #8C8C8C;
+      opacity: 0;
+      -webkit-transition: all 300ms ease;
+      -moz-transition: all 300ms ease;
+      -ms-transition: all 300ms ease;
+      -o-transition: all 300ms ease;
+      transition: all 300ms ease;
+      &:after {
+        content: '';
+        display: block;
+        background-image: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/18757f71273137e441bef69e5ab1da2c.png");
+        width: 18px;
+        height: 9px;
+        bottom: -9px;
+        left: 50%;
+        margin-left: -9px;
+        position: absolute;
+      }
+    }
+    &.bns_line_item1 {
+      left: 223px;
+      top: 17px;
+    }
+    &.bns_line_item2 {
+      left: 631px;
+      top: 17px;
+    }
+    &.bns_line_item3 {
+      left: 954px;
+      top: 17px;
+    }
+    &.act {
+      .bns_poly_img {
+        -webkit-filter: grayscale(0%);
+        -moz-filter: grayscale(0%);
+        -ms-filter: grayscale(0%);
+        -o-filter: grayscale(0%);
+        filter: grayscale(0%);
+        filter: grayscale(0); /* Firefox 4+ */
+        filter: none; /* IE 6-9 */
+      }
+    }
+    .bns_poly_img {
+      max-width: 100%;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      -webkit-filter: grayscale(100%);
+      -moz-filter: grayscale(100%);
+      -ms-filter: grayscale(100%);
+      -o-filter: grayscale(100%);
+      filter: grayscale(100%);
+      filter: grayscale(1); /* Firefox 4+ */
+      filter: gray; /* IE 6-9 */
+    }
+  }
+}

@@ -1,0 +1,189 @@
+body {
+  margin: 0;
+  font-family: Myriad Pro, Arial, Helvetica, sans-serif;
+  &.no_scrol {
+    overflow: hidden;
+  }
+}
+.bns_inner_block {
+  width: 100%;
+  margin:auto;
+}
+.bns_tab {
+  float: left;
+  width: 100%;
+  padding-top:65px;
+  padding-bottom:40px;
+  text-align: center;
+  display: flex;
+  align-items: stretch;
+  @media screen and (max-width: 650px) {
+    flex-direction: column;
+  }
+  a {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    line-height: 1;
+    color: #148f6a;
+    width: 33%;
+    font-size: 26px;
+    display: inline-block;
+    font-weight: bold;
+    position: relative;
+    text-decoration: none;
+    box-sizing: border-box;
+    &:hover {
+      background-color: #f1f1f1;
+    }
+    @media screen and (min-width: 650px) {
+      &:not(:last-child):not(:hover):not(.act) {
+        border-right: 1px solid #eaeaea;
+      }
+    }
+    &.act {
+      background-color: #0F9675;
+      color: #fff;
+      //&:before {
+      //  content: '';
+      //  display: block;
+      //  height: 2px;
+      //  width: 100%;
+      //  background-color: #e6e6e6;
+      //  position: absolute;
+      //  left: 0;
+      //  bottom: 5px;
+      //  z-index: -1;
+      //}
+    }
+  }
+}
+div[data-sailplay-action-custom] {
+  max-width: 800px;
+}
+
+.sp_wrapper{
+  font-family: "Open Sans Condensed";
+}
+
+//custom actions noniframe
+
+.noiframe-custom-action {
+  max-height: 500px !important;
+  max-width: 720px !important;
+}
+
+.action.static_page {
+  background-color: transparent;
+  width: 100%;
+
+  .close {
+    width: 42px;
+    height: 42px;
+    border-radius: 8px;
+    background-color: #fff;
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    display: block;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-image: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/10f8ff372ad96ebc4df4285a88d58613.png");
+  }
+
+  .row {
+    background-color: white;
+    text-align: center;
+  }
+
+  .contentt {
+
+    &.header {
+      font-weight: 700;
+    }
+
+    &.image {
+      width: auto;
+      height: 200px;
+      max-height: 260px;
+      max-width: 260px;
+      float: left;
+      margin-right: 10px;
+    }
+
+  }
+
+  .message {
+    box-sizing: border-box;
+    font-size: 16px;
+    overflow-y: auto;
+    max-height: 550px;
+    width: 96%;
+    padding-right: 10px;
+    font-weight: 300;
+    line-height: 24px;
+    padding-left: 37px;
+    text-align: left;
+  }
+  .header {
+    -moz-box-sizing: border-box;
+    font-size: 26px;
+    color: #000000;
+    -webkit-box-sizing: border-box;
+    margin-bottom: 30px;
+    box-sizing: border-box;
+    width: 100%;
+    margin-top: 36px;
+    font-weight: 300;
+    text-transform: uppercase;
+    display: inline-block;
+    padding-left: 37px;
+  }
+  .button {
+    border-radius: 8px;
+    font-size: 20px;
+    line-height: 37px;
+    margin-bottom: 30px;
+    color: #ffffff;
+    min-width: 100px;
+    text-decoration: none;
+    margin-top: 30px;
+    margin-left: 37px;
+    max-width: 230px;
+    padding: 8px;
+    font-family: 'open sans condensed';
+    font-weight: 700;
+    text-transform: none;
+    display: inline-block;
+    background-color: #ad0f14;
+    text-align: center;
+  }
+
+}
+
+.mobile {
+
+  .action.static_page {
+
+    .contentt {
+
+      &.header {
+        font-size: 36px;
+      }
+
+      &.image {
+        width: 100%;
+        height: auto;
+      }
+
+      &.message {
+
+        font-size: 24px;
+
+      }
+
+    }
+
+  }
+
+}

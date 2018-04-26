@@ -2,7 +2,7 @@
 
     angular.module('alpina.directives.actions', ['alpina.services.users', 'alpina.services.actions', 'alpina.tools.bDaySelect'])
 
-        .directive('actionsCmp', ['userService', 'actionService', function (userService, actionService) {
+        .directive('actionsCmp', ['userService', 'actionService', '$rootScope', function (userService, actionService, $rootScope) {
             return {
                 restrict: 'E',
                 replace: true,
@@ -28,7 +28,7 @@
                             scope.$digest();
                         });
                         actionService.loadList().then(function (actions) {
-                            scope.actions = angular.extend([], actions);
+                          scope.actions = angular.extend([], actions);
                             if (scope.actions.length) {
                                 setTimeout(function () {
                                     sp.send('actions.parse', angular.extend([], actions));
@@ -100,6 +100,7 @@
 
                     sp.on('tags.add.success', function () {
                         update();
+                        scope.$digest();
                     });
 
                     // FORM
@@ -125,10 +126,10 @@
                     }
                     var paramObj = {};
                     scope.sendForm = function () {
-                        if(!EMAIL) {
+                      if(!$rootScope.USER_EMAIL) {
                             console.log('Email undefined');
                         }
-                        scope.form_exist = true;
+                      scope.form_exist = true;
                         paramObj = {};
                         var serialized = jQuery(el).find('form').eq(0).serializeArray();
                         jQuery.each(serialized, function (_, kv) {
@@ -141,33 +142,32 @@
                             if (validForm(paramObj)) {
                                 scope.show_form = false;
                                 var bday = paramObj.b_year + '-' + paramObj.b_month + '-' + paramObj.b_day;
-                                sp.send('user.update', { birthDate : bday , email: EMAIL});
+                                sp.send('users.update', { birthDate : bday , email: $rootScope.USER_EMAIL}, function () {
+                                  scope.$apply(function () {
+                                    var tags = [];
+                                    tags.push(actionService.getTag('fillProfile'));
+                                    if (paramObj.proff) {
+                                      tags.push(actionService.getProfessionsTag(paramObj.proff));
+                                    }
+                                    if (paramObj.hobbies) {
+                                      tags.push(actionService.getHobbiesTag(paramObj.hobbies));
+                                    }
+                                    if(paramObj.has_childrens) {
+                                      tags.push(actionService.getTag('hasChildren'));
+                                      for (var item in paramObj) {
+                                        if (paramObj.hasOwnProperty(item)) {
+                                          if (item.indexOf('customnameforchildrenselect') != -1) {
+                                            tags.push(actionService.getTag('children') + ' ' + paramObj[item])
+                                          }
+                                        }
+                                      }
+                                    }
+                                    sp.send('tags.add', {tags: tags});
+                                  });
+                                });
                             }
                         }
                     };
-                    sp.on('user.update.success', function () {
-                        scope.$apply(function () {
-                            var tags = [];
-                            tags.push(actionService.getTag('fillProfile'));
-                            if (paramObj.proff) {
-                                tags.push(actionService.getProfessionsTag(paramObj.proff));
-                            }
-                            if (paramObj.hobbies) {
-                                tags.push(actionService.getHobbiesTag(paramObj.hobbies));
-                            }
-                            if(paramObj.has_childrens) {
-                                tags.push(actionService.getTag('hasChildren'));
-                                for (var item in paramObj) {
-                                    if (paramObj.hasOwnProperty(item)) {
-                                        if (item.indexOf('customnameforchildrenselect') != -1) {
-                                            tags.push(actionService.getTag('children') + ' ' + paramObj[item])
-                                        }
-                                    }
-                                }
-                            }
-                            sp.send('tags.add', tags);
-                        });
-                    });
                     function appendToSelect(array, className) {
                         var elem = jQuery('.js-create-select.' + className);
                         if (!elem || !array) return;

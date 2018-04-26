@@ -1,8 +1,8 @@
 (function () {
 
   angular.module('ui', [
-      'angularUtils.directives.dirPagination'
-    ])
+    'angularUtils.directives.dirPagination'
+  ])
 
 
     .constant('ProfileTag', 'Клиент заполнил профиль')
@@ -51,11 +51,27 @@
             //scope.profile_form.user.addPhone = user.user.phone;
             scope.profile_form.user.addEmail = user.user.email;
             scope.profile_form.user.birthDate = user.user.birth_date || '0000-00-00';
-            if (ipCookie('profile_form') && SailPlay.config().auth_hash === ipCookie('profile_form').user.auth_hash) {
-              angular.extend(scope.profile_form, ipCookie('profile_form'));
-            } else {
-              scope.profile_form.custom_vars['ДР супруга(и)'] = ipCookie('profile_form') ? ipCookie('profile_form').custom_vars['ДР супруга(и)'] : '0000-00-00';
-            }
+
+            SailPlay.send('vars.batch', { names: Object.keys(new_form.custom_vars) });
+            SailPlay.on('vars.batch.success', function (res) {
+              if (res.status == 'ok') {
+              
+                angular.forEach(res.vars, function( v ) { 
+                  scope.profile_form.custom_vars[v.name] = v.value
+                })
+
+                scope.$apply();                
+
+              } else {
+                $rootScope.$broadcast('notifier:notify', {
+
+                  header: 'Ошибка',
+                  body: user_res.message || 'К сожалению произошла ошибка'
+
+                });
+                scope.$apply();
+              }
+            });
 
           });
 
@@ -122,7 +138,7 @@
 
                   var promise = $q(function (resolve, reject) {
 
-                    SailPlay.send('tags.add', {tags: chunk}, function (tags_res) {
+                    SailPlay.send('tags.add', { tags: chunk }, function (tags_res) {
                       if (tags_res.status === 'ok') {
 
                         resolve(tags_res);
@@ -145,15 +161,15 @@
 
                   var _variables = angular.copy(scope.profile_form.custom_vars);
 
-                  if(!_variables['Имя супруга(и)']) {
+                  if (!_variables['Имя супруга(и)']) {
                     delete _variables['Имя супруга(и)']
                   }
 
-                  if(_variables['ДР супруга(и)'] == '0000-00-00') {
+                  if (_variables['ДР супруга(и)'] == '0000-00-00') {
                     delete _variables['ДР супруга(и)']
                   }
 
-                  SailPlay.send('vars.add', {custom_vars: _variables}, function (vars_res) {
+                  SailPlay.send('vars.add', { custom_vars: _variables }, function (vars_res) {
 
                     var response = {
                       user: user_res,
@@ -172,7 +188,7 @@
 
                       });
 
-                      SailPlayApi.call('load.user.info', {all: 1, purchases: 1});
+                      SailPlayApi.call('load.user.info', { all: 1, purchases: 1 });
 
                       callback && callback(response);
                       scope.$apply();
@@ -359,45 +375,45 @@
           }
 
           var options = scope.$eval(attrs.options) || {
-              infinite: false,
-              nextArrow: '<img class="slider_arrow right" src="https://d3sailplay.cdnvideo.ru/media/assets/assetfile/0a6b55e204cb27ad24799aa634a5a89f.png"/>',
-              prevArrow: '<img class="slider_arrow left" src="https://d3sailplay.cdnvideo.ru/media/assets/assetfile/bbe8e74981f17405a856c029f6e1548d.png"/>',
-              slidesToShow: 4,
-              slidesToScroll: 4,
-              responsive: [
-                {
-                  breakpoint: 1190,
-                  settings: {
-                    slidesToShow: 4,
-                    slidesToScroll: 4
-                  }
-                },
-                {
-                  breakpoint: 880,
-                  settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 3
-                  }
-                },
-                {
-                  breakpoint: 600,
-                  settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 2
-                  }
-                },
-                {
-                  breakpoint: 480,
-                  settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1
-                  }
+            infinite: false,
+            nextArrow: '<img class="slider_arrow right" src="https://d3sailplay.cdnvideo.ru/media/assets/assetfile/0a6b55e204cb27ad24799aa634a5a89f.png"/>',
+            prevArrow: '<img class="slider_arrow left" src="https://d3sailplay.cdnvideo.ru/media/assets/assetfile/bbe8e74981f17405a856c029f6e1548d.png"/>',
+            slidesToShow: 4,
+            slidesToScroll: 4,
+            responsive: [
+              {
+                breakpoint: 1190,
+                settings: {
+                  slidesToShow: 4,
+                  slidesToScroll: 4
                 }
-                // You can unslick at a given breakpoint now by adding:
-                // settings: "unslick"
-                // instead of a settings object
-              ]
-            };
+              },
+              {
+                breakpoint: 880,
+                settings: {
+                  slidesToShow: 3,
+                  slidesToScroll: 3
+                }
+              },
+              {
+                breakpoint: 600,
+                settings: {
+                  slidesToShow: 2,
+                  slidesToScroll: 2
+                }
+              },
+              {
+                breakpoint: 480,
+                settings: {
+                  slidesToShow: 1,
+                  slidesToScroll: 1
+                }
+              }
+              // You can unslick at a given breakpoint now by adding:
+              // settings: "unslick"
+              // instead of a settings object
+            ]
+          };
 
           scope.process = false;
 
@@ -484,7 +500,7 @@
           };
 
           $timeout(function () {
-            $(elm).mask('+7(000) 000-00-00', {placeholder: "+7(___)___-__-__"});
+            $(elm).mask('+7(000) 000-00-00', { placeholder: "+7(___)___-__-__" });
           }, 10);
 
         }

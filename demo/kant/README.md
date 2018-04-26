@@ -45,8 +45,8 @@ Paste this code to the page in < head > section to load the script:
             };
 
             var _links = {
-                js: 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/56d108fad6e8ac6094ca3cff53d2a197.js',
-                css: 'https://d3sailplay.cdnvideo.ru/media/assets/assetfile/f2a6ca8771fdd6d990c19a3a1721d7ea.css'
+                js: 'https://sailplays3.cdnvideo.ru/media/assets/assetfile/04672c6ef19eebe5f1d12e346df29509.js',
+                css: 'https://sailplays3.cdnvideo.ru/media/assets/assetfile/415b97436c9a1450c809054110cea59f.css'
             };
 
             document.addEventListener('DOMContentLoaded', function () {

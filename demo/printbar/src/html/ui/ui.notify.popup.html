@@ -1,0 +1,33 @@
+<div class="bns_overlay" data-ng-if="data">
+
+    <div class="bns_overlay_close" data-ng-click="$event.preventDefault();$parent.data = null;body_lock(false);"></div>
+
+    <div class="bns_overlay_inner">
+
+        <div class="bns_overlay_top">
+
+            <a href="#" class="bns_close"
+               data-ng-click="$event.preventDefault();$parent.data = null;body_lock(false);">Закрыть</a>
+
+            <div class="bns_overlay_top_name" data-ng-bind="$parent.data.title"></div>
+
+        </div>
+
+        <div class="bns_overlay_bottom" data-ng-if="!$parent.data.isCoupon">
+
+            <div class="bns_overaly_bottom_left" data-ng-bind-html="$parent.$parent.data.text | to_trusted"></div>
+
+        </div>
+
+        <div class="bns_overlay_bottom" data-ng-if="$parent.data.isCoupon">
+
+            <div class="bns_overaly_bottom_left" data-ng-bind-html="($parent.$parent.data.text + ' ' + $parent.$parent.data.gift_help_text) | to_trusted" style="float: none; width: 70%;"></div>
+            <br>
+            <div class="bns_overaly_bottom_left"><span>{{'Ваш промо-код: '}}</span><span style="font-size: 20px;">{{$parent.$parent.data.coupon_number}}</span></div>
+
+        </div>
+
+    </div>
+
+</div>
+

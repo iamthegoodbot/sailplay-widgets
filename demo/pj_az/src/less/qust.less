@@ -1,0 +1,133 @@
+.bns_qust_item {
+  float: left;
+  min-width: 21%;
+  width: 290px;
+  height: 130px;
+  margin-right:22px;
+  margin-bottom: 22px;
+  box-sizing: border-box;
+  border: 1px solid #d4d3d1;
+  -webkit-transition: all 300ms ease;
+  -moz-transition: all 300ms ease;
+  -ms-transition: all 300ms ease;
+  -o-transition: all 300ms ease;
+  transition: all 300ms ease;
+  &:nth-child(4n) {
+    margin-right: 0;
+  }
+  &:hover {
+    background-color: #ad0f14;
+    cursor: pointer;
+    .bns_qust_right {
+      transform: translateX(-40px);
+      .bns_qust_right_name {
+        opacity: 0;
+      }
+      .bns_qust_right_bal {
+        opacity: 0;
+      }
+      a {
+        font-family: Arial, sans-serif;
+        display: block;
+        font-size: 18px;
+      }
+    }
+  }
+  .bns_qust_left {
+    float: left;
+    //width: 130px;
+    width: 40%;
+    height: 130px;
+    text-align: center;
+    &:before {
+      content: '';
+      display: inline-block;
+      vertical-align: middle;
+      height: 100%;
+    }
+    img {
+      vertical-align: middle;
+      border-radius: 10px;
+      max-height: 60%;
+      max-width: 60%;
+
+    }
+  }
+  .bns_qust_right {
+    float: left;
+    //width: 158px;
+    width: 60%;
+    height: 130px;
+    position: relative;
+    padding-right: 22px;
+    box-sizing: border-box;
+    .bns_qust_right_name {
+      float: left;
+      width:100%;
+      color: #5e5e5e;
+      font-size: 20px;
+      line-height: 19px;
+      margin-top: 34px;
+      margin-bottom: 8px;
+    }
+    .bns_qust_right_button {
+      text-align: left !important;
+      padding-left: 60px !important;
+    }
+    .bns_qust_right_bal {
+      float: left;
+      width: 100%;
+      color: #000000;
+      font-size: 20px;
+      font-weight: bold;
+      letter-spacing: -1px;
+      position: absolute;
+      bottom: 30px;
+      left: 0;
+    }
+    a {
+      width: 100%;
+      position: absolute;
+      left: 0;
+      text-align: center;
+      color: #ffffff;
+      font-size: 26px;
+      font-weight: bold;
+      //letter-spacing: -1px;
+      text-decoration: none;
+      line-height: 20px;
+      margin-top: -10px;
+      top:50%;
+      display: none;
+      &:not(.bns_qust_right_button) {
+        margin-left: 16px;
+        & iframe {
+          transform: translate(13px);
+        }
+        @media screen and (max-width: 650px) {
+          margin-left: 0px !important;
+          padding-left: 32px !important;
+          & iframe {
+            transform: translate(-26px) !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+*[data-sailplay-action] {
+  height: 130px;
+  padding-top: 55px;
+  top: 10px !important;
+  width: 375px !important;
+  left: -125px !important;
+  padding-left: 35px !important;
+  &>iframe {
+    left: -3%;
+    top: 1%;
+    width: 370px !important;
+    height: 130px !important;
+    position: absolute;
+  }
+}

@@ -1,0 +1,184 @@
+.bns_tab_block {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  width: 100%;
+  margin: auto;
+  &#qust {
+    justify-content: flex-start;
+    @media screen and (max-width: 650px) {
+      justify-content: center;
+    }
+  }
+  &#gift {
+    @media screen and (max-width: 650px) {
+      justify-content: center;
+    }
+    @media screen and (min-width: 651px) and (max-width: 1050px) {
+      &>div {
+        width: 50%;
+      }
+    }
+    @media screen and (min-width: 1051px) and (max-width: 1310px) {
+      &>div {
+        width: 33.3%;
+      }
+    }
+    @media screen and (min-width: 1311px) and (max-width: 1630px) {
+      &>div {
+        width: 25%;
+      }
+    }
+    @media screen and (min-width: 1631px) and (max-width: 1920px) {
+      &>div {
+        width: 20%
+      }
+    }
+    @media screen and (min-width: 1921px){
+//      max-width: 1830px;
+      max-width: 100%;
+    }
+  }
+  .img-container{
+    height: 220px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+  }
+  .bns_gift_item {
+    padding-right: 10px;
+    padding-left: 10px;
+    float: left;
+    width: 305px;
+    height: auto;
+    flex-basis: auto;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    img {
+      width: 100%;
+      height: auto;
+      float: left;
+    }
+    .bns_gift_item_bottom {
+      float: left;
+      width: 180px;
+      margin-right: 5px;
+      @media screen and (min-width: 651px) and (max-width: 730px) {
+        width: 170px;
+      }
+      .bns_gift_name {
+        float: left;
+        color: #000000;
+        font-size: 18px;
+        font-weight: bold;
+        width: 100%;
+        margin-top: 10px;
+        margin-bottom: 5px;
+      }
+      .bns_gift_desc {
+        float: left;
+        color: #5e5e5e;
+        line-height: 1.2;
+        font-size: 14px;
+        width: 100%;
+      }
+    }
+    a {
+      cursor: default;
+      margin-top: 5px;
+      float: right;
+      width: 100px;
+      line-height: 45px;
+      border-radius: 8px;
+      background-color: #ad0f14;
+      position: relative;
+      text-align: center;
+      color: #ffffff;
+      font-size: 18px;
+      font-weight: bold;
+      text-decoration: none;
+      letter-spacing: -1px;
+      @media screen and (min-width: 651px) and (max-width: 730px) {
+        width: 72px;
+      }
+      &.act {
+        cursor: pointer;
+      }
+      &:hover {
+        .bns_til {
+          display: block;
+        }
+      }
+      .bns_til {
+        position: absolute;
+        display: inline-block;
+        width: 180px;
+        box-sizing: border-box;
+        border-radius: 10px;
+        background-color: #fff;
+        -webkit-box-shadow: 0 0 25px 0 rgba(0,0,0,0.3);
+        box-shadow: 0 0 25px 0 rgba(0,0,0,0.3);
+        bottom: 57px;
+        line-height: 16px;
+        color: #5e5e5e;
+        font-size: 14px;
+        left: 50%;
+        margin-left: -90px;
+        padding: 15px 20px;
+        text-align: center;
+        display: none;
+        &:after {
+          position: absolute;
+          left: 50%;
+          content: '';
+          display: block;
+          width: 20px;
+          height: 12px;
+          background-image: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/2ebe1084f94d6642f5584f860b411729.png");
+          margin-left: -10px;
+          bottom: -12px;
+        }
+      }
+    }
+  }
+}
+
+.bns_tab_block_popup {
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  &-layout {
+    position: relative;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  &-content {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 80%;
+    background: white;
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+  }
+
+}

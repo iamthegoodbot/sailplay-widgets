@@ -157,7 +157,7 @@
 
                 } else if (res.status == 'ok') {
 
-                  if (tagHelper.checkTag(spProfileTag, scope.exist())) {
+                  if (scope.exist() === void 0 || tagHelper.checkTag(spProfileTag, scope.exist())) {
 
                     scope.success();
 

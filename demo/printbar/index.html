@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+
+<head>
+
+    <title>Print Bar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" href="./dist/css/sailplay.pb.css"/>
+    <!--For local use-->
+    <script
+  src="http://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
+
+    <script src="./dist/js/sailplay.pb.js"></script>
+    <script type="text/javascript">
+
+      document.addEventListener('DOMContentLoaded', function () {
+
+        var params = SAILPLAY.url_params() || {};
+
+        window.sailplay_config = {
+          auth_hash: params.auth_hash || '0859ef052ab0848d83e7f2ee6c9d383da7a5d948',
+          partner_id: params.partner_id || 1655,
+          domain: params.domain || 'http://sailplay.ru',
+          lang: 'ru',
+          data: {
+            user_pic: "https://beebom-redkapmedia.netdna-ssl.com/wp-content/uploads/2016/01/Reverse-Image-Search-Engines-Apps-And-Its-Uses-2016.jpg",
+            edit_profile_link: "http://sailplay.ru",
+            delivery_address: 10,
+            share_url: 'http://sailplay.ru'
+          }
+        };
+
+      });
+
+
+
+    </script>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<sailplay-pb></sailplay-pb>
+
+</body>
+</html>

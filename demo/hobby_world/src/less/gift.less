@@ -1,0 +1,130 @@
+.bns_gift_main {
+  float: left;
+  width: 100%;
+  padding: 0px 50px;
+  .slick-prev {
+    border: 0px;
+    background-color: transparent;
+    text-indent: -99999px;
+    width: 15px;
+    height: 50px;
+    position: absolute;
+    background-image: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/8f8c516f2d7c0a07a0ec4e37dc88455c.png");
+    left: 10px;
+    top:50%;
+    margin-top:-25px;
+    outline: none;
+    cursor: pointer;
+  }
+  .slick-next {
+    outline: none;
+    border: 0px;
+    background-color: transparent;
+    text-indent: -99999px;
+    width: 15px;
+    height: 50px;
+    position: absolute;
+    background-image: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/b46be7c91b2036afb8660b47ced7a1fe.png");
+    right: 10px;
+    top:50%;
+    margin-top:-25px;
+    cursor: pointer;
+  }
+}
+.bns_gift_item {
+  float: left;
+  max-height: 434px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  margin-top: 50px;
+  margin-bottom: 30px;
+  margin-left: 10px;
+  border: 1px solid #E0E0E0;
+  background: white;
+  margin-right: 10px;
+  -webkit-transition: all 300ms ease;
+  -moz-transition: all 300ms ease;
+  -ms-transition: all 300ms ease;
+  -o-transition: all 300ms ease;
+  transition: all 300ms ease;
+  cursor: pointer;
+  &:hover {
+    min-height: 500px;
+    -webkit-box-shadow: 0 0 10px 0 #8C8C8C;
+    box-shadow: 0 0 10px 0 #8C8C8C;
+  }
+  a {
+    left: 10%;
+    width: 80%;
+    bottom: 26px;
+    line-height: 41px;
+    border-radius: 27px;
+    background-color: #ef6747;
+    display: inline-block;
+    text-decoration: none;
+    color: #ffffff;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+
+    -webkit-transition: all 300ms ease;
+    -moz-transition: all 300ms ease;
+    -ms-transition: all 300ms ease;
+    -o-transition: all 300ms ease;
+    transition: all 300ms ease;
+  }
+  .bns_gift_img {
+    float: left;
+    width: 100%;
+    height: 230px;
+    margin-top: 24px;
+    &:before {
+      content:'';
+      display: inline-block;
+      vertical-align: middle;
+      height: 100%;
+    }
+    img {
+      vertical-align: middle;
+      max-width: 95%;
+      display: inline-block;
+    }
+  }
+  .bns_gift_name {
+    float: left;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0px 21px;
+    margin-bottom: 14px;
+    height: 67px;
+    margin-top: 36px;
+    color: #000000;
+    font-size: 17px;
+  }
+  .bns_gift_point {
+    line-height: 32px;
+    display: inline-block;
+    border-radius: 27px;
+    float: left;
+    width: 60%;
+    margin-left: 20%;
+    font-size: 25px;
+    color: #000000;
+    font-weight: bold;
+    margin-bottom: 24px;
+    margin-top: 14px;
+    &:after {
+      content: '';
+      display: inline-block;
+      width: 16px;
+      height: 18px;
+      background-image: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/d22257c3e4296e5ae07b1b3baed38b8b.png");
+      background-repeat: no-repeat;
+      background-position: center center;
+      position: relative;
+      top: 2px;
+      margin-left: 3px;
+    }
+  }
+}

@@ -29,7 +29,8 @@
         'load.user.history',
         'tags.exist',
         'load.badges.list',
-        'load.actions.list'
+        'load.actions.list',
+        'load.actions.custom.list'
 
       ];
 
