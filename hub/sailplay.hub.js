@@ -50,7 +50,7 @@
     //simple jsonp service
     var JSONP = {
       currentScript: null,
-      get: function (url, data, success, error) {
+      get: function (url, data, success, error, timeout) {
         var src = url + (url.indexOf("?") + 1 ? "&" : "?");
         var head = document.getElementsByTagName("head")[0];
         var newScript = document.createElement("script");
@@ -74,7 +74,7 @@
           catch (err) {
           }
           delete window.JSONP_CALLBACK[callback_name];
-        }, 10000);
+        }, timeout || 10000);
 
         window.JSONP_CALLBACK[callback_name] = function (data) {
           clearTimeout(jsonpTimeout);
