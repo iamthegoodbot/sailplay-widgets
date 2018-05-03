@@ -59,13 +59,14 @@ body, html {
   z-index: 10000;
   background-color: rgba(0, 0, 0, 0.3);
   display: none;
+  overflow: auto;
   .bns_overlay_iner {
     position: absolute;
     left: 50%;
-    top: 50%;
+    top: 100px;
+    margin-bottom: 100px;
     width: 790px;
     margin-left: -395px;
-    margin-top: -175px;
     background-color: #fff;
     padding: 20px 40px;
     &.bns_overlay_iner_tr_bg {
@@ -270,6 +271,8 @@ body, html {
       vertical-align: middle;
       width: 70%;
       white-space: normal;
+      padding-left: 40px;
+      box-sizing: border-box;
     }
 
     &_img {

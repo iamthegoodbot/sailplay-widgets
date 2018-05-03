@@ -16,9 +16,9 @@
 
       that.loadData = function (callback) {
 
-        $http.get('./dist/json/tests.json').success(function (res) {
+        $http.get('./dist/json/tests.json').then(function (res) {
 
-          data = res;
+          data = res.data;
           callback && callback(res)
 
         });
