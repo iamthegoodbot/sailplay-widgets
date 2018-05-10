@@ -272,7 +272,7 @@
                     <span class="gift_more_points"
                           data-ng-bind="(gift_more.points | number) + ' ' + (gift_more.points | sailplay_pluralize:'балл,балла,баллов')"></span>
 
-                    <p class="gift_more_descr" data-ng-bind="gift_more.descr"></p>
+                    <p class="gift_more_descr" data-ng-bind-html="gift_more.descr | to_trusted"></p>
 
                     <span class="alink" data-ng-click="close_gift();">Закрыть</span>
 
