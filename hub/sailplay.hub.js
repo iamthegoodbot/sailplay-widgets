@@ -154,12 +154,11 @@
         frame.style.position = 'fixed';
         frame.style.top = '100px';
         frame.style.left = '50%';
-        frame.style.marginLeft = '-205px';
         frame.style.width = '410px';
         frame.style.height = '510px';
         frame.created = true;
         frame.style.background = 'transparent';
-        frame.style.margin = 'auto';
+        frame.style.margin = '100px auto auto -205px';
         frame.style.zIndex = '100000';
         document.body.appendChild(frame);
       }
