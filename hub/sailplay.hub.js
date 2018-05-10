@@ -152,9 +152,8 @@
         frame = document.createElement('IFRAME');
         frame.style.border = 'none';
         frame.style.position = 'fixed';
-        frame.style.top = '0';
+        frame.style.top = '100px';
         frame.style.left = '0';
-        frame.style.bottom = '0';
         frame.style.right = '0';
         frame.style.width = '410px';
         frame.style.height = '510px';
@@ -169,6 +168,7 @@
 
       frame.name = frame_id;
       frame.id = frame_id;
+      frame.className = 'sailplay_login_frame';
 
       function onMessage(messageEvent) {
 
