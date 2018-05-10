@@ -158,7 +158,7 @@
         frame.style.height = '510px';
         frame.created = true;
         frame.style.background = 'transparent';
-        frame.style.margin = '100px auto auto -205px';
+        frame.style.margin = '0 auto auto -205px';
         frame.style.zIndex = '100000';
         document.body.appendChild(frame);
       }
