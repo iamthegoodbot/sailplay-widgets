@@ -153,8 +153,8 @@
         frame.style.border = 'none';
         frame.style.position = 'fixed';
         frame.style.top = '100px';
-        frame.style.left = '0';
-        frame.style.right = '0';
+        frame.style.left = '50%';
+        frame.style.marginLeft = '-205px';
         frame.style.width = '410px';
         frame.style.height = '510px';
         frame.created = true;
