@@ -341,7 +341,25 @@
     });
 
     sp.on('login.remote', function (options) {
-      remoteLogin(options);
+
+      //safari third-party cookies fix
+      var is_safari = navigator.userAgent.indexOf("Safari") > -1;
+      var is_chrome = navigator.userAgent.indexOf('Chrome') > -1;
+      if ((is_chrome) && (is_safari)) {is_safari = false;}
+      if (is_safari) {
+        let cookiepopup = window.open(_config.DOMAIN + '/users/reg/social/','143772850439','width=1,height=1,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=-10000,top=-10000');
+        let checker = setInterval(function () {
+          if(cookiepopup.closed) {
+            clearInterval(checker);
+            remoteLogin(options);
+          }
+        }, 200);
+      }
+      else {
+        remoteLogin(options);
+      }
+
+
     });
 
     //////////////////
@@ -865,7 +883,7 @@
       }
 
     });
-    
+
     // USER TAGS LIST
     sp.on("tags.list", function (data, callback) {
       if (_config == {}) {
@@ -1135,7 +1153,7 @@
       function isNode(o) {
         return (
           typeof Node === "object" ? o instanceof Node :
-          o && typeof o === "object" && typeof o.nodeType === "number" && typeof o.nodeName === "string"
+            o && typeof o === "object" && typeof o.nodeType === "number" && typeof o.nodeName === "string"
         );
       }
 
@@ -1143,7 +1161,7 @@
       function isElement(o) {
         return (
           typeof HTMLElement === "object" ? o instanceof HTMLElement : //DOM2
-          o && typeof o === "object" && o !== null && o.nodeType === 1 && typeof o.nodeName === "string"
+            o && typeof o === "object" && o !== null && o.nodeType === 1 && typeof o.nodeName === "string"
         );
       }
 
