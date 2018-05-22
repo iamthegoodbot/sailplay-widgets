@@ -1073,7 +1073,7 @@
       });
     });
 
-    sp.on('purchases.info', function (data) {
+    sp.on('purchases.info', function (data, callback) {
       if (_config == {}) {
         initError();
         return;
@@ -1088,6 +1088,7 @@
         } else {
           sp.send('purchases.info.error', res);
         }
+        callback && callback(res);
       });
     });
 
