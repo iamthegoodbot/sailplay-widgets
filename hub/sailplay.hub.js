@@ -347,8 +347,8 @@
       var is_chrome = navigator.userAgent.indexOf('Chrome') > -1;
       if ((is_chrome) && (is_safari)) {is_safari = false;}
       if (is_safari) {
-        let cookiepopup = window.open(_config.DOMAIN + '/users/reg/social/','143772850439','width=1,height=1,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=-10000,top=-10000');
-        let checker = setInterval(function () {
+        var cookiepopup = window.open(_config.DOMAIN + '/users/reg/social/','143772850439','width=1,height=1,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=-10000,top=-10000');
+        var checker = setInterval(function () {
           if(cookiepopup.closed) {
             clearInterval(checker);
             remoteLogin(options);
