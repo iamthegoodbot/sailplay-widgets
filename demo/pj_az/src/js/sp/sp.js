@@ -12,7 +12,7 @@ angular.module('sp', [
 
   .filter('tryParseField', function($rootScope){
     return function(field){
-      var lang = $rootScope.config.lang
+      var lang = $rootScope.config.lang;
       try {
         var parsed = JSON.parse(field)
         if(typeof parsed != "object"){

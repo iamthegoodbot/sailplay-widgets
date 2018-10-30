@@ -17,3 +17,5 @@ Thumbs.db
 node_modules/
 demo/tb/node_modules/
 demo/pj/node_modules/
+
+package-lock.json

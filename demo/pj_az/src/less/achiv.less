@@ -147,7 +147,7 @@
       padding: 20px;
       box-sizing: border-box;
       font-size: 20px;
-      display: flex;
+      display: block;
       width: 100%;
       @media screen and (max-width: 767px) {
         flex-direction: column;
@@ -169,11 +169,14 @@
       }
 
       &_socials {
-        display: none;
+        //display: none;
 //        display: flex;
         justify-content: center;
         min-width: 20%;
         align-items: center;
+        padding-left: 18px;
+        padding-right: 18px;
+        margin-top: 10px;
 
         img {
           display: inline-block;

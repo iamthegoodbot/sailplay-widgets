@@ -14,12 +14,19 @@
       }
     })
 
-    .directive('badgeInfo', function ($rootScope, SailPlayShare, $window) {
+    .directive('badgeInfo', function ($rootScope, SailPlayShare, $window, $filter) {
       return {
 
         restrict: 'E',
         replace: true,
-        template: '<div class="bns_achiv_item_info" data-ng-if="badge">\n\n    <div class="bns_achiv_item_info_text" data-ng-bind="$parent.badge.descr | tryParseField"></div>\n\n    <div class="bns_achiv_item_info_socials">\n\n        <img width="40px" data-ng-click="$parent.share_badge($parent.badge, \'fb\')"\n             src="//sailplay.cdnvideo.ru/static/partners/pj/img/icons/share/fb.png" alt="FB">\n\n        <!--<img width="40px" data-ng-click="$parent.share_badge($parent.badge, \'vk\')"-->\n             <!--src="//sailplay.cdnvideo.ru/static/partners/pj/img/icons/share/vk.png" alt="VK">-->\n\n    </div>\n\n</div>',
+        template:
+        '<div class="bns_achiv_item_info" data-ng-if="badge">' +
+          '<div class="bns_achiv_item_info_text" data-ng-bind="$parent.badge.descr | tryParseField"></div>' +
+          '<div class="bns_achiv_item_info_socials">' +
+            '<img width="40px" data-ng-click="$parent.share_badge($parent.badge, \'fb\')" src="//sailplay.cdnvideo.ru/static/partners/pj/img/icons/share/fb.png" alt="FB">' +
+            '<img width="40px" data-ng-click="$parent.share_badge($parent.badge, \'vk\')" src="//sailplay.cdnvideo.ru/static/partners/pj/img/icons/share/vk.png" alt="VK">' +
+          '</div>' +
+        '</div>',
         scope: {
           badges: '='
         },
@@ -41,7 +48,8 @@
           });
 
           scope.share_badge = function (badge, network) {
-            SailPlayShare(network, $rootScope.config.data && $rootScope.config.data.share_url || $window.location.href, badge.name, badge.share_msg, badge.thumbs.url_250x250);
+            // console.log(badge);
+            SailPlayShare(network, $rootScope.config.data && $rootScope.config.data.share_url || $window.location.href, $filter('tryParseField')(badge.name), $filter('tryParseField')(badge.share_msg), $filter('sailplay_pic')(badge.thumbs.url_250x250));
           };
 
         }
