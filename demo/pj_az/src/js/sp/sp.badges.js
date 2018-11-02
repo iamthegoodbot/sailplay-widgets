@@ -48,8 +48,17 @@
           });
 
           scope.share_badge = function (badge, network) {
-            // console.log(badge);
-            SailPlayShare(network, $rootScope.config.data && $rootScope.config.data.share_url || $window.location.href, $filter('tryParseField')(badge.name), $filter('tryParseField')(badge.share_msg), $filter('sailplay_pic')(badge.thumbs.url_250x250));
+
+            let share_url = 'https://sailplay.com/js-api/1590/actions/social-widget/sharing-dummy/?';
+            share_url+= 'sharing_message=' + encodeURIComponent($filter('tryParseField')(badge.share_msg));
+            share_url+='&title=' + encodeURIComponent($filter('tryParseField')(badge.name));
+            share_url+='&sharing_pic=' + encodeURIComponent($filter('sailplay_pic')(badge.thumbs.url_250x250));
+            share_url+='&sharing_pic_width=' + encodeURIComponent('250px');
+            share_url+='&sharing_pic_height=' + encodeURIComponent('250px');
+            share_url+='&sharing_url=' + encodeURIComponent($rootScope.config.data && $rootScope.config.data.share_url || $window.location.href);
+
+            console.log(share_url);
+            SailPlayShare(network, share_url);
           };
 
         }

@@ -3455,8 +3455,17 @@ angular.module('core', [
           });
 
           scope.share_badge = function (badge, network) {
-            console.log(badge);
-            SailPlayShare(network, $rootScope.config.data && $rootScope.config.data.share_url || $window.location.href, $filter('tryParseField')(badge.name), $filter('tryParseField')(badge.share_msg), $filter('sailplay_pic')(badge.thumbs.url_250x250));
+
+            let share_url = 'https://sailplay.com/js-api/1590/actions/social-widget/sharing-dummy/?';
+            share_url+= 'sharing_message=' + encodeURIComponent($filter('tryParseField')(badge.share_msg));
+            share_url+='&title=' + encodeURIComponent($filter('tryParseField')(badge.name));
+            share_url+='&sharing_pic=' + encodeURIComponent($filter('sailplay_pic')(badge.thumbs.url_250x250));
+            share_url+='&sharing_pic_width=' + encodeURIComponent('250px');
+            share_url+='&sharing_pic_height=' + encodeURIComponent('250px');
+            share_url+='&sharing_url=' + encodeURIComponent($rootScope.config.data && $rootScope.config.data.share_url || $window.location.href);
+
+            console.log(share_url);
+            SailPlayShare(network, share_url);
           };
 
         }
@@ -3799,16 +3808,16 @@ angular.module('sp', [
         case 'vk':
           share_url  = 'https://vkontakte.ru/share.php?';
           share_url += 'url='          + encodeURIComponent(url);
-          share_url += '&title='       + encodeURIComponent(title);
-          share_url += '&description=' + encodeURIComponent(description);
-          share_url += '&image='       + encodeURIComponent(image);
-          share_url += '&noparse=true';
+          if(title) share_url += '&title='       + encodeURIComponent(title);
+          if(description) share_url += '&description=' + encodeURIComponent(description);
+          if(image) share_url += '&image='       + encodeURIComponent(image);
+          //share_url += '&noparse=true';
           break;
 
         case 'fb':
 
           share_url = 'https://www.facebook.com/sharer.php?s=100';
-          share_url += '&t=' + encodeURIComponent(title);
+          if(title) share_url += '&t=' + encodeURIComponent(title);
           share_url += '&u=' + encodeURIComponent(url);
           break;
 
@@ -3817,7 +3826,7 @@ angular.module('sp', [
           share_url = 'https://twitter.com/intent/tweet?tw_p=tweetbutton';
           share_url += '&original_referer=' + encodeURIComponent(url);
           share_url += '&url=' + encodeURIComponent(url);
-          share_url += '&text=' + encodeURIComponent(description);
+          if(description) share_url += '&text=' + encodeURIComponent(description);
 
 
       }

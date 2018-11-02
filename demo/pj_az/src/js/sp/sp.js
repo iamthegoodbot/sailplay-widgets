@@ -122,16 +122,16 @@ angular.module('sp', [
         case 'vk':
           share_url  = 'https://vkontakte.ru/share.php?';
           share_url += 'url='          + encodeURIComponent(url);
-          share_url += '&title='       + encodeURIComponent(title);
-          share_url += '&description=' + encodeURIComponent(description);
-          share_url += '&image='       + encodeURIComponent(image);
-          share_url += '&noparse=true';
+          if(title) share_url += '&title='       + encodeURIComponent(title);
+          if(description) share_url += '&description=' + encodeURIComponent(description);
+          if(image) share_url += '&image='       + encodeURIComponent(image);
+          //share_url += '&noparse=true';
           break;
 
         case 'fb':
 
           share_url = 'https://www.facebook.com/sharer.php?s=100';
-          share_url += '&t=' + encodeURIComponent(title);
+          if(title) share_url += '&t=' + encodeURIComponent(title);
           share_url += '&u=' + encodeURIComponent(url);
           break;
 
@@ -140,7 +140,7 @@ angular.module('sp', [
           share_url = 'https://twitter.com/intent/tweet?tw_p=tweetbutton';
           share_url += '&original_referer=' + encodeURIComponent(url);
           share_url += '&url=' + encodeURIComponent(url);
-          share_url += '&text=' + encodeURIComponent(description);
+          if(description) share_url += '&text=' + encodeURIComponent(description);
 
 
       }
