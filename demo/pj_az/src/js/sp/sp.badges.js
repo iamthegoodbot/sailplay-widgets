@@ -24,7 +24,7 @@
           '<div class="bns_achiv_item_info_text" data-ng-bind="$parent.badge.descr | tryParseField"></div>' +
           '<div class="bns_achiv_item_info_socials">' +
             '<img width="40px" data-ng-click="$parent.share_badge($parent.badge, \'fb\')" src="//sailplay.cdnvideo.ru/static/partners/pj/img/icons/share/fb.png" alt="FB">' +
-            '<img width="40px" data-ng-click="$parent.share_badge($parent.badge, \'vk\')" src="//sailplay.cdnvideo.ru/static/partners/pj/img/icons/share/vk.png" alt="VK">' +
+            // '<img width="40px" data-ng-click="$parent.share_badge($parent.badge, \'vk\')" src="//sailplay.cdnvideo.ru/static/partners/pj/img/icons/share/vk.png" alt="VK">' +
           '</div>' +
         '</div>',
         scope: {
