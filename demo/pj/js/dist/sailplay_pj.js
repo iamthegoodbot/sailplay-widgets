@@ -382,10 +382,11 @@ var SAILPLAY = (function () {
       alert('SailPlay: provide partner_id');
       return;
     }
-    JSONP.get(window.location.protocol + '//sailplay.ru' + '/js-api/' + params.partner_id + '/config/', { lang: params.lang || 'ru' }, function (response) {
+    var domain = 'http://dev3.sailplay.ru'
+    JSONP.get(domain + '/js-api/' + params.partner_id + '/config/', { lang: params.lang || 'ru' }, function (response) {
       if (response && response.status == 'ok') {
         _config = response.config;
-        _config.DOMAIN = window.location.protocol + '//sailplay.ru';
+        _config.DOMAIN = domain;
         _config.dep_id = params.dep_id || '';
         _config.env.staticUrl = params.static_url || _config.env.staticUrl;
         sp.send('init.success', _config);
@@ -737,12 +738,22 @@ var SAILPLAY = (function () {
     }
     if (_config.auth_hash) {
       sp.send('actions.perform.start', action);
-      if (action.socialType && _actions_config.connectedAccounts) {
-        if (!_actions_config.connectedAccounts[action.socialType]) {
-          Actions.openSocialRegNeedPopup(action);
-        } else {
+      if (action.socialType) {
+
+        if (action.force) {
+
           Actions.share(action);
+
+        } else if (_actions_config.connectedAccounts) {
+
+          if (!_actions_config.connectedAccounts[action.socialType]) {
+            Actions.openSocialRegNeedPopup(action);
+          } else {
+            Actions.share(action);
+          }
+
         }
+
       }
       else if(!action.socialType){
         Actions.perform(action);
@@ -1785,6 +1796,9 @@ angular.module('pj.services', [])
 
         scope.earnPoints = function (action) {
           scope.selected_action = angular.copy(action);
+          // if (action.socialType == 'vk') {
+            action.force = true;
+          // }
           SAILPLAY.send('actions.perform', action);
         };
 

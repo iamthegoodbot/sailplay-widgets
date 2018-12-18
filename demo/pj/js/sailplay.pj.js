@@ -560,6 +560,9 @@
 
         scope.earnPoints = function (action) {
           scope.selected_action = angular.copy(action);
+          // if (action.socialType == 'vk') {
+            action.force = true;
+          // }
           SAILPLAY.send('actions.perform', action);
         };
 
