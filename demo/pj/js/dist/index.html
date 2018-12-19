@@ -49,14 +49,14 @@
 //    SAILPLAY.send('init', { partner_id: 5, dep_id: 1711, domain: 'http://sailplay.ru', lang: 'ru' }); //инициируем модуль для партнера с id = 5
 //    SAILPLAY.send('init', { partner_id: 74, domain: 'http://dev.sailplay.ru', lang: 'ru', static_url: 'http://saike.ru/sailplay/pj/widgets/' }); //инициируем модуль для партнера с id = 5
 //      SAILPLAY.send('init', { partner_id: 1188, domain: domain, lang: 'ru', static_url: 'http://saike.ru/sailplay/pj/widgets/' }); //инициируем модуль для партнера с id = 5
-      SAILPLAY.send('init', { partner_id: 5, dep_id: 55, domain: 'https://sailplay.ru', lang: 'ru', static_url: 'http://saike.ru/sailplay/pj/widgets/' }); //инициируем модуль для партнера с id = 5
+      SAILPLAY.send('init', { partner_id: 232, domain: 'http://dev3.sailplay.ru', lang: 'ru' }); //инициируем модуль для партнера с id = 5
 
       SAILPLAY.on('init.success', function () {
 //      SAILPLAY.send('leaderboard.load');
         SAILPLAY.send('pj.bootstrap', document.body);
 //      SAILPLAY.send('language.set', 'ru');
         SAILPLAY.send('pj.pizzameter', 150);
-//      SAILPLAY.send('login', '5b701feb743b08bbeb64b9dcf55e02cf3daf63dd');
+     SAILPLAY.send('login', '75780d09d2aa44c88038e24ef5799bbf63c8581d');
 
 
         SAILPLAY.send('load.reviews.list');
@@ -144,7 +144,7 @@
       //    });
       SAILPLAY.login = function() {
 
-        var auth_hash = document.getElementById('login_auth_hash').value || '5dfd662c28415fc1c1751101dd896de436999c36';
+        var auth_hash = document.getElementById('login_auth_hash').value || '75780d09d2aa44c88038e24ef5799bbf63c8581d';
         SAILPLAY.send('login', auth_hash);
 //        document.getElementById('sailplay_login_frame').style.display = 'block';
 //        SAILPLAY.send('login.remote',
