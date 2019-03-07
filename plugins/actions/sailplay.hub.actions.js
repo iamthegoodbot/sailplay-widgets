@@ -254,8 +254,11 @@
     if (action.action == 'purchase') {
       frameUrl += '&purchasePublicKey=' + _actions_config.purchasePublicKey;
     }
-
-    var socialFrame = Actions.popupWindow(frameUrl, 'social_action', 200, 210);
+  
+    var width = action.window && action.window.width || 200;
+    var height = action.window && action.window.height || 210;
+    
+    var socialFrame = Actions.popupWindow(frameUrl, 'social_action', width, height);
     var checkPopupInterval = setInterval(function () {
       if (socialFrame == null || socialFrame.closed) {
         sp.send('actions.perform.complete', action);
