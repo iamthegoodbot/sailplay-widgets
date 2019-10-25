@@ -173,7 +173,7 @@
 
         var data = {};
 
-        var _domain = _config.DOMAIN.indexOf('http:') != -1 || _config.DOMAIN.indexOf('https:') != -1 ? _config.DOMAIN : 'http:' + _config.DOMAIN;
+        var _domain = _config.DOMAIN.indexOf('http:') != -1 || _config.DOMAIN.indexOf('https:') != -1 ? _config.DOMAIN : (window.location.protocol + '//' + _config.DOMAIN);
 
         if (messageEvent.origin == _domain) {
           try {
