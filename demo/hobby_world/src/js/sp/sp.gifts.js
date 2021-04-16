@@ -17,7 +17,6 @@ angular.module('sp.gifts', [])
           selector: '.bns_gift_main',
           data: {
             slidesToShow: 4,
-            slidesToScroll: 1,
             slide: '.bns_gift_item',
             responsive: [
               {
@@ -43,6 +42,11 @@ angular.module('sp.gifts', [])
         sp.on('gifts.purchase.success', function () {
           $rootScope.$apply(function () {
             scope.gift_get = null;
+            if ($(scope.gifts_config.selector).hasClass('slick-initialized')) {
+              $(scope.gifts_config.selector).slick('unslick');
+            }
+            sp_api.call('load.user.info', {all: 1, purchases: 1});
+            sp_api.call('load.gifts.list', {verbose: 1});
           });
         });
 

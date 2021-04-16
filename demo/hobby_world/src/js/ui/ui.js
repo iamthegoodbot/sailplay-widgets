@@ -99,14 +99,23 @@
         link: function (scope, el, attrs) {
 
           scope.slackConfig = scope.$eval(attrs.slackConfig);
-          scope.dataLength = scope.$eval(attrs.length)
+          scope.dataLength = scope.$eval(attrs.length);
+
+          if($(scope.slackConfig.selector).length) {
+            $(scope.slackConfig.selector).css('visibility', 'hidden');
+          //   if ($(scope.slackConfig.selector).hasClass('slick-initialized')) {
+          //     $(scope.slackConfig.selector).slick('unslick');
+          //   }
+          }
 
           if (scope.$last) { // all are rendered
             scope.$watch('dataLength', function(v) {
-              if (v > 0)
-                setTimeout(function(){
+              if (v && v > 0) {
+                setTimeout(function () {
                   $(scope.slackConfig.selector).slick(scope.slackConfig.data);
-                }, 200)
+                  $(scope.slackConfig.selector).css('visibility', '');
+                }, 800)
+              }
             })
           }
 

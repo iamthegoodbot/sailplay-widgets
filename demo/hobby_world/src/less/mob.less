@@ -1,7 +1,25 @@
+@media screen and (max-width: 1300px){
 
-@media screen and (max-width: 1318px){
+}
+
+@media screen and (max-width: 1150px){
+
   .tablet {
     display: initial;
+  }
+
+  .history {
+    top: auto;
+    bottom: 20%;
+  }
+
+  .bns_top .bns_top_left .bns_top_ava {
+    width: 24%;
+    margin-right: 5%;
+  }
+
+  .bns_two_col .bns_col_right.type_small {
+    height: auto;
   }
 
   .bns_top .bns_top_left {
@@ -14,7 +32,7 @@
   }
 
   .bns_top .bns_top_left .bns_top_prof_info_soc {
-    width: 70% !important;
+    width: 60% !important;
   }
 
   .bns_top .bns_top_right {
@@ -44,7 +62,7 @@
   }
 
   .bns_top .bns_top_center {
-    height: 243px;
+    //height: 243px;
   }
 
   .bns_two_col {
@@ -52,14 +70,20 @@
     box-sizing: border-box;
   }
 
+  .bns_block {
+    padding: 0 30px 0;
+    box-sizing: border-box;
+  }
+
   .bns_quest_main .bns_quest_wr {
-    width: 47.6%;
-    margin-right: 15px;
+    //width: 47.6%;
+    //margin-right: 15px;
     box-sizing: border-box;    
   }
 
   .bns_quest_main .bns_quest_item {
-    width: 100%;
+    //width: 100%;
+    width: 75%;
   }
 
   .bns_two_col .bns_col_left {
@@ -67,22 +91,29 @@
   }
 
   .bns_quest_main {
-    height: 451px;
-    overflow: auto;
+    //height: 451px;
+    //overflow: auto;
   }
 
   .bns_quest_main .bns_quest_wr:nth-child(even) {
-    margin-right: 0;
-    margin-left: 15px;
+    //margin-right: 0;
+    //margin-left: 15px;
   }
 
   .bns_quest_main .bns_quest_item a {
-    opacity: 1;
+    //opacity: 1;
+    //width: 160px;
+    width: 47%;
+  }
+
+  .bns_quest_main .bns_quest_item .bns_quest_item_bal {
+    //width: 175px;
+    width: 51%;
   }
 
   .bns_quest_main .bns_quest_item {
-    height: 183px;
-    margin: 10px 20px 10px;
+    //height: 183px;
+    //margin: 10px 20px 10px;
   }
 
   .bns_two_col .bns_col_right {
@@ -90,11 +121,15 @@
   }
 
   .bns_wish_main {
-    height: 224px;
+    //height: 224px;
+  }
+  .bns_wish_main .bns_wish_item {
+    height: 155px;
   }
 
   .bns_wish_main .bns_wish_item .bns_wish_item_img {
     width: 35%;
+    max-width: 150px;
     text-align: right;
   }
 
@@ -134,17 +169,12 @@
     float: left;
   }
 
-  .bns_game_day .price {
-    margin-left: 29%;
-    top: -50px;
-  }
-
   .bns_game_day_main {
     height: 220px;
   }
 
   .bns_quest_main .bns_quest_wr {
-    background: white;
+    //background: white;
   }
 
   .bns_top_head.big {
@@ -156,17 +186,17 @@
   }
 
   .bns_overlay .bns_overlay_inner table tr td:nth-child(6) span {
-    background: none;
-    width: 100%;
+    //background: none;
+    //width: 100%;
   }
 
   .bns_game_day .bns_game_day_name {
-    margin-left: 5%;
-    text-align: left;
+    //margin-left: 5%;
+    //text-align: left;
   }
 
   .bns_game_day .price {
-      left: -21%;
+      //left: -21%;
   }
 
   .bns_line {
@@ -175,7 +205,7 @@
 
   .bns_line .bns_line_item {
       display: none
-  }  
+  }
 
   .bns_line_item_text {
     display: inline-block;
@@ -238,6 +268,7 @@
     width: ~"calc(100% - 60px)";
     margin-left: 30px;
     border-top: 0;
+    margin-top: 15px;
     border-left: 1px solid #e0e0e0;
   }
 
@@ -296,14 +327,15 @@
   }
 
   .bns_quest_main .bns_quest_wr:nth-child(even) {
-    margin-right: 15px;
-    margin-left: 0;
+    //margin-right: 15px;
+    //margin-left: 0;
   }
 
   .bns_quest_main .bns_quest_item .bns_quest_item_name {
-    float: left;
-    font-size: 22px;
-    width: 70%;
+    float: right;
+    font-size: 16px;
+    padding-right: 10px;
+    width: 50%;
   }
 
   .bns_quest_main .bns_quest_item .bns_quest_item_bal {
@@ -352,11 +384,20 @@
   .bns_recom .bns_recom_item {
     width: 100%;
   }
+
 }
 
 @media screen and (max-width: 965px){
   .bns_overlay_inner {
     width: 100% !important;
+  }
+
+  .sp_wrapper .slick-prev{
+    left: 0 !important;
+  }
+
+  .sp_wrapper .slick-next{
+    right: 0 !important;
   }
 }
 
@@ -364,24 +405,339 @@
   .recommend .bns_two_col .bns_col_left {
     overflow: auto;
   }
+
+  .history {
+    bottom: 10%;
+  }
 }
 
-@media screen and (max-width: 570px){
+@media screen and (max-width: 650px){
+
+  .bns_wish_main .bns_wish_item .bns_wish_item_img {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    text-align: center;
+  }
+
+  .bns_wish_main .bns_wish_item .bns_wish_item_name {
+    width: 100%;
+    margin-top: 0;
+    text-align: center;
+    padding: 0 10%;
+    font-size: 14px;
+    height: 60px;
+  }
+
+  .bns_inner_block {
+    padding: 0;
+  }
+
+  .bns_wish_main {
+    height: auto;
+  }
+
+  .bns_wish_main .bns_wish_item {
+    height: auto;
+    text-align: center;
+  }
+
+  .bns_two_col .bns_col_right.type_big {
+    height: auto;
+  }
+
+  .bns_overlay .bns_overlay_inner .bns_over_achiv_text .bns_over_achiv_text_item .bns_over_achiv_text_item_desc {
+    margin-bottom: 20px;
+  }
+
+  .bns_overlay .bns_overlay_inner .bns_hist_bottom {
+    min-height: 20px;
+  }
+
+  .bns_top .bns_top_center .bns_top_head_sm, .bns_top_head {
+    width: 80%;
+    padding: 0;
+    left: 0;
+    right: 0;
+    margin: auto !important;
+    text-align: center;
+    line-height: 28px;
+  }
+
+  .bns_bot_linck {
+    width: 80%;
+    padding: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    margin: auto !important;
+    border-radius: 10px;
+    line-height: 28px;
+    bottom: -15px;
+  }
+
+  .bns_overlay.bns_overlay_hist .bns_overlay_inner .nms_overlay_bottom {
+    position: relative;
+    left: auto;
+    bottom: auto;
+    right: auto;
+    width: 100%;
+    text-align: center;
+  }
+
+  .bns_gift_main {
+    margin-top: 35px;
+    height: auto;
+  }
+
+  .sp_wrapper .slick-prev{
+    left: 0 !important;
+  }
+
+  .sp_wrapper .slick-next{
+    right: 0 !important;
+  }
+
+  .bns_top .bns_top_left .bns_top_prof_info .bns_top_prof_info_name {
+    margin-top: 0;
+  }
+
   .bns_top .bns_top_left .bns_top_prof_info_soc {
-    width: 55% !important;
+    width: 100% !important;
   }
 
   .bns_top .bns_top_left .bns_top_prof_info_soc .bns_top_prof_info_soc_item {
     margin-right: 10px;
+    float: none;
   }
+
+  .bns_top .bns_top_left .bns_top_prof_info_soc .bns_top_prof_info_soc_item:last-child {
+    margin-right: 0;
+  }
+
+  .bns_top .bns_top_left .bns_top_prof_info {
+    width: 100%;
+    max-width: none;
+    float: none;
+  }
+
+  .bns_edit_col:nth-child(1) {
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+  }
+
+  .bns_edit_col:nth-child(2) {
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+  }
+
+  .bns_overlay .bns_overlay_inner .bns_edit_col {
+    width: 100%;
+    height: auto;
+  }
+
+  .bns_top .bns_top_center {
+    margin-top: 35px;
+  }
+
+  .bns_top .bns_top_center .bns_top_head_sm {
+    top: -15px;
+  }
+
+  .bns_top_head.big {
+    left: 0;
+    top: -10px;
+    line-height: 1;
+    font-size: 18px;
+  }
+
+  .bns_top .bns_top_left {
+    height: auto;
+    text-align: center;
+  }
+
+  .bns_top .bns_top_left .bns_top_ava {
+    display: inline-block;
+    float: none;
+  }
+
+  .avatar_menu {
+    left: 60%;
+  }
+
+  .avatar_menu .bns_bot_linck {
+    width:auto;
+  }
+
+  .bns_overlay .bns_overlay_inner .bns_over_achiv_main .bns_over_achiv_item {
+    margin: 0 !important;
+  }
+
+  .bns_recom .bns_recom_item .bns_recom_item_img {
+    text-align: center;
+  }
+
+  .bns_recom .bns_recom_item .bns_recom_item_img img {
+    max-width: 40%;
+    float: none;
+    margin: 8px auto;
+  }
+
+  .bns_wish_main .bns_wish_item .bns_wish_item_img img {
+    margin-top: 2px;
+  }
+
+  .bns_recom .bns_recom_item .bns_recom_item_img .bns_name {
+    width: 100%;
+    margin-top: 0;
+    text-align: center;
+    padding: 0 10%;
+    font-size: 14px;
+  }
+
+  .bns_price_container {
+    text-align: center;
+    width: 100%;
+    padding: 0;
+  }
+
+  .bns_game_day {
+    text-align: center;
+  }
+
+  .bns_game_day .bns_game_day_name {
+    width: 100%;
+    text-align: center;
+    float: none;
+    margin-top: 0;
+    padding: 0 10%;
+    font-size: 14px;
+    box-sizing: border-box;
+  }
+
+  .bns_game_day .price {
+    margin-bottom: 45px;
+  }
+
+  .bns_gift_item {
+    margin: 0;
+    padding-bottom: 17px;
+  }
+
+  .bns_quest_main .bns_quest_item .bns_quest_item_bal {
+    font-size: 22px;
+    margin-top: 16px;
+    padding-left: 0;
+  }
+
+  .bns_line_item_text {
+    font-size: 22px;
+  }
+
+  .bns_quest_main .bns_quest_item .bns_quest_item_name {
+    font-size: 12px;
+  }
+
+  .bns_overlay .bns_overlay_inner table tr td .bns_tooltip_trigger .bns_tooltip {
+    width: auto;
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
+    visibility: visible;
+    opacity: 1;
+    box-shadow: none;
+    transform: translateY(0px);
+  }
+
+  .bns_overlay .bns_overlay_inner .bns_get_gift_main_fin .bns_get_gift_info {
+    margin-top: 20px;
+  }
+
 }
   
-@media screen and (max-width: 465px){
-  .bns_top .bns_top_left .bns_top_prof_info_soc {
-    width: 50% !important;
+@media screen and (max-width: 550px){
+
+  .history {
+    bottom: 18%;
   }
-  .bns_top .bns_top_left .bns_top_prof_info_soc .bns_top_prof_info_soc_item {
-    margin-right: 5px;
+
+  .bns_hist_wrapper {
+    width: 100%;
+    float: left;
+    overflow: auto;
+  }
+
+  .bns_top_head {
+    font-size: 18px;
+  }
+
+  .bns_top {
+    padding: 0 5px 0;
+    margin-top: 5px;
+    box-sizing: border-box;
+  }
+
+  .bns_top .bns_top_center {
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+  }
+
+  .bns_top .bns_top_right {
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+  }
+
+  .bns_two_col {
+    padding: 0 5px 0;
+    box-sizing: border-box;
+  }
+
+  .bns_block {
+    padding: 0 5px 0;
+    box-sizing: border-box;
+  }
+
+  .bns_top .bns_top_left {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .bns_line_wrap {
+    box-sizing: border-box;
+    padding: 0 5px 0;
+  }
+
+  .bns_block {
+    box-sizing: border-box;
+    padding: 0 5px 0;
+  }
+
+  .bns_overlay .bns_overlay_inner .bns_input_block.bns_input_block_int .bns_input_block_int_item {
+    width: 100%;
+  }
+
+  .bns_overlay .bns_overlay_inner .nms_overlay_bottom .new_button.bns_btn_l {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .bns_overlay .bns_overlay_inner .nms_overlay_bottom .new_button.bns_btn_r {
+    margin-left: 0;
+  }
+
+}
+
+@media screen and (max-width: 350px) {
+
+  .bns_top_head {
+    font-size: 12px;
   }
 
 }

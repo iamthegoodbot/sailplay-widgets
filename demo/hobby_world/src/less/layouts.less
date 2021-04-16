@@ -12,23 +12,47 @@
   max-width: 1155px;
   width: 100%;
   margin:auto;
+  padding: 0 15px;
+  box-sizing: border-box;
 }
 .bns_two_col {
   float: left;
   width: 100%;
   .bns_col_left {
     float: left;
-    width: 763px;
+    //width: 763px;
+    width: 65%;
+    box-sizing: border-box;
     background-color: #fff;
     position: relative;
     margin-bottom: 35px;
+
+    &.type_big {
+      height: 250px;
+    }
+
+    &.type_small {
+      height: 340px;
+    }
+
   }
   .bns_col_right {
     float: right;
-    width: 375px;
+    //width: 375px;
+    width: 33%;
+    box-sizing: border-box;
     background-color: #fff;
     position: relative;
     margin-bottom: 35px;
+
+    &.type_big {
+      height: 250px;
+    }
+
+    &.type_small {
+      height: 340px;
+    }
+
   }
   .bns_bot_linck {
     margin-left: -65px;
@@ -54,7 +78,8 @@
 .bns_bot_linck {
   position: absolute;
   padding-left:15px;
-  padding-right: 35px;
+  //padding-right: 35px;
+  padding-right: 25px;
   line-height: 27px;
   bottom: -14px;
   color: #ef6747;
@@ -63,6 +88,7 @@
   margin-left: -100px;
   border-radius: 27px;
   background-color:#f1f1f1;
+  z-index: 1;
   &:after {
     position: absolute;
     right: 15px;

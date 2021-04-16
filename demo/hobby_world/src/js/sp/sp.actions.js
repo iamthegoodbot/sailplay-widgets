@@ -6,7 +6,7 @@
       "system": {
         "inviteFriend": {
           "name": 'Пригласить друга',
-          "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/e58337730cbddd5f67843ed9dd5cb9f0.png"
+          "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/0b10e751214b35a8a3f6d02174e9aa46.svg"
         }
       },
       "social": {
@@ -21,15 +21,15 @@
                 "width": "100%",
                 "height": "100%",
                 "text-decoration": "none",
-                "color": "white",
+                "color": "#EF6747",
                 "font-weight": "normal",
                 "position": "absolute",
                 "left": "0",
                 "top": "0",
                 "border-radius": "35px",
-                "font-size": "15px",
-                "line-height": "34px",
-                "background-color": "#6eb1ba",
+                "font-size": "18px",
+                "line-height": "55px",
+                "background-color": "white",
                 "cursor": "pointer",
                 "display": "inline-block"
               }
@@ -45,15 +45,15 @@
                 "width": "100%",
                 "height": "100%",
                 "text-decoration": "none",
-                "color": "white",
+                "color": "#EF6747",
                 "font-weight": "normal",
                 "position": "absolute",
                 "left": "0",
                 "top": "0",
                 "border-radius": "35px",
-                "font-size": "15px",
-                "line-height": "34px",
-                "background-color": "#6eb1ba",
+                "font-size": "18px",
+                "line-height": "55px",
+                "background-color": "white",
                 "cursor": "pointer",
                 "display": "inline-block"
               }
@@ -69,15 +69,15 @@
                 "width": "100%",
                 "height": "100%",
                 "text-decoration": "none",
-                "color": "white",
+                "color": "#EF6747",
                 "font-weight": "normal",
                 "position": "absolute",
                 "left": "0",
                 "top": "0",
                 "border-radius": "35px",
-                "font-size": "15px",
-                "line-height": "34px",
-                "background-color": "#6eb1ba",
+                "font-size": "18px",
+                "line-height": "55px",
+                "background-color": "white",
                 "cursor": "pointer",
                 "display": "inline-block"
               }
@@ -95,15 +95,15 @@
                 "width": "100%",
                 "height": "100%",
                 "text-decoration": "none",
-                "color": "white",
+                "color": "#EF6747",
                 "font-weight": "normal",
                 "position": "absolute",
                 "left": "0",
                 "top": "0",
                 "border-radius": "35px",
-                "font-size": "15px",
-                "line-height": "34px",
-                "background-color": "#6eb1ba",
+                "font-size": "18px",
+                "line-height": "55px",
+                "background-color": "white",
                 "cursor": "pointer",
                 "display": "inline-block"
               }
@@ -119,15 +119,15 @@
                 "width": "100%",
                 "height": "100%",
                 "text-decoration": "none",
-                "color": "white",
+                "color": "#EF6747",
                 "font-weight": "normal",
                 "position": "absolute",
                 "left": "0",
                 "top": "0",
                 "border-radius": "35px",
-                "font-size": "15px",
-                "line-height": "34px",
-                "background-color": "#6eb1ba",
+                "font-size": "18px",
+                "line-height": "55px",
+                "background-color": "white",
                 "cursor": "pointer",
                 "display": "inline-block"
               }
@@ -143,15 +143,15 @@
                 "width": "100%",
                 "height": "100%",
                 "text-decoration": "none",
-                "color": "white",
+                "color": "#EF6747",
                 "font-weight": "normal",
                 "position": "absolute",
                 "left": "0",
                 "top": "0",
                 "border-radius": "35px",
-                "font-size": "15px",
-                "line-height": "34px",
-                "background-color": "#6eb1ba",
+                "font-size": "18px",
+                "line-height": "55px",
+                "background-color": "white",
                 "cursor": "pointer",
                 "display": "inline-block"
               }
@@ -161,7 +161,7 @@
         "ok": {
           "like": {
             "name": "Вступить в группу",
-            "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/78b8d9be7fe3e8e0f82a92b518937e8b.png",
+            "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/b7d40fde4b0a8def42dcffae1d6d5850.svg",
             "styles": {
               "ok_share_btn": {
                 "font-family": "Arial",
@@ -169,15 +169,15 @@
                 "width": "100%",
                 "height": "100%",
                 "text-decoration": "none",
-                "color": "white",
+                "color": "#EF6747",
                 "font-weight": "normal",
                 "position": "absolute",
                 "left": "0",
                 "top": "0",
                 "border-radius": "35px",
-                "font-size": "15px",
-                "line-height": "34px",
-                "background-color": "#6eb1ba",
+                "font-size": "18px",
+                "line-height": "55px",
+                "background-color": "white",
                 "cursor": "pointer",
                 "display": "inline-block"
               }
@@ -185,7 +185,7 @@
           },
           "partner_page": {
             "name": "Рассказать о компании",
-            "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/78b8d9be7fe3e8e0f82a92b518937e8b.png",
+            "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/b7d40fde4b0a8def42dcffae1d6d5850.svg",
             "styles": {
               "ok_share_btn": {
                 "font-family": "Arial",
@@ -193,15 +193,15 @@
                 "width": "100%",
                 "height": "100%",
                 "text-decoration": "none",
-                "color": "white",
+                "color": "#EF6747",
                 "font-weight": "normal",
                 "position": "absolute",
                 "left": "0",
                 "top": "0",
                 "border-radius": "35px",
-                "font-size": "15px",
-                "line-height": "34px",
-                "background-color": "#6eb1ba",
+                "font-size": "18px",
+                "line-height": "55px",
+                "background-color": "white",
                 "cursor": "pointer",
                 "display": "inline-block"
               }
@@ -209,7 +209,7 @@
           },
           "purchase": {
             "name": "Рассказать о покупке",
-            "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/78b8d9be7fe3e8e0f82a92b518937e8b.png",
+            "image": "https://sailplays3.cdnvideo.ru/media/assets/assetfile/b7d40fde4b0a8def42dcffae1d6d5850.svg",
             "styles": {
               "ok_share_btn": {
                 "font-family": "Arial",
@@ -217,15 +217,15 @@
                 "width": "100%",
                 "height": "100%",
                 "text-decoration": "none",
-                "color": "white",
+                "color": "#EF6747",
                 "font-weight": "normal",
                 "position": "absolute",
                 "left": "0",
                 "top": "0",
                 "border-radius": "35px",
-                "font-size": "15px",
-                "line-height": "34px",
-                "background-color": "#6eb1ba",
+                "font-size": "18px",
+                "line-height": "55px",
+                "background-color": "white",
                 "cursor": "pointer",
                 "display": "inline-block"
               }
@@ -242,15 +242,15 @@
                 "width": "100%",
                 "height": "100%",
                 "text-decoration": "none",
-                "color": "white",
+                "color": "#EF6747",
                 "font-weight": "normal",
                 "position": "absolute",
                 "left": "0",
                 "top": "0",
                 "border-radius": "35px",
-                "font-size": "15px",
-                "line-height": "34px",
-                "background-color": "#6eb1ba",
+                "font-size": "18px",
+                "line-height": "55px",
+                "background-color": "white",
                 "cursor": "pointer",
                 "display": "inline-block"
               }
@@ -429,6 +429,23 @@
           //   }
           // };
 
+
+          scope.actions_config = {
+            selector: '.bns_quest_main',
+            data: {
+              slidesToShow: 2,
+              slide: '.bns_quest_wr',
+              responsive: [
+                {
+                  breakpoint: 800,
+                  settings: {
+                    slidesToShow: 1
+                  }
+                }
+              ]
+            }
+          };
+
           scope.size = 8;
 
           scope.page = 0;
@@ -447,17 +464,26 @@
 
           scope.createActions = function (new_val, old_val) {
 
+            if ($(".bns_quest_main.slick-initialized").length) {
+              $(".bns_quest_main.slick-initialized").slick('destroy');
+            }
+
             var actions = [];
+            var load_flag = [];
 
             if (sp_api.data('load.actions.list')() && sp_api.data('load.actions.list')().actions) {
               actions = actions.concat(sp_api.data('load.actions.list')().actions);
+              load_flag.push(true);
             }
 
             if (sp_api.data('load.actions.custom.list')() && sp_api.data('load.actions.custom.list')()) {
               actions = actions.concat(sp_api.data('load.actions.custom.list')());
+              load_flag.push(true);
             }
 
-            scope.actions = angular.copy(actions);
+            if(load_flag.length == 2){
+              scope.actions = angular.copy(actions);
+            }
 
           };
 
@@ -470,12 +496,13 @@
           };
 
           sp.on('actions.perform.success', function (res) {
-
-            sp_api.call('load.actions.list');
-
-            sp_api.call('load.actions.custom.list');
-
             $rootScope.$apply(function () {
+
+              sp_api.call('load.actions.list');
+
+              sp_api.call('load.actions.custom.list');
+
+              sp_api.call('load.user.info', {all: 1, purchases: 1});
 
               scope.show = null;
               var msg = '', header = '';

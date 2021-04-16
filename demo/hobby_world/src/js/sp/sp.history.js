@@ -142,6 +142,12 @@ angular.module('sp.history', [])
           }
         };
 
+        scope.has_orders = function(){
+           return scope.history && scope.history() && scope.history().filter(function(item){
+             return item.order_num
+           }).length
+        };
+
         scope.user = sp_api.data('load.user.info');
 
         scope.history = sp_api.data('load.user.history');

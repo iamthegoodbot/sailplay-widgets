@@ -1,21 +1,21 @@
 .bns_json_wish_empty {
     position: relative;
     width: 100%;
-    line-height: 536px;
+    line-height: 250px;
     text-align: center;
 }
 
 .bns_json_recommend_empty {
     position: relative;
     width: 100%;
-    line-height: 258px;
+    line-height: 340px;
     text-align: center;  
 }
 
 .bns_json_game_empty {
     position: relative;
     width: 100%;
-    line-height: 258px;
+    line-height: 340px;
     text-align: center;  
 }
 
@@ -25,6 +25,7 @@
   text-align: center;
   padding-top: 30px;
   padding-bottom: 10px;
+  margin-top: 13px;
   .bns_wish_item {
     display: inline-block;
     width: 170px;
@@ -66,11 +67,24 @@
       float: left;
       width: 100%;
       box-sizing: border-box;
-      padding: 0px 10px;
+      padding: 0px 0 0 10px;
       text-align: center;
       color: #000000;
       font-size: 13px;
       height: 75px;
+
+      &:before {
+        content: '';
+        display: inline-block;
+        vertical-align: middle;
+        width: 0;
+        height: 100%;
+      }
+
+      span {
+        display: inline-block;
+        vertical-align: middle;
+      }
     }
     .bns_wish_item_name + a {
       display: inline-block;

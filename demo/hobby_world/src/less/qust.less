@@ -4,15 +4,18 @@
   text-align: center;
   padding: 25px;
   margin-bottom: 66px;
+  margin-top: 20px;
   box-sizing: border-box;
 
   .bns_quest_wr {
     float: left;
-    width: 25%;
+    width: 33.3%;
+    height: 150px;
+    padding-top: 10px;
   }
 
   &_empty {
-    padding: 45px 0 0;
+    line-height: 230px;
     text-align: center;
   }
 
@@ -46,6 +49,60 @@
     margin-top: -25px;
     cursor: pointer;
   }
+
+  .slick-prev {
+    outline: none;
+    border: 0px;
+    text-indent: -99999px;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    background-image: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/0a63fd5169d85a2f7125e8b914d445ef.svg");
+    background-position: center center;
+    background-size: 25%;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 20px 2px;
+    border-radius: 50%;
+    background-color: white;
+    background-repeat: no-repeat;
+    left: -10px;
+    top: 50%;
+    margin-top: -25px;
+    z-index: 2;
+    cursor: pointer;
+    transform: rotate(-180deg);
+    transition: box-shadow 0.3s linear;
+
+    &:hover {
+      box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 22px 3px;
+    }
+
+  }
+
+  .slick-next {
+    outline: none;
+    border: 0px;
+    text-indent: -99999px;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    background-image: url("https://sailplays3.cdnvideo.ru/media/assets/assetfile/0a63fd5169d85a2f7125e8b914d445ef.svg");
+    background-position: center center;
+    background-size: 25%;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 20px 2px;
+    border-radius: 50%;
+    z-index: 2;
+    background-color: white;
+    background-repeat: no-repeat;
+    right: -10px;
+    top: 50%;
+    margin-top: -25px;
+    cursor: pointer;
+    transition: box-shadow 0.3s linear;
+
+    &:hover {
+      box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 22px 3px;
+    }
+  }
   .bns_quest_item {
     display: inline-block;
     width: 150px;
@@ -62,14 +119,18 @@
     -o-transition: all 300ms ease;
     transition: all 300ms ease;
     &:hover {
-      -moz-transform: scale(1.1);
-      -webkit-transform: scale(1.1);
-      -o-transform: scale(1.1);
-      -ms-transform: scale(1.1);
-      transform: scale(1.1);
+      -moz-transform: scale(1.01);
+      -webkit-transform: scale(1.01);
+      -o-transform: scale(1.01);
+      -ms-transform: scale(1.01);
+      transform: scale(1.01);
       -webkit-box-shadow: 0 0 10px 0 #8C8C8C;
       box-shadow: 0 0 10px 0 #8C8C8C;
       border: 1px solid transparent;
+      .bns_quest_item_bal {
+        visibility: hidden;
+        opacity: 0;
+      }
       a {
         opacity: 1;
       }
@@ -96,7 +157,7 @@
       transition: all 300ms ease;
     }
     .bns_quest_item_img {
-      width: 58px;
+      //width: 58px;
       height: 58px;
       border-radius: 58px;
       background-color: #6eb1ba;
@@ -104,6 +165,9 @@
       display: inline-block;
       margin-top: 15px;
       margin-bottom: 20px;
+
+      width: 37%;
+      float: left;
       &:before {
         content: '';
         display: inline-block;
@@ -114,12 +178,13 @@
         vertical-align: middle;
         display: inline-block;
         max-width: 80%;
+        max-height: 35%;
         //margin-right: 4px;
       }
     }
     .bns_quest_item_name {
       float: left;
-      width: 76%;
+      width: 63%;
       margin-left: 12%;
       color: #000000;
       font-size: 14px;
@@ -129,11 +194,9 @@
     .bns_quest_item_bal {
       line-height: 27px;
       display: inline-block;
-      background-color: #f1f1f1;
-      border-radius: 27px;
-      float: left;
-      width: 60%;
-      margin-left: 20%;
+      float: right;
+      width: 54%;
+      text-align: left;
       font-size: 18px;
       color: #000000;
       font-weight: bold;

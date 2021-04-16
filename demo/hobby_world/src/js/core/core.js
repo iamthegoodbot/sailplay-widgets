@@ -59,10 +59,6 @@
 
           $rootScope.auth = true;
 
-          sp_api.call('load.actions.list');
-
-          sp_api.call('load.actions.custom.list');
-
           loadData();
 
         })
@@ -104,7 +100,7 @@
 
       sp.on('actions.perform.success', function (res) {
 
-        $rootScope.$apply(loadData);
+        // $rootScope.$apply(loadData);
 
       });
 
@@ -141,26 +137,29 @@
 
       function loadData() {
 
-        if ($(".js-slick-slider.slick-initialized").length) {
-          $(".js-slick-slider.slick-initialized").slick('unslick');
-        }
+        // if ($(".js-slick-slider.slick-initialized").length) {
+        //   $(".js-slick-slider.slick-initialized").slick('unslick');
+        // }
+        //
+        // if ($(".slick-initialized").not('.bns_recom').length) {
+        //   $(".slick-initialized").not('.bns_recom').slick('destroy');
+        // }
 
-        if ($(".slick-initialized").length) {
-          $(".slick-initialized").slick('unslick');
-        }
+        setTimeout(function(){
 
-        // sp_api.call('load.actions.list');
+          sp_api.call('load.actions.list');
 
-        // sp_api.call('load.actions.custom.list');
+          sp_api.call('load.actions.custom.list');
 
-        sp_api.call('load.badges.list', {include_rules: 1});
+          sp_api.call('load.badges.list', {include_rules: 1});
 
-        sp_api.call('load.user.info', {all: 1, purchases: 1});
+          sp_api.call('load.user.info', {all: 1, purchases: 1});
 
-        sp_api.call('load.gifts.list', {verbose: 1});
+          sp_api.call('load.gifts.list', {verbose: 1});
 
-        sp_api.call('load.user.history', {tz: getTimeZone()});
+          sp_api.call('load.user.history', {tz: getTimeZone()});
 
+        }, 200)
       }
 
     });
